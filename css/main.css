@@ -1,0 +1,270 @@
+@charset "utf-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    left: 0;
+    top: 0;
+}
+
+li {
+    list-style: none;
+}
+
+/*하이퍼링크 전체 밑줄 제거*/
+a {
+    text-decoration: none;
+}
+
+/*사용할 페이지 전체 범위(가로폭은 1200px 고정, 세로폭은 내용물이 많아지면 자동 증가)*/
+.main_Box {
+    max-width: 1200px;
+    border: 1px solid red;
+    margin: auto;
+}
+
+/*메인 header(nav 부분 전체)*/
+.main_Box .header {
+
+    width: 1200px;
+    height: 100px;
+    border: 1px solid orange;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+/*네비게이션 바를 중앙에 오도록 맞춰주는 div*/
+.main_Box .header .nav_balance {
+
+    border: 1px solid purple;
+    flex-basis: 5%;
+
+}
+
+
+
+.main_Box .header .nav_bar {
+    border: 3px solid yellow;
+    flex-basis: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main_Box .header .nav_bar ul {
+    width: 80%;
+    height: 80%;
+    border: 1px solid green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-evenly;
+    
+    
+
+}
+
+
+.main_Box .header .nav_bar ul li {
+    width: 80px;
+    height: 60px;
+    border: 1px solid blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    border-radius: 20%;
+   
+    
+}
+
+.main_Box .header .nav_img {
+    object-fit: cover;
+    border: 1px solid purple;
+    flex-basis: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.main_Box .header .nav_img img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    
+
+
+}
+
+/*메인 슬라이드이미지*/
+.main_Box .main_slide {
+    width: 1200px;
+    height: 500px;
+    border: 1px solid red;
+}
+
+.main_Box .main_body {
+    width: 1200px;
+    height: 1650px;
+    border: 1px solid orange;
+}
+
+.main_Box .main_body .main_body_side {
+    height: 1650px;
+    width: 97px;
+    border: 1px solid yellow;
+    float: left;
+}
+
+.main_Box .main_body .main_body_center {
+    height: 1650px;
+    width: 1000px;
+    border: 1px solid green;
+    float: left;
+}
+
+/*메인 물건*/
+.main_Box .main_body .main_body_center .prod_goods {
+    height: 500px;
+    width: 1000px;
+    border: 1px solid red;
+}
+
+.main_Box .main_body .main_body_center .prod_goods h1 {
+    text-align: center;
+}
+
+.main_Box .main_body .main_body_center .prod_goods h4 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.main_Box .main_body .main_body_center .prod_goods .big_box {
+    height: 380px;
+    width: 800px;
+    border: 1px solid orange;
+    margin: auto;
+}
+
+.main_Box .main_body .main_body_center .prod_goods .big_box .box1 {
+    height: 170px;
+    width: 750px;
+    border: 1px solid yellow;
+    margin: auto;
+
+}
+
+.main_Box .main_body .main_body_center .prod_goods .big_box .box1 .topbox {
+    height: 150px;
+    width: 150px;
+    border: 1px solid green;
+    float: left;
+
+}
+
+
+.main_Box .main_body .main_body_center .prod_goods .big_box .box1 .topbox4 {
+
+    margin-right: 47px;
+
+}
+
+.main_Box .main_body .main_body_center .prod_goods .big_box .box2 {
+    height: 170px;
+    width: 750px;
+    border: 1px solid blue;
+    margin: auto;
+
+}
+
+.main_Box .main_body .main_body_center .prod_goods .big_box .box2 .bottombox {
+    height: 150px;
+    width: 150px;
+    border: 1px solid puple;
+    float: left;
+
+
+}
+
+
+.main_Box .main_body .main_body_center .prod_goods .big_box .box2 .bottombox4 {
+
+    margin-right: 47px;
+
+}
+
+.main_Box .main_body .main_body_center .prod_goods .big_box .box2 .bottombox .letter p {
+    text-align: center;
+
+}
+
+/*메인 리뷰*/
+.main_Box .main_body .main_body_center .review {
+    height: 500px;
+    width: 1000px;
+    border: 1px solid red;
+}
+
+.main_Box .main_body .main_body_center .review .bigbox {
+    height: 445px;
+    width: 850px;
+    border: 1px solid orange;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.main_Box .main_body .main_body_center .review .bigbox .box_left {
+    height: 150px;
+    width: 847px;
+    border: 1px solid yellow;
+    margin: auto;
+}
+
+.main_Box .main_body .main_body_center .review .bigbox .box_right {
+    height: 150px;
+    width: 847px;
+    border: 1px solid green;
+    margin: auto;
+}
+
+.main_Box .main_body .main_body_center .review .bigbox .box_left .image {
+    height: 150px;
+    width: 200px;
+    border: 1px solid blue;
+    float: left;
+}
+
+.main_Box .main_body .main_body_center .review .bigbox .box_left .letter {
+    height: 150px;
+    width: 410px;
+    border: 1px solid purple;
+    float: left;
+}
+
+.main_Box .main_body .main_body_center .review .bigbox .box_right .image {
+    height: 150px;
+    width: 200px;
+    border: 1px solid rgb(255, 126, 126);
+    float: right;
+}
+
+.main_Box .main_body .main_body_center .review .bigbox .box_right .letter {
+    height: 150px;
+    width: 410px;
+    border: 1px solid rgb(255, 211, 129);
+    float: right;
+}
+
+.main_Box .main_body .main_body_center .camp {
+    height: 500px;
+    width: 1000px;
+    border: 1px solid rgb(124, 255, 124);
+}
+
+.main_Box .main_body .main_body_center .footer {
+    height: 150px;
+    width: 1000px;
+    border: 1px solid rgb(125, 123, 255);
+}
