@@ -23,7 +23,7 @@ a {
     margin: auto;
 }
 
-/*메인 header(nav 부분 전체)*/
+/**********메인 header(nav 부분 전체)************/
 .main_Box .header {
 
     width: 1200px;
@@ -41,7 +41,6 @@ a {
     flex-basis: 5%;
 
 }
-
 
 
 .main_Box .header .nav_bar {
@@ -75,7 +74,6 @@ a {
     align-items: center;
     flex-direction: row;
     border-radius: 20%;
-   
     
 }
 
@@ -98,40 +96,41 @@ a {
 
 }
 
-/*메인 슬라이드이미지*/
+/*********메인 슬라이드이미지*********/
 .main_Box .main_slide {
     width: 1200px;
     height: 500px;
     border: 1px solid red;
 }
 
+
+/*********메인 바디***********/
 .main_Box .main_body {
     width: 1200px;
-    height: 1650px;
     border: 1px solid orange;
+    display: flex;
+    flex-direction: row;
 }
 
+/*메인 바디 사이드*/
 .main_Box .main_body .main_body_side {
-    height: 1650px;
-    width: 97px;
     border: 1px solid yellow;
-    float: left;
+    flex-basis: 10%;
 }
 
+/*메인 바디 센터*/
 .main_Box .main_body .main_body_center {
-    height: 1650px;
-    width: 1000px;
     border: 1px solid green;
-    float: left;
+    flex-basis: 80%;
 }
 
-/*메인 물건*/
+/******메인 물품판매박스*******/
 .main_Box .main_body .main_body_center .prod_goods {
-    height: 500px;
-    width: 1000px;
+    height: auto;
     border: 1px solid red;
 }
 
+/*물품박스의 글씨*/
 .main_Box .main_body .main_body_center .prod_goods h1 {
     text-align: center;
 }
@@ -141,21 +140,21 @@ a {
     margin-bottom: 20px;
 }
 
+/*물품박스의 아이템박스 */
 .main_Box .main_body .main_body_center .prod_goods .big_box {
     height: 380px;
     width: 800px;
     border: 1px solid orange;
     margin: auto;
 }
-
+/*물품박스 첫번째 줄*/
 .main_Box .main_body .main_body_center .prod_goods .big_box .box1 {
-    height: 170px;
-    width: 750px;
     border: 1px solid yellow;
     margin: auto;
-
+    display: flex;
+    justify-content: space-between;
 }
-
+/*물품박스 윗줄의 1,2,3,4번 박스*/
 .main_Box .main_body .main_body_center .prod_goods .big_box .box1 .topbox {
     height: 150px;
     width: 150px;
@@ -164,37 +163,46 @@ a {
 
 }
 
-
+/*물품박스 윗줄의 4번 박스 (추가)*/
 .main_Box .main_body .main_body_center .prod_goods .big_box .box1 .topbox4 {
 
     margin-right: 47px;
 
 }
 
+/*물품박스 두번째 줄*/ 
 .main_Box .main_body .main_body_center .prod_goods .big_box .box2 {
-    height: 170px;
-    width: 750px;
+    
     border: 1px solid blue;
     margin: auto;
-
+    display: flex;
+    justify-content: space-between;
 }
 
+/*물품박스 밑줄의 1,2,3,4번 박스*/
 .main_Box .main_body .main_body_center .prod_goods .big_box .box2 .bottombox {
     height: 150px;
     width: 150px;
-    border: 1px solid puple;
+    border: 1px solid purple;
     float: left;
 
 
 }
 
-
+/*물품박스 밑줄의 4번박스 (추가)*/
 .main_Box .main_body .main_body_center .prod_goods .big_box .box2 .bottombox4 {
 
     margin-right: 47px;
 
 }
 
+/*물품박스 윗줄의 텍스트*/
+.main_Box .main_body .main_body_center .prod_goods .big_box .box1 .topbox .letter p {
+    text-align: center;
+
+}
+
+/*물품박스 밑줄의 텍스트*/
 .main_Box .main_body .main_body_center .prod_goods .big_box .box2 .bottombox .letter p {
     text-align: center;
 
