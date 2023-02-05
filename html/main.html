@@ -5,190 +5,172 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <title>main</title>
 
+    <!--css 연결-->
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <!--js연결-->
+    <script type="text/javascript" src="/js/main.js" defer></script>
+
+    <!--구글 폰트 링크-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Varela+Round&display=swap"
+        rel="stylesheet">
+    <!--폰트 그림 링크-->
+    <script src="https://kit.fontawesome.com/bb87a5faf0.js" crossorigin="anonymous"></script>
 
     </import>
 </head>
 
 <body>
-    <!--사용할 페이지 전체 범위-->
-    <div class="main_Box">
-        <!--------------------메인 header----------------------->
-        <div class="header">
-            
-            <div class="nav_balance">
+    <!--=====사용할 페이지 전체 범위=====-->
+    <div class="box">
+        <!--====메인 header====-->
+        <header class="header">
+
+            <!--네이게이션 로고-->
+            <div class="header_logo">
+                <a href="#"><i class="fa-solid fa-tent"></i>
+                    abc캠핑 </a>
+
             </div>
+
+
             <!--네비게이션 바-->
-            <div class="nav_bar">
-                <ul>
-                    <li>a</li>
-                    <li>b</li>
-                    <li>c</li>
-                    <li>d</li>
-                </ul>
-            </div>
+            <ul class="header_menu">
+                <li><a href="">apple</a></li>
+                <li><a href="">banana</a></li>
+                <li><a href="">cherry</a></li>
+                <li><a href="">melon</a></li>
+            </ul>
+
             <!--우측 상단 이미지-->
-            <div class="nav_img">
-                <img src="/family3.jpg">
+            <ul class="header_mypage">
+                <li>
+                    <a href="">
+                        <i class="fa-solid fa-user"></i>
+                    </a>
+                </li>
+            </ul>
+
+            <a href="#" class="header_hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </a>
+
+        </header>
+        <!--====메인====-->
+        <main>
+            <!----메인 슬라이드---->
+            <div class="slide">
             </div>
 
 
-        </div>
-        <!---------------------메인 슬라이드------------------>
-        <div class="main_slide">
+            <!----메인 바디---->
+            <div class="body">
+                <!--메인 바디의 사이드 빈 공간왼쪽-->
+                <div class="aside_l">aside_l</div>
 
 
-        </div>
-        <!-----------------------메인 바디-------------------->
-        <div class="main_body">
-            <!--메인 바디의 사이드 빈 공간-->
-            <div class="main_body_side"></div>
-            <!--메인 바디 가운데 공간-->
-            <div class="main_body_center">
 
+                <!--메인 바디 가운데 공간-->
+                <div class="body_center">
 
-                <!----------------캠핑 판매물품 박스------------->
-                <div class="prod_goods">
-                    <h1>Camper Product</h1><br>
-                    <h4>많은 제품을 확인하여 보세요.</h4>
-                    <div class="big_box">
-                        <div class="box1">
-                            <!--박스 첫번째줄-->
-                            <div class="topbox topbox4">
-                                <!--아이템박스-->
-                                <div class="item1"><img src="/family3.jpg" width="150" height="120"></div>
-                                <div class="letter">
-                                    <p>화로</p>
-                                </div>
-                            </div>
-
-                            <div class="topbox topbox4">
-                                <div class="item2"><img src="/family3.jpg" width="150" height="120"></div>
-                                <div class="letter">
-                                    <p>화로</p>
-                                </div>
-                            </div>
-
-                            <div class="topbox topbox4">
-                                <div class="item3"><img src="/family3.jpg" width="150" height="120"></div>
-                                <div class="letter">
-                                    <p>화로</p>
-                                </div>
-                            </div>
-
-                            <div class="topbox ">
-                                <div class="item4"><img src="/family3.jpg" width="150" height="120"></div>
-                                <div class="letter">
-                                    <p>화로</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="box2">
-                            <div class="bottombox bottombox4">
-                                <div class="item1"><img src="/family3.jpg" width="150" height="120"></div>
-                                <div class="letter">
-                                    <p>화로</p>
-                                </div>
-                            </div>
-
-                            <div class="bottombox bottombox4">
-                                <div class="item2"><img src="/family3.jpg" width="150" height="120"></div>
-                                <div class="letter">
-                                    <p>화로</p>
-                                </div>
-                            </div>
-
-                            <div class="bottombox bottombox4">
-                                <div class="item3"><img src="/family3.jpg" width="150" height="120"></div>
-                                <div class="letter">
-                                    <p>화로</p>
-                                </div>
-                            </div>
-
-                            <div class="bottombox">
-                                <div class="item4"><img src="/family3.jpg" width="150" height="120"></div>
-                                <div class="letter">
-                                    <p>화로</p>
-                                </div>
-                            </div>
+                    <!----------------캠핑 판매물품 박스------------->
+                    <div class="prod_goods">
+                        <h1>Camper Product</h1><br>
+                        <h4>많은 제품을 확인하여 보세요.</h4>
+                        <div class="container">
+                            <div class="item item1">화로<img src="/img/happy10.jpg"></div>
+                            <div class="item item2">화로<img src="/img/happy10.jpg"></div>
+                            <div class="item item3">화로<img src="/img/happy10.jpg"></div>
+                            <div class="item item4">화로<img src="/img/happy10.jpg"></div>
+                            <div class="item item5">화로<img src="/img/happy10.jpg"></div>
+                            <div class="item item6">화로<img src="/img/happy10.jpg"></div>
+                            <div class="item item7">화로<img src="/img/happy10.jpg"></div>
+                            <div class="item item8">화로<img src="/img/happy10.jpg"></div>
                         </div>
                     </div>
-                </div>
-                <!-------------------후기--------------------->
-                <div class="review">
-                    <div class="bigbox">
-                        <div class="box_left">
-                            <div class="image">
-                                <div><img src="/family3.jpg" width="150" height="120">
+                    <!-------------------후기--------------------->
+                    <div class="review">
+                        <div class="bigbox">
+                            <div class="box_left">
+                                <div class="image">
+                                    <div><img src="/img/family2.jpg" width="150" height="120">
+                                    </div>
+                                    <div class="star">☆☆☆☆</div>
                                 </div>
-                                <div class="star">☆☆☆☆</div>
-                            </div>
-                            <div class="letter">
-                                <div class="title">zz</div>
-                                <div class="content">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit magnam rerum sint,
-                                        saepe quod, amet reprehenderit ducimus et, vero iusto rem odio! Libero tempora
-                                        rerum tenetur nostrum commodi, cupiditate illo.</p>
+                                <div class="letter">
+                                    <div class="title">zz</div>
+                                    <div class="content">
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit magnam rerum
+                                            sint,
+                                            saepe quod, amet reprehenderit ducimus et, vero iusto rem odio! Libero
+                                            tempora
+                                            rerum tenetur nostrum commodi, cupiditate illo.</p>
+                                    </div>
+                                    <div class="like">dd</div>
                                 </div>
-                                <div class="like">dd</div>
                             </div>
+                            <div class="box_right">
+                                <div class="image">
+                                    <div><img src="/img/family2.jpg" width="150" height="120">
+                                    </div>
+                                    <div class="star">☆☆☆☆</div>
+                                </div>
+                                <div class="letter">
+                                    <div class="title">zz</div>
+                                    <div class="content">
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit magnam rerum
+                                            sint,
+                                            saepe quod, amet reprehenderit ducimus et, vero iusto rem odio! Libero
+                                            tempora
+                                            rerum tenetur nostrum commodi, cupiditate illo.</p>
+                                    </div>
+                                    <div class="like">dd</div>
+                                </div>
+                            </div>
+                            <div class="box_left">
+                                <div class="image">
+                                    <div><img src="/img/family2.jpg" width="150" height="120">
+                                    </div>
+                                    <div class="star">☆☆☆☆</div>
+                                </div>
+                                <div class="letter">
+                                    <div class="title">zz</div>
+                                    <div class="content">
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit magnam rerum
+                                            sint,
+                                            saepe quod, amet reprehenderit ducimus et, vero iusto rem odio! Libero
+                                            tempora
+                                            rerum tenetur nostrum commodi, cupiditate illo.</p>
+                                    </div>
+                                    <div class="like">dd</div>
+                                </div>
+                            </div>
+
                         </div>
-                        <div class="box_right">
-                            <div class="image">
-                                <div><img src="/family3.jpg" width="150" height="120">
-                                </div>
-                                <div class="star">☆☆☆☆</div>
-                            </div>
-                            <div class="letter">
-                                <div class="title">zz</div>
-                                <div class="content">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit magnam rerum sint,
-                                        saepe quod, amet reprehenderit ducimus et, vero iusto rem odio! Libero tempora
-                                        rerum tenetur nostrum commodi, cupiditate illo.</p>
-                                </div>
-                                <div class="like">dd</div>
-                            </div>
-                        </div>
-                        <div class="box_left">
-                            <div class="image">
-                                <div><img src="/family3.jpg" width="150" height="120">
-                                </div>
-                                <div class="star">☆☆☆☆</div>
-                            </div>
-                            <div class="letter">
-                                <div class="title">zz</div>
-                                <div class="content">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit magnam rerum sint,
-                                        saepe quod, amet reprehenderit ducimus et, vero iusto rem odio! Libero tempora
-                                        rerum tenetur nostrum commodi, cupiditate illo.</p>
-                                </div>
-                                <div class="like">dd</div>
-                            </div>
-                        </div>
+
 
                     </div>
 
+                    <!---------------캠핑예약-------------------->
+                    <div class="camp"></div>
 
                 </div>
+                <!--메인 바디의 사이드 빈 공간 오른쪽-->
+                <div class="aside_r">aside_r</div>
 
-                <!---------------캠핑예약-------------------->
-                <div class="camp"></div>
-                <!------------------푸터---------------------->
-                <div class="footer"></div>
+
+
 
 
             </div>
-
-            <div class="main_body_side"></div>
-        </div>
-
+        </main>
+        <!--====푸터====-->
+        <footer>footer</footer>
 
     </div>
-
-
 
 </body>
 

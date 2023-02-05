@@ -1,221 +1,373 @@
 @charset "utf-8";
 
+
+:root {
+    /*화면을 줄이거나 늘렸을 때 글자 크기조절 하는 기능*/
+    --font-size-lg: calc(1rem + 3vw);
+    --font-size-md: calc(1rem + 1vw);
+    --font-size-sm: calc(1rem + 0.3vw);
+    
+  }
+  
+  h1 {
+    font-size: var(--font-size-lg);
+  }
+  
+  h2 {
+    font-size: var(--font-size-md);
+  }
+  
+  p {
+    font-size: var(--font-size-sm);
+  }
+  
+  /*출처표기 인용구의 css*/
+  blockquote {
+    font-size: var(--font-size-md);
+  }
+  
+  a {
+    font-size: var(--font-size-sm);
+  }
+
+
+
+/* "{max-width: 100%;
+    height: auto;}"를 사용한 이유
+    -> 페이지 전체적으로 화면을 줄이거나 늘렸을 때 반응형처럼 보이게 하기 위해 사용, 화면을 줄이거나 늘렸을 때 밑에서 준 
+    .box{}의 길이인 최대 가로 길이:80vw로 고정, 세로는 늘어난 만큼 보여짐  */
 * {
     margin: 0;
     padding: 0;
     left: 0;
     top: 0;
+    max-width: 100%;
+    height: auto;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Varela Round', sans-serif;
 }
 
+/*리스트들의 특수기호 제거*/
 li {
     list-style: none;
 }
+
 
 /*하이퍼링크 전체 밑줄 제거*/
 a {
     text-decoration: none;
 }
 
-/*사용할 페이지 전체 범위(가로폭은 1200px 고정, 세로폭은 내용물이 많아지면 자동 증가)*/
-.main_Box {
-    max-width: 1200px;
+/*사용할 페이지 전체 범위(가로폭은 보이는 화면의 80%고정, 세로폭은 내용물이 많아지면 자동 증가)*/
+body {
+    max-width: 80vw;
     border: 1px solid red;
     margin: auto;
+    
+}  
+
+/*전체 페이지 틀 설정*/
+.box{
+    max-width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr  1fr;
+    grid-template-rows: 4rem auto 2rem;
+    grid-template-areas:
+    'header header'
+    'main main'
+    'footer footer' 
+}
+header{
+    grid-area: header;
 }
 
-/**********메인 header(nav 부분 전체)************/
-.main_Box .header {
+main{
+    grid-area: main;
+}
 
-    width: 1200px;
-    height: 100px;
-    border: 1px solid orange;
+footer{
+    grid-area: footer;
+}
+
+.body{
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+    '.aside_l .body_center .body_center .body_center .body_center .body_center .body_center .body_center .body_center .aside_r';
+}
+
+.aside_l{
+    grid-area: aside_l;
+}
+
+.body_center{
+    grid-area: body;
+}
+
+.aside_r{
+    grid-area : aside_r;
+}
+
+/**********메인 header(header 부분 전체)************/
+.box header {
+    display: flex; 
+    border: 5px solid orange;
+    padding: 0.5rem 2rem;
+    position: relative;
+    
+}
+
+
+.box header .header_logo {
     display: flex;
-    justify-content: center;
-    align-content: center;
-}
-
-/*네비게이션 바를 중앙에 오도록 맞춰주는 div*/
-.main_Box .header .nav_balance {
-
     border: 1px solid purple;
-    flex-basis: 5%;
+    align-items: center;
+    justify-items: center;
+    flex-basis: 15%;
+    
+}  
 
-}
 
-
-.main_Box .header .nav_bar {
+.box header .header_menu {
+    display: flex; 
     border: 3px solid yellow;
-    flex-basis: 90%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.main_Box .header .nav_bar ul {
-    width: 80%;
-    height: 80%;
-    border: 1px solid green;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-basis: 75%;
     justify-content: space-evenly;
-    
-    
-
 }
 
-
-.main_Box .header .nav_bar ul li {
-    width: 80px;
-    height: 60px;
-    border: 1px solid blue;
-    display: flex;
+.box header .header_menu li {
+    border: 1px solid blue;border-radius: 0.5rem;
+    padding: 0.7rem;
+    margin: 0.2rem;
+    display:flex; 
     justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    border-radius: 20%;
+    text-align: center;
     
 }
 
-.main_Box .header .nav_img {
+
+
+.box header .header_mypage {
+    border: 5px solid purple;
+    display: flex;
+    align-items: center;
+    flex-basis:10%;
+    height: auto;
+    justify-content: center;
     object-fit: cover;
-    border: 1px solid purple;
-    flex-basis: 5%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.main_Box .header .nav_img img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
     
-
-
 }
+
+
+.box header .header_hamburger{
+    display: none;
+    position: absolute;
+    font-size: 1rem;
+    top: 8px;
+    left: auto;
+    right: 8px;
+    width:30px;
+    height:30px;
+    font-size: 1.5rem;
+}
+
+@media screen and (max-width:768px) {
+    .box header{
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.5rem;
+    }
+
+    .box header .header_menu{
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+
+    }
+
+    .box header .header_menu li{
+        width: 100%;
+        
+    }
+
+    .box header .header_mypage{
+        display: none;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .box header .header_hamburger{
+        display: block;
+       
+    }
+
+    .header_menu.active,
+    .header_mypage.active{
+        display: flex;
+    }
+}
+
 
 /*********메인 슬라이드이미지*********/
-.main_Box .main_slide {
-    width: 1200px;
-    height: 500px;
+.box .slide {
+   
+    height: 50vh;
     border: 1px solid red;
 }
 
 
 /*********메인 바디***********/
-.main_Box .main_body {
-    width: 1200px;
+.box main .body {
+    
     border: 1px solid orange;
+    display: flex;
+    flex-direction: row;
+   
+}
+
+.box main .body .aside_l{
+    border: 1px solid rgb(0, 255, 76);
     display: flex;
     flex-direction: row;
 }
 
-/*메인 바디 사이드*/
-.main_Box .main_body .main_body_side {
-    border: 1px solid yellow;
-    flex-basis: 10%;
-}
-
-/*메인 바디 센터*/
-.main_Box .main_body .main_body_center {
-    border: 1px solid green;
-    flex-basis: 80%;
+.box main .body .aside_r{
+    border: 1px solid rgb(0, 64, 255);
+    display: flex;
+    flex-direction: row;
 }
 
 /******메인 물품판매박스*******/
-.main_Box .main_body .main_body_center .prod_goods {
+.container{
+    border: 5px solid rgba(0, 0, 0, 0.656);
+    display: grid;
+    padding: 1rem;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(5rem, auto);
+    gap: 1rem;
+}
+
+img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+ /* .box .body .body_center .prod_goods {
+    display: grid;
+    grid-template-columns: repeat(4, 5rem);
+    grid-template-rows: repeat(2, 5rem);
     height: auto;
     border: 1px solid red;
-}
+}  */
 
 /*물품박스의 글씨*/
-.main_Box .main_body .main_body_center .prod_goods h1 {
+.box .body .body_center .prod_goods h1 {
     text-align: center;
+    max-width: 100%;
 }
 
-.main_Box .main_body .main_body_center .prod_goods h4 {
+.box .body .body_center .prod_goods h4 {
     text-align: center;
-    margin-bottom: 20px;
-}
+    margin-bottom: 1rem;
+} 
+
+.box .body .body_center .prod_goods .container .item {
+    text-align: center;
+    margin-bottom: 1rem;
+} 
+
 
 /*물품박스의 아이템박스 */
-.main_Box .main_body .main_body_center .prod_goods .big_box {
+/* .box .body .body_center .prod_goods .big_box {
+    display: flex;
     height: 380px;
     width: 800px;
     border: 1px solid orange;
     margin: auto;
-}
+   
+    
+} */
 /*물품박스 첫번째 줄*/
-.main_Box .main_body .main_body_center .prod_goods .big_box .box1 {
-    border: 1px solid yellow;
+/* .box .body .body_center .prod_goods .big_box .box1 {
+   
+    border: 3px solid yellow;
     margin: auto;
     display: flex;
-    justify-content: space-between;
-}
+    justify-content:space-between;
+    flex-wrap:wrap;
+    overflow:auto;
+    flex-shrink:1;
+    
+} */
 /*물품박스 윗줄의 1,2,3,4번 박스*/
-.main_Box .main_body .main_body_center .prod_goods .big_box .box1 .topbox {
+/* .box .body .body_center .prod_goods .big_box .box1 .topbox {
     height: 150px;
     width: 150px;
     border: 1px solid green;
     float: left;
 
-}
+} */
 
 /*물품박스 윗줄의 4번 박스 (추가)*/
-.main_Box .main_body .main_body_center .prod_goods .big_box .box1 .topbox4 {
+/* .box .body .body_center .prod_goods .big_box .box1 .topbox4 {
 
     margin-right: 47px;
 
-}
+} */
 
 /*물품박스 두번째 줄*/ 
-.main_Box .main_body .main_body_center .prod_goods .big_box .box2 {
+/* .box .body .body_center .prod_goods .big_box .box2 {
     
     border: 1px solid blue;
     margin: auto;
     display: flex;
     justify-content: space-between;
-}
+} */
 
 /*물품박스 밑줄의 1,2,3,4번 박스*/
-.main_Box .main_body .main_body_center .prod_goods .big_box .box2 .bottombox {
+/* .box .body .body_center .prod_goods .big_box .box2 .bottombox {
     height: 150px;
     width: 150px;
     border: 1px solid purple;
     float: left;
 
 
-}
+} */
 
 /*물품박스 밑줄의 4번박스 (추가)*/
-.main_Box .main_body .main_body_center .prod_goods .big_box .box2 .bottombox4 {
+/* .box .body .body_center .prod_goods .big_box .box2 .bottombox4 {
 
     margin-right: 47px;
 
-}
+} */
 
 /*물품박스 윗줄의 텍스트*/
-.main_Box .main_body .main_body_center .prod_goods .big_box .box1 .topbox .letter p {
+.box .body .body_center .prod_goods .big_box .box1 .topbox .letter p {
     text-align: center;
 
 }
 
 /*물품박스 밑줄의 텍스트*/
-.main_Box .main_body .main_body_center .prod_goods .big_box .box2 .bottombox .letter p {
+.box .body .body_center .prod_goods .big_box .box2 .bottombox .letter p {
     text-align: center;
 
 }
 
 /*메인 리뷰*/
-.main_Box .main_body .main_body_center .review {
-    height: 500px;
-    width: 1000px;
+.box .body .body_center .review {
+   
+    
     border: 1px solid red;
 }
 
-.main_Box .main_body .main_body_center .review .bigbox {
+.box .body .body_center .review .bigbox {
+    
     height: 445px;
     width: 850px;
     border: 1px solid orange;
@@ -223,55 +375,61 @@ a {
     margin-top: 30px;
 }
 
-.main_Box .main_body .main_body_center .review .bigbox .box_left {
+.box .body .body_center .review .bigbox .box_left {
+    
     height: 150px;
     width: 847px;
     border: 1px solid yellow;
     margin: auto;
 }
 
-.main_Box .main_body .main_body_center .review .bigbox .box_right {
+.box .body .body_center .review .bigbox .box_right {   
     height: 150px;
     width: 847px;
     border: 1px solid green;
     margin: auto;
 }
 
-.main_Box .main_body .main_body_center .review .bigbox .box_left .image {
+.box .body .body_center .review .bigbox .box_left .image {
+    
     height: 150px;
     width: 200px;
     border: 1px solid blue;
     float: left;
 }
 
-.main_Box .main_body .main_body_center .review .bigbox .box_left .letter {
-    height: 150px;
-    width: 410px;
+.box .body .body_center .review .bigbox .box_left .letter {
+    
+    
     border: 1px solid purple;
     float: left;
 }
 
-.main_Box .main_body .main_body_center .review .bigbox .box_right .image {
+.box .body .body_center .review .bigbox .box_right .image {
+
     height: 150px;
     width: 200px;
     border: 1px solid rgb(255, 126, 126);
     float: right;
 }
 
-.main_Box .main_body .main_body_center .review .bigbox .box_right .letter {
+.box .body .body_center .review .bigbox .box_right .letter {
+    
     height: 150px;
     width: 410px;
     border: 1px solid rgb(255, 211, 129);
     float: right;
 }
 
-.main_Box .main_body .main_body_center .camp {
+.box .body .body_center .camp {
+   
     height: 500px;
     width: 1000px;
     border: 1px solid rgb(124, 255, 124);
 }
 
-.main_Box .main_body .main_body_center .footer {
+.box .body .body_center .footer {
+   
     height: 150px;
     width: 1000px;
     border: 1px solid rgb(125, 123, 255);
