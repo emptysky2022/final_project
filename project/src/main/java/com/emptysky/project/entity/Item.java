@@ -26,7 +26,7 @@ public class Item {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long ino;
 	
-	@Column(length = 50, nullable = false)
+	@Column(length = 200, nullable = false)
 	private String name;
 	
 	private String image;
@@ -40,8 +40,6 @@ public class Item {
 	private String category1;
 	
 	private String category2;
-	
-	private String category3;
 	
 	@Column(nullable = false)
 	private int price;
