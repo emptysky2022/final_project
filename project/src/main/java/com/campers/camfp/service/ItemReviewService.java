@@ -16,7 +16,7 @@ public interface ItemReviewService {
 	List<ItemReviewDTO> getReviewOfItem(Long ino);
 	
 	//사용자가 작성한 리뷰 가져오기
-	List<ItemReviewDTO> getReviewOfUser(String uid);
+	List<ItemReviewDTO> getReviewOfUser(String mid);
 	
 	//리뷰 수정하기
 	void modify(ItemReviewDTO itemReviewDTO);

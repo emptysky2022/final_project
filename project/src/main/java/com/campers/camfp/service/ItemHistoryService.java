@@ -14,7 +14,7 @@ public interface ItemHistoryService {
 	Long register(ItemHistoryDTO itemHistoryDTO);
 	
 	//사용자의 모든 상품 히스토리 가져오기
-	List<ItemHistoryDTO> getHistoryOfUser(String uid);
+	List<ItemHistoryDTO> getHistoryOfUser(String mid);
 	
 	//상품 히스토리 수정
 	void modify(ItemHistoryDTO itemHistoryDTO);
@@ -26,7 +26,7 @@ public interface ItemHistoryService {
 	default ItemHistory dtoToEntity(ItemHistoryDTO itemHistoryDTO) {
 		ItemHistory itemHistory = ItemHistory.builder()
 									.ihno(itemHistoryDTO.getIhno())
-									.member(Member.builder().id(itemHistoryDTO.getUser()).build())
+									.member(Member.builder().id(itemHistoryDTO.getMember()).build())
 									.item(Item.builder().ino(itemHistoryDTO.getItem()).build())
 									.amount(itemHistoryDTO.getAmount())
 									.state(itemHistoryDTO.getState())
@@ -39,7 +39,7 @@ public interface ItemHistoryService {
 	default ItemHistoryDTO entityToDto(ItemHistory itemHistory) {
 		ItemHistoryDTO itemHistoryDTO = ItemHistoryDTO.builder()
 				.ihno(itemHistory.getIhno())
-				.user(itemHistory.getMember().getId())
+				.member(itemHistory.getMember().getId())
 				.item(itemHistory.getItem().getIno())
 				.amount(itemHistory.getAmount())
 				.state(itemHistory.getState())
