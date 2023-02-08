@@ -19,7 +19,7 @@ public class MemberRepositoryTest {
 	@Test
 	public void insertMember() {	// test 확인 완.
 		
-		IntStream.rangeClosed(1, 10).forEach(i -> {
+		IntStream.rangeClosed(1, 50).forEach(i -> {
 			
 			boolean xy = false;	// i = 2의 배수일 때 남자.
 			

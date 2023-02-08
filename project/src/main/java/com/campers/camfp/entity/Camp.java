@@ -44,5 +44,4 @@ public class Camp {
 	private int count;
 	private int star;
 
-
 }
