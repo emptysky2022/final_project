@@ -8,5 +8,5 @@ import com.campers.camfp.entity.Camp;
 
 
 public interface CampRepository extends JpaRepository<Camp, Long> {
- 
+
 }

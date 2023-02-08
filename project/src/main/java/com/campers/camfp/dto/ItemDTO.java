@@ -25,5 +25,4 @@ public class ItemDTO {
 	private int star;
 	private int heart;
 	
-	
 }
