@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Join the Membership</title>
+</head>
+
+<!--css 연결-->
+<link rel="stylesheet" type="text/css" href="/css/signup.css">
+<!--js연결-->
+<script type="text/javascript" src="" defer></script>
+
+<!--구글 폰트 링크-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Varela+Round&display=swap" rel="stylesheet">
+<!--폰트 그림 링크-->
+<script src="https://kit.fontawesome.com/bb87a5faf0.js" crossorigin="anonymous"></script>
+
+<body>
+	<div class="container">
+		<div class="sec1 box1">
+			<div class="airplane box2">
+				<i class="fa-sharp fa-solid fa-plane-up item"></i>
+			</div>
+			<h2 class="title item">Camp에 오신것을 환영합니다.</h2>
+			<h3 class="content item_2">여러분의 캠핑을 도와줍니다.</h3>
+		</div>
+
+		<div class="sec2 box1">
+			<div class="loginapibox item">sns 회원가입</div>
+			<div class="loginapi box2">
+				<button type="button item">Google</button>
+				<button type="button item">Naver</button>
+				<button type="button item">Kakao</button>
+			</div>
+		</div>
+
+		<div class="sec3 box1">
+			<div class="line item">
+				<hr>
+			</div>
+			<div class="logintitle item_2">회원 가입에 필요한 정보를 입력해주세요.</div>
+			<div class="line item_3">
+				<hr>
+			</div>
+		</div>
+
+		<form th:action="@{/sample/Login}" th:method="post">
+			<div class="sec4 box1">
+				<div class="profileimgbox box2">
+					<p class="profiletext">프로필 사진</p>
+					<input class="profileimg item_2" type="text" name="image" placeholder="이미지를 넣어야해요?">
+				</div>
+
+				<div class="idbox box2">
+					<p class="idtext item">아이디</p>
+					<input class="id item_2" type="text" name="id" placeholder="아이디를 입력해주세요.">
+				</div>
+
+				<div class="passwordbox box2">
+					<p class="passwordtext item">비밀번호</p>
+					<input class="password item_2" type="password" name="pass" placeholder="비밀번호를 입력해주세요.">
+				</div>
+
+				<div class="passwordcheckbox box2">
+					<p class="passwordchecktext item">비밀번호 확인
+					</p>
+					<input class="passwordcheck item_2" type="password" name="passcheck" placeholder="비밀번호를 입력해주세요.">
+				</div>
+
+				<div class="namebox box2">
+					<p class="nametext item">이름</p>
+					<input class="name item_2" type="text" name="name" placeholder="이름를 입력해주세요.">
+				</div>
+				<div class="nicknamebox box2">
+					<p class="nicknametext item">별명</p>
+					<input class="nickname item_2" type="text" name="nickname" placeholder="별명를 입력해주세요.">
+				</div>
+				<div class="agebox box2">
+					<p class="agetext item">나이</p>
+					<input class="age" type="text" name="age" placeholder="나이를 입력해주세요.">
+				</div>
+				<div class="genderbox box2">
+					<p class="gendertext item">성별</p>
+					<select class="gender item_2" name="gender">
+						<option value="true">남자</option>
+						<option value="false">여자</option>
+					</select>
+				</div>
+				<div class="addressbox box2">
+					<p class="addresstext item">주소</p>
+					<input class="address" type="text" name="address" placeholder="주소를 입력해주세요.">
+				</div>
+				<div class="phonebox box2">
+					<p class="phonetext item">전화번호</p>
+					<input class="phone" type="text" name="phone" placeholder="전화번호를 입력해주세요.">
+				</div>
+				<div class="introducebox box2">
+					<p class="introducetext">소개</p>
+					<input class="introduce" type="text" name="introduce" placeholder="간단한 소개를 부탁드려요">
+				</div>
+
+				<p>이메일 수신 동의 - api 넣을건가요???</p>
+
+				<button class="joinmember" type="submit" name="joinMember" class="registerBtn">회원가입</button>
+
+
+
+		</form>
+
+		<div>
+			이미 회원이신가요?<a href="#">로그인</a>
+		</div>
+
+	</div>
+</body>
+
+</html>
