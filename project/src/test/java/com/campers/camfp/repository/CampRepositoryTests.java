@@ -1,5 +1,6 @@
 package com.campers.camfp.repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
@@ -29,44 +30,61 @@ public class CampRepositoryTests {
 	}
 
 	public void test1() {
-		selectAll(type.camp);
+		sendQuery(type.CAMP);
 	}
 
-	public void selectAll(type camp) {
+	public Object[] sendQuery(type camp) {
+		
+		Object[] data = null;
 
 		switch (camp) {
-		
-		case camp: 
-				
-			break;
-			
-		case campReview: 
+
+		case CAMP:
+			Camptest(campRepository);
 			
 			break;
-			
-		case campHistory: 
-			
+
+		case REVIEW:
+
 			break;
-			
-		case campCalander: 
-			
+
+		case HISTORY:
+
 			break;
-		
+
+		case CALANDER:
+
+			break;
+
 		default:
 			break;
-			
+
 		}
+
+		return data;
 	}
 
 	@Test
 	public void Camptest(JpaRepository<?, ?> data) {
 
-		Optional<?> test = Optional.ofNullable(data);
+		List<?> test = data.findAll();
+		//test
 
 	}
 
 	public enum type {
-		camp, campReview, campHistory, campCalander
+		CAMP, 
+		REVIEW,
+		HISTORY,
+		CALANDER,
+		CALANDER2
+	}
+	
+	public enum query {
+		SELECT, 
+		SELECTALL,
+		DELETE,
+		DELETEALL
 	}
 
 }
