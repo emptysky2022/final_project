@@ -191,15 +191,6 @@ footer{
     }
 }
 
-
-/*********메인 슬라이드이미지*********/
-main .slide {
-   
-    height: 70vh;
-    border: 1px solid rgb(1, 1, 1);
-}
-
-
 /*********메인 바디***********/
 main .body {
     display: flex;
