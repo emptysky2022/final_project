@@ -1,4 +1,4 @@
-package com.emptysky.project.entity;
+package com.campers.camfp.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,24 +15,25 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Table(name="heart_list")
-@ToString(exclude = {"camp", "item", "user"})
+@ToString(exclude = {"user", "item"})
+@Table(name="item_history")
 @Getter
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class HeartList {
+@NoArgsConstructor
+public class ItemHistory {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long hlno;
+	private Long ihno;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private User user;
 	
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	private Camp camp;
-	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Item item;
+	
+	private int amount;
+	
+	private byte state;
 }

@@ -1,6 +1,5 @@
-package com.emptysky.project.entity;
+package com.campers.camfp.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -9,38 +8,36 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Entity
-@Table(name="item_review")
-@ToString(exclude = {"item", "user"})
+@Table(name="shopping_cart")
+@ToString(exclude = {"user", "item"})
 @Getter
-@Builder
-@AllArgsConstructor
+@Entity
 @NoArgsConstructor
-public class ItemReview {
+@AllArgsConstructor
+@Builder
+public class ShoppingCart {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long irno;
+	private Long sno;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Item item;
-	
-	private String image;
-	
-	@Column(length=2000, nullable = false)
-	private String content;
+	@Value("1")
+	private int amount;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private User user;
 	
-	@Column(length=20, nullable = false)
-	private String nickname;
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Item item;
 	
-	private int heart;
+	
+	
 }

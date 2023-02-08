@@ -1,4 +1,4 @@
-package com.emptysky.project.entity;
+package com.campers.camfp.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

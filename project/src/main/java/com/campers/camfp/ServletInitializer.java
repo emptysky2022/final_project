@@ -1,4 +1,4 @@
-package com.emptysky.project;
+package com.campers.camfp;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

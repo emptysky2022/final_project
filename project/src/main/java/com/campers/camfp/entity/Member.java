@@ -1,8 +1,7 @@
-package com.emptysky.project.entity;
+package com.campers.camfp.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -13,13 +12,13 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Table(name="user")
+@Table(name="member")
 @Builder
 @Getter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class Member {
 	
 	//사용자 ID
 	@Id
@@ -39,7 +38,7 @@ public class User {
 	
 	//사용자 이름
 	@Column(length = 20)
-	private String name;
+	private String name; 
 	
 	//사용자 나이
 	private int age;
@@ -58,8 +57,23 @@ public class User {
 	//사용자 권한(회원 / 관리자)
 	private Boolean grade;
 	
-	//사용자 전화번호
+	//사용자 소개
 	@Column(length = 1000)
 	private String introduce;
+
+	public void change(String pass, String nickname, String image, String name, int age, String address,
+			String phone, String introduce) {
+		
+		this.pass  = pass;
+		this.nickname = nickname;
+		this.image = image;
+		this.name = name;
+		this.age = age;
+		this.address = address;
+		this.phone = phone;
+		this.introduce = introduce;
+	}
+	
+	
 	
 }

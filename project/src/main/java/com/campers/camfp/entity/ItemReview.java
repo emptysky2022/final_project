@@ -1,5 +1,6 @@
-package com.emptysky.project.entity;
+package com.campers.camfp.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,25 +16,31 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@ToString(exclude = {"user", "item"})
-@Table(name="item_history")
+@Table(name="item_review")
+@ToString(exclude = {"item", "user"})
 @Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ItemHistory {
+public class ItemReview {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long ihno;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	private User user;
+	private Long irno;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Item item;
 	
-	private int amount;
+	private String image;
 	
-	private byte state;
+	@Column(length=2000, nullable = false)
+	private String content;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	private User user;
+	
+	@Column(length=20, nullable = false)
+	private String nickname;
+	
+	private int heart;
 }

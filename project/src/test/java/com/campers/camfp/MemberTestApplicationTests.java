@@ -1,10 +1,10 @@
-package com.emptysky.project;
+package com.campers.camfp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ProjectApplicationTests {
+class MemberTestApplicationTests {
 
 	@Test
 	void contextLoads() {

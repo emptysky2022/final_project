@@ -1,4 +1,4 @@
-package com.emptysky.project.repository;
+package com.campers.camfp.repository;
 
 import java.util.stream.IntStream;
 
@@ -6,7 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.emptysky.project.entity.User;
+import com.campers.camfp.entity.User;
+import com.campers.camfp.repository.UserRepository;
 
 @SpringBootTest
 public class UserRepositoryTests {
