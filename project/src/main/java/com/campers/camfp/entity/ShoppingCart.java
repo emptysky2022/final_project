@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Table(name="shopping_cart")
-@ToString(exclude = {"user", "item"})
+@ToString(exclude = {"member", "item"})
 @Getter
 @Entity
 @NoArgsConstructor
@@ -33,7 +33,7 @@ public class ShoppingCart {
 	private int amount;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	private User user;
+	private Member member;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Item item;

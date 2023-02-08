@@ -17,7 +17,7 @@ import lombok.ToString;
 
 @Entity
 @Table(name="item_review")
-@ToString(exclude = {"item", "user"})
+@ToString(exclude = {"item", "member"})
 @Getter
 @Builder
 @AllArgsConstructor
@@ -37,7 +37,7 @@ public class ItemReview {
 	private String content;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	private User user;
+	private Member member;
 	
 	@Column(length=20, nullable = false)
 	private String nickname;

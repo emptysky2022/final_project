@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@ToString(exclude = {"user", "item"})
+@ToString(exclude = {"member", "item"})
 @Table(name="item_history")
 @Getter
 @Builder
@@ -28,7 +28,7 @@ public class ItemHistory {
 	private Long ihno;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	private User user;
+	private Member member;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Item item;
