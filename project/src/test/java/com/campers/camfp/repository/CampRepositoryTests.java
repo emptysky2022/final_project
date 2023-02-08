@@ -68,7 +68,7 @@ public class CampRepositoryTests {
 	public void Camptest(JpaRepository<?, ?> data) {
 
 		List<?> test = data.findAll();
-		
+		//test
 
 	}
 
