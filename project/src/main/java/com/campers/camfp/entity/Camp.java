@@ -40,8 +40,23 @@ public class Camp {
 	@Column(length = 50)
 	private String address;
 	
+	@Column(nullable = true)
 	private int unit;
+
+	@Column(nullable = true)
 	private int count;
+	
+	@Column(nullable = true)
 	private int star;
+	
+	@OneToMany(mappedBy = "camp")
+	List<CampHistory> campHistory = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "camp")
+	List<CampReview> campReview = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "camp")
+	List<CampCalender> campCalendar = new ArrayList<>();
+	
 
 }

@@ -5,7 +5,7 @@ import java.util.List;
 import com.campers.camfp.dto.ItemReviewDTO;
 import com.campers.camfp.entity.Item;
 import com.campers.camfp.entity.ItemReview;
-import com.campers.camfp.entity.User;
+import com.campers.camfp.entity.Member;
 
 public interface ItemReviewService {
 	
@@ -32,7 +32,7 @@ public interface ItemReviewService {
 								.image(itemReviewDTO.getImage())
 								.content(itemReviewDTO.getContent())
 								.item(Item.builder().ino(itemReviewDTO.getItem()).build())
-								.user(User.builder().id(itemReviewDTO.getUser()).build())
+								.member(Member.builder().id(itemReviewDTO.getMember()).build())
 								.build();
 		
 		return itemReview;
@@ -46,7 +46,7 @@ public interface ItemReviewService {
 								.image(itemReview.getImage())
 								.content(itemReview.getContent())
 								.item(itemReview.getItem().getIno())
-								.user(itemReview.getUser().getId())
+								.member(itemReview.getMember().getId())
 								.build();
 		
 		return itemReviewDTO;

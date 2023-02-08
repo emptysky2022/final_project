@@ -5,7 +5,8 @@ import java.util.List;
 import com.campers.camfp.dto.ItemHistoryDTO;
 import com.campers.camfp.entity.Item;
 import com.campers.camfp.entity.ItemHistory;
-import com.campers.camfp.entity.User;
+import com.campers.camfp.entity.Member;
+import com.campers.camfp.entity.Member;
 
 public interface ItemHistoryService {
 
@@ -25,7 +26,7 @@ public interface ItemHistoryService {
 	default ItemHistory dtoToEntity(ItemHistoryDTO itemHistoryDTO) {
 		ItemHistory itemHistory = ItemHistory.builder()
 									.ihno(itemHistoryDTO.getIhno())
-									.user(User.builder().id(itemHistoryDTO.getUser()).build())
+									.member(Member.builder().id(itemHistoryDTO.getUser()).build())
 									.item(Item.builder().ino(itemHistoryDTO.getItem()).build())
 									.amount(itemHistoryDTO.getAmount())
 									.state(itemHistoryDTO.getState())
@@ -38,7 +39,7 @@ public interface ItemHistoryService {
 	default ItemHistoryDTO entityToDto(ItemHistory itemHistory) {
 		ItemHistoryDTO itemHistoryDTO = ItemHistoryDTO.builder()
 				.ihno(itemHistory.getIhno())
-				.user(itemHistory.getUser().getId())
+				.user(itemHistory.getMember().getId())
 				.item(itemHistory.getItem().getIno())
 				.amount(itemHistory.getAmount())
 				.state(itemHistory.getState())
