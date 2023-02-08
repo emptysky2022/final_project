@@ -1,16 +1,13 @@
 package com.campers.camfp.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.campers.camfp.dto.MemberDTO;
 import com.campers.camfp.service.MemberService;
 
-import ch.qos.logback.classic.pattern.LineOfCallerConverter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -33,18 +30,9 @@ public class MemberController {
 		
 	}
 	
-	@GetMapping({"/signup"})
+	@GetMapping("/membership")
 	public void index1() {
 		
-	}
-	
-	@GetMapping("/modifymember")
-	public void modify(String id, Model model) {
-		
-		log.info("id : " + id);
-		
-		MemberDTO memberDTO = memberService.get(id);
-		model.addAttribute("memberDTO", memberDTO);
 	}
 	
 	// 회원가입 후 login 화면으로 넘어갈거야
@@ -59,29 +47,5 @@ public class MemberController {
 		
 	}
 	
-	@PostMapping("/readmember")
-	public void get(String id, Model model) {
-		
-		log.info("id : " + id);
-		
-		MemberDTO memberDTO = memberService.get(id);
-		model.addAttribute("memberDTO", memberDTO);
-		log.info("memberDTO : " + memberDTO);
-		
-	}
-	
-	// 수정
-	@PostMapping("/modifymember")
-	public String modify(MemberDTO memberDTO, RedirectAttributes redirectAttributes) {
-		
-		log.info("post modify------------------");
-		log.info("memberDTO : " + memberDTO);
-		
-		memberService.modify(memberDTO);
-		
-		redirectAttributes.addAttribute("id", memberDTO.getId());
-		
-		return "redirect:/sample/readmember";
-	}
 	
 }
