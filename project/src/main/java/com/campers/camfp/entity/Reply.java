@@ -18,7 +18,7 @@ import lombok.ToString;
 @Entity
 @Getter
 @Table(name="reply")
-@ToString(exclude = {"board", "user"})
+@ToString(exclude = {"board", "member"})
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -35,7 +35,7 @@ public class Reply {
 	private String content;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	private User user;
+	private Member member;
 	
 	private int heart;
 	

@@ -16,7 +16,7 @@ import lombok.ToString;
 
 @Entity
 @Table(name="heart_list")
-@ToString(exclude = {"camp", "item", "user"})
+@ToString(exclude = {"camp", "item", "member"})
 @Getter
 @Builder
 @NoArgsConstructor
@@ -28,7 +28,7 @@ public class HeartList {
 	private Long hlno;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	private User user;
+	private Member member;
 	
 //	@ManyToOne(fetch = FetchType.LAZY)
 //	private Camp camp;
