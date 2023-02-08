@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Login Page</title>
+
+	<!--css 연결-->
+	<link rel="stylesheet" type="text/css" href="/css/login.css">
+	<!--js연결-->
+	<script type="text/javascript" src="" defer></script>
+
+	<!--구글 폰트 링크-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Varela+Round&display=swap"
+		rel="stylesheet">
+	<!--폰트 그림 링크-->
+	<script src="https://kit.fontawesome.com/bb87a5faf0.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+	<div class="container">
+		<div class="sec1 box1">
+			<div class="airplane box2">
+				<i class="fa-sharp fa-solid fa-plane-up item"></i>
+			</div>
+			<h2 class="title item">Camp에 오신것을 환영합니다.</h2>
+			<h3 class="content item_2">여러분의 캠핑을 도와줍니다.</h3>
+		</div>
+
+		<div class="sec2 box1">
+			<div class="loginapibox item">sns 로그인</div>
+			<div class="loginapi box2">
+				<button type="button item">Google</button>
+				<button type="button item">Naver</button>
+				<button type="button item">Kakao</button>
+			</div>
+		</div>
+
+		<div class="sec3 box1">
+			<div class="line item">
+				<hr>
+			</div>
+			<div class="logintitle item_2">camp 아이디로 로그인</div>
+			<div class="line item_3">
+				<hr>
+			</div>
+		</div>
+
+
+		<div class="sec4 box1">
+			<div class="id box2">
+				<p type="text" class="idtext item">아이디</p>
+				<input type="text" class="idtext item_2" name="id" placeholder="아이디를 입력해주세요.">
+			</div>
+			<div class="password box2">
+				<p type="password" class="passwordtext item">비밀번호</p>
+				<input type="password" class="passwordtext item_2" name="pass" placeholder="비밀번호를 입력해주세요.">
+			</div>
+		</div>
+
+		<div class="sec5 box1">
+			<div class="findidbox box2">
+				<a href="" class="findid item"> 계정 찾기 </a>
+			</div>
+			<button class="loginbutton item">로그인</button>
+			<div class="registerlink box2">
+				<div class="registertext item">아직 회원가입을 하지 않으셨나요?</div>
+				<a class="register item_2" href="">
+					회원가입
+				</a>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
