@@ -1,8 +1,6 @@
 package com.campers.camfp.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -24,24 +23,29 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@ToString
-public class Camp {
-	
+@ToString(exclude = "camp")
+public class CampHistory {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long cno;
+	private int chno;
 	
-	@Column(length = 20)
-	private String name;
+	@Column(length = 200, nullable = true)
+	private String id;
 	
-	@Column(length = 20)
-	private String country;
+	// 지연로딩 설정
+	// 조인 컬럼 설정
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "cno")
+	private Camp camp;
 	
-	@Column(length = 50)
-	private String address;
-	
+	@Column(nullable = true)
 	private int unit;
-	private int count;
-	private int star;
+	
+	@Column(nullable = true)
+	private short state;
+	
 
+	
+	
 }

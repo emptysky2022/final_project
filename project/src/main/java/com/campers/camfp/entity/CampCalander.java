@@ -1,8 +1,8 @@
 package com.campers.camfp.entity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,8 +10,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.springframework.data.annotation.CreatedDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,24 +27,26 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@ToString
-public class Camp {
-	
+@ToString(exclude = "camp")
+public class CampCalander {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long cno;
+	private int ccno;
 	
-	@Column(length = 20)
-	private String name;
+	// 지연로딩 설정
+	// 조인 컬럼 설정
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "cno")
+	private Camp camp;
 	
-	@Column(length = 20)
-	private String country;
+	@Column(name="startDate")
+	private LocalDateTime startdate;
 	
-	@Column(length = 50)
-	private String address;
+	@Column(name="endupDate")
+	private LocalDateTime endupDate;
 	
-	private int unit;
-	private int count;
-	private int star;
 
+	
+	
 }

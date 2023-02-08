@@ -20,8 +20,9 @@ public class ItemDTO {
 	private String category2;
 	private int price;
 	private String link;
-	private int type;		//중고, 일반, 단종
-	private int count;		//조회수
-	private int star;		//별점
-	private int heart;		//좋아요, 찜
+	private int type;
+	private int count;
+	private int star;
+	private int heart;
+	
 }

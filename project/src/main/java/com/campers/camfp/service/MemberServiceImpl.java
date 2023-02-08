@@ -32,6 +32,7 @@ public class MemberServiceImpl implements MemberService {
 	public MemberDTO get(String id) {
 		
 		Object result = memberRepository.getMemberById(id);
+		log.info(result);
 		
 		return entityToDTO((Member) result);
 	}
