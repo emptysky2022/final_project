@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ItemHistoryDTO {
 	private Long ihno;
-	//User ID
-	private String user;
+	//Member ID
+	private String member;
 	//Item number
 	private Long item;
 	private int amount;

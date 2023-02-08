@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 public class ShoppingCartDTO {
 	private Long sno;
 	private int amount;
-	//User ID
-	private String user;
+	//Member ID
+	private String member;
 	//Item number
 	private Long item;
 }
