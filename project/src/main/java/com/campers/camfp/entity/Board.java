@@ -40,6 +40,7 @@ public class Board {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Member member;
+
 	
 	private String category; // 
 	
@@ -47,7 +48,15 @@ public class Board {
 	
 	private int heart; // 좋아요
 	
-	@Column(nullable=false, columnDefinition="timestamp default now()", insertable=false)
+	
+	// 시간은 예제처럼 BaseEntity를 따로 만들어서 관리를 하는게 좋을까여..?
+	@Column(nullable=false, columnDefinition="timestamp default now()", insertable = false, updatable = false)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date regDate= new Date();
+	private Date regdate= new Date();
+	
+	@LastModifiedDate
+	@Column(columnDefinition="timestamp default now()", insertable = false , updatable = true)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date updatedate= new Date();
+
 }

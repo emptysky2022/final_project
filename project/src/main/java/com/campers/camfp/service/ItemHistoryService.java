@@ -6,7 +6,6 @@ import com.campers.camfp.dto.ItemHistoryDTO;
 import com.campers.camfp.entity.Item;
 import com.campers.camfp.entity.ItemHistory;
 import com.campers.camfp.entity.Member;
-import com.campers.camfp.entity.Member;
 
 public interface ItemHistoryService {
 
