@@ -159,7 +159,7 @@ public class CampRepositoryTests {
 
 		List<?> test = data.findAll();
 		int a = 1;
-
+		//안ㄷ올라가.
 	}
 
 	public enum type {
