@@ -12,6 +12,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -30,12 +33,13 @@ public class CampHistory {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int chno;
 	
-	@Column(length = 200, nullable = true)
+	@Column(length = 200, nullable = false)
 	private String id;
 	
 	// 지연로딩 설정
 	// 조인 컬럼 설정
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "cno")
 	private Camp camp;
 	

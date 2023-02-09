@@ -14,6 +14,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.annotation.CreatedDate;
 
 import lombok.AllArgsConstructor;
@@ -28,7 +30,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Getter
 @ToString(exclude = "camp")
-public class CampCalander {
+public class CampCalender {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +38,8 @@ public class CampCalander {
 	
 	// 지연로딩 설정
 	// 조인 컬럼 설정
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "cno")
 	private Camp camp;
 	

@@ -13,8 +13,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.springframework.data.annotation.LastModifiedDate;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -31,7 +29,7 @@ import lombok.ToString;
 public class Board {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long bno;
 	
 	@Column(nullable = false)
@@ -42,6 +40,7 @@ public class Board {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Member member;
+
 	
 	private String category; // 
 	
@@ -59,4 +58,5 @@ public class Board {
 	@Column(columnDefinition="timestamp default now()", insertable = false , updatable = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedate= new Date();
+
 }

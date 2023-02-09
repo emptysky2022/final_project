@@ -13,7 +13,7 @@ public interface ShoppingCartService {
 	Long register(ShoppingCartDTO shoppingCartDTO);
 	
 	//사용자가 넣은 장바구니 목록 가져오기
-	List<ShoppingCartDTO> getCartOfUser(String uid);
+	List<ShoppingCartDTO> getCartOfUser(String mid);
 	
 	//장바구니 수정
 	void modify(ShoppingCartDTO shoppingCartDTO);
@@ -25,7 +25,7 @@ public interface ShoppingCartService {
 	default ShoppingCart dtoToEntity(ShoppingCartDTO shoppingCartDTO) {
 		ShoppingCart shoppingCart = ShoppingCart.builder()
 									.sno(shoppingCartDTO.getSno())
-									.member(Member.builder().id(shoppingCartDTO.getUser()).build())
+									.member(Member.builder().id(shoppingCartDTO.getMember()).build())
 									.item(Item.builder().ino(shoppingCartDTO.getItem()).build())
 									.build();
 		
@@ -36,7 +36,7 @@ public interface ShoppingCartService {
 	default ShoppingCartDTO entityToDto(ShoppingCart shoppingCart) {
 		ShoppingCartDTO shoppingCartDTO = ShoppingCartDTO.builder()
 				.sno(shoppingCart.getSno())
-				.user(shoppingCart.getMember().getId())
+				.member(shoppingCart.getMember().getId())
 				.item(shoppingCart.getItem().getIno())
 				.build();
 		

@@ -16,8 +16,8 @@ public class ItemReviewDTO {
 	//Image URL
 	private String image;
 	private String content;
-	//User ID
-	private String user;
+	//Member ID
+	private String member;
 	private String nickname;
 	private int heart;
 }

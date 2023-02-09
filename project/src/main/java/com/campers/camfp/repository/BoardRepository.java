@@ -6,6 +6,4 @@ import com.campers.camfp.entity.Board;
 
 public interface BoardRepository extends JpaRepository<Board, Long> {
 
-
-	
 }

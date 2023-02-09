@@ -28,6 +28,7 @@ public class MemberRepositoryTest {
 //			}					// 여기까지 남자.
 //			
 			Member member = Member.builder().id("userID5")
+
 											.pass("1111")
 											.nickname("userNick5")
 											.age(20)
