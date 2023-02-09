@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.campers.camfp.dto.ShoppingCartDTO;
 import com.campers.camfp.entity.Item;
+import com.campers.camfp.entity.Member;
 import com.campers.camfp.entity.ShoppingCart;
-import com.campers.camfp.entity.User;
 
 public interface ShoppingCartService {
 
@@ -25,7 +25,7 @@ public interface ShoppingCartService {
 	default ShoppingCart dtoToEntity(ShoppingCartDTO shoppingCartDTO) {
 		ShoppingCart shoppingCart = ShoppingCart.builder()
 									.sno(shoppingCartDTO.getSno())
-									.user(User.builder().id(shoppingCartDTO.getUser()).build())
+									.member(Member.builder().id(shoppingCartDTO.getUser()).build())
 									.item(Item.builder().ino(shoppingCartDTO.getItem()).build())
 									.build();
 		
@@ -36,7 +36,7 @@ public interface ShoppingCartService {
 	default ShoppingCartDTO entityToDto(ShoppingCart shoppingCart) {
 		ShoppingCartDTO shoppingCartDTO = ShoppingCartDTO.builder()
 				.sno(shoppingCart.getSno())
-				.user(shoppingCart.getUser().getId())
+				.user(shoppingCart.getMember().getId())
 				.item(shoppingCart.getItem().getIno())
 				.build();
 		

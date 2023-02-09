@@ -19,29 +19,29 @@ public class MemberRepositoryTest {
 	@Test
 	public void insertMember() {	// test 확인 완.
 		
-		IntStream.rangeClosed(1, 50).forEach(i -> {
-			
-			boolean xy = false;	// i = 2의 배수일 때 남자.
-			
-			if(i % 2 == 0) {
-				xy = true;
-			}					// 여기까지 남자.
-			
-			Member member = Member.builder().id("userID" + i)
+//		IntStream.rangeClosed(1, 50).forEach(i -> {
+//			
+//			boolean xy = false;	// i = 2의 배수일 때 남자.
+//			
+//			if(i % 2 == 0) {
+//				xy = true;
+//			}					// 여기까지 남자.
+//			
+			Member member = Member.builder().id("userID5")
 											.pass("1111")
-											.nickname("userNick" + i)
+											.nickname("userNick5")
 											.age(20)
-											.image("imageSample" + i)
-											.name("userName" + i)
-											.gender(xy)
-											.address("서울시" + i)
-											.phone("010-1111-" + i)
+											.image("imageSample5")
+											.name("userName5")
+											.gender(false)
+											.address("서울시")
+											.phone("010-1111-5")
 											.grade(true)
-											.introduce("안녕하슈" + i)
+											.introduce("안녕하슈")
 											.build();
 			
 			memberRepository.save(member);
-		});
+//		});
 		
 	}
 	
