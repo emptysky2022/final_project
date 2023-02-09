@@ -122,7 +122,8 @@ footer{
 }
 
 .header .header_menu li {
-    border: 1px solid blue;border-radius: 0.5rem;
+    border: 1px solid blue;
+    border-radius: 0.5rem;
     padding: 0.7rem;
     margin: 0.2rem;
     display:flex; 
