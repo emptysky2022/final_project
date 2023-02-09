@@ -38,6 +38,7 @@ a {
     font-family: 'Varela Round', sans-serif;
 	word-wrap: break-word;
     box-sizing: border-box;
+    border-radius: 0.5rem;
 }
 
 /*리스트들의 특수기호 제거*/
@@ -61,7 +62,7 @@ body {
     max-width: 100vw;
     border: 1px solid red; 
     justify-content: center;
-   
+    
     height: 100vh;
 }  
 
@@ -73,7 +74,8 @@ body .container{
     display: flex;
     flex-direction:column;
     margin: 2rem;
-    justify-content:space-between
+    justify-content:space-between;
+    
 }
 
 
@@ -100,12 +102,12 @@ body .container{
     border: 1px solid green;
     margin: 0 0 4rem 0;
     flex-direction:column;
-    text-align: center;
-    justify-content: space-evenly;
-    flex-basis: 10%;
+    
+   
     
 }
 
+/*소셜로그인 글자 가운데 정렬*/
 .sec2 .loginapitext{
     text-align: center;
    
@@ -114,91 +116,77 @@ body .container{
 /*sns로그인*/
 .sec2 .loginapi{
     display: flex;
-    width: 100%;
     justify-content:center;
-    flex-direction: row;
+  
+    
     
 }
 
 
-
+/*buttonbox 모음*/
 .sec2 .loginapi .box3{
     display: flex;
     width: 100%;
-    justify-content: center;
-    flex-direction: row;
+    justify-content:space-evenly;
     align-items: center;
+   
 }
 
-/*api로고박스 색깔 넣기*/
+
 .sec2 .loginapi .buttonbox_g{
     border: 1px border #DC4A38;
-    
-    
+    flex-basis: 30%;
 }
 
 .sec2 .loginapi .buttonbox_n{
     border: 1px border #00C300;
+    flex-basis: 30%;
 }
 
 .sec2 .loginapi .buttonbox_k{
     border: 1px border #F7E409;
+    flex-basis: 30%;
 }
-/*--*/
+/*----------*/
 
-/*api박스 색깔넣기*/
-.sec2 .loginapi .buttonbox_g .buttonbox_g{
-    border: 2px solid #EB4F4D;
-}
 
-.sec2 .loginapi .box3 .buttonbox_n .button_n{
-    border: 2px solid #00CF02;
-}
-.sec2 .loginapi .box3 .buttonbox_k .button_k {
-    border: 2px solid #F2DC00;
-}
-/*--*/
+/*logimg 모음*/
 
-.sec2 .loginapi .box3 .box4{
-    
+.sec2 .loginapi .buttonbox_g .button_g .logoimg_gw{
+    height: 4.5rem;
     display: flex;
-    border-radius: 0.5rem;
-    margin: 1rem;
-    width: 7rem;
-    flex-direction: column;
-    align-items: center;
-}
-
-
-
-
-/*화면 480px(모바일) 이하일때 쓸것들*/
-.sec2 .loginapi .box3 .buttontext_g{
-    display: none;
     
 }
 
-.sec2 .loginapi .box3 .buttontext_n{
-    display: none;
-    
+.sec2 .loginapi .buttonbox_n .button_n .logoimg_nw{
+    display: flex;
+    height: 4.5rem;
 }
-.sec2 .loginapi .box3 .buttontext_k{
-    display: none;
-    
+.sec2 .loginapi .buttonbox_k .button_k .logoimg_kw{
+    display: flex;
+    height: 4.5rem;
 }
-/*--*/
+/*----------*/
 
-/*화면 480 이상일 때 쓸것*/
+
+
+
+
+
+
+
+/*화면 480 이상일 때 가릴 것들 모음*/
+.sec2 .loginapi .box3 .box4 .item_3{
+    display: none;
+}
+
+
 .sec2 .loginapi .box3 .box4 .item_2{
-    display: flex;
-    justify-content: baseline;
-    
+    display: none;
 }
+/*----------*/
 
 
-.sec2 .loginapi .box3 .box4 .logotext:visited{
-    color: black;
-}
 
 
 
@@ -206,22 +194,20 @@ body .container{
 @media screen and (max-width:768px) {
     .sec2{
         border: 1px solid green;
-        margin: 0 0 4rem 0;
         display: flex;
         flex-direction:column;
-        text-align: center;
-        justify-content:space-evenly;
-        flex-basis: 10%;
+        justify-content:center;
+        
         
     }
     
     
     .sec2 .loginapi{
         display: flex;
-        width: 100%;
-        flex-direction:row;
+        height: auto;
+        flex-direction:column;
         justify-content: center;
-        font-weight: lighter;
+        
         align-items: center;
     }
     
@@ -229,8 +215,9 @@ body .container{
   
         display: flex;
         justify-content: center;
-        margin: 3rem;
-        
+        margin: 0.3rem;
+        flex-basis: 35%;
+        height: 4.5rem;
     }
 
     .sec2 .loginapi .box3 .box4 .logotext{
@@ -241,110 +228,101 @@ body .container{
 @media screen and (max-width:480px) {
     .sec2{
         border: 1px solid green;
-        margin: 0 0 4rem 0;
         display: flex;
         flex-direction:column;
-        text-align: center;
-        justify-content: space-evenly;
-        flex-basis: 10%;
+        
+        
+        
         
     }
 
     .sec2 .loginapi{
         display: flex;
-        justify-content:start;
-        flex-direction:column;
+       
+        flex-direction:row;
         
     }
     
     .sec2 .loginapi .box3{
         display: flex;
-        justify-content:start
+        justify-content:center;
+        align-items: center;
        
 }
 
     .sec2 .loginapi .box3 .box4{
         display: flex;
-        flex-direction: row;
-        background-color: white;
-        text-align:center;
+        
+        
+       
+
 }
 
-.sec2 .loginapi .box3 .item{
-    display:block;
-    flex-direction: column;
-    flex-basis: 90%;
-}
+
 
 
 /**/
-.sec2 .loginapi .buttonbox_g .box4{
+.sec2 .loginapi .buttonbox_g .button_g{
     border: 1px solid #DC4A38;
     margin: 0;
     
 }
 
-.sec2 .loginapi .buttonbox_n .box4{
+.sec2 .loginapi .buttonbox_n .button_n{
     border: 1px solid #00C300;
     margin: 0;
-    /*다시 확인할것*/
-    flex-basis: 30%;
+    
+   
     
 }
 
 
-.sec2 .loginapi .buttonbox_k .box4{
+.sec2 .loginapi .buttonbox_k .button_k{
     border: 1px solid #F7E409;
     margin: 0;
 }
 
-/**/
-.sec2 .loginapi .buttonbox_g .logoimg_g {
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    background-color: #DC4A38;
-    height: 100%;
-    border-radius: 5%;
-}
 
-.sec2 .loginapi .buttonbox_n .item .logoimg_n {
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    background-color:#00C300;
-    height: 100%;
-    border-radius: 5%;
-    
-}
-
-
-.sec2 .loginapi .buttonbox_k .item .logoimg_k{
-    display: flex;
-    justify-content: center;
-    color: black;
-    margin: 0;
-    background-color: #F7E409;
-    height: 100%;
-    border-radius: 5%;
-    
-}
-
-
-.sec2 .loginapi .buttonbox_g .buttontext_g {
+/*이미지 아이콘 보이기*/
+.sec2 .loginapi .buttonbox_g .button_g .logoimg_g {
    display: flex;
-   flex-direction: row;
+   width: 3rem;
+    flex-basis: 25%;
    
 }
 
-.sec2 .loginapi .buttonbox_n .buttontext_n {
+.sec2 .loginapi .buttonbox_n .button_n .logoimg_n {
     display: flex;
-    flex-direction: row ;
-}
-.sec2 .loginapi .buttonbox_k .buttontext_k {
+   width: 3rem;
+   flex-basis: 25%;
+    
+ }
+
+ .sec2 .loginapi .buttonbox_k .button_k .logoimg_k {
     display: flex;
+   width: 3rem;
+   flex-basis: 25%;
+    
+ }
+
+
+
+ /*와이드 이미지 숨기기*/
+ .sec2 .loginapi .buttonbox_g .button_g .logoimg_gw {
+    display: none;
     flex-direction: row;
-}
+    
+ }
+ .sec2 .loginapi .buttonbox_n .button_n .logoimg_nw {
+    display: none;
+    flex-direction: row;
+    
+ }
+ .sec2 .loginapi .buttonbox_k .button_k .logoimg_kw {
+    display: none;
+    flex-direction: row;
+    
+ }
 
 
 }
