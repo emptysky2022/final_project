@@ -13,6 +13,9 @@ public interface ItemHistoryService {
 	//상품 히스토리 등록
 	Long register(ItemHistoryDTO itemHistoryDTO);
 	
+	//상품 히스토리 하나 가져오기
+	ItemHistoryDTO getOne(Long ihno);
+	
 	//사용자의 모든 상품 히스토리 가져오기
 	List<ItemHistoryDTO> getHistoryOfUser(String mid);
 	
