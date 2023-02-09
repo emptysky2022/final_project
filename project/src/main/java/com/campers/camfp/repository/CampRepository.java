@@ -5,8 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import com.campers.camfp.entity.Camp;
 
-
-
 public interface CampRepository extends JpaRepository<Camp, Long> {
 
 }
