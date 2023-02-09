@@ -22,7 +22,7 @@ import lombok.ToString;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ItemReview {
+public class ItemReview extends BaseEntity{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,16 +31,13 @@ public class ItemReview {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Item item;
 	
-	private String image;
+	private String capture;
 	
 	@Column(length=2000, nullable = false)
 	private String content;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Member member;
-	
+		
 	@Column(length=20, nullable = false)
-	private String nickname;
+	private String reviewer;
 	
 	private int heart;
 }

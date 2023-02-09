@@ -31,8 +31,8 @@ public class ItemAPITests {
 
 	@Test
 	public void getItem() {
-        String clientId = ""; //애플리케이션 클라이언트 아이디
-        String clientSecret = ""; //애플리케이션 클라이언트 시크릿
+        String clientId = "01jrXpKpOCTFmmWHhY0a"; //애플리케이션 클라이언트 아이디
+        String clientSecret = "foDWQCAkDh"; //애플리케이션 클라이언트 시크릿
 
         IntStream.range(0, 10).forEach(i -> {
         	String text = null;
@@ -55,8 +55,9 @@ public class ItemAPITests {
 				for(int j = 0; j < jarray.length(); j++) {
 					JSONObject items = jarray.getJSONObject(j);
 					ItemDTO itemDTO = ItemDTO.builder()
+									.mno(1L)
 									.name(items.getString("title"))
-									.image(items.getString("image"))
+									.thumbnail(items.getString("image"))
 									.brand(items.getString("brand"))
 									.maker(items.getString("maker"))
 									.category1(items.getString("category3"))

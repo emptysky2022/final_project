@@ -53,7 +53,7 @@ public class MemberController {
 		
 		log.info("memberDTO : " + memberDTO);
 		
-		String id = memberService.register(memberDTO);
+		Long mno = memberService.register(memberDTO);
 		
 		return "redirect:/sample/login";
 		

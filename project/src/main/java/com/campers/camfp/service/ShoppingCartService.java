@@ -26,8 +26,8 @@ public interface ShoppingCartService {
 	default ShoppingCart dtoToEntity(ShoppingCartDTO shoppingCartDTO) {
 		ShoppingCart shoppingCart = ShoppingCart.builder()
 									.sno(shoppingCartDTO.getSno())
-									.member(Member.builder().id(shoppingCartDTO.getMember()).build())
-									.item(Item.builder().ino(shoppingCartDTO.getItem()).build())
+									.member(Member.builder().mno(shoppingCartDTO.getMno()).build())
+									.ino(shoppingCartDTO.getIno())
 									.build();
 		
 		return shoppingCart;
@@ -37,8 +37,8 @@ public interface ShoppingCartService {
 	default ShoppingCartDTO entityToDto(ShoppingCart shoppingCart) {
 		ShoppingCartDTO shoppingCartDTO = ShoppingCartDTO.builder()
 				.sno(shoppingCart.getSno())
-				.member(shoppingCart.getMember().getId())
-				.item(shoppingCart.getItem().getIno())
+				.mno(shoppingCart.getMember().getMno())
+				.ino(shoppingCart.getIno())
 				.build();
 		
 		return shoppingCartDTO;

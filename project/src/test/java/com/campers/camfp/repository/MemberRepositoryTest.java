@@ -28,10 +28,10 @@ public class MemberRepositoryTest {
 			}					// 여기까지 남자.
 			
 			Member member = Member.builder().id("userID" + i)
-											.pass("1111")
+											.pw("1111")
 											.nickname("userNick" + i)
 											.age(20)
-											.image("imageSample" + i)
+											.profileImg("imageSample" + i)
 											.name("userName" + i)
 											.gender(xy)
 											.address("서울시" + i)
@@ -48,9 +48,10 @@ public class MemberRepositoryTest {
 	@Test
 	public void testSelectUser() {	//test 확인 완.
 		
-		String mid = "userID5";		// id를 입력해줌.
+//		String mid = "userID5";		// id를 입력해줌.
+		Long mno = 1L;
 		
-		Optional<Member> result = memberRepository.findById(mid);	// findById로 아이디에 맞는 정보를?? result에 넣어줌.
+		Optional<Member> result = memberRepository.findById(mno);	// findById로 아이디에 맞는 정보를?? result에 넣어줌.
 		
 		System.out.println("------------------------");
 		
@@ -66,18 +67,19 @@ public class MemberRepositoryTest {
 	@Test
 	public void testDelete() {	// test 확인 완.
 		
-		String mid = "userID5";
+//		String mid = "userID5";
+		Long mno = 1L;
 		
-		memberRepository.deleteById(mid);
+		memberRepository.deleteById(mno);
 	}
 	
 	@Test
 	public void testUpdate() {
 		
 		Member member = Member.builder().id("userID4")
-										.pass("2222")
+										.pw("2222")
 										.nickname("upNick4")
-										.image("updateImage4")
+										.profileImg("updateImage4")
 										.name("updateName4")
 										.age(20)
 										.gender(false)

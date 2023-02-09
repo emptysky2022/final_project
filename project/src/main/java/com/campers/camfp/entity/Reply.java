@@ -18,24 +18,30 @@ import lombok.ToString;
 @Entity
 @Getter
 @Table(name="reply")
-@ToString(exclude = {"board", "member"})
+@ToString(exclude = "member")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Reply {
+public class Reply extends BaseEntity{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long rno;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	private Board board;
+	private Member member;
 	
+	@Column(nullable = false)
+	private Long boardNum;
+
+	@Column(nullable = false)
+	private int boardType;
+	
+	@Column(length = 200)
+	private String capture;
+
 	@Column(length = 2000, nullable = false)
 	private String content;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Member member;
 	
 	private int heart;
 	

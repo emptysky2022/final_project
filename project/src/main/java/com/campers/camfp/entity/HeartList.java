@@ -1,5 +1,6 @@
 package com.campers.camfp.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -16,7 +17,7 @@ import lombok.ToString;
 
 @Entity
 @Table(name="heart_list")
-@ToString(exclude = {"camp", "item", "member"})
+@ToString(exclude = "member")
 @Getter
 @Builder
 @NoArgsConstructor
@@ -30,9 +31,10 @@ public class HeartList {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Member member;
 	
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	private Camp camp;
+	@Column(nullable = false)
+	private Long productNum;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Item item;
+	@Column(nullable = false)
+	private int productType;
+	
 }

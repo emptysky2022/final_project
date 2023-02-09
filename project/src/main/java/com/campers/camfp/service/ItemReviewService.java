@@ -28,11 +28,10 @@ public interface ItemReviewService {
 	default ItemReview dtoToEntity(ItemReviewDTO itemReviewDTO) {
 		ItemReview itemReview = ItemReview.builder()
 								.irno(itemReviewDTO.getIrno())
-								.nickname(itemReviewDTO.getNickname())
-								.image(itemReviewDTO.getImage())
+								.reviewer(itemReviewDTO.getReviewer())
+								.capture(itemReviewDTO.getCapture())
 								.content(itemReviewDTO.getContent())
-								.item(Item.builder().ino(itemReviewDTO.getItem()).build())
-								.member(Member.builder().id(itemReviewDTO.getMember()).build())
+								.item(Item.builder().ino(itemReviewDTO.getIno()).build())
 								.build();
 		
 		return itemReview;
@@ -42,11 +41,10 @@ public interface ItemReviewService {
 	default ItemReviewDTO entityToDto(ItemReview itemReview) {
 		ItemReviewDTO itemReviewDTO = ItemReviewDTO.builder()
 								.irno(itemReview.getIrno())
-								.nickname(itemReview.getNickname())
-								.image(itemReview.getImage())
+								.ino(itemReview.getItem().getIno())
+								.reviewer(itemReview.getReviewer())
+								.capture(itemReview.getCapture())
 								.content(itemReview.getContent())
-								.item(itemReview.getItem().getIno())
-								.member(itemReview.getMember().getId())
 								.build();
 		
 		return itemReviewDTO;

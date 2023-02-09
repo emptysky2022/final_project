@@ -12,8 +12,9 @@ import lombok.NoArgsConstructor;
 public class ItemDTO {
 
 	private Long ino;
+	private Long mno;
 	private String name;
-	private String image;
+	private String thumbnail;
 	private String brand;
 	private String maker;
 	private String category1;
