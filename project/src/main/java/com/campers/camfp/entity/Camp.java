@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,19 +21,26 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
+@Table(name="camp")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@ToString
+@ToString(exclude = "member")
 public class Camp {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long cno;
 	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	private Member member;
+	
 	@Column(length = 20)
 	private String name;
+	
+	@Column(length = 200)
+	private String thumbnail;
 	
 	@Column(length = 20)
 	private String country;
@@ -48,9 +56,12 @@ public class Camp {
 	
 	@Column(nullable = true)
 	private int star;
+
+	@Column(nullable = true)
+	private int heart;
 	
-	@OneToMany(mappedBy = "camp")
-	List<CampHistory> campHistory = new ArrayList<>();
+//	@OneToMany(mappedBy = "camp")
+//	List<History> history = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "camp")
 	List<CampReview> campReview = new ArrayList<>();

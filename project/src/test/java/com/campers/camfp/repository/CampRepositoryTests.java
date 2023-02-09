@@ -12,7 +12,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.campers.camfp.entity.Camp;
 import com.campers.camfp.entity.CampCalender;
-import com.campers.camfp.entity.CampHistory;
+import com.campers.camfp.entity.History;
+import com.campers.camfp.entity.Member;
 import com.campers.camfp.entity.CampReview;
 import com.campers.camfp.repository.CampRepository;
 
@@ -21,15 +22,15 @@ public class CampRepositoryTests {
 
 	private final CampRepository campRepository;
 	private final CampReviewRepository campReviewRepository;
-	private final CampHistoryRepository campHistoryRepository;
+	private final HistoryRepository historyRepository;
 	private final CampCalanderRepository campCalanderRepository;
 
 	@Autowired
-	public CampRepositoryTests(CampRepository a, CampReviewRepository b, CampHistoryRepository c,
+	public CampRepositoryTests(CampRepository a, CampReviewRepository b, HistoryRepository c,
 			CampCalanderRepository d) {
 		this.campRepository = a;
 		this.campReviewRepository = b;
-		this.campHistoryRepository = c;
+		this.historyRepository = c;
 		this.campCalanderRepository = d;
 	}
 
@@ -46,7 +47,7 @@ public class CampRepositoryTests {
 		createCampCalenderTest();
 		createCampReviewTests();
 		createCampReviewTests();
-		createCampHistoryTests();
+		createHistoryTests();
 	}
 	}
 	
@@ -62,23 +63,23 @@ public class CampRepositoryTests {
 		LocalDateTime locDate1 = LocalDateTime.now();
 		LocalDateTime locDate2 = LocalDateTime.now();
 		
-		CampCalender campCalender = CampCalender.builder().camp(getCampNum(1)).startdate(locDate1).endupDate(locDate2).build();
+		CampCalender campCalender = CampCalender.builder().camp(getCampNum(1)).startdate(locDate1).enddate(locDate2).build();
 		campCalanderRepository.save(campCalender);
 	}
 	
 	@Test
 	public void createCampReviewTests() {
 		
-		CampReview campReview = CampReview.builder().image("img").content("con").nickname("nic").id("1").camp(getCampNum(1)).build();
+		CampReview campReview = CampReview.builder().capture("img").content("con").reviewer("nic").camp(getCampNum(1)).build();
 		campReviewRepository.save(campReview);
 		
 	}
 	
 	@Test
-	public void createCampHistoryTests() {
-		short a = 1;
-		CampHistory campHistory = CampHistory.builder().id("1").unit(1).state(a).camp(getCampNum(1)).build();
-		campHistoryRepository.save(campHistory);
+	public void createHistoryTests() {
+		byte a = 1;
+		History history = History.builder().member(Member.builder().mno(1L).build()).amount(1).state(a).build();
+		historyRepository.save(history);
 	}
 	
 	public Camp getCampNum(long data) {
@@ -88,7 +89,7 @@ public class CampRepositoryTests {
 	@Test
 	public void delteTest() {
 		
-		campReviewRepository.delete(CampReview.builder().camp(getCampNum(2)).nickname("").content("").build());
+		campReviewRepository.delete(CampReview.builder().camp(getCampNum(2)).reviewer("").content("").build());
 	}
 	
 

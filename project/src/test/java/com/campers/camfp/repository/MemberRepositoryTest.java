@@ -19,6 +19,19 @@ public class MemberRepositoryTest {
 	@Test
 	public void insertMember() {	// test 확인 완.
 		
+<<<<<<< HEAD
+		IntStream.rangeClosed(1, 50).forEach(i -> {
+			
+			boolean xy = false;	// i = 2의 배수일 때 남자.
+			
+			if(i % 2 == 0) {
+				xy = true;
+			}					// 여기까지 남자.
+			
+			Member member = Member.builder().id("userID" + i)
+											.pw("1111")
+											.nickname("userNick" + i)
+=======
 //		IntStream.rangeClosed(1, 50).forEach(i -> {
 //			
 //			boolean xy = false;	// i = 2의 배수일 때 남자.
@@ -31,12 +44,21 @@ public class MemberRepositoryTest {
 
 											.pass("1111")
 											.nickname("userNick5")
+>>>>>>> refs/remotes/origin/master
 											.age(20)
+<<<<<<< HEAD
+											.profileImg("imageSample" + i)
+											.name("userName" + i)
+											.gender(xy)
+											.address("서울시" + i)
+											.phone("010-1111-" + i)
+=======
 											.image("imageSample5")
 											.name("userName5")
 											.gender(false)
 											.address("서울시")
 											.phone("010-1111-5")
+>>>>>>> refs/remotes/origin/master
 											.grade(true)
 											.introduce("안녕하슈")
 											.build();
@@ -49,9 +71,10 @@ public class MemberRepositoryTest {
 	@Test
 	public void testSelectUser() {	//test 확인 완.
 		
-		String mid = "userID5";		// id를 입력해줌.
+//		String mid = "userID5";		// id를 입력해줌.
+		Long mno = 1L;
 		
-		Optional<Member> result = memberRepository.findById(mid);	// findById로 아이디에 맞는 정보를?? result에 넣어줌.
+		Optional<Member> result = memberRepository.findById(mno);	// findById로 아이디에 맞는 정보를?? result에 넣어줌.
 		
 		System.out.println("------------------------");
 		
@@ -67,18 +90,19 @@ public class MemberRepositoryTest {
 	@Test
 	public void testDelete() {	// test 확인 완.
 		
-		String mid = "userID5";
+//		String mid = "userID5";
+		Long mno = 1L;
 		
-		memberRepository.deleteById(mid);
+		memberRepository.deleteById(mno);
 	}
 	
 	@Test
 	public void testUpdate() {
 		
 		Member member = Member.builder().id("userID4")
-										.pass("2222")
+										.pw("2222")
 										.nickname("upNick4")
-										.image("updateImage4")
+										.profileImg("updateImage4")
 										.name("updateName4")
 										.age(20)
 										.gender(false)

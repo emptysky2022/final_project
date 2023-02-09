@@ -43,13 +43,10 @@ public class CampCalender {
 	@JoinColumn(name = "cno")
 	private Camp camp;
 	
-	@Column(name="startDate")
+	@Column(name="startdate")
 	private LocalDateTime startdate;
 	
-	@Column(name="endupDate")
-	private LocalDateTime endupDate;
-	
-
-	
+	@Column(name="enddate")
+	private LocalDateTime enddate;
 	
 }

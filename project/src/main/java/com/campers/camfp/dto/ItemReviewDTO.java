@@ -12,12 +12,11 @@ import lombok.NoArgsConstructor;
 public class ItemReviewDTO {
 	private Long irno;
 	//Item number
-	private Long item;
+	private Long ino;
 	//Image URL
-	private String image;
+	private String capture;
 	private String content;
-	//Member ID
-	private String member;
-	private String nickname;
+	//Member nickname
+	private String reviewer;
 	private int heart;
 }

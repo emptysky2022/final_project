@@ -21,33 +21,46 @@ import lombok.ToString;
 
 @Getter
 @Table(name="board")
-@ToString
+@ToString(exclude = "member")
 @Builder
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
-public class Board {
+@AllArgsConstructor 
+public class Board extends BaseEntity{
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long bno;
 	
-	@Column(nullable = false)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	private Member member;
+	
+	@Column(length = 30, nullable = false)
 	private String title;
 	
 	@Column(length = 2000, nullable = false)
 	private String content;
 	
+<<<<<<< HEAD
+	@Column(length = 10)
+=======
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Member member;
 
 	
+>>>>>>> refs/remotes/origin/master
 	private String category; // 
 	
-	private int  count; // 조회수
+	private int count; // 조회수
 	
 	private int heart; // 좋아요
 	
+<<<<<<< HEAD
+//	@Column(nullable=false, columnDefinition="timestamp default now()", insertable=false)
+//	@Temporal(TemporalType.TIMESTAMP)
+//	private Date regDate= new Date();
+	
+=======
 	
 	// 시간은 예제처럼 BaseEntity를 따로 만들어서 관리를 하는게 좋을까여..?
 	@Column(nullable=false, columnDefinition="timestamp default now()", insertable = false, updatable = false)
@@ -59,4 +72,5 @@ public class Board {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedate= new Date();
 
+>>>>>>> refs/remotes/origin/master
 }

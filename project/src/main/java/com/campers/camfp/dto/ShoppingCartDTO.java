@@ -11,9 +11,9 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ShoppingCartDTO {
 	private Long sno;
-	private int amount;
-	//Member ID
-	private String member;
+	//Member num
+	private Long mno;
 	//Item number
-	private Long item;
+	private Long ino;
+	private int amount;
 }
