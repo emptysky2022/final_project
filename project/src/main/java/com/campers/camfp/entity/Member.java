@@ -1,8 +1,12 @@
 package com.campers.camfp.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -60,6 +64,13 @@ public class Member {
 	//사용자 소개
 	@Column(length = 1000)
 	private String introduce;
+	
+	@OneToMany(mappedBy = "member", orphanRemoval = true)
+	List<CampReview> campReview = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "member", orphanRemoval = true)
+	List<CampHistory> campHistrie = new ArrayList<>();
+	
 
 	public void change(String pass, String nickname, String image, String name, int age, String address,
 			String phone, String introduce) {

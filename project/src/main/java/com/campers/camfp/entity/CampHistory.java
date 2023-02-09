@@ -33,13 +33,14 @@ public class CampHistory {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int chno;
 	
-	@Column(length = 200, nullable = false)
-	private String id;
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "id")
+	private Member member;
 	
 	// 지연로딩 설정
 	// 조인 컬럼 설정
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	@ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.REMOVE)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "cno")
 	private Camp camp;
 	

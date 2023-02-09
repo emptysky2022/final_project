@@ -36,7 +36,7 @@ public class CampReview {
 	// 지연로딩 설정
 	// 조인 컬럼 설정
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	@ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.REMOVE)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "cno")
 	private Camp camp;
 
@@ -47,8 +47,9 @@ public class CampReview {
 	@Column(length = 200, nullable = false)
 	private String content;
 
-	@Column(length = 20, nullable = true)
-	private String id;
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "id")
+	private Member member;
 
 	@Column(length = 20, nullable = false)
 	private String nickname;
