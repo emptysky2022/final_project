@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Join the Membership</title>
+</head>
+<body>
+	
+  <h1>Camp에 오신것을 환영합니다.</h1>
+	
+  <h3>여러분의 캠핑을 도와줍니다.</h3>
+  <p>sns 회원가입</p>
+  <div class="loginApi">	
+	<div>Google</div>
+	<div>Naver</div>
+	<div>Kakao</div>
+  </div> 	
+  
+  <p>회원가입에 필요한 정보를 입력하여 주세요.</p>
+  
+  <form th:action="@{/sample/login}" th:method="post">
+    <table>
+	  <tr>
+		<td>
+		  <label>프로필 사진</label>
+		  <input type="text" name="image" placeholder="이미지를 넣어야해요?">
+		</td>
+	  </tr>
+	  <tr>			
+	    <td>
+		  <label>아이디</label>
+		  <input type="text" name="id" placeholder="아이디를 입력해주세요.">
+		</td>
+	  </tr>
+	  <tr>
+		<td>
+			<label>비밀번호</label>
+			<input type="password" name="pass" placeholder="비밀번호를 입력해주세요.">
+		</td>
+	  </tr>
+	  <tr>
+		<td>
+		  <label>비밀번호 확인</label>
+		  <input type="password" name="passcheck" placeholder="비밀번호를 입력해주세요.">
+		</td>
+	  </tr>
+	  <tr>
+		<td>
+		  <label>이름</label>
+		  <input type="text" name="name" placeholder="이름를 입력해주세요.">
+		</td>
+	  <tr>
+		<td>
+		  <label>별명</label>
+		  <input type="text" name="nickname" placeholder="별명를 입력해주세요.">
+		</td>
+	  </tr>
+	  <tr>
+        <td>
+		  <label>나이</label>
+		  <input type="text" name="age" placeholder="나이를 입력해주세요.">
+		</td>
+	  </tr>
+	  <tr>
+        <td>
+		  <label>성별</label>
+		  <select name="gender">
+		    <option value="true">남자</option>
+			<option value="false">여자</option>
+		  </select>
+		</td>
+	  </tr>
+	  <tr>
+        <td>
+		  <label>주소</label>
+		  <input type="text" name="address" placeholder="주소를 입력해주세요.">
+		</td>
+	  </tr>
+	  <tr>
+		<td>
+	      <label>전화번호</label>
+		  <input type="text" name="phone" placeholder="전화번호를 입력해주세요.">
+		</td>
+	  </tr>
+	  <tr>
+	    <td>
+		  <label>소개</label>
+		  <input type="text" name="introduce" placeholder="간단한 소개를 부탁드려요">
+		</td>
+	  </tr>
+	</table> 
+	  
+	<button type="submit" name="joinMember" class="registerBtn">회원가입</button>
+	  
+	<p>이메일 수신 동의 - api 넣을건가요???</p>
+	  
+	</form>	
+	
+	<div>
+	  이미 회원이신가요?<a href="#">로그인</a>
+	</div>
+</body>
+</html>

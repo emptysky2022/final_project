@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Login Page</title>
+
+	<!--css 연결-->
+	<link rel="stylesheet" type="text/css" href="/project/src/main/resources/static/css/login.css">
+	<!--js연결-->
+	<script type="text/javascript" src="" defer></script>
+
+	<!--구글 폰트 링크-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Varela+Round&display=swap"
+		rel="stylesheet">
+	<!--폰트 그림 링크-->
+	<script src="https://kit.fontawesome.com/bb87a5faf0.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+	<div class="container">
+		<div class="sec1 box1">
+			<div class="airplane box2">
+				<i class="fa-sharp fa-solid fa-plane-up fa-10x item"></i>
+			</div>
+			<h1 class="title item">Campers에 오신것을 환영합니다.</h1>
+			<h4 class="content item_2">여러분의 캠핑을 도와줍니다.</h4>
+		</div>
+
+		<div class="sec2 box1">
+			<div class="loginapitext item">sns 로그인</div>
+			<div class="loginapi box2">
+				<div class="buttonbox_g box3">
+					<a class="button_g box4" href="">
+						<img class="logoimg_g item" src="../img/googlelogo.png" alt="googlelogo">
+						<div class="logotext item_2">구글</div>
+						<div class="buttontext_g item_3">구글로 시작하기</div>
+					</a>
+				</div>
+
+				<div class="buttonbox_n box3">
+					<a class="button_n box4" href="">
+						<img class="logoimg_n item" src="../img/naverLogo.png" alt="naverlogo">
+						<div class="logotext item_2">네이버</div>
+						<div class="buttontext_n item_3">네이버로 시작하기</div>
+					</a>
+				</div>
+				<div class="buttonbox_k box3">
+					<a class="button_k box4" href="">
+						<img class="logoimg_k item" src="../img/kakaoLogo.png" alt="kakaologo">
+						<div class="logotext item_2">
+							카카오</div>
+						<div class="buttontext_k item_3">카카오로 시작하기</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="sectionbreak box1">
+			<div class="sec3 box2">
+				<div class="line item">
+					<hr>
+				</div>
+				<div class="logintitle item_2">camp 아이디로 로그인</div>
+				<div class="line item_3">
+					<hr>
+				</div>
+			</div>
+
+
+			<div class="sec4 box2">
+				<div class="idbox box3">
+					<p type="text" class="idtext item">아이디</p>
+					<input type="text" class="id item_2" name="id" placeholder="아이디를 입력해주세요.">
+				</div>
+				<div class="passwordbox box3">
+					<p type="password" class="passwordtext item">비밀번호</p>
+					<input type="password" class="password item" name="pass" placeholder="비밀번호를 입력해주세요.">
+				</div>
+			</div>
+
+			<div class="sec5 box2">
+				<div class="findaccountbox box3">
+					<a href="" class="findaccount item"> 계정 찾기 </a>
+				</div>
+				<div class="loginbuttonbox box3">
+					<div class="loginbutton item">로그인</div>
+				</div>
+				<div class="registerlinkbox box3">
+					<div class="registertext item">아직 회원가입을 하지 않으셨나요?</div>
+					<div class="register box4">
+						<a class="a item" href="">회원가입</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
