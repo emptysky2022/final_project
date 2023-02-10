@@ -13,10 +13,12 @@ import com.campers.camfp.repository.CampRepository;
 import com.campers.camfp.repository.CampReviewRepository;
 import com.campers.camfp.util.type.TableType;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @Service
+//@RequiredArgsConstructor
 public class CampServiceImpl implements CampService {
 
 	private final CampRepository campRepository;
@@ -31,22 +33,22 @@ public class CampServiceImpl implements CampService {
 	}
 
 	@Override
-	public Optional<Object> findbyId(TableType table, Long cno) {
+	public Optional<? super Object> findbyId(TableType table, Long pk) {
 
-		Optional<Object> value = null;
+		Optional<?> value = null;
 
 		switch (table) {
 
 		case CAMP:
-			value = Optional.of(campRepository.findById(cno).get());
+			value = campRepository.findById(pk);
 			break;
 
 		case CAMPREVIEW:
-			value = Optional.of(campReviewRepository.findById(cno).get());
+			value = campReviewRepository.findById(pk);
 			break;
 
 		case CAMPCALENDER:
-			value = Optional.of(campCalenderRepository.findById(cno).get());
+			value = campCalenderRepository.findById(pk);
 			break;
 
 		default:

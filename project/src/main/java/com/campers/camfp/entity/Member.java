@@ -27,7 +27,7 @@ public class Member {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long mno;
 	
-	@Column(length = 20, unique = true)
+	@Column(length = 20, unique = true, nullable = false)
 	private String id;
 	
 	//사용자 패스워드

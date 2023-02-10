@@ -2,6 +2,7 @@ package com.campers.camfp.service;
 
 import com.campers.camfp.dto.BoardDTO;
 import com.campers.camfp.entity.Board;
+import com.campers.camfp.entity.Member;
 
 public interface BoardService {
 	
@@ -13,7 +14,7 @@ public interface BoardService {
 		Board entityBoard = Board.builder().bno(boardDTO.getBno())
 									 .title(boardDTO.getTitle())
 									 .content(boardDTO.getContent())
-									 .member(boardDTO.getMember())
+									 .member(Member.builder().mno(boardDTO.getMno()).build())
 									 .category(boardDTO.getCategory())
 									 .count(boardDTO.getCount())
 									 .heart(boardDTO.getHeart())
@@ -27,7 +28,8 @@ public interface BoardService {
 		BoardDTO boardDTO = BoardDTO.builder().bno(board.getBno())
 										      .title(board.getTitle())
 										      .content(board.getContent())
-										      .member(board.getMember())
+										      .mno(board.getMember().getMno())
+										      .nickname(board.getMember().getNickname())
 										      .category(board.getCategory())
 										      .count(board.getHeart())
 										      .build(); // regDate, updateDate를 넣으면 빨간줄 쳐짐

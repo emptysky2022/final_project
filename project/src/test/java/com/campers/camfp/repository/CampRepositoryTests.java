@@ -3,7 +3,6 @@ package com.campers.camfp.repository;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.IntStream;
 
 import javax.transaction.Transactional;
 
@@ -14,20 +13,20 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.campers.camfp.entity.Camp;
 import com.campers.camfp.entity.CampCalender;
+import com.campers.camfp.entity.CampReview;
 import com.campers.camfp.entity.History;
 import com.campers.camfp.entity.Member;
-import com.campers.camfp.entity.CampReview;
-import com.campers.camfp.repository.CampRepository;
 import com.campers.camfp.util.type.TableType;
 
 @SpringBootTest
 public class CampRepositoryTests {
 
-	private final CampRepository campRepository;
-	private final CampReviewRepository campReviewRepository;
-	private final HistoryRepository historyRepository;
-	private final CampCalenderRepository campCalenderRepository;
-	private final MemberRepository memberRepository;
+	// final 넣을지 말지 고민 필요.
+	private CampRepository campRepository;
+	private CampReviewRepository campReviewRepository;
+	private HistoryRepository historyRepository;
+	private CampCalenderRepository campCalenderRepository;
+	private MemberRepository memberRepository;
 	
 
 	@Autowired
