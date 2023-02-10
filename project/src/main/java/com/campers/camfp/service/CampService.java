@@ -2,8 +2,6 @@ package com.campers.camfp.service;
 
 import java.util.Optional;
 
-import org.springframework.stereotype.Service;
-
 import com.campers.camfp.util.type.TableType;
 
 public interface CampService {

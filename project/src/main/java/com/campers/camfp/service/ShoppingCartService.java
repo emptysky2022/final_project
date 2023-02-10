@@ -3,7 +3,6 @@ package com.campers.camfp.service;
 import java.util.List;
 
 import com.campers.camfp.dto.ShoppingCartDTO;
-import com.campers.camfp.entity.Item;
 import com.campers.camfp.entity.Member;
 import com.campers.camfp.entity.ShoppingCart;
 

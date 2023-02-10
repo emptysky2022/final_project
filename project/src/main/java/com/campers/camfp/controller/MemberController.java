@@ -10,7 +10,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.campers.camfp.dto.MemberDTO;
 import com.campers.camfp.service.MemberService;
 
-import ch.qos.logback.classic.pattern.LineOfCallerConverter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 

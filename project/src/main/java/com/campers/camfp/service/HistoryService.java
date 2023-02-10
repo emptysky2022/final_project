@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.campers.camfp.dto.HistoryDTO;
 import com.campers.camfp.entity.History;
-import com.campers.camfp.entity.Item;
 import com.campers.camfp.entity.Member;
 
 public interface HistoryService {

@@ -5,7 +5,6 @@ import java.util.List;
 import com.campers.camfp.dto.ItemReviewDTO;
 import com.campers.camfp.entity.Item;
 import com.campers.camfp.entity.ItemReview;
-import com.campers.camfp.entity.Member;
 
 public interface ItemReviewService {
 	
