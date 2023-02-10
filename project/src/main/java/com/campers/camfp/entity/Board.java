@@ -1,7 +1,5 @@
 package com.campers.camfp.entity;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,10 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.springframework.data.annotation.LastModifiedDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,7 +22,7 @@ import lombok.ToString;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor 
-public class Board extends BaseEntity{
+public class Board extends BaseEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,15 +42,4 @@ public class Board extends BaseEntity{
 	private int count; // 조회수
 	
 	private int heart; // 좋아요
-
-	// 시간은 예제처럼 BaseEntity를 따로 만들어서 관리를 하는게 좋을까여..?
-	@Column(nullable=false, columnDefinition="timestamp default now()", insertable = false, updatable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date regdate= new Date();
-	
-	@LastModifiedDate
-	@Column(columnDefinition="timestamp default now()", insertable = false , updatable = true)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date newdate= new Date();
-
 }
