@@ -22,12 +22,12 @@ public class BoardServiceTest {
 		int count = (int)((Math.random() * 5000) + 1);
 		int heart = (int)((Math.random() * 1000) + 1);
 		
-		Member member = Member.builder().id("userID2").build();
+		Member member = Member.builder().mno(5L).build();
 		
 		BoardDTO boardDTO = BoardDTO.builder()
 											  .title("Service Test")
 											  .content("Service Test")
-											  .member(member)
+											  .mno(member.getMno())
 											  .category("경기도")
 											  .count(count)
 											  .heart(heart)
