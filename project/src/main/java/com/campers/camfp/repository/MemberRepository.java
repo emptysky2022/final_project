@@ -6,14 +6,12 @@ import org.springframework.data.repository.query.Param;
 
 import com.campers.camfp.entity.Member;
 
-public interface MemberRepository extends JpaRepository<Member, String>{
+public interface MemberRepository extends JpaRepository<Member, Long>{
 	
 	@Query(value = "select *" +
 		   " from member" +
 		   " where id = :id",
 		   nativeQuery = true)
 	Object getMemberById(@Param("id") String id);
-	
-	
 	
 }

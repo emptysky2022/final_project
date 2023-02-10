@@ -34,7 +34,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
 	}
 	
 	@Override
-	public List<ShoppingCartDTO> getCartOfUser(String mid) {
+	public List<ShoppingCartDTO> getCartOfMember(String mid) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -1,8 +1,5 @@
 package com.campers.camfp.repository;
 
-import static org.mockito.ArgumentMatchers.intThat;
-import static org.mockito.ArgumentMatchers.longThat;
-
 import java.util.stream.IntStream;
 
 import javax.transaction.Transactional;
@@ -48,5 +45,4 @@ public class BoardRepositoryTest {
 										 
 		});
 	}
-	
 }

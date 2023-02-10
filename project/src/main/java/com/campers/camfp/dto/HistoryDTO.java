@@ -9,12 +9,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ItemHistoryDTO {
-	private Long ihno;
+public class HistoryDTO {
+	private Long hno;
 	//Member ID
-	private String member;
+	private Long mno;
 	//Item number
-	private Long item;
+	private Long historyNum;
+	private int historyType;
 	private int amount;
 	private byte state;
 }

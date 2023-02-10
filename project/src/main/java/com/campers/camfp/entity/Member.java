@@ -2,6 +2,8 @@ package com.campers.camfp.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -20,25 +22,28 @@ import lombok.ToString;
 @AllArgsConstructor
 public class Member {
 	
-	//사용자 ID
+	//사용자 number
 	@Id
-	@Column(length = 20)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long mno;
+	
+	@Column(length = 20, unique = true)
 	private String id;
 	
 	//사용자 패스워드
 	@Column(length = 30, nullable = false)
-	private String pass;
+	private String pw;
 	
 	//사용자 닉네임
 	@Column(length = 10, nullable = false, unique = true)
 	private String nickname;
 	
 	//사용자 프로필 사진
-	private String image;
+	private String profileImg;
 	
 	//사용자 이름
 	@Column(length = 20)
-	private String name; 
+	private String name;
 	
 	//사용자 나이
 	private int age;
@@ -61,12 +66,12 @@ public class Member {
 	@Column(length = 1000)
 	private String introduce;
 
-	public void change(String pass, String nickname, String image, String name, int age, String address,
+	public void change(String pw, String nickname, String profileImg, String name, int age, String address,
 			String phone, String introduce) {
 		
-		this.pass  = pass;
+		this.pw  = pw;
 		this.nickname = nickname;
-		this.image = image;
+		this.profileImg = profileImg;
 		this.name = name;
 		this.age = age;
 		this.address = address;

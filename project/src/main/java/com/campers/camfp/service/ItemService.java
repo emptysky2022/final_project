@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.campers.camfp.dto.ItemDTO;
 import com.campers.camfp.entity.Item;
+import com.campers.camfp.entity.Member;
 
 public interface ItemService {
 
@@ -26,8 +27,9 @@ public interface ItemService {
 	default Item dtoToEntity(ItemDTO itemDTO) {
 		Item item = Item.builder()
 						.ino(itemDTO.getIno())
+						.member(Member.builder().mno(itemDTO.getMno()).build())
 						.name(itemDTO.getName())
-						.image(itemDTO.getImage())
+						.thumbnail(itemDTO.getThumbnail())
 						.brand(itemDTO.getBrand())
 						.maker(itemDTO.getMaker())
 						.category1(itemDTO.getCategory1())
@@ -46,8 +48,9 @@ public interface ItemService {
 	default ItemDTO entityToDto(Item item) {
 		ItemDTO itemDTO = ItemDTO.builder()
 								 .ino(item.getIno())
+								 .mno(item.getMember().getMno())
 								 .name(item.getName())
-								 .image(item.getImage())
+								 .thumbnail(item.getThumbnail())
 								 .brand(item.getBrand())
 								 .maker(item.getMaker())
 								 .category1(item.getCategory1())

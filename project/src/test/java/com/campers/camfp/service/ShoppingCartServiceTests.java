@@ -19,8 +19,8 @@ public class ShoppingCartServiceTests {
 		IntStream.rangeClosed(1, 50).forEach(i -> {
 			ShoppingCartDTO shoppingCartDTO = ShoppingCartDTO.builder()
 												.amount(2)
-												.member("userID"+i)
-												.item((long)i)
+												.mno(2L)
+												.ino((long)i)
 												.build();
 			shoppingCartService.register(shoppingCartDTO);
 		});

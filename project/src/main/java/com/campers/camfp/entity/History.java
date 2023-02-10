@@ -1,5 +1,6 @@
 package com.campers.camfp.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,25 +16,36 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@ToString(exclude = {"member", "item"})
-@Table(name="item_history")
-@Getter
+@Table(name="history")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ItemHistory {
+@Getter
+@ToString(exclude = "member")
+public class History {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long ihno;
+	private Long hno;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	private Member member;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Item item;
+	@Column(nullable = false)
+	private Long historyNum;
+
+	@Column(nullable = false)
+	private int historyType;
 	
 	private int amount;
 	
 	private byte state;
+	
+	// 지연로딩 설정
+	// 조인 컬럼 설정
+//	@OnDelete(action = OnDeleteAction.CASCADE)
+//	@ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.REMOVE)
+//	@JoinColumn(name = "cno")
+//	private Camp camp;
+	
 }

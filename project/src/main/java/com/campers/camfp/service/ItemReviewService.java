@@ -2,11 +2,10 @@ package com.campers.camfp.service;
 
 import java.util.List;
 
-import com.campers.camfp.dto.ItemHistoryDTO;
+import com.campers.camfp.dto.HistoryDTO;
 import com.campers.camfp.dto.ItemReviewDTO;
 import com.campers.camfp.entity.Item;
 import com.campers.camfp.entity.ItemReview;
-import com.campers.camfp.entity.Member;
 
 public interface ItemReviewService {
 	
@@ -20,7 +19,7 @@ public interface ItemReviewService {
 	List<ItemReviewDTO> getReviewOfItem(Long ino);
 	
 	//사용자가 작성한 리뷰 가져오기
-	List<ItemReviewDTO> getReviewOfUser(String mid);
+	List<ItemReviewDTO> getReviewOfMember(String mid);
 	
 	//리뷰 수정하기
 	void modify(ItemReviewDTO itemReviewDTO);
@@ -32,11 +31,10 @@ public interface ItemReviewService {
 	default ItemReview dtoToEntity(ItemReviewDTO itemReviewDTO) {
 		ItemReview itemReview = ItemReview.builder()
 								.irno(itemReviewDTO.getIrno())
-								.nickname(itemReviewDTO.getNickname())
-								.image(itemReviewDTO.getImage())
+								.reviewer(itemReviewDTO.getReviewer())
+								.capture(itemReviewDTO.getCapture())
 								.content(itemReviewDTO.getContent())
-								.item(Item.builder().ino(itemReviewDTO.getItem()).build())
-								.member(Member.builder().id(itemReviewDTO.getMember()).build())
+								.item(Item.builder().ino(itemReviewDTO.getIno()).build())
 								.build();
 		
 		return itemReview;
@@ -46,11 +44,10 @@ public interface ItemReviewService {
 	default ItemReviewDTO entityToDto(ItemReview itemReview) {
 		ItemReviewDTO itemReviewDTO = ItemReviewDTO.builder()
 								.irno(itemReview.getIrno())
-								.nickname(itemReview.getNickname())
-								.image(itemReview.getImage())
+								.ino(itemReview.getItem().getIno())
+								.reviewer(itemReview.getReviewer())
+								.capture(itemReview.getCapture())
 								.content(itemReview.getContent())
-								.item(itemReview.getItem().getIno())
-								.member(itemReview.getMember().getId())
 								.build();
 		
 		return itemReviewDTO;

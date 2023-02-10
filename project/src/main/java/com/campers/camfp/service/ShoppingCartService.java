@@ -2,12 +2,10 @@ package com.campers.camfp.service;
 
 import java.util.List;
 
-import com.campers.camfp.dto.ItemHistoryDTO;
+import com.campers.camfp.dto.HistoryDTO;
 import com.campers.camfp.dto.ShoppingCartDTO;
-import com.campers.camfp.entity.Item;
 import com.campers.camfp.entity.Member;
 import com.campers.camfp.entity.ShoppingCart;
-import com.campers.camfp.entity.Member;
 
 public interface ShoppingCartService {
 
@@ -18,7 +16,7 @@ public interface ShoppingCartService {
 	ShoppingCartDTO getOne(Long sno);
 	
 	//사용자가 넣은 장바구니 목록 가져오기
-	List<ShoppingCartDTO> getCartOfUser(String mid);
+	List<ShoppingCartDTO> getCartOfMember(String mid);
 	
 	//장바구니 수정
 	void modify(ShoppingCartDTO shoppingCartDTO);
@@ -30,8 +28,8 @@ public interface ShoppingCartService {
 	default ShoppingCart dtoToEntity(ShoppingCartDTO shoppingCartDTO) {
 		ShoppingCart shoppingCart = ShoppingCart.builder()
 									.sno(shoppingCartDTO.getSno())
-									.member(Member.builder().id(shoppingCartDTO.getMember()).build())
-									.item(Item.builder().ino(shoppingCartDTO.getItem()).build())
+									.member(Member.builder().mno(shoppingCartDTO.getMno()).build())
+									.ino(shoppingCartDTO.getIno())
 									.build();
 		
 		return shoppingCart;
@@ -41,8 +39,8 @@ public interface ShoppingCartService {
 	default ShoppingCartDTO entityToDto(ShoppingCart shoppingCart) {
 		ShoppingCartDTO shoppingCartDTO = ShoppingCartDTO.builder()
 				.sno(shoppingCart.getSno())
-				.member(shoppingCart.getMember().getId())
-				.item(shoppingCart.getItem().getIno())
+				.mno(shoppingCart.getMember().getMno())
+				.ino(shoppingCart.getIno())
 				.build();
 		
 		return shoppingCartDTO;

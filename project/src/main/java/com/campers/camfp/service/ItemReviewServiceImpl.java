@@ -41,7 +41,7 @@ public class ItemReviewServiceImpl implements ItemReviewService{
 	}
 
 	@Override
-	public List<ItemReviewDTO> getReviewOfUser(String mid) {
+	public List<ItemReviewDTO> getReviewOfMember(String mid) {
 		// TODO Auto-generated method stub
 		return null;
 	}

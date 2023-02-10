@@ -10,13 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.springframework.data.annotation.CreatedDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -43,13 +40,10 @@ public class CampCalender {
 	@JoinColumn(name = "cno")
 	private Camp camp;
 	
-	@Column(name="startDate")
+	@Column(name="startdate")
 	private LocalDateTime startdate;
 	
-	@Column(name="endupDate")
-	private LocalDateTime endupDate;
-	
-
-	
+	@Column(name="enddate")
+	private LocalDateTime enddate;
 	
 }
