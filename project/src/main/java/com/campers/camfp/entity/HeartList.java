@@ -28,7 +28,7 @@ public class HeartList {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long hlno;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	private Member member;
 	
 	@Column(nullable = false)
