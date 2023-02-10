@@ -18,7 +18,6 @@ public class MemberRepositoryTest {
 
 	@Test
 	public void insertMember() {	// test 확인 완.
-		
 
 		IntStream.rangeClosed(1, 50).forEach(i -> {
 			
@@ -37,11 +36,6 @@ public class MemberRepositoryTest {
 											.gender(xy)
 											.address("서울시" + i)
 											.phone("010-1111-" + i)
-											.profileImg("imageSample5")
-											.name("userName5")
-											.gender(false)
-											.address("서울시")
-											.phone("010-1111-5")
 											.grade(true)
 											.introduce("안녕하슈")
 											.build();
