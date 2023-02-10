@@ -60,9 +60,6 @@ public class Camp {
 	@Column(nullable = true)
 	private int heart;
 	
-//	@OneToMany(mappedBy = "camp")
-//	List<History> history = new ArrayList<>();
-	
 	@OneToMany(mappedBy = "camp")
 	List<CampReview> campReview = new ArrayList<>();
 	
