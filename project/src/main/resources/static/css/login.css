@@ -349,8 +349,35 @@ body .container{
 
 .sectionbreak .sec3 .logintitle{
     font-size: 1rem;
-    flex-basis: 40%;
+    flex-basis: 70%;
 }
+
+.sectionbreak .sec3 .logintitle_mobile{
+   display:none
+}
+@media screen and (max-width:480px) {
+   /*480px 이하일 때 login 제목 바꾸기 (logintitle, logintitle_mobile의 display 속성 바꾸기)*/
+    .sectionbreak .sec3 .logintitle{
+        display: none;
+    }
+    /*480px 이하일 때 <hr> 선 간격 벌리기*/
+    .sectionbreak .sec3 .logintitle_mobile{
+        display: flex;
+        flex-basis: 60%;
+        justify-content: center;
+    }
+
+   
+    .sectionbreak .sec3 .line {
+        width: 100%;
+        height: auto;
+        flex-basis: 30%;
+    }
+
+   
+
+}
+
 
 /*sec4*/
 .sectionbreak .sec4{

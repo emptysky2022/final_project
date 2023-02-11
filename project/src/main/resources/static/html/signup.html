@@ -61,8 +61,9 @@
 				<div class="line item">
 					<hr>
 				</div>
-				<div class="logintitle item_2">회원가입에 필요한 정보를 입력해 주세요</div>
-				<div class="line item_3">
+				<div class="logintitle_mobile item_2">회원가입 정보</div>
+				<div class="logintitle item_3">회원가입 정보 입력하기</div>
+				<div class="line item_4">
 					<hr>
 				</div>
 			</div>
@@ -71,20 +72,18 @@
 			<form th:action="@{/sample/Login}" th:method="post">
 				<!--회원가입 입력 단락-->
 				<div class="sec4 box2">
-					<div class="profileimgbox box2">
+					<div class="profileimgbox box3">
 						<p class="profiletext item">프로필 사진</p>
 						<input class="profileimg item_2" type="file" name="image" placeholder="이미지를 넣어야해요?">
 					</div>
 
-					<div class="sec4 box3">
-						<div class="idbox box4">
-							<p type="text" class="idtext item">아이디</p>
-							<input type="text" class="id item_2" name="id" placeholder="아이디를 입력해주세요.">
-						</div>
-						<div class="passwordbox box4">
-							<p type="password" class="passwordtext item">비밀번호</p>
-							<input type="password" class="password item" name="pass" placeholder="비밀번호를 입력해주세요.">
-						</div>
+					<div class="idbox box3">
+						<p type="text" class="idtext item">아이디</p>
+						<input type="text" class="id item_2" name="id" placeholder="아이디를 입력해주세요.">
+					</div>
+					<div class="passwordbox box3">
+						<p type="password" class="passwordtext item">비밀번호</p>
+						<input type="password" class="password item" name="pass" placeholder="비밀번호를 입력해주세요.">
 					</div>
 
 					<div class="passwordcheckbox box3">
@@ -123,7 +122,7 @@
 					</div>
 					<div class="introducebox box3">
 						<p class="introducetext item">소개</p>
-						<input class="introduce item_2" type="text" name="introduce" placeholder="간단한 소개를 부탁드려요">
+						<textarea class="introduce item_2" name="introduce" placeholder="간단한 소개를 부탁드려요"></textarea>
 					</div>
 				</div>
 			</form>

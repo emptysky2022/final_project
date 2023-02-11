@@ -101,7 +101,7 @@ footer{
     position: relative;
     justify-content: space-between;
     width: 100%;
-    height: auto;
+    height:100% ;
 
 }
 .header .header_logo {
@@ -495,4 +495,5 @@ main .body .body_center .cger .cg .cg_reserve .imgbox{
     border: 3px solid red;
     background-color: black;
     color: aliceblue;
+    width: 100%;
 }
