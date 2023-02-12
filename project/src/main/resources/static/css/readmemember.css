@@ -1019,7 +1019,192 @@ main .body .body_center {
 
 }
 
+.sec3{
+    display: flex;
+    height: 80vh;
+    flex-direction: column;
+    border: 1px solid black;
+    align-items: center;
+    justify-content: space-evenly;
+    
+}
+.sec3 .shoppingcart{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-auto-rows: minmax(3rem, auto);
+    border: 1px solid black;
+    width: 80%;
+}
 
+.sec3 .shoppingcart .table_header{
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.sec3 .shoppingcart .table_item{
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sec3 .orderbox{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.sec3  .orderbox .orderbtn{
+    width: 25%;
+    max-width: 20rem;
+    height: 3rem;
+    min-width: 8.5rem;
+}
+
+
+/*sec4*/
+.sec4{
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    border: 1px solid black;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 3rem 0;
+    
+}
+
+/*캠핑장 정보*/
+.sec4 .campgroundsbox{
+    border: 1px solid red;
+    width: 90%;
+    flex-basis: 27%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.sec4 .campgroundsbox .title{
+   
+   flex-basis: 50%;
+}
+
+.sec4 .campgroundsbox .campgrounds_name{
+   display: flex;
+   flex-basis: 10%;
+}
+.sec4 .campgroundsbox .campgrounds_date{
+    display: flex;
+    flex-basis: 10%;
+   
+}
+.sec4 .campgroundsbox .campgrounds_expense{
+   display: flex;
+   flex-basis: 10%;
+   justify-content: end;
+   
+}
+
+/*예약자 정보*/
+.sec4 .customerbox{
+    border: 1px solid rgb(255, 157, 0);
+    width: 90%;
+    flex-basis: 27%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.sec4 .customer_namebox{
+    display: flex;
+    flex-direction: row;
+    
+
+}
+
+.sec4 .customer_name{
+    border: 1px solid black;
+    
+}
+
+.sec4 .customer_phonebox{
+    display: flex;
+    flex-direction: row;
+    
+
+}
+
+.sec4 .customer_phone{
+    border: 1px solid black;
+    
+}
+
+
+/*사용자 정보*/
+.sec4 .userbox{
+    border: 2px dotted rgb(1, 130, 14);
+    width: 90%;
+    flex-basis: 27%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.sec4 .userbox .checksamebox{
+    display:flex;
+    flex-direction: row;    
+}
+
+.sec4 .userbox .checksame{
+    flex-basis: 10%;
+
+}
+
+.sec4 .user_namebox {
+   display: flex;
+   flex-direction: row;
+    
+}
+
+.sec4 .user_namebox .user_name{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid black;
+
+ }
+
+ .sec4 .user_phonebox {
+    display: flex;
+    flex-direction: row;
+ }
+
+ .sec4 .user_phonebox .user_phone{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid black;
+
+ }
+
+
+.sec4 .reservebox{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-basis: 5%;
+}
+
+.sec4 .reserve{
+    width: 25%;
+    max-width: 20rem;
+    height: 3rem;
+    min-width: 8.5rem;
+}
 .footer {
     border: 3px solid red;
     background-color: black;
