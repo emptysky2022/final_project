@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.campers.camfp.dto.MemberDTO;
-import com.campers.camfp.service.MemberService;
+import com.campers.camfp.dto.member.MemberDTO;
+import com.campers.camfp.service.member.MemberService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
