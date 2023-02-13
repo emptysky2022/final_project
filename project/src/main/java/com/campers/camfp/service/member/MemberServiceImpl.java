@@ -2,7 +2,7 @@ package com.campers.camfp.service.member;
 
 import org.springframework.stereotype.Service;
 
-import com.campers.camfp.dto.MemberDTO;
+import com.campers.camfp.dto.member.MemberDTO;
 import com.campers.camfp.entity.member.Member;
 import com.campers.camfp.repository.member.MemberRepository;
 

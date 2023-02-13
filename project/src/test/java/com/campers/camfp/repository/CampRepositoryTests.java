@@ -51,18 +51,17 @@ public class CampRepositoryTests {
 
 	@Test
 	public void test() {
-		for (int i = 0; i < 6; i++) {
+		for (int i = 2; i < 10; i++) {
 
-			createCampTest();
+			// createCampTest();
 			createCampCalenderTest();
-			createCampReviewTests();
 			createCampReviewTests();
 			createHistoryTests();
 		}
 	}
 	
 	public Member getmember(Long mno) {
-		return Member.builder().nickname("nickname" + mno).mno(1L).build(); 
+		return Member.builder().nickname("nickname" + mno).mno(mno).build(); 
 	}
 
 	@Test
@@ -121,9 +120,9 @@ public class CampRepositoryTests {
 	@Test
 	public void createCampReviewTests() {
 
-		CampReview campReview = CampReview.builder().capture("img").content("con").reviewer("nic").camp(getCampNum(1))
-				.build();
-		campReviewRepository.save(campReview);
+//		CampReview campReview = CampReview.builder().capture("img").content("con").reviewer("nic").camp(getCampNum(Integer.toUnsignedLong(i)))
+//				.build();
+//		campReviewRepository.save(campReview);
 
 	}
 

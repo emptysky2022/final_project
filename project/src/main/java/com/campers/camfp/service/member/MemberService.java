@@ -1,6 +1,6 @@
 package com.campers.camfp.service.member;
 
-import com.campers.camfp.dto.MemberDTO;
+import com.campers.camfp.dto.member.MemberDTO;
 import com.campers.camfp.entity.member.Member;
 
 public interface MemberService {
