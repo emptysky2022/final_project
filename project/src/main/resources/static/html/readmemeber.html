@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Read Membership</title>
+
+	<!--css 연결-->
+	<link rel="stylesheet" type="text/css" href="../css/readmemember.css">
+	<!--js연결-->
+	<script type="text/javascript" src="/js/main.js" defer></script>
+
+	<!--구글 폰트 링크-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Varela+Round&display=swap"
+		rel="stylesheet">
+	<!--폰트 그림 링크-->
+	<script src="https://kit.fontawesome.com/bb87a5faf0.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+	<div class="container">
+		<!--====메인 header====-->
+		<header>
+			<div class="header box1">
+				<!--네비게이션 로고-->
+				<div class="header_logo box2">
+					<a class="box3" href="#"><img src="" alt="">
+						캠퍼스사진 </a>
+
+				</div>
+
+
+				<!--네비게이션 메뉴목록-->
+				<ul class="header_menu box2_2">
+					<li class="box3"><a class="item" href="">apple</a></li>
+					<li class="box3_3"><a class="item" href="">cherry</a></li>
+					<li class="box3_2"><a class="item" href="">banana</a></li>
+					<li class="box3_4"><a class="item" href="">melon</a></li>
+				</ul>
+
+				<!--우측 상단 마이페이지-->
+				<ul class="header_mypage box2_3">
+					<li class="box3">
+						<a href="" class="box3">
+							<i class="fa-solid fa-user item"></i>
+						</a>
+					</li>
+				</ul>
+
+				<!--햄버거 메뉴-->
+				<a href="#" class="header_hamburger box2_4">
+					<i class="fa-solid fa-bars item"></i>
+				</a>
+			</div>
+		</header>
+		<main>
+			<div class="body box1">
+				<!--메인 바디의 사이드 빈 공간왼쪽-->
+				<div class="aside_l box2">aside_l</div>
+
+
+
+				<!--메인 바디 가운데 공간-->
+				<div class="body_center box2">
+
+					<!----------------메인바디 1번칸------------->
+					<div class="sec1 box3">
+						<div class="titlebox box4">
+							<div class="titletext item">나의 정보</div>
+						</div>
+						<div class="titlecommentbox box4">
+							<p class="titlecommenttext item">회원님의 개인정보를 확인하실 수 있습니다. </p>
+						</div>
+
+						<form th:action="@{/sample/modify}" th:method="post">
+							<div class="sec2 box3">
+								<div class="profileimgbox box4">
+									<!-- <p class="profiletext item"></p> -->
+									<input class="profileimg item_2" type="text" name="image"
+										th:value="${memberDTO.image}" readonly>
+								</div>
+
+
+								<div class="idbox box4">
+									<p type="text" class="idtext item">아이디</p>
+									<input class="id item_2" type="text" name="id" th:value="${memberDTO.id}" readonly>
+								</div>
+
+								<div class="passwordbox box4">
+									<p type="password" class="passwordtext item">비밀번호</p>
+									<input class="password item_2" type="password" name="pass"
+										th:value="${memberDTO.pass}" readonly>
+								</div>
+								<div class="namebox box4">
+									<p class="nametext item">이름</p>
+									<input class="name item_2" type="text" name="name" th:value="${memberDTO.name}"
+										readonly>
+								</div>
+								<div class="nicknamebox box4">
+									<p class="nicknametext item">별명</p>
+									<input class="nickname item_2" type="text" name="nickname"
+										th:value="${memberDTO.nickname}" readonly>
+								</div>
+								<div class="agebox box4">
+									<p class="agetext item">나이</p>
+									<input class="age item_2" type="text" name="age" th:value="${memberDTO.age}"
+										readonly>
+								</div>
+								<div class="genderbox box4">
+									<p class="gendertext item">성별</p>
+									<!-- onFocus, onChange = select에 readonly 효과 줌 -->
+									<!-- 이거 db에 저장된 option으로 표출하고 싶은데 어떻ㄱ 하져? -->
+									<select class="gender item_2" name="gender"
+										onFocus="this.initiaSelect = this.selectedIndex;"
+										onChange="this.selectedIndex = this.initalSelect;">
+										<option value="true">남자</option>
+										<option value="false">여자</option>
+									</select>
+								</div>
+								<div class="addressbox box4">
+									<p class="addresstext item">주소</p>
+									<input class="address item_2" type="text" name="address"
+										th:value="${memberDTO.address}" readonly>
+								</div>
+								<div class="phonebox box4">
+									<p class="phonetext item">전화번호</p>
+									<input class="phone item_2" type="text" name="phone" th:value="${memberDTO.phone}"
+										readonly>
+								</div>
+								<div class="introducebox box4">
+									<p class="introducetext item">소개</p>
+									<textarea class="introduce item_2" name="introduce"
+										th:value="${memberDTO.introduce}" readonly></textarea>
+								</div>
+
+								<div class="buttonbox">
+									<div class="modifybox box4">
+										<button class="modify item" type="button">나의 정보 수정</button>
+									</div>
+
+									<!--삭제버튼 나중에 (회원탈퇴) 등으로 변경 될 수 있음-->
+									<div class="deletebox box4">
+										<button class="delete item" type="button">삭제</button>
+									</div>
+								</div>
+							</div>
+
+						</form>
+
+
+
+
+						<!-- <a th:href="@{/sample/modify(id=${memberDTO.id})}">
+								<button type="button" name="modifypagebtn">조회하기</button>
+								</a>
+								<a th:href="@{/sample/mypage(id=${memberDTO.id})}">
+								<button type="button" name="mypagebtn">마이페이지로</button>
+								</a>
+								<a th:href="@{/sample/main(id=${memberDTO.id})}">
+								<button type="button" name="mainpagebtn">메인으로</button>
+								</a>     -->
+					</div>
+
+					<!-------------------메인바디 2번칸--------------------->
+
+					<!--테스트중-->
+					<div class="sec3 box3">
+						<table class="shoppingcart box4">
+							<tr class="tr_1 box5">
+								<th class="th_1 item">상품</th>
+								<td class="td1">임의단어1</td>
+								<td class="td1_2">임의단어1</td>
+							</tr>
+							<tr class="tr_2 box5">
+								<th class="th_2 item">상품명</th>
+								<td class="td2">임의단어</td>
+								<td class="td2_2">임의단어</td>
+							</tr>
+							<tr class="tr_3">
+								<th class="th_3">판매가</th>
+								<td class="td3">임의단어3</td>
+								<td class="td3_2">임의단어3</td>
+							</tr>
+							<tr class="tr_4">
+								<th class="th_4">판매자</th>
+								<td class="td4">임의단어4</td>
+								<td class="td4_2">임의단어4</td>
+							</tr>
+							<tr class="tr_5">
+								<th class="th_5">임의헤더</th>
+								<td class="td5">임의단어5</td>
+								<td class="td5_2">임의단어5</td>
+							</tr>
+							<tr class="tr_6">
+								<th class="th_6">임의헤더</th>
+								<td class="td6">임의단어5</td>
+								<td class="td6_2">임의단어5</td>
+							</tr>
+							<tr class="tr_7">
+								<th class="th_7">임의헤더</th>
+								<td class="td7">임의단어5</td>
+								<td class="td7_2">임의단어5</td>
+							</tr>
+							<tr class="tr_8">
+								<th class="th_8">임의헤더</th>
+								<td class="td8">임의단어5</td>
+								<td class="td8_2">임의단어5</td>
+							</tr>
+							<tr class="tr_9">
+								<th class="th_9">임의헤더</th>
+								<td class="td9">임의단어5</td>
+								<td class="td9_2">임의단어5</td>
+							</tr>
+							<tr class="tr_10">
+								<th class="th_10">임의헤더</th>
+								<td class="td10">임의단어5</td>
+								<td class="td10_2">임의단어5</td>
+							</tr>
+
+
+						</table>
+
+
+						<div class="orderbox box4">
+							<button class="orderbtn item">주문하기</button>
+						</div>
+					</div>
+
+					<!---------------메인바디 3번칸-------------------->
+					<div class="sec4 box3">
+						<!--캠핑장-->
+						<div class="campgroundsbox box4">
+							<div class="campgrounds_title item">캠핑장</div>
+							<div class="campgrounds_name item_2">봄날의 햇살</div>
+							<div class="campgrounds_date item_3">2023-02-27(월)~2023-02-28(화)</div>
+							<div class="campgrounds_expense item_4">비용:8000원</div>
+						</div>
+						<div class="customerbox box4">
+							<div class="customer_title item">예약자 정보</div>
+							<div class="customer_namebox box5">
+								<div class="customer_nametext item">예약자 성명</div>
+								<div class="customer_name item_2">대충 예약자가 누구인지 알려주는 상자</div>
+							</div>
+							<div class="customer_phonebox box5">
+								<div class="customer_phonetext item">휴대폰 번호</div>
+								<div class="customer_phone item_2">대충 예약자 휴대폰번호 써있는 상자</div>
+							</div>
+						</div>
+						<div class="userbox box4">
+							<div class="user_title item">사용자 정보</div>
+							<div class="checksamebox box5">
+								<input class="checksame item_2" type="checkbox">
+								<div class="checksametext item">예약자와 사용자가 동일합니다
+								</div>
+
+
+							</div>
+							<div class="user_namebox box4">
+								<div class="user_nametext item">사용자 성명</div>
+								<div class="user_name item_2">대충 사용자가 누구인지 알려주는 상자</div>
+							</div>
+							<div class="user_phonebox box4">
+								<div class="user_phonetitle item">휴대폰 번호</div>
+								<div class="user_phone item_2">대충 사용자 휴대폰번호 써있는 상자</div>
+							</div>
+						</div>
+
+						<div class="reservebox box4">
+							<button class="reserve item">예약하기<button>
+						</div>
+					</div>
+				</div>
+
+
+
+				<!--메인 바디의 사이드 빈 공간 오른쪽-->
+				<div class="aside_r box2">aside_r</div>
+			</div>
+		</main>
+
+
+
+
+
+
+		<!--====푸터====-->
+		<footer>
+			<div class="footer box1">
+				푸터자리
+			</div>
+		</footer>
+
+
+	</div>
