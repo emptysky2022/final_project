@@ -8,18 +8,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
-public class BoardDTO {
+public class ReplyDTO {
 
+	private Long rno;
 	private Long bno;
-	private String title;
+	private String replyer;
 	private String content;
-	private Long mno;		 
-	private String nickname;
-	private String category;
-	private int count;
 	private int heart;
 	private LocalDateTime regDate;
 	private LocalDateTime updateDate;
