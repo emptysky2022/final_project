@@ -17,7 +17,7 @@ public class BoardServiceTest {
 	@Autowired
 	private BoardService boardService;
 
-	@Test // Board Entity - regDate - insertable=false로 바꾸고 테스트해야함..개귀차너
+	@Test
 	public void testRegister() {
 		
 		int count = (int)((Math.random() * 5000) + 1);

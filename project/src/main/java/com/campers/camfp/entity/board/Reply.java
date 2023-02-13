@@ -42,4 +42,12 @@ public class Reply extends BaseEntity{
 	
 	private int heart;
 	
+	// ReplyServiceImpl에서 쓸건데....왜 써여
+	public void changeContent(String content) {
+		this.content = content;
+	}
+	
+	public void changeHeart(int heart) {
+		this.heart = heart;
+	}
 }
