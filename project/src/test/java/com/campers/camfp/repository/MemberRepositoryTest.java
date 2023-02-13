@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.campers.camfp.entity.Member;
-import com.campers.camfp.repository.MemberRepository;
+import com.campers.camfp.entity.member.Member;
+import com.campers.camfp.repository.member.MemberRepository;
 
 @SpringBootTest
 public class MemberRepositoryTest {

@@ -6,8 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.campers.camfp.entity.Board;
-import com.campers.camfp.entity.Reply;
+import com.campers.camfp.entity.board.Board;
+import com.campers.camfp.entity.board.Reply;
+import com.campers.camfp.repository.board.ReplyRepository;
 
 @SpringBootTest
 public class ReplyRepositoryTest {
