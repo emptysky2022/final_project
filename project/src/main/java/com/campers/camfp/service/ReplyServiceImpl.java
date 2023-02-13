@@ -27,7 +27,6 @@ public class ReplyServiceImpl implements ReplyService{
 		// bno -> board
 		Board board = Board.builder().bno(bno).build(); 
 		
-		// ... repository로 board 찾아와서 List에 넣어주는거에여?
 		List<Reply> result = replyRepository.findByBoard(board);
 		
 		// ...뭐야
