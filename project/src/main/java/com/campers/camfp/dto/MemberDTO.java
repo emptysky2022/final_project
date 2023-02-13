@@ -11,10 +11,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MemberDTO {
 	
+	private Long mno;
 	private String id;
-	private String pass;	// pw로 바꿨으면 함.
+	private String pw;	// pw로 바꿨으면 함.
 	private String nickname;
-	private String image;
+	private String profileImg;
 	private String name;
 	private int age;
 	private Boolean gender;

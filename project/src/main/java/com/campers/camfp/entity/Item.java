@@ -2,9 +2,11 @@ package com.campers.camfp.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -14,7 +16,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@ToString
+@ToString(exclude = "member")
 @Builder
 @Getter
 @Table(name="item")
@@ -24,33 +26,39 @@ public class Item {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long ino;
+	private Long ino;				//기본키 AUTO_INCREMENT
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	private Member member;
 	
 	@Column(length = 200, nullable = false)
-	private String name;
+	private String name;			//상품의 이름
 	
-	private String image;
+	private String thumbnail;		//상품 이미지
 	
 	@Column(length = 20)
-	private String brand;
+	private String brand;			//상품 브랜드
 	
 	@Column(length = 30)
-	private String maker;
+	private String maker;			//상품 메이커
 	
-	private String category1;
+	@Column(length = 10, nullable = false)
+	private String category1;		//상품 카테고리 (소분류)
 	
-	private String category2;
+	@Column(length = 10)
+	private String category2;		//상품 카테고리 (세분류)
 	
 	@Column(nullable = false)
-	private int price;
+	private int price;				//상품 가격
 	
-	private String link;
+	@Column(length = 200)
+	private String link;			//상품 링크
 	
-	private int type;
+	private int type;				//상품 타입(일반, 단종, 중고 등)
 	
-	private int count;
+	private int count;				//조회수
 	
-	private int star;
+	private int star;				//별점
 	
-	private int heart;
+	private int heart;				//좋아요, 찜 수
 }

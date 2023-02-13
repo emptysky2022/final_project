@@ -1,5 +1,6 @@
 package com.campers.camfp.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,7 +18,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Table(name="shopping_cart")
-@ToString(exclude = {"user", "item"})
+@ToString(exclude = "member")
 @Getter
 @Entity
 @NoArgsConstructor
@@ -29,15 +30,12 @@ public class ShoppingCart {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long sno;
 	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	private Member member;
+	
+	@Column(nullable = false)
+	private Long ino;
+	
 	@Value("1")
 	private int amount;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	private User user;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Item item;
-	
-	
-	
 }

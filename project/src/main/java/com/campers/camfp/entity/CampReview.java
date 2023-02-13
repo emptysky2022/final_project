@@ -8,9 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,7 +25,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Getter
 @ToString(exclude = "camp")
-public class CampReview {
+public class CampReview extends BaseEntity{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,21 +33,20 @@ public class CampReview {
 
 	// 지연로딩 설정
 	// 조인 컬럼 설정
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "cno")
 	private Camp camp;
 
-	// Stirng 으로 구현하는게 맞는가
+	// Stirng 으로 구현하는게 맞는가 -> imageURL을 저장하기 때문에 String
 	@Column(length = 200, nullable = true)
-	private String image;
+	private String capture;
 
 	@Column(length = 200, nullable = false)
 	private String content;
 
-	private int id;
-
 	@Column(length = 20, nullable = false)
-	private String nickname;
+	private String reviewer;
 
-
+	private int heart;
 }

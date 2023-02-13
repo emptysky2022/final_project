@@ -17,30 +17,27 @@ import lombok.ToString;
 
 @Entity
 @Table(name="item_review")
-@ToString(exclude = {"item", "user"})
+@ToString(exclude = {"item"})
 @Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ItemReview {
+public class ItemReview extends BaseEntity{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long irno;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	private Item item;
 	
-	private String image;
+	private String capture;
 	
 	@Column(length=2000, nullable = false)
 	private String content;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	private User user;
-	
+		
 	@Column(length=20, nullable = false)
-	private String nickname;
+	private String reviewer;
 	
 	private int heart;
 }

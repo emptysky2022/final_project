@@ -17,7 +17,7 @@ public class MemberServiceImpl implements MemberService {
 	private final MemberRepository memberRepository;
 
 	@Override
-	public String register(MemberDTO memberDTO) {
+	public Long register(MemberDTO memberDTO) {
 		
 		log.info("dto -----------------------" + memberDTO);
 		
@@ -25,35 +25,34 @@ public class MemberServiceImpl implements MemberService {
 		
 		memberRepository.save(member);
 		
-		return member.getId();
+		return member.getMno();
 	}
 
 	@Override
 	public MemberDTO get(String id) {
 		
 		Object result = memberRepository.getMemberById(id);
-		
 		log.info(result);
 		
 		return entityToDTO((Member) result);
 	}
 
 	@Override
-	public void remove(String id) {
+	public void remove(Long mno) {
 
-		memberRepository.deleteById(id);
+		memberRepository.deleteById(mno);
 		
 	}
 
 	@Override
 	public void modify(MemberDTO memberDTO) {
 		
-		Member member = memberRepository.findById(memberDTO.getId()).get();
+		Member member = memberRepository.findById(memberDTO.getMno()).get();
 		
 		if(member != null) {
-			member.change(memberDTO.getPass(),
+			member.change(memberDTO.getPw(),
 							memberDTO.getNickname(),
-							memberDTO.getImage(),
+							memberDTO.getProfileImg(),
 							memberDTO.getName(),
 							memberDTO.getAge(),
 							memberDTO.getAddress(),

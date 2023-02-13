@@ -5,19 +5,20 @@ import com.campers.camfp.entity.Member;
 
 public interface MemberService {
 
-	String register(MemberDTO memberDTO);
+	Long register(MemberDTO memberDTO);
 	
-	MemberDTO get(String id);
+	MemberDTO get(String mno);
 	
-	void remove(String id);
+	void remove(Long mno);
 	
 	void modify(MemberDTO memberDTO);
 	
 	default Member dtoToEntity(MemberDTO memberDTO) {
-		Member member = Member.builder().id(memberDTO.getId())
-										.pass(memberDTO.getPass())
+		Member member = Member.builder().mno(memberDTO.getMno())
+										.id(memberDTO.getId())
+										.pw(memberDTO.getPw())
 										.nickname(memberDTO.getNickname())
-										.image(memberDTO.getImage())
+										.profileImg(memberDTO.getProfileImg())
 										.name(memberDTO.getName())
 										.age(memberDTO.getAge())
 										.gender(memberDTO.getGender())
@@ -31,10 +32,11 @@ public interface MemberService {
 	}
 	
 	default MemberDTO entityToDTO(Member member) {
-		MemberDTO memberDTO = MemberDTO.builder().id(member.getId())
-												 .pass(member.getPass())
+		MemberDTO memberDTO = MemberDTO.builder().mno(member.getMno())
+												 .id(member.getId())
+												 .pw(member.getPw())
 												 .nickname(member.getNickname())
-												 .image(member.getImage())
+												 .profileImg(member.getProfileImg())
 												 .name(member.getName())
 												 .age(member.getAge())
 												 .gender(member.getGender())

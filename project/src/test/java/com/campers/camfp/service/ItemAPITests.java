@@ -55,8 +55,9 @@ public class ItemAPITests {
 				for(int j = 0; j < jarray.length(); j++) {
 					JSONObject items = jarray.getJSONObject(j);
 					ItemDTO itemDTO = ItemDTO.builder()
+									.mno(1L)
 									.name(items.getString("title"))
-									.image(items.getString("image"))
+									.thumbnail(items.getString("image"))
 									.brand(items.getString("brand"))
 									.maker(items.getString("maker"))
 									.category1(items.getString("category3"))
