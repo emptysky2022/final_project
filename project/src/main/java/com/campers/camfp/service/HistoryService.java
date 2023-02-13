@@ -11,6 +11,9 @@ public interface HistoryService {
 		//히스토리 등록
 		Long register(HistoryDTO HistoryDTO);
 		
+		//하나의 히스토리 가져오기
+		HistoryDTO getOne(Long hno);
+
 		//사용자의 모든 히스토리 가져오기
 		List<HistoryDTO> getHistoryOfUser(String mid);
 		
@@ -45,4 +48,5 @@ public interface HistoryService {
 			
 			return historyDTO;
 		}
+
 }
