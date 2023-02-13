@@ -248,6 +248,10 @@ main .body .body_center {
     font-size: var(--font-size-lg);
 }
 
+.sec1 .cg_explainbox{
+    text-align: center;
+}
+
 .sec2 {
     display: flex;
     align-items: center;
@@ -316,6 +320,16 @@ main .body .body_center {
     width: 30%;
 }
 
+@media screen and (max-width:1024px) {
+    .sec2{
+        flex-direction: column;
+    }
+}
+
+
+
+
+
 
 /*후기*/
 .sec3 {}
@@ -329,19 +343,23 @@ main .body .body_center {
 .sec4 .rv {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .sec4 .rv_l {
     display: flex;
     flex-direction: row;
     height: 100%;
+    width: 80%;
+    border: 1rem solid salmon;
 }
 
 .sec4 .rv_r {
     display: flex;
     flex-direction: row-reverse;
     height: 100%;
-    border: 1rem solid salmon;
+    width: 80%;
+    
 }
 
 
@@ -356,9 +374,9 @@ main .body .body_center {
 
 .sec4 .rv_l .box_r {
     display: flex;
-    flex-direction: row;
-    flex-basis: 50%;
-    justify-content: center;
+    flex-direction: column;
+    flex-basis: 70%;
+    justify-content: space-between;
     align-items: center;
 
 }
@@ -374,8 +392,8 @@ main .body .body_center {
 
 .sec4 .rv_r .box_r {
     display: flex;
-    flex-direction: row-reverse;
-    flex-basis: 50%;
+    flex-direction: column;
+    flex-basis: 70%;
     justify-content: center;
     align-items: center;
 }
@@ -398,6 +416,31 @@ main .body .body_center {
 
 .sec4 .rv .rv_lbox .rv_like {
     width: 50%;
+}
+
+
+@media screen and (max-width:1024px) {
+    .sec4 .rv_l {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 80%;
+    border: 1rem solid salmon;
+}
+.sec4 .rv_r {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 80%;
+    border: 1rem solid salmon;
+}
+}
+
+
+
+/*중간단계 건너띄고 지정*/
+.sec4 .rv .write{
+    text-align: center;
 }
 
 .footer {

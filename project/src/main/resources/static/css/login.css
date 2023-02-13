@@ -506,6 +506,7 @@ body .container{
     justify-content:center;
     flex-basis: 50%;
     align-items: baseline;
+    margin:1rem;
 }
 
 .sectionbreak .sec5 .registerlinkbox .registertext{
