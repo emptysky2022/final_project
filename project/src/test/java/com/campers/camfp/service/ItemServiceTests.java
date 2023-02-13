@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.campers.camfp.dto.ItemDTO;
-import com.campers.camfp.service.ItemService;
+import com.campers.camfp.dto.camp.item.ItemDTO;
+import com.campers.camfp.service.item.ItemService;
 
 @SpringBootTest
 public class ItemServiceTests {

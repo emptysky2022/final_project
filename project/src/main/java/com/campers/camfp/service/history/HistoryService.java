@@ -1,10 +1,10 @@
-package com.campers.camfp.service;
+package com.campers.camfp.service.history;
 
 import java.util.List;
 
-import com.campers.camfp.dto.HistoryDTO;
-import com.campers.camfp.entity.History;
-import com.campers.camfp.entity.Member;
+import com.campers.camfp.dto.history.HistoryDTO;
+import com.campers.camfp.entity.history.History;
+import com.campers.camfp.entity.member.Member;
 
 public interface HistoryService {
 		

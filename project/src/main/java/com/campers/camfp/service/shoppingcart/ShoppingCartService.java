@@ -1,10 +1,10 @@
-package com.campers.camfp.service;
+package com.campers.camfp.service.shoppingcart;
 
 import java.util.List;
 
-import com.campers.camfp.dto.ShoppingCartDTO;
-import com.campers.camfp.entity.Member;
-import com.campers.camfp.entity.ShoppingCart;
+import com.campers.camfp.dto.shopingcart.ShoppingCartDTO;
+import com.campers.camfp.entity.member.Member;
+import com.campers.camfp.entity.shoppingcart.ShoppingCart;
 
 public interface ShoppingCartService {
 

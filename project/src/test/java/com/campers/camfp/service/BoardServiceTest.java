@@ -4,8 +4,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.campers.camfp.dto.BoardDTO;
-import com.campers.camfp.entity.Member;
+import com.campers.camfp.dto.board.BoardDTO;
+import com.campers.camfp.entity.member.Member;
+import com.campers.camfp.service.board.BoardService;
 
 import lombok.RequiredArgsConstructor;
 

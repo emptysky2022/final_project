@@ -1,10 +1,10 @@
-package com.campers.camfp.service;
+package com.campers.camfp.service.item;
 
 import java.util.List;
 
-import com.campers.camfp.dto.ItemReviewDTO;
-import com.campers.camfp.entity.Item;
-import com.campers.camfp.entity.ItemReview;
+import com.campers.camfp.dto.camp.item.ItemReviewDTO;
+import com.campers.camfp.entity.item.Item;
+import com.campers.camfp.entity.item.ItemReview;
 
 public interface ItemReviewService {
 	
