@@ -1,5 +1,0 @@
-.git 폴더에 config파일을 연다.
-밑의 세줄을 입력한다.
-[i18n]
-	commitEncoding = utf-8
-	logOutputEncoding = utf-8

@@ -1,0 +1,1230 @@
+:root {
+    --font-size-lg: clamp(2rem, 4vw, 3.5rem);
+    --font-size-md: clamp(1.5rem, 3vw, 2.5rem);
+    --font-size-sm: clamp(1rem, 2vw, 1.5rem);
+    --font-size-vm: clamp(1rem, 1vw, 1.2rem)
+}
+
+h1 {
+    font-size: var(--font-size-lg);
+}
+
+h2 {
+    font-size: var(--font-size-md);
+}
+
+p {
+    font-size: var(--font-size-sm);
+    
+}
+
+blockquote {
+    font-size: var(--font-size-md);
+}
+
+a {
+    font-size: var(--font-size-sm);
+}
+
+
+* {
+    padding: 0;
+    margin: 0;
+    font-size: 0.6rem;
+    left: 0;
+    top: 0;
+    max-width: 100%;
+    height: auto;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Varela Round', sans-serif;
+	word-wrap: break-word;
+    box-sizing: border-box;
+    border-radius: 0.5rem;
+}
+
+/*리스트들의 특수기호 제거*/
+li {
+    list-style: none;
+}
+
+
+/*하이퍼링크 전체 밑줄 제거*/
+a {
+    text-decoration: none;
+    /*부모개체의 속성 그대로*/
+
+}
+
+
+
+/*사용할 페이지 전체 범위(가로폭은 보이는 화면의 80%고정, 세로폭은 내용물이 많아지면 자동 증가)*/
+body {
+    display: flex;
+    max-width: 100vw;
+    height: 100%;
+    justify-content: center;
+    
+}  
+
+/*container 전체 틀 잡기*/
+body .container{
+    width: 80vw;
+    height: auto;
+    display: flex;
+    flex-direction:column;
+    
+    justify-content:center;
+    margin: 5rem;
+}
+
+
+/*sec1*/
+.sec1{
+    justify-content: space-evenly;
+    display: flex;
+    flex-direction:column;
+    text-align: center;
+    flex-basis: 25%;
+    
+}
+
+
+.sec1 .title{
+    margin-bottom: 1rem;
+    
+}
+
+/*sec2*/
+.sec2{
+    display: flex;
+    margin: 0 0 4rem 0;
+    flex-direction:column;
+    
+   
+    
+}
+
+/*소셜로그인 글자 가운데 정렬*/
+.sec2 .loginapitext{
+    text-align: center;
+   
+}
+
+/*sns로그인*/
+.sec2 .loginapi{
+    display: flex;
+    justify-content:center;
+  
+    
+    
+}
+
+
+/*buttonbox 모음*/
+.sec2 .loginapi .box3{
+    display: flex;
+    width: 100%;
+    justify-content:space-evenly;
+    align-items: center;
+   
+}
+
+
+.sec2 .loginapi .buttonbox_g{
+    flex-basis: 20%;
+}
+
+.sec2 .loginapi .buttonbox_n{
+    flex-basis: 20%;
+}
+
+.sec2 .loginapi .buttonbox_k{
+    flex-basis: 20%;
+}
+/*----------*/
+
+
+/*logimg 모음*/
+
+.sec2 .loginapi .buttonbox_g .button_g .logoimg_gw{
+    height: 4.5rem;
+    display: flex;
+    
+}
+
+.sec2 .loginapi .buttonbox_n .button_n .logoimg_nw{
+    display: flex;
+    height: 4.5rem;
+}
+.sec2 .loginapi .buttonbox_k .button_k .logoimg_kw{
+    display: flex;
+    height: 4.5rem;
+}
+/*----------*/
+
+
+
+
+
+
+
+
+/*화면 480 이상일 때 가릴 것들 모음*/
+.sec2 .loginapi .box3 .box4 .item_3{
+    display: none;
+}
+
+
+.sec2 .loginapi .box3 .box4 .item_2{
+    display: none;
+}
+/*----------*/
+
+
+
+
+
+
+@media screen and (max-width:1024px) {
+    .sec2{
+        display: flex;
+        flex-direction:column;
+        justify-content:center;
+        
+        
+    }
+    
+    
+    .sec2 .loginapi{
+        display: flex;
+        height: auto;
+        flex-direction:column;
+        justify-content: center;
+        
+        align-items: center;
+    }
+    
+    .sec2 .loginapi .box3 .box4{
+  
+        display: flex;
+        justify-content: center;
+        margin: 0.3rem;
+        flex-basis: 35%;
+        height: 4.5rem;
+    }
+
+    .sec2 .loginapi .box3 .box4 .logotext{
+        display: none;
+    }
+}
+
+@media screen and (max-width:480px) {
+    .sec2{
+        display: flex;
+        flex-direction:column;
+        
+        
+        
+        
+    }
+
+    .sec2 .loginapi{
+        display: flex;
+        justify-content: center;
+        flex-direction:row;
+        margin: 1rem;
+    }
+    
+    .sec2 .loginapi .box3{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        margin: 1rem;
+        max-width: 5rem;
+}
+
+    .sec2 .loginapi .box3 .box4{
+        display: flex;
+        
+        
+
+}
+
+
+
+
+/**/
+.sec2 .loginapi .buttonbox_g .button_g{
+    margin: 0;
+    
+}
+
+.sec2 .loginapi .buttonbox_n .button_n{
+    margin: 0;
+
+}
+
+
+.sec2 .loginapi .buttonbox_k .button_k{
+    margin: 0;
+}
+
+
+/*이미지 아이콘 보이기*/
+.sec2 .loginapi .buttonbox_g .button_g .logoimg_g {
+    display: block;
+    
+
+}
+
+.sec2 .loginapi .buttonbox_n .button_n .logoimg_n {
+    display: block;
+   
+    
+ }
+
+ .sec2 .loginapi .buttonbox_k .button_k .logoimg_k {
+    display: block;
+   
+    
+ }
+
+
+
+ /*와이드 이미지 숨기기*/
+ .sec2 .loginapi .buttonbox_g .button_g .logoimg_gw {
+    display: none;
+    flex-direction: row;
+    
+ }
+ .sec2 .loginapi .buttonbox_n .button_n .logoimg_nw {
+    display: none;
+    flex-direction: row;
+    
+ }
+ .sec2 .loginapi .buttonbox_k .button_k .logoimg_kw {
+    display: none;
+    flex-direction: row;
+    
+ }
+
+}
+
+
+
+
+/*섹션 크기 80%로 나누기*/    
+.sectionbreak{
+    display: flex;
+    flex-basis: 80vh;
+    padding: 0 8%;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+
+
+/*sec3*/
+.sectionbreak .sec3{
+    width: 100vw;
+    height: auto;
+    display: flex;
+    flex-direction:row;
+    text-align: center;
+    justify-content: center;
+    flex-basis: 25%;
+    align-items: center;
+
+}
+
+.sectionbreak .sec3 .line {
+    width: 100%;
+    height: auto;
+    flex-basis: 30%;
+}
+
+.sectionbreak .sec3 .logintitle{
+    font-size: 1rem;
+    flex-basis: 40%;
+}
+
+.sectionbreak .sec3 .logintitle_mobile{
+   display:none
+}
+@media screen and (max-width:480px) {
+   /*480px 이하일 때 login 제목 바꾸기 (logintitle, logintitle_mobile의 display 속성 바꾸기)*/
+    .sectionbreak .sec3 .logintitle{
+        display: none;
+    }
+    /*480px 이하일 때 <hr> 선 간격 벌리기*/
+    .sectionbreak .sec3 .logintitle_mobile{
+        display: flex;
+        flex-basis: 60%;
+        justify-content: center;
+    }
+
+   
+    .sectionbreak .sec3 .line {
+        width: 100%;
+        height: auto;
+        flex-basis: 30%;
+    }
+
+   
+}
+
+
+
+/*sec4*/
+.sectionbreak .sec4{
+    display: flex;
+    flex-direction:column;
+    justify-content: space-between;
+
+    
+}
+
+.sectionbreak .sec4 .profileimgbox{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.sectionbreak .sec4 .profileimgbox .profiletext{
+    flex-basis: 20%;
+}
+
+.sectionbreak .sec4 .profileimgbox .profileimg {
+    width: 100%;
+    height: 3rem;
+    border-radius: 0.2rem;
+    margin: 0 0 1.5rem 0;
+    padding: 3rem;
+    max-width: 400px;
+    
+}
+
+.sectionbreak .sec4 {
+
+}
+
+
+/*아이디*/
+.sectionbreak .sec4 .idbox{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.sectionbreak .sec4 .idbox .idtext{
+    flex-basis: 20%;
+    
+
+}
+
+.sectionbreak .sec4 .idbox .id{
+    width: 100%;
+    height: 6rem;
+    border-radius: 0.2rem;
+    margin: 0 0 1.5rem 0;
+    padding: 2rem;
+    max-width: 400px;
+}
+
+
+/*비밀번호*/
+.sectionbreak .sec4 .passwordbox{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+}
+
+
+.sectionbreak .sec4 .passwordbox .passwordtext{
+    flex-basis: 20%;
+}
+
+.sectionbreak .sec4 .passwordbox .password{
+    width: 100%;
+    height: 6rem;
+    border-radius: 0.2rem;
+    margin: 0 0 1.5rem 0;
+    padding: 2rem;
+    max-width: 400px;
+}
+
+/*비밀번호 확인*/
+.sectionbreak .sec4 .passwordcheckbox{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.sectionbreak .sec4 .passwordcheckbox .passwordchecktext{
+    flex-basis: 20%;
+
+}
+
+.sectionbreak .sec4 .passwordcheckbox .passwordcheck{
+    width: 100%;
+    height: 6rem;
+    border-radius: 0.2rem;
+    margin: 0 0 1.5rem 0;
+    padding: 2rem;
+    max-width: 400px;
+}
+
+
+
+/*이름*/
+.sectionbreak .sec4 .namebox{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.sectionbreak .sec4 .namebox .nametext{
+    flex-basis: 20%;
+}
+
+.sectionbreak .sec4 .namebox .name{
+    width: 100%;
+    height: 6rem;
+    border-radius: 0.2rem;
+    margin: 0 0 1.5rem 0;
+    padding: 2rem;
+    max-width: 400px;
+}
+
+/*닉네임*/
+.sectionbreak .sec4 .nicknamebox{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.sectionbreak .sec4 .nicknamebox .nicknametext{
+    flex-basis: 20%;
+}
+
+.sectionbreak .sec4 .nicknamebox .nickname{
+    width: 100%;
+    height: 6rem;
+    border-radius: 0.2rem;
+    margin: 0 0 1.5rem 0;
+    padding: 2rem;
+    max-width: 400px;
+}
+
+
+/*나이*/
+.sectionbreak .sec4 .agebox{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.sectionbreak .sec4 .agebox .agetext{
+    flex-basis: 20%;
+}
+
+.sectionbreak .sec4 .agebox .age{
+    width: 100%;
+    height: 6rem;
+    border-radius: 0.2rem;
+    margin: 0 0 1.5rem 0;
+    padding: 2rem;
+    max-width: 400px;
+}
+
+/*성별*/
+.sectionbreak .sec4 .genderbox{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.sectionbreak .sec4 .genderbox .gendertext{
+    flex-basis: 20%;
+}
+
+.sectionbreak .sec4 .genderbox .gender{
+    width: 100%;
+    height: 6rem;
+    border-radius: 0.2rem;
+    margin: 0 0 1.5rem 0;
+    padding: 2rem;
+    max-width: 400px;
+}
+
+/*주소*/
+.sectionbreak .sec4 .addressbox{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.sectionbreak .sec4 .addressbox .addresstext{
+    flex-basis: 20%;
+}
+
+.sectionbreak .sec4 .addressbox .address{
+    width: 100%;
+    height: 6rem;
+    border-radius: 0.2rem;
+    margin: 0 0 1.5rem 0;
+    padding: 2rem;
+    max-width: 400px;
+}
+
+/*전화번호*/
+.sectionbreak .sec4 .phonebox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.sectionbreak .sec4 .phonebox  .phonetext{
+    flex-basis: 20%;
+}
+
+.sectionbreak .sec4 .phonebox  .phone{
+    width: 100%;
+    height: 6rem;
+    border-radius: 0.2rem;
+    margin: 0 0 1.5rem 0;
+    padding: 2rem;
+    max-width: 400px;
+}
+
+/*소개*/
+.sectionbreak .sec4 .introducebox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.sectionbreak .sec4 .introducebox  .introducetext{
+    flex-basis: 20%;
+}
+
+.sectionbreak .sec4 .introducebox  .introduce{
+    width: 100%;
+    height: 6rem;
+    border-radius: 0.2rem;
+    margin: 0 0 1.5rem 0;
+    padding: 2rem;
+    max-width: 400px;
+    overscroll-behavior: contain;
+    overflow:auto;
+    /*자동 줄바꿈*/
+    white-space:pre-wrap;
+    /*사용자가 세로로만 사이즈 조절 가능*/
+    resize:vertical;
+}   
+
+
+
+/*화면이 1024px 이하면 회원가입 입력칸 아래로 내리기 */
+@media screen and (max-width: 1024px){
+    .sectionbreak .sec4 .profileimgbox{
+        display: flex;
+    width: 100%;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: column
+    }
+    
+    .sectionbreak .sec4 .profileimgbox .profiletext{
+        flex-basis: 20%;
+        
+    }
+    
+    .sectionbreak .sec4 .profileimgbox .profileimg {
+        flex-basis: 25%;
+        width: 100%;
+        height: 3rem;
+        border-radius: 0.2rem;
+        margin: 0 0 1.5rem 0;
+        padding: 3rem;
+        max-width: 400px;
+        
+    }
+    
+    .sectionbreak .sec4 {
+    
+    }
+    
+    
+    /*아이디*/
+    .sectionbreak .sec4 .idbox{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .sectionbreak .sec4 .idbox .idtext{
+        flex-basis: 20%;
+        display: none;
+    
+    }
+    
+    .sectionbreak .sec4 .idbox .id{
+        width: 100%;
+        height: 3rem;
+        border-radius: 0.2rem;
+        margin: 0 0 1.5rem 0;
+        padding: 2rem;
+        max-width: 400px;
+        flex-basis: 25%;
+    }
+    
+    
+    /*비밀번호*/
+    .sectionbreak .sec4 .passwordbox{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    
+    .sectionbreak .sec4 .passwordbox .passwordtext{
+        flex-basis: 20%;
+        display: none;
+    }
+    
+    .sectionbreak .sec4 .passwordbox .password{
+        width: 100%;
+        height: 3rem;
+        border-radius: 0.2rem;
+        margin: 0 0 1.5rem 0;
+        padding: 2rem;
+        max-width: 400px;
+        flex-basis: 25%;
+    }
+    
+    /*비밀번호 확인*/
+    .sectionbreak .sec4 .passwordcheckbox{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .sectionbreak .sec4 .passwordcheckbox .passwordchecktext{
+        flex-basis: 20%;
+        display: none;
+    
+    }
+    
+    .sectionbreak .sec4 .passwordcheckbox .passwordcheck{
+        width: 100%;
+        height: 3rem;
+        border-radius: 0.2rem;
+        margin: 0 0 1.5rem 0;
+        padding: 2rem;
+        max-width: 400px;
+        flex-basis: 25%;
+    }
+    
+    
+    
+    /*이름*/
+    .sectionbreak .sec4 .namebox{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .sectionbreak .sec4 .namebox .nametext{
+        flex-basis: 20%;
+        display: none;
+    }
+    
+    .sectionbreak .sec4 .namebox .name{
+        flex-basis: 25%;
+        width: 100%;
+        height: 3rem;
+        border-radius: 0.2rem;
+        margin: 0 0 1.5rem 0;
+        padding: 2rem;
+        max-width: 400px;
+    }
+    
+    /*닉네임*/
+    .sectionbreak .sec4 .nicknamebox{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .sectionbreak .sec4 .nicknamebox .nicknametext{
+        flex-basis: 20%;
+        display: none;
+    }
+    
+    .sectionbreak .sec4 .nicknamebox .nickname{
+        flex-basis: 25%;
+        width: 100%;
+        height: 3rem;
+        border-radius: 0.2rem;
+        margin: 0 0 1.5rem 0;
+        padding: 2rem;
+        max-width: 400px;
+    }
+    
+    
+    /*나이*/
+    .sectionbreak .sec4 .agebox{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .sectionbreak .sec4 .agebox .agetext{
+        flex-basis: 20%;
+        display: none;
+    }
+    
+    .sectionbreak .sec4 .agebox .age{
+        flex-basis: 25%;
+        width: 100%;
+        height: 3rem;
+        border-radius: 0.2rem;
+        margin: 0 0 1.5rem 0;
+        padding: 2rem;
+        max-width: 400px;
+    }
+    
+    /*성별*/
+    .sectionbreak .sec4 .genderbox{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .sectionbreak .sec4 .genderbox .gendertext{
+        flex-basis: 20%;
+        display: none;
+    }
+    
+    .sectionbreak .sec4 .genderbox .gender{
+        flex-basis: 25%;
+        width: 100%;
+        height: 3rem;
+        border-radius: 0.2rem;
+        margin: 0 0 1.5rem 0;
+        padding: 2rem;
+        max-width: 400px;
+    }
+    
+    /*주소*/
+    .sectionbreak .sec4 .addressbox{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .sectionbreak .sec4 .addressbox .addresstext{
+        flex-basis: 20%;
+        display: none;
+    }
+    
+    .sectionbreak .sec4 .addressbox .address{
+        flex-basis: 25%;
+        width: 100%;
+        height: 3rem;
+        border-radius: 0.2rem;
+        margin: 0 0 1.5rem 0;
+        padding: 2rem;
+        max-width: 400px;
+    }
+    
+    /*전화번호*/
+    .sectionbreak .sec4 .phonebox {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .sectionbreak .sec4 .phonebox  .phonetext{
+        flex-basis: 20%;
+        display: none;
+    }
+    
+    .sectionbreak .sec4 .phonebox  .phone{
+        flex-basis: 25%;
+        width: 100%;
+        height: 3rem;
+        border-radius: 0.2rem;
+        margin: 0 0 1.5rem 0;
+        padding: 2rem;
+        max-width: 400px;
+    }
+    
+    /*소개*/
+    .sectionbreak .sec4 .introducebox {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .sectionbreak .sec4 .introducebox  .introducetext{
+        flex-basis: 20%;
+        display: none;
+    }
+    
+    .sectionbreak .sec4 .introducebox  .introduce{
+        flex-basis: 25%;
+        width: 100%;
+        height: 3rem;
+        border-radius: 0.2rem;
+        margin: 0 0 1.5rem 0;
+        padding: 2rem;
+        max-width: 400px;
+    }   
+    
+    
+
+
+}
+
+
+@media screen and (max-width: 480px){
+    .sectionbreak .sec4 .profileimgbox{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: baseline;
+    }
+    
+    .sectionbreak .sec4 .profileimgbox .profiletext{
+        flex-basis: 20%;
+        
+    }
+    
+    .sectionbreak .sec4 .profileimgbox .profileimg {
+        flex-basis: 25%;
+        width: 100%;
+        height: 3rem;
+        border-radius: 0.2rem;
+        margin: 0 0 1.5rem 0;
+        padding: 3rem;
+        max-width: 400px;
+        
+    }
+    
+    .sectionbreak .sec4 {
+    
+    }
+    
+    
+    /*아이디*/
+    .sectionbreak .sec4 .idbox{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .sectionbreak .sec4 .idbox .idtext{
+        flex-basis: 20%;
+        display: none;
+    
+    }
+    
+    .sectionbreak .sec4 .idbox .id{
+        width: 100%;
+        height: 3rem;
+        border-radius: 0.2rem;
+        margin: 0 0 1.5rem 0;
+        padding: 2rem;
+        max-width: 400px;
+        flex-basis: 25%;
+    }
+    
+    
+    /*비밀번호*/
+    .sectionbreak .sec4 .passwordbox{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    
+    .sectionbreak .sec4 .passwordbox .passwordtext{
+        flex-basis: 20%;
+        display: none;
+    }
+    
+    .sectionbreak .sec4 .passwordbox .password{
+        width: 100%;
+        height: 3rem;
+        border-radius: 0.2rem;
+        margin: 0 0 1.5rem 0;
+        padding: 2rem;
+        max-width: 400px;
+        flex-basis: 25%;
+    }
+    
+    /*비밀번호 확인*/
+    .sectionbreak .sec4 .passwordcheckbox{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .sectionbreak .sec4 .passwordcheckbox .passwordchecktext{
+        flex-basis: 20%;
+        display: none;
+    }
+    
+    .sectionbreak .sec4 .passwordcheckbox .passwordcheck{
+        width: 100%;
+        height: 3rem;
+        border-radius: 0.2rem;
+        margin: 0 0 1.5rem 0;
+        padding: 2rem;
+        max-width: 400px;
+        flex-basis: 25%;
+    }
+    
+    
+    
+    /*이름*/
+    .sectionbreak .sec4 .namebox{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .sectionbreak .sec4 .namebox .nametext{
+        flex-basis: 20%;
+        display: none;
+    }
+    
+    .sectionbreak .sec4 .namebox .name{
+        flex-basis: 25%;
+        width: 100%;
+        height: 3rem;
+        border-radius: 0.2rem;
+        margin: 0 0 1.5rem 0;
+        padding: 2rem;
+        max-width: 400px;
+    }
+    
+    /*닉네임*/
+    .sectionbreak .sec4 .nicknamebox{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .sectionbreak .sec4 .nicknamebox .nicknametext{
+        flex-basis: 20%;
+        display: none;
+    }
+    
+    .sectionbreak .sec4 .nicknamebox .nickname{
+        flex-basis: 25%;
+        width: 100%;
+        height: 3rem;
+        border-radius: 0.2rem;
+        margin: 0 0 1.5rem 0;
+        padding: 2rem;
+        max-width: 400px;
+    }
+    
+    
+    /*나이*/
+    .sectionbreak .sec4 .agebox{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .sectionbreak .sec4 .agebox .agetext{
+        flex-basis: 20%;
+        display: none;
+    }
+    
+    .sectionbreak .sec4 .agebox .age{
+        flex-basis: 25%;
+        width: 100%;
+        height: 3rem;
+        border-radius: 0.2rem;
+        margin: 0 0 1.5rem 0;
+        padding: 2rem;
+        max-width: 400px;
+    }
+    
+    /*성별*/
+    .sectionbreak .sec4 .genderbox{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .sectionbreak .sec4 .genderbox .gendertext{
+        flex-basis: 20%;
+        display: none;
+    }
+    
+    .sectionbreak .sec4 .genderbox .gender{
+        flex-basis: 25%;
+        width: 100%;
+        height: 3rem;
+        border-radius: 0.2rem;
+        margin: 0 0 1.5rem 0;
+        padding: 2rem;
+        max-width: 400px;
+    }
+    
+    /*주소*/
+    .sectionbreak .sec4 .addressbox{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .sectionbreak .sec4 .addressbox .addresstext{
+        flex-basis: 20%;
+        display: none;
+    }
+    
+    .sectionbreak .sec4 .addressbox .address{
+        flex-basis: 25%;
+        width: 100%;
+        height: 3rem;
+        border-radius: 0.2rem;
+        margin: 0 0 1.5rem 0;
+        padding: 2rem;
+        max-width: 400px;
+    }
+    
+    /*전화번호*/
+    .sectionbreak .sec4 .phonebox {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .sectionbreak .sec4 .phonebox  .phonetext{
+        flex-basis: 20%;
+        display: none;
+    }
+    
+    .sectionbreak .sec4 .phonebox  .phone{
+        flex-basis: 25%;
+        width: 100%;
+        height: 3rem;
+        border-radius: 0.2rem;
+        margin: 0 0 1.5rem 0;
+        padding: 2rem;
+        max-width: 400px;
+    }
+    
+    /*소개*/
+    .sectionbreak .sec4 .introducebox {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .sectionbreak .sec4 .introducebox  .introducetext{
+        flex-basis: 20%;
+        display: none;
+    }
+    
+    .sectionbreak .sec4 .introducebox  .introduce{
+        flex-basis: 25%;
+        width: 100%;
+        height: 3rem;
+        border-radius: 0.2rem;
+        margin: 0 0 1.5rem 0;
+        padding: 2rem;
+        max-width: 400px;
+    }   
+    
+    
+
+
+}
+
+
+
+
+
+
+
+
+
+
+/*sec5*/
+.sectionbreak .sec5{
+    display: flex;
+    justify-content: center;
+}
+
+
+/*회원가입 박스*/
+.sectionbreak .sec6 {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.sectionbreak .sec6 .registerBtn{
+    background-color: #3498DB;
+    color: aliceblue;
+    border: none;
+    flex-basis: auto;
+    width:20rem;
+    height: 5rem;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 1rem;
+}
+
+
+
+/*로그인 박스*/
+.sectionbreak .sec7{
+    display: flex;
+    justify-content: end;
+}
+
+.sectionbreak .sec7 .loginlink{
+
+}
