@@ -2,7 +2,7 @@ package com.campers.camfp.service.item;
 
 import java.util.List;
 
-import com.campers.camfp.dto.camp.item.ItemReviewDTO;
+import com.campers.camfp.dto.item.ItemReviewDTO;
 import com.campers.camfp.entity.item.Item;
 import com.campers.camfp.entity.item.ItemReview;
 

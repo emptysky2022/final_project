@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.campers.camfp.dto.camp.item.ItemReviewDTO;
+import com.campers.camfp.dto.item.ItemReviewDTO;
 import com.campers.camfp.entity.item.ItemReview;
 import com.campers.camfp.repository.item.ItemReviewRepository;
 
