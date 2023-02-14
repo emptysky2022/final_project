@@ -91,6 +91,7 @@
 				<label>사진</label>
 				<input type="text" name="image">
 			</div>
+			<div>댓글</div>
 			
 			<div>
 				<button type="submit">목록으로</button>
@@ -106,9 +107,7 @@
 		<div class="container mt-3">
 			<h2>게시글 목록</h2>
 			<span>
-				<a th:href="@{/board/register}">
-					<button type="button" class="btn btn-primary" style="float:right">글 등록하기</button>
-				</a>
+				<button type="button" class="btn btn-primary" style="float:right">글 등록하기</button>
 			</span>
 			
 			<table class="table table-striped">
@@ -118,14 +117,16 @@
 						<th>제목</th>
 						<th>작성자</th>
 						<th>작성일</th>
+						<th>조회수</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+					<tr th:each="dto:${result.dtoList}">
+						<td scope=row>[[${dto.bno}]]</td>
+						<td>[[${dto.title}]]</td>
+						<td>[[${dto.nickname}]]</td>
+						<td>[[${#temporals.format(dto.regDate, 'yyyy/MM/dd hh:mm:ss                                              ')}]]</td>
+						<td>[[${dto.count}]]</td>
 					</tr>
 				</tbody>
 			</table>
