@@ -21,7 +21,7 @@ public class MemberDTO {
 	private Boolean gender;
 	private String address;
 	private String phone;
-	private Boolean grade;
+	private String grade;
 	private String introduce;
 
 }
