@@ -77,15 +77,6 @@ public class CampRepositoryTests {
 		}
 	}
 	
-//	this.pw  = pw;
-//	this.nickname = nickname;
-//	this.profileImg = profileImg;
-//	this.name = name;
-//	this.age = age;
-//	this.address = address;
-//	this.phone = phone;
-//	this.introduce = introduce;
-	
 	@Test
 	public void createMemberTest() {
 		for (int i = 0; i < 10; i++) {

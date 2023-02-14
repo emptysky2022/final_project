@@ -1,5 +1,7 @@
 package com.campers.camfp.service.board;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.campers.camfp.dto.board.BoardDTO;
@@ -28,6 +30,14 @@ public class BoardServiceImpl implements BoardService {
 		boardRepository.save(entityBoardDTO);
 		
 		return entityBoardDTO.getBno();
+	}
+
+	@Override
+	public BoardDTO read(Long bno) {
+		
+		Optional<Board> result = boardRepository.findById(bno);
+		
+		return result.isPresent() ? entityToDTO(result.get()) : null;
 	}
 
 }
