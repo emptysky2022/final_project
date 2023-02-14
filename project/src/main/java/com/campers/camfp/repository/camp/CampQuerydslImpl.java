@@ -3,13 +3,7 @@ package com.campers.camfp.repository.camp;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
-import com.campers.camfp.config.type.TableType;
-import com.campers.camfp.entity.camp.QCamp;
-import com.campers.camfp.entity.camp.QCampCalender;
-import com.campers.camfp.entity.camp.QCampReview;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import lombok.RequiredArgsConstructor;
@@ -19,6 +13,7 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @Repository
 public class CampQuerydslImpl implements CampQuerydsl {
+
 
 //	@Autowired
 //	private JPAQueryFactory queryFactory;
@@ -84,4 +79,5 @@ public class CampQuerydslImpl implements CampQuerydsl {
 //		// TODO Auto-generated method stub
 //		return null;
 //	}
+
 }
