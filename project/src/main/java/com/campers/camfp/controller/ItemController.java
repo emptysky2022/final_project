@@ -35,4 +35,9 @@ public class ItemController {
 		model.addAttribute("result", itemLists);
 	}
 	
+	@GetMapping("/item")
+	public void viewDetail() {
+		
+	}
+	
 }

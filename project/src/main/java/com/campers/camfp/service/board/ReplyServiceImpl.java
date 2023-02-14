@@ -29,7 +29,6 @@ public class ReplyServiceImpl implements ReplyService{
 		
 		List<Reply> result = replyRepository.findByBoard(board);
 		
-		// ...뭐야
 		return result.stream().map(boardReply -> entityToDTO(boardReply)).collect(Collectors.toList());
 	}
 
