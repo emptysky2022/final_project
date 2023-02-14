@@ -15,5 +15,7 @@ public interface ReplyRepository extends JpaRepository<Reply, Long>{
 	@EntityGraph(attributePaths = {"board"}, type = EntityGraphType.FETCH)
 	List<Reply> findByBoard(Board board);
 
+	// 게시글로 댓글 가져오기 - Rno 기준
+	List<Reply> getRepliesByBoard(Board board);
 	
 }
