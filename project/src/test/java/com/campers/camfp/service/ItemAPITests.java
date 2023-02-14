@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.campers.camfp.dto.camp.item.ItemDTO;
+import com.campers.camfp.dto.item.ItemDTO;
 import com.campers.camfp.service.item.ItemService;
 
 @SpringBootTest
@@ -31,8 +31,8 @@ public class ItemAPITests {
 
 	@Test
 	public void getItem() {
-        String clientId = ""; //애플리케이션 클라이언트 아이디
-        String clientSecret = ""; //애플리케이션 클라이언트 시크릿
+        String clientId = "01jrXpKpOCTFmmWHhY0a"; //애플리케이션 클라이언트 아이디
+        String clientSecret = "foDWQCAkDh"; //애플리케이션 클라이언트 시크릿
 
         IntStream.range(0, 10).forEach(i -> {
         	String text = null;
