@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import com.campers.camfp.dto.item.ItemDTO;
+import com.campers.camfp.dto.page.PageRequestDTO;
 import com.campers.camfp.entity.item.Item;
 import com.campers.camfp.repository.item.ItemRepository;
 
@@ -46,6 +47,12 @@ public class ItemServiceImpl implements ItemService{
 		log.info("select all item " + resultDTO);
 		return resultDTO;
 	}
+	
+	@Override
+	public List<ItemDTO> getListOfPage(PageRequestDTO pageRequestDTO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public void modify(ItemDTO itemDTO) {
@@ -59,6 +66,4 @@ public class ItemServiceImpl implements ItemService{
 		log.info("delete item " + ino);
 		itemRepository.deleteById(ino);
 	}
-	
-	
 }

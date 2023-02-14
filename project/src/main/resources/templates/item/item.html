@@ -74,14 +74,14 @@
                         </div>
 
                         <div class="campgroundimgbox box4">
-                            <img class="campgroundimg item" src="../img/happy13.jpg">
+                            <img class="campgroundimg item" th:src="${detail.thumbnail}">
                         </div>
 
                         <div class="cg_titlebox box4">
-                            <div class="cg_title item">낭만 캠핑장</div>
+                            <div class="cg_title item">[[${detail.name}]]</div>
                         </div>
                         <div class="cg_starbox box4">
-                            <div class="cg_star item">★★★★☆</div>
+                            <div class="cg_star item">[[${detail.star}]]</div>
                         </div>
 
                         <div class="cg_explainbox box4">
@@ -90,46 +90,6 @@
 
                         <div class="cg_hashtagbox box4">
                             <div class="cg_hashtag item"> #차박 #오늘도 #성공적</div>
-                        </div>
-                    </div>
-
-                    <!------------------지도 + 출발지 + 날씨--------------------->
-                    <div class="sec2 box3">
-                        <div class="mapbox box4">
-                            <div class="map item">대충 지도 들어갈 자리</div>
-                        </div>
-                        <div class="mapweatherbox box4">
-                            <div class="startbox box5">
-                                <div class="startplacetext item">출발지</div>
-                                <input type="text" class="startplace item_2">
-                            </div>
-                            <div class="starttimebox box5">
-                                <div class="starttimetext item">출발 시간</div>
-                                <input type="time" class="starttime item_2">
-                            </div>
-
-
-                            <div class="totaltimebox box5">
-                                <div class="totaltime item">총 소요 시간</div>
-                            </div>
-
-
-
-                            <div class="weatherbox box5">
-                                <div class="weatherplacebox box6">
-                                    <div class="weatherplace item">부산 날씨</div>
-                                </div>
-                                <div class="comerainbox box6">
-                                    <div class="comerain item">강수 확률 70%</div>
-                                </div>
-                                <div class="windspeedbox box6">
-                                    <div class="windspeed item">북풍1.4m</div>
-                                </div>
-
-                                <div class="searchbox box6">
-                                    <button type="button" class="search item">검색</button>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
