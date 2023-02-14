@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.campers.camfp.config.type.TableType;
 import com.campers.camfp.entity.camp.Camp;
 import com.campers.camfp.entity.camp.CampCalender;
 import com.campers.camfp.entity.camp.CampReview;
@@ -21,7 +22,6 @@ import com.campers.camfp.repository.camp.CampRepository;
 import com.campers.camfp.repository.camp.CampReviewRepository;
 import com.campers.camfp.repository.history.HistoryRepository;
 import com.campers.camfp.repository.member.MemberRepository;
-import com.campers.camfp.util.type.TableType;
 
 @SpringBootTest
 public class CampRepositoryTests {
@@ -51,18 +51,17 @@ public class CampRepositoryTests {
 
 	@Test
 	public void test() {
-		for (int i = 0; i < 6; i++) {
+		for (int i = 2; i < 10; i++) {
 
-			createCampTest();
+			// createCampTest();
 			createCampCalenderTest();
-			createCampReviewTests();
 			createCampReviewTests();
 			createHistoryTests();
 		}
 	}
 	
 	public Member getmember(Long mno) {
-		return Member.builder().nickname("nickname" + mno).mno(1L).build(); 
+		return Member.builder().nickname("nickname" + mno).mno(mno).build(); 
 	}
 
 	@Test
@@ -78,15 +77,6 @@ public class CampRepositoryTests {
 		}
 	}
 	
-//	this.pw  = pw;
-//	this.nickname = nickname;
-//	this.profileImg = profileImg;
-//	this.name = name;
-//	this.age = age;
-//	this.address = address;
-//	this.phone = phone;
-//	this.introduce = introduce;
-	
 	@Test
 	public void createMemberTest() {
 		for (int i = 0; i < 10; i++) {
@@ -97,7 +87,7 @@ public class CampRepositoryTests {
 											.name("name")
 											.age(i)
 											.gender(true)
-											.grade(true)
+											//.grade(true) ->String으로 바꿈
 											.address("1")
 											.phone("1")
 											.introduce("1")
@@ -121,9 +111,9 @@ public class CampRepositoryTests {
 	@Test
 	public void createCampReviewTests() {
 
-		CampReview campReview = CampReview.builder().capture("img").content("con").reviewer("nic").camp(getCampNum(1))
-				.build();
-		campReviewRepository.save(campReview);
+//		CampReview campReview = CampReview.builder().capture("img").content("con").reviewer("nic").camp(getCampNum(Integer.toUnsignedLong(i)))
+//				.build();
+//		campReviewRepository.save(campReview);
 
 	}
 

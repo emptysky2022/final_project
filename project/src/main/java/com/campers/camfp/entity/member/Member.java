@@ -11,11 +11,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 @Entity
 @Table(name="member")
 @Builder
+@Setter
 @Getter
 @ToString
 @NoArgsConstructor
@@ -27,11 +29,11 @@ public class Member {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long mno;
 	
-	@Column(length = 20, unique = true, nullable = false)
+	@Column(length =50, unique = true, nullable = false)
 	private String id;
 	
 	//사용자 패스워드
-	@Column(length = 30, nullable = false)
+	@Column(length = 100, nullable = false)
 	private String pw;
 	
 	//사용자 닉네임
@@ -46,6 +48,7 @@ public class Member {
 	private String name;
 	
 	//사용자 나이
+	@Column(nullable=true)
 	private int age;
 	
 	//사용자 성별
@@ -60,7 +63,7 @@ public class Member {
 	private String phone;
 	
 	//사용자 권한(회원 / 관리자)
-	private Boolean grade;
+	private String grade;
 	
 	//사용자 소개
 	@Column(length = 1000)
@@ -78,6 +81,22 @@ public class Member {
 		this.phone = phone;
 		this.introduce = introduce;
 	}
+
+	public Member(String id, String pw, String nickname, String profileImg, String name, int age,
+			Boolean gender, String address, String phone, String grade, String introduce) {
+		this.id = id;
+		this.pw = pw;
+		this.nickname = nickname;
+		this.profileImg = profileImg;
+		this.name = name;
+		this.age = age;
+		this.gender = gender;
+		this.address = address;
+		this.phone = phone;
+		this.grade = grade;
+		this.introduce = introduce;
+	}
+
 	
 	
 	

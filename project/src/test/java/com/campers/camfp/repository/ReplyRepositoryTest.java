@@ -17,7 +17,7 @@ public class ReplyRepositoryTest {
 	private ReplyRepository replyRepository;
 	
 	
-	// 오류나서 다시 해야함..
+	// 오류나서 다시 해야함.. 02/13 test 안됨.
 	@Test
 	public void insertBoardReplys() {
 		

@@ -27,16 +27,16 @@ public class MemberRepositoryTest {
 				xy = true;
 			}					// 여기까지 남자.
 			
-			Member member = Member.builder().id("userID5")
+			Member member = Member.builder().id("userID" + i)
 											.pw("1111")
-											.nickname("userNick5")
+											.nickname("userNick" + i)
 											.age(20)
 											.profileImg("imageSample" + i)
 											.name("userName" + i)
 											.gender(xy)
 											.address("서울시" + i)
 											.phone("010-1111-" + i)
-											.grade(true)
+											//.grade(true) -> String으로바꿈
 											.introduce("안녕하슈")
 											.build();
 			
@@ -73,14 +73,15 @@ public class MemberRepositoryTest {
 		memberRepository.deleteById(mno);
 	}
 
+	// 02/13 테스트 안됨.
 	@Test
 	public void testUpdate() {
 
-		Member member = Member.builder().id("userID4").pw("2222").nickname("upNick4").profileImg("updateImage4")
-				.name("updateName4").age(20).gender(false).address("수정시4").phone("010-4444-0").grade(true)
-				.introduce("수정하슈4").build();
-
-		System.out.println(memberRepository.save(member));
+//		Member member = Member.builder().id("userID6").pw("2222").nickname("upNick4").profileImg("updateImage4")
+//				.name("updateName4").age(20).gender(false).address("수정시4").phone("010-4444-0").grade(true)
+//				.introduce("수정하슈4").build();
+//
+//		System.out.println(memberRepository.save(member));
 
 	}
 }

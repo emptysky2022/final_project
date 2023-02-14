@@ -1,4 +1,4 @@
-package com.campers.camfp.util.type;
+package com.campers.camfp.config.type;
 
 public enum TableType {
 	CAMP,
