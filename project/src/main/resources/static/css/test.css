@@ -1,3 +1,44 @@
+section {
+    display: none;
+    padding: 20px 0 0;
+    border-top: 1px solid #9c9c9c;}
+
+/*라디오버튼 숨김*/
+.content-body .content-body-left .content-body-left-header .main input {
+      display: none;
+}
+#post-label{
+    margin-left: 50px;
+}
+label {
+    display: inline-block;
+    margin: 0 0 -1px;
+    
+    padding: 15px 15px;
+    font-weight: 300;
+    text-align: center;
+    color: #bbb;
+    border: 1px solid transparent;
+}
+
+label:hover {
+    color: #ec736e;
+    cursor: pointer;}
+
+/*input 클릭시, label 스타일*/
+input:checked + label {
+      color: #555;
+      border: 1px solid #9c9c9c;
+      border-top: 2px solid #ec736e;
+      border-bottom: 1px solid rgb(241, 241, 197);}
+
+#tab1:checked ~ #content1,
+#tab2:checked ~ #content2,
+#tab3:checked ~ #content3,
+#tab4:checked ~ #content4, 
+#tab5:checked ~ #content5 {
+display: block;}
+
 :root {
     --font-size-lg: clamp(1rem, 4vw, 3rem);
     --font-size-md: clamp(1.5rem, 3vw, 2.5rem);
@@ -494,9 +535,9 @@ strong {
 
 
 /*게시글 가리기*/
-.sec1, .sec2, .sec3, .sec4{
+/* .sec1, .sec2, .sec3, .sec4{
   display: none;
-} 
+} */
 /*view*/
 
 
