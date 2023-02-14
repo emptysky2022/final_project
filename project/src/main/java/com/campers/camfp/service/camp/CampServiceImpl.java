@@ -3,12 +3,14 @@ package com.campers.camfp.service.camp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Consumer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import com.campers.camfp.config.type.TableType;
+import com.campers.camfp.dto.camp.CampDTO;
 import com.campers.camfp.entity.camp.Camp;
 import com.campers.camfp.entity.camp.CampCalender;
 import com.campers.camfp.entity.camp.CampReview;
@@ -51,7 +53,7 @@ public class CampServiceImpl implements CampService {
 			break;
 
 		case CAMPCALENDER:
-			CampCalender campCelender= campCalenderRepository.findById(num).get();
+			CampCalender campCelender = campCalenderRepository.findById(num).get();
 			value = campCelender;
 			break;
 
@@ -63,6 +65,44 @@ public class CampServiceImpl implements CampService {
 		}
 
 		return value;
+	}
+
+	public List<Object> findHeartRank(TableType table, int num) {
+
+		List<Object> bufferList = new ArrayList<>();
+		List<Object> resultList = new ArrayList<>();
+
+		switch (table) {
+
+		case CAMP:
+			List<Camp> camplist = (List<Camp>) campRepository.findHeartRank(table, num);
+			camplist.forEach(camp -> {
+				bufferList.add(camp);
+			});
+			break;
+
+		case CAMPREVIEW:
+			List<CampReview> reivewlist = (List<CampReview>) campRepository.findHeartRank(table, num);
+			reivewlist.forEach(review -> bufferList.add(review));
+			break;
+
+		default:
+
+			System.out.println("Not Found Type : " + table);
+
+			break;
+		}
+
+		if (bufferList.size() > 0) {
+			bufferList.forEach(data -> {
+				resultList.add(EntityToDTO(table, data));
+			});
+		} else {
+			log.info("데이터가 존재하지 않습니다.");
+		}
+
+		return resultList;
+
 	}
 
 	@Override

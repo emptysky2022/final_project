@@ -3,6 +3,7 @@ package com.campers.camfp.repository;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import javax.transaction.Transactional;
 
@@ -65,14 +66,19 @@ public class CampRepositoryTests {
 	}
 
 	@Test
-	@Transactional
 	public void createCampTest() {
-		for (Long i = 0L; i < 10; i++) {
+		for (Long i = 1L; i < 50; i++) {
+			
+		    double dValue = Math.random();
+
+		    int iValue = (int)(dValue * 10) + 1;
+			
 			Camp camp = Camp.builder().member(getmember(i))
-					.country("country")
+					.location("country")
 					.address("address")
 					.name("name" + i)
 					.thumbnail("thum")
+					.heart(iValue)
 					.build();
 			campRepository.save(camp);
 		}
@@ -80,7 +86,7 @@ public class CampRepositoryTests {
 	
 	@Test
 	public void createMemberTest() {
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 100; i++) {
 			Member member = Member.builder().pw("pw")
 											.nickname("nickname" + i)
 											.id("id"+i)

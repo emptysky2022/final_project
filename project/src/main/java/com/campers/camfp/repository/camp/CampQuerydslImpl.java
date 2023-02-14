@@ -42,7 +42,7 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 		case CAMP:
 
 			JPQLQuery<Camp> camp = from(Q_CAMP);
-			camp.groupBy(Q_CAMP.address.contains(address));
+			camp.groupBy(Q_CAMP.location.contains(address));
 			camp.fetch();
 			data = camp.fetch();
 
@@ -70,7 +70,7 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 			camp.from(Q_CAMP);
 			camp.orderBy(Q_CAMP.heart.desc());
 			camp.limit(count);
-			
+			data = camp.fetch();
 			break;
 
 		case CAMPREVIEW:

@@ -117,68 +117,27 @@
                             </div>
                         </div>
                     </div>
-
+                    
                     <!--캠핑장 사진 및 평점-->
                     <div class="sec5 box3">
-                        <div class="campgroundsbox box4">
+                        <div class="campgroundsbox box4" th:each="camp : ${result}"> 
+                            <input type = "hidden" name="cno" th:value ="${camp.cno}">
                             <div class="cg_imgbox box5">
-                                <img class="cg_img item" src="../img/happy14.jpg" >
+                                <img class="cg_img item" th:src="${camp.thumbnail}">
                             </div>
                             <div class="cg_rightbox box4">
-                                <div class="title item">낭만 캠핑장</div>
+                                <div class="title item">[[${camp.name}]]</div>
+                                
                                 <div class="cg_starbox item">
-                                    <div class="star item">★★★★☆</div>
+                                    <div class="star item">[[${camp.heart}]]</div>
                                 </div>
                                 <div class="cg_explainbox box5">
-                                    <div class="explain item">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="campgroundsbox box4">
-                            <div class="cg_imgbox box5">
-                                <img class="cg_img item" src="../img/happy14.jpg" >
-                            </div>
-                            <div class="cg_rightbox box4">
-                                <div class="title item">낭만 캠핑장</div>
-                                <div class="cg_starbox item">
-                                    <div class="star item">★★★★☆</div>
-                                </div>
-                                <div class="cg_explainbox box5">
-                                    <div class="explain item">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="campgroundsbox box4">
-                            <div class="cg_imgbox box5">
-                                <img class="cg_img item" src="../img/happy14.jpg" >
-                            </div>
-                            <div class="cg_rightbox box4">
-                                <div class="title item">낭만 캠핑장</div>
-                                <div class="cg_starbox item">
-                                    <div class="star item">★★★★☆</div>
-                                </div>
-                                <div class="cg_explainbox box5">
-                                    <div class="explain item">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="campgroundsbox box4">
-                            <div class="cg_imgbox box5">
-                                <img class="cg_img item" src="../img/happy14.jpg" >
-                            </div>
-                            <div class="cg_rightbox box4">
-                                <div class="title item">낭만 캠핑장</div>
-                                <div class="cg_starbox item">
-                                    <div class="star item">★★★★☆</div>
-                                </div>
-                                <div class="cg_explainbox box5">
-                                    <div class="explain item">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+                                    <div class="explain item">[[${camp.address}]]</div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
+                    
                     <!--캠핑장 등록?-->
                     <div class="sec6 box3">
                         <div class="product_registration box4">
@@ -220,8 +179,16 @@
 </body>
 
 <script th:inline="javascript">
-	$(document).readu
-	var a = $(".box4 title item").val;
+
+/* 	$(document).ready(function(){		
+		$.ajax({
+			url : "/sample/campgroundsdetail",
+			method : "post",
+			data : "JSON.stringfy(replt)",
+			dataType : "json",
+			contentType : "application/json; charset=UTF-8"
+		})
+	}) */
 	
 </script>
 
