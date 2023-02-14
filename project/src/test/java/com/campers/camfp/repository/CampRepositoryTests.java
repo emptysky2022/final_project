@@ -61,16 +61,17 @@ public class CampRepositoryTests {
 	}
 	
 	public Member getmember(Long mno) {
-		return Member.builder().nickname("nickname" + mno).mno(mno).build(); 
+		return Member.builder().mno(mno + 1L).build(); 
 	}
 
 	@Test
+	@Transactional
 	public void createCampTest() {
 		for (Long i = 0L; i < 10; i++) {
 			Camp camp = Camp.builder().member(getmember(i))
 					.country("country")
 					.address("address")
-					.name("name")
+					.name("name" + i)
 					.thumbnail("thum")
 					.build();
 			campRepository.save(camp);
