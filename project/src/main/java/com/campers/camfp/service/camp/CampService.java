@@ -2,6 +2,7 @@ package com.campers.camfp.service.camp;
 
 import java.util.List;
 
+import com.campers.camfp.config.type.TableType;
 import com.campers.camfp.dto.camp.CampCalenderDTO;
 import com.campers.camfp.dto.camp.CampDTO;
 import com.campers.camfp.dto.camp.CampReviewDTO;
@@ -9,7 +10,6 @@ import com.campers.camfp.entity.camp.Camp;
 import com.campers.camfp.entity.camp.CampCalender;
 import com.campers.camfp.entity.camp.CampReview;
 import com.campers.camfp.entity.member.Member;
-import com.campers.camfp.util.type.TableType;
 
 public interface CampService {
 

@@ -8,13 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import com.campers.camfp.config.type.TableType;
 import com.campers.camfp.entity.camp.Camp;
 import com.campers.camfp.entity.camp.CampCalender;
 import com.campers.camfp.entity.camp.CampReview;
 import com.campers.camfp.repository.camp.CampCalenderRepository;
 import com.campers.camfp.repository.camp.CampRepository;
 import com.campers.camfp.repository.camp.CampReviewRepository;
-import com.campers.camfp.util.type.TableType;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;

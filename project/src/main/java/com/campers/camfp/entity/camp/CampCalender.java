@@ -39,6 +39,9 @@ public class CampCalender {
 	@JoinColumn(name = "cno")
 	private Camp camp;
 	
+	@Column(length = 20, nullable = false)
+	private String reservationer;
+	
 	@Column(name="startdate")
 	private LocalDateTime startdate;
 	
