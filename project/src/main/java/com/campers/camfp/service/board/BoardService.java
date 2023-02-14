@@ -6,6 +6,9 @@ import com.campers.camfp.entity.member.Member;
 
 public interface BoardService {
 	
+	// 게시글 상세 조회
+	BoardDTO read(Long bno);
+	
 	Long register(BoardDTO boardDTO); 
 	
 	
