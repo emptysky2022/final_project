@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>빠르게 갖다 쓸 용도로 만듬</title>
+    <title>게시판</title>
 
     <!--css 연결-->
     <link rel="stylesheet" type="text/css" href="../css/postgroup.css">
@@ -67,39 +67,56 @@
                     <!--게시글 메뉴바-->
 
                     <nav>
-                        <a href="#" onclick="toggleBtn1()">게시글 등록</a>
-                        <a href="#" id="btn2">게시글 수정</a>
-                        <a href="#" id="btn3">게시글 삭제</a>
-                        <a href="#" id="btn4">게시글 상세</a>
+                        <a href="#" onclick="toggleBtn1()">게시글 작성</a>
+                        <a href="#" onclick="toggleBtn2()">게시글 수정</a>
+                        <a href="#" onclick="toggleBtn3()">게시글 상세</a>
+                        
                         <div id="indicator"></div>
                     </nav>
 
-                    <div class="sec1 box3" >
+                  
+
+                    <div class="sec1 box3" onclick="toggleBtn1()">
                         <div class="titlebox box4">
-                            <div class="titletext item">제목</div>
-                            <input type="text" class="title item_2" placeholder="제목을 입력해주세요" required>
+                            <strong class="titletext item">게시글 작성하기
+                            </strong>
+                            <p class="explain item">게시글을 작성하실 수 있습니다.</p>
                         </div>
-                        <div class="passwordbox box4">
-                            <div class="passwordtitle item">비밀번호</div>
-                            <input type="password" class="password item_2" placeholder="게시판 수정 및 삭제에 필요한 비밀번호 입니다.">
+                        <div class="boardwritebox box4">
+                            <div class="boardwrite box5">
+                                <div class="titlebox box6">
+                                    <dl>
+                                        <dt class="titletext item">제목</dt>
+                                        <dd class="title item"><input type="text" placeholder="제목 입력"></dd>
+                                    </dl>
+                                </div>
+                                <div class="info box6">
+                                    <dl class="writerbox box7">
+                                        <dt class="writetext item">작성자</dt>
+                                        <dd class="write item">
+                                            <input type="text" placeholder="작성자 입력">
+                                        </dd>
+                                    </dl>
+                                    <dl class="passwordbox box7">
+                                        <dt>비밀번호</dt>
+                                        <dd><input type="password" placeholder="비밀번호 입력"></dd>
+                                    </dl>
+                                </div>
+                                <div class="content">
+                                    <textarea placeholder="내용 입력"></textarea>
+                                </div>
+                                <div class="imguploadbox box4">
+                                    <div class="imguploadtitle item">사진 업로드</div>
+                                    <!--accept와 onchange는 input의 file타입 선택할때 이미지만 올리게 하기 위해 사용-->
+                                    <input type="file" accept="image/gif, image/jpeg, image/png" onchange="chk_file_type(this)">
+                                </div>
+        
+                            </div>
+                            <div class="button box5">
+                                <a href="" class="on">등록</a>
+                                <a href="">취소</a>
+                            </div>
                         </div>
-                        <div class="contentbox box4">
-                            <div class="contenttitle item">내용</div>
-                            <textarea name="content" id="content" cols="30" rows="10"></textarea>
-                        </div>
-                        <div class="imguploadbox box4">
-                            <div class="imguploadtitle item">사진 업로드</div>
-                            <!--accept와 onchange는 input의 file타입 선택할때 이미지만 올리게 하기 위해 사용-->
-                            <input type="file" accept="image/gif, image/jpeg, image/png" onchange="chk_file_type(this)">
-                        </div>
-
-                        <div class="cancelbtn box4">
-                            <button class="cancel">취소</button>
-                        </div>
-                        <div class="completebtn box4">
-                            <button class="complete">완료</button>
-                        </div>
-
                     </div>
 
                     <div class="sec2 box3" onclick="toggleBtn2()">
@@ -142,44 +159,7 @@
 
                     </div>
 
-                    <div class="sec3 box3">
-                        <div class="titlebox box4">
-                            <strong class="titletext item">게시글 작성하기
-                            </strong>
-                            <p class="explain item">게시글을 작성하실 수 있습니다.</p>
-                        </div>
-                        <div class="boardwritebox box4">
-                            <div class="boardwrite box5">
-                                <div class="titlebox box6">
-                                    <dl>
-                                        <dt class="titletext item">제목</dt>
-                                        <dd class="title item"><input type="text" placeholder="제목 입력"></dd>
-                                    </dl>
-                                </div>
-                                <div class="info box6">
-                                    <dl class="writerbox box7">
-                                        <dt class="writetext item">작성자</dt>
-                                        <dd class="write item">
-                                            <input type="text" placeholder="작성자 입력">
-                                        </dd>
-                                    </dl>
-                                    <dl class="passwordbox box7">
-                                        <dt>비밀번호</dt>
-                                        <dd><input type="password" placeholder="비밀번호 입력"></dd>
-                                    </dl>
-                                </div>
-                                <div class="content">
-                                    <textarea placeholder="내용 입력"></textarea>
-                                </div>
-                            </div>
-                            <div class="button box5">
-                                <a href="" class="on">등록</a>
-                                <a href="">취소</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="sec4 box3">
+                    <div class="sec3 box3" onclick="toggleBtn3()">
                         <div class="titlebox box4">
                             <strong class="titletext item">게시글 상세보기
                             </strong>
