@@ -76,11 +76,9 @@ public class CampQuerydslImpl implements CampQuerydsl {
 		return data;
 	}
 
-
 	@Override
 	public List<?> findDataOfMember(TableType table, int count) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }
