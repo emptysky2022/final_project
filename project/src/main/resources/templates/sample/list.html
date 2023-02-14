@@ -12,22 +12,22 @@
 	<div name="register">
 		<h3>글 등록 페이지입니다.</h3>
 		
-		<form action="/sample/list" method="get">
+		<form th:action="@{/sample/list}" th:method="post">
 			<div>
 				<label>제목</label>
-				<input type="text" name="title">
+				<input type="text" name="title" placeholder="제목을 적어">
 			</div>
 			<div>
 				<label>비밀번호?</label>
-				<input type="password" name="boardPw">
+				<input type="password" name="boardPw" placeholder="게시글용 비번임">
 			</div>
 			<div>
 				<label>내용</label>
-				<textarea rows="5" name="content"></textarea>
+				<textarea rows="5" name="content" placeholder="내용 적어"></textarea>
 			</div>
 			<div>
 				<label>사진 첨부</label>
-				<input type="text" name="image">
+				<input type="text" name="image" placeholder="이미지는 어떡할겨">
 			</div>
 			
 			<div>
@@ -74,26 +74,27 @@
 	<div name="read">
 		<h3>글 상세 페이지입니다.</h3>
 		
-		<form action="/sample/list" method="get">
+		<form method="get" th:each="dto : ${result.dtoList}">
 			<div>
 				<label>제목</label>
-				<input type="text" name="title">
+				<input type="text" name="title" readonly>
 			</div>
 			<div>
 				<label>비밀번호?</label>
-				<input type="password" name="boardPw">
+				<input type="password" name="boardPw" readonly>
 			</div>
 			<div>
 				<label>내용</label>
-				<textarea rows="5" name="content"></textarea>
+				<textarea rows="5" name="content" readonly>[[${dto.content}]]</textarea>
 			</div>
 			<div>
 				<label>사진</label>
-				<input type="text" name="image">
+				<input type="text" name="image" readonly>
 			</div>
 			
 			<div>
-				<button type="submit">목록으로</button>
+				<button type="button">목록으로</button>
+				<button type="button">삭제하기</button>
 			</div>
 		</form>
 	</div>
@@ -118,14 +119,18 @@
 						<th>제목</th>
 						<th>작성자</th>
 						<th>작성일</th>
+						<th>조회수</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+					<tr th:each="dto : ${result.dtoList}">
+						<td scope="row">[[${dto.bno}]]</td>
+						<td>
+							[[${dto.title}]]
+						</td>
+						<td>[[${dto.nickname}]]</td>
+						<td>[[${#temporals.format(dto.regDate, 'yyyy/MM/dd hh:mm:ss')}]]</td>
+						<td>[[${dto.count}]]</td>
 					</tr>
 				</tbody>
 			</table>
