@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.campers.camfp.dto.camp.item.ItemDTO;
+import com.campers.camfp.dto.item.ItemDTO;
 import com.campers.camfp.entity.item.Item;
 import com.campers.camfp.repository.item.ItemRepository;
 
