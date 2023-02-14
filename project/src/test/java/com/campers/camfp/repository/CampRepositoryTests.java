@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.campers.camfp.config.type.TableType;
 import com.campers.camfp.entity.camp.Camp;
 import com.campers.camfp.entity.camp.CampCalender;
 import com.campers.camfp.entity.camp.CampReview;
@@ -21,7 +22,6 @@ import com.campers.camfp.repository.camp.CampRepository;
 import com.campers.camfp.repository.camp.CampReviewRepository;
 import com.campers.camfp.repository.history.HistoryRepository;
 import com.campers.camfp.repository.member.MemberRepository;
-import com.campers.camfp.util.type.TableType;
 
 @SpringBootTest
 public class CampRepositoryTests {
