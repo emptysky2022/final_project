@@ -1,5 +1,6 @@
 package com.campers.camfp.repository;
 
+import java.util.List;
 import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.Test;
@@ -16,8 +17,6 @@ public class ReplyRepositoryTest {
 	@Autowired
 	private ReplyRepository replyRepository;
 	
-	
-	// 오류나서 다시 해야함.. 02/13 test 안됨.
 	@Test
 	public void insertBoardReplys() {
 		
@@ -39,4 +38,13 @@ public class ReplyRepositoryTest {
 			
 		});
 	}
+	
+	@Test
+	public void testListByBoard() {
+		List<Reply> replyList = replyRepository.getRepliesByBoard(Board.builder().bno(5L).build());
+	
+		replyList.forEach(reply -> System.out.println(reply));
+	}
+	
+	
 }

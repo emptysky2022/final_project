@@ -11,8 +11,11 @@ public interface ShoppingCartService {
 	//장바구니 추가
 	Long register(ShoppingCartDTO shoppingCartDTO);
 	
+	//상품 장바구니 하나 가져오기
+	ShoppingCartDTO getOne(Long sno);
+	
 	//사용자가 넣은 장바구니 목록 가져오기
-	List<ShoppingCartDTO> getCartOfUser(String mid);
+	List<ShoppingCartDTO> getCartOfMember(String mid);
 	
 	//장바구니 수정
 	void modify(ShoppingCartDTO shoppingCartDTO);

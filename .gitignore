@@ -178,5 +178,12 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,java,eclipse
 
+<<<<<<< HEAD
 #Secret file 
+=======
+# API-KEY
+application-API-KEY.properties
+
+#OAuth
+>>>>>>> refs/remotes/origin/master
 application-oauth.properties

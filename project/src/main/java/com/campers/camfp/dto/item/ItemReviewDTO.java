@@ -1,4 +1,4 @@
-package com.campers.camfp.dto.camp.item;
+package com.campers.camfp.dto.item;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

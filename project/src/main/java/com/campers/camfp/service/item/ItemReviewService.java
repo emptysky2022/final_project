@@ -2,7 +2,7 @@ package com.campers.camfp.service.item;
 
 import java.util.List;
 
-import com.campers.camfp.dto.camp.item.ItemReviewDTO;
+import com.campers.camfp.dto.item.ItemReviewDTO;
 import com.campers.camfp.entity.item.Item;
 import com.campers.camfp.entity.item.ItemReview;
 
@@ -11,11 +11,14 @@ public interface ItemReviewService {
 	//상품 리뷰 등록
 	Long register(ItemReviewDTO itemReviewDTO);
 	
+	//상품 리뷰 하나 가져오기
+	ItemReviewDTO getOne(Long irno);
+	
 	//상품에 대한 리뷰 가져오기
 	List<ItemReviewDTO> getReviewOfItem(Long ino);
 	
 	//사용자가 작성한 리뷰 가져오기
-	List<ItemReviewDTO> getReviewOfUser(String mid);
+	List<ItemReviewDTO> getReviewOfMember(String mid);
 	
 	//리뷰 수정하기
 	void modify(ItemReviewDTO itemReviewDTO);

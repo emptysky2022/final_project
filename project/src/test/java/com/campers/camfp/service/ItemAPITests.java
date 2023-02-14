@@ -18,21 +18,31 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 
-import com.campers.camfp.dto.camp.item.ItemDTO;
+import com.campers.camfp.dto.item.ItemDTO;
 import com.campers.camfp.service.item.ItemService;
 
+@TestPropertySource(locations = "/application-API-KEY.properties")
 @SpringBootTest
 public class ItemAPITests {
 	
+	@Value("${naver-id}")
+	private String CLIENT_ID;
+	
+	@Value("${naver-secret}")
+	private String CLIENT_SECRET;
+
 	@Autowired
 	private ItemService itemService;
 
 	@Test
 	public void getItem() {
-        String clientId = ""; //애플리케이션 클라이언트 아이디
-        String clientSecret = ""; //애플리케이션 클라이언트 시크릿
+		
+        String clientId = CLIENT_ID; //애플리케이션 클라이언트 아이디
+        String clientSecret = CLIENT_SECRET; //애플리케이션 클라이언트 시크릿
 
         IntStream.range(0, 10).forEach(i -> {
         	String text = null;
