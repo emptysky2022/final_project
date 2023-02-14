@@ -1,6 +1,8 @@
 package com.campers.camfp.service.board;
 
 import com.campers.camfp.dto.board.BoardDTO;
+import com.campers.camfp.dto.page.PageRequestDTO;
+import com.campers.camfp.dto.page.PageResultDTO;
 import com.campers.camfp.entity.board.Board;
 import com.campers.camfp.entity.member.Member;
 
@@ -10,6 +12,9 @@ public interface BoardService {
 	BoardDTO read(Long bno);
 	
 	Long register(BoardDTO boardDTO); 
+	
+	// SH
+	PageResultDTO<BoardDTO, Board> getList(PageRequestDTO pageRequestDTO);
 	
 	
 	// dto -> entity
