@@ -88,7 +88,7 @@ public class CampRepositoryTests {
 											.name("name")
 											.age(i)
 											.gender(true)
-											.grade(true)
+											//.grade(true) ->String으로 바꿈
 											.address("1")
 											.phone("1")
 											.introduce("1")

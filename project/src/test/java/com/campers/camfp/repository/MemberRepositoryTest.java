@@ -36,7 +36,7 @@ public class MemberRepositoryTest {
 											.gender(xy)
 											.address("서울시" + i)
 											.phone("010-1111-" + i)
-											.grade(true)
+											//.grade(true) -> String으로바꿈
 											.introduce("안녕하슈")
 											.build();
 			

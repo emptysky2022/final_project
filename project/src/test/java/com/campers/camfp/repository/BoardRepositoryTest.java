@@ -32,9 +32,10 @@ public class BoardRepositoryTest {
 			int count = (int)((Math.random() * 5000) + 1);
 			int heart = (int)((Math.random() * 1000) + 1);
 			
-			Member member = Member.builder().id("userID" + i).build();
+			Member member = Member.builder().mno((long) i).build();
 			
 			Board board = Board.builder().title("Sample Title" + i)
+										 
 										 .content("Sample Content" + i)
 										 .member(member)
 										 .category("서울특별시")
