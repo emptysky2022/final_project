@@ -60,13 +60,6 @@ public class BoardServiceImpl implements BoardService {
 		return new PageResultDTO<>(result, fn);
 	}
 
-	@Override
-	public void removeWithReplies(Long bno) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
 }
 
 

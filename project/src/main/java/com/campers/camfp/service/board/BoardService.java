@@ -13,9 +13,6 @@ public interface BoardService {
 	
 	Long register(BoardDTO boardDTO); 
 	
-	// 게시글 삭제
-	void removeWithReplies(Long bno);
-	
 	// SH
 	PageResultDTO<BoardDTO, Board> getList(PageRequestDTO pageRequestDTO);
 	
@@ -43,8 +40,6 @@ public interface BoardService {
 										      .nickname(board.getMember().getNickname())
 										      .category(board.getCategory())
 										      .count(board.getHeart())
-										      .regDate(board.getRegDate())
-										      .updateDate(board.getUpdateDate())
 										      .build(); // regDate, updateDate를 넣으면 빨간줄 쳐짐
 		return boardDTO;
 	}
