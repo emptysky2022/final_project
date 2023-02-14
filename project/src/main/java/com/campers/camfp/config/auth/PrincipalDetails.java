@@ -19,7 +19,6 @@ import lombok.Data;
 //User 오브젝트 타입=> UserDetail타입 객체
 
 //security Session =-> Authentication=>UserDetails(PrincipalDetails)
-//2
 @Data
 public class PrincipalDetails implements UserDetails , OAuth2User{
 
