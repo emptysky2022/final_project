@@ -1,7 +1,5 @@
 package com.campers.camfp.config.oauth;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -11,9 +9,6 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import com.campers.camfp.config.auth.PrincipalDetails;
-import com.campers.camfp.config.oauth.provider.GoogleUserInfo;
-import com.campers.camfp.config.oauth.provider.NaverUserInfo;
-import com.campers.camfp.config.oauth.provider.OAuth2UserInfo;
 import com.campers.camfp.entity.member.Member;
 import com.campers.camfp.repository.member.MemberRepository;
 
@@ -37,26 +32,10 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService{
 		//userRequest정보 -> loadUser함수 호출-> 구글로부터 회원프로필을 받아줌
 		System.out.println("getAttributes : "+oauth2User.getAttributes()); //이 정보만 있으면됨
 		
-		OAuth2UserInfo oAuth2UserInfo=null;
-		if(userRequest.getClientRegistration().getRegistrationId().equals("google")) {
-			System.out.println("구글 로그인 요청");
-			oAuth2UserInfo= new GoogleUserInfo(oauth2User.getAttributes());
-		}else if (userRequest.getClientRegistration().getRegistrationId().equals("naver")){
-			System.out.println("네이버 로그인 요청");
-			oAuth2UserInfo = new NaverUserInfo((Map)oauth2User.getAttributes().get("response"));
-		}else{
-			System.out.println("카카오 로그인 요청");
-			//oAuth2UserInfo= new KakaoUserInfo(oauth2User.getAttributes());
-		}
-		
-		String name=oAuth2UserInfo.getName();
-		//boolean gender=oAuth2UserInfo.getGender();
-		//int age=oAuth2UserInfo.getAge();
-		String phone=oAuth2UserInfo.getPhone();
-		String provider =oAuth2UserInfo.getProvider(); //google
-		String nickname = oAuth2UserInfo.getNickname();
-		String id = oAuth2UserInfo.getEmail();
-		String profileImg=oAuth2UserInfo.getProfileImg();
+		String provider =userRequest.getClientRegistration().getClientId(); //google
+		String nickname = oauth2User.getAttribute("name");
+		String id = oauth2User.getAttribute("email");
+		String profileImg=oauth2User.getAttribute("picture");
 		String pw ="dyd";
 		String grade= "ROLE_MEMBER";
 		
@@ -70,10 +49,7 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService{
 					.grade(grade)
 					.pw(pw)
 					.profileImg(profileImg)
-					.name(name)
-					//.age(age)
-					.phone(phone)
-					//.gender(gender)
+					.name(nickname)
 					.build();
 			memberRepository.save(memberEntity);
 		}
