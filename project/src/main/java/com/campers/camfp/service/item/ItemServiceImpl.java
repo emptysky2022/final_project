@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.campers.camfp.dto.item.ItemDTO;
 import com.campers.camfp.dto.page.PageRequestDTO;
+import com.campers.camfp.dto.page.PageResultDTO;
 import com.campers.camfp.entity.item.Item;
 import com.campers.camfp.repository.item.ItemRepository;
 
@@ -49,7 +50,7 @@ public class ItemServiceImpl implements ItemService{
 	}
 	
 	@Override
-	public List<ItemDTO> getListOfPage(PageRequestDTO pageRequestDTO) {
+	public PageResultDTO<ItemDTO, Object[]> getListOfPage(PageRequestDTO pageRequestDTO) {
 		// TODO Auto-generated method stub
 		return null;
 	}
