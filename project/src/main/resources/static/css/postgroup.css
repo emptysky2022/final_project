@@ -356,6 +356,29 @@ strong {
 }
 
 
+@media screen and (max-width:768px){
+  .boardlist .count {
+    display: none;
+  }
+  
+  .boardlist .date {
+    display: none;
+  }
+
+  .boardlist .writer {
+    width: 15%;
+  }
+
+  .boardlist .title {
+    width: 70%;
+    text-align: left;
+  }
+
+  .boardlist .num {
+    width: 15%;
+  }
+}
+
 /*숫자 버튼*/
 .boardpage {
   margin: 30px 0 20px 0;
@@ -408,6 +431,9 @@ strong {
 .boardwrite .titlebox,
 .boardwrite .info {
     padding: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .boardwrite .info {
@@ -418,41 +444,43 @@ strong {
 
 .boardwrite .titlebox dl {
     font-size: 0;
+    display: flex;
+    align-items: center;
 }
 
 .boardwrite .info dl {
-    display: inline-block;
-    width: 50%;
-    vertical-align: middle;
+  display: flex;
+  flex-basis: 50%;
+  align-items: center;
 }
 
 .boardwrite .titlebox dt,
 .boardwrite .titlebox dd,
 .boardwrite .info dt,
 .boardwrite .info dd {
-    display: inline-block;
-    vertical-align: middle;
+    display: flex;
     font-size: 1.4rem;
+    justify-content: center;
 }
 
 .boardwrite .titlebox dt,
 .boardwrite .info dt {
-    width: 100px;
+   width: 10vw;
 }
 
 .boardwrite .titlebox dd {
-    width: calc(100% - 100px);
+    
 }
 
 .boardwrite .titlebox input[type="text"],
 .boardwrite .info input[type="text"],
 .boardwrite .info input[type="password"] {
-    padding: 10px;
-    box-sizing: border-box;
+    padding: 5px;
+    
 }
 
 .boardwrite .titlebox input[type="text"] {
-    width: 80%;
+    width: 100%;
 }
 
 .boardwrite .content {
@@ -524,10 +552,28 @@ strong {
 }
 
 
-@media screen and (max-width:1024px){
+@media screen and (max-width:768px){
   .sec1{
     align-items: center;
   }
+
+  .sec1 .boardwritebox{
+    width: 100%;
+  }
+
+  .boardwrite .info dl {
+    display: flex;
+    align-items: center;
+}
+.boardwrite .titlebox,
+.boardwrite .info {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
 }
 
 @media screen and (max-width:480px){
@@ -546,7 +592,27 @@ align-items: center;
     align-items: center;
   }
 
+  .boardwrite .titlebox,
+.boardwrite .info {
+  font-size: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
 }
+}
+
+
+  /* .boardwrite .titlebox dt,
+.boardwrite .titlebox dd,
+.boardwrite .info dt,
+.boardwrite .info dd {
+    display: flex;
+    font-size: 1.4rem;
+    justify-content: center;
+} */
+
+
 
 
 /*게시글 상세보기*/
