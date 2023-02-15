@@ -3,6 +3,8 @@ package com.campers.camfp.service.item;
 import java.util.List;
 
 import com.campers.camfp.dto.item.ItemDTO;
+import com.campers.camfp.dto.page.PageRequestDTO;
+import com.campers.camfp.dto.page.PageResultDTO;
 import com.campers.camfp.entity.item.Item;
 import com.campers.camfp.entity.member.Member;
 
@@ -14,8 +16,11 @@ public interface ItemService {
 	//상품 하나 가져오기
 	ItemDTO getOne(Long ino);
 	
-	//상품 리스트 가져오기
+	//상품 리스트 가져오기(전체)
 	List<ItemDTO> getList();
+	
+	//상품 리스트 가져오기(페이징)
+	PageResultDTO<ItemDTO, Object[]> getListOfPage(PageRequestDTO pageRequestDTO);
 	
 	//상품 수정하기
 	void modify(ItemDTO itemDTO);
@@ -45,10 +50,11 @@ public interface ItemService {
 		return item;
 	}
 	
-	default ItemDTO entityToDto(Item item) {
+	default ItemDTO entityToDto(Item item, Member member) {
 		ItemDTO itemDTO = ItemDTO.builder()
 								 .ino(item.getIno())
-								 .mno(item.getMember().getMno())
+								 .mno(member.getMno())
+								 .nickname(member.getNickname())
 								 .name(item.getName())
 								 .thumbnail(item.getThumbnail())
 								 .brand(item.getBrand())
@@ -65,4 +71,5 @@ public interface ItemService {
 		
 		return itemDTO;
 	}
+
 }
