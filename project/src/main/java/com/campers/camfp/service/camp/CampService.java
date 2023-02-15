@@ -23,6 +23,8 @@ public interface CampService {
 	
 	public List<Object> findAll(TableType table, Long cno);
 	
+	public List<Object> findHeartRank(TableType table, int num);
+	
 	/**
 	 * @param table 변환할 table 명 table <br>
 	 * @param dto 변환할 table 의 DataAccessObject <br>
@@ -40,7 +42,7 @@ public interface CampService {
 									  .member(Member.builder().mno(campDTO.getMember().getMno()).build())
 									  .name(campDTO.getName())
 									  .thumbnail(campDTO.getThumbnail())
-									  .country(campDTO.getCountry())
+									  .location(campDTO.getCountry())
 									  .address(campDTO.getAddress())
 									  .unit(campDTO.getUnit())
 									  .count(campDTO.getCount())
@@ -98,7 +100,7 @@ public interface CampService {
 					  						   .member(Member.builder().mno(camp.getMember().getMno()).build())
 					  						   .name(camp.getName())
 					  						   .thumbnail(camp.getThumbnail())
-					  						   .country(camp.getCountry())
+					  						   .country(camp.getLocation())
 					  						   .address(camp.getAddress())
 					  						   .unit(camp.getUnit())
 					  						   .count(camp.getCount())
