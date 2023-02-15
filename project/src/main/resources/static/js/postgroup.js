@@ -41,13 +41,13 @@ function toggleBtn1() {
     // 토글 할 버튼 선택 (.sec1) 
     var sec1 = document.querySelector('.sec1');
     console.log(sec1)
-    // btn1 숨기기 (display: none)
+    // sec1 숨기기 (display: none)
     if (sec1.style.display !== 'none') {
         sec1.style.display = 'none';
     }
-    // btn` 보이기 (display: block)
+    // sec1 보이기 (display: flex)
     else {
-        sec1.style.display = 'block';
+        sec1.style.display = 'flex';
     }
 }
 
@@ -59,7 +59,7 @@ function toggleBtn2() {
         sec2.style.display = 'none';
     }
     else {
-        sec2.style.display = 'block';
+        sec2.style.display = 'flex';
     }
 }
 
@@ -70,6 +70,15 @@ function toggleBtn3() {
         sec3.style.display = 'none';
     }
     else {
-        sec3.style.display = 'block';
+        sec3.style.display = 'flex';
     }
 }
+
+
+// const click = document.querySelector(".sec1")
+
+// function printText(){
+   
+// }
+//     click.addEventListener("click",printText);
+//     click.addEventListener("click",printText);
