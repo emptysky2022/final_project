@@ -36,11 +36,11 @@
 
                 <!--네비게이션 메뉴목록-->
                 <ul class="header_menu box2_2">
-                    <li class="box3" ><a class="item" href="">apple</a></li>
+                    <li class="box3"><a class="item" href="">apple</a></li>
                     <li class="box3_3"><a class="item" href="">cherry</a></li>
                     <li class="box3_2"><a class="item" href="">banana</a></li>
                     <li class="box3_4"><a class="item" href="">melon</a></li>
-                    
+
                 </ul>
 
                 <!--우측 상단 마이페이지-->
@@ -66,7 +66,7 @@
                 <div class="body_center box2">
                     <!--게시글 메뉴바-->
 
-                    <div class="sec1 box3" >
+                    <div class="sec1 box3">
                         <div class="titlebox box4">
                             <strong class="titletext item">게시글 작성하기
                             </strong>
@@ -94,22 +94,24 @@
                                 </div>
                                 <div class="content">
                                     <textarea placeholder="내용 입력"></textarea>
+                                    <div class="imguploadbox box4">
+                                        <div class="imguploadtitle item">사진 업로드 : </div>
+                                        <!--accept와 onchange는 input의 file타입 선택할때 이미지만 올리게 하기 위해 사용-->
+                                        <input type="file" accept="image/gif, image/jpeg, image/png"
+                                            onchange="chk_file_type(this)">
+                                    </div>
+    
                                 </div>
-                                <div class="imguploadbox box4">
-                                    <div class="imguploadtitle item">사진 업로드</div>
-                                    <!--accept와 onchange는 input의 file타입 선택할때 이미지만 올리게 하기 위해 사용-->
-                                    <input type="file" accept="image/gif, image/jpeg, image/png" onchange="chk_file_type(this)">
+                                <div class="buttonbox box5">
+                                    <a href="" class="on">등록</a>
+                                    <a href="" class="cancel">취소</a>
                                 </div>
-        
-                            </div>
-                            <div class="button box5">
-                                <a href="" class="on">등록</a>
-                                <a href="">취소</a>
-                            </div>
+                                </div>
+                                
                         </div>
                     </div>
-            
-                    <div class="sec2 box3" >
+
+                    <div class="sec2 box3">
                         <div class="titlebox box4">
                             <strong class="titletext item">게시글 수정하기
                             </strong>
@@ -142,14 +144,14 @@
                                 </div>
                             </div>
                             <div class="button">
-                                <a href="" class="on" onclick="toggleBtn2()">수정</a>
+                                <a href="" class="on">수정완료</a>
                                 <a href="">취소</a>
                             </div>
                         </div>
 
                     </div>
 
-                    <div class="sec3 box3" >
+                    <div class="sec3 box3">
                         <div class="titlebox box4">
                             <strong class="titletext item">게시글 상세보기
                             </strong>
@@ -177,12 +179,12 @@
                                     </dl>
                                 </div>
                                 <div class="content item">
-                                    일하기시러어어엉
+                                    일하기시러어어엉일하기시러어어엉일하기시러어어엉일하기시러어어엉일하기시러어어엉일하기시러어어엉일하기시러어어엉일하기시러어어엉일하기시러어어엉일하기시러어어엉일하기시러어어엉일하기시러어어엉일하기시러어어엉일하기시
                                 </div>
                             </div>
                             <div class="button box5">
                                 <a href="" class="on item">목록</a>
-                                <a href="" class="modify item_2">수정</a>
+                                <a onclick="toggleBtn2()" href="#" class="modify item_2">수정하기</a>
                             </div>
                         </div>
                     </div>
@@ -195,7 +197,7 @@
                             <div class="btnendbox box5">
                                 <p class="explain item">게시글을 작성하실 수 있습니다</p>
                                 <div class="button box6">
-                                    <a class="on item" onclick="toggleBtn2()">글쓰기</a>
+                                    <a class="on item" onclick="toggleBtn1()">글쓰기</a>
                                 </div>
                             </div>
                         </div>
@@ -210,14 +212,15 @@
                                 </div>
                                 <div>
                                     <div class="num item">1</div>
-                                    <div class="title item_2"><a href="#" onclick="toggleBtn3()">한숨으로 지구 내핵까지 뚫어봤다.</a></div>
+                                    <div class="title item_2"><a href="#" onclick="toggleBtn3()">한숨으로 지구 내핵까지 뚫어봤다.</a>
+                                    </div>
                                     <div class="writer item_3">성다영</div>
                                     <div class="date item_4">2023-02-13 </div>
                                     <div class="count item_5">33</div>
                                 </div>
                                 <div>
                                     <div class="num item">2</div>
-                                    <div class="title item_2" ><a href="#" onclick="toggleBtn3()">일하기 싫다.</a></div>
+                                    <div class="title item_2"><a href="#" onclick="toggleBtn3()">일하기 싫다.</a></div>
                                     <div class="writer item_3">최석호</div>
                                     <div class="date item_4">2023-02-13 </div>
                                     <div class="count item_5">33</div>
@@ -279,7 +282,7 @@
                                     <div class="count item_5">33</div>
                                 </div>
                             </div>
-                           
+
                             <div class="boardpage box5">
                                 <a href="#" class="bt_first item">&lt;&lt;</a>
                                 <a href="#" class="bt_prev item_2">&lt;</a>

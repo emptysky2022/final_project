@@ -5,6 +5,13 @@
 const hamburger = document.querySelector("header .header_hamburger");
 const menu = document.querySelector("header .box2_2");
 const mypage = document.querySelector("header .box2_3");
+var sec1 = document.querySelector('.sec1');
+var sec2 = document.querySelector('.sec2');
+var sec3 = document.querySelector('.sec3');
+sec1.style.display="none";
+sec2.style.display="none";
+sec3.style.display="none";
+
 
 console.log(hamburger);
 
@@ -39,7 +46,6 @@ function chk_file_type(obj) {
 
 function toggleBtn1() {
     // 토글 할 버튼 선택 (.sec1) 
-    var sec1 = document.querySelector('.sec1');
     console.log(sec1)
     // sec1 숨기기 (display: none)
     if (sec1.style.display !== 'none') {
@@ -48,37 +54,33 @@ function toggleBtn1() {
     // sec1 보이기 (display: flex)
     else {
         sec1.style.display = 'flex';
+        sec2.style.display ='none';
+        sec3.style.display ='none';
     }
 }
 
 
 function toggleBtn2() {
-    var sec2 = document.querySelector('.sec2');
     console.log(sec2)
     if (sec2.style.display !== 'none') {
         sec2.style.display = 'none';
     }
     else {
         sec2.style.display = 'flex';
+        sec1.style.display ='none';
+        sec3.style.display ='none';
     }
 }
 
 function toggleBtn3() {
-    var sec3 = document.querySelector('.sec3');
     console.log(sec3)
     if (sec3.style.display !== 'none') {
         sec3.style.display = 'none';
     }
     else {
         sec3.style.display = 'flex';
+        sec1.style.display ='none';
+        sec2.style.display ='none';
     }
 }
 
-
-// const click = document.querySelector(".sec1")
-
-// function printText(){
-   
-// }
-//     click.addEventListener("click",printText);
-//     click.addEventListener("click",printText);
