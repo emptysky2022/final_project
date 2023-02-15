@@ -40,7 +40,9 @@ public interface BoardService {
 										      .nickname(board.getMember().getNickname())
 										      .category(board.getCategory())
 										      .count(board.getHeart())
-										      .build(); // regDate, updateDate를 넣으면 빨간줄 쳐짐
+										      .regDate(board.getRegDate())
+										      .updateDate(board.getUpdateDate())
+										      .build();
 		return boardDTO;
 	}
 }
