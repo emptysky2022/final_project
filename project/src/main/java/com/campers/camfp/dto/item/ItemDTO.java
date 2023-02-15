@@ -13,6 +13,7 @@ public class ItemDTO {
 
 	private Long ino;
 	private Long mno;
+	private String nickname;
 	private String name;
 	private String thumbnail;
 	private String brand;

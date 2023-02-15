@@ -146,7 +146,7 @@
                 <!-------------------판매상품 목록--------------------->
                 <div class="sec3 box3">
                 <!-- th:attr="onclick=|showDetail(${item.ino})|" -->
-                	<div class="productbox box4" th:each="item : ${result}" th:attr="onclick=|location.href='@{/item/item(ino=${item.ino})}'|">
+                	<div class="productbox box4" th:each="item : ${result.dtoList}" th:attr="onclick=|location.href='@{/item/item(ino=${item.ino})}'|">
                 		<div class="p_imgbox box5">
                             <img class="p_img item" th:src="${item.thumbnail}">
                         </div>
