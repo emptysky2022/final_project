@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.campers.camfp.config.auth.PrincipalDetails;
 import com.campers.camfp.config.oauth.provider.GoogleUserInfo;
+import com.campers.camfp.config.oauth.provider.KakaoUserInfo;
 import com.campers.camfp.config.oauth.provider.NaverUserInfo;
 import com.campers.camfp.config.oauth.provider.OAuth2UserInfo;
 import com.campers.camfp.entity.member.Member;
@@ -30,7 +31,7 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService{
 	//userRequest는 code를 받아서 accessToken을 응답받은 객체
 	@Override
 	public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
-		OAuth2User oAuth2User= super.loadUser(userRequest); //구글의 회원 프로필 조회
+		OAuth2User oAuth2User= super.loadUser(userRequest); //회원 프로필 조회
 		System.out.println("getClientRegistration : "+userRequest.getClientRegistration()); //RegistrationID로 어떤 OAuth로 로그인했는지 확인가능
 		System.out.println("getAccessToken : "+userRequest.getAccessToken().getTokenValue());
 		
@@ -46,7 +47,6 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService{
 	}
 		
 		
-		
 		private OAuth2User processOAuth2User(OAuth2UserRequest userRequest, OAuth2User oAuth2User) {
 		
 		OAuth2UserInfo oAuth2UserInfo=null;
@@ -58,14 +58,13 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService{
 			oAuth2UserInfo = new NaverUserInfo((Map)oAuth2User.getAttributes().get("response"));
 		}else if (userRequest.getClientRegistration().getRegistrationId().equals("kakao")){
 			System.out.println("카카오 로그인 요청");
-			//oAuth2UserInfo= new KakaoUserInfo(oauth2User.getAttributes());
+			oAuth2UserInfo = new KakaoUserInfo((Map) oAuth2User.getAttributes().get("properties"),(Map) oAuth2User.getAttributes().get("kakao_account")); //get("kakao_account")가 필요함 여기서 이메일을 뽑아낼 수 있음
 		} else {
 			System.out.println("다른 로그인은 지원하지 않습니다");
 		}
 		
 		Optional<Member> memberOptional = 
 				memberRepository.findByIdAndNickname(oAuth2UserInfo.getEmail(), oAuth2UserInfo.getNickname());
-		
 		Member member;
 		String pw ="dyd";
 		String grade= "ROLE_MEMBER";
@@ -76,6 +75,11 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService{
 			member.setNickname(oAuth2UserInfo.getNickname());
 			memberRepository.save(member);
 		} else {
+			System.out.println("되??");
+			System.out.println("test"+oAuth2UserInfo.getEmail());
+			System.out.println("test"+oAuth2UserInfo.getNickname());
+			System.out.println("test"+oAuth2UserInfo.getName());
+			System.out.println("test"+oAuth2UserInfo.getProfileImg());
 			member = Member.builder()
 								.nickname(oAuth2UserInfo.getNickname())
 								.id(oAuth2UserInfo.getEmail())
@@ -90,7 +94,6 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService{
 			memberRepository.save(member);
 		}
 		
-		
-		return new PrincipalDetails(member, oAuth2User.getAttributes());
+		return new PrincipalDetails(member, oAuth2User.getAttributes()); 
 	}
 }

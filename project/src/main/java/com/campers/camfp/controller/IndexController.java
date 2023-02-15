@@ -42,7 +42,6 @@ public class IndexController {
 	System.out.println("authentication : "+oauth2User.getAttributes());
 	System.out.println("oauth2User : "+oauth.getAttributes());
 	
-	
 	return "OAuth세션 정보 확인하기";
 	}
 	
