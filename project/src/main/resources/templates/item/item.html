@@ -7,10 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>무슨페이지인가요?</title>
 
+	<!-- jquery -->
+	<script
+  src="https://code.jquery.com/jquery-3.6.3.min.js"
+  integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+  crossorigin="anonymous"></script>
     <!--css 연결-->
     <link rel="stylesheet" type="text/css" href="../css/campgroundsdetail.css">
     <!--js연결-->
-    <script type="text/javascript" src="/js/main.js" defer></script>
+    <script type="text/javascript" src="../js/itemReview.js" defer></script>
 
     <!--구글 폰트 링크-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -74,14 +79,14 @@
                         </div>
 
                         <div class="campgroundimgbox box4">
-                            <img class="campgroundimg item" src="../img/happy13.jpg">
+                            <img class="campgroundimg item" th:src="${detail.thumbnail}">
                         </div>
 
                         <div class="cg_titlebox box4">
-                            <div class="cg_title item">낭만 캠핑장</div>
+                            <div class="cg_title item">[[${detail.name}]]</div>
                         </div>
                         <div class="cg_starbox box4">
-                            <div class="cg_star item">★★★★☆</div>
+                            <div class="cg_star item">[[${detail.star}]]</div>
                         </div>
 
                         <div class="cg_explainbox box4">
@@ -93,417 +98,18 @@
                         </div>
                     </div>
 
-                    <!------------------지도 + 출발지 + 날씨--------------------->
-                    <div class="sec2 box3">
-                        <div class="mapbox box4">
-                            <div class="map item">대충 지도 들어갈 자리</div>
-                        </div>
-                        <div class="mapweatherbox box4">
-                            <div class="startbox box5">
-                                <div class="startplacetext item">출발지</div>
-                                <input type="text" class="startplace item_2">
-                            </div>
-                            <div class="starttimebox box5">
-                                <div class="starttimetext item">출발 시간</div>
-                                <input type="time" class="starttime item_2">
-                            </div>
-
-
-                            <div class="totaltimebox box5">
-                                <div class="totaltime item">총 소요 시간</div>
-                            </div>
-
-
-
-                            <div class="weatherbox box5">
-                                <div class="weatherplacebox box6">
-                                    <div class="weatherplace item">부산 날씨</div>
-                                </div>
-                                <div class="comerainbox box6">
-                                    <div class="comerain item">강수 확률 70%</div>
-                                </div>
-                                <div class="windspeedbox box6">
-                                    <div class="windspeed item">북풍1.4m</div>
-                                </div>
-
-                                <div class="searchbox box6">
-                                    <button type="button" class="search item">검색</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <!---------------후기-------------------->
                     <div class="sec3 box3">
                         <div class="reviewwritebox box4">
-                            <a href="#" class="reviewwrite item">후기 작성하기</a>
+                            <a th:href="@{/review/register}" class="reviewwrite item">후기 작성하기</a>
                         </div>
                     </div>
                     <div class="sec4 box3">
-                        <div class="rv box4">
-                            <!--후기 목록-->
-                            <div class="rv_l box5 ">
-                                <div class="box_l box6">
-                                    <div class="imgbox box7">
-                                        <a class="imglink box8" href="">
-                                            <img class="rv_img item" src="../img/happy4.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="rv_star box7_2">
-                                        <p class="item">★★★★★</p>
-                                    </div>
-                                </div>
-                                <div class="box_r box6">
-                                    <div class="comment box7">
-                                        <h2 class="write item">user1</h2>
-                                        <p class="content item_2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique, tempora   </p>
-                                    </div>
-                                    <div class="rv_like box7">
-                                        <i class="fa-sharp fa-solid fa-thumbs-up fa-1x item"></i>
-                                    </div>
-                                </div>
-                                
-                            </div>
+                        <div class="rv box4" id="reviewGroup">
                             
 
-                            <div class="rv_r box5 ">
-                                <div class="box_l box6">
-                                    <div class="imgbox box7">
-                                        <a class="imglink box8" href="">
-                                            <img class="rv_img item" src="../img/happy4.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="rv_star box7_2">
-                                        <p class="item">★★★★★</p>
-                                    </div>
-                                </div>
-                                <div class="box_r box6">
-                                    <div class="comment box7">
-                                        <h2 class="write item">user2</h2>
-                                        <p class="content item_2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim, doloremque exercitationem incidunt dicta reiciendis veniam dignissimos labore laud </p>
-                                    </div>
-                                    <div class="rv_like box7">
-                                        <i class="fa-sharp fa-solid fa-thumbs-up fa-1x item"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="rv_l box5 ">
-                                <div class="box_l box6">
-                                    <div class="imgbox box7">
-                                        <a class="imglink box8" href="">
-                                            <img class="rv_img item" src="../img/happy4.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="rv_star box7_2">
-                                        <p class="item">★★★★★</p>
-                                    </div>
-                                </div>
-                                <div class="box_r box6">
-                                    <div class="comment box7">
-                                        <h2 class="write item">user3</h2>
-                                        <p class="content item_2">Lorem ipsum dolor, sit amet </p>
-                                    </div>
-                                    <div class="rv_like box7">
-                                        <i class="fa-sharp fa-solid fa-thumbs-up fa-1x item"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="rv_r box5 ">
-                                <div class="box_l box6">
-                                    <div class="imgbox box7">
-                                        <a class="imglink box8" href="">
-                                            <img class="rv_img item" src="../img/happy4.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="rv_star box7_2">
-                                        <p class="item">★★★★★</p>
-                                    </div>
-                                </div>
-                                <div class="box_r box6">
-                                    <div class="comment box7">
-                                        <h2 class="write item">user4</h2>
-                                        <p class="content item_2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quam itaque in nihil fugiat tempore consequuntur minus perspiciatis, dicta eum excepturi assumenda id optio facere rerum, voluptates cum nemo provident. </p>
-                                    </div>
-                                    <div class="rv_like box7">
-                                        <i class="fa-sharp fa-solid fa-thumbs-up fa-1x item"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="rv_l box5 ">
-                                <div class="box_l box6">
-                                    <div class="imgbox box7">
-                                        <a class="imglink box8" href="">
-                                            <img class="rv_img item" src="../img/happy4.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="rv_star box7_2">
-                                        <p class="item">★★★★★</p>
-                                    </div>
-                                </div>
-                                <div class="box_r box6">
-                                    <div class="comment box7">
-                                        <h2 class="write item">user1</h2>
-                                        <p class="content item_2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique, tempora alias consectetur repellendus magnam voluptas. At fugit harum reiciendis excepturi minus tempora?  </p>
-                                    </div>
-                                    <div class="rv_like box7">
-                                        <i class="fa-sharp fa-solid fa-thumbs-up fa-1x item"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="rv_r box5 ">
-                                <div class="box_l box6">
-                                    <div class="imgbox box7">
-                                        <a class="imglink box8" href="">
-                                            <img class="rv_img item" src="../img/happy4.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="rv_star box7_2">
-                                        <p class="item">★★★★★</p>
-                                    </div>
-                                </div>
-                                <div class="box_r box6">
-                                    <div class="comment box7">
-                                        <h2 class="write item">user2</h2>
-                                        <p class="content item_2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim, doloremque exercitationem incidunt dicta reiciendis veniam dignissimos labore laud </p>
-                                    </div>
-                                    <div class="rv_like box7">
-                                        <i class="fa-sharp fa-solid fa-thumbs-up fa-1x item"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="rv_l box5 ">
-                                <div class="box_l box6">
-                                    <div class="imgbox box7">
-                                        <a class="imglink box8" href="">
-                                            <img class="rv_img item" src="../img/happy4.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="rv_star box7_2">
-                                        <p class="item">★★★★★</p>
-                                    </div>
-                                </div>
-                                <div class="box_r box6">
-                                    <div class="comment box7">
-                                        <h2 class="write item">user3</h2>
-                                        <p class="content item_2">Lorem ipsum dolor, sit amet </p>
-                                    </div>
-                                    <div class="rv_like box7">
-                                        <i class="fa-sharp fa-solid fa-thumbs-up fa-1x item"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="rv_r box5 ">
-                                <div class="box_l box6">
-                                    <div class="imgbox box7">
-                                        <a class="imglink box8" href="">
-                                            <img class="rv_img item" src="../img/happy4.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="rv_star box7_2">
-                                        <p class="item">★★★★★</p>
-                                    </div>
-                                </div>
-                                <div class="box_r box6">
-                                    <div class="comment box7">
-                                        <h2 class="write item">user4</h2>
-                                        <p class="content item_2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quam itaque in nihil fugiat tempore consequuntur minus perspiciatis, dicta eum excepturi assumenda id optio facere rerum, voluptates cum nemo provident. </p>
-                                    </div>
-                                    <div class="rv_like box7">
-                                        <i class="fa-sharp fa-solid fa-thumbs-up fa-1x item"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="rv_l box5 ">
-                                <div class="box_l box6">
-                                    <div class="imgbox box7">
-                                        <a class="imglink box8" href="">
-                                            <img class="rv_img item" src="../img/happy4.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="rv_star box7_2">
-                                        <p class="item">★★★★★</p>
-                                    </div>
-                                </div>
-                                <div class="box_r box6">
-                                    <div class="comment box7">
-                                        <h2 class="write item">user1</h2>
-                                        <p class="content item_2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique, tempora alias consectetur repellendus magnam voluptas. At fugit harum reiciendis excepturi minus tempora?  </p>
-                                    </div>
-                                    <div class="rv_like box7">
-                                        <i class="fa-sharp fa-solid fa-thumbs-up fa-1x item"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="rv_r box5 ">
-                                <div class="box_l box6">
-                                    <div class="imgbox box7">
-                                        <a class="imglink box8" href="">
-                                            <img class="rv_img item" src="../img/happy4.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="rv_star box7_2">
-                                        <p class="item">★★★★★</p>
-                                    </div>
-                                </div>
-                                <div class="box_r box6">
-                                    <div class="comment box7">
-                                        <h2 class="write item">user2</h2>
-                                        <p class="content item_2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim, doloremque exercitationem incidunt dicta reiciendis veniam dignissimos labore laud </p>
-                                    </div>
-                                    <div class="rv_like box7">
-                                        <i class="fa-sharp fa-solid fa-thumbs-up fa-1x item"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="rv_l box5 ">
-                                <div class="box_l box6">
-                                    <div class="imgbox box7">
-                                        <a class="imglink box8" href="">
-                                            <img class="rv_img item" src="../img/happy4.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="rv_star box7_2">
-                                        <p class="item">★★★★★</p>
-                                    </div>
-                                </div>
-                                <div class="box_r box6">
-                                    <div class="comment box7">
-                                        <h2 class="write item">user3</h2>
-                                        <p class="content item_2">Lorem ipsum dolor, sit amet </p>
-                                    </div>
-                                    <div class="rv_like box7">
-                                        <i class="fa-sharp fa-solid fa-thumbs-up fa-1x item"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="rv_r box5 ">
-                                <div class="box_l box6">
-                                    <div class="imgbox box7">
-                                        <a class="imglink box8" href="">
-                                            <img class="rv_img item" src="../img/happy4.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="rv_star box7_2">
-                                        <p class="item">★★★★★</p>
-                                    </div>
-                                </div>
-                                <div class="box_r box6">
-                                    <div class="comment box7">
-                                        <h2 class="write item">user4</h2>
-                                        <p class="content item_2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quam itaque in nihil fugiat tempore consequuntur minus perspiciatis, dicta eum excepturi assumenda id optio facere rerum, voluptates cum nemo provident. </p>
-                                    </div>
-                                    <div class="rv_like box7">
-                                        <i class="fa-sharp fa-solid fa-thumbs-up fa-1x item"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="rv_l box5 ">
-                                <div class="box_l box6">
-                                    <div class="imgbox box7">
-                                        <a class="imglink box8" href="">
-                                            <img class="rv_img item" src="../img/happy4.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="rv_star box7_2">
-                                        <p class="item">★★★★★</p>
-                                    </div>
-                                </div>
-                                <div class="box_r box6">
-                                    <div class="comment box7">
-                                        <h2 class="write item">user1</h2>
-                                        <p class="content item_2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique, tempora alias consectetur repellendus magnam voluptas. At fugit harum reiciendis excepturi minus tempora?  </p>
-                                    </div>
-                                    <div class="rv_like box7">
-                                        <i class="fa-sharp fa-solid fa-thumbs-up fa-1x item"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="rv_r box5 ">
-                                <div class="box_l box6">
-                                    <div class="imgbox box7">
-                                        <a class="imglink box8" href="">
-                                            <img class="rv_img item" src="../img/happy4.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="rv_star box7_2">
-                                        <p class="item">★★★★★</p>
-                                    </div>
-                                </div>
-                                <div class="box_r box6">
-                                    <div class="comment box7">
-                                        <h2 class="write item">user2</h2>
-                                        <p class="content item_2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim, doloremque exercitationem incidunt dicta reiciendis veniam dignissimos labore laud </p>
-                                    </div>
-                                    <div class="rv_like box7">
-                                        <i class="fa-sharp fa-solid fa-thumbs-up fa-1x item"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="rv_l box5 ">
-                                <div class="box_l box6">
-                                    <div class="imgbox box7">
-                                        <a class="imglink box8" href="">
-                                            <img class="rv_img item" src="../img/happy4.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="rv_star box7_2">
-                                        <p class="item">★★★★★</p>
-                                    </div>
-                                </div>
-                                <div class="box_r box6">
-                                    <div class="comment box7">
-                                        <h2 class="write item">user3</h2>
-                                        <p class="content item_2">Lorem ipsum dolor, sit amet </p>
-                                    </div>
-                                    <div class="rv_like box7">
-                                        <i class="fa-sharp fa-solid fa-thumbs-up fa-1x item"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="rv_r box5 ">
-                                <div class="box_l box6">
-                                    <div class="imgbox box7">
-                                        <a class="imglink box8" href="">
-                                            <img class="rv_img item" src="../img/happy4.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="rv_star box7_2">
-                                        <p class="item">★★★★★</p>
-                                    </div>
-                                </div>
-                                <div class="box_r box6">
-                                    <div class="comment box7">
-                                        <h2 class="write item">user4</h2>
-                                        <p class="content item_2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quam itaque in nihil fugiat tempore consequuntur minus perspiciatis, dicta eum excepturi assumenda id optio facere rerum, voluptates cum nemo provident. </p>
-                                    </div>
-                                    <div class="rv_like box7">
-                                        <i class="fa-sharp fa-solid fa-thumbs-up fa-1x item"></i>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
+
 
                     </div>
 

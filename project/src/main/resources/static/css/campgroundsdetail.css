@@ -242,6 +242,10 @@ main .body .body_center {
     align-items: center;
 }
 
+.sec1 .campgroundimgbox {
+	width: 60vh;
+}
+
 .sec1 .titlebox {
     display: flex;
     justify-content: center;
