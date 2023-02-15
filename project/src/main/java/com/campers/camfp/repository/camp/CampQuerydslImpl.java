@@ -3,6 +3,7 @@ package com.campers.camfp.repository.camp;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 

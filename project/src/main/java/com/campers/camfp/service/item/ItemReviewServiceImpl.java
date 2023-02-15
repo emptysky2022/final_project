@@ -1,6 +1,7 @@
 package com.campers.camfp.service.item;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -36,8 +37,11 @@ public class ItemReviewServiceImpl implements ItemReviewService{
 
 	@Override
 	public List<ItemReviewDTO> getReviewOfItem(Long ino) {
-		// TODO Auto-generated method stub
-		return null;
+		log.info("get all list with one item : " + ino);
+		List<ItemReview> Entities = itemReviewRepository.getReviewWithIno(ino);
+		List<ItemReviewDTO> result = Entities.stream().map(Entity -> entityToDto(Entity)).collect(Collectors.toList());
+		
+		return result;
 	}
 
 	@Override

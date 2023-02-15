@@ -50,10 +50,11 @@ public interface ItemService {
 		return item;
 	}
 	
-	default ItemDTO entityToDto(Item item) {
+	default ItemDTO entityToDto(Item item, Member member) {
 		ItemDTO itemDTO = ItemDTO.builder()
 								 .ino(item.getIno())
-								 .mno(item.getMember().getMno())
+								 .mno(member.getMno())
+								 .nickname(member.getNickname())
 								 .name(item.getName())
 								 .thumbnail(item.getThumbnail())
 								 .brand(item.getBrand())
