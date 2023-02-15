@@ -86,7 +86,7 @@ public class IndexController {
 		String encPassword = bCryptPasswordEncoder.encode(rawPassword);
 		member.setPw(encPassword);
 		memberRepository.save(member);
-		return "redirect:/sample/login"; 
+		return "redirect:/"; 
 	}
 	
 	@Secured("ROLE_MEMBER")

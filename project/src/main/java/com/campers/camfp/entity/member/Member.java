@@ -97,6 +97,7 @@ public class Member {
 		this.introduce = introduce;
 	}
 
+
 	
 	
 	
