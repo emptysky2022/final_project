@@ -5,5 +5,6 @@ public enum GenderType {
 	FEMALE("F", 1);
 
 	GenderType(String string, int i) {
+		
 	}
 }

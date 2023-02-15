@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.campers.camfp.config.type.GenderType;
 import com.campers.camfp.entity.member.Member;
 import com.campers.camfp.repository.member.MemberRepository;
 
@@ -21,10 +22,10 @@ public class MemberRepositoryTest {
 
 		IntStream.rangeClosed(1, 50).forEach(i -> {
 			
-			boolean xy = false;	// i = 2의 배수일 때 남자.
+			GenderType xy = GenderType.MALE;	// i = 2의 배수일 때 남자.
 			
 			if(i % 2 == 0) {
-				xy = true;
+				xy = GenderType.FEMALE;	
 			}					// 여기까지 남자.
 			
 			Member member = Member.builder().id("userID" + i)
