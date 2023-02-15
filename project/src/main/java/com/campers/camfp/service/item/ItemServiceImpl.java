@@ -55,7 +55,6 @@ public class ItemServiceImpl implements ItemService{
 		return resultDTO;
 	}
 	
-	@Override
 	public void modify(ItemDTO itemDTO) {
 		Item item = dtoToEntity(itemDTO);
 		log.info("modify item " + itemDTO);
