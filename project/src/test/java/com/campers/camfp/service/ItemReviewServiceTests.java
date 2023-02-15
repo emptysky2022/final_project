@@ -22,7 +22,7 @@ public class ItemReviewServiceTests {
 											.ino((long)i)
 											.capture("https://shopping-phinf.pstatic.net/main_8280118/82801183559.8.jpg")
 											.content("정말 최고의 선택이에요")
-											.reviewer("userID"+i)
+											.reviewer("코코도치")
 											.build();
 
 			itemReviewService.register(itemReviewDTO);

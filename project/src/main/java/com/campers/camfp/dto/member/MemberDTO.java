@@ -1,5 +1,7 @@
 package com.campers.camfp.dto.member;
 
+import com.campers.camfp.config.type.GenderType;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,7 +20,7 @@ public class MemberDTO {
 	private String profileImg;
 	private String name;
 	private int age;
-	private Boolean gender;
+	private GenderType gender;
 	private String address;
 	private String phone;
 	private String grade;
