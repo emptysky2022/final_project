@@ -27,10 +27,8 @@ public class ItemController {
 
 	@GetMapping("/list")
 	public void itemList(PageRequestDTO pageRequestDTO, Model model) {
-//		List<ItemDTO> itemLists = itemService.getListOfPage(pageRequestDTO);
-//		
-//		log.info(itemLists);
-//		model.addAttribute("result", itemLists);
+		log.info(itemService.getListOfPage(pageRequestDTO));
+		model.addAttribute("result", itemService.getListOfPage(pageRequestDTO));
 	}
 	
 	@GetMapping("/item")

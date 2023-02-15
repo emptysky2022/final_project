@@ -49,8 +49,8 @@
                             <i class="fa-solid fa-user item"></i>
                         </a>
                     </li>
-                </ul>
 
+                </ul>
                 <!--햄버거 메뉴-->
                 <a href="#" class="header_hamburger box2_4">
                     <i class="fa-solid fa-bars item"></i>
@@ -74,12 +74,13 @@
                         </div>
 
                         <div class="campgroundimgbox box4">
-                            <img class="campgroundimg item" src="../img/happy13.jpg">
+                            <img class="campgroundimg item" src="../img/happy13.jpg" th:src="${result.thumbnail}">
                         </div>
 
                         <div class="cg_titlebox box4">
-                            <div class="cg_title item">낭만 캠핑장</div>
+                            <div class="cg_title item" th:value ="${result.name}" >낭만 캠핑장</div>
                         </div>
+                        
                         <div class="cg_starbox box4">
                             <div class="cg_star item">★★★★☆</div>
                         </div>

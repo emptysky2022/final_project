@@ -17,7 +17,7 @@ import lombok.extern.log4j.Log4j2;
 
 @Controller
 @Log4j2
-@RequestMapping("/sample/")
+@RequestMapping("/sample")
 public class CampController {
 
 	@Autowired
@@ -46,7 +46,11 @@ public class CampController {
 	}
 
 	@GetMapping("/campgroundsdetail")
-	public void getGroundsDetail() {
+	public void getGroundsDetail(Long cno, Model model) {
+		
+		CampDTO campdto = (CampDTO) campService.findbyId(TableType.CAMP, cno);
+		
+		model.addAttribute("result", campdto);
 		log.info("탔다");
 
 	}

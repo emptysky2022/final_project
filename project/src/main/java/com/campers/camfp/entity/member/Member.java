@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.campers.camfp.config.type.GenderType;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -52,7 +54,7 @@ public class Member {
 	private int age;
 	
 	//사용자 성별
-	private Boolean gender;
+	private GenderType gender;
 	
 	//사용자 주소
 	@Column(length = 50)
@@ -83,7 +85,7 @@ public class Member {
 	}
 
 	public Member(String id, String pw, String nickname, String profileImg, String name, int age,
-			Boolean gender, String address, String phone, String grade, String introduce) {
+			GenderType gender, String address, String phone, String grade, String introduce) {
 		this.id = id;
 		this.pw = pw;
 		this.nickname = nickname;

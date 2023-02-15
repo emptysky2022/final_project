@@ -79,14 +79,19 @@
                         <!--드롭다운메뉴-->
                         <div class="dropdowncampbox box4">
                             <div class="dropdown box5">
-                                <a href="#" class="dropbtn item">정렬</a>
-                                <div class="subdropdown box7">
-                                    <div class="dropitem item"><a href="#">오토캠핑장</a></div>
-                                    <div class="dropitem item_2"><a href="#">oo캠핑장</a></div>
-                                    <div class="dropitem item_3"><a href="#">oo캠핑장</a></div>
+                                <a href="#" class="dropbtn item">캠핑종류</a>
+                                <div class="subdropdown box7" >
+                                    <div class="dropitem item"><a href="#" >와일드 캠핑</a></div>
+                                    <div class="dropitem item_2"><a href="#">글램핑</a></div>
+                                    <div class="dropitem item_3"><a href="#">오토캠핑장</a></div>
+                                    <div class="dropitem item_4"><a href="#">oo캠핑장</a></div>
                                 </div>
-                            </div>
+                            </div>	
                         </div>
+                                    <button class="wild" > 와일드 캠핑</button>
+                                    <button class="glamp"> 글램핑</button>
+                                    <button class="auto"> 오토캠핑장</button>
+                                    <button class="cravn"> 오토캠핑장</button>
                     </div>
 
 
@@ -118,9 +123,11 @@
                         </div>
                     </div>
                     
+                    <button> 조회 </button>
+                    
                     <!--캠핑장 사진 및 평점-->
                     <div class="sec5 box3">
-                        <div class="campgroundsbox box4" th:each="camp : ${result}"> 
+                        <div class="campgroundsbox box4" th:each="camp : ${result}" th:attr="onclick=|location.href='@{/sample/campgroundsdetail(cno=${camp.cno})}'|">> 
                             <input type = "hidden" name="cno" th:value ="${camp.cno}">
                             <div class="cg_imgbox box5">
                                 <img class="cg_img item" th:src="${camp.thumbnail}">
@@ -180,15 +187,46 @@
 
 <script th:inline="javascript">
 
-/* 	$(document).ready(function(){		
-		$.ajax({
-			url : "/sample/campgroundsdetail",
-			method : "post",
-			data : "JSON.stringfy(replt)",
-			dataType : "json",
-			contentType : "application/json; charset=UTF-8"
-		})
-	}) */
+     $(document).ready(function(){
+    	 
+    	 let wild = false;
+    	 let glamp = false;
+    	 let auto = false;
+    	 let cravn = false;
+    	 
+    	$(".wild").click(function(){
+    		wild = !wild;
+    	});
+    	
+    	$(".glamp").click(function(){
+    		glamp = !glamp;
+    	});
+    	
+    	$(".auto").click(function(){
+    		auto = !auto;
+    	});
+    	
+    	$(".cravn").click(function(){
+    		cravn = !cravn;
+    	});
+    	
+    	let CampingType = {
+    				
+    	}
+    	
+    	let
+    	
+/*     	$(". dropitem item").click(function(){
+    		
+    		$.ajax({
+				url : "/sample/campgroundsdetail",
+				method : "post",
+				data : "JSON.stringfy(replt)",
+				dataType : "json",
+				contentType : "application/json; charset=UTF-8"
+			})
+    	}) */
+	}) 
 	
 </script>
 

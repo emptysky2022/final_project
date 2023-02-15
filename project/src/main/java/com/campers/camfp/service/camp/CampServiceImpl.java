@@ -63,6 +63,8 @@ public class CampServiceImpl implements CampService {
 
 			break;
 		}
+		
+		value = EntityToDTO(table, value);
 
 		return value;
 	}
