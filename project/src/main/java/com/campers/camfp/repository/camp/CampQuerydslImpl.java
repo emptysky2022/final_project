@@ -20,6 +20,7 @@ import lombok.extern.log4j.Log4j2;
 @Repository
 public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQuerydsl {
 
+
 	private final QCamp Q_CAMP = QCamp.camp;
 	private final QCampReview Q_CAMP_REVIEW = QCampReview.campReview;
 	private final QCampCalender Q_CAMP_CALENDER = QCampCalender.campCalender;

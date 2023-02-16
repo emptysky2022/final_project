@@ -74,31 +74,41 @@ public class CampRepositoryTests {
 
 			int iValue = (int) (dValue * 10) + 1;
 			int iValue2 = (int) (dValuet * 4);
+			String addr = null;
+			String location = null;
 			CampingType campt = null;
 			String imagepath = null;
 			switch (iValue2) {
 			case 0:
 				campt = CampingType.WILD;
 				imagepath = "https://tse1.mm.bing.net/th?id=OIP.-n8Lawo9CI7OBeCxt0BF2QHaE8&pid=Api&P=0";
+				addr = "경기도 포천시 영북면 산정호수로 529";
+				location = "경기도";
 				break;
 			case 1:
 				campt = CampingType.GLAMP;
 				imagepath = "https://tse1.mm.bing.net/th?id=OIP.VtKQcloM_Z9uFWCrYoDS7gHaE7&pid=Api&P=0";
+				addr = "충청남도 태안군 원북면 옥파로 1059-16";
+				location = "충청도";
 
 				break;
 			case 2:
 				campt = CampingType.AUTO;
 				imagepath = "https://tse2.mm.bing.net/th?id=OIP.aeg1TGgqQIlZuTqbu6J4TgHaE8&pid=Api&P=0";
+				addr = "강원도 속초시 장성천길 151";
+				location = "강원도";
 
 				break;
 			case 3:
 				campt = CampingType.CARAVN;
 				imagepath = "https://tse1.mm.bing.net/th?id=OIP.E48xprIE4vwRdSAHnx3yswHaE8&pid=Api&P=0";
+				addr = "경기도 연천군 전곡읍 선사로 270 ";
+				location = "경기도";
 
 				break;
 			}
 
-			Camp camp = Camp.builder().member(getmember(i)).location("country").address("address").camptype(campt)
+			Camp camp = Camp.builder().member(getmember(i)).location(location).address(addr).camptype(campt)
 					.name("name" + i).thumbnail(imagepath).heart(iValue).build();
 			campRepository.save(camp);
 		}

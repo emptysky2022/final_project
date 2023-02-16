@@ -22,7 +22,8 @@ import lombok.Data;
 @Data
 public class PrincipalDetails implements UserDetails , OAuth2User{
 
-	private Member member; //
+	private static final long serialVersionUID = 1L;
+	private Member member;
 	private Map<String, Object> attributes;
 	
 	//일반로그인
@@ -36,16 +37,12 @@ public class PrincipalDetails implements UserDetails , OAuth2User{
 		this.attributes= attributes;
 	}
 	
-	
 	public Member getMember() {
 		return member;
 	}
 
-	
-
 	@Override
 	public String getPassword() {
-		
 		return member.getPw();
 	}
 
@@ -85,17 +82,10 @@ public class PrincipalDetails implements UserDetails , OAuth2User{
 	//해당 유저의 권한을 리턴하는 곳
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		Collection<GrantedAuthority> collect = new ArrayList<>();
-		collect.add(new GrantedAuthority() {
-			
-			@Override
-			public String getAuthority() {
-			
-				return member.getGrade();
-			}
-		});
+		Collection<GrantedAuthority> collet = new ArrayList<GrantedAuthority>();
+		collet.add(() -> { return member.getGrade();});
 		
-		return collect;
+		return collet;
 	}
 	
 	@Override
