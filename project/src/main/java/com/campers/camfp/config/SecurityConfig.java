@@ -37,22 +37,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{ //이 필터�
 		
 		http.csrf().disable();
 		http.authorizeRequests()
-		.antMatchers("/member/**").authenticated() // /member는 로그인이 되어야지만 접근가능함 댓글같은 곳에 달면 될듯합니다.
-		//.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
-		//.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN') and hasRole('ROLE_USER')")
-		.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
-		.anyRequest().permitAll()//그 외에는 전부 허용
+			.antMatchers("/member/**").authenticated() // /member는 로그인이 되어야지만 접근가능함 댓글같은 곳에 달면 될듯합니다.
+			//.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
+			//.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN') and hasRole('ROLE_USER')")
+			.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+			.anyRequest().permitAll()//그 외에는 전부 허용
 		.and() //user나 admin으로 가면 로그인페이지로 자동으로 이동됨
-		.formLogin() 
-		.loginPage("/sample/login")
-//		.usernameParameter("name") //이거로 username변경 
-		.loginProcessingUrl("/sample/login")// /login 주소가 호출이되면 시큐리티가 스스로 대신 로그인을 진행해줌
-		.defaultSuccessUrl("/")//로그인이 완료되면 메인페이지로감
+			.formLogin() 
+			.loginPage("/sample/login")
+//			.usernameParameter("name") //이거로 username변경 
+			.loginProcessingUrl("/sample/login")// /login 주소가 호출이되면 시큐리티가 스스로 대신 로그인을 진행해줌
+			.defaultSuccessUrl("/")//로그인이 완료되면 메인페이지로감
 		.and()
-		.oauth2Login()
-		.loginPage("/sample/login")
-		.userInfoEndpoint()
-		.userService(principalOauth2UserService);//구글 로그인이 완료되고 후처리가 필요함 
+			.oauth2Login()
+			.loginPage("/sample/login")
+			.userInfoEndpoint()
+			.userService(principalOauth2UserService);//구글 로그인이 완료되고 후처리가 필요함 
 }
 
 }

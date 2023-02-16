@@ -37,7 +37,7 @@ public class MemberServiceImpl implements MemberService {
 		return entityToDTO((Member) result);
 	}
 
-	@Override
+	
 	public void remove(Long mno) {
 
 		memberRepository.deleteById(mno);
