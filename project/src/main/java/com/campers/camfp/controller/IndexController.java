@@ -42,7 +42,6 @@ public class IndexController {
 	System.out.println("authentication : "+oauth2User.getAttributes());
 	System.out.println("oauth2User : "+oauth.getAttributes());
 	
-	
 	return "OAuth세션 정보 확인하기";
 	}
 	
@@ -86,7 +85,7 @@ public class IndexController {
 		String encPassword = bCryptPasswordEncoder.encode(rawPassword);
 		member.setPw(encPassword);
 		memberRepository.save(member);
-		return "redirect:/sample/login"; 
+		return "redirect:/"; 
 	}
 	
 	@Secured("ROLE_MEMBER")

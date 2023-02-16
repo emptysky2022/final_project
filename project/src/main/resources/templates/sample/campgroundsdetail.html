@@ -11,17 +11,19 @@
     <link rel="stylesheet" type="text/css" href="../css/campgroundsdetail.css">
     <!--js연결-->
     <script type="text/javascript" src="/js/main.js" defer></script>
-
+									
     <!--구글 폰트 링크-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Varela+Round&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Varela+Round&display=swap"rel="stylesheet">
     <!--폰트 그림 링크-->
     <script src="https://kit.fontawesome.com/bb87a5faf0.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 </head>
 
 <body>
+
     <div class="container">
         <!--====메인 header====-->
         <header>
@@ -66,7 +68,7 @@
 
                 <!--메인 바디 가운데 공간-->
                 <div class="body_center box2">
-
+                
                     <!----------------캠핑장 사진------------->
                     <div class="sec1 box3">
                         <div class="titlebox box4">
@@ -92,13 +94,31 @@
                         <div class="cg_hashtagbox box4">
                             <div class="cg_hashtag item"> #차박 #오늘도 #성공적</div>
                         </div>
-                    </div>
-
+                        
+                   <!------------------ 달력--------------------->
+				<div id="calendar">
+ 			    <div id="month-year"></div>
+  				<div id="weekdays">
+    				<div>Mon</div>
+    				<div>Tue</div>
+    				<div>Wed</div>
+    				<div>Thu</div>
+    				<div>Fri</div>
+    				<div>Sat</div>
+    				<div>Sun</div>
+  				</div>
+  				<div id="days"></div>
+  				<div id="buttons">
+   					<button id="prev-month">Prev</button>
+    		    	<button id="next-month">Next</button>
+  				</div>
+				</div>
+				</div>
+                        
                     <!------------------지도 + 출발지 + 날씨--------------------->
                     <div class="sec2 box3">
-                        <div class="mapbox box4">
-                            <div class="map item">대충 지도 들어갈 자리</div>
-                        </div>
+                        <div id="map" class="mapbox box4"> </div>
+							
                         <div class="mapweatherbox box4">
                             <div class="startbox box5">
                                 <div class="startplacetext item">출발지</div>
@@ -301,214 +321,8 @@
                                     </div>
                                 </div>
                             </div>
-
-
-                            <div class="rv_r box5 ">
-                                <div class="box_l box6">
-                                    <div class="imgbox box7">
-                                        <a class="imglink box8" href="">
-                                            <img class="rv_img item" src="../img/happy4.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="rv_star box7_2">
-                                        <p class="item">★★★★★</p>
-                                    </div>
-                                </div>
-                                <div class="box_r box6">
-                                    <div class="comment box7">
-                                        <h2 class="write item">user4</h2>
-                                        <p class="content item_2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quam itaque in nihil fugiat tempore consequuntur minus perspiciatis, dicta eum excepturi assumenda id optio facere rerum, voluptates cum nemo provident. </p>
-                                    </div>
-                                    <div class="rv_like box7">
-                                        <i class="fa-sharp fa-solid fa-thumbs-up fa-1x item"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="rv_l box5 ">
-                                <div class="box_l box6">
-                                    <div class="imgbox box7">
-                                        <a class="imglink box8" href="">
-                                            <img class="rv_img item" src="../img/happy4.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="rv_star box7_2">
-                                        <p class="item">★★★★★</p>
-                                    </div>
-                                </div>
-                                <div class="box_r box6">
-                                    <div class="comment box7">
-                                        <h2 class="write item">user1</h2>
-                                        <p class="content item_2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique, tempora alias consectetur repellendus magnam voluptas. At fugit harum reiciendis excepturi minus tempora?  </p>
-                                    </div>
-                                    <div class="rv_like box7">
-                                        <i class="fa-sharp fa-solid fa-thumbs-up fa-1x item"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="rv_r box5 ">
-                                <div class="box_l box6">
-                                    <div class="imgbox box7">
-                                        <a class="imglink box8" href="">
-                                            <img class="rv_img item" src="../img/happy4.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="rv_star box7_2">
-                                        <p class="item">★★★★★</p>
-                                    </div>
-                                </div>
-                                <div class="box_r box6">
-                                    <div class="comment box7">
-                                        <h2 class="write item">user2</h2>
-                                        <p class="content item_2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim, doloremque exercitationem incidunt dicta reiciendis veniam dignissimos labore laud </p>
-                                    </div>
-                                    <div class="rv_like box7">
-                                        <i class="fa-sharp fa-solid fa-thumbs-up fa-1x item"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="rv_l box5 ">
-                                <div class="box_l box6">
-                                    <div class="imgbox box7">
-                                        <a class="imglink box8" href="">
-                                            <img class="rv_img item" src="../img/happy4.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="rv_star box7_2">
-                                        <p class="item">★★★★★</p>
-                                    </div>
-                                </div>
-                                <div class="box_r box6">
-                                    <div class="comment box7">
-                                        <h2 class="write item">user3</h2>
-                                        <p class="content item_2">Lorem ipsum dolor, sit amet </p>
-                                    </div>
-                                    <div class="rv_like box7">
-                                        <i class="fa-sharp fa-solid fa-thumbs-up fa-1x item"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="rv_r box5 ">
-                                <div class="box_l box6">
-                                    <div class="imgbox box7">
-                                        <a class="imglink box8" href="">
-                                            <img class="rv_img item" src="../img/happy4.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="rv_star box7_2">
-                                        <p class="item">★★★★★</p>
-                                    </div>
-                                </div>
-                                <div class="box_r box6">
-                                    <div class="comment box7">
-                                        <h2 class="write item">user4</h2>
-                                        <p class="content item_2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quam itaque in nihil fugiat tempore consequuntur minus perspiciatis, dicta eum excepturi assumenda id optio facere rerum, voluptates cum nemo provident. </p>
-                                    </div>
-                                    <div class="rv_like box7">
-                                        <i class="fa-sharp fa-solid fa-thumbs-up fa-1x item"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="rv_l box5 ">
-                                <div class="box_l box6">
-                                    <div class="imgbox box7">
-                                        <a class="imglink box8" href="">
-                                            <img class="rv_img item" src="../img/happy4.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="rv_star box7_2">
-                                        <p class="item">★★★★★</p>
-                                    </div>
-                                </div>
-                                <div class="box_r box6">
-                                    <div class="comment box7">
-                                        <h2 class="write item">user1</h2>
-                                        <p class="content item_2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique, tempora alias consectetur repellendus magnam voluptas. At fugit harum reiciendis excepturi minus tempora?  </p>
-                                    </div>
-                                    <div class="rv_like box7">
-                                        <i class="fa-sharp fa-solid fa-thumbs-up fa-1x item"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="rv_r box5 ">
-                                <div class="box_l box6">
-                                    <div class="imgbox box7">
-                                        <a class="imglink box8" href="">
-                                            <img class="rv_img item" src="../img/happy4.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="rv_star box7_2">
-                                        <p class="item">★★★★★</p>
-                                    </div>
-                                </div>
-                                <div class="box_r box6">
-                                    <div class="comment box7">
-                                        <h2 class="write item">user2</h2>
-                                        <p class="content item_2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim, doloremque exercitationem incidunt dicta reiciendis veniam dignissimos labore laud </p>
-                                    </div>
-                                    <div class="rv_like box7">
-                                        <i class="fa-sharp fa-solid fa-thumbs-up fa-1x item"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="rv_l box5 ">
-                                <div class="box_l box6">
-                                    <div class="imgbox box7">
-                                        <a class="imglink box8" href="">
-                                            <img class="rv_img item" src="../img/happy4.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="rv_star box7_2">
-                                        <p class="item">★★★★★</p>
-                                    </div>
-                                </div>
-                                <div class="box_r box6">
-                                    <div class="comment box7">
-                                        <h2 class="write item">user3</h2>
-                                        <p class="content item_2">Lorem ipsum dolor, sit amet </p>
-                                    </div>
-                                    <div class="rv_like box7">
-                                        <i class="fa-sharp fa-solid fa-thumbs-up fa-1x item"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="rv_r box5 ">
-                                <div class="box_l box6">
-                                    <div class="imgbox box7">
-                                        <a class="imglink box8" href="">
-                                            <img class="rv_img item" src="../img/happy4.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="rv_star box7_2">
-                                        <p class="item">★★★★★</p>
-                                    </div>
-                                </div>
-                                <div class="box_r box6">
-                                    <div class="comment box7">
-                                        <h2 class="write item">user4</h2>
-                                        <p class="content item_2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quam itaque in nihil fugiat tempore consequuntur minus perspiciatis, dicta eum excepturi assumenda id optio facere rerum, voluptates cum nemo provident. </p>
-                                    </div>
-                                    <div class="rv_like box7">
-                                        <i class="fa-sharp fa-solid fa-thumbs-up fa-1x item"></i>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
-
                     </div>
-
-
                 </div>
 
 
@@ -530,6 +344,53 @@
 
 
     </div>
-</body>
+    
+    <script th:inline="javascript">
+    $(document).ready(function() {
+    	  var now = new Date();
+    	  var month = now.getMonth();
+    	  var year = now.getFullYear();
 
+    	  function generateCalendar() {
+    	    $("#month-year").text(new Date(year, month).toLocaleDateString('ko-KR', { year: 'numeric', month: 'long' }));
+
+    	    $("#days").empty();
+    	    var numDays = new Date(year, month + 1, 0).getDate();
+    	    
+    	    // 번호 돌리기
+    	    for (var i = 1; i <= numDays; i++) {
+    	     var day = $("<div>").text(i);
+    	     $("#days").append(day);
+    	    }
+
+    	    $("#days div").on("click", function() {
+    	      $(this).css('background-color', 'red');
+    	    });
+    	  }
+
+    	  generateCalendar();
+
+    	  $("#prev-month").on("click", function() {
+    	    if (month == 0) {
+    	      month = 11;
+    	      year--;
+    	    } else {
+    	      month--;
+    	    }
+    	    generateCalendar();
+    	  });
+
+    	  $("#next-month").on("click", function() {
+    	    if (month == 11) {
+    	      month = 0;
+    	      year++;
+    	    } else {
+    	      month++;
+    	    }
+    	    generateCalendar();
+    	  });
+    	});
+	</script>
+						
+</body>
 </html>
