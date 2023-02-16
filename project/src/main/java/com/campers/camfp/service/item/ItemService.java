@@ -71,5 +71,26 @@ public interface ItemService {
 		
 		return itemDTO;
 	}
+	default ItemDTO entityToDto(Item item) {
+		ItemDTO itemDTO = ItemDTO.builder()
+				.ino(item.getIno())
+				.mno(item.getMember().getMno())
+				.nickname(item.getMember().getNickname())
+				.name(item.getName())
+				.thumbnail(item.getThumbnail())
+				.brand(item.getBrand())
+				.maker(item.getMaker())
+				.category1(item.getCategory1())
+				.category2(item.getCategory2())
+				.price(item.getPrice())
+				.link(item.getLink())
+				.type(item.getType())
+				.count(item.getCount())
+				.star(item.getStar())
+				.heart(item.getHeart())
+				.build();
+		
+		return itemDTO;
+	}
 
 }
