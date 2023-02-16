@@ -17,8 +17,8 @@ public class ItemRepositoryTests {
 	
 	@Test
 	public void ItemQueryCategoryTest() {
-		Pageable pageable = PageRequest.of(0, 10, Sort.by("count").ascending());
-		itemRepository.findBySearch("랜턴", "", pageable);
+		Pageable pageable = PageRequest.of(0, 10, Sort.by("count").descending().and(Sort.by("ino").descending()));
+		itemRepository.findBySearch("", "", pageable);
 		
 	}
 	
