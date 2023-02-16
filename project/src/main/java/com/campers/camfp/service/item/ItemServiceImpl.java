@@ -38,7 +38,7 @@ public class ItemServiceImpl implements ItemService{
 	@Override
 	public ItemDTO getOne(Long ino) {
 		Item item = itemRepository.findById(ino).get();
-		ItemDTO itemDTO = entityToDto(item, item.getMember());
+		ItemDTO itemDTO = entityToDto(item);
 		log.info("select one item " + itemDTO);
 		return itemDTO;
 	}
@@ -48,7 +48,7 @@ public class ItemServiceImpl implements ItemService{
 		List<Item> resultEntity = itemRepository.findAll();
 		List<ItemDTO> resultDTO = resultEntity
 								  .stream()
-								  .map(result -> entityToDto(result, result.getMember()))
+								  .map(result -> entityToDto(result))
 								  .collect(Collectors.toList());
 
 		log.info("select all item " + resultDTO);
