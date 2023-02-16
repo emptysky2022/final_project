@@ -19,7 +19,7 @@ public interface CampService {
 
 	public Object modify(TableType table, Object dto);
 
-	public Long register(TableType table, Object dto);
+	public void register(TableType table, Object dto);
 	
 	public List<Object> findAll(TableType table, Long cno);
 	

@@ -174,7 +174,7 @@ public class CampServiceImpl implements CampService {
 	}
 
 	@Override
-	public Long register(TableType table, Object dto) {
+	public void register(TableType table, Object dto) {
 
 		Object result = null;
 
@@ -182,17 +182,17 @@ public class CampServiceImpl implements CampService {
 
 		case CAMP:
 			Camp camp = (Camp) DTOToEntity(table, dto);
-			result = campRepository.save(camp);
+			campRepository.save(camp);
 			break;
 
 		case CAMPREVIEW:
 			CampReview campReview = (CampReview) DTOToEntity(table, dto);
-			result = campReviewRepository.save(campReview);
+			campReviewRepository.save(campReview);
 			break;
 
 		case CAMPCALENDER:
 			CampCalender campCalender = (CampCalender) DTOToEntity(table, dto);
-			result = campCalenderRepository.save(campCalender);
+			campCalenderRepository.save(campCalender);
 			break;
 
 		default:
@@ -202,7 +202,6 @@ public class CampServiceImpl implements CampService {
 			break;
 		}
 
-		return (Long) result;
 	}
 
 	@Override
