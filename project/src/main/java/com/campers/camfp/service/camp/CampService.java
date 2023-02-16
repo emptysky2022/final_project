@@ -25,6 +25,10 @@ public interface CampService {
 	
 	public List<Object> findHeartRank(TableType table, int num);
 	
+	public List<Object> findDataOfMember(TableType table, Long mno);
+	
+	public List<Object> findDataOfCamp(TableType table, Long cno);
+	
 	/**
 	 * @param table 변환할 table 명 table <br>
 	 * @param dto 변환할 table 의 DataAccessObject <br>

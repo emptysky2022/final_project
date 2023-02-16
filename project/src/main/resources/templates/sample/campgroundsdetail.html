@@ -347,6 +347,23 @@
     
     <script th:inline="javascript">
     $(document).ready(function() {
+    	 var clenderList = /*[[${calender}]]*/null;
+    	 var midldate = false;
+    	 var prev = false;
+    	 var startdate = [];
+    	 var enddate = [];
+    	 
+
+    	 // 형식 yyyy-mm-dd
+    	 clenderList.forEach(function(ele, index) {
+    		 startdate.push(ele.startdate.split('T',1)[0]);
+    		 enddate.push(ele.enddate.split('T',1)[0]);
+    	 });
+    	 
+    	 console.log(clenderList);
+    	 console.log(startdate);
+    	 console.log(enddate);
+    	
     	  var now = new Date();
     	  var month = now.getMonth();
     	  var year = now.getFullYear();
@@ -357,36 +374,134 @@
     	    $("#days").empty();
     	    var numDays = new Date(year, month + 1, 0).getDate();
     	    
+	     	 var currentYear = $("#month-year").text().substring(0,4).trim();
+	     	 var currentMonth = $("#month-year").text().replace('월','');
+	     	currentMonth = currentMonth.substring(5,8).trim()
+	     	
+	     
+	     	 
+	     	 // 달 형식 맞추려고 10 미만일경우 앞에 0 붙임
+	     	 var newMonth ="";
+	     	 if (Number(currentMonth) < 10){
+	     		newMonth = "0"+ currentMonth;
+	     	 }else{
+	     		newMonth = currentMonth;
+	     	 }
+	     	 
+	     	 var newday = 0;
+	     	 
     	    // 번호 돌리기
     	    for (var i = 1; i <= numDays; i++) {
-    	     var day = $("<div>").text(i);
-    	     $("#days").append(day);
+    	    	
+    	     	var day = $("<div id='calendar" + i + "'>").text(i);
+    	     	$("#days").append(day);
+    	    	
+     	     	// 받아온 campCalender 만큼 반복
+    	     	for (var d = 0; d < clenderList.length; d++){
+    	     		
+    	     		// 데이터가 있을 경우에만 
+    	     	if (clenderList != null){
+    	     			
+ 	     			if (i == 27 && d==8){
+ 	     				console.log(startdate[d].substring(0,4).trim());
+ 	     				console.log("얘가만듬" + currentMonth);
+ 	     				console.log("내가만든 이번달" +startdate[d].substring(5,7).trim());
+ 	     				console.log("기본 이번달" +newMonth);
+ 	     				console.log("내가만든 이번일" +startdate[d].substring(8,10).trim());
+ 	     				console.log("기본 이번일" +String(i));
+ 	     			}
+ 	     			
+    	     		// Start Day
+    	     		// 해당 년도 확인
+     	     		if (startdate[d].substring(0,4).trim() == currentYear){
+     	     			// 해당 월 확인
+         	     		if (startdate[d].substring(5,7).trim() == newMonth){
+         	     			
+         	     			// 문자열 맞추기 위해서 10 전이면 
+         	     			if (i < 10){
+         	     				newday = 0;
+         	     				newday = newday+String(i);
+         	     				console.log(newday);
+         	     			}else{
+         	     				newday = String(i);
+         	     				console.log(newday);
+         	     			}
+         	     			
+         	     			// 해당 일 확인
+             	     		if (startdate[d].substring(8,10).trim() == newday) {
+             	     			console.log("만들어져라");
+             	     			$("#calendar" + i).css('background-color', 'red');
+             	     			midldate = true;
+            	     		}	 
+        	     		}	 
+    	     		}
+    	     		
+    	     		if (midldate == true){
+    	     			$("#calendar" + i).css('background-color', 'red');
+    	     		}
+    	     		
+    	     		// End Day
+    	     		// 해당 년도 확인
+     	     		if (enddate[d].substring(0,4).trim() == currentYear){
+     	     			// 해당 월 확인
+         	     		if (enddate[d].substring(5,7).trim() == newMonth){
+         	     			
+         	     			if (i < 10){
+         	     				newday = 0;
+         	     				newday = newday+String(i);
+         	     			}else{
+         	     				newday = String(i);
+         	     			}
+         	     			
+         	     			// 해당 일 확인
+             	     		if (enddate[d].substring(8,10).trim() == newday) {
+             	     			$("#calendar" + i).css('background-color', 'red');
+             	     			midldate =false;
+             	     			
+             	     			if (prev = true){
+             	     				
+             	     				if (Number(startdate[d].substring(8,10).trim()) > Number(newday)){
+             	     					var test = i;
+             	     					console.log(test);
+             	     					console.log(i);
+             	     					for (var tt=test; tt > 0; tt--){
+              	     						console.log("몇번반복");
+             	     						$("#calendar" + tt).css('background-color', 'red'); 
+             	     					}
+             	     				}
+             	     			}
+            	     		}	 
+        	     		}	 
+    	     		}
+    	     	}
+    	     	} 
     	    }
-
-    	    $("#days div").on("click", function() {
-    	      $(this).css('background-color', 'red');
-    	    });
     	  }
 
     	  generateCalendar();
 
     	  $("#prev-month").on("click", function() {
     	    if (month == 0) {
+    	      console.log("month == 0");
     	      month = 11;
     	      year--;
     	    } else {
     	      month--;
     	    }
+    	    midldate = false;
+    	    prev = true;
     	    generateCalendar();
     	  });
 
     	  $("#next-month").on("click", function() {
     	    if (month == 11) {
+    	    	console.log("month == 11");
     	      month = 0;
     	      year++;
     	    } else {
     	      month++;
     	    }
+    	    prev = false;
     	    generateCalendar();
     	  });
     	});
