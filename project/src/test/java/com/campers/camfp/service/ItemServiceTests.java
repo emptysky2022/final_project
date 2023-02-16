@@ -21,10 +21,12 @@ public class ItemServiceTests {
 		IntStream.rangeClosed(1, 100).forEach(i -> {
 			ItemDTO itemDTO = ItemDTO.builder()
 							.name("테스트상품"+i)
+							.mno(1L)
 							.brand("캠프피")
 							.maker("코리아")
 							.category1("조명")
 							.price(i*1000)
+							.count(i)
 							.build();
 			
 			itemService.register(itemDTO);
