@@ -1,0 +1,548 @@
+section {
+    display: none;
+    padding: 20px 0 0;
+    border-top: 1px solid #9c9c9c;}
+
+/*라디오버튼 숨김*/
+.content-body .content-body-left .content-body-left-header .main input {
+      display: none;
+}
+#post-label{
+    margin-left: 50px;
+}
+label {
+    display: inline-block;
+    margin: 0 0 -1px;
+    
+    padding: 15px 15px;
+    font-weight: 300;
+    text-align: center;
+    color: #bbb;
+    border: 1px solid transparent;
+}
+
+label:hover {
+    color: #ec736e;
+    cursor: pointer;}
+
+/*input 클릭시, label 스타일*/
+input:checked + label {
+      color: #555;
+      border: 1px solid #9c9c9c;
+      border-top: 2px solid #ec736e;
+      border-bottom: 1px solid rgb(241, 241, 197);}
+
+#tab1:checked ~ #content1,
+#tab2:checked ~ #content2,
+#tab3:checked ~ #content3,
+#tab4:checked ~ #content4, 
+#tab5:checked ~ #content5 {
+display: block;}
+
+:root {
+    --font-size-lg: clamp(1rem, 4vw, 3rem);
+    --font-size-md: clamp(1.5rem, 3vw, 2.5rem);
+    --font-size-sm: clamp(0.7rem, 2vw, 1rem);
+    --font-size-xsm: clamp(0.5rem,1vw,1rem);
+  }
+  
+  h1 {
+    font-size: var(--font-size-lg);
+  }
+  
+  h2 {
+    font-size: var(--font-size-md);
+  }
+  
+  p {
+    font-size: var(--font-size-sm);
+    
+  }
+  
+  blockquote {
+    font-size: var(--font-size-md);
+  }
+  
+  a {
+    font-size: var(--font-size-sm);
+  }
+
+  
+
+
+/* "{max-width: 100%;
+    height: auto;}"를 사용한 이유
+    -> 페이지 전체적으로 화면을 줄이거나 늘렸을 때 반응형처럼 보이게 하기 위해 사용, 화면을 줄이거나 늘렸을 때 밑에서 준 
+    .box{}의 길이인 최대 가로 길이:80vw로 고정, 세로는 늘어난 만큼 보여짐  */
+* {
+    margin: 0;
+    padding: 0;
+    left: 0;
+    top: 0;
+    max-width: 100%;
+    height: auto;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Varela Round', sans-serif;
+	  word-wrap: break-word;
+    box-sizing: border-box;
+    font-size: var(--font-size-xsm);
+}
+
+/*리스트들의 특수기호 제거*/
+li {
+    list-style: none;
+}
+
+
+/*하이퍼링크 전체 밑줄 제거*/
+a {
+    text-decoration: none;
+}
+/*마우스 클릭 후 색깔 */
+a:visited{ 
+  color: #000;
+}
+
+/*마우스 갖다 댈때 색깔*/
+a:hover {
+  color : #3498DB;
+}
+
+/*사용할 페이지 전체 범위(가로폭은 보이는 화면의 80%고정, 세로폭은 내용물이 많아지면 자동 증가)*/
+body {
+    max-width: 80vw;
+    border: 1px solid red;
+    margin: auto;
+   
+}  
+
+/*페이지 내 헤더,메인,푸터의 틀 설정*/
+.container{
+    max-width: 100vw;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr  1fr;
+    grid-template-rows: 6rem auto 3rem;
+    grid-template-areas:
+    'a a'
+    'b b'
+    'c c' 
+}
+header{
+    grid-area: a;
+}
+
+main{
+    grid-area: b;
+}
+
+footer{
+    grid-area: c;
+}
+
+
+/**********메인 header(header 부분 전체)************/
+.header{
+    display: flex; 
+    border: 1px solid orange;
+    padding: 0.5rem 2rem;
+    position: relative;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+
+}
+.header .header_logo {
+   
+    border: 1px solid purple;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    object-fit: cover;
+}  
+
+
+.header .header_menu {
+    display: flex; 
+    border: 3px solid yellow;
+    justify-content: space-evenly;
+    
+}
+
+.header .header_menu li {
+    border: 1px solid blue;
+    border-radius: 0.5rem;
+    padding: 0.7rem;
+    margin: 0.2rem;
+    display:flex; 
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.header .header_mypage {
+    border: 5px solid purple;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    object-fit: cover;
+    padding: 0 2.5rem 0 2.5rem;
+}
+
+
+.header .header_hamburger{
+    display: none;
+    position: absolute;
+    font-size: 1rem;
+    top: 8px;
+    left: auto;
+    right: 8px;
+    width:30px;
+    height:30px;
+    font-size: 1.5rem;
+}
+
+@media screen and (max-width:768px) {
+    .header{
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.5rem;
+    }
+
+    .header .header_menu{
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+
+    }
+
+    .header .header_menu li{
+        width: 100%;
+        
+    }
+
+    .header .header_mypage{
+        display: none;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .header .header_hamburger{
+        display: block;
+       
+    }
+
+    .header_menu.active,
+    .header_mypage.active{
+        display: flex;
+    }
+}
+
+/*********메인 바디***********/
+main .body {
+    display: flex;
+    
+    /* display: grid;
+    grid-template-columns: 1fr 8fr 1fr;
+    grid-template-rows: auto; */
+    border: 1px solid orange;
+    flex-direction: row;
+}
+
+/*메인 바디 왼쪽*/
+main .body .aside_l{
+    border: 1px solid rgb(0, 255, 76);
+    display: flex;
+    flex-basis: 10%;
+  
+   
+
+}
+
+/*메인 바디 오른쪽*/
+main .body .aside_r{
+    border: 1px solid rgb(0, 64, 255);
+   display: flex;
+   flex-basis: 10%;
+  
+    
+}
+/*메인 바디 가운데 */
+main .body .body_center{
+    border: 1px solid rgb(158, 90, 2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-basis: 80%;
+}
+
+
+
+nav {
+    position: relative;
+    
+    justify-content: center;
+    color: #949494;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    transition: 0.2s ease color;
+    display: flex;
+
+    
+  }
+  
+  nav a {
+    position: relative;
+    flex-basis: 25%;
+    
+    color: #949494;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 0;
+    transition: 0.2s ease color;
+    display: flex;
+    justify-content: center;
+  }
+  
+  nav a:before,
+  nav a:after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 0.2s ease transform;
+  }
+  
+  nav a:before {
+    top: 0;
+    left: 10px;
+    width: 6px;
+    height: 6px;
+  }
+  
+  nav a:after {
+    top: 5px;
+    left: 18px;
+    width: 4px;
+    height: 4px;
+  }
+  
+  nav a:nth-child(1):before {
+    background-color: yellow;
+  }
+  
+  nav a:nth-child(1):after {
+    background-color: red;
+  }
+  
+  nav a:nth-child(2):before {
+    background-color: #00e2ff;
+  }
+  
+  nav a:nth-child(2):after {
+    background-color: #89ff00;
+  }
+  
+  nav a:nth-child(3):before {
+    background-color: purple;
+  }
+  
+  nav a:nth-child(4):after {
+    background-color: palevioletred;
+  }
+
+  nav a:nth-child(5):after {
+    background-color: rgb(216, 145, 112);
+  }
+
+  #indicator {
+    position: absolute;
+    left: 5%;
+    bottom: 0;
+    width: 30px;
+    height: 3px;
+    background-color: #fff;
+    border-radius: 5px;
+    transition: 0.2s ease left;
+  }
+  
+  nav a:hover {
+    color: #fff;
+  }
+  
+  nav a:hover:before,
+  nav a:hover:after {
+    transform: scale(1);
+  }
+  
+  nav a:nth-child(1):hover ~ #indicator {
+    background: linear-gradient(130deg, yellow, red);
+    left: 12%;
+  }
+  
+  nav a:nth-child(2):hover ~ #indicator {
+    left: 35%;
+    background: linear-gradient(130deg, #00e2ff, #89ff00);
+  }
+  
+  nav a:nth-child(3):hover ~ #indicator {
+    left: 59%;
+    background: linear-gradient(130deg, purple, palevioletred);
+  }
+
+  nav a:nth-child(4):hover ~ #indicator {
+    left: 82%;
+    background: linear-gradient(130deg, rgb(0, 128, 68), rgb(216, 145, 112));
+  }
+
+  nav a:nth-child(5):hover ~ #indicator {
+    left: 82%;
+    background: linear-gradient(130deg, rgb(0, 128, 68), rgb(216, 145, 112));
+  }
+
+.sec2{
+  font-size: var(--font-size-xsm);
+}
+
+
+/*게시글들*/
+strong {
+  font-size: 3rem;
+
+}
+
+.boardlist{
+  width: 100%;
+  border-top: 2px solid #000;
+}
+
+.boardlist > div.top {
+  border-bottom: 1px solid #999;
+  display: flex;
+  background-color: #EAEAEA;
+}
+
+.boardlist > div {
+  border-bottom: 1px solid #ddd;
+  font-size: 0;
+}
+
+.boardlist > div:last-child {
+  border-bottom: 1px solid #000;
+}
+
+.boardlist > div > div {
+  display: inline-block;
+  padding: 15px 0;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.boardlist > div.top > div {
+  font-weight: 600;
+}
+
+.boardlist .num {
+  width: 10%;
+}
+
+.boardlist .title {
+  width: 55%;
+  text-align: left;
+}
+
+.boardlist .top .title {
+  text-align: center;
+}
+
+.boardlist .writer {
+  width: 10%;
+}
+
+.boardlist .date {
+  width: 15%;
+}
+
+.boardlist .count {
+  width: 10%;
+}
+
+.boardlistbox .button{
+  display: flex;
+  justify-content: end;
+  padding: 2vw 2vw 0 0;
+  align-items: center;
+}
+
+.boardlistbox .button .on{
+  background-color: #3498DB;
+  color: whitesmoke;
+  border-radius: 3px;
+  width: 7vw;
+  height: 3vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.boardpage {
+  margin: 30px 0 20px 0;
+  font-size: 0;
+  display: flex;
+  justify-content: center;
+  color: #000;
+  align-items: center;
+}
+
+.boardpage a {
+  display: flex;
+  min-width: 20px;
+  min-height: 20px;
+  box-sizing: border-box;
+  border-left: 0;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 3rem;
+  height: 3rem;
+  background: #ddd;
+  border-radius: 10%;
+}
+
+.boardpage a.button {
+  padding-top: 10px;
+  font-size: 1.2rem;
+  letter-spacing: -1px;
+}
+
+.boardpage a.num {
+  font-size: 1.4rem;
+}
+
+.boardpage a.num.on {
+  border-color: #000;
+  background: #000;
+  color: #fff;
+}
+
+.boardpage a:first-child {
+  border-left: 1px solid #ddd;
+} 
+
+
+
+/*게시글 가리기*/
+/* .sec1, .sec2, .sec3, .sec4{
+  display: none;
+} */
+/*view*/
+
+
+.footer{
+    border: 3px solid red;
+    background-color: black;
+    color: aliceblue;
+}
