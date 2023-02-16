@@ -4,18 +4,22 @@ import com.campers.camfp.dto.board.BoardDTO;
 import com.campers.camfp.dto.page.PageRequestDTO;
 import com.campers.camfp.dto.page.PageResultDTO;
 import com.campers.camfp.entity.board.Board;
+import com.campers.camfp.entity.board.Reply;
 import com.campers.camfp.entity.member.Member;
 
 public interface BoardService {
 	
-	// 게시글 상세 조회
-	BoardDTO read(Long bno);
-	
 	Long register(BoardDTO boardDTO); 
 	
 	// SH
-	PageResultDTO<BoardDTO, Board> getList(PageRequestDTO pageRequestDTO);
+	PageResultDTO<BoardDTO, Object[]> getList(PageRequestDTO pageRequestDTO);
+
+	// 게시글 상세 조회
+	BoardDTO read(Long bno);
 	
+	void removeWithReplies(Long bno);
+	
+	void modify(BoardDTO boardDTO);
 	
 	// dto -> entity
 	default Board dtoToEntity(BoardDTO boardDTO) {
@@ -31,14 +35,15 @@ public interface BoardService {
 		return entityBoard;
 	}
 	
-	default BoardDTO entityToDTO(Board board) {
+	default BoardDTO entityToDTO(Board board, Member member, Long replyCount) {
 		
 		BoardDTO boardDTO = BoardDTO.builder().bno(board.getBno())
 										      .title(board.getTitle())
 										      .content(board.getContent())
-										      .mno(board.getMember().getMno())
-										      .nickname(board.getMember().getNickname())
+										      .mno(member.getMno())
+										      .nickname(member.getNickname())
 										      .category(board.getCategory())
+										      .replyCount(replyCount.intValue())
 										      .count(board.getHeart())
 										      .regDate(board.getRegDate())
 										      .updateDate(board.getUpdateDate())

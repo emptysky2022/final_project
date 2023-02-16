@@ -46,4 +46,9 @@ public class Board extends BaseEntity {
 	private int count; // 조회수
 	
 	private int heart; // 좋아요
+	
+	public void change(String title, String content) {
+		this.title = title;
+		this.content = content;
+	}
 }

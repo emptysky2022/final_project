@@ -9,6 +9,7 @@ public class GoogleUserInfo implements OAuth2UserInfo{
 	
 	public GoogleUserInfo(Map<String, Object> attributes) {
 		this.attributes=attributes;
+
 	}
 	
 	@Override
@@ -41,11 +42,6 @@ public class GoogleUserInfo implements OAuth2UserInfo{
 		return "google";
 	}
 
-//	@Override
-//	public boolean getGender() {
-//		return false;
-//	}
-
 	//@Override
 	//public int getAge() {
 		//return 0;
@@ -55,5 +51,11 @@ public class GoogleUserInfo implements OAuth2UserInfo{
 	public String getPhone() {
 		return null;
 	}
+
+
+//	@Override
+//	public boolean getGender() {
+//		return false;
+//	}
 
 }
