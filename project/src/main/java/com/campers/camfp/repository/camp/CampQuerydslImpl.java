@@ -3,7 +3,6 @@ package com.campers.camfp.repository.camp;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;
 
@@ -14,9 +13,7 @@ import com.campers.camfp.entity.camp.QCamp;
 import com.campers.camfp.entity.camp.QCampCalender;
 import com.campers.camfp.entity.camp.QCampReview;
 import com.querydsl.jpa.JPQLQuery;
-import com.querydsl.jpa.impl.JPAQueryFactory;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
