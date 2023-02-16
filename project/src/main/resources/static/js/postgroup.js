@@ -84,3 +84,45 @@ function toggleBtn3() {
     }
 }
 
+
+/*
+$(function() { // 보이기 | 숨기기
+	$(window).scroll(function() {
+    if ($(this).scrollTop() > 250) { //250 넘으면 버튼이 보여짐니다. 
+      $('#toplevel img').fadeIn();
+    } else {
+      $('#toplevel img').fadeOut();
+    }
+  }); // 버튼 클릭시 
+  $("#toplevel img").click(function() { 
+  	$('html, body').animate({ scrollTop : 0 // 0 까지 animation 이동합니다. 
+  	}, 400); // 속도 400 
+  	return false; 
+  }); 
+});*/
+
+
+
+
+
+$(function() { // 보이기 | 숨기기
+	
+  $("#listlevel").click(function() { 
+  	$('html, body').animate({ scrollTop : 0 // 0 까지 animation 이동합니다. 
+  	}, 400); // 속도 400 
+  	return false; 
+  }); 
+  $(window).scroll(function() {
+  if ($(this).scrollTop() > 250) { //250 넘으면 버튼이 보여짐니다. 
+    $('#toplevel img').fadeIn();
+  } else {
+    $('#toplevel img').fadeOut();
+  }
+  }); // 버튼 클릭시
+}); 
+
+
+
+// $(function() { // 보이기 | 숨기기
+
+// }); 

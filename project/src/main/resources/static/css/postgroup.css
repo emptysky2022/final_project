@@ -36,8 +36,6 @@
 * {
     margin: 0;
     padding: 0;
-    left: 0;
-    top: 0;
     max-width: 100%;
     height: auto;
     font-family: 'Noto Sans KR', sans-serif;
@@ -600,6 +598,35 @@ align-items: center;
   flex-direction: column;
 
 }
+
+.boardwrite .info dl {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.boardwrite .titlebox dl{
+  flex-direction: column;
+}
+
+.boardwrite .titlebox dt{
+  width: 12vw;
+}
+
+.boardwrite .info dt{
+  width: 12vw;
+}
+
+.boardwrite .content .imguploadbox{
+  display: flex;
+  align-items: baseline;
+  flex-direction: column;
+}
+
+.boardwrite .content .imguploadbox .imguploadtitle{
+  display: flex;
+  flex-basis: 40%;
+}
 }
 
 
@@ -616,6 +643,42 @@ align-items: center;
 
 
 /*게시글 상세보기*/
+.boardviewbox .button{
+  display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.boardviewbox .button .modify{
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  border-radius: 3px;
+  width: 7vw;
+  height: 3vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  min-width: 7rem;
+  min-height: 3rem;
+  margin: 1rem;
+}
+
+.boardviewbox .button .on{
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 3px;
+  width: 7vw;
+  height: 3vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  min-width: 7rem;
+  min-height: 3rem;
+  margin: 1rem;
+}
+
+
 .boardview {
   width: 100%;
   border-top: 2px solid #000;
@@ -685,6 +748,42 @@ align-items: center;
 
 /*게시글 수정하기*/
 
+.boardmodifybox .button {
+  display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+.boardmodifybox .button .on{
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  border-radius: 3px;
+  width: 7vw;
+  height: 3vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  min-width: 7rem;
+  min-height: 3rem;
+  margin: 1rem;
+}
+
+.boardmodifybox .button .cancel{
+  border: 1px solid rgb(0, 0, 0);
+    border-radius: 3px;
+    width: 7vw;
+    height: 3vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    min-width: 7rem;
+    min-height: 3rem;
+    margin: 1rem;
+}
+
 .boardmodify {
   border-top: 2px solid #000;
 }
@@ -699,6 +798,14 @@ align-items: center;
   border-bottom: 1px solid #000;
   font-size: 0;
 }
+
+.boardmodify .titlebox {
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 
 .boardmodify .titlebox dl {
   font-size: 0;
@@ -721,11 +828,11 @@ align-items: center;
 
 .boardmodify .titlebox dt,
 .boardmodify .info dt {
-  width: 100px;
+  width: 10vw;
 }
 
 .boardmodify .titlebox dd {
-  width: calc(100% - 100px);
+  
 }
 
 .boardmodify .titlebox input[type="text"],
@@ -736,7 +843,7 @@ align-items: center;
 }
 
 .boardmodify .titlebox input[type="text"] {
-  width: 80%;
+  
 }
 
 .boardmodify .content {
@@ -751,10 +858,103 @@ align-items: center;
     border: 0;
 }
 
+@media screen and (max-width:768px){
+  .boardmodify .titlebox {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .boardmodify .info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+ 
+
+  .boardmodify .titlebox dl{
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .boardmodify .titlebox dd{
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    flex-basis: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .boardmodify .info dl {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:100%
+  }
+
+  .boardmodify .titlebox dt, .boardmodify .info dt {
+    width: auto;
+}
+
+.boardmodify .titlebox input[type="text"], .boardmodify .info input[type="text"], .boardmodify .info input[type="password"] {
+  padding: 10px;
+  box-sizing: border-box;
+  width: 40vw;
+  margin: 1rem;
+}
+
+}
 
 
+.aside_r {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: end;
+}
 
 
+/*top, 위치 버튼 css*/
+
+
+.aside_r .listlevelbox .listlevel img{
+    position: fixed;
+  right: 0;
+  bottom: 10%;
+  z-index: 3;
+  width: 7%;
+  height: 7%;
+  max-width: 10vh;
+  min-width: 5vh;
+  min-height: 10vh;
+  max-height: 15vh;
+}
+
+
+.aside_r .toplevelbox #toplevel img{
+
+  max-width: 10vh;
+  min-width: 5vh;
+  min-height: 10vh;
+  max-height: 15vh;
+
+  position:fixed; /* 포지션 고정 */ 
+	right: 0; /* 오른쪽에서 2% - %도 할수 있음*/ 
+	bottom: 20%; /* 밑에서 5px */ 
+	 /* 기본적으로 안보여지게 */ 
+	z-index: 6; /* 제일 위로*/
+  display: none;
+  width: 7%;
+  height: 7%;
+}
 
 
 

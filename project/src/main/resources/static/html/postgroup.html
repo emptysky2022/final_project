@@ -12,6 +12,8 @@
     <!--js연결-->
     <script type="text/javascript" src="../js/postgroup.js" defer></script>
 
+    <!--제이쿼리 연결-->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
     <!--구글 폰트 링크-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -66,7 +68,7 @@
                 <div class="body_center box2">
                     <!--게시글 메뉴바-->
 
-                    <div class="sec1 box3">
+                    <div class="sec1 box3 " name="test">
                         <div class="titlebox box4">
                             <strong class="titletext item">게시글 작성하기
                             </strong>
@@ -100,14 +102,14 @@
                                         <input type="file" accept="image/gif, image/jpeg, image/png"
                                             onchange="chk_file_type(this)">
                                     </div>
-    
+
                                 </div>
                                 <div class="buttonbox box5">
                                     <a href="" class="on">등록</a>
                                     <a href="" class="cancel">취소</a>
                                 </div>
-                                </div>
-                                
+                            </div>
+
                         </div>
                     </div>
 
@@ -145,7 +147,7 @@
                             </div>
                             <div class="button">
                                 <a href="" class="on">수정완료</a>
-                                <a href="">취소</a>
+                                <a href="" class="cancel">취소</a>
                             </div>
                         </div>
 
@@ -183,14 +185,16 @@
                                 </div>
                             </div>
                             <div class="button box5">
-                                <a href="" class="on item">목록</a>
                                 <a onclick="toggleBtn2()" href="#" class="modify item_2">수정하기</a>
+                                <a href="" class="on item">목록</a>
+
                             </div>
                         </div>
                     </div>
 
-
-                    <div class="sec4 box3">
+                <a name="listlevel"></a>
+                    <div id="sec4" class="sec4 box3">
+                        
                         <div class="titlebox box4">
                             <strong class="titletext item">게시판 목록
                             </strong>
@@ -248,7 +252,8 @@
                                 </div>
                                 <div>
                                     <div class="num item">35</div>
-                                    <div class="title item_2"><a href="#" onclick="toggleBtn3()">후..... 나의 귀여움이란..☆</a></div>
+                                    <div class="title item_2"><a href="#" onclick="toggleBtn3()">후..... 나의 귀여움이란..☆</a>
+                                    </div>
                                     <div class="writer item_3">김용운</div>
                                     <div class="date item_4">2023-01-22 </div>
                                     <div class="count item_5">2,903</div>
@@ -276,7 +281,8 @@
                                 </div>
                                 <div>
                                     <div class="num item">31</div>
-                                    <div class="title item_2"><a href="#" onclick="toggleBtn3()">다들 쉬면서 열심히 일하세요!</a></div>
+                                    <div class="title item_2"><a href="#" onclick="toggleBtn3()">다들 쉬면서 열심히 일하세요!</a>
+                                    </div>
                                     <div class="writer item_3">최석호</div>
                                     <div class="date item_4">2023-01-20 </div>
                                     <div class="count item_5">833</div>
@@ -300,15 +306,16 @@
 
                     </div>
                 </div>
-
+                
                 <!--메인 바디의 사이드 빈 공간 오른쪽-->
-                <div class="aside_r box2">aside_r</div>
-
-
-
-
-
-            </div>
+                <div class="aside_r box2">
+                    <div class="listlevelbox">
+                        <a href="#listlevel" class="listlevel"><img src="../img/black1.jpg"></a>
+                    </div>
+                    <div class="toplevelbox">
+                        <a  href="#" id="toplevel"><img src="../img/outdoor1.jpg" ></a>
+                    </div>
+                </div>
         </main>
         <!--====푸터====-->
         <footer>
