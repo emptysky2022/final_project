@@ -47,6 +47,8 @@ public class Item {
 	
 	@Column(length = 10, nullable = false)
 	private String category1;		//상품 카테고리 (소분류)
+	//카테고리 목록 : 취사용품, 랜턴, 캠핑가구, 기타캠핑용품, 텐트, 캠핑매트, 아이스박스, 텐트/타프용품, 침낭, 타프, 천막, 캠핑왜건
+	
 	
 	@Column(length = 10)
 	private String category2;		//상품 카테고리 (세분류)

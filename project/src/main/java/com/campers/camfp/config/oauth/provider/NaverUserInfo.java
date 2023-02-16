@@ -27,13 +27,9 @@ public class NaverUserInfo implements OAuth2UserInfo{
 	}
 	
 	
-//	public boolean getGender() {
-//		return (boolean)attributes.get("gender");
-//	}
-	
-//	public int getAge() {
-//		return (int)attributes.get("age");
-//	}
+	public boolean getGender() {
+	return (boolean)attributes.get("gender");
+	}
 	
 	public String getPhone() {
 		return (String)attributes.get("mobile");
@@ -53,5 +49,6 @@ public class NaverUserInfo implements OAuth2UserInfo{
 	public String getProvider() {
 		return "naver";
 	}
+
 
 }

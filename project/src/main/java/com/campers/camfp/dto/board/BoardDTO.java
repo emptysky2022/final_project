@@ -7,7 +7,9 @@ import com.campers.camfp.entity.member.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Builder
 @NoArgsConstructor
@@ -21,6 +23,7 @@ public class BoardDTO {
 	private Long mno;
 	private String nickname; // 이렇게 쓰는게 맞을까여
 	private String category;
+	private int replyCount;		// SH : 리플카운트가 없어서 추가함.
 	private int count;
 	private int heart;
 	private LocalDateTime regDate;
