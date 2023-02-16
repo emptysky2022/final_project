@@ -9,13 +9,13 @@ import com.campers.camfp.entity.member.Member;
 
 public interface BoardService {
 	
-	String register(BoardDTO boardDTO); 
+	Long register(BoardDTO boardDTO); 
 	
 	// SH
 	PageResultDTO<BoardDTO, Object[]> getList(PageRequestDTO pageRequestDTO);
 
 	// 게시글 상세 조회
-	BoardDTO get(Long bno);
+	BoardDTO read(Long bno);
 	
 	void removeWithReplies(Long bno);
 	

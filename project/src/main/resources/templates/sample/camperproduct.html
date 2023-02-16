@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camper Product</title>
+
+    <!--css 연결-->
+    <link rel="stylesheet" type="text/css" href="../css/camperproduct.css">
+    <!--js연결-->
+    <script type="text/javascript" src="/js/" defer></script>
+
+    <!--구글 폰트 링크-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Varela+Round&display=swap"
+        rel="stylesheet">
+    <!--폰트 그림 링크-->
+    <script src="https://kit.fontawesome.com/bb87a5faf0.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!--====메인 header====-->
+        <header>
+            <div class="header box1">
+                <!--네비게이션 로고-->
+                <div class="header_logo box2">
+                    <a class="box3" href="#"><img src="" alt="">
+                        캠퍼스사진 </a>
+
+                </div>
+
+
+                <!--네비게이션 메뉴목록-->
+                <ul class="header_menu box2_2">
+                    <li class="box3"><a class="item" href="">apple</a></li>
+                    <li class="box3_3"><a class="item" href="">cherry</a></li>
+                    <li class="box3_2"><a class="item" href="">banana</a></li>
+                    <li class="box3_4"><a class="item" href="">melon</a></li>
+                </ul>
+
+                <!--우측 상단 마이페이지-->
+                <ul class="header_mypage box2_3">
+                    <li class="box3">
+                        <a href="" class="box3">
+                            <i class="fa-solid fa-user item"></i>
+                        </a>
+                    </li>
+                </ul>
+
+                <!--햄버거 메뉴-->
+                <a href="#" class="header_hamburger box2_4">
+                    <i class="fa-solid fa-bars item"></i>
+                </a>
+            </div>
+        </header>
+        <main>
+        <div class="body box1">
+            <!--메인 바디의 사이드 빈 공간왼쪽-->
+            <div class="aside_l box2">aside_l</div>
+
+
+
+            <!--메인 바디 가운데 공간-->
+            <div class="body_center box2">
+
+                <!----------------캠핑 상품 목록------------->
+                <div class="sec1 box3">
+                    <div class="titlebox box4">
+                        <div class="title item">Camper Product</div>
+                    </div>
+                    <div class="line">
+                        <hr>
+                    </div>
+
+                    <div class="producttypebox box4">
+                        <div class="allselect item">전체선택</div>
+                        <div class="tent box5">
+                            <div class="tentitem1 item">돔 텐트</div>
+                            <div class="tentitem2 item_2">리빙쉘 텐트</div>
+                            <div class="tentitem3 item_3">터널형 텐트</div>
+                        </div>
+                        <div class="pole box5">
+                            <div class="poleitem1 item">스틸</div>
+                            <div class="poleitem2 item_2">알루미늄</div>
+                            <div class="poleitem3 item_3">화이버 글라스</div>
+                        </div>
+                        <div class="hammer box5">
+                            <div class="hammeritem1 item">나무망치</div>
+                            <div class="hammeritem2 item_2">쇠망치</div>
+                            <div class="hammeritem3 item_3">우레탄(고무)망치</div>
+                        </div>
+                        <div class="caravan box5">
+                            <div class="caravanitem1 item">카고 트레일러</div>
+                            <div class="caravanitem2 item_2">폴딩 트레일러</div>
+                            <div class="caravanitem3 item_3">일반 캠핑 트레일러</div>
+                        </div>
+                    </div>
+                    <div class="line">
+                        <hr>
+                    </div>
+                    <div class="priceorderbox box4">
+                        <div class="allselect item">전체선택</div>
+                        <div class="low item">~50,000</div>
+                        <div class="middle item_2">~150,000</div>
+                        <div class="high item_3">~300,000</div>
+                        <div class="morehigh item_4">제한없음</div>
+                    </div>
+                    <div class="line">
+                        <hr>
+                    </div>
+                    <div class="campingtypebox box4">
+                        <div class="allselect item">전체선택</div>
+                        <div class="glamping item">글램핑</div>
+                        <div class="wildcamping item_2">와일드 캠핑</div>
+                        <div class="caravan item_3">카라반</div>
+                        <div class="carcamping item_4">차박</div>
+                    </div>
+                    <div class="line">
+                        <hr>
+                    </div>
+
+                </div>
+
+                <div class="sec2 box3">
+                    <div class="dropdownsearchbox box4">
+                        <div class="dropdownbox box5">
+                            <div class="dropdown box6">
+                                <a href="#" class="dropbtn item">정렬</a>
+                                <div class="subdropdown box7">
+                                    <div class="dropitem item"><a href="#">조회순</a></div>
+                                    <div class="dropitem item_2"><a href="#">찜순위</a></div>
+                                    <div class="dropitem item_3"><a href="#">최신순</a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="searchbox box5">
+                            <input  type="text" class="search item" placeholder="검색상자"></input>
+                        </div>
+                    </div>
+                </div>
+                <!-------------------판매상품 등록--------------------->
+                <div class="sec3 box3">
+                    <div class="productbox1 box4">
+                        <div class="p_imgbox box5">
+                            <img class="p_img item" src="../img/happy9.jpg">
+                        </div>
+                        <div class="p_contentbox box5">
+                            <div class="p_writingbox box6">
+                                <div class="p_title item">(Black Yark) 235-텐트</div>
+                                <div class="p_explan item_2">좋은 제품입니다나까</div>
+                            </div>
+                            <div class="p_reviewheartbox box6">
+                                <div class="p_reviewbox box7">
+                                    <div class="review item">조회수 235</div>
+                                </div>
+                                <div class="p_heartbox box7">
+                                    <div class="heart item">찜 15</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="productbox2 box4">
+
+                        <div class="p_imgbox box5">
+                            <img class="p_img item" src="../img/happy9.jpg">
+                        </div>
+                        <div class="p_contentbox box5">
+                            <div class="p_writingbox box6">
+                                <div class="p_title item">(Black Yark) 235-텐트</div>
+                                <div class="p_explan item_2">좋은 제품입니다</div>
+                            </div>
+                            <div class="p_reviewheartbox box6">
+                                <div class="p_reviewbox box7">
+                                    <div class="review item">조회수 250</div>
+                                </div>
+                                <div class="p_heartbox box7">
+                                    <div class="heart item">찜 13</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="productbox3 box4">
+
+                        <div class="p_imgbox box5">
+                            <img class="p_img item" src="../img/happy9.jpg">
+                        </div>
+                        <div class="p_contentbox box5">
+                            <div class="p_writingbox box6">
+                                <div class="p_title item">(Black Yark) 235-텐트</div>
+                                <div class="p_explan item_2">좋은 제품입니다</div>
+                            </div>
+                            <div class="p_reviewheartbox box6">
+                                <div class="p_reviewbox box7">
+                                    <div class="review item">조회수 250</div>
+                                </div>
+                                <div class="p_heartbox box7">
+                                    <div class="heart item">찜 13</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="productbox4 box4">
+
+                        <div class="p_imgbox box5">
+                            <img class="p_img item" src="../img/happy9.jpg">
+                        </div>
+                        <div class="p_contentbox box5">
+                            <div class="p_writingbox box6">
+                                <div class="p_title item">(Black Yark) 235-텐트</div>
+                                <div class="p_explan item_2">좋은 제품입니다</div>
+                            </div>
+                            <div class="p_reviewheartbox box6">
+                                <div class="p_reviewbox box7">
+                                    <div class="review item">조회수 250</div>
+                                </div>
+                                <div class="p_heartbox box7">
+                                    <div class="heart item">찜 13</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="productbox5 box4">
+
+                        <div class="p_imgbox box5">
+                            <img class="p_img item" src="../img/happy9.jpg">
+                        </div>
+                        <div class="p_contentbox box5">
+                            <div class="p_writingbox box6">
+                                <div class="p_title item">(Black Yark) 235-텐트</div>
+                                <div class="p_explan item_2">좋은 제품입니다</div>
+                            </div>
+                            <div class="p_reviewheartbox box6">
+                                <div class="p_reviewbox box7">
+                                    <div class="review item">조회수 250</div>
+                                </div>
+                                <div class="p_heartbox box7">
+                                    <div class="heart item">찜 13</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="productbox6 box4">
+
+                        <div class="p_imgbox box5">
+                            <img class="p_img item" src="../img/happy9.jpg">
+                        </div>
+                        <div class="p_contentbox box5">
+                            <div class="p_writingbox box6">
+                                <div class="p_title item">(Black Yark) 235-텐트</div>
+                                <div class="p_explan item_2">좋은 제품입니다</div>
+                            </div>
+                            <div class="p_reviewheartbox box6">
+                                <div class="p_reviewbox box7">
+                                    <div class="review item">조회수 250</div>
+                                </div>
+                                <div class="p_heartbox box7">
+                                    <div class="heart item">찜 13</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="productbox7 box4">
+
+                        <div class="p_imgbox box5">
+                            <img class="p_img item" src="../img/happy9.jpg">
+                        </div>
+                        <div class="p_contentbox box5">
+                            <div class="p_writingbox box6">
+                                <div class="p_title item">(Black Yark) 235-텐트</div>
+                                <div class="p_explan item_2">좋은 제품입니다</div>
+                            </div>
+                            <div class="p_reviewheartbox box6">
+                                <div class="p_reviewbox box7">
+                                    <div class="review item">조회수 250</div>
+                                </div>
+                                <div class="p_heartbox box7">
+                                    <div class="heart item">찜 13</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="productbox8 box4">
+
+                        <div class="p_imgbox box5">
+                            <img class="p_img item" src="../img/happy9.jpg">
+                        </div>
+                        <div class="p_contentbox box5">
+                            <div class="p_writingbox box6">
+                                <div class="p_title item">(Black Yark) 235-텐트</div>
+                                <div class="p_explan item_2">좋은 제품입니다</div>
+                            </div>
+                            <div class="p_reviewheartbox box6">
+                                <div class="p_reviewbox box7">
+                                    <div class="review item">조회수 250</div>
+                                </div>
+                                <div class="p_heartbox box7">
+                                    <div class="heart item">찜 13</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="productbox9 box4">
+
+                        <div class="p_imgbox box5">
+                            <img class="p_img item" src="../img/happy9.jpg">
+                        </div>
+                        <div class="p_contentbox box5">
+                            <div class="p_writingbox box6">
+                                <div class="p_title item">(Black Yark) 235-텐트</div>
+                                <div class="p_explan item_2">좋은 제품입니다</div>
+                            </div>
+                            <div class="p_reviewheartbox box6">
+                                <div class="p_reviewbox box7">
+                                    <div class="review item">조회수 250</div>
+                                </div>
+                                <div class="p_heartbox box7">
+                                    <div class="heart item">찜 13</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="productbox10 box4">
+
+                        <div class="p_imgbox box5">
+                            <img class="p_img item" src="../img/happy9.jpg">
+                        </div>
+                        <div class="p_contentbox box5">
+                            <div class="p_writingbox box6">
+                                <div class="p_title item">(Black Yark) 235-텐트</div>
+                                <div class="p_explan item_2">좋은 제품입니다</div>
+                            </div>
+                            <div class="p_reviewheartbox box6">
+                                <div class="p_reviewbox box7">
+                                    <div class="review item">조회수 250</div>
+                                </div>
+                                <div class="p_heartbox box7">
+                                    <div class="heart item">찜 13</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="productbox11 box4">
+
+                        <div class="p_imgbox box5">
+                            <img class="p_img item" src="../img/happy9.jpg">
+                        </div>
+                        <div class="p_contentbox box5">
+                            <div class="p_writingbox box6">
+                                <div class="p_title item">(Black Yark) 235-텐트</div>
+                                <div class="p_explan item_2">좋은 제품입니다</div>
+                            </div>
+                            <div class="p_reviewheartbox box6">
+                                <div class="p_reviewbox box7">
+                                    <div class="review item">조회수 250</div>
+                                </div>
+                                <div class="p_heartbox box7">
+                                    <div class="heart item">찜 13</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="productbox12 box4">
+
+                        <div class="p_imgbox box5">
+                            <img class="p_img item" src="../img/happy9.jpg">
+                        </div>
+                        <div class="p_contentbox box5">
+                            <div class="p_writingbox box6">
+                                <div class="p_title item">(Black Yark) 235-텐트</div>
+                                <div class="p_explan item_2">좋은 제품입니다</div>
+                            </div>
+                            <div class="p_reviewheartbox box6">
+                                <div class="p_reviewbox box7">
+                                    <div class="review item">조회수 250</div>
+                                </div>
+                                <div class="p_heartbox box7">
+                                    <div class="heart item">찜 13</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="productbox13 box4">
+
+                        <div class="p_imgbox box5">
+                            <img class="p_img item" src="../img/happy9.jpg">
+                        </div>
+                        <div class="p_contentbox box5">
+                            <div class="p_writingbox box6">
+                                <div class="p_title item">(Black Yark) 235-텐트</div>
+                                <div class="p_explan item_2">좋은 제품입니다</div>
+                            </div>
+                            <div class="p_reviewheartbox box6">
+                                <div class="p_reviewbox box7">
+                                    <div class="review item">조회수 250</div>
+                                </div>
+                                <div class="p_heartbox box7">
+                                    <div class="heart item">찜 13</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="productbox14 box4">
+
+                        <div class="p_imgbox box5">
+                            <img class="p_img item" src="../img/happy9.jpg">
+                        </div>
+                        <div class="p_contentbox box5">
+                            <div class="p_writingbox box6">
+                                <div class="p_title item">(Black Yark) 235-텐트</div>
+                                <div class="p_explan item_2">좋은 제품입니다</div>
+                            </div>
+                            <div class="p_reviewheartbox box6">
+                                <div class="p_reviewbox box7">
+                                    <div class="review item">조회수 250</div>
+                                </div>
+                                <div class="p_heartbox box7">
+                                    <div class="heart item">찜 13</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="productbox15 box4">
+
+                        <div class="p_imgbox box5">
+                            <img class="p_img item" src="../img/happy9.jpg">
+                        </div>
+                        <div class="p_contentbox box5">
+                            <div class="p_writingbox box6">
+                                <div class="p_title item">(Black Yark) 235-텐트</div>
+                                <div class="p_explan item_2">좋은 제품입니다</div>
+                            </div>
+                            <div class="p_reviewheartbox box6">
+                                <div class="p_reviewbox box7">
+                                    <div class="review item">조회수 250</div>
+                                </div>
+                                <div class="p_heartbox box7">
+                                    <div class="heart item">찜 13</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="productbox16 box4">
+
+                        <div class="p_imgbox box5">
+                            <img class="p_img item" src="../img/happy9.jpg">
+                        </div>
+                        <div class="p_contentbox box5">
+                            <div class="p_writingbox box6">
+                                <div class="p_title item">(Black Yark) 235-텐트</div>
+                                <div class="p_explan item_2">좋은 제품입니다</div>
+                            </div>
+                            <div class="p_reviewheartbox box6">
+                                <div class="p_reviewbox box7">
+                                    <div class="review item">조회수 250</div>
+                                </div>
+                                <div class="p_heartbox box7">
+                                    <div class="heart item">찜 13</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <!--판매 상품 등록-->
+                <div class="sec4 box3">
+                    <div class="product_registration box4">
+                        <div class="p_r_imgbox box5">
+                            <img src="../img/happy15.jpg" class="p_r_img item">
+                        </div>
+
+                        <div class="p_r_title box5"> 판매상품을 등록하세요</div>
+                        <div class="p_r_content box5"> 좋은 상품 </div>
+                    </div>
+
+                    <div class="p_explanbox box4">
+                        <textarea class="explan item" name="explan" cols="30" rows="10" placeholder="
+                            1.대충 설명하는글 
+                            2.대충 설명하는글 
+                            3.대충 설명하는글 
+                            4.대충 설명하는글"></textarea>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--메인 바디의 사이드 빈 공간 오른쪽-->
+            <div class="aside_r box2">aside_r</div>
+
+
+
+
+
+
+        </div>
+        
+        </main><!--====푸터====-->
+        <footer>
+            <div class="footer box1">
+                푸터자리
+            </div>
+        </footer>
+        
+    </div>
+</body>
+
+</html>

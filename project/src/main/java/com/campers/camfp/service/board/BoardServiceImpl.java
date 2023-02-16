@@ -29,17 +29,18 @@ public class BoardServiceImpl implements BoardService {
 	public final ReplyRepository replyRepository;
 	
 	@Override
-	public String register(BoardDTO boardDTO) {
+	public Long register(BoardDTO boardDTO) {
 
 		log.info("BoardDTO---------------");
 		log.info(boardDTO);
+		log.info("BoardDTO---------------");
 		
 		Board entityBoard = dtoToEntity(boardDTO);
 		log.info(entityBoard);
 		
 		boardRepository.save(entityBoard);
 		
-		return entityBoard.getMember().getNickname();
+		return entityBoard.getBno();
 	}
 
 	@Override
@@ -58,7 +59,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	@Override
-	public BoardDTO get(Long bno) {
+	public BoardDTO read(Long bno) {
 		
 		Object result = boardRepository.getBoardByBno(bno);
 		

@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.campers.camfp.config.type.CampingType;
 import com.campers.camfp.entity.member.Member;
 
 import lombok.AllArgsConstructor;
@@ -44,7 +45,10 @@ public class Camp {
 	private String thumbnail;
 	
 	@Column(length = 20)
-	private String country;
+	private String location;
+
+	@Column(length = 20)
+	private CampingType camptype;
 	
 	@Column(length = 50)
 	private String address;

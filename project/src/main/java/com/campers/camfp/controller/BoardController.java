@@ -7,7 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -35,30 +36,29 @@ public class BoardController {
 		
 	}
 	
+//	@ResponseBody
+//	@GetMapping("/register")
+//	public void register() {
+//		log.info("register get......... ");
+//	}
+	
 	@ResponseBody
-	@GetMapping("/register")
-	public void register() {
-		log.info("register get......... ");
+	@PostMapping("")
+	public ResponseEntity<Long> register(BoardDTO boardDTO) {
+		
+		log.info("controller....... " + boardDTO);
+		
+		Long bno = boardService.register(boardDTO);
+		
+		return new ResponseEntity<Long>(bno, HttpStatus.OK);
 	}
 	
 	@ResponseBody
-	@PutMapping("/register")
-	public String registerPost(BoardDTO boardDTO /* , Model model */) {
-		log.info("boardDTO....... " + boardDTO);
-		
-		String nick = boardService.register(boardDTO);
-		
-		log.info("bno : " + nick);
-		
-		return "redirect:/sample/list";
-	}
-	
-	@ResponseBody
-	@GetMapping(value="/read/{bno}", produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value="/list/{bno}", produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<BoardDTO> read(@PathVariable("bno") Long bno) {		
 		log.info("bno : " + bno);
 		
-		BoardDTO boardDTO2 = boardService.get(bno);
+		BoardDTO boardDTO2 = boardService.read(bno);
 		
 		
 		log.info("-----------dto---------- : " + boardDTO2);
