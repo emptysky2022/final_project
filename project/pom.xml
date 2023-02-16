@@ -20,6 +20,10 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<dependency>
@@ -74,6 +78,15 @@
 		    <groupId>com.querydsl</groupId>
 		    <artifactId>querydsl-sql-spring</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -108,6 +121,4 @@
 			</plugin>
 		</plugins>
 	</build>
-<!-- 이게뭐람1 -->
-<!-- 다영..git 테스트 해봄 1111111111111111111111-->
 </project>

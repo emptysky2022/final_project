@@ -4,8 +4,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.campers.camfp.dto.BoardDTO;
-import com.campers.camfp.entity.Member;
+import com.campers.camfp.dto.board.BoardDTO;
+import com.campers.camfp.entity.member.Member;
+import com.campers.camfp.service.board.BoardService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,7 +17,7 @@ public class BoardServiceTest {
 	@Autowired
 	private BoardService boardService;
 
-	@Test // Board Entity - regDate - insertable=false로 바꾸고 테스트해야함..개귀차너
+	@Test
 	public void testRegister() {
 		
 		int count = (int)((Math.random() * 5000) + 1);

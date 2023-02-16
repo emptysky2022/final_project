@@ -2,7 +2,7 @@ package com.campers.camfp.repository.search;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.campers.camfp.entity.Item;
+import com.campers.camfp.entity.item.Item;
 
 public interface SearchRepository extends JpaRepository<Item, Long>{
 	

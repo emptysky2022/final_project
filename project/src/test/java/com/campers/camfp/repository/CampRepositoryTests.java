@@ -11,12 +11,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.campers.camfp.entity.Camp;
-import com.campers.camfp.entity.CampCalender;
-import com.campers.camfp.entity.CampReview;
-import com.campers.camfp.entity.History;
-import com.campers.camfp.entity.Member;
-import com.campers.camfp.util.type.TableType;
+import com.campers.camfp.config.type.CampingType;
+import com.campers.camfp.config.type.GenderType;
+import com.campers.camfp.config.type.TableType;
+import com.campers.camfp.entity.camp.Camp;
+import com.campers.camfp.entity.camp.CampCalender;
+import com.campers.camfp.entity.camp.CampReview;
+import com.campers.camfp.entity.history.History;
+import com.campers.camfp.entity.member.Member;
+import com.campers.camfp.repository.camp.CampCalenderRepository;
+import com.campers.camfp.repository.camp.CampRepository;
+import com.campers.camfp.repository.camp.CampReviewRepository;
+import com.campers.camfp.repository.history.HistoryRepository;
+import com.campers.camfp.repository.member.MemberRepository;
 
 @SpringBootTest
 public class CampRepositoryTests {
@@ -27,16 +34,15 @@ public class CampRepositoryTests {
 	private HistoryRepository historyRepository;
 	private CampCalenderRepository campCalenderRepository;
 	private MemberRepository memberRepository;
-	
 
 	@Autowired
-	public CampRepositoryTests(CampRepository a, CampReviewRepository b, HistoryRepository c,
-			CampCalenderRepository d, MemberRepository e) {
+	public CampRepositoryTests(CampRepository a, CampReviewRepository b, HistoryRepository c, CampCalenderRepository d,
+			MemberRepository e) {
 		this.campRepository = a;
 		this.campReviewRepository = b;
 		this.historyRepository = c;
 		this.campCalenderRepository = d;
-		this.memberRepository = e ;
+		this.memberRepository = e;
 	}
 
 	@Test
@@ -46,57 +52,76 @@ public class CampRepositoryTests {
 
 	@Test
 	public void test() {
-		for (int i = 0; i < 6; i++) {
+		for (int i = 2; i < 10; i++) {
 
-			createCampTest();
+			// createCampTest();
 			createCampCalenderTest();
-			createCampReviewTests();
 			createCampReviewTests();
 			createHistoryTests();
 		}
 	}
-	
+
 	public Member getmember(Long mno) {
-		return Member.builder().nickname("nickname" + mno).mno(1L).build(); 
+		return Member.builder().mno(mno + 1L).build();
 	}
 
 	@Test
 	public void createCampTest() {
-		for (Long i = 0L; i < 10; i++) {
-			Camp camp = Camp.builder().member(getmember(i))
-					.country("country")
-					.address("address")
-					.name("name")
-					.thumbnail("thum")
-					.build();
+		for (Long i = 1L; i < 100; i++) {
+
+			double dValue = Math.random();
+			double dValuet = Math.random();
+
+			int iValue = (int) (dValue * 10) + 1;
+			int iValue2 = (int) (dValuet * 4);
+			String addr = null;
+			String location = null;
+			CampingType campt = null;
+			String imagepath = null;
+			switch (iValue2) {
+			case 0:
+				campt = CampingType.WILD;
+				imagepath = "https://tse1.mm.bing.net/th?id=OIP.-n8Lawo9CI7OBeCxt0BF2QHaE8&pid=Api&P=0";
+				addr = "경기도 포천시 영북면 산정호수로 529";
+				location = "경기도";
+				break;
+			case 1:
+				campt = CampingType.GLAMP;
+				imagepath = "https://tse1.mm.bing.net/th?id=OIP.VtKQcloM_Z9uFWCrYoDS7gHaE7&pid=Api&P=0";
+				addr = "충청남도 태안군 원북면 옥파로 1059-16";
+				location = "충청도";
+
+				break;
+			case 2:
+				campt = CampingType.AUTO;
+				imagepath = "https://tse2.mm.bing.net/th?id=OIP.aeg1TGgqQIlZuTqbu6J4TgHaE8&pid=Api&P=0";
+				addr = "강원도 속초시 장성천길 151";
+				location = "강원도";
+
+				break;
+			case 3:
+				campt = CampingType.CARAVN;
+				imagepath = "https://tse1.mm.bing.net/th?id=OIP.E48xprIE4vwRdSAHnx3yswHaE8&pid=Api&P=0";
+				addr = "경기도 연천군 전곡읍 선사로 270 ";
+				location = "경기도";
+
+				break;
+			}
+
+			Camp camp = Camp.builder().member(getmember(i)).location(location).address(addr).camptype(campt)
+					.name("name" + i).thumbnail(imagepath).heart(iValue).build();
 			campRepository.save(camp);
 		}
 	}
-	
-//	this.pw  = pw;
-//	this.nickname = nickname;
-//	this.profileImg = profileImg;
-//	this.name = name;
-//	this.age = age;
-//	this.address = address;
-//	this.phone = phone;
-//	this.introduce = introduce;
-	
+
 	@Test
 	public void createMemberTest() {
-		for (int i = 0; i < 10; i++) {
-			Member member = Member.builder().pw("pw")
-											.nickname("nickname" + i)
-											.profileImg("img")
-											.name("name")
-											.age(i)
-											.gender(true)
-											.grade(true)
-											.address("1")
-											.phone("1")
-											.introduce("1")
-											.build();
-			
+		for (int i = 0; i < 100; i++) {
+			Member member = Member.builder().pw("pw").nickname("nickname" + i).id("id" + i).profileImg("img")
+					.name("name").age(i).gender(GenderType.MALE)
+					// .grade(true) ->String으로 바꿈
+					.address("1").phone("1").introduce("1").build();
+
 			memberRepository.save(member);
 
 		}
@@ -115,9 +140,9 @@ public class CampRepositoryTests {
 	@Test
 	public void createCampReviewTests() {
 
-		CampReview campReview = CampReview.builder().capture("img").content("con").reviewer("nic").camp(getCampNum(1))
-				.build();
-		campReviewRepository.save(campReview);
+//		CampReview campReview = CampReview.builder().capture("img").content("con").reviewer("nic").camp(getCampNum(Integer.toUnsignedLong(i)))
+//				.build();
+//		campReviewRepository.save(campReview);
 
 	}
 
@@ -142,8 +167,6 @@ public class CampRepositoryTests {
 	@Transactional
 	public Object serviceTetst() {
 		Optional<Object> value = null;
-		
-		
 
 		TableType table = TableType.CAMP;
 		Long cno = 1l;
@@ -151,17 +174,17 @@ public class CampRepositoryTests {
 		switch (table) {
 
 		case CAMP:
-			
+
 			value = Optional.of(campRepository.findById(cno).get());
-			
+
 			break;
 
 		case CAMPREVIEW:
-			//value = Optional.of(campReviewRepository.findById(cno).get());
+			// value = Optional.of(campReviewRepository.findById(cno).get());
 			break;
 
 		case CAMPCALENDER:
-			//value = Optional.of(campCalenderRepository.findById(cno).get());
+			// value = Optional.of(campCalenderRepository.findById(cno).get());
 			break;
 
 		default:

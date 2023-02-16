@@ -242,6 +242,10 @@ main .body .body_center {
     align-items: center;
 }
 
+.sec1 .campgroundimgbox {
+	width: 60vh;
+}
+
 .sec1 .titlebox {
     display: flex;
     justify-content: center;
@@ -447,4 +451,79 @@ main .body .body_center {
     border: 3px solid red;
     background-color: black;
     color: aliceblue;
+}
+
+/* TEST */
+#calendar {
+  width: 300px;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+#month-year {
+  font-size: 24px;
+  text-align: center;
+  margin: 10px;
+}
+
+#weekdays {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f7f7f7;
+  padding: 5px;
+}
+
+#weekdays div {
+  width: 40px;
+  text-align: center;
+}
+
+#days {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+#days div {
+  width: 30px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  margin: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+#days div:hover {
+  background-color: #f7f7f7;
+}
+
+#buttons {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+button:hover {
+  background-color: #3e8e41;
+}
+
+button:active {
+  background-color: #3e8e41;
+  transform: translateY(1px);
 }

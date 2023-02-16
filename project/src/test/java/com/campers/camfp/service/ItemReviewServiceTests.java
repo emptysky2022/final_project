@@ -6,14 +6,15 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.campers.camfp.dto.ItemReviewDTO;
+import com.campers.camfp.dto.item.ItemReviewDTO;
+import com.campers.camfp.service.item.ItemReviewService;
 
 @SpringBootTest
 public class ItemReviewServiceTests {
 
 	@Autowired
 	private ItemReviewService itemReviewService;
-	
+
 	@Test
 	public void insertDummies() {
 		IntStream.rangeClosed(1, 50).forEach(i -> {
@@ -21,13 +22,13 @@ public class ItemReviewServiceTests {
 											.ino((long)i)
 											.capture("https://shopping-phinf.pstatic.net/main_8280118/82801183559.8.jpg")
 											.content("정말 최고의 선택이에요")
-											.reviewer("userID"+i)
+											.reviewer("코코도치")
 											.build();
 
 			itemReviewService.register(itemReviewDTO);
 		});
 	}
-	
+
 	@Test
 	public void modifyDummy() {
 		ItemReviewDTO itemReviewDTO = itemReviewService.getOne(2L);
@@ -35,7 +36,7 @@ public class ItemReviewServiceTests {
 		itemReviewDTO.setCapture("https://shopping-phinf.pstatic.net/main_8473051/84730518441.4.jpg");
 		itemReviewService.modify(itemReviewDTO);
 	}
-	
+
 	@Test
 	public void removeDummy() {
 		itemReviewService.remove(1L);
