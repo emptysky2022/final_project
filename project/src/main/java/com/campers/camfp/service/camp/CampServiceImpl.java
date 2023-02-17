@@ -23,6 +23,7 @@ import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @Service
+@SuppressWarnings("unchecked")
 public class CampServiceImpl implements CampService {
 
 	private final CampRepository campRepository;
@@ -68,6 +69,47 @@ public class CampServiceImpl implements CampService {
 
 		return value;
 	}
+	
+	@Override
+	public List<Object> findAll(TableType table, Long cno) {
+
+		List<Object> result = new ArrayList<>();
+		List<Object> buffer = new ArrayList<>();
+
+		switch (table) {
+
+		case CAMP:
+			campRepository.findAll().forEach(data -> {
+				buffer.add(data);
+			});
+			break;
+
+		case CAMPREVIEW:
+			campReviewRepository.findAll().forEach(data -> {
+				buffer.add(data);
+			});
+			break;
+
+		case CAMPCALENDER:
+			campCalenderRepository.findAll().forEach(data -> {
+				buffer.add(data);
+			});
+			break;
+
+		default:
+
+			System.out.println("Not Found Type : " + table);
+
+			break;
+		}
+		
+		buffer.forEach(value -> {
+			result.add(EntityToDTO(table, value));
+		});
+
+		return result;
+
+	}
 
 	public List<Object> findHeartRank(TableType table, int num) {
 
@@ -77,10 +119,8 @@ public class CampServiceImpl implements CampService {
 		switch (table) {
 
 		case CAMP:
-			List<Camp> camplist = (List<Camp>) campRepository.findHeartRank(table, num);
-			camplist.forEach(camp -> {
-				bufferList.add(camp);
-			});
+			List<Camp> camplist =  (List<Camp>) campRepository.findHeartRank(table, num);
+			camplist.forEach(camp -> bufferList.add(camp));
 			break;
 
 		case CAMPREVIEW:
@@ -134,7 +174,7 @@ public class CampServiceImpl implements CampService {
 	}
 
 	@Override
-	public Long register(TableType table, Object dto) {
+	public void register(TableType table, Object dto) {
 
 		Object result = null;
 
@@ -142,17 +182,17 @@ public class CampServiceImpl implements CampService {
 
 		case CAMP:
 			Camp camp = (Camp) DTOToEntity(table, dto);
-			result = campRepository.save(camp);
+			campRepository.save(camp);
 			break;
 
 		case CAMPREVIEW:
 			CampReview campReview = (CampReview) DTOToEntity(table, dto);
-			result = campReviewRepository.save(campReview);
+			campReviewRepository.save(campReview);
 			break;
 
 		case CAMPCALENDER:
 			CampCalender campCalender = (CampCalender) DTOToEntity(table, dto);
-			result = campCalenderRepository.save(campCalender);
+			campCalenderRepository.save(campCalender);
 			break;
 
 		default:
@@ -162,7 +202,6 @@ public class CampServiceImpl implements CampService {
 			break;
 		}
 
-		return (Long) result;
 	}
 
 	@Override
@@ -199,38 +238,40 @@ public class CampServiceImpl implements CampService {
 	}
 
 	@Override
-	public List<Object> findAll(TableType table, Long cno) {
+	public List<Object> findDataOfMember(TableType table, Long mno) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Object> findDataOfCamp(TableType table, Long cno) {
 
 		List<Object> result = new ArrayList<>();
-
+		
 		switch (table) {
 
-		case CAMP:
-			campRepository.findAll().forEach(data -> {
-				result.add(data);
-			});
-			break;
-
 		case CAMPREVIEW:
-			campReviewRepository.findAll().forEach(data -> {
-				result.add(data);
+			List<CampReview> reivewList = (List<CampReview>) campRepository.findDataOfCamp(table, cno);
+			reivewList.forEach(value -> {
+				result.add(EntityToDTO(table, value));
 			});
 			break;
-
+			
 		case CAMPCALENDER:
-			campCalenderRepository.findAll().forEach(data -> {
-				result.add(data);
+			List<CampCalender> calenderList = (List<CampCalender>) campRepository.findDataOfCamp(table, cno);
+			calenderList.forEach(value -> {
+				result.add(EntityToDTO(table, value));
 			});
 			break;
 
 		default:
-
 			System.out.println("Not Found Type : " + table);
-
 			break;
+
+			
 		}
-
+		
+		
 		return result;
-
 	}
 }

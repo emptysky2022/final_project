@@ -3,7 +3,6 @@ package com.campers.camfp.repository;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 import javax.transaction.Transactional;
 
@@ -141,9 +140,9 @@ public class CampRepositoryTests {
 	@Test
 	public void createCampReviewTests() {
 
-//		CampReview campReview = CampReview.builder().capture("img").content("con").reviewer("nic").camp(getCampNum(Integer.toUnsignedLong(i)))
-//				.build();
-//		campReviewRepository.save(campReview);
+		CampReview campReview = CampReview.builder().capture("img").content("con").reviewer("nic").camp(getCampNum(1L))
+				.build();
+		campReviewRepository.save(campReview);
 
 	}
 

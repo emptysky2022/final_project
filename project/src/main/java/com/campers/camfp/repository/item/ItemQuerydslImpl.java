@@ -10,7 +10,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;
 
-import com.campers.camfp.entity.board.Board;
 import com.campers.camfp.entity.item.Item;
 import com.campers.camfp.entity.item.QItem;
 import com.querydsl.core.BooleanBuilder;

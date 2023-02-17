@@ -38,13 +38,13 @@ public class Camp {
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	private Member member;
 	
-	@Column(length = 20)
+	@Column(length = 30)
 	private String name;
 	
 	@Column(length = 200)
 	private String thumbnail;
 	
-	@Column(length = 20)
+	@Column(length = 30)
 	private String location;
 
 	@Column(length = 20)
