@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.campers.camfp.dto.board.BoardDTO;
+import com.campers.camfp.dto.board.ReplyDTO;
 import com.campers.camfp.dto.page.PageRequestDTO;
 import com.campers.camfp.dto.page.PageResultDTO;
 import com.campers.camfp.entity.board.Board;
@@ -35,12 +36,12 @@ public class BoardServiceImpl implements BoardService {
 		log.info(boardDTO);
 		log.info("BoardDTO---------------");
 		
-		Board entityBoard = dtoToEntity(boardDTO);
-		log.info(entityBoard);
+		Board enBoard = dtoToEntity(boardDTO);
+		log.info(enBoard);
 		
-		boardRepository.save(entityBoard);
+		boardRepository.save(enBoard);
 		
-		return entityBoard.getBno();
+		return enBoard.getBno();
 	}
 
 	@Override
@@ -57,6 +58,20 @@ public class BoardServiceImpl implements BoardService {
 		
 		return new PageResultDTO<>(result, fn);
 	}
+	
+//	public PageResultDTO<BoardDTO, Object[]> getList(PageRequestDTO pageRequestDTO) {
+//		
+//		Pageable pageable = pageRequestDTO.getPageable(Sort.by("bno").descending());
+//		
+//		log.info("pageRequestDTO : " + pageRequestDTO);
+//		
+//		Function<Object[], BoardDTO> fn = (en -> entityToDTO((Board) en[0], (Member) en[1], (Long) en[2]));
+//		
+//		Page<Object[]> result = boardRepository.getBoardWithReplyCount(pageable);
+//		
+//		
+//		return new PageResultDTO<>(result, fn);
+//	}
 	
 	@Override
 	public BoardDTO read(Long bno) {
@@ -79,12 +94,13 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void modify(BoardDTO boardDTO) {
 		
-		Board board = boardRepository.findById(boardDTO.getBno()).get();
+//		Board board = boardRepository.findById(boardDTO.getBno()).get();
+//		
+//		if(board != null) {
+//			board.change(boardDTO.getTitle(), boardDTO.getContent());
+//		}
 		
-		if(board != null) {
-			board.change(boardDTO.getTitle(), boardDTO.getContent());
-		}
-		
+		Board board = dtoToEntity(boardDTO);
 		boardRepository.save(board);
 	}
 	

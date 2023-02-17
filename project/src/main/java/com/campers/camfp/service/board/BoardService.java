@@ -4,7 +4,6 @@ import com.campers.camfp.dto.board.BoardDTO;
 import com.campers.camfp.dto.page.PageRequestDTO;
 import com.campers.camfp.dto.page.PageResultDTO;
 import com.campers.camfp.entity.board.Board;
-import com.campers.camfp.entity.board.Reply;
 import com.campers.camfp.entity.member.Member;
 
 public interface BoardService {
