@@ -24,6 +24,9 @@ public class CampDTO {
 	private String thumbnail;
 	private String country;
 	private String address;
+	private String location;
+	private String camptype;
+	private String campintroduce;
 	private int unit;
 	private int count;
 	private int star;
