@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.campers.camfp.config.type.TableType;
+import com.campers.camfp.dto.camp.CampCalenderDTO;
 import com.campers.camfp.dto.camp.CampDTO;
+import com.campers.camfp.dto.camp.CampReviewDTO;
+import com.campers.camfp.entity.camp.CampCalender;
 import com.campers.camfp.service.camp.CampService;
 
 import lombok.extern.log4j.Log4j2;
@@ -39,10 +42,6 @@ public class CampController {
 			dataList.add((CampDTO) result);
 		});
 
-		dataList.forEach(test -> {
-			System.out.println(test);
-		});
-
 		model.addAttribute("result", dataList);
 		log.info("탔다");
 	}
@@ -50,9 +49,17 @@ public class CampController {
 	@GetMapping("/campgroundsdetail")
 	public void getGroundsDetail(Long cno, Model model) {
 		
+		List<CampCalenderDTO> calenderList = new ArrayList<>();
+
 		CampDTO campdto = (CampDTO) campService.findbyId(TableType.CAMP, cno);
 		
+		campService.findDataOfCamp(TableType.CAMPCALENDER, cno).forEach(value ->{
+			calenderList.add((CampCalenderDTO) value);
+		});
+		
 		model.addAttribute("result", campdto);
+		model.addAttribute("calender", calenderList);
+		log.info(calenderList);
 		log.info("탔다");
 
 	}

@@ -19,11 +19,15 @@ public interface CampService {
 
 	public Object modify(TableType table, Object dto);
 
-	public Long register(TableType table, Object dto);
+	public void register(TableType table, Object dto);
 	
 	public List<Object> findAll(TableType table, Long cno);
 	
 	public List<Object> findHeartRank(TableType table, int num);
+	
+	public List<Object> findDataOfMember(TableType table, Long mno);
+	
+	public List<Object> findDataOfCamp(TableType table, Long cno);
 	
 	/**
 	 * @param table 변환할 table 명 table <br>

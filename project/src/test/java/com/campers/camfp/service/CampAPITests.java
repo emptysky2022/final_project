@@ -80,6 +80,7 @@ public class CampAPITests {
 									.address(camp.getString("addr1") + camp.getString("addr2"))
 									.build();
 					campService.register(TableType.CAMP, campDTO);
+					System.out.println(camps);
 				}
 			} catch (JSONException e) {
 				throw new RuntimeException("JSON 변환 실패", e);
