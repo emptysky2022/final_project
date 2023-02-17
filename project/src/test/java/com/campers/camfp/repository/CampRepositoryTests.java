@@ -140,9 +140,9 @@ public class CampRepositoryTests {
 	@Test
 	public void createCampReviewTests() {
 
-//		CampReview campReview = CampReview.builder().capture("img").content("con").reviewer("nic").camp(getCampNum(Integer.toUnsignedLong(i)))
-//				.build();
-//		campReviewRepository.save(campReview);
+		CampReview campReview = CampReview.builder().capture("img").content("con").reviewer("nic").camp(getCampNum(1L))
+				.build();
+		campReviewRepository.save(campReview);
 
 	}
 
