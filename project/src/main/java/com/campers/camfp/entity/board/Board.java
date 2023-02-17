@@ -47,8 +47,8 @@ public class Board extends BaseEntity {
 	
 	private int heart; // 좋아요
 	
-	public void change(String title, String content) {
-		this.title = title;
-		this.content = content;
-	}
+//	public void change(String title, String content) {
+//		this.title = title;
+//		this.content = content;
+//	}
 }
