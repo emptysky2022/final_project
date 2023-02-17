@@ -16,25 +16,27 @@
 	<!-- 게시글 등록 : 시작 -->
 	<div id="boardListRE_register" name="register">
 		<h3>글 등록 페이지입니다.</h3>
-		
-		<form action="" method="post">
+		<form th:action="@{/sample/register}" th:method="post">
 			<div>
+				<input type="hidden" name="nickname" th:value="|${memInfo.nickname}|" readonly>
+				<input type="hidden" name="mno" th:value="|${memInfo.mno}|" readonly>
+				
 				<label>제목</label>
 				<input type="text" name="title">
 			</div>
+			
 			<div>
 				<label>내용</label>
 				<textarea rows="5" name="content"></textarea>
 			</div>
+			
 			<div>
 				<label>사진 첨부</label>
 				<input type="text" name="image">
 			</div>
 			
 			<div>
-			
 				<button type="submit">등록하기</button>
-				<button type="button">취소</button>
 				<button type="reset">비우기</button>
 			</div>
 		</form>
@@ -71,7 +73,7 @@
 	<!-- 게시글 상세 : 시작 -->
 	<th:block>
 	<div class="sec3" id="boardListRE_read">
-	
+	<!-- 스크립트에서 str 삽입될 공간 -->
 	</div>
 	</th:block>
 	<!-- 게시글 상세 : 끝-->
