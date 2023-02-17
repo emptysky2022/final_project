@@ -59,7 +59,7 @@ public class CampController {
 		
 		model.addAttribute("result", campdto);
 		model.addAttribute("calender", calenderList);
-		log.info(calenderList);
+		log.info(campdto);
 		log.info("탔다");
 
 	}
