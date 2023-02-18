@@ -7,11 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Camper Product</title>
 
+	<!-- jquery -->
+	<script
+	  src="https://code.jquery.com/jquery-3.6.3.min.js"
+	  integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+	  crossorigin="anonymous"></script>
     <!--css 연결-->
     <link rel="stylesheet" type="text/css" href="../css/camperproduct.css">
     <!--js연결-->
-
-    <script type="text/javascript" th:src="@{../js/item.js}" defer></script>
+    <script type="text/javascript" src="../js/itemList.js" ></script>
 
     <!--구글 폰트 링크-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -78,7 +82,7 @@
                     </div>
 
                     <div class="producttypebox box4">
-                        <div class="allselect item">전체선택</div>
+                        <div class="allselect item" onclick="search('', '', 'count')">카테고리</div>
                         <div class="tent box5">
                             <div class="tentitem1 item">돔 텐트</div>
                             <div class="tentitem2 item_2">리빙쉘 텐트</div>
@@ -104,7 +108,7 @@
                         <hr>
                     </div>
                     <div class="priceorderbox box4">
-                        <div class="allselect item">전체선택</div>
+                        <div class="allselect item">가격</div>
                         <div class="low item">~50,000</div>
                         <div class="middle item_2">~150,000</div>
                         <div class="high item_3">~300,000</div>
@@ -113,7 +117,7 @@
                     <div class="line">
                         <hr>
                     </div>
-                    <div class="campingtypebox box4">
+                    <!-- <div class="campingtypebox box4">
                         <div class="allselect item">전체선택</div>
                         <div class="glamping item">글램핑</div>
                         <div class="wildcamping item_2">와일드 캠핑</div>
@@ -122,7 +126,7 @@
                     </div>
                     <div class="line">
                         <hr>
-                    </div>
+                    </div> -->
 
                 </div>
 
@@ -132,9 +136,9 @@
                             <div class="dropdown box6">
                                 <a href="#" class="dropbtn item">정렬</a>
                                 <div class="subdropdown box7">
-                                    <div class="dropitem item"><a href="#">조회순</a></div>
-                                    <div class="dropitem item_2"><a href="#">찜순위</a></div>
-                                    <div class="dropitem item_3"><a href="#">최신순</a></div>
+                                    <div class="dropitem item"><a th:onclick="category('count')">조회순</a></div>
+                                    <div class="dropitem item_2"><a th:onclick="category('heart')">찜순위</a></div>
+                                    <div class="dropitem item_3"><a th:onclick="category('ino')">최신순</a></div>
                                 </div>
                             </div>
                         </div>
@@ -144,9 +148,9 @@
                     </div>
                 </div>
                 <!-------------------판매상품 목록--------------------->
-                <div class="sec3 box3">
+                <div class="sec3 box3" id="list">
                 <!-- th:attr="onclick=|showDetail(${item.ino})|" -->
-                	<div class="productbox box4" th:each="item : ${result.dtoList}" th:attr="onclick=|location.href='@{/item/item(ino=${item.ino})}'|">
+                	<div class="productbox box4" th:each="item : ${result.dtoList}" th:attr="onclick=|location.href='@{/item/detail(ino=${item.ino})}'|">
                 		<div class="p_imgbox box5">
                             <img class="p_img item" th:src="${item.thumbnail}">
                         </div>

@@ -12,6 +12,6 @@ public interface ItemQuerydsl {
 	 * 조건부 검색
 	 * 
 	 */
-	Page<Item> findBySearch(String category, String keyword, Pageable pageable);
+	Page<Object[]> findBySearch(String category, String keyword, Pageable pageable);
 	
 }

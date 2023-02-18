@@ -8,11 +8,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.campers.camfp.dto.item.ItemDTO;
 import com.campers.camfp.dto.page.PageRequestDTO;
+import com.campers.camfp.dto.page.PageResultDTO;
 import com.campers.camfp.service.item.ItemService;
+import com.querydsl.core.util.StringUtils;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -27,11 +31,11 @@ public class ItemController {
 
 	@GetMapping("/list")
 	public void itemList(PageRequestDTO pageRequestDTO, Model model) {
-		log.info(itemService.getListOfPage(pageRequestDTO));
-		model.addAttribute("result", itemService.getListOfPage(pageRequestDTO));
+		log.info(itemService.getListOfPage(pageRequestDTO, null));
+		model.addAttribute("result", itemService.getListOfPage(pageRequestDTO, null));
 	}
 	
-	@GetMapping("/item")
+	@GetMapping("/detail")
 	public void viewDetail(Long ino, Model model) {
 		ItemDTO itemDTO = itemService.getOne(ino);
 		
@@ -39,4 +43,13 @@ public class ItemController {
 		model.addAttribute("detail", itemDTO);
 	}
 	
+	@ResponseBody
+	@GetMapping("/list/data")
+	public ResponseEntity<PageResultDTO<ItemDTO, Object[]>> itemListWithCondition(PageRequestDTO pageRequestDTO, String category, String keyword, String type) {
+		log.info("get list with condition : " + category + keyword + type);
+		PageResultDTO<ItemDTO, Object[]> result = itemService.getListOfPage(pageRequestDTO,
+				List.of(StringUtils.isNullOrEmpty(category) ? "none": category, StringUtils.isNullOrEmpty(keyword) ? "none":keyword, StringUtils.isNullOrEmpty(type) ? "none":type));
+		
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
 }

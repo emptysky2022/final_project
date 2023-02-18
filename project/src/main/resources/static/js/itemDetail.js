@@ -2,7 +2,7 @@ $(function(){
 	function loadJsonData(){
 		let ino = new URLSearchParams(window.location.search).get("ino");
 		let reviewGroup = $("#reviewGroup");
-		$.getJSON("/review/list/" + ino, function(result){
+		$.getJSON("/review/detail/" + ino, function(result){
 			console.log(result);
 			let str = "";
 			$.each(result, function(index, review){
@@ -17,7 +17,7 @@ $(function(){
 				  str += '    <div class="comment box7">';
 				  str += '      <h2 class="write item">' + review.reviewer + '</h2>';
 				  str += '      <p class="content item_2">' + review.content + '</p></div>';
-				  str += '    <div class="rv_like box7"><i class="fa-sharp fa-solid fa-thumbs-up fa-1x item"></i></div>데헷</div>';
+				  str += '    <div class="rv_like box7"><i class="fa-sharp fa-solid fa-thumbs-up fa-1x item"></i></div></div>';
 			})
 			reviewGroup.html(str);
 			console.log("끝!")

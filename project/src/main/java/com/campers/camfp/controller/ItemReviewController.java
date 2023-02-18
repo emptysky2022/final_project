@@ -23,7 +23,7 @@ public class ItemReviewController {
 	
 	private final ItemReviewService itemReviewService;
 	
-	@GetMapping("/list/{ino}")
+	@GetMapping("/detail/{ino}")
 	public ResponseEntity<List<ItemReviewDTO>> getReviewOfItem(@PathVariable Long ino){
 		List<ItemReviewDTO> result = itemReviewService.getReviewOfItem(ino);
 		

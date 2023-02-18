@@ -5,6 +5,8 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -68,15 +70,27 @@ public class ItemServiceImpl implements ItemService{
 	}
 
 	@Override
-	public PageResultDTO<ItemDTO, Object[]> getListOfPage(PageRequestDTO pageRequestDTO) {
+	public PageResultDTO<ItemDTO, Object[]> getListOfPage(PageRequestDTO pageRequestDTO, List<String> condition) {
 		log.info("pageRequestDTO : " + pageRequestDTO);
-		
-		Page<Object[]> result = itemRepository.getListWithPage(pageRequestDTO.getPageable(Sort.by("ino").descending()));
+		Page<Object[]> result;
+		if(condition == null || condition.isEmpty()) {
+			result = itemRepository.getListWithPage(pageRequestDTO.getPageable(Sort.by("ino").descending()));			
+		}else {
+			Sort sort;
+			if(condition.get(2) == "none") {
+				sort = Sort.by("ino").descending();
+			}
+			else {
+				sort = Sort.by(condition.get(2)).descending().and(Sort.by("ino").descending());
+			}
+			result = itemRepository.findBySearch(condition.get(0), condition.get(1), pageRequestDTO.getPageable(sort));
+		}
 		
 		Function<Object[], ItemDTO> fn = (en -> 
-				entityToDto((Item)en[0], (Member)en[1]));
+		entityToDto((Item)en[0], (Member)en[1]));
 		
 		return new PageResultDTO<>(result, fn);
+		
 	}
 
 }
