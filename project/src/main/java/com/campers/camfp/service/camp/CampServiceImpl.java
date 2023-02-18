@@ -182,6 +182,7 @@ public class CampServiceImpl implements CampService {
 
 		case CAMP:
 			Camp camp = (Camp) DTOToEntity(table, dto);
+			System.out.println(camp);
 			campRepository.save(camp);
 			break;
 

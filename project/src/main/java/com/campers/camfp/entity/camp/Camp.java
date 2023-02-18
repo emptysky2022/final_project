@@ -48,7 +48,10 @@ public class Camp {
 	private String location;
 
 	@Column(length = 20)
-	private CampingType camptype;
+	private String camptype;
+	
+	@Column(length = 500)
+	private String campintroduce;
 	
 	@Column(length = 50)
 	private String address;
