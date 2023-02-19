@@ -66,4 +66,12 @@ public class Item {
 	private int star;				//별점
 	
 	private int heart;				//좋아요, 찜 수
+	
+	public void increseCount() {
+		this.count++;
+	}
+	
+	public void increseHeart() {
+		this.heart++;
+	}
 }

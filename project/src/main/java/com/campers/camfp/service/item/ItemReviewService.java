@@ -20,6 +20,9 @@ public interface ItemReviewService {
 	//사용자가 작성한 리뷰 가져오기
 	List<ItemReviewDTO> getReviewOfMember(String mid);
 	
+	//좋아요 누르기
+	int heartOfMember(Long irno);
+
 	//리뷰 수정하기
 	void modify(ItemReviewDTO itemReviewDTO);
 	
@@ -47,8 +50,10 @@ public interface ItemReviewService {
 								.reviewer(itemReview.getReviewer())
 								.capture(itemReview.getCapture())
 								.content(itemReview.getContent())
+								.heart(itemReview.getHeart())
 								.build();
 		
 		return itemReviewDTO;
 	}
+
 }
