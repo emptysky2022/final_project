@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camp Grounds</title>
+
+    <!--css 연결-->
+    <link rel="stylesheet" type="text/css" href="../css/campgrounds.css">
+    <!--js연결-->
+    <script type="text/javascript" src="/js/main.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!--구글 폰트 링크-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Varela+Round&display=swap"
+        rel="stylesheet">
+    <!--폰트 그림 링크-->
+    <script src="https://kit.fontawesome.com/bb87a5faf0.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!--====메인 header====-->
+        <header>
+            <div class="header box1">
+            
+                <!--네비게이션 로고-->
+                <div class="header_logo box2">
+                    <a class="box3" href="#"><img src="" alt="">
+                        캠퍼스사진 </a>
+                </div>
+                
+                <!--네비게이션 메뉴목록-->
+                <ul class="header_menu box2_2">
+                    <li class="box3"><a class="item" href="">apple</a></li>
+                    <li class="box3_3"><a class="item" href="">cherry</a></li>
+                    <li class="box3_2"><a class="item" href="">banana</a></li>
+                    <li class="box3_4"><a class="item" href="">melon</a></li>
+                </ul>
+
+                <!--우측 상단 마이페이지-->
+                <ul class="header_mypage box2_3">
+                    <li class="box3">
+                        <a href="" class="box3">
+                            <i class="fa-solid fa-user item"></i>
+                        </a>
+                    </li>
+                </ul>
+
+                <!--햄버거 메뉴-->
+                <a href="#" class="header_hamburger box2_4">
+                    <i class="fa-solid fa-bars item"></i>
+                </a>
+            </div>
+        </header>
+        <main>
+            <div class="body box1">
+                <!--메인 바디의 사이드 빈 공간왼쪽-->
+                <div class="aside_l box2">aside_l</div>
+
+
+
+                <!--메인 바디 가운데 공간-->
+                <div class="body_center box2">
+
+                    <!----------------제목------------->
+                    <div class="sec1 box3">
+                        <div class="titlebox box4">
+                            <div class="title item">Camp</div>
+                        </div>
+                    </div>
+
+                    <!-------------------캠핑장 드롭다운메뉴--------------------->
+                    <div class="sec2 box3">
+                        <!--드롭다운메뉴-->
+                        <div class="dropdowncampbox box4">
+                            <div class="dropdown box5">
+                                <a href="#" class="dropbtn item">캠핑종류</a>
+                                <div class="subdropdown box7" >
+                                    <div class="dropitem item"><a href="#" >와일드 캠핑</a></div>
+                                    <div class="dropitem item_2"><a href="#">글램핑</a></div>
+                                    <div class="dropitem item_3"><a href="#">오토캠핑장</a></div>
+                                    <div class="dropitem item_4"><a href="#">oo캠핑장</a></div>
+                                </div>
+                            </div>	
+                        </div>
+                                    <button class="wild" > 와일드 캠핑</button>
+                                    <button class="glamp"> 글램핑</button>
+                                    <button class="auto"> 오토캠핑장</button>
+                                    <button class="cravn"> 오토캠핑장</button>
+                    </div>
+
+
+                    <!---------------캠핑장 지도, 달력-------------------->
+                    <div class="sec3 box3">
+                        <div class="campmapbox box4">
+                            <img src="../img/koreamap.jpg" class="campmap">
+                        </div>
+                        <div class="calendarbox box4">
+                            <div class="calaendar item">
+                                <!-- 달력들어갈 자리 -->
+                                <img src="../img/koreamap_details.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--드롭다운 메뉴2-->
+                    <div class="sec4 box3">
+                        <!--드롭다운메뉴-->
+                        <div class="dropdowncampingbox box4">
+                            <div class="dropdown box5">
+                                <a href="#" class="dropbtn item">정렬</a>
+                                <div class="subdropdown box7">
+                                    <div class="dropitem item"><a href="#">조회순</a></div>
+                                    <div class="dropitem item_2"><a href="#">별점순</a></div>
+                                    <div class="dropitem item_3"><a href="#">최신순</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button> 조회 </button>
+                    
+                    <!--캠핑장 사진 및 평점-->
+                    <div class="sec5 box3">
+                        <div class="campgroundsbox box4" th:each="camp : ${result}" th:attr="onclick=|location.href='@{/sample/campgroundsdetail(cno=${camp.cno})}'|">> 
+                            <input type = "hidden" name="cno" th:value ="${camp.cno}">
+                            <div class="cg_imgbox box5">
+                                <img class="cg_img item" th:src="${camp.thumbnail}">
+                            </div>
+                            <div class="cg_rightbox box4">
+                                <div class="title item">[[${camp.name}]]</div>
+                                
+                                <div class="cg_starbox item">
+                                    <div class="star item">[[${camp.heart}]]</div>
+                                </div>
+                                <div class="cg_explainbox box5">
+                                    <div class="explain item">[[${camp.address}]]</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!--캠핑장 등록?-->
+                    <div class="sec6 box3">
+                        <div class="product_registration box4">
+                            <div class="p_r_imgbox box5">
+                                <img src="../img/happy12.jpg" class="p_r_img item">
+                            </div>
+
+                            <div class="p_r_title box5"> 캠핑장을 등록하세요</div>
+                            <div class="p_r_content box5"> 좋은 상품 </div>
+                        </div>
+
+                        <div class="p_explanbox box4">
+                            <textarea class="explan item" name="explan" cols="30" rows="10" placeholder="
+                            1.대충 설명하는글 
+                            2.대충 설명하는글 
+                            3.대충 설명하는글 
+                            4.대충 설명하는글"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <!--메인 바디의 사이드 빈 공간 오른쪽-->
+                <div class="aside_r box2">aside_r</div>
+
+
+
+
+
+            </div>
+        </main>
+        <!--====푸터====-->
+        <footer>
+            <div class="footer box1">
+                푸터자리
+            </div>
+        </footer>
+
+
+    </div>
+</body>
+
+<script th:inline="javascript">
+
+     $(document).ready(function(){
+    	 
+    	 let wild = false;
+    	 let glamp = false;
+    	 let auto = false;
+    	 let cravn = false;
+    	 
+    	$(".wild").click(function(){
+    		wild = !wild;
+    	});
+    	
+    	$(".glamp").click(function(){
+    		glamp = !glamp;
+    	});
+    	
+    	$(".auto").click(function(){
+    		auto = !auto;
+    	});
+    	
+    	$(".cravn").click(function(){
+    		cravn = !cravn;
+    	});
+    	
+    	let CampingType = {
+    				
+    	}
+    	
+    	
+/*     	$(". dropitem item").click(function(){
+    		
+    		$.ajax({
+				url : "/sample/campgroundsdetail",
+				method : "post",
+				data : "JSON.stringfy(replt)",
+				dataType : "json",
+				contentType : "application/json; charset=UTF-8"
+			})
+    	}) */
+	}) 
+	
+</script>
+
+</html>

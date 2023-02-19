@@ -7,10 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.campers.camfp.dto.MemberDTO;
-import com.campers.camfp.service.MemberService;
+import com.campers.camfp.dto.member.MemberDTO;
+import com.campers.camfp.service.member.MemberService;
 
-import ch.qos.logback.classic.pattern.LineOfCallerConverter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -53,7 +52,7 @@ public class MemberController {
 		
 		log.info("memberDTO : " + memberDTO);
 		
-		String id = memberService.register(memberDTO);
+		Long mno = memberService.register(memberDTO);
 		
 		return "redirect:/sample/login";
 		

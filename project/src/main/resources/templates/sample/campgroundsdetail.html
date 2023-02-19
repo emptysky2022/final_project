@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>무슨페이지인가요?</title>
+
+    <!--css 연결-->
+    <link rel="stylesheet" type="text/css" href="../css/campgroundsdetail.css">
+    <!--js연결-->
+    <script type="text/javascript" src="/js/main.js" defer></script>
+     <!--api 연결-->
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=aa8506f7754a9c4a3ff7ed61e6db518a&libraries=services"></script>
+									
+    <!--구글 폰트 링크-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Varela+Round&display=swap"rel="stylesheet">
+    <!--폰트 그림 링크-->
+    <script src="https://kit.fontawesome.com/bb87a5faf0.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    
+</head>
+
+<body>
+
+    <div class="container">
+        <!--====메인 header====-->
+        <header>
+            <div class="header box1">
+                <!--네비게이션 로고-->
+                <div class="header_logo box2">
+                    <a class="box3" href="#"><img src="" alt="">
+                        캠퍼스사진 </a>
+
+                </div>
+
+
+                <!--네비게이션 메뉴목록-->
+                <ul class="header_menu box2_2">
+                    <li class="box3"><a class="item" href="">apple</a></li>
+                    <li class="box3_3"><a class="item" href="">cherry</a></li>
+                    <li class="box3_2"><a class="item" href="">banana</a></li>
+                    <li class="box3_4"><a class="item" href="">melon</a></li>
+                </ul>
+
+                <!--우측 상단 마이페이지-->
+                <ul class="header_mypage box2_3">
+                    <li class="box3">
+                        <a href="" class="box3">
+                            <i class="fa-solid fa-user item"></i>
+                        </a>
+                    </li>
+
+                </ul>
+                <!--햄버거 메뉴-->
+                <a href="#" class="header_hamburger box2_4">
+                    <i class="fa-solid fa-bars item"></i>
+                </a>
+            </div>
+        </header>
+        <main>
+            <div class="body box1">
+                <!--메인 바디의 사이드 빈 공간왼쪽-->
+                <div class="aside_l box2">aside_l</div>
+
+
+
+                <!--메인 바디 가운데 공간-->
+                <div class="body_center box2">
+                
+                    <!----------------캠핑장 사진------------->
+                    <div class="sec1 box3">
+                        <div class="titlebox box4">
+                            <div class="title item">Camper Product Details</div>
+                        </div>
+
+                        <div class="campgroundimgbox box4">
+                            <img class="campgroundimg item" src="../img/happy13.jpg" th:src="${result.thumbnail}">
+                        </div>
+
+                        <div class="cg_titlebox box4">
+                            <div class="cg_title item">[[${result.name}]]</div>
+                        </div>
+                        
+                        <div class="cg_starbox box4">
+                            <div class="cg_star item">★★★★☆</div>
+                        </div>
+
+                        <div class="cg_explainbox box4">
+                            <div class="cg_explain item">[[${result.campintroduce}]]</div>
+                        </div>
+
+                        <div class="cg_hashtagbox box4">
+                            <div class="cg_hashtag item"> #[[${result.camptype}]]</div>
+                        </div>
+                        
+                   <!------------------ 달력--------------------->
+				<div id="calendar">
+ 			    <div id="month-year"></div>
+  				<div id="weekdays">
+    				<div>Mon</div>
+    				<div>Tue</div>
+    				<div>Wed</div>
+    				<div>Thu</div>
+    				<div>Fri</div>
+    				<div>Sat</div>
+    				<div>Sun</div>
+  				</div>
+  				<div id="days"></div>
+  				<div id="buttons">
+   					<button id="prev-month">Prev</button>
+    		    	<button id="next-month">Next</button>
+    		    	<button id="reservation">reservation</button>
+  				</div>
+				</div>
+				</div>
+                        
+                    <!------------------지도 + 출발지 + 날씨--------------------->
+                    <div class="sec2 box3">
+                         
+                         <div id="map" style="width:40%;height:350px;"></div>
+							
+                        <div class="mapweatherbox box4">
+                            <div class="startbox box5">
+                                <div class="startplacetext item">출발지</div>
+                                <input type="text" class="startplace item_2">
+                            </div>
+                            <div class="starttimebox box5">
+                                <div class="starttimetext item">출발 시간</div>
+                                <input type="time" class="starttime item_2">
+                            </div>
+
+
+                            <div class="totaltimebox box5">
+                                <div class="totaltime item">총 소요 시간</div>
+                            </div>
+
+
+
+                            <div class="weatherbox box5">
+                                <div class="weatherplacebox box6">
+                                    <div class="weatherplace item">부산 날씨</div>
+                                </div>
+                                <div class="comerainbox box6">
+                                    <div class="comerain item">강수 확률 70%</div>
+                                </div>
+                                <div class="windspeedbox box6">
+                                    <div class="windspeed item">북풍1.4m</div>
+                                </div>
+
+                                <div class="searchbox box6">
+                                    <button type="button" class="search item">검색</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!---------------후기-------------------->
+                    <div class="sec3 box3">
+                        <div class="reviewwritebox box4">
+                            <a href="#" class="reviewwrite item">후기 작성하기</a>
+                        </div>
+                    </div>
+                    <div class="sec4 box3">
+                        <div class="rv box4"></div>
+                        
+                        	<a class="list-group replyList">
+								<!-- rest 로 들어옴 -->
+							</a>
+                        	
+<!--                             후기 목록
+                            <div class="rv_l box5 ">
+                                <div class="box_l box6">
+                                    <div class="imgbox box7">
+                                        <a class="imglink box8" href="">
+                                            <img class="rv_img item" src="../img/happy4.jpg">
+                                        </a>
+                                    </div>
+                                    <div class="rv_star box7_2">
+                                        <p class="item">★★★★★</p>
+                                    </div>
+                                </div>
+                                <div class="box_r box6">
+                                    <div class="comment box7">
+                                        <h2 class="write item">user1</h2>
+                                        <p class="content item_2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique, tempora   </p>
+                                    </div>
+                                    <div class="rv_like box7">
+                                        <i class="fa-sharp fa-solid fa-thumbs-up fa-1x item"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            
+
+                            <div class="rv_r box5 ">
+                                <div class="box_l box6">
+                                    <div class="imgbox box7">
+                                        <a class="imglink box8" href="">
+                                            <img class="rv_img item" src="../img/happy4.jpg">
+                                        </a>
+                                    </div>
+                                    <div class="rv_star box7_2">
+                                        <p class="item">★★★★★</p>
+                                    </div>
+                                </div>
+                                <div class="box_r box6">
+                                    <div class="comment box7">
+                                        <h2 class="write item">user2</h2>
+                                        <p class="content item_2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim, doloremque exercitationem incidunt dicta reiciendis veniam dignissimos labore laud </p>
+                                    </div>
+                                    <div class="rv_like box7">
+                                        <i class="fa-sharp fa-solid fa-thumbs-up fa-1x item"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="rv_l box5 ">
+                                <div class="box_l box6">
+                                    <div class="imgbox box7">
+                                        <a class="imglink box8" href="">
+                                            <img class="rv_img item" src="../img/happy4.jpg">
+                                        </a>
+                                    </div>
+                                    <div class="rv_star box7_2">
+                                        <p class="item">★★★★★</p>
+                                    </div>
+                                </div>
+                                <div class="box_r box6">
+                                    <div class="comment box7">
+                                        <h2 class="write item">user3</h2>
+                                        <p class="content item_2">Lorem ipsum dolor, sit amet </p>
+                                    </div>
+                                    <div class="rv_like box7">
+                                        <i class="fa-sharp fa-solid fa-thumbs-up fa-1x item"></i>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!--메인 바디의 사이드 빈 공간 오른쪽-->
+                <div class="aside_r box2">aside_r</div>
+
+
+            </div>
+
+
+        </main>
+        <!--====푸터====-->
+        <footer>
+            <div class="footer box1">
+                푸터자리
+            </div>
+        </footer>
+
+
+    </div>
+    
+    <script th:inline="javascript">
+    // 카카오 지도 API 따로 놓았음
+    var address = /*[[${result.address}]]*/null;
+    
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	mapOption = {
+    	center: new kakao.maps.LatLng(33.450501, 126.570667), // 지도의 중심좌표
+    	level: 12 // 지도의 확대 레벨
+	};  
+
+	// 지도를 생성합니다    
+	var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new kakao.maps.services.Geocoder();
+
+	// 주소로 좌표를 검색합니다
+	geocoder.addressSearch(address, function(result, status) {
+
+	 	// 정상적으로 검색이 완료됐으면 
+ 	if (status === kakao.maps.services.Status.OK) {
+
+    	var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+    	// 결과값으로 받은 위치를 마커로 표시합니다
+    	var marker = new kakao.maps.Marker({
+       		map: map,
+    	    position: coords
+    	});
+
+        // 인포윈도우로 장소에 대한 설명을 표시합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content: '<article style="width:150px;text-align:center;padding:6px 0;">우리회사</article>'
+        });
+        infowindow.open(map, marker);
+
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        map.setCenter(coords);
+		} 
+		////////////////////////////////API 끝//////////////////////////////
+	});    
+    </script>
+    
+    
+    
+    
+    <script th:inline="javascript">
+    $(document).ready(function() {
+		 ////////////////////////////////달력 //////////////////////////////
+    	 var clenderList = /*[[${calender}]]*/null;
+    	 var midldate = false;
+    	 var prev = false;
+    	 var startdate = [];
+    	 var enddate = [];
+    	 
+    	 var noReservation = [];
+    	 
+
+    	 // 형식 yyyy-mm-dd
+    	 clenderList.forEach(function(ele, index) {
+    		 startdate.push(ele.startdate.split('T',1)[0]);
+    		 enddate.push(ele.enddate.split('T',1)[0]);
+    	 });
+    	
+    	  var now = new Date();
+    	  var month = now.getMonth();
+    	  var year = now.getFullYear();
+    	 
+    	  function generateCalendar() {
+    	    $("#month-year").text(new Date(year, month).toLocaleDateString('ko-KR', { year: 'numeric', month: 'long' }));
+
+    	    $("#days").empty();
+    	    var numDays = new Date(year, month + 1, 0).getDate();
+    	    
+	     	 var currentYear = $("#month-year").text().substring(0,4).trim();
+	     	 var currentMonth = $("#month-year").text().replace('월','');
+	     	currentMonth = currentMonth.substring(5,8).trim()
+	     	
+	     	 // 달 형식 맞추려고 10 미만일경우 앞에 0 붙임
+	     	 var newMonth ="";
+	     	 if (Number(currentMonth) < 10){
+	     		newMonth = "0"+ currentMonth;
+	     	 }else{
+	     		newMonth = currentMonth;
+	     	 }
+	     	 
+	     	 var newday = 0;
+	     	 
+	     	 
+    	    // 번호 돌리기
+    	    for (var i = 1; i <= numDays; i++) {
+    	    	
+    	     	var day = $("<div class='child' id='calendar" + i + "'>").text(i);
+    	     	$("#days").append(day);
+    	     	
+    	    	
+     	     	// 받아온 campCalender 만큼 반복
+    	     	for (var d = 0; d < clenderList.length; d++){
+    	     		
+    	     		// 데이터가 있을 경우에만 
+    	     	if (clenderList != null){
+ 	     			
+    	     		// Start Day
+    	     		// 해당 년도 확인
+     	     		if (startdate[d].substring(0,4).trim() == currentYear){
+     	     			// 해당 월 확인
+         	     		if (startdate[d].substring(5,7).trim() == newMonth){
+         	     			
+         	     			// 문자열 맞추기 위해서 10 전이면 
+         	     			if (i < 10){
+         	     				newday = 0;
+         	     				newday = newday+String(i);
+         	     			}else{
+         	     				newday = String(i);
+         	     			}
+         	     			
+         	     			// 해당 일 확인
+             	     		if (startdate[d].substring(8,10).trim() == newday) {
+             	     			$("#calendar" + i).css('background-color', 'red');
+             	     			noReservation.push(i);
+             	     			midldate = true;
+            	     		}	 
+        	     		}	 
+    	     		}
+    	     		
+    	     		if (midldate == true){
+    	     			$("#calendar" + i).css('background-color', 'red');
+    	     			noReservation.push(i);
+    	     		}
+    	     		
+    	     		// End Day
+    	     		// 해당 년도 확인
+     	     		if (enddate[d].substring(0,4).trim() == currentYear){
+     	     			// 해당 월 확인
+         	     		if (enddate[d].substring(5,7).trim() == newMonth){
+         	     			
+         	     			if (i < 10){
+         	     				newday = 0;
+         	     				newday = newday+String(i);
+         	     			}else{
+         	     				newday = String(i);
+         	     			}
+         	     			
+         	     			// 해당 일 확인
+             	     		if (enddate[d].substring(8,10).trim() == newday) {
+             	     			$("#calendar" + i).css('background-color', 'red');
+             	     			noReservation.push(i);
+             	     			midldate =false;
+             	     			
+             	     			if (prev = true){
+             	     				
+             	     				if (Number(startdate[d].substring(8,10).trim()) > Number(newday)){
+             	     					var test = i;
+             	     					console.log(test);
+             	     					console.log(i);
+             	     					for (var tt=test; tt > 0; tt--){
+             	     						$("#calendar" + tt).css('background-color', 'red'); 
+             	     						noReservation.push(i);
+             	     					}
+             	     				}
+             	     			}
+            	     		}	 
+        	     		}	 
+    	     		}
+    	     	}
+    	     } 
+     	 //for 문 종료
+    	 }
+    	    
+    	    // 캘린더 숫자 눌렀을때
+    	    $("#days .child").on("click", function() {
+    	    	// 불가능 한 날짜 배열
+    	    	
+    	    	var able = false;
+    	    	
+    	    	for (var count =0; count > noReservation.length; count++){
+    	    		
+    	    		if (String(noReservation[count]) == $(this).text()){
+    	    			able = false;
+    	    		} 
+    	    	}
+    	    	
+    	    	if (able == true){
+    	    		$(this).css('background-color', 'blue');
+    	    	}
+    	    	
+    	    	
+    	    	
+    	     });
+    	  }
+    	  generateCalendar();
+
+    	  $("#prev-month").on("click", function() {
+    	    if (month == 0) {
+    	      console.log("month == 0");
+    	      month = 11;
+    	      year--;
+    	    } else {
+    	      month--;
+    	    }
+    	    midldate = false;
+    	    prev = true;
+    	    generateCalendar();
+    	  });
+
+    	  $("#next-month").on("click", function() {
+    	    if (month == 11) {
+    	    	console.log("month == 11");
+    	      month = 0;
+    	      year++;
+    	    } else {
+    	      month++;
+    	    }
+    	    prev = false;
+    	    generateCalendar();
+    	  });
+		  //////////////////////달력 끝 /////////////////////////
+    	  //////////////////////댓글 기능/////////////////////////
+    	  
+    	  const cno = /*[[${result.cno}]]*/ {};
+    	  let listGroup = $(".sec4 .box4");
+    	  function loadJSON() {
+    		  console.log("loadjson");
+    	      $.getJSON('/camp/reply/' + cno, function(arr){
+    	    	 
+    	    	  console.log(arr);
+    	     	  let str = "";
+    	    	  $.each(arr, function(index, reply){
+    	    		  let direction = index % 2 == 0 ? 'l':'r';
+    	    		  
+    	    		  console.log(direction);
+    	    		  
+    	    		  str += "<div class='rv_"+direction +"'box5>";
+    	    		  str += "<div class='box_l' box6>";
+    	    		  str += "<div class='imgbox box7'>";
+    	    		  str += "<a class='imglink box8' href=''>";
+    	    		  str += "<img class='rv_img item' src="+reply.capture+">";
+    	    		  str += "</a>";
+    	    		  str += "</div>";
+    	    		  str += "<div class='rv_star box7_2'>";
+    	    		  str += "<p class='item'>" +reply.heart+"</p>";
+    	    		  str += "</div>";
+    	    		  str += "</div>";
+    	    		  str += "<div class='box_r box6'>";
+    	    		  str += "<div class='comment box7'>";
+    	    		  str += "<h2 class='write item'"+reply.reviewer+"</h2>";
+    	    		  str += "</div>";
+    	    		  str += "<p class='content item_2'>" +reply.content+"</p>";
+    	    		  str += "</div>";
+    	    		  str += "<div class='rv_like box7'>";
+    	    		  str += "<i class='fa-sharp fa-solid fa-thumbs-up fa-1x item'></i>"
+    	    		  str += "</div>";
+    	    		  str += "</div>";
+    	    		  str += "</div>";
+    	    		  
+    	    		  listGroup.html(str);	  
+    	    	  })
+    	      })
+    	  };
+    	  
+    	  //프로그램 처음 로드시 loadJSON 호출;
+    	  // 밑에서 해야함
+		  loadJSON();
+  
+    	});
+	</script>
+						
+</body>
+</html>

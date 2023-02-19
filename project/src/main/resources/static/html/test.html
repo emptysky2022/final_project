@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>빠르게 갖다 쓸 용도로 만듬</title>
+
+    <!--css 연결-->
+    <link rel="stylesheet" type="text/css" href="../css/test.css">
+    <!--js연결-->
+    <script type="text/javascript" src="../js/main.js" defer></script>
+
+    <!--구글 폰트 링크-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Varela+Round&display=swap"
+        rel="stylesheet">
+    <!--폰트 그림 링크-->
+    <script src="https://kit.fontawesome.com/bb87a5faf0.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!--====메인 header====-->
+        <header>
+            <div class="header box1">
+                <!--네비게이션 로고-->
+                <div class="header_logo box2">
+                    <a class="box3" href="#"><img src="" alt="">
+                        캠퍼스사진 </a>
+
+                </div>
+
+
+                <!--네비게이션 메뉴목록-->
+                <ul class="header_menu box2_2">
+                    <li class="box3"><a class="item" href="">apple</a></li>
+                    <li class="box3_3"><a class="item" href="">cherry</a></li>
+                    <li class="box3_2"><a class="item" href="">banana</a></li>
+                    <li class="box3_4"><a class="item" href="">melon</a></li>
+
+                </ul>
+
+                <!--우측 상단 마이페이지-->
+                <ul class="header_mypage box2_3">
+                    <li class="box3">
+                        <a href="" class="box3">
+                            <i class="fa-solid fa-user item"></i>
+                        </a>
+                    </li>
+                </ul>
+
+                <!--햄버거 메뉴-->
+                <a href="#" class="header_hamburger box2_4">
+                    <i class="fa-solid fa-bars item"></i>
+                </a>
+            </div>
+        </header>
+        <main>
+            <div class="body box1">
+                <!--메인 바디의 사이드 빈 공간왼쪽-->
+                <div class="aside_l box2">aside_l</div>
+
+                <!--메인 바디 가운데 공간-->
+                <div class="body_center box2">
+                    <!--게시글 메뉴바-->
+
+                    <input id="tab1" type="radio" name="tabs" checked> <!--디폴트 메뉴-->
+                    <label for="tab1" id="post-label">a</label>
+                    <input id="tab2" type="radio" name="tabs">
+                    <label for="tab2">b</label>
+                    <input id="tab3" type="radio" name="tabs">
+                    <label for="tab3">c</label>
+                    <input id="tab4" type="radio" name="tabs">
+                    <label for="tab4">d</label>
+                    <input id="tab5" type="radio" name="tabs">
+                    <label for="tab5">e</label>
+                    <section id="content1">
+                    <div class="sec1 box3">
+                        <div class="titlebox box4">
+                            <div class="titletext item">제목</div>
+                            <input type="text" class="title item_2" placeholder="제목을 입력해주세요" required>
+                        </div>
+                        <div class="passwordbox box4">
+                            <div class="passwordtitle item">비밀번호</div>
+                            <input type="password" class="password item_2" placeholder="게시판 수정 및 삭제에 필요한 비밀번호 입니다.">
+                        </div>
+                        <div class="contentbox box4">
+                            <div class="contenttitle item">내용</div>
+                            <textarea name="content" id="content" cols="30" rows="10"></textarea>
+                        </div>
+                        <div class="imguploadbox box4">
+                            <div class="imguploadtitle item">사진 업로드</div>
+                            <!--accept와 onchange는 input의 file타입 선택할때 이미지만 올리게 하기 위해 사용-->
+                            <input type="file" accept="image/gif, image/jpeg, image/png" onchange="chk_file_type(this)">
+                        </div>
+
+                        <div class="cancelbtn box4">
+                            <button class="cancel">취소</button>
+                        </div>
+                        <div class="completebtn box4">
+                            <button class="complete">완료</button>
+                        </div>
+
+                    </div>
+</section>
+<section id="content2">
+
+                    <div class="sec2 box3">
+                        <div class="titlebox box4">
+                            <strong class="titletext item">게시글 수정하기
+                            </strong>
+                            <p class="explain item">작성한 게시글을 수정하실 수 있습니다.</p>
+                        </div>
+                        <div class="boardmodifybox box4">
+                            <div class="boardmodify box5">
+                                <div class="titlebox">
+                                    <dl>
+                                        <dt class="titletext item">제목</dt>
+                                        <dd><input type="text" placeholder="제목 입력" value="글 제목이 들어갑니다"></dd>
+                                    </dl>
+                                </div>
+                                <div class="info">
+                                    <dl>
+                                        <dt>글쓴이</dt>
+                                        <dd><input type="text" placeholder="글쓴이 입력" value="최석호"></dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>비밀번호</dt>
+                                        <dd><input type="password" placeholder="비밀번호 입력" value="1234"></dd>
+                                    </dl>
+                                </div>
+                                <div class="content">
+                                    <textarea placeholder="내용입력">
+                                        편집할 내용
+                                        편집할 내용
+                                        편집할 내용
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="button">
+                                <a href="" class="on">수정</a>
+                                <a href="">취소</a>
+                            </div>
+                        </div>
+
+                    </div>
+</section>
+<section id="content3">
+
+                    <div class="sec3 box3">
+                        <div class="titlebox box4">
+                            <strong class="titletext item">게시글 작성하기
+                            </strong>
+                            <p class="explain item">게시글을 작성하실 수 있습니다.</p>
+                        </div>
+                        <div class="boardwritebox box4">
+                            <div class="boardwrite box5">
+                                <div class="titlebox box6">
+                                    <dl>
+                                        <dt class="titletext item">제목</dt>
+                                        <dd class="title item"><input type="text" placeholder="제목 입력"></dd>
+                                    </dl>
+                                </div>
+                                <div class="info box6">
+                                    <dl class="writerbox box7">
+                                        <dt class="writetext item">작성자</dt>
+                                        <dd class="write item">
+                                            <input type="text" placeholder="작성자 입력">
+                                        </dd>
+                                    </dl>
+                                    <dl class="passwordbox box7">
+                                        <dt>비밀번호</dt>
+                                        <dd><input type="password" placeholder="비밀번호 입력"></dd>
+                                    </dl>
+                                </div>
+                                <div class="content">
+                                    <textarea placeholder="내용 입력"></textarea>
+                                </div>
+                            </div>
+                            <div class="button box5">
+                                <a href="" class="on">등록</a>
+                                <a href="">취소</a>
+                            </div>
+                        </div>
+                    </div>
+</section>
+<section id="content4">
+
+                    <div class="sec4 box3">
+                        <div class="titlebox box4">
+                            <strong class="titletext item">게시글 상세보기
+                            </strong>
+                            <p class="explain item">작성된 게시글을 확인하실 수 있습니다.</p>
+                        </div>
+                        <div class="boardviewbox box4">
+                            <div class="boardview box5">
+                                <div class="title item"> 일하기 싫다.</div>
+                                <div class="infobox item">
+                                    <dl class="numbox box6">
+                                        <dt class="numtext item">번호</dt>
+                                        <dd class="num item">2</dd>
+                                    </dl>
+                                    <dl class="writebox box6">
+                                        <dt class="writetext item">글쓴이</dt>
+                                        <dd class="write item_2">최석호</dd>
+                                    </dl>
+                                    <dl class="datebox box6">
+                                        <dt class="datetext item">작성일</dt>
+                                        <dd class="date item_2"> 2023-02-13 </dd>
+                                    </dl>
+                                    <dl class="viewsbox box6">
+                                        <dt class="viewstitle item">조회</dt>
+                                        <dd class="views item_2">33</dd>
+                                    </dl>
+                                </div>
+                                <div class="content item">
+                                    일하기시러어어엉
+                                </div>
+                            </div>
+                            <div class="button box5">
+                                <a href="" class="on item">목록</a>
+                                <a href="" class="modify item_2">수정</a>
+                            </div>
+                        </div>
+                    </div>
+
+</section>
+<section id="content5">
+
+                    <div class="sec5 box3">
+                        <div class="titlebox box4">
+                            <strong class="titletext item">게시판 목록
+                            </strong>
+                            <p class="explain item">게시글을 작성하실 수 있습니다</p>
+                        </div>
+                        <div class="boardlistbox box4">
+                            <div class="boardlist box5">
+                                <div class="top box6">
+                                    <div class="num item">번호</div>
+                                    <div class="title item_2">제목</div>
+                                    <div class="writer item_3">글쓴이</div>
+                                    <div class="date item_4">작성일</div>
+                                    <div class="count item_5">조회</div>
+                                </div>
+                                <div>
+                                    <div class="num item">1</div>
+                                    <div class="title item_2"><a href="#">한숨으로 지구 내핵까지 뚫어봤다.</a></div>
+                                    <div class="writer item_3">성다영</div>
+                                    <div class="date item_4">2023-02-13 </div>
+                                    <div class="count item_5">33</div>
+                                </div>
+                                <div>
+                                    <div class="num item">2</div>
+                                    <div class="title item_2"><a href="#">일하기 싫다.</a></div>
+                                    <div class="writer item_3">최석호</div>
+                                    <div class="date item_4">2023-02-13 </div>
+                                    <div class="count item_5">33</div>
+                                </div>
+                                <div>
+                                    <div class="num item">3</div>
+                                    <div class="title item_2"><a href="#">사고쳤다!</a></div>
+                                    <div class="writer item_3">조상용</div>
+                                    <div class="date item_4">2023-02-13 </div>
+                                    <div class="count item_5">33</div>
+                                </div>
+                                <div>
+                                    <div class="num item_1">4</div>
+                                    <div class="title item_2"><a href="#">프론트막막함....ㅠㅠ</a></div>
+                                    <div class="writer item_3">안병준</div>
+                                    <div class="date item_4">2023-02-13 </div>
+                                    <div class="count item_5">33</div>
+                                </div>
+                                <div>
+                                    <div class="num item">5</div>
+                                    <div class="title item_2"><a href="#">111</a></div>
+                                    <div class="writer item_3">11</div>
+                                    <div class="date item_4">2023-02-13 </div>
+                                    <div class="count item_5">33</div>
+                                </div>
+                                <div>
+                                    <div class="num item">6</div>
+                                    <div class="title item_2"><a href="#">블라블라</a></div>
+                                    <div class="writer item_3">22</div>
+                                    <div class="date item_4">2023-02-13 </div>
+                                    <div class="count item_5">33</div>
+                                </div>
+                                <div>
+                                    <div class="num item">7</div>
+                                    <div class="title item_2"><a href="#">블라블라</a></div>
+                                    <div class="writer item_3">22</div>
+                                    <div class="date item_4">2023-02-13 </div>
+                                    <div class="count item_5">33</div>
+                                </div>
+                                <div>
+                                    <div class="num item">8</div>
+                                    <div class="title item_2"><a href="#">블라블라</a></div>
+                                    <div class="writer item_3">22</div>
+                                    <div class="date item_4">2023-02-13 </div>
+                                    <div class="count item_5">33</div>
+                                </div>
+                                <div>
+                                    <div class="num item">9</div>
+                                    <div class="title item_2"><a href="#">블라블라</a></div>
+                                    <div class="writer item_3">22</div>
+                                    <div class="date item_4">2023-02-13 </div>
+                                    <div class="count item_5">33</div>
+                                </div>
+                                <div>
+                                    <div class="num item">10</div>
+                                    <div class="title item_2"><a href="#">블라블라</a></div>
+                                    <div class="writer item_3">22</div>
+                                    <div class="date item_4">2023-02-13 </div>
+                                    <div class="count item_5">33</div>
+                                </div>
+                            </div>
+                            <div class="button box5">
+                                <a href="write.html" class="on item">글쓰기</a>
+                            </div>
+                            <div class="boardpage box5">
+                                <a href="#" class="bt_first item">&lt;&lt;</a>
+                                <a href="#" class="bt_prev item_2">&lt;</a>
+                                <a href="#" class="num item_3">1</a>
+                                <a href="#" class="num">2</a>
+                                <a href="#" class="num">3</a>
+                                <a href="#" class="num">4</a>
+                                <a href="#" class="num">5</a>
+                                <a href="#" class="num">&gt;</a>
+                                <a href="#" class="num">&gt;&gt;</a>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    </section>
+                </div>
+
+                <!--메인 바디의 사이드 빈 공간 오른쪽-->
+                <div class="aside_r box2">aside_r</div>
+
+
+
+
+
+            </div>
+        </main>
+        <!--====푸터====-->
+        <footer>
+            <div class="footer box1">
+                푸터자리
+            </div>
+        </footer>
+
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Login Page</title>
+
+	<!--css 연결-->
+	<link rel="stylesheet" type="text/css" href="../css/login.css">
+	<!--js연결-->
+	<script type="text/javascript" src="" defer></script>
+
+	<!--구글 폰트 링크-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Varela+Round&display=swap"
+		rel="stylesheet">
+	<!--폰트 그림 링크-->
+	<script src="https://kit.fontawesome.com/bb87a5faf0.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+	<div class="container">
+		<div class="sec1 box1">
+			<div class="airplane box2">
+				<i class="fa-solid fa-user fa-10x"></i>
+			</div>
+			<h1 class="title item">Campers에 오신것을 환영합니다.</h1>
+			<h4 class="content item_2">여러분의 캠핑을 도와줍니다.</h4>
+		</div>
+
+		
+
+		<div class="sectionbreak box1">
+			<div class="sec3 box2">
+				<div class="line item">
+					<hr>
+				</div>
+				<div class="logintitle_mobile item_2">camp 로그인</div>
+				<div class="logintitle item_2">camp 아이디로 로그인</div>
+				<div class="line item_3">
+					<hr>
+				</div>
+			</div>
+
+
+			<div class="sec4 box2">
+				<div class="idbox box3">
+					<p type="text" class="idtext item">아이디</p>
+					<input type="text" class="id item_2" name="id" placeholder="아이디를 입력해주세요.">
+				</div>
+				<div class="passwordbox box3">
+					<p type="password" class="passwordtext item">비밀번호</p>
+					<input type="password" class="password item" name="pass" placeholder="비밀번호를 입력해주세요.">
+				</div>
+			</div>
+			<div class="findaccountbox box3">
+				<a href="" class="findaccount item"> 계정 찾기 </a>
+			</div>
+			<div class="sec5 box2">
+
+				<div class="loginbuttonbox box3">
+					<div class="loginbutton item">로그인</div>
+				</div>
+				<div class="registerlinkbox box3">
+					<div class="registertext item">아직 회원가입을 하지 않으셨나요?</div>
+					<div class="register box4">
+						<a class="a item" href="">회원가입</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="sec2 box1">
+			<div class="loginapitext item">소셜 로그인</div>
+			<div class="loginapi box2">
+				<div class="buttonbox_g box3">
+					<a class="button_g box4" href="">
+						<img class="logoimg_gw item_1" src="../img/googleLogoWide.png" alt="googleLogoWide">
+						<img class="logoimg_g item_2" src="../img/googleLogo.png" alt="googleLogo">
+					</a>
+				</div>
+
+				<div class="buttonbox_n box3">
+					<a class="button_n box4" href="">
+						<img class="logoimg_nw item_1" src="../img/naverLogoWide.png" alt="naverLogoWide">
+						<img class="logoimg_n item_2" src="../img/naverLogo.png" alt="googleLogo">
+					</a>
+				</div>
+				<div class="buttonbox_k box3">
+					<a class="button_k box4" href="">
+						<img class="logoimg_kw item_1" src="../img/kakaoLogoWide.png" alt="kakaoLogoWide">
+						<img class="logoimg_k item_2" src="../img/kakaoLogo.png" alt="googleLogo">
+					</a>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+
+</html>
