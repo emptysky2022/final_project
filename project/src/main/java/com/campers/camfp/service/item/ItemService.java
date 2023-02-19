@@ -20,8 +20,11 @@ public interface ItemService {
 	List<ItemDTO> getList();
 	
 	//상품 리스트 가져오기(페이징)
-	PageResultDTO<ItemDTO, Object[]> getListOfPage(PageRequestDTO pageRequestDTO);
+	PageResultDTO<ItemDTO, Object[]> getListOfPage(PageRequestDTO pageRequestDTO, List<String> condition);
 	
+	//좋아요 누르기
+	int heartOfMember(Long ino);
+
 	//상품 수정하기
 	void modify(ItemDTO itemDTO);
 	
@@ -92,5 +95,6 @@ public interface ItemService {
 		
 		return itemDTO;
 	}
+
 
 }
