@@ -41,7 +41,7 @@ public class Camp {
 	@Column(length = 30)
 	private String name;
 	
-	@Column(length = 200)
+	@Column(length = 500)
 	private String thumbnail;
 	
 	@Column(length = 30)
@@ -53,7 +53,7 @@ public class Camp {
 	@Column(length = 500)
 	private String campintroduce;
 	
-	@Column(length = 50)
+	@Column(length = 300)
 	private String address;
 	
 	@Column(nullable = true)
