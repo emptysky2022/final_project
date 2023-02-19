@@ -9,7 +9,7 @@ import com.campers.camfp.entity.item.Item;
 
 public interface ItemRepository extends JpaRepository<Item, Long>, ItemQuerydsl{
 
-	@Query("select i, m from Item i left join i.member m group by i")
+	@Query(value="select i, m, count(r) from Item i left join Member m on i.member=m left join ItemReview r on r.item=i group by i")
 	Page<Object[]> getListWithPage(Pageable pageable);
 
 }
