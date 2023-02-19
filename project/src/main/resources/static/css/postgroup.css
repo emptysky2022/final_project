@@ -426,43 +426,33 @@ strong {
   border-top: 2px solid #000;
 }
 
-.boardwrite .titlebox,
-.boardwrite .info {
+.boardwrite .titlebox{
     padding: 15px;
     display: flex;
     flex-direction: row;
     align-items: center;
-}
-
-.boardwrite .info {
-    border-top: 1px dashed #ddd;
     border-bottom: 1px solid #000;
     font-size: 0;
 }
+
 
 .boardwrite .titlebox dl {
     font-size: 0;
     display: flex;
     align-items: center;
+    flex-basis: 50%;
 }
 
-.boardwrite .info dl {
-  display: flex;
-  flex-basis: 50%;
-  align-items: center;
-}
+
 
 .boardwrite .titlebox dt,
-.boardwrite .titlebox dd,
-.boardwrite .info dt,
-.boardwrite .info dd {
+.boardwrite .titlebox dd{
     display: flex;
     font-size: 1.4rem;
     justify-content: center;
 }
 
-.boardwrite .titlebox dt,
-.boardwrite .info dt {
+.boardwrite .titlebox dt {
    width: 10vw;
 }
 
@@ -470,9 +460,7 @@ strong {
     
 }
 
-.boardwrite .titlebox input[type="text"],
-.boardwrite .info input[type="text"],
-.boardwrite .info input[type="password"] {
+.boardwrite .titlebox input[type="text"] {
     padding: 5px;
     
 }
@@ -559,12 +547,8 @@ strong {
     width: 100%;
   }
 
-  .boardwrite .info dl {
-    display: flex;
-    align-items: center;
-}
-.boardwrite .titlebox,
-.boardwrite .info {
+
+.boardwrite .titlebox {
     padding: 15px;
     display: flex;
     flex-direction: column;
@@ -584,14 +568,8 @@ flex-direction: column;
 align-items: center;
   }
 
-  .boardwrite .info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
 
-  .boardwrite .titlebox,
-.boardwrite .info {
+  .boardwrite .titlebox{
   font-size: 0;
   display: flex;
   align-items: center;
@@ -599,11 +577,6 @@ align-items: center;
 
 }
 
-.boardwrite .info dl {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
 
 .boardwrite .titlebox dl{
   flex-direction: column;
@@ -613,9 +586,7 @@ align-items: center;
   width: 12vw;
 }
 
-.boardwrite .info dt{
-  width: 12vw;
-}
+
 
 .boardwrite .content .imguploadbox{
   display: flex;
@@ -630,14 +601,6 @@ align-items: center;
 }
 
 
-  /* .boardwrite .titlebox dt,
-.boardwrite .titlebox dd,
-.boardwrite .info dt,
-.boardwrite .info dd {
-    display: flex;
-    font-size: 1.4rem;
-    justify-content: center;
-} */
 
 
 
@@ -804,30 +767,27 @@ align-items: center;
   display: flex;
   flex-direction: row;
   align-items: center;
+  border-bottom: 1px solid #000;
+  font-size: 0;
+  
 }
 
 
 .boardmodify .titlebox dl {
   font-size: 0;
+  flex-basis: 50%;
 }
 
-.boardmodify .info dl {
-  display: inline-block;
-  width: 50%;
-  vertical-align: middle;
-}
 
 .boardmodify .titlebox dt,
-.boardmodify .titlebox dd,
-.boardmodify .info dt,
-.boardmodify .info dd {
+.boardmodify .titlebox dd
+ {
   display: inline-block;
   vertical-align: middle;
   font-size: 1.4rem;
 }
 
-.boardmodify .titlebox dt,
-.boardmodify .info dt {
+.boardmodify .titlebox dt {
   width: 10vw;
 }
 
@@ -951,7 +911,7 @@ align-items: center;
 	bottom: 20%; /* 밑에서 5px */ 
 	 /* 기본적으로 안보여지게 */ 
 	z-index: 6; /* 제일 위로*/
-  display: none;
+  display: flex;
   width: 7%;
   height: 7%;
 }
