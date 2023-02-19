@@ -1,4 +1,3 @@
-
 function search(category, keyword, type){
 	let list = $("#list");
 	$.getJSON("/item/list/data?category="+category+"&keyword="+keyword+"&type="+type, function(result){
@@ -6,7 +5,7 @@ function search(category, keyword, type){
 		console.log(result.dtoList)
 		$.each(result.dtoList, function(index, item){
 			console.log(item)
-			str += '<div class="productbox box4" onclick="location.href=\'/item/detail(ino=\' + item.ino +  \')">';
+			str += '<div class="productbox box4" onclick="location.href=\'/item/detail?ino=' + item.ino + '\'">';
 			str += '  <div class="p_imgbox box5">';
 			str += '    <img class="p_img item" src=' + item.thumbnail + '></div>';
             str += '  <div class="p_contentbox box5">';
@@ -17,10 +16,8 @@ function search(category, keyword, type){
             str += '      <div class="p_reviewbox box7">';
             str += '        <div class="review item">조회수 ' + item.count + '</div></div>';
             str += '      <div class="p_heartbox box7">';
-            str += '        <div class="heart item">찜 ' + item.heart + '</div></div></div></div></div>'
+            str += '        <div class="heart item">찜 ' + item.heart + '</div></div></div></div></div>';
 		})
 		list.html(str);
 	})
-	
-	
 }

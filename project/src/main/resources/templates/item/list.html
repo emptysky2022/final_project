@@ -12,6 +12,7 @@
 	  src="https://code.jquery.com/jquery-3.6.3.min.js"
 	  integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
 	  crossorigin="anonymous"></script>
+	  
     <!--css 연결-->
     <link rel="stylesheet" type="text/css" href="../css/camperproduct.css">
     <!--js연결-->
@@ -136,9 +137,9 @@
                             <div class="dropdown box6">
                                 <a href="#" class="dropbtn item">정렬</a>
                                 <div class="subdropdown box7">
-                                    <div class="dropitem item"><a th:onclick="category('count')">조회순</a></div>
-                                    <div class="dropitem item_2"><a th:onclick="category('heart')">찜순위</a></div>
-                                    <div class="dropitem item_3"><a th:onclick="category('ino')">최신순</a></div>
+                                    <div class="dropitem item" onclick="search('', '', 'count')"><a>조회순</a></div>
+                                    <div class="dropitem item_2" onclick="search('', '', 'heart')"><a>찜순위</a></div>
+                                    <div class="dropitem item_3" onclick="search('', '', '')"><a>최신순</a></div>
                                 </div>
                             </div>
                         </div>

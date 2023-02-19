@@ -51,9 +51,8 @@ public class ItemQuerydslImpl extends QuerydslRepositorySupport implements ItemQ
 		
 		booleanBuilder.and(expression);
 		
-		log.info("asdf : " + category + keyword + (category !="none"));
-//		if (!StringUtils.isNullOrEmpty(category)) {			
-		if (category != "none") {			
+		log.info("asdf : " + category + keyword);
+		if (!StringUtils.isNullOrEmpty(category)) {			
 			BooleanBuilder categoryBuilder = new BooleanBuilder();
 			categoryBuilder.or(item.category1.eq(category));
 			categoryBuilder.or(item.category2.eq(category));
@@ -61,8 +60,7 @@ public class ItemQuerydslImpl extends QuerydslRepositorySupport implements ItemQ
 			booleanBuilder.and(categoryBuilder);
 		}
 		
-//		if (!StringUtils.isNullOrEmpty(keyword)) {			
-		if(keyword != "none") {
+		if (!StringUtils.isNullOrEmpty(keyword)) {			
 			BooleanExpression keywordExpression = item.name.contains(keyword);
 			booleanBuilder.and(keywordExpression);
 		}
@@ -73,7 +71,7 @@ public class ItemQuerydslImpl extends QuerydslRepositorySupport implements ItemQ
 		sort.stream().forEach(order -> {
 			Order direction = order.isAscending()? Order.ASC : Order.DESC;
 			String prop = order.getProperty();
-			log.info(prop + "====================asdfasdf====================");
+			log.info(prop + " property");
 			
 			PathBuilder orderByExpression = new PathBuilder<>(Item.class, "item");
 			orders.add(new OrderSpecifier(direction, orderByExpression.get(prop)));
@@ -81,6 +79,7 @@ public class ItemQuerydslImpl extends QuerydslRepositorySupport implements ItemQ
 		
 		tuple.orderBy(orders.stream().toArray(OrderSpecifier[]::new));
 		tuple.where(booleanBuilder);
+		tuple.groupBy(item.ino);
 		log.info("pageable size : " + pageable.getPageSize() + ", pageable offset : " + pageable.getOffset());
 		tuple.offset(pageable.getOffset());
 		tuple.limit(pageable.getPageSize());

@@ -48,8 +48,18 @@ public class ItemController {
 	public ResponseEntity<PageResultDTO<ItemDTO, Object[]>> itemListWithCondition(PageRequestDTO pageRequestDTO, String category, String keyword, String type) {
 		log.info("get list with condition : " + category + keyword + type);
 		PageResultDTO<ItemDTO, Object[]> result = itemService.getListOfPage(pageRequestDTO,
-				List.of(StringUtils.isNullOrEmpty(category) ? "none": category, StringUtils.isNullOrEmpty(keyword) ? "none":keyword, StringUtils.isNullOrEmpty(type) ? "none":type));
+				List.of(category, keyword, type));
 		
 		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
+	
+	@ResponseBody
+	@GetMapping("/heart/{ino}")
+	public ResponseEntity<Integer>getHeart(@PathVariable Long ino){
+		log.info("click item heart");
+		int result = itemService.heartOfMember(ino);
+		
+		return new ResponseEntity<>(result, HttpStatus.OK);
+		
 	}
 }
