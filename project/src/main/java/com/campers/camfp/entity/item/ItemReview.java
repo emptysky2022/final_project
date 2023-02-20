@@ -44,6 +44,8 @@ public class ItemReview extends BaseEntity{
 	
 	private int heart;
 	
+	private int star;
+	
 	public void increseHeart() {
 		this.heart++;
 	}

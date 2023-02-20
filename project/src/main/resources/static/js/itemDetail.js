@@ -13,21 +13,19 @@ $(function(){
 		}
 	})
 	$("#confirm").click(function(){
-		console.log($("#content").val() + $("#picture").val());
         modalClose(); //모달 닫기 함수 호출
         //컨펌 이벤트 처리
-        let data = {
-				"content" : $("#content").val(),
-				"picture" : $("#picture").val(),
-				"ino" : ino
-			};
 		$.ajax({
 			url: "/review/register",
 			method: "POST",
 			contentType: "application/json",
-			data: JSON.stringify(data),
+			data: JSON.stringify({
+				content : $("#content").val(),
+				picture : $("#picture").val(),
+				ino : ino,
+				star : $("#select_star").data('starrr').options.rating
+			}),
 			success: function(ino){
-				console.log("success with " + ino);
 				loadJsonData(ino);
 			}
 		})       
@@ -49,10 +47,9 @@ $(function(){
 function loadJsonData(ino){
 	let reviewGroup = $("#reviewGroup");
 	$.getJSON("/review/detail/" + ino, function(result){
-		console.log(result);
 		let str = "";
 		$.each(result, function(index, review){
-			  console.log(review)
+			console.log(review);
 			  str += '<div class="rv_r box5 ">';
 			  str += '  <div class="box_l box6">';
 			  str += '    <div class="imgbox box7">';
@@ -63,17 +60,19 @@ function loadJsonData(ino){
 			  str += '    <div class="comment box7">';
 			  str += '      <h2 class="write item">' + review.reviewer + '</h2>';
 			  str += '      <p class="content item_2">' + review.content + '</p></div>';
-			  str += '    <div class="rv_like box7"><i id="review_heart" class="fa-sharp fa-solid fa-thumbs-up fa-1x item" onclick="clickReviewHeart(' + review.irno + ')"> ' + review.heart + '</i></div></div>';
+			  str += '    <div class="rv_like box7"><i id="review_heart" class="fa-sharp fa-solid fa-thumbs-up fa-1x item" onclick="clickReviewHeart(' + review.irno + ')"> ' + review.heart + '</i></div></div></div><hr>';
 		})
 		reviewGroup.html(str);
 		console.log("끝!")
 	})
 }
-function getStar(count){
-	var grade=count;
-	console.log("grade : " + grade);
-	$("#star").html("");
-	$('#star').starrr({rating: grade});
+function getStar(grade){
+	let star = '';
+	for(let i = 1; i <= 5; i++){
+		if(i <= grade) star += '★';
+		else star += '☆';
+	}
+	return star;
 }
 
 function clickItemHeart(ino){
