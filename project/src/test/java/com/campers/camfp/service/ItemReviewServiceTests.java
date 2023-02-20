@@ -19,10 +19,10 @@ public class ItemReviewServiceTests {
 	public void insertDummies() {
 		IntStream.rangeClosed(1, 50).forEach(i -> {
 			ItemReviewDTO itemReviewDTO = ItemReviewDTO.builder()
-											.ino((long)i)
+											.ino((long)i+1)
 											.capture("https://shopping-phinf.pstatic.net/main_8280118/82801183559.8.jpg")
 											.content("정말 최고의 선택이에요")
-											.reviewer("코코도치")
+											.reviewer("임의관리자")
 											.build();
 
 			itemReviewService.register(itemReviewDTO);

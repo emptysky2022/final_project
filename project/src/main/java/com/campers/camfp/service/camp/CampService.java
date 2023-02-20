@@ -19,11 +19,15 @@ public interface CampService {
 
 	public Object modify(TableType table, Object dto);
 
-	public Long register(TableType table, Object dto);
+	public void register(TableType table, Object dto);
 	
 	public List<Object> findAll(TableType table, Long cno);
 	
 	public List<Object> findHeartRank(TableType table, int num);
+	
+	public List<Object> findDataOfMember(TableType table, Long mno);
+	
+	public List<Object> findDataOfCamp(TableType table, Long cno);
 	
 	/**
 	 * @param table 변환할 table 명 table <br>
@@ -43,7 +47,9 @@ public interface CampService {
 									  .name(campDTO.getName())
 									  .thumbnail(campDTO.getThumbnail())
 									  .location(campDTO.getCountry())
+									  .camptype(campDTO.getCamptype())
 									  .address(campDTO.getAddress())
+									  .campintroduce(campDTO.getCampintroduce())
 									  .unit(campDTO.getUnit())
 									  .count(campDTO.getCount())
 									  .star(campDTO.getStar())
@@ -103,6 +109,9 @@ public interface CampService {
 					  						   .country(camp.getLocation())
 					  						   .address(camp.getAddress())
 					  						   .unit(camp.getUnit())
+					  						   .location(camp.getLocation())
+					  						   .camptype(camp.getCamptype())
+					  						   .campintroduce(camp.getCampintroduce())
 					  						   .count(camp.getCount())
 					  						   .star(camp.getStar())  
 					  						   .heart(camp.getHeart())

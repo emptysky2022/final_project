@@ -23,9 +23,17 @@ public class ItemReviewController {
 	
 	private final ItemReviewService itemReviewService;
 	
-	@GetMapping("/list/{ino}")
+	@GetMapping("/detail/{ino}")
 	public ResponseEntity<List<ItemReviewDTO>> getReviewOfItem(@PathVariable Long ino){
 		List<ItemReviewDTO> result = itemReviewService.getReviewOfItem(ino);
+		
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
+	
+	@GetMapping("/heart/{irno}")
+	public ResponseEntity<Integer> clickHeart(@PathVariable Long irno){
+		log.info("click item review heart");
+		int result = itemReviewService.heartOfMember(irno);
 		
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}

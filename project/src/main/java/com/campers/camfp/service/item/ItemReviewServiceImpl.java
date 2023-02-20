@@ -36,6 +36,15 @@ public class ItemReviewServiceImpl implements ItemReviewService{
 	}
 
 	@Override
+	public int heartOfMember(Long irno) {
+		ItemReview itemReview = itemReviewRepository.findById(irno).get();
+		itemReview.increseHeart();
+		itemReviewRepository.save(itemReview);
+		
+		return itemReview.getHeart();
+	}
+
+	@Override
 	public List<ItemReviewDTO> getReviewOfItem(Long ino) {
 		log.info("get all list with one item : " + ino);
 		List<ItemReview> Entities = itemReviewRepository.getReviewWithIno(ino);
@@ -62,6 +71,7 @@ public class ItemReviewServiceImpl implements ItemReviewService{
 		log.info("remove item review num : " + irno);
 		itemReviewRepository.deleteById(irno);
 	}
+
 
 
 }

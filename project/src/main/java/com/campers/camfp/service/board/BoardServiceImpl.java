@@ -35,12 +35,12 @@ public class BoardServiceImpl implements BoardService {
 		log.info(boardDTO);
 		log.info("BoardDTO---------------");
 		
-		Board entityBoard = dtoToEntity(boardDTO);
-		log.info(entityBoard);
+		Board enBoard = dtoToEntity(boardDTO);
+		log.info(enBoard);
 		
-		boardRepository.save(entityBoard);
+		boardRepository.save(enBoard);
 		
-		return entityBoard.getBno();
+		return enBoard.getBno();
 	}
 
 	@Override
@@ -58,6 +58,20 @@ public class BoardServiceImpl implements BoardService {
 		return new PageResultDTO<>(result, fn);
 	}
 	
+//	public PageResultDTO<BoardDTO, Object[]> getList(PageRequestDTO pageRequestDTO) {
+//		
+//		Pageable pageable = pageRequestDTO.getPageable(Sort.by("bno").descending());
+//		
+//		log.info("pageRequestDTO : " + pageRequestDTO);
+//		
+//		Function<Object[], BoardDTO> fn = (en -> entityToDTO((Board) en[0], (Member) en[1], (Long) en[2]));
+//		
+//		Page<Object[]> result = boardRepository.getBoardWithReplyCount(pageable);
+//		
+//		
+//		return new PageResultDTO<>(result, fn);
+//	}
+	
 	@Override
 	public BoardDTO read(Long bno) {
 		
@@ -70,21 +84,31 @@ public class BoardServiceImpl implements BoardService {
 
 	@Transactional
 	@Override
-	public void removeWithReplies(Long bno) {
+	public void removeWithReplies(BoardDTO boardDTO) {
 		
-//		replyRepository.deleteByBno(bno);
-		boardRepository.deleteById(bno);
+//		Board board = Board.builder().bno(boardDTO.getBno()).build();
+//		Member member = Member.builder().mno(boardDTO.getMno()).build();
+		
+		System.out.println(boardDTO);
+		
+		System.out.println("1");
+		
+		replyRepository.deleteReply(boardDTO.getBno());
+		System.out.println("2");
+		boardRepository.deleteBoard(boardDTO.getBno(), boardDTO.getMno());
+		System.out.println("3");
 	}
 
 	@Override
 	public void modify(BoardDTO boardDTO) {
 		
-		Board board = boardRepository.findById(boardDTO.getBno()).get();
+//		Board board = boardRepository.findById(boardDTO.getBno()).get();
+//		
+//		if(board != null) {
+//			board.change(boardDTO.getTitle(), boardDTO.getContent());
+//		}
 		
-		if(board != null) {
-			board.change(boardDTO.getTitle(), boardDTO.getContent());
-		}
-		
+		Board board = dtoToEntity(boardDTO);
 		boardRepository.save(board);
 	}
 	

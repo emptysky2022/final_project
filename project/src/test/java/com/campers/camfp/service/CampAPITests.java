@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 
+import com.campers.camfp.config.type.CampingType;
 import com.campers.camfp.config.type.TableType;
 import com.campers.camfp.dto.camp.CampDTO;
 import com.campers.camfp.entity.member.Member;
@@ -40,7 +41,7 @@ public class CampAPITests {
         String api_key = API_KEY;
         
         //반복(총 몇개의 캠프 정보를 넣을지)
-        IntStream.range(0, 10).forEach(i -> {
+        IntStream.range(0, 100).forEach(i -> {
         	
 	    	String requestHeaders = "";
 	    	//페이지 결과 수(캠핑장 개수)
@@ -65,19 +66,36 @@ public class CampAPITests {
 	        String responseBody = get(apiURL);
 	        System.out.println(responseBody);
 	        
+			double dValue = Math.random();
+			int iValue = (int) (dValue * 10) + 1;
+	        
 	        try {
-	        	System.out.println("여긴 됨");
 				JSONObject object = new JSONObject(responseBody);
 				JSONObject response = object.getJSONObject("response").getJSONObject("body").getJSONObject("items");
 				JSONArray camps = response.getJSONArray("item");
 				for(int j = 0; j < camps.length(); j++) {
+					
 					JSONObject camp = camps.getJSONObject(j);
+					System.out.println(camp);
+					String data;
+					String campType = camp.getString("induty").replace("야영장", "").trim();
+					
+					if (camp.getString("intro").length() > 495) {						
+						data = camp.getString("intro").substring(0, 495);
+						data = data+ "...";
+					}else {						
+						data = camp.getString("intro");
+					}
+					System.out.println(campType);
 					CampDTO campDTO = CampDTO.builder()
 									.member(Member.builder().mno(1L).build())
 									.name(camp.getString("facltNm"))
 									.thumbnail(camp.getString("firstImageUrl"))
 									.country(camp.getString("doNm"))
+									.campintroduce(data)
 									.address(camp.getString("addr1") + camp.getString("addr2"))
+									.heart(iValue)
+									.camptype(campType)
 									.build();
 					campService.register(TableType.CAMP, campDTO);
 				}

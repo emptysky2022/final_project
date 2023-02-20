@@ -12,10 +12,16 @@
   src="https://code.jquery.com/jquery-3.6.3.min.js"
   integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
   crossorigin="anonymous"></script>
+  
+  	<!-- starrr(임시) -->
+	<script th:src="@{../js/starrr.js}"></script>
+    <link th:href="@{../css/starrr.css}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css"/>
+    
     <!--css 연결-->
     <link rel="stylesheet" type="text/css" href="../css/campgroundsdetail.css">
     <!--js연결-->
-    <script type="text/javascript" src="../js/itemReview.js" defer></script>
+    <script type="text/javascript" src="../js/itemDetail.js" defer></script>
 
     <!--구글 폰트 링크-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -86,7 +92,11 @@
                             <div class="cg_title item">[[${detail.name}]]</div>
                         </div>
                         <div class="cg_starbox box4">
-                            <div class="cg_star item">[[${detail.star}]]</div>
+                            <div class="starrr cg_star item">[[${detail.star}]]</div>
+                        </div>
+                        
+                        <div class="cg_heartbox box4" onclick="clickItemHeart('[[${detail.ino}]]')">
+                        	<div class="cg_heart item" id="item_heart">[[${detail.heart}]]</div>
                         </div>
 
                         <div class="cg_explainbox box4">

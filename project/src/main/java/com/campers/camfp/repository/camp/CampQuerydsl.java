@@ -26,10 +26,17 @@ public interface CampQuerydsl {
 	
 	 /** 
 	  * @param table 찾을 table 명 <br>
-	  * @param address 찾을 주소 ex) 경기도 , 강원도 , 서울 <br>
+	  * @param mno member 부모번호 <br>
 	  * @return List<?> List WildCard
 	  */
-	public List<?> findDataOfMember(TableType table, int count);
+	public List<?> findDataOfMember(TableType table, Long mno);
+	
+	 /** 
+	  * @param table 찾을 table 명 <br>
+	  * @param cno camp 부모번호 <br>
+	  * @return List<?> List WildCard
+	  */
+	public List<?> findDataOfCamp(TableType table, Long cno);
 	
 }
 	
