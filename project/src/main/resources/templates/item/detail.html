@@ -105,69 +105,68 @@
                             <div class="cg_hashtag item"> #차박 #오늘도 #성공적</div>
                         </div>
                     </div>
-
+					<!-- 리뷰 추가 모달창 -->
+                    <div class="modal-btn-box">
+        				<button type="button" id="modal-open">리뷰 작성</button>
+						    </div>
+						     <!--모달을 감쌀 박스-->
+						    <div class="popup-wrap" id="popup">
+						        <!--실질적 모달팝업-->
+						        <div class="popup"> 
+						            <!--로고 영역-->
+						            <div class="popup-head"> 
+						                <span class="head-title"> 로고</span>
+						            </div>
+						            <!--컨텐츠 영역-->
+						            <div class="popup-body"> 
+						                <div class="body-content">
+						                 <div class="body-titlebox">리뷰 작성하기</div>
+						                    <hr>
+						                    <div class="body-contentbox">
+						                       <div class="campgroundsbox">
+						                            <div class="campimgbox">
+						                                <img class="campimg" th:src="${detail.thumbnail}">
+						                            </div>
+						                            <div class="campexplainbox">
+						                                <div class="ce_title">[[${detail.name}]]</div> 
+						                                <div class="ce_preice">
+						                                    [[${detail.price}]]원
+						                                </div>
+						                               
+						                            </div>
+						                       </div>
+						                       <hr>
+						                       <div class="starbox">
+						                            <div class="star_title">별점을 선택하세요</div>
+						                            <div class="starsizeupbox">
+						                                <div class="starrr star" id="select_star"></div>  
+						                            </div>  
+						                       </div>
+						                       <hr>
+						                       <div class="textreviewbox">
+						                            <div class="tr_texttitle">리뷰 내용</div>
+						                            <textarea class="tr_text" id="content" placeholder="솔직한 이용후기를 작성해주세요"></textarea>
+						
+						                       </div>
+						                       <hr>
+						                       <div class="addimgbox">
+						                            <div class="addimgtitle">이미지 추가</div>
+						                            <input type="file" id="picture" class="addimg">
+						                       </div>
+						                    </div>
+						                </div>
+						            </div>
+						            <!--푸터 버튼 영역-->
+						            <div class="popup-foot">  
+						                <span class="pop-btn close" id="close">창 닫기</span>
+						                <span class="pop-btn confirm" id="confirm">확인</span>
+						               
+						            </div>
+						        </div>
+						    </div>
                     <!---------------후기-------------------->
                     <div class="sec4 box3">
                         <div class="rv box4" id="reviewGroup">
-                            <div class="modal-btn-box">
-        <button type="button" id="modal-open">모달창 열기</button>
-    </div>
-     <!--모달을 감쌀 박스-->
-    <div class="popup-wrap" id="popup">
-        <!--실질적 모달팝업-->
-        <div class="popup"> 
-            <!--로고 영역-->
-            <div class="popup-head"> 
-                <span class="head-title"> 로고</span>
-            </div>
-            <!--컨텐츠 영역-->
-            <div class="popup-body"> 
-                <div class="body-content">
-                 <div class="body-titlebox">리뷰 작성</div>
-                    <hr>
-                    <div class="body-contentbox">
-                       <div class="campgroundsbox">
-                            <div class="campimgbox">
-                                <img class="campimg" src="../img/family1.jpg" alt="">
-                            </div>
-                            <div class="campexplainbox">
-                                <div class="ce_title">충북 중주호</div> 
-                                <div class="ce_date"> 2023-02-27~2023-02-28</div>
-                                <div class="ce_preice">
-                                    120,000원
-                                </div>
-                               
-                            </div>
-                       </div>
-                       <hr>
-                       <div class="starbox">
-                            <div class="star_title">별점을 선택하세요</div>
-                            <div class="starsizeupbox">
-                                <div class="star">★★★★☆</div>  
-                            </div>  
-                       </div>
-                       <hr>
-                       <div class="textreviewbox">
-                            <div class="tr_texttitle">텍스트 리뷰</div>
-                            <textarea class="tr_text" placeholder="솔직한 이용후기를 작성해주세요"></textarea>
-
-                       </div>
-                       <hr>
-                       <div class="addimgbox">
-                            <div class="addimgtitle">이미지 추가</div>
-                            <input type="file" class="addimg">
-                       </div>
-                    </div>
-                </div>
-            </div>
-            <!--푸터 버튼 영역-->
-            <div class="popup-foot">  
-                <span class="pop-btn close" id="close">창 닫기</span>
-                <span class="pop-btn confirm" id="confirm">확인</span>
-               
-            </div>
-        </div>
-    </div>
 
                         </div>
 

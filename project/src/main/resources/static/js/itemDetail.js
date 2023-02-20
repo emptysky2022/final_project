@@ -1,4 +1,5 @@
 $(function(){
+	let ino = new URLSearchParams(window.location.search).get("ino");
 	var grade=$(".starrr").html();
 	console.log("grade : " + grade);
 	$(".starrr").html("");
@@ -12,9 +13,25 @@ $(function(){
 		}
 	})
 	$("#confirm").click(function(){
+		console.log($("#content").val() + $("#picture").val());
         modalClose(); //모달 닫기 함수 호출
-        
         //컨펌 이벤트 처리
+        let data = {
+				"content" : $("#content").val(),
+				"picture" : $("#picture").val(),
+				"ino" : ino
+			};
+		$.ajax({
+			url: "/review/register",
+			method: "POST",
+			contentType: "application/json",
+			data: JSON.stringify(data),
+			success: function(ino){
+				console.log("success with " + ino);
+				loadJsonData(ino);
+			}
+		})       
+        
     });
     $("#modal-open").click(function(){        
         $("#popup").css('display','flex').hide().fadeIn();
@@ -26,10 +43,10 @@ $(function(){
     function modalClose(){
         $("#popup").fadeOut(); //페이드아웃 효과
     }
+    loadJsonData(ino);
 })
 
-function loadJsonData(){
-	let ino = new URLSearchParams(window.location.search).get("ino");
+function loadJsonData(ino){
 	let reviewGroup = $("#reviewGroup");
 	$.getJSON("/review/detail/" + ino, function(result){
 		console.log(result);
@@ -41,7 +58,7 @@ function loadJsonData(){
 			  str += '    <div class="imgbox box7">';
 			  str += '      <a class="imglink box8" href="">';
 			  str += '        <img class="rv_img item" src="' + review.capture + '"></a></div>';
-			  str += '    <div class="rv_star box7_2"><p class="item">★★★★★</p></div></div>';
+			  str += '    <div class="rv_star box7_2" id="star">' + getStar(review.star) + '</div></div>';
 			  str += '  <div class="box_r box6">';
 			  str += '    <div class="comment box7">';
 			  str += '      <h2 class="write item">' + review.reviewer + '</h2>';
@@ -51,7 +68,12 @@ function loadJsonData(){
 		reviewGroup.html(str);
 		console.log("끝!")
 	})
-	
+}
+function getStar(count){
+	var grade=count;
+	console.log("grade : " + grade);
+	$("#star").html("");
+	$('#star').starrr({rating: grade});
 }
 
 function clickItemHeart(ino){
