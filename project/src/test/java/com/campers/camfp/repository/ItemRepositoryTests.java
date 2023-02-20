@@ -22,4 +22,8 @@ public class ItemRepositoryTests {
 		
 	}
 	
+	@Test
+	public void deleteItemDummy() {
+		itemRepository.deleteById(1L);
+	}
 }

@@ -22,6 +22,8 @@ import com.campers.camfp.dto.board.BoardDTO;
 import com.campers.camfp.dto.board.ReplyDTO;
 import com.campers.camfp.dto.page.PageRequestDTO;
 import com.campers.camfp.dto.page.PageResultDTO;
+import com.campers.camfp.entity.board.Board;
+import com.campers.camfp.entity.member.Member;
 import com.campers.camfp.service.board.BoardService;
 import com.campers.camfp.service.board.ReplyService;
 
@@ -100,13 +102,15 @@ public class BoardController {
    
    @ResponseBody
    @DeleteMapping(value = "/list/remove/{bno}")
-   public ResponseEntity<String> remove(Long bno) {
+   public ResponseEntity<Long> remove(@PathVariable("bno") Long bno) {
+	   
+	  BoardDTO boardDTO = boardService.read(bno);
+			  
+      log.info("delete : " + boardDTO);
       
-      log.info("delete : " + bno);
+      boardService.removeWithReplies(boardDTO);
       
-      boardService.removeWithReplies(bno);
-      
-      return new ResponseEntity<String>("success", HttpStatus.OK);      
+      return new ResponseEntity<Long>(bno, HttpStatus.OK);
       
       // remove 되지않음. 확인 및 수정 필요함.
    }
