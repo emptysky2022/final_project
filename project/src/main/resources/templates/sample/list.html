@@ -89,14 +89,39 @@
             </tbody>
          </table>
       </div>
-   
+      <!-- 페이징 처리 시작 -->
       <div>
-         <h6>pagination</h6>
+         <ul class="pagination h-100 justify-content-center align-items-conter">
+			<li class="page-item" th:if="${result.prev}">
+				<a class="page-link" th:onclick="" th:href="@{/sample/list(page=${result.start-1},
+															type=${pageRequestDTO.type},
+															keyword=${pageRequestDTO.keyword}
+											  )}" tabindex="-1">이전</a>
+			</li>
+			
+			<li th:class="'page-item '+ ${result.page == page ? 'active' : ''} "
+			th:each="page: ${result.pageList}"><a class="page-link" th:href="@{/sample/list(page=${page},
+																						   type=${pageRequestDTO.type},
+																						   keyword=${pageRequestDTO.keyword}
+																			 )}">[[${page}]]</a>
+			</li>
+			
+			<li class="page-item" th:if="${result.next}">
+				<a class="page-link" th:href="@{/sample/list(page=${result.end + 1},
+															type=${pageRequestDTO.type},
+															keyword=${pageRequestDTO.keyword}
+											  )}">다음</a>
+			</li>
+		</ul>
       </div>
+      <!-- 페이징 처리 끝 -->
       <div>
          <h6>검색 기능</h6>
       </div>
    </div>
    <!-- 게시글 목록 : 끝 -->
+   
+   
+   
 </body>
 </html>

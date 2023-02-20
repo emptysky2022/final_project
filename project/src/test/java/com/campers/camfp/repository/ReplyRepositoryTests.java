@@ -20,10 +20,10 @@ public class ReplyRepositoryTests {
 	@Test
 	public void insertBoardReplys() {
 		
-		IntStream.rangeClosed(1, 100).forEach(i -> {
+		IntStream.rangeClosed(1, 500).forEach(i -> {
 			
 			// 임시 게시판 번호
-			Long bno = (long)((Math.random() * 50) + 1); 
+			Long bno = (long)((Math.random() * 704) + 1); 
 			
 			int heart = (int)((Math.random() * 100) + 1);
 			

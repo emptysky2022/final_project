@@ -27,12 +27,13 @@ public class BoardRepositoryTest {
 	@Test
 	public void testInsert() {
 		
-		IntStream.rangeClosed(1, 50).forEach(i -> {
+		IntStream.rangeClosed(50, 700).forEach(i -> {
 			
-			int count = (int)((Math.random() * 5000) + 1);
-			int heart = (int)((Math.random() * 1000) + 1);
+			int count = (int) ((Math.random() * 5000) + 1);
+			int heart = (int) ((Math.random() * 1000) + 1);
+			long ranMember = (long) ((Math.random() * 50) +1);
 			
-			Member member = Member.builder().mno((long) i).build();
+			Member member = Member.builder().mno(ranMember).build();
 			
 			Board board = Board.builder().title("Sample Title" + i)
 										 
