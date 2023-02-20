@@ -133,6 +133,7 @@
 					</a>
 					
                     <div class="sec5 box3 test">
+                    <div class="sec5 box3">
                         <div class="campgroundsbox box4" th:each="camp : ${result}" th:attr="onclick=|location.href='@{/sample/campgroundsdetail(cno=${camp.cno})}'|"> 
                             <input type = "hidden" name="cno" th:value ="${camp.cno}">
                             <div class="cg_imgbox box5">
@@ -148,6 +149,7 @@
                                 <div class="cg_explainbox box5">
                                     <div class="explain item">[[${camp.address}]]</div>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
