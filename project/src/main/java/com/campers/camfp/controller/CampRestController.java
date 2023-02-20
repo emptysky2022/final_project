@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.campers.camfp.config.type.CampingType;
 import com.campers.camfp.config.type.TableType;
+import com.campers.camfp.dto.camp.CampDTO;
 import com.campers.camfp.dto.camp.CampReviewDTO;
 import com.campers.camfp.service.camp.CampService;
 
@@ -31,13 +32,24 @@ public class CampRestController {
 	public ResponseEntity<List<CampReviewDTO>> getListByReview(@PathVariable("cno") Long cno){
 		System.out.println("탔음");
 		List<CampReviewDTO> reviews = new ArrayList<>();
-		campService.findDataOfCamp(TableType.CAMPREVIEW, cno).forEach(value -> {
+		campService.findDataOfCamp(TableType.CAMPREVIEW, cno, "별점순").forEach(value -> {
 			reviews.add((CampReviewDTO) value);
 		});
 		
 		log.info(reviews);
 		
 		return new ResponseEntity<> (reviews, HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "list/{type}")
+	public ResponseEntity<List<CampDTO>> getListByCamp(@PathVariable("type") String type){
+		List<CampDTO> campdtoList = new ArrayList<>();
+		
+		campService.findDataOfCamp(TableType.CAMP, 0L, type).forEach(value -> {
+			campdtoList.add((CampDTO) value);
+		});
+		log.info(campdtoList);
+		return new ResponseEntity<> (campdtoList, HttpStatus.OK);
 	}
 
 }

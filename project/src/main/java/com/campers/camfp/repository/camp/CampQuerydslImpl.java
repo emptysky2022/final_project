@@ -2,6 +2,7 @@ package com.campers.camfp.repository.camp;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.print.DocFlavor.READER;
 
@@ -16,6 +17,8 @@ import com.campers.camfp.entity.camp.CampReview;
 import com.campers.camfp.entity.camp.QCamp;
 import com.campers.camfp.entity.camp.QCampCalender;
 import com.campers.camfp.entity.camp.QCampReview;
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
@@ -61,7 +64,7 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 	}
 
 	@Override
-	public List<?> findHeartRank(TableType table, int count) {
+	public List<?> findHeartOrCountRank(TableType table, int count, String findType) {
 
 		List<?> data = new ArrayList<>();
 
@@ -71,7 +74,12 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 			JPQLQuery<Camp> camp = from(Q_CAMP);
 			camp.select(Q_CAMP);
 			camp.from(Q_CAMP);
-			camp.orderBy(Q_CAMP.heart.desc());
+			if (findType == "조회순") {
+				camp.orderBy(Q_CAMP.heart.desc());				
+			}
+			if (findType == "별점순") {
+				camp.orderBy(Q_CAMP.count.desc());								
+			}
 			camp.limit(count);
 			data = camp.fetch();
 			break;
@@ -81,7 +89,14 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 			JPQLQuery<CampReview> review = from(Q_CAMP_REVIEW);
 			review.select(Q_CAMP_REVIEW);
 			review.from(Q_CAMP_REVIEW);
-			review.orderBy(Q_CAMP_REVIEW.heart.desc());
+			
+			if (findType == "별점순") {
+				review.orderBy(Q_CAMP.heart.desc());				
+			}
+			if (findType == "조회순") {
+				review.orderBy(Q_CAMP.count.desc());								
+			}
+			
 			review.limit(count);
 			data = review.fetch();
 
@@ -103,11 +118,47 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 
 
 	@Override
-	public List<?> findDataOfCamp(TableType table, Long cno) {
+	public List<?> findDataOfCamp(TableType table, Long cno, String findData) {
 		
 		List<?> data = new ArrayList<>();
 		
 		switch (table) {
+		
+		case CAMP:
+			JPQLQuery<Camp> camp = from(Q_CAMP);
+			
+			String[] find = findData.split(",");
+			
+			BooleanBuilder conditionBuilder = new BooleanBuilder().and(Q_CAMP.name.isNotNull());
+			
+			camp.select(Q_CAMP);
+			camp.from(Q_CAMP);
+			
+			for (String query : find) {
+				switch(query) {
+				case "일반":
+				case "카라반":
+				case "글램핑":
+				case "자동차":
+					camp.stream().filter(value -> value.getCamptype().contains(query)).collect(Collectors.toList());
+					break;
+				case "별점순":
+					//conditionBuilder.and(Q_CAMP.heart.desc());
+						break;
+				case "조회순":
+					//conditionBuilder.orderBy(Q_CAMP.count.desc()).limit(5);
+						break;
+					
+					
+				}
+			}
+			System.out.println(camp);
+			data = camp.select(Q_CAMP)
+                    .where(conditionBuilder)
+                    .fetch();
+
+			break;
+			
 		
 		case CAMPREVIEW:
 			JPQLQuery<CampReview> review = from(Q_CAMP_REVIEW);

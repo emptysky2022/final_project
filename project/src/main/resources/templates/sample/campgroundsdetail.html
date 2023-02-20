@@ -166,6 +166,7 @@
                         </div>
                     </div>
                     <div class="sec4 box3">
+                    
                         <div class="rv box4"></div>
                         
                         	<a class="list-group replyList">
@@ -489,7 +490,130 @@
     	    	
     	    	// 힌색 넣자
     	     });
+     	 
+     	 	function clearDate(){
+     	 		
+     	 		$("#calendar"+Reservation[0].day).css("background-color","white");
+     	 		$("#calendar"+Reservation[1].day).css("background-color","white");
+     	 		Reservation[0].year = 0;
+     	 		Reservation[0].month = 0;
+     	 		Reservation[0].day = 0;
+     	 		Reservation[1].year = 0;
+     	 		Reservation[1].month = 0;
+     	 		Reservation[1].day = 0;
+
+     	 	}
      	 	 
+     	 	  
+    	    function paintbutton(a){
+    	    	
+    			// 세이프티 체크 
+    			// 둘다들어왔을때 사이에 빨간색이 있다면?
+    			var startday = new Date(Reservation[0].year, Reservation[0].month, Reservation[0].day);
+    		    var endday = new Date(Reservation[1].year, Reservation[1].month, Reservation[1].day);
+    		    var buffer;
+    		    
+    		    if (startday > endday){
+    		    	buffer = startday;
+    		    	startday = endday;
+    		    	endday = buffer;
+    		    }
+    		    
+    		    var diff = endday.getDate() - startday.getDate();
+    		    var bor = true;
+    		    
+    		    
+	    			for (var re =startday.getDate(); re < startday.getDate()+diff; re++){
+    				if ($("#calendar"+re).css( "background-color" ) =='rgb(255, 0, 0)'){
+    					bor = false;
+    				}
+    			}  
+				
+    			if (bor == false){
+    				alert("예약날짜가 겹칩니다 확인해주세요.");
+    				clearDate();
+    				return;
+    			}
+
+        		  // 기본 적으로 둘다 데이터가 있는경우 에만 실행
+        		  if (Reservation[0].year > 1 && Reservation[1].year > 1){
+        			  
+        			  // 몇일 차이나는지 구하는 로직
+            		  var startday = new Date(Reservation[0].year, Reservation[0].month, Reservation[0].day);
+            		  var enbday = new Date(Reservation[1].year, Reservation[1].month, Reservation[1].day);
+            		  var diff = enbday.getTime() - startday.getTime();
+            		  diff = diff / (1000*60*60*24);
+            		  
+            		  var monthyear = $("#month-year").html();
+   		  
+            		  var yea = $("#month-year").html().substring(0,4).trim();
+            		  var mon = $("#month-year").html().substring(4,$("#month-year").html().length).replace("년","").replace("월","").trim();
+            			
+            		  var planday = startday;
+            		  
+            		  for (var j = 0; j <= diff; j++){
+            		  // start 년도랑 같은년인지
+            		  if (planday.getFullYear() == yea){
+            			  
+            		  		// 같은달인지 
+            		  		// month 계산 이상해서 하나올림
+                		  	if (planday.getMonth() == mon){
+                		  		
+                    		  		if (planday.getDate() == a){
+                    		  			
+                    		  			if ($("#calendar"+planday.getDate()).css( "background-color" ) !='rgb(255, 0, 0)'){
+                    		  				
+                		  					$("#calendar"+planday.getDate()).css("background-color","green");
+                		  					
+                    		  			}else{
+                    		  				alert("예약 불가능한 날짜입니다.");
+                    		  				break;
+                    		  			}
+                    		  			
+                		  		
+                    		  		}
+                		  		
+                		  	}
+            		  	}
+            		  
+               		  // 시작날짜부터 다른만큼 하나씩 올림
+                	  planday.setDate(startday.getDate() + 1);
+        		  }
+        	}
+      	  }
+      	  
+      	  function calculation(Reservation){
+      		  
+      		  var startday = Reservation[0];
+      		  var endday = Reservation[1];
+      		  var buffer;  
+      		  // 시작년 과 종료 년이 같을경우
+      		  if (startday.year == endday.year){
+      			  
+          		  // 시작달과 종료달이 같은결우
+          		  if (startday.month == endday.month){
+          			  
+              		  // 시작일 이 종료일 보다 크면
+              		  if (startday.day > endday.day){
+              			  
+              			  buffer = startday.day;
+              			  startday.day = endday.day;
+              			  endday.day = buffer;
+              		  }
+          		  }
+          		  
+          		  // 시작일이 종료일보다 클경우
+          		  if (startday.month > endday.month){
+          			  
+          			  buffer = startday.month;
+          			  startday.month = endday.month;
+          			  endday.month = buffer;
+          		  }
+      		  }
+      		Reservation[0] = startday;
+      		Reservation[1] = endday;
+      		  
+      	  }
      	 	  
     	    function paintbutton(a){
 
@@ -600,6 +724,11 @@
     	    prev = false;
     	    generateCalendar();
     	  });
+    	  
+    	  $("#days .child").on("click", function() {
+    		  
+    	  });
+    	  
 		  //////////////////////달력 끝 /////////////////////////
     	  //////////////////////댓글 기능/////////////////////////
     	  

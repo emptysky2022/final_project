@@ -7,10 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.campers.camfp.dto.board.ReplyDTO;
@@ -38,8 +38,8 @@ public class ReplyController {
 		return new ResponseEntity<>(replyDTOList, HttpStatus.OK);
 	}
 	
-	@PostMapping("/{bno}")
-	public ResponseEntity<Long> addReply(@RequestBody ReplyDTO replyDTO) {
+	@RequestMapping(value = "/{bno}", method = RequestMethod.POST)
+	public ResponseEntity<Long> addReply(@RequestBody ReplyDTO replyDTO) throws Exception{
 		
 		log.info("add-----------------");
 		log.info("replyDTO : " + replyDTO);
@@ -62,7 +62,7 @@ public class ReplyController {
 	
 	
 	@DeleteMapping("/{bno}/{replyNum}")
-	public ResponseEntity<Long> removeReply(@PathVariable Long replyNum) {
+	public ResponseEntity<Long> removeReply(@PathVariable("replyNum") Long replyNum) {
 		
 		log.info("remove---------------");
 		log.info("replyNum : " + replyNum);

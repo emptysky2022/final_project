@@ -38,7 +38,7 @@ public class CampController {
 	public void getCampgrounds(Model model) {
 		List<CampDTO> dataList = new ArrayList<>();
 
-		campService.findHeartRank(TableType.CAMP, 5).forEach(result -> {
+		campService.findHeartOrCountRank(TableType.CAMP, 6, "별점순").forEach(result -> {
 			dataList.add((CampDTO) result);
 		});
 
@@ -53,7 +53,7 @@ public class CampController {
 
 		CampDTO campdto = (CampDTO) campService.findbyId(TableType.CAMP, cno);
 		
-		campService.findDataOfCamp(TableType.CAMPCALENDER, cno).forEach(value ->{
+		campService.findDataOfCamp(TableType.CAMPCALENDER, cno, "").forEach(value ->{
 			calenderList.add((CampCalenderDTO) value);
 		});
 		
