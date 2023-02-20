@@ -23,11 +23,11 @@ public interface CampService {
 	
 	public List<Object> findAll(TableType table, Long cno);
 	
-	public List<Object> findHeartRank(TableType table, int num);
+	public List<Object> findHeartOrCountRank(TableType table, int num, String findType);
 	
 	public List<Object> findDataOfMember(TableType table, Long mno);
 	
-	public List<Object> findDataOfCamp(TableType table, Long cno);
+	public List<Object> findDataOfCamp(TableType table, Long cno, String findData);
 	
 	/**
 	 * @param table 변환할 table 명 table <br>
