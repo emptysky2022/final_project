@@ -585,23 +585,19 @@ body .container{
   
  
 } 
-
-.sectionbreak .sec5 .loginbuttonbox{
-    display: flex; 
-    border: 5px solid rgb(243, 178, 243);
-    background-color:#3498DB;
-    width: 100%;
-    max-width: 200px;
-    color: rgb(255, 255, 255);
-    border: 1px solid black;
+ 
+ .sectionbreak .sec5 .loginbuttonbox{
+     display: flex;  
+    width: 80%;
+    max-width: 180px;
     text-align: center;
     
-}
+}  
 
 
 .sectionbreak .sec5 .loginbuttonbox .loginbutton{
-    
-    
+    background-color:#3498DB;
+    color: rgb(255, 255, 255);
     border-radius: 0.5rem;
     padding: 1.2rem;
     width: 100%;

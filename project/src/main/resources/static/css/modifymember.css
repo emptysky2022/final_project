@@ -325,7 +325,7 @@ main .body .body_center {
 
 
 /*아이디*/
-.sec2 .idbox {
+/* .sec2 .idbox {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -345,11 +345,11 @@ main .body .body_center {
     border-radius: 0.2rem;
     margin: 0 0 1.5rem 0;
     max-width: 500px;
-}
+} */
 
 
 /*비밀번호*/
-.sec2 .passwordbox {
+/* .sec2 .passwordbox {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -368,7 +368,7 @@ main .body .body_center {
     border-radius: 0.2rem;
     margin: 0 0 1.5rem 0;
     max-width: 500px;
-}
+} */
 
 
 
@@ -406,14 +406,20 @@ main .body .body_center {
     flex-basis: 30%;
 }
 
+ 
+
+
+
 .sec2 .nicknamebox .nickname {
     flex-basis: auto;
     width: 100%;
     height: 3.5rem;
     border-radius: 0.2rem;
     margin: 0 0 1.5rem 0;
-    max-width: 500px;
+    max-width: 440px;
 }
+
+
 
 
 /*나이*/
@@ -676,9 +682,9 @@ main .body .body_center {
     /*닉네임*/
     .sec2 .nicknamebox {
         display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
+        flex-direction: row;
         align-content: space-around;
+        margin: 0 0 1rem 0;
     }
 
     .sec2 .nicknamebox .nicknametext {
@@ -690,7 +696,7 @@ main .body .body_center {
         width: 100%;
         height: 3rem;
         border-radius: 0.2rem;
-        margin: 0 0 1rem 0;
+        margin: 0;
         padding: 0;
 
     }
@@ -835,6 +841,44 @@ main .body .body_center {
 
     }
 
+        /*1024px 이하일때 텍스트 제거*/
+        .sec2 .idbox .idtext {
+            display: none;
+        }
+    
+        .sec2 .passwordbox .passwordtext {
+            display: none;
+        }
+    
+        .sec2 .namebox .nametext {
+            display: none;
+        }
+    
+        .sec2 .nicknamebox .nicknametext {
+            display: none;
+        }
+    
+        .sec2 .agebox .agetext {
+            display: none;
+        }
+    
+        .sec2 .genderbox .gendertext {
+            display: none;
+        }
+    
+        .sec2 .addressbox .addresstext {
+            display: none;
+        }
+    
+        .sec2 .phonebox .phonetext {
+            display: none;
+        }
+    
+        .sec2 .introducebox .introducetext {
+            display: none;
+        }
+    
+
 
 }
 
@@ -891,7 +935,7 @@ main .body .body_center {
         width: 100%;
         height: 2rem;
         border-radius: 0.2rem;
-        margin: 0 0 1rem 0;
+        margin: 0 ;
         padding: 0;
     }
 
@@ -978,42 +1022,6 @@ main .body .body_center {
 
     }
 
-    /*480px 이하일때 텍스트 제거*/
-    .sec2 .idbox .idtext {
-        display: none;
-    }
-
-    .sec2 .passwordbox .passwordtext {
-        display: none;
-    }
-
-    .sec2 .namebox .nametext {
-        display: none;
-    }
-
-    .sec2 .nicknamebox .nicknametext {
-        display: none;
-    }
-
-    .sec2 .agebox .agetext {
-        display: none;
-    }
-
-    .sec2 .genderbox .gendertext {
-        display: none;
-    }
-
-    .sec2 .addressbox .addresstext {
-        display: none;
-    }
-
-    .sec2 .phonebox .phonetext {
-        display: none;
-    }
-
-    .sec2 .introducebox .introducetext {
-        display: none;
-    }
 
 
 

@@ -1231,72 +1231,238 @@ th {
     color: aliceblue;
 }
 
-/*좋아요 div의 탭메뉴*/
-
 
 .sec5{
-    height: 100vh;
+    height: auto;
+    margin: 1rem;
+    min-height: 50vh;
 }
 
 
-.tabs {
-  height:auto;
-  width:100%;
-  height:100%;
+/******탭메뉴*******/
+/*캠핑장*/
+.tab-button-outer {
+    display: none;
+    justify-content: center;
+  }
   
-  padding:20px 30px;
-  overflow:hidden;
-  border-radius:50px;
-  box-shadow:5px 10px 5px #ccc;
-}
-.tabs .tab-header {
-  height:60px;
-  display:flex;
-  align-items:center;
-}
-.tabs .tab-header > div {
-  width:calc(100% / 4);
-  text-align:center;
-  color:#888;
-  font-weight:600;
-  cursor:pointer;
-  font-size:14px;
-  text-transform:uppercase;
-  outline:none;
-}
-.tabs .tab-header > div > i {
-  display:block;
-  margin-bottom:5px;
-}
-.tabs .tab-header > div.active {
-  color:#00acee;
-}
-.tabs .tab-indicator {
-  position:relative;
-  width:calc(100% / 4);
-  height:5px;
-  background:#00acee;
-  left:0px;
-  border-radius:5px;
-  transition:all 500ms ease-in-out;
-}
-.tabs .tab-body {
-  position:relative;
-  height:calc(100% - 60px);
-  padding:10px 5px;
-}
-.tabs .tab-body > div {
-  position:absolute;
-  top:-200%;
-  opacity:0;
-  transform:scale(0.9);
-  transition:opacity 500ms ease-in-out 0ms,
-    transform 500ms ease-in-out 0ms;
-}
-.tabs .tab-body > div.active {
-  top:0px;
-  opacity:1;
-  transform:scale(1);
- 
+
+#tab-button{
+    display:flex;
+    flex-direction: row;
+    
 }
 
+#tab-button li a{
+    width: 6rem;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.tab-contents .campgroundsbox{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(5vh, auto);
+    gap: 1rem;
+    margin: 1rem;
+}
+
+.tab-contents .campgroundsbox .cg_textbox{
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    flex-direction: column;
+
+}
+
+/*아이템*/
+.tab-contents .campporductbox{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-auto-rows: minmax(5vh, auto);
+    gap: 1rem;
+    margin: 1rem;
+}
+
+.tab-contents .campporductbox .cp_imgbox{
+    display: flex;
+
+
+}
+
+.tab-contents .campporductbox .cp_textbox{
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    flex-direction: column;
+}
+
+
+/*게시글*/
+.tab-contents h2{
+    border-bottom: 1px solid black;
+}
+
+
+.tab-contents .postgroupbox{
+    display: flex;
+    padding: 1rem;
+    border-bottom: 1px solid black;
+}
+
+.tab-contents .postgroupbox .pg_textbox{
+    display: flex;
+    align-items: baseline;
+    flex-direction: column;
+    width: 100%;
+}
+
+.tab-contents .postgroupbox .pg_textbox .pg_upline{
+    display: flex;
+    align-items: baseline;
+    flex-direction: row;
+    width: 100%;
+    
+}
+
+.tab-contents .postgroupbox .pg_textbox .pg_downline{
+    display: flex;
+    align-items: baseline;
+    flex-direction: row;
+    width: 100%;
+}
+
+.tab-contents .postgroupbox .pg_textbox .pg_upline .pg_views{ 
+    display: flex;
+    flex-basis: 25%;
+}
+.tab-contents .postgroupbox .pg_textbox .pg_upline .pg_write{ 
+    display: flex;
+    flex-basis: 25%;
+}
+.tab-contents .postgroupbox .pg_textbox .pg_upline .pg_date{ 
+    display: flex;
+    flex-basis: 25%;
+}
+.tab-contents .postgroupbox .pg_textbox .pg_upline .pg_num{ 
+    display: flex;
+    flex-basis: 25%;
+    
+}
+
+.tab-contents .postgroupbox .pg_textbox .pg_downline .pg_num{ 
+    display: flex;
+    flex-basis: 10%;
+}
+.tab-contents .postgroupbox .pg_textbox .pg_downline .pg_texttitle{ 
+    display: flex;
+    flex-basis: 60%;
+}
+.tab-contents .postgroupbox .pg_textbox .pg_downline .pg_reviewnum{ 
+    display: flex;
+    flex-basis: 10%;
+}
+
+
+/*댓글*/
+.reviewbox{
+    display: flex;
+    padding: 1rem;
+    border-bottom: 1px solid black;
+}
+
+.tab-contents .rv_textbox{
+    display: flex;
+    align-items: baseline;
+    flex-direction: column;
+    width: 100%;
+}
+
+.tab-contents .rv_upline{
+    display: flex;
+    align-items: baseline;
+    flex-direction: row;
+    width: 100%;
+    
+}
+
+.tab-contents  .rv_textbox .rv_downline{
+    display: flex;
+    align-items: baseline;
+    flex-direction: row;
+    width: 100%;
+}
+
+
+.tab-contents .rv_textbox .rv_upline .rv_write{ 
+    display: flex;
+    flex-basis: 25%;
+}
+.tab-contents  .rv_textbox .rv_upline .rv_date{ 
+    display: flex;
+    flex-basis: 25%;
+}
+
+
+.tab-contents  .rv_textbox .rv_downline .rv_text{ 
+    display: flex;
+    flex-basis: 60%;
+}
+
+
+  @media screen and (min-width: 768px) {
+    .tab-button-outer {
+      display: flex;
+    }
+    .tab-select-outer {
+      display: none;
+    }
+  }
+
+
+
+  /*숫자 버튼*/
+.boardpage {
+    margin: 30px 0 20px 0;
+    font-size: 0;
+    display: flex;
+    justify-content: center;
+    color: #000;
+    align-items: center;
+  }
+  
+  .boardpage a {
+    display: flex;
+    min-width: 20px;
+    min-height: 20px;
+    box-sizing: border-box;
+    border-left: 0;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 3rem;
+    height: 3rem;
+    background: #ddd;
+    border-radius: 10%;
+  }
+  
+  .boardpage a.button {
+    padding-top: 10px;
+    font-size: 1.2rem;
+    letter-spacing: -1px;
+  }
+  
+  .boardpage a.num {
+    font-size: 1.4rem;
+  }
+  
+  .boardpage a.num.on {
+    border-color: #000;
+    background: #000;
+    color: #fff;
+  }
+  
+  .boardpage a:first-child {
+    border-left: 1px solid #ddd;
+  } 
+  

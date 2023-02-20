@@ -1,16 +1,34 @@
-let tabHeader = document.getElementsByClassName("tab-header")[0];
-let tabIndicator = document.getElementsByClassName("tab-indicator")[0];
-let tabBody = document.getElementsByClassName("tab-body")[0];
 
-let tabsPane = tabHeader.getElementsByTagName("div");
+// 화면 줄이면 탭메뉴 변형
+$(document).ready(function() {
+  var $tabButtonItem = $('#tab-button li'),
+      $tabSelect = $('#tab-select'),
+      $tabContents = $('.tab-contents'),
+      activeClass = 'is-active';
 
-for(let i=0;i<tabsPane.length;i++){
-  tabsPane[i].addEventListener("click",function(){
-    tabHeader.getElementsByClassName("active")[0].classList.remove("active");
-    tabsPane[i].classList.add("active");
-    tabBody.getElementsByClassName("active")[0].classList.remove("active");
-    tabBody.getElementsByTagName("div")[i].classList.add("active");
-    
-    tabIndicator.style.left = `calc(calc(100% / 4) * ${i})`;
-  });
-}
+$tabButtonItem.first().addClass(activeClass);
+$tabContents.not(':first').hide();
+
+// button
+$tabButtonItem.find('a').on('click', function(e) {
+  var target = $(this).attr('href');
+
+  $tabButtonItem.removeClass(activeClass);
+  $(this).parent().addClass(activeClass);
+  $tabSelect.val(target);
+  $tabContents.hide();
+  $(target).show();
+  e.preventDefault();
+});
+
+// select
+$tabSelect.on('change', function() {
+  var target = $(this).val(),
+      targetSelectNum = $(this).prop('selectedIndex');
+
+  $tabButtonItem.removeClass(activeClass);
+  $tabButtonItem.eq(targetSelectNum).addClass(activeClass);
+  $tabContents.hide();
+  $(target).show();
+});
+});

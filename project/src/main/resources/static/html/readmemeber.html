@@ -9,13 +9,16 @@
 	<link rel="stylesheet" type="text/css" href="../css/readmemember.css">
 	<!--js연결-->
 	<script type="text/javascript" src="../js/readmemember.js" defer></script>
+	<!--제이쿼리 연결-->
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
 
 	<!--구글 폰트 링크-->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Varela+Round&display=swap"
 		rel="stylesheet">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 	<!--폰트 그림 링크-->
 	<script src="https://kit.fontawesome.com/bb87a5faf0.js" crossorigin="anonymous"></script>
 
@@ -277,65 +280,405 @@
 						<div class="titlebox">
 							<div class="title">좋아요 내역</div>
 						</div>
+
 						<div class="tabs">
-							<div class="tab-header">
-								<div class="active">
-									<span class="material-symbols-outlined">
-										camping
-									</span>캠핑장
+							<div class="tab-button-outer">
+								<ul id="tab-button">
+									<li><a href="#tab01">캠핑장</a></li>
+									<li><a href="#tab02">아이템</a></li>
+									<li><a href="#tab03">게시글</a></li>
+									<li><a href="#tab04">댓글</a></li>
+
+								</ul>
+							</div>
+							<div class="tab-select-outer">
+								표시 선택：
+								<select id="tab-select">
+									<option value="#tab01">캠프</option>
+									<option value="#tab02">아이템</option>
+									<option value="#tab03">게시글</option>
+									<option value="#tab04">댓글</option>
+
+								</select>
+							</div>
+
+							<div id="tab01" class="tab-contents">
+								<h2>캠핑장</h2>
+								<div class="campgroundsbox">
+									<div class="cg_imgbox">
+										<img src="../img/family20.jpg" alt="">
+									</div>
+									<div class="cg_textbox">
+										<div class="cg_texttitle">
+											기억캠핑장
+										</div>
+										<div class="cg_view">조회수 : 35</div>
+										<div class="cg_wish list">찜 수 : 12</div>
+									</div>
+									<div class="cg_imgbox">
+										<img src="../img/family20.jpg" alt="">
+									</div>
+									<div class="cg_textbox">
+										<div class="cg_texttitle">
+											기억캠핑장
+										</div>
+										<div class="cg_view">조회수 : 35</div>
+										<div class="cg_wish list">찜 수 : 12</div>
+									</div>
+									<div class="cg_imgbox">
+										<img src="../img/family20.jpg" alt="">
+									</div>
+									<div class="cg_textbox">
+										<div class="cg_texttitle">
+											기억캠핑장
+										</div>
+										<div class="cg_view">조회수 : 35</div>
+										<div class="cg_wish list">찜 수 : 12</div>
+									</div>
+									<div class="cg_imgbox">
+										<img src="../img/family20.jpg" alt="">
+									</div>
+									<div class="cg_textbox">
+										<div class="cg_texttitle">
+											기억캠핑장
+										</div>
+										<div class="cg_view">조회수 : 35</div>
+										<div class="cg_wish list">찜 수 : 12</div>
+									</div>
+									<div class="cg_imgbox">
+										<img src="../img/family20.jpg" alt="">
+									</div>
+									<div class="cg_textbox">
+										<div class="cg_texttitle">
+											기억캠핑장
+										</div>
+										<div class="cg_view">조회수 : 35</div>
+										<div class="cg_wish list">찜 수 : 12</div>
+									</div>
 								</div>
-								<div>
-									<span class="material-symbols-outlined">
-										shopping_bag
-									</span>아이템
-								</div>
-								<div>
-									<span class="material-symbols-outlined">
-										edit_square </span> 게시글
-								</div>
-								<div>
-									<span class="material-symbols-outlined">
-										label</span> 댓글
+								<!--페이지 번호-->
+								<div class="boardpage box5">
+									<a href="#" class="bt_first item">&lt;&lt;</a>
+									<a href="#" class="bt_prev item_2">&lt;</a>
+									<a href="#" class="num item_3">1</a>
+									<a href="#" class="num">2</a>
+									<a href="#" class="num">3</a>
+									<a href="#" class="num">4</a>
+									<a href="#" class="num">5</a>
+									<a href="#" class="num">&gt;</a>
+									<a href="#" class="num">&gt;&gt;</a>
 								</div>
 							</div>
-							<div class="tab-indicator"></div>
-							<div class="tab-body">
-								<div class="active">
-									<div class="">
-									
+
+							<div id="tab02" class="tab-contents">
+								<h2>아이템</h2>
+								<div class="campporductbox">
+									<div class="cp_imgbox">
+										<img src="../img/family31.jpg" alt="">
 									</div>
-									
+									<div class="cp_textbox">
+										<div class="cp_texttitle">
+											니은화로
+										</div>
+										<div class="cp_view">조회수 : 35</div>
+										<div class="cp_wish list">찜 수 : 12</div>
+									</div>
+									<div class="cp_imgbox">
+										<img src="../img/family31.jpg" alt="">
+									</div>
+									<div class="cp_textbox">
+										<div class="cp_texttitle">
+											니은화로
+										</div>
+										<div class="cp_view">조회수 : 35</div>
+										<div class="cp_wish list">찜 수 : 12</div>
+									</div>
+									<div class="cp_imgbox">
+										<img src="../img/family31.jpg" alt="">
+									</div>
+									<div class="cp_textbox">
+										<div class="cp_texttitle">
+											니은화로
+										</div>
+										<div class="cp_view">조회수 : 35</div>
+										<div class="cp_wish list">찜 수 : 12</div>
+									</div>
+									<div class="cp_imgbox">
+										<img src="../img/family31.jpg" alt="">
+									</div>
+									<div class="cp_textbox">
+										<div class="cp_texttitle">
+											니은화로
+										</div>
+										<div class="cp_view">조회수 : 35</div>
+										<div class="cp_wish list">찜 수 : 12</div>
+									</div>
+									<div class="cp_imgbox">
+										<img src="../img/family31.jpg" alt="">
+									</div>
+									<div class="cp_textbox">
+										<div class="cp_texttitle">
+											니은화로
+										</div>
+										<div class="cp_view">조회수 : 35</div>
+										<div class="cp_wish list">찜 수 : 12</div>
+									</div>
 								</div>
-								<div>
-									<h2>아이템</h2>
-									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi minus
-										exercitationem vero, id autem fugit assumenda a molestiae numquam at, quisquam
-										cumque. Labore eligendi perspiciatis quia incidunt quaerat ut ducimus?</p>
+								<!--페이지 번호-->
+								<div class="boardpage box5">
+									<a href="#" class="bt_first item">&lt;&lt;</a>
+									<a href="#" class="bt_prev item_2">&lt;</a>
+									<a href="#" class="num item_3">1</a>
+									<a href="#" class="num">2</a>
+									<a href="#" class="num">3</a>
+									<a href="#" class="num">4</a>
+									<a href="#" class="num">5</a>
+									<a href="#" class="num">&gt;</a>
+									<a href="#" class="num">&gt;&gt;</a>
 								</div>
-								<div>
-									<h2>게시글</h2>
-									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi minus
-										exercitationem vero, id autem fugit assumenda a molestiae numquam at, quisquam
-										cumque. Labore eligendi perspiciatis quia incidunt quaerat ut ducimus?</p>
+							</div>
+
+
+							<div id="tab03" class="tab-contents">
+								<h2>게시글</h2>
+								<div class="postgroupbox">
+									<div class="pg_textbox">
+										<div class="pg_upline">
+											<div class="pg_write">
+												작성자
+											</div>
+											<div class="pg_date">
+												작성일
+											</div>
+										</div>
+										<div class="pg_downline">
+
+											<div class="pg_texttitle">
+												게시글 제목
+											</div>
+
+										</div>
+									</div>
 								</div>
-								<div>
-									<h2>댓글</h2>
-									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi minus
-										exercitationem vero, id autem fugit assumenda a molestiae numquam at, quisquam
-										cumque. Labore eligendi perspiciatis quia incidunt quaerat ut ducimus?</p>
+								<div class="postgroupbox">
+									<div class="pg_textbox">
+										<div class="pg_upline">
+											<div class="pg_write">
+												최석호
+											</div>
+											<div class="pg_date">
+												2023-02-20
+											</div>
+										</div>
+										<div class="pg_downline">
+
+											<div class="pg_texttitle">
+												가나다라마바사아자카타파하
+											</div>
+											<div class="pg_reviewnum">[2]</div>
+										</div>
+									</div>
+								</div>
+								<div class="postgroupbox">
+									<div class="pg_textbox">
+										<div class="pg_upline">
+											<div class="pg_write">
+												최석호
+											</div>
+											<div class="pg_date">
+												2023-02-20
+											</div>
+										</div>
+										<div class="pg_downline">
+
+											<div class="pg_texttitle">
+												아야어여오요우유으이
+											</div>
+											<div class="pg_reviewnum"></div>
+										</div>
+									</div>
+								</div>
+								<div class="postgroupbox">
+									<div class="pg_textbox">
+										<div class="pg_upline">
+											<div class="pg_write">
+												최석호
+											</div>
+											<div class="pg_date">
+												2023-02-20
+											</div>
+										</div>
+										<div class="pg_downline">
+
+											<div class="pg_texttitle">
+												도레미파솔라시도
+											</div>
+											<div class="pg_reviewnum">[6]</div>
+										</div>
+									</div>
+								</div>
+
+								<!--페이지 번호-->
+								<div class="boardpage box5">
+									<a href="#" class="bt_first item">&lt;&lt;</a>
+									<a href="#" class="bt_prev item_2">&lt;</a>
+									<a href="#" class="num item_3">1</a>
+									<a href="#" class="num">2</a>
+									<a href="#" class="num">3</a>
+									<a href="#" class="num">4</a>
+									<a href="#" class="num">5</a>
+									<a href="#" class="num">&gt;</a>
+									<a href="#" class="num">&gt;&gt;</a>
+								</div>
+							</div>
+
+
+
+							<div id="tab04" class="tab-contents">
+								<h2>댓글</h2>
+								<div class="reviewbox">
+									<div class="rv_textbox">
+										<div class="rv_upline">
+											<div class="rv_write">
+												작성자
+											</div>
+											<div class="rv_date">
+												작성일
+											</div>
+										</div>
+										<div class="rv_downline">
+
+											<div class="rv_text">
+												내용
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="reviewbox">
+									<div class="rv_textbox">
+										<div class="rv_upline">
+											<div class="rv_write">
+												작성자
+											</div>
+											<div class="rv_date">
+												작성일
+											</div>
+										</div>
+										<div class="rv_downline">
+
+											<div class="rv_text">
+												내용
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="reviewbox">
+									<div class="rv_textbox">
+										<div class="rv_upline">
+											<div class="rv_write">
+												작성자
+											</div>
+											<div class="rv_date">
+												작성일
+											</div>
+										</div>
+										<div class="rv_downline">
+
+											<div class="rv_text">
+												내용
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="reviewbox">
+									<div class="rv_textbox">
+										<div class="rv_upline">
+											<div class="rv_write">
+												작성자
+											</div>
+											<div class="rv_date">
+												작성일
+											</div>
+										</div>
+										<div class="rv_downline">
+
+											<div class="rv_text">
+												내용
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="reviewbox">
+									<div class="rv_textbox">
+										<div class="rv_upline">
+											<div class="rv_write">
+												작성자
+											</div>
+											<div class="rv_date">
+												작성일
+											</div>
+										</div>
+										<div class="rv_downline">
+
+											<div class="rv_text">
+												내용
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="reviewbox">
+									<div class="rv_textbox">
+										<div class="rv_upline">
+											<div class="rv_write">
+												작성자
+											</div>
+											<div class="rv_date">
+												작성일
+											</div>
+										</div>
+										<div class="rv_downline">
+
+											<div class="rv_text">
+												내용
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<!--페이지 번호-->
+								<div class="boardpage box5">
+									<a href="#" class="bt_first item">&lt;&lt;</a>
+									<a href="#" class="bt_prev item_2">&lt;</a>
+									<a href="#" class="num item_3">1</a>
+									<a href="#" class="num">2</a>
+									<a href="#" class="num">3</a>
+									<a href="#" class="num">4</a>
+									<a href="#" class="num">5</a>
+									<a href="#" class="num">&gt;</a>
+									<a href="#" class="num">&gt;&gt;</a>
 								</div>
 							</div>
 						</div>
+
 					</div>
+
 				</div>
+
+
+
 
 
 
 				<!--메인 바디의 사이드 빈 공간 오른쪽-->
 				<div class="aside_r box2">aside_r</div>
 			</div>
-		</main>
 
+		</main>
 
 
 
@@ -348,5 +691,7 @@
 			</div>
 		</footer>
 
-
 	</div>
+</body>
+
+</html>
