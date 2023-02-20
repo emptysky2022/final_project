@@ -17,6 +17,6 @@ public interface ReplyRepository extends JpaRepository<Reply, Long>{
 	List<Reply> findByBoard(Board board);
 
 	// 게시글로 댓글 가져오기 - Rno 기준
-	Reply getRepliesByBoard(Board board);
+	List<Reply> getRepliesByBoard(Board board);
 	
 }
