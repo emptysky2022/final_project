@@ -127,7 +127,7 @@
                     
                     <!--캠핑장 사진 및 평점-->
                     <div class="sec5 box3">
-                        <div class="campgroundsbox box4" th:each="camp : ${result}" th:attr="onclick=|location.href='@{/sample/campgroundsdetail(cno=${camp.cno})}'|">> 
+                        <div class="campgroundsbox box4" th:each="camp : ${result}" th:attr="onclick=|location.href='@{/sample/campgroundsdetail(cno=${camp.cno})}'|"> 
                             <input type = "hidden" name="cno" th:value ="${camp.cno}">
                             <div class="cg_imgbox box5">
                                 <img class="cg_img item" th:src="${camp.thumbnail}">
@@ -138,9 +138,11 @@
                                 <div class="cg_starbox item">
                                     <div class="star item">[[${camp.heart}]]</div>
                                 </div>
+                                
                                 <div class="cg_explainbox box5">
                                     <div class="explain item">[[${camp.address}]]</div>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
