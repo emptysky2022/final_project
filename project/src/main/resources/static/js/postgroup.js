@@ -104,7 +104,7 @@ $(function() { // 보이기 | 숨기기
 
 
 
-
+/*
 $(function() { // 보이기 | 숨기기
 	
   $("#listlevel").click(function() { 
@@ -120,7 +120,7 @@ $(function() { // 보이기 | 숨기기
   }
   }); // 버튼 클릭시
 }); 
-
+*/
 
 
 // $(function() { // 보이기 | 숨기기
