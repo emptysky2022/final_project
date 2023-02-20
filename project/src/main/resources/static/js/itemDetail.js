@@ -47,6 +47,10 @@ function clickItemHeart(ino){
 		success: function(result){
 			console.log("result : " + result);
 			$("#item_heart").html(result);
+		},
+		error: function(err){
+			console.log("로그인 후 이용하실수 있습니다.");
+			location.href="/sample/login";
 		}
 	})
 }

@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.campers.camfp.config.auth.PrincipalDetails;
 import com.campers.camfp.dto.item.ItemDTO;
 import com.campers.camfp.dto.page.PageRequestDTO;
 import com.campers.camfp.dto.page.PageResultDTO;
@@ -53,13 +56,19 @@ public class ItemController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
+	@PreAuthorize("ROLE_MEMBER")
 	@ResponseBody
 	@GetMapping("/heart/{ino}")
-	public ResponseEntity<Integer>getHeart(@PathVariable Long ino){
+	public ResponseEntity<Integer>getHeart(@PathVariable Long ino, @AuthenticationPrincipal PrincipalDetails principalDetails){
 		log.info("click item heart");
-		int result = itemService.heartOfMember(ino);
-		
-		return new ResponseEntity<>(result, HttpStatus.OK);
+		if(principalDetails != null) {
+				
+			int result = itemService.heartOfMember(ino);
+			
+			return new ResponseEntity<>(result, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}
 		
 	}
 }
