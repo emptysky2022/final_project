@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.print.DocFlavor.READER;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
@@ -21,6 +22,7 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.querydsl.jpa.impl.JPAUpdateClause;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -118,10 +120,11 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 
 
 	@Override
+	@Transactional
 	public List<?> findDataOfCamp(TableType table, Long cno, String findData) {
 		
 		List<?> data = new ArrayList<>();
-		
+		BooleanBuilder conditionBuilder = new BooleanBuilder();
 		switch (table) {
 		
 		case CAMP:
@@ -129,7 +132,6 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 			
 			String[] find = findData.split(",");
 			
-			BooleanBuilder conditionBuilder = new BooleanBuilder().and(Q_CAMP.name.isNotNull());
 			
 			camp.select(Q_CAMP);
 			camp.from(Q_CAMP);
@@ -140,21 +142,19 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 				case "카라반":
 				case "글램핑":
 				case "자동차":
-					camp.stream().filter(value -> value.getCamptype().contains(query)).collect(Collectors.toList());
+					conditionBuilder.or(QCamp.camp.camptype.contains(query));
 					break;
 				case "별점순":
-					//conditionBuilder.and(Q_CAMP.heart.desc());
+					camp.orderBy(Q_CAMP.heart.desc());
 						break;
 				case "조회순":
-					//conditionBuilder.orderBy(Q_CAMP.count.desc()).limit(5);
-						break;
-					
-					
+					camp.orderBy(Q_CAMP.count.desc());
+						break;	
 				}
 			}
-			System.out.println(camp);
-			data = camp.select(Q_CAMP)
-                    .where(conditionBuilder)
+			
+			data = camp.where(conditionBuilder)
+                    .limit(6)
                     .fetch();
 
 			break;
@@ -178,5 +178,70 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 
 		}
 		return data;
+	}
+
+
+	@Override
+	public void addData(TableType table, Long no, String addData) {
+		List<?> data = new ArrayList<>();
+		
+		BooleanBuilder conditionBuilder = new BooleanBuilder();
+		JPAUpdateClause update;  
+
+		// 두개지만 추가 될 가능성 없지 않아서 case 문 씀
+		switch(table) {
+		
+		case CAMP :
+			
+			update = new JPAUpdateClause(getEntityManager(), Q_CAMP);
+			
+			switch(addData) {
+			 
+			case "count":
+				 update.set(Q_CAMP.count, 1)
+				.where(Q_CAMP.cno.eq(no))
+				.execute();
+				break;
+				
+			case "heart": 
+				 update.set(Q_CAMP.heart, 1)
+				.where(Q_CAMP.cno.eq(no))
+				.execute();
+				break;
+				
+			case "star": 
+				 update.set(Q_CAMP.star, 1)
+				.where(Q_CAMP.cno.eq(no))
+				.execute();
+				break;
+				
+			}
+			
+			
+			break;
+			
+		case CAMPREVIEW :
+			update = new JPAUpdateClause(getEntityManager(), Q_CAMP_REVIEW);
+			
+			switch(addData) {
+			 
+			case "count":
+				log.info("난 그런거 없음");
+				break;
+				
+			case "heart": 
+				 update.set(Q_CAMP_REVIEW.heart, 1)
+				.where(Q_CAMP_REVIEW.crno.eq(no.intValue()))
+				.execute();
+				break;
+				
+			case "star": 
+				log.info("난 그런거 없음");
+				break;
+				
+			}
+			
+			break;
+		}
 	}
 }

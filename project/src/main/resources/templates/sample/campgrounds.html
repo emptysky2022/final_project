@@ -201,15 +201,13 @@
 	
     var type = "";
 	let listGroup = $(".test");
-	
 	// 캠핑 타입 확인
 	$("#campType").on("click", "#type", function(){
 		if (type == ""){
 			type = $(this).html();
+		}else{			
+			type += "," + $(this).html();		
 		}
-			
-		
-		type += "," + $(this).html();
 		console.log(type);
 	});
 	
@@ -227,7 +225,7 @@
 	     	  let str = "";
 	    	  $.each(arr, function(index, camp){
 	  			
-	    		  str += "<div class='campgroundsbox box' onclick='location.href=\'/sample/campgroundsdetail(cno="+camp.cno+"'\'>";
+	    		  str += "<div class='campgroundsbox box'  onclick='location.href=\"/sample/campgroundsdetail?cno=" + camp.cno + "\"''>";
 	    		  str += "<input type = 'hidden' name='cno' th:value ='"+camp.cno+"''>";
 	    		  str += "<div class='cg_imgbox box5'>";
 	    		  str += "<img class='cg_img item' src="+camp.thumbnail+">";
