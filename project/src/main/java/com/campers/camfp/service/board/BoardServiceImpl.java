@@ -10,7 +10,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.campers.camfp.dto.board.BoardDTO;
-import com.campers.camfp.dto.board.ReplyDTO;
 import com.campers.camfp.dto.page.PageRequestDTO;
 import com.campers.camfp.dto.page.PageResultDTO;
 import com.campers.camfp.entity.board.Board;
@@ -85,10 +84,19 @@ public class BoardServiceImpl implements BoardService {
 
 	@Transactional
 	@Override
-	public void removeWithReplies(Long bno) {
+	public void removeWithReplies(BoardDTO boardDTO) {
 		
-//		replyRepository.deleteByBno(bno);
-		boardRepository.deleteById(bno);
+//		Board board = Board.builder().bno(boardDTO.getBno()).build();
+//		Member member = Member.builder().mno(boardDTO.getMno()).build();
+		
+		System.out.println(boardDTO);
+		
+		System.out.println("1");
+		
+		replyRepository.deleteReply(boardDTO.getBno());
+		System.out.println("2");
+		boardRepository.deleteBoard(boardDTO.getBno(), boardDTO.getMno());
+		System.out.println("3");
 	}
 
 	@Override

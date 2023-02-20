@@ -12,7 +12,7 @@ import com.campers.camfp.entity.board.Reply;
 import com.campers.camfp.repository.board.ReplyRepository;
 
 @SpringBootTest
-public class ReplyRepositoryTest {
+public class ReplyRepositoryTests {
 
 	@Autowired
 	private ReplyRepository replyRepository;

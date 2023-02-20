@@ -12,7 +12,6 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 import org.springframework.stereotype.Repository;
 
 import com.campers.camfp.entity.item.Item;
-import com.campers.camfp.entity.item.ItemReview;
 import com.campers.camfp.entity.item.QItem;
 import com.campers.camfp.entity.item.QItemReview;
 import com.campers.camfp.entity.member.QMember;
