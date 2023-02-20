@@ -201,7 +201,13 @@ public class CampRepositoryTests {
 	@Test
 	public void delteTest() {
 
-		campReviewRepository.delete(CampReview.builder().camp(getCampNum(2)).reviewer("").content("").build());
+		campReviewRepository.delete(CampReview.builder().crno(101).camp(getCampNum(2)).reviewer("").content("").build());
+	}
+	
+	@Test
+	public void delteTest2() {
+
+		campRepository.delete(Camp.builder().cno(3L).build());
 	}
 
 	@Test

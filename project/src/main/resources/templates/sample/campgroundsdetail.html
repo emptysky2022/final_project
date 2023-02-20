@@ -166,6 +166,7 @@
                         </div>
                     </div>
                     <div class="sec4 box3">
+                    
                         <div class="rv box4"></div>
                         
                         	<a class="list-group replyList">
@@ -489,9 +490,50 @@
     	    	
     	    	// 힌색 넣자
     	     });
+     	 
+     	 	function clearDate(){
+     	 		
+     	 		$("#calendar"+Reservation[0].day).css("background-color","white");
+     	 		$("#calendar"+Reservation[1].day).css("background-color","white");
+     	 		Reservation[0].year = 0;
+     	 		Reservation[0].month = 0;
+     	 		Reservation[0].day = 0;
+     	 		Reservation[1].year = 0;
+     	 		Reservation[1].month = 0;
+     	 		Reservation[1].day = 0;
+
+     	 	}
      	 	 
      	 	  
     	    function paintbutton(a){
+    	    	
+    			// 세이프티 체크 
+    			// 둘다들어왔을때 사이에 빨간색이 있다면?
+    			var startday = new Date(Reservation[0].year, Reservation[0].month, Reservation[0].day);
+    		    var endday = new Date(Reservation[1].year, Reservation[1].month, Reservation[1].day);
+    		    var buffer;
+    		    
+    		    if (startday > endday){
+    		    	buffer = startday;
+    		    	startday = endday;
+    		    	endday = buffer;
+    		    }
+    		    
+    		    var diff = endday.getDate() - startday.getDate();
+    		    var bor = true;
+    		    
+    		    
+	    			for (var re =startday.getDate(); re < startday.getDate()+diff; re++){
+    				if ($("#calendar"+re).css( "background-color" ) =='rgb(255, 0, 0)'){
+    					bor = false;
+    				}
+    			}  
+				
+    			if (bor == false){
+    				alert("예약날짜가 겹칩니다 확인해주세요.");
+    				clearDate();
+    				return;
+    			}
 
         		  // 기본 적으로 둘다 데이터가 있는경우 에만 실행
         		  if (Reservation[0].year > 1 && Reservation[1].year > 1){
@@ -510,21 +552,19 @@
             		  var planday = startday;
             		  
             		  for (var j = 0; j <= diff; j++){
-            			  
-               		  
             		  // start 년도랑 같은년인지
             		  if (planday.getFullYear() == yea){
             			  
-            			  console.log(planday.getMonth() );
             		  		// 같은달인지 
             		  		// month 계산 이상해서 하나올림
                 		  	if (planday.getMonth() == mon){
                 		  		
-                		  			console.log("같은달?");
                     		  		if (planday.getDate() == a){
                     		  			
-                    		  			if ($("#calendar"+planday.getDate()).css( "background-color" ) !='rgb(255, 0, 0)'){	                    		  			
+                    		  			if ($("#calendar"+planday.getDate()).css( "background-color" ) !='rgb(255, 0, 0)'){
+                    		  				
                 		  					$("#calendar"+planday.getDate()).css("background-color","green");
+                		  					
                     		  			}else{
                     		  				alert("예약 불가능한 날짜입니다.");
                     		  				break;
@@ -570,9 +610,10 @@
           			  endday.month = buffer;
           		  }
       		  }
+      		Reservation[0] = startday;
+      		Reservation[1] = endday;
+      		  
       	  }
-      	  
-     	 	
     	  }
     	  generateCalendar();
 
@@ -600,6 +641,11 @@
     	    prev = false;
     	    generateCalendar();
     	  });
+    	  
+    	  $("#days .child").on("click", function() {
+    		  
+    	  });
+    	  
 		  //////////////////////달력 끝 /////////////////////////
     	  //////////////////////댓글 기능/////////////////////////
     	  
