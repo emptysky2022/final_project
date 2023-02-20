@@ -11,7 +11,21 @@ $(function(){
 			}
 		}
 	})
-	loadJsonData();
+	$("#confirm").click(function(){
+        modalClose(); //모달 닫기 함수 호출
+        
+        //컨펌 이벤트 처리
+    });
+    $("#modal-open").click(function(){        
+        $("#popup").css('display','flex').hide().fadeIn();
+        //팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
+    });
+    $("#close").click(function(){
+        modalClose(); //모달 닫기 함수 호출
+    });
+    function modalClose(){
+        $("#popup").fadeOut(); //페이드아웃 효과
+    }
 })
 
 function loadJsonData(){
@@ -50,7 +64,7 @@ function clickItemHeart(ino){
 		},
 		error: function(err){
 			console.log("로그인 후 이용하실수 있습니다.");
-			location.href="/sample/login";
+			location.href="/item/detail/{ino}/login";
 		}
 	})
 }

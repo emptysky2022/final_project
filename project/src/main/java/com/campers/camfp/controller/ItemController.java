@@ -56,7 +56,6 @@ public class ItemController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
-	@PreAuthorize("ROLE_MEMBER")
 	@ResponseBody
 	@GetMapping("/heart/{ino}")
 	public ResponseEntity<Integer>getHeart(@PathVariable Long ino, @AuthenticationPrincipal PrincipalDetails principalDetails){
@@ -71,4 +70,5 @@ public class ItemController {
 		}
 		
 	}
+	
 }
