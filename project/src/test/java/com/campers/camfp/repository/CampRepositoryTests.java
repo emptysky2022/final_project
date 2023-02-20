@@ -120,7 +120,7 @@ public class CampRepositoryTests {
 	public void createMemberTest() {
 		for (int i = 0; i < 100; i++) {
 			Member member = Member.builder().pw("pw").nickname("nickname" + i).id("id" + i).profileImg("img")
-					.name("name").age(i).gender(GenderType.MALE)
+					.name("name"+i).age(i).gender(GenderType.MALE)
 					// .grade(true) ->String으로 바꿈
 					.address("1").phone("1").introduce("1").build();
 
@@ -132,11 +132,11 @@ public class CampRepositoryTests {
 	@Test
 	public void createCampCalenderTest() {
 		
-		IntStream.rangeClosed(1, 20).forEach(c -> {
+		IntStream.rangeClosed(1, 50).forEach(c -> {
 			
 
 		
-		for (int i =100; i<104; i++) {
+		for (int i =11; i<12; i++) {
 			
 		
 
@@ -176,9 +176,9 @@ public class CampRepositoryTests {
 
 		
 		CampReview campReview = 
-				CampReview.builder().capture(img4).content("댓글 테스트 중입니다 " + value)
+				CampReview.builder().capture(img).content("댓글 테스트 중입니다 " + value)
 				.reviewer("장현수" + value)
-				.camp(getCampNum(101L))
+				.camp(getCampNum(11L))
 				.heart(value)
 				.build();
 		campReviewRepository.save(campReview);
@@ -201,7 +201,13 @@ public class CampRepositoryTests {
 	@Test
 	public void delteTest() {
 
-		campReviewRepository.delete(CampReview.builder().camp(getCampNum(2)).reviewer("").content("").build());
+		campReviewRepository.delete(CampReview.builder().crno(101).camp(getCampNum(2)).reviewer("").content("").build());
+	}
+	
+	@Test
+	public void delteTest2() {
+
+		campRepository.delete(Camp.builder().cno(3L).build());
 	}
 
 	@Test

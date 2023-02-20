@@ -88,10 +88,12 @@
                                 </div>
                             </div>	
                         </div>
-                                    <button class="wild" > 와일드 캠핑</button>
-                                    <button class="glamp"> 글램핑</button>
-                                    <button class="auto"> 오토캠핑장</button>
-                                    <button class="cravn"> 오토캠핑장</button>
+                        <div id="campType">
+                                    <button id="type">일반</button>
+                                    <button id="type">카라반</button>
+                                    <button id="type">글램핑</button>
+                                    <button id="type">자동차</button>
+                        </div>
                     </div>
 
 
@@ -114,10 +116,10 @@
                         <div class="dropdowncampingbox box4">
                             <div class="dropdown box5">
                                 <a href="#" class="dropbtn item">정렬</a>
-                                <div class="subdropdown box7">
-                                    <div class="dropitem item"><a href="#">조회순</a></div>
-                                    <div class="dropitem item_2"><a href="#">별점순</a></div>
-                                    <div class="dropitem item_3"><a href="#">최신순</a></div>
+                                <div id="search" class="subdropdown box7">
+                                    <button id="type" class="dropitem item">조회순</button>
+                                    <button id="type" class="dropitem item_2">별점순</button>
+                                    <button id="type" class="dropitem item_3">최신순</button>
                                 </div>
                             </div>
                         </div>
@@ -126,8 +128,13 @@
                     <button> 조회 </button>
                     
                     <!--캠핑장 사진 및 평점-->
+                    <a class="list-group replyList">
+								<!-- rest 로 들어옴 -->
+					</a>
+					
+                    <div class="sec5 box3 test">
                     <div class="sec5 box3">
-                        <div class="campgroundsbox box4" th:each="camp : ${result}" th:attr="onclick=|location.href='@{/sample/campgroundsdetail(cno=${camp.cno})}'|">> 
+                        <div class="campgroundsbox box4" th:each="camp : ${result}" th:attr="onclick=|location.href='@{/sample/campgroundsdetail(cno=${camp.cno})}'|"> 
                             <input type = "hidden" name="cno" th:value ="${camp.cno}">
                             <div class="cg_imgbox box5">
                                 <img class="cg_img item" th:src="${camp.thumbnail}">
@@ -138,9 +145,11 @@
                                 <div class="cg_starbox item">
                                     <div class="star item">[[${camp.heart}]]</div>
                                 </div>
+                                
                                 <div class="cg_explainbox box5">
                                     <div class="explain item">[[${camp.address}]]</div>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -187,45 +196,58 @@
 
 <script th:inline="javascript">
 
-     $(document).ready(function(){
+    $(document).ready(function(){
+	console.log("reset");
+	
+    var type = "";
+	let listGroup = $(".test");
+	
+	// 캠핑 타입 확인
+	$("#campType").on("click", "#type", function(){
+		if (type == ""){
+			type = $(this).html();
+		}
+			
+		
+		type += "," + $(this).html();
+		console.log(type);
+	});
+	
+	$("#search").on("click", "#type", function(){
+		// 기본값일경우
+		type += "," + $(this).html();
+		console.log(type);
+		loadJSON();
+	});
     	 
-    	 let wild = false;
-    	 let glamp = false;
-    	 let auto = false;
-    	 let cravn = false;
-    	 
-    	$(".wild").click(function(){
-    		wild = !wild;
-    	});
-    	
-    	$(".glamp").click(function(){
-    		glamp = !glamp;
-    	});
-    	
-    	$(".auto").click(function(){
-    		auto = !auto;
-    	});
-    	
-    	$(".cravn").click(function(){
-    		cravn = !cravn;
-    	});
-    	
-    	let CampingType = {
-    				
-    	}
-    	
-    	
-/*     	$(". dropitem item").click(function(){
-    		
-    		$.ajax({
-				url : "/sample/campgroundsdetail",
-				method : "post",
-				data : "JSON.stringfy(replt)",
-				dataType : "json",
-				contentType : "application/json; charset=UTF-8"
-			})
-    	}) */
-	}) 
+   	  function loadJSON() {
+		  console.log("loadjson");
+	      $.getJSON('/camp/list/' + type, function(arr){
+	    	 
+	     	  let str = "";
+	    	  $.each(arr, function(index, camp){
+	  			
+	    		  str += "<div class='campgroundsbox box' onclick='location.href=\'/sample/campgroundsdetail(cno="+camp.cno+"'\'>";
+	    		  str += "<input type = 'hidden' name='cno' th:value ='"+camp.cno+"''>";
+	    		  str += "<div class='cg_imgbox box5'>";
+	    		  str += "<img class='cg_img item' src="+camp.thumbnail+">";
+	    		  str += "</div>";
+	    		  str += "<div class='cg_rightbox box4'>"
+	    		  str += "<div class='title item'>"+camp.name+"</div>";
+	    		  str += "<div class='cg_starbox item'>";
+		    	  str += "<div class='star item'>"+camp.heart+"</div>";
+		    	  str += "</div>";
+		    	  str += "<div class='cg_explainbox box5'>";
+		    	  str += "<div class='explain item'>"+camp.address+"</div>";
+		    	  str += "</div>";
+		    	  str += "</div>";
+		    	  str += "</div>";
+	    		  listGroup.html(str);	  
+	    	  });
+	      });
+	  };
+	  
+	}); 
 	
 </script>
 

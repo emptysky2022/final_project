@@ -84,7 +84,7 @@
 								</div>
 
 
-								<div class="idbox box4">
+								<!-- <div class="idbox box4">
 									<p type="text" class="idtext item">아이디</p>
 									<input class="id item_2" type="text" name="id" th:value="${memberDTO.id}" readonly>
 								</div>
@@ -93,17 +93,24 @@
 									<p type="password" class="passwordtext item">비밀번호</p>
 									<input class="password item_2" type="password" name="pass"
 										th:value="${memberDTO.pass}" placeholder="비밀번호 변경하기">
+								</div> -->
+								<div class="nicknamebox box4">
+									<p class="nicknametext item">별명</p>
+									
+										<input class="nickname item_2" type="text" name="nickname"
+											th:value="${memberDTO.nickname}" placeholder="별명 변경하기">
+										<div class="nicknamecheckbox">
+											<input class="nicknamecheck" type="button" value="중복 확인">
+										</div>
+									
 								</div>
+
 								<div class="namebox box4">
 									<p class="nametext item">이름</p>
 									<input class="name item_2" type="text" name="name" th:value="${memberDTO.name}"
 										placeholder="이름 변경하기">
 								</div>
-								<div class="nicknamebox box4">
-									<p class="nicknametext item">별명</p>
-									<input class="nickname item_2" type="text" name="nickname"
-										th:value="${memberDTO.nickname}" placeholder="별명 변경하기">
-								</div>
+								
 								<div class="agebox box4">
 									<p class="agetext item">나이</p>
 									<input class="age item_2" type="text" name="age" th:value="${memberDTO.age}"
@@ -164,15 +171,15 @@
 							</a>     -->
 					</div>
 
-				
 
-					
+
+
 				</div>
 
-			
 
-			<!--메인 바디의 사이드 빈 공간 오른쪽-->
-			<div class="aside_r box2">aside_r</div>
+
+				<!--메인 바디의 사이드 빈 공간 오른쪽-->
+				<div class="aside_r box2">aside_r</div>
 			</div>
 		</main>
 

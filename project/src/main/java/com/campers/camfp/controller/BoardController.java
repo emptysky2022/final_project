@@ -8,10 +8,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -19,8 +21,9 @@ import com.campers.camfp.config.auth.PrincipalDetails;
 import com.campers.camfp.dto.board.BoardDTO;
 import com.campers.camfp.dto.board.ReplyDTO;
 import com.campers.camfp.dto.page.PageRequestDTO;
+import com.campers.camfp.dto.page.PageResultDTO;
 import com.campers.camfp.entity.board.Board;
-import com.campers.camfp.repository.board.ReplyRepository;
+import com.campers.camfp.entity.member.Member;
 import com.campers.camfp.service.board.BoardService;
 import com.campers.camfp.service.board.ReplyService;
 
@@ -32,59 +35,84 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @RequiredArgsConstructor
 public class BoardController {
-	
-	private final BoardService boardService;
-	private final ReplyService replyService;
-	
-	@GetMapping("/list")
-	public void list(PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
-		log.info("list......" + pageRequestDTO);
-		model.addAttribute("result", boardService.getList(pageRequestDTO));
-		model.addAttribute("memInfo", principalDetails.getMember());
-		
-		log.info("model : " + model);
-		log.info("로그인 정보 : " + principalDetails.getMember());
-		
-	}
-	
-	@GetMapping("/register")
-	public void register() {
-		log.info("register get......... ");
-	}
-	
-	@PostMapping("/register")
-	public String register(BoardDTO boardDTO) {
-		log.info("registerDTO...... : " + boardDTO);
-		
-		boardService.register(boardDTO);
-//		redirectAttributes.addFlashAttribute("msg", bno);
-		
-		return "redirect:/sample/list";
-	}
-	
-	@ResponseBody
-	@GetMapping(value="/list/{bno}", produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Object>> read(@PathVariable("bno") Long bno, @AuthenticationPrincipal PrincipalDetails principalDetails) {		
-		log.info("bno : " + bno);
-//		log.info("rno : " + rno);
-		
-		BoardDTO boardDTO2 = boardService.read(bno);
-		Board board = boardService.dtoToEntity(boardDTO2);
-		List<ReplyDTO> replyDTO = replyService.getListOfBoard(bno);
-		
-		log.info("-----------dto---------- : " + boardDTO2);
-		log.info("-----------dto---------- : " + replyDTO);
-		return new ResponseEntity<List<Object>>(List.of(boardDTO2, replyDTO, principalDetails.getMember()), HttpStatus.OK);
-	}
-	
-	@ResponseBody
-	@PutMapping("/update/{bno}")
-	public ResponseEntity<String> modify(BoardDTO boardDTO) {
-		
-		log.info("BoardDTO : " + boardDTO);
-		
-		boardService.modify(boardDTO);
-		
-		return new ResponseEntity<String>("success", HttpStatus.OK);
-	}
+   
+   private final BoardService boardService;
+   private final ReplyService replyService;
+   
+   @GetMapping("/list")
+   public void list(PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+      log.info("list......" + pageRequestDTO);
+      model.addAttribute("result", boardService.getList(pageRequestDTO));
+      model.addAttribute("memInfo", principalDetails.getMember());
+      
+      log.info("model : " + model);
+      log.info("로그인 정보 : " + principalDetails.getMember());
+      
+   }
+   
+   @ResponseBody
+   @GetMapping(value="/list/refresh", produces = MediaType.APPLICATION_JSON_VALUE)
+   public ResponseEntity<List<Object>> getList(PageRequestDTO pageRequestDTO, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+      
+      PageResultDTO<BoardDTO, Object[]> boardDTO = boardService.getList(pageRequestDTO);
+      
+      log.info("refresh : " + boardDTO);
+      
+      return new ResponseEntity<>(List.of(boardDTO), HttpStatus.OK);
+   }
+   
+   
+   @GetMapping("/register")
+   public void register() {
+      log.info("register get......... ");
+   }
+   
+   @PostMapping("/register")
+   public String register(BoardDTO boardDTO) {
+      log.info("registerDTO...... : " + boardDTO);
+      
+      boardService.register(boardDTO);
+      
+      return "redirect:/sample/list";
+   }
+   
+   @ResponseBody
+   @GetMapping(value="/list/{bno}", produces=MediaType.APPLICATION_JSON_VALUE)
+   public ResponseEntity<List<Object>> read(@PathVariable("bno") Long bno, @AuthenticationPrincipal PrincipalDetails principalDetails) {      
+      log.info("bno : " + bno);
+      
+      BoardDTO boardDTO = boardService.read(bno);
+      List<ReplyDTO> replyDTO = replyService.getListOfBoard(bno);
+      
+      log.info("-----------boardDTO---------- : " + boardDTO);
+      log.info("-----------replyDTO---------- : " + replyDTO);
+      return new ResponseEntity<List<Object>>(List.of(boardDTO, replyDTO, principalDetails.getMember()), HttpStatus.OK);
+   }
+   
+   @ResponseBody
+   @PutMapping(value="/update/{bno}")
+   public ResponseEntity<String> modify(@RequestBody BoardDTO boardDTO, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+      
+      log.info("update DTO : " + boardDTO);
+      
+      boardService.modify(boardDTO);
+      
+      return new ResponseEntity<String>("success", HttpStatus.OK);
+   }
+   
+   @ResponseBody
+   @DeleteMapping(value = "/list/remove/{bno}")
+   public ResponseEntity<Long> remove(@PathVariable("bno") Long bno) {
+	   
+	  BoardDTO boardDTO = boardService.read(bno);
+			  
+      log.info("delete : " + boardDTO);
+      
+      boardService.removeWithReplies(boardDTO);
+      
+      return new ResponseEntity<Long>(bno, HttpStatus.OK);
+      
+      // remove 되지않음. 확인 및 수정 필요함.
+   }
+   
 }

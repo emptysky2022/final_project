@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.campers.camfp.config.type.GenderType;
 import com.campers.camfp.entity.member.Member;
+import com.campers.camfp.repository.board.BoardRepository;
 import com.campers.camfp.repository.member.MemberRepository;
 
 @SpringBootTest
@@ -16,6 +17,9 @@ public class MemberRepositoryTest {
 
 	@Autowired
 	private MemberRepository memberRepository;
+	
+	@Autowired
+	private BoardRepository boardRepository;
 
 	@Test
 	public void insertMember() {	// test 확인 완.
@@ -69,8 +73,9 @@ public class MemberRepositoryTest {
 	public void testDelete() { // test 확인 완.
 
 //		String mid = "userID5";
-		Long mno = 1L;
-
+		Long mno = 4L;
+		
+//		boardRepository.deleteAll(mno);
 		memberRepository.deleteById(mno);
 	}
 

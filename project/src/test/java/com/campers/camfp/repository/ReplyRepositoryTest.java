@@ -41,7 +41,7 @@ public class ReplyRepositoryTest {
 	
 	@Test
 	public void testListByBoard() {
-		List<Reply> replyList = replyRepository.getRepliesByBoard(Board.builder().bno(5L).build());
+		List<Reply> replyList = (List<Reply>) replyRepository.getRepliesByBoard(Board.builder().bno(5L).build());
 	
 		replyList.forEach(reply -> System.out.println(reply));
 	}
