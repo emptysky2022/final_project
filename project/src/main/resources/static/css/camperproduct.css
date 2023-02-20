@@ -519,7 +519,7 @@ flex-basis: 20%;
 }
 
 
-/*판매상품의 사진+조회수+찜*/
+/*판매상품의 사진+조회수+찜+별점*/
 .sec3{
     display: grid;
     grid-template-columns: repeat(4,1fr);
@@ -550,7 +550,6 @@ flex-basis: 20%;
 .sec3 .productbox .p_contentbox{
     display: flex;
     flex-direction: column;
-  
 }
 
 .sec3 .p_contentbox .p_reviewheartbox{
@@ -559,6 +558,12 @@ flex-basis: 20%;
     justify-content: space-evenly;
 }
 
+.sec3 .p_contentbox{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
 
 @media screen and (max-width:1024px){
     .sec3{
