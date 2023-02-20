@@ -1,12 +1,12 @@
 package com.campers.camfp.entity.board;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -38,7 +38,8 @@ public class Board extends BaseEntity {
 	@Column(length = 2000, nullable = false)
 	private String content;
   
-	@ManyToOne(fetch = FetchType.LAZY, optional = false ,cascade = CascadeType.REMOVE)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name="mno")
 	private Member member;
 
 	private String category; // 
@@ -47,8 +48,8 @@ public class Board extends BaseEntity {
 	
 	private int heart; // 좋아요
 	
-	public void change(String title, String content) {
-		this.title = title;
-		this.content = content;
-	}
+//	public void change(String title, String content) {
+//		this.title = title;
+//		this.content = content;
+//	}
 }

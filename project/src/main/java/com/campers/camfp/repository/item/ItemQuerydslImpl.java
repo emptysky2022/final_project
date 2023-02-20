@@ -2,6 +2,7 @@ package com.campers.camfp.repository.item;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -12,7 +13,10 @@ import org.springframework.stereotype.Repository;
 
 import com.campers.camfp.entity.item.Item;
 import com.campers.camfp.entity.item.QItem;
+import com.campers.camfp.entity.item.QItemReview;
+import com.campers.camfp.entity.member.QMember;
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Order;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
@@ -30,17 +34,23 @@ public class ItemQuerydslImpl extends QuerydslRepositorySupport implements ItemQ
 	}	
 	
 	@Override
-	public Page<Item> findBySearch(String category, String keyword, Pageable pageable) {
+	public Page<Object[]> findBySearch(String category, String keyword, Pageable pageable) {
 		QItem item = QItem.item;
+		QMember member = QMember.member;
+		QItemReview review = QItemReview.itemReview;
 		
 		JPQLQuery<Item> jpqlquery = from(item);
-		jpqlquery.select(item);
+		jpqlquery.leftJoin(member).on(item.member.eq(member));
+		jpqlquery.leftJoin(review).on(review.item.eq(item));
+		
+		JPQLQuery<Tuple> tuple = jpqlquery.select(item, member, review.count());
 		
 		BooleanBuilder booleanBuilder = new BooleanBuilder();
 		BooleanExpression expression = item.ino.gt(0);
 		
 		booleanBuilder.and(expression);
 		
+		log.info("asdf : " + category + keyword);
 		if (!StringUtils.isNullOrEmpty(category)) {			
 			BooleanBuilder categoryBuilder = new BooleanBuilder();
 			categoryBuilder.or(item.category1.eq(category));
@@ -49,7 +59,7 @@ public class ItemQuerydslImpl extends QuerydslRepositorySupport implements ItemQ
 			booleanBuilder.and(categoryBuilder);
 		}
 		
-		if(!StringUtils.isNullOrEmpty(keyword)) {
+		if (!StringUtils.isNullOrEmpty(keyword)) {			
 			BooleanExpression keywordExpression = item.name.contains(keyword);
 			booleanBuilder.and(keywordExpression);
 		}
@@ -60,25 +70,27 @@ public class ItemQuerydslImpl extends QuerydslRepositorySupport implements ItemQ
 		sort.stream().forEach(order -> {
 			Order direction = order.isAscending()? Order.ASC : Order.DESC;
 			String prop = order.getProperty();
-			log.info(prop + "====================asdfasdf====================");
+			log.info(prop + " property");
 			
 			PathBuilder orderByExpression = new PathBuilder<>(Item.class, "item");
 			orders.add(new OrderSpecifier(direction, orderByExpression.get(prop)));
 		});
 		
-		jpqlquery.orderBy(orders.stream().toArray(OrderSpecifier[]::new));
-		jpqlquery.where(booleanBuilder);
-		jpqlquery.offset(pageable.getOffset());
-		jpqlquery.limit(pageable.getPageSize());
+		tuple.orderBy(orders.stream().toArray(OrderSpecifier[]::new));
+		tuple.where(booleanBuilder);
+		tuple.groupBy(item.ino);
+		log.info("pageable size : " + pageable.getPageSize() + ", pageable offset : " + pageable.getOffset());
+		tuple.offset(pageable.getOffset());
+		tuple.limit(pageable.getPageSize());
 		
-		List<Item> result = jpqlquery.fetch();
+		List<Tuple> result = tuple.fetch();
 		
-		log.info(result);
+		log.info(result.size());
 		
-		long resultCount = jpqlquery.fetchCount();
+		long resultCount = tuple.fetchCount();
 		log.info("result count : " + resultCount);
 		
-		return new PageImpl<Item>(result, pageable, resultCount);
+		return new PageImpl<Object[]>(result.stream().map(t -> t.toArray()).collect(Collectors.toList()), pageable, resultCount);
 	}
 
 }

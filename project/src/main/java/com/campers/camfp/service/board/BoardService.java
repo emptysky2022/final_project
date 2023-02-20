@@ -4,22 +4,22 @@ import com.campers.camfp.dto.board.BoardDTO;
 import com.campers.camfp.dto.page.PageRequestDTO;
 import com.campers.camfp.dto.page.PageResultDTO;
 import com.campers.camfp.entity.board.Board;
-import com.campers.camfp.entity.board.Reply;
 import com.campers.camfp.entity.member.Member;
 
 public interface BoardService {
 	
-	Long register(BoardDTO boardDTO); 
 	
 	// SH
 	PageResultDTO<BoardDTO, Object[]> getList(PageRequestDTO pageRequestDTO);
+	
+	Long register(BoardDTO boardDTO); 
 
 	// 게시글 상세 조회
 	BoardDTO read(Long bno);
 	
-	void removeWithReplies(Long bno);
-	
 	void modify(BoardDTO boardDTO);
+	
+	void removeWithReplies(BoardDTO boardDTO);
 	
 	// dto -> entity
 	default Board dtoToEntity(BoardDTO boardDTO) {
