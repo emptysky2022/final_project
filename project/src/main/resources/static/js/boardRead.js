@@ -1,31 +1,35 @@
 $(function(){
 	console.log("document ready test")
 	
+	loadRefreshData();
 	
+	$("#modifyReply").hide();
 });
-
+	
+// 페이징 / 검색을 위해 url 따오는 것들(url param 추출)	
 const urlStr = window.location.href;
-	
-	const url = new URL(urlStr);
-	
-	console.log(urlStr);
-	
-	const urlParams = url.searchParams;
 
-	const page = urlParams.get('page');
-	
-	const type = urlParams.get('type');
-	
-	const keyword = urlParams.get('keyword');
+const url = new URL(urlStr);
+console.log(urlStr);
 
-	console.log(page);
-	console.log(type);
-	console.log(keyword);
-	
+const urlParams = url.searchParams;
+let page = urlParams.get('page');
+
+// 리스트 첫 페이지에서 page 파라미터가 null이라서 페이지를 읽어오지 못함.
+// if문으로 null 일 경우 1로 바꿔줌.
+if(page == null) {
+	page = 1;
+}
+
+const type = urlParams.get('type');
+const keyword = urlParams.get('keyword');
+
+console.log(page);
+console.log(type);
+console.log(keyword);
+
+// 게시글 상세보기 함수
 function loadReadData(bno){
-	
-	
-	
 	let boardListRE = $("#boardListRE_read");
 	
 	$.getJSON("/sample/list/" + bno, function(result){
@@ -40,16 +44,16 @@ function loadReadData(bno){
 			
 		str += '<h3>글 상세 페이지입니다.</h3>'
 		str += '  <div class="boardListRE_bno">';
-		str += '    <label>번호</label><input type="text" name="bno" value=' + board.bno + ' readonly></div>';
+		str += '    <label>번호</label><input type="text" name="bno" value="' + board.bno + '" readonly></div>';
 		str += '   <input type="hidden" id="boardBno" value="' + board.bno + '">';
 		str += '  <div class="boardListRE_title">';
-		str += '    <label>제목</label><input type="text" name="title" value=' + board.title + ' readonly></div>';
+		str += '    <label>제목</label><input type="text" name="title" value="' + board.title + '" readonly></div>';
 		str += '  <div class="boardListRE_content">'
 		str += '    <label>내용</label><textarea rows="5" name="content" readonly>' + board.content + '</textarea></div>';
 		str += '  <div><label>사진</label><input type="text" name="image"></div>';
-		str += '  <div>댓글 수 : ' + board.replyCount + '</div>';
-		str += '  <div><button type="submit" onclick="loadModifyData(' + board.bno + ')">수정하기</button></div><hr>';
-		str += '  <div><button type="button" class="read_remove" onclick="loadRemoveData(' + board.bno + ')">삭제하기</button></div><hr>';
+		str += '  <div>댓글 수 <b>[' + board.replyCount + ']</b></div>';
+		str += '  <div class="nickhide"><button type="submit" onclick="loadModifyData(' + board.bno + ')">수정하기</button>';
+		str += '  <button type="button" class="read_remove" onclick="loadRemoveData(' + board.bno + ')">삭제하기</button></div><hr>';
 		
 		str += '  <h4 id="readReplyer" name="replyer">' + user.nickname + '님 리뷰 남겨</h4><br>';
         str += '   <input type="hidden" id="userNickname" value="' + user.nickname + '">';
@@ -60,45 +64,32 @@ function loadReadData(bno){
 		
 		boardListRE.html(str);
 		console.log("완");
+		
+		$(".boardListRE_read").hide();
+		loadRefreshData();
 	})
-	
-	
 	
 	setTimeout(() => { // 
 		loadReadRepliesData(bno);
 	}, 500);
 }
 
+// 게시글 수정하기 함수
 function loadModifyData(bno){
-
+	
    let boardListRE = $("#boardListRE_modify");
    $.getJSON("/sample/list/" + bno, function(readInfo){
       console.log(readInfo);
       
       const [board, reply, user] = readInfo;
-      console.log("readInfo[0] : ", board);
       
       let str = "";
       
       str += '<h3>글 수정 페이지입니다.</h3>'
       str += '  <div class="boardListRE_bno">';
-      str += '    <label>번호</label><input type="text" id="modiBno" name="bno" value=' + board.bno + ' readonly></div>';
+  	  str += '    <label>번호</label><input type="text" id="modiBno" name="bno" value="' + board.bno + '" readonly></div>';
       str += '  <div class="boardListRE_title">';
-      str += '    <label>제목</label><input type="text" id="modiName" name="title" value=' + board.title + '></div>';
-      str += '  <div class="boardListRE_content">'
-      str += '    <label>내용</label><textarea id="updateContent" rows="5" name="content">' + board.content + '</textarea></div>';
-      str += '    <input type="hidden" id="modiMno" name="mno" value="' + user.mno + '" readonly>';
-      str += '    <input type="hidden" id="modinickname" name="nickname" value="' + user.id + '" readonly>';
-      str += '  <div><label>사진</label><input type="text" name="image"></div>';
-      str += '  <div><button type="button" id="boardModify">저장하기</button>&nbsp;&nbsp;<button type="reset">되돌리기</button></div>'
-      
-      let str = "";
-      
-      str += '<h3>글 수정 페이지입니다.</h3>'
-      str += '  <div class="boardListRE_bno">';
-  	 	str += '    <label>번호</label><input type="text" id="modiBno" name="bno" value=' + board.bno + ' readonly></div>';
-      str += '  <div class="boardListRE_title">';
-      str += '    <label>제목</label><input type="text" id="modiName" name="title" value=' + board.title + '></div>';
+      str += '    <label>제목</label><input type="text" id="modiName" name="title" value="' + board.title + '"></div>';
       str += '  <div class="boardListRE_content">'
       str += '    <label>내용</label><textarea id="updateContent" rows="5" name="content">' + board.content + '</textarea></div>';
       str += '    <input type="hidden" id="modiMno" name="mno" value="' + user.mno + '" readonly>';
@@ -111,35 +102,41 @@ function loadModifyData(bno){
    })
 }
 
+// 게시글 새로고침하기(실질적 새로고침 아님.)
 function loadRefreshData(){
 	
-	urlParams.set("page", page);
+   urlParams.set("page", page);
 	
-    let boardListRE = $(".refresh_list");
-    $.getJSON("/sample/list/refresh?page="+page, function(result){
-    	let str = "";
-    	console.log(result[0].dtoList);
+   let boardListRE = $(".refresh_list");
+   $.getJSON("/sample/list/refresh?page=" + page, function(result){
+      let str = "";
+      console.log(result[0].dtoList);
       
-    	$.each(result[0].dtoList, function(index, board){
-       		console.log(board);
+      $.each(result[0].dtoList, function(index, board){
+         console.log(board);
       
-         	str += '<tr>';
-         	str += '   <td scope=row>' + board.bno + '</td>';
-         	str += '   <td><a onclick="loadReadData(' + board.bno + ')">' + board.title + '</a></td>';
-         	str += '   <td>' + board.nickname + '</td>';
-         	str += '   <td>' + board.regDate + '</td>';
-         	str += '   <td>' + board.count + '</td>';
-         	str += '</tr>';
+      	 // 시간 포멧
+      	 let reg = new Date(board.regDate);
+       	 let dateFormat = reg.getFullYear() + '/' + (reg.getMonth() + 1) + '/'
+       					+ reg.getDate() + ' ' + reg.getHours() + ':' + reg.getMinutes()
+       					+ ':' + reg.getSeconds();
+      		
+         str += '<tr>';
+     	 str += '   <td scope=row>' + board.bno + '</td>';
+     	 str += '   <td><a onclick="loadReadData(' + board.bno + ')">' + board.title + ' <b><small>[' + board.replyCount + ']</samll></b>' + '</a></td>';
+     	 str += '   <td>' + board.nickname + '</td>';
+     	 str += '   <td>' + dateFormat + '</td>';
+     	 str += '   <td>' + board.count + '</td>';
+     	 str += '</tr>';
       
-      	})
-      	
+      })
       
       boardListRE.html(str);
       console.log("리프레시 완");
-      
-	})
+   })
 }
 
+// 게시글 삭제하기 함수
 function loadRemoveData(bno){
    
    console.log("온클릭 성공");
@@ -157,19 +154,18 @@ function loadRemoveData(bno){
    })
    
 	setTimeout(() => { // 
-		loadReadData(bno);
-	}, 500);
-	
-	setTimeout(() => { // 
 		loadReadRepliesData(bno);
 	}, 1000);
 	
 	setTimeout(() => { // 
 		loadRefreshData();
-	}, 1500);	
-
+	}, 1500);
+	
+	$("#boardListRE_read").hide();   
+   
 }
 
+// 게시판 수정하기 버튼 눌렸을 때 작동하는 함수
 $(document).on("click", "#boardModify", function(){
       console.log("화악");
       var bno = $("#modiBno").val();
@@ -199,26 +195,24 @@ $(document).on("click", "#boardModify", function(){
       });
 })
 
+$(document).on("click", ".regiShow", function() {
+	$(".regiBoard").show();
+})
+
 // 댓글 상세 정보
 async function loadReadRepliesData(bno) {
 	const repliesListRE = $("#repliesListRE");
-	//const replies = await $.get(`/replies/${bno}/all`);
-	//const html = replies.map((reply) => `<h5 data-rno="${reply.rno}">${reply.content}</h5>`).join("");
-	//repliesListRE.append(html);
 	
 	function formatTime(str) {
-		
 		var date = new Date(str);
-		
 		return date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes();
 	}
 	
-
 	$.getJSON("/replies/" + bno + "/all", function(result) {
 		
 		repliesListRE.empty();
-		
 		let str = "";
+		
 		for(var reply of result) {
 			console.log(reply);
 			
@@ -226,9 +220,8 @@ async function loadReadRepliesData(bno) {
             str += '<h6 id="content" data-content="' + reply.content + '">' + reply.content + '</h6>';
             str += '<h6 id="regDate" data-regDate="' + reply.regDate + '">' + formatTime(reply.regDate) + '</h6>';
          	str += '<button id="removeBtn" onclick="removeReply(' + reply.bno + ')">댓글 삭제</button>';
-         	str += '<button id="show" onclick="modifyReply(' + reply.bno + ')">댓글 수정</button>';
-         	str += '<button id="replyHeart">heart</button>';
-        	str += '<input type="hidden" id="replyRno" value="' + reply.rno + '">';
+         	str += '<button id="show" onclick="modifyReply(' + reply.bno + ', ' + reply.rno + ')">댓글 수정</button>';
+         	str += '<button id="replyHeart" value="' + reply.heart + '">heart : ' + reply.heart + '</button>';
 			
 			str += '<hr>';
 		}
@@ -260,19 +253,14 @@ function loadRegisterReplyData(bno) {
       
    }) 
    
-   console.log("되는겨?");
    loadReadData(bno);
    
 }
 
 // 댓글 삭제
-function removeReply(bno) {
+function removeReply(bno, rno) {
    
    console.log("삭제 버튼");
-   
-   var rno = $("#replyRno").val();
-   
-   console.log(rno);
    
    $.ajax({
       url: '/replies/' + bno + "/" + rno,
@@ -296,12 +284,37 @@ function removeReply(bno) {
 
 
 // 댓글 수정
-function modifyReply(bno) {
+function modifyReply(bno, rno) {
    
-   console.log("수정 버튼");
+   $("#modifyReply").show().data("rno", rno).data("bno", bno);
+   $("#modifyContent").val('');
    
-   var rno = $("#replyRno").val();
-   
-   console.log(rno);
-   
+   console.log(bno, rno);
 }
+
+// 댓글 수정 취소 버튼
+$("#modifyReplyBtn-reset").click(function() {
+	$("#modifyReply").hide();
+});
+
+// 수정 버튼 클릭
+$("#modifyReplyBtn").click(function() {
+	const $modifyReply = $(this).closest("#modifyReply");
+	const bno = $modifyReply.data('bno');
+	const rno = $modifyReply.data('rno');
+	
+	$.ajax({
+		url: '/replies/' + rno,
+		type: 'put',
+		dataType: 'json',
+		contentType: 'application/json; charset=utf-8;',
+		data: JSON.stringify({
+			rno,
+			replyer: $("#userNickname").val(),
+			content: $('#modifyContent').val()
+		}),
+		success: function(result) {
+			loadReadData(bno);
+		}
+	})
+})
