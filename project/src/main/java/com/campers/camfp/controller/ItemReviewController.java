@@ -30,10 +30,13 @@ public class ItemReviewController {
 	private final ItemReviewService itemReviewService;
 	
 	@GetMapping("/detail/{ino}")
-	public ResponseEntity<List<ItemReviewDTO>> getReviewOfItem(@PathVariable Long ino){
+	public ResponseEntity<List<Object>> getReviewOfItem(@PathVariable Long ino, @AuthenticationPrincipal PrincipalDetails principalDetails){
 		List<ItemReviewDTO> result = itemReviewService.getReviewOfItem(ino);
-		
-		return new ResponseEntity<>(result, HttpStatus.OK);
+		if(principalDetails != null) {
+			return new ResponseEntity<>(List.of(result, principalDetails.getMember()), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(List.of(result), HttpStatus.OK);
+		}
 	}
 	
 	@GetMapping("/heart/{irno}")
