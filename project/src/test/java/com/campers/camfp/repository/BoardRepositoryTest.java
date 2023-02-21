@@ -2,14 +2,18 @@ package com.campers.camfp.repository;
 
 import java.util.stream.IntStream;
 
-import javax.transaction.Transactional;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import com.campers.camfp.entity.board.Board;
 import com.campers.camfp.entity.member.Member;
+import com.campers.camfp.repository.board.BoardQuerydsl;
 import com.campers.camfp.repository.board.BoardRepository;
 
 @SpringBootTest
@@ -27,13 +31,12 @@ public class BoardRepositoryTest {
 	@Test
 	public void testInsert() {
 		
-		IntStream.rangeClosed(50, 700).forEach(i -> {
+		IntStream.rangeClosed(1, 50).forEach(i -> {
 			
-			int count = (int) ((Math.random() * 5000) + 1);
-			int heart = (int) ((Math.random() * 1000) + 1);
-			long ranMember = (long) ((Math.random() * 50) +1);
+			int count = (int)((Math.random() * 5000) + 1);
+			int heart = (int)((Math.random() * 1000) + 1);
 			
-			Member member = Member.builder().mno(ranMember).build();
+			Member member = Member.builder().mno((long) i).build();
 			
 			Board board = Board.builder().title("Sample Title" + i)
 										 
@@ -48,4 +51,23 @@ public class BoardRepositoryTest {
 										 
 		});
 	}
+	
+	// Querydsl 테스트
+	@Test
+	public void testSearch() {
+		boardRepository.searchBoard();
+	}
+	
+	@Test
+	public void testSearchPage() {
+		Pageable pageable = PageRequest.of(0, 10, Sort.by("bno").descending());
+		Page<Object[]> result = boardRepository.searchPage("t", "1", pageable);
+	}
+	
+	@Test
+	public void testSearchPageSort() {
+		Pageable pageable = PageRequest.of(0, 10, Sort.by("bno").descending().and(Sort.by("title").ascending()));
+		Page<Object[]> result = boardRepository.searchPage("w", "20", pageable);
+	}
+	
 }
