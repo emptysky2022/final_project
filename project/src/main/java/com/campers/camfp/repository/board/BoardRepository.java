@@ -14,7 +14,7 @@ import org.springframework.data.repository.query.Param;
 import com.campers.camfp.entity.board.Board;
 import com.campers.camfp.entity.member.Member;
 
-public interface BoardRepository extends JpaRepository<Board, Long> {
+public interface BoardRepository extends JpaRepository<Board, Long>, BoardQuerydsl {
 	
 	@Query(value="select b, m, count(r) " +
 			 " from Board b " +
