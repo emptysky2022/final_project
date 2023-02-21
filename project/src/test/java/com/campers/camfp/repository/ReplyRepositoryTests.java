@@ -24,6 +24,7 @@ public class ReplyRepositoryTests {
 			
 			// 임시 게시판 번호
 			Long bno = (long)((Math.random() * 704) + 1); 
+
 			
 			int heart = (int)((Math.random() * 100) + 1);
 			

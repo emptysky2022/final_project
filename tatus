@@ -1,0 +1,853 @@
+[33mcommit 816d8bc1786b72ee324cbcbfab630b9062594f04[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: keduit <keduit@505-01>
+Date:   Mon Feb 20 19:00:31 2023 +0900
+
+    1. 달력 최종수정 2.camp작업중
+
+[33mcommit 0dc852d56e15f3750968427eab2a17bd15e889e6[m
+Author: StrHyunSoo <gustn995@gmail.com>
+Date:   Mon Feb 20 00:19:45 2023 +0900
+
+    1. 캘린더 기능 더추가..
+
+[33mcommit 5a159a38c9881fc2ffa60a90ac3a3ac2ba52b95d[m
+Merge: e0d4f45 0e4ee75
+Author: StrHyunSoo <gustn995@gmail.com>
+Date:   Mon Feb 20 00:18:57 2023 +0900
+
+    Merge branch 'emptysky2022:master' into master
+
+[33mcommit 0e4ee753c2ea7524f31e841b6dcd50fb55708a99[m
+Author: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+Date:   Sun Feb 19 20:21:39 2023 +0900
+
+    item 기능 추가 (#69)
+
+[33mcommit e0d4f454c864e958c81b242173caa855ab887afc[m
+Merge: b8a2064 2c1583b
+Author: StrHyunSoo <gustn995@gmail.com>
+Date:   Sun Feb 19 17:46:30 2023 +0900
+
+    Merge branch 'emptysky2022:master' into master
+
+[33mcommit 2c1583bc8781cd7a8112034cd3bbfd19ec595635[m
+Author: StrHyunSoo <gustn995@gmail.com>
+Date:   Fri Feb 17 17:55:06 2023 +0900
+
+    1. CampDetail Controller 연결 및 동작확인 (#68)
+    
+    Co-authored-by: keduit <keduit@505-01>
+    Co-authored-by: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+
+[33mcommit b8a2064501378cc34ffc1ac8aab40a960bc17688[m
+Author: keduit <keduit@505-01>
+Date:   Fri Feb 17 17:40:45 2023 +0900
+
+    1. CampDetail 부 Controller 연결
+
+[33mcommit 01af0ac5cd217b0c0d25380764bd3389a1e569bf[m
+Merge: dacb683 2446c43
+Author: StrHyunSoo <gustn995@gmail.com>
+Date:   Fri Feb 17 17:39:41 2023 +0900
+
+    Merge branch 'emptysky2022:master' into master
+
+[33mcommit 2446c431ea47140eedf2b2a500cdfcec77257ad4[m
+Author: lagoon284 <107830914+lagoon284@users.noreply.github.com>
+Date:   Fri Feb 17 16:45:36 2023 +0900
+
+    게시판 기능구현(Read). (#67)
+    
+    Co-authored-by: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+
+[33mcommit 97911a33d16079c9d9e1f4cf18d22e875a14041c[m
+Author: StrHyunSoo <gustn995@gmail.com>
+Date:   Fri Feb 17 09:34:58 2023 +0900
+
+    1. camp register 수정 (#66)
+    
+    Co-authored-by: keduit <keduit@505-01>
+    Co-authored-by: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+
+[33mcommit dacb6837f553b8b1e7a335a6388b6c329541de66[m
+Author: StrHyunSoo <gustn995@gmail.com>
+Date:   Thu Feb 16 23:16:28 2023 +0900
+
+    1. camp register 수정
+
+[33mcommit a2ced7fee1e2ef118a8691c8e9b96c92cf13da41[m
+Author: keduit <keduit@505-01>
+Date:   Thu Feb 16 20:31:29 2023 +0900
+
+    1. 달력 기능 추가.
+
+[33mcommit d2d30931e8bd09d3b2d095eb7b38ebab8dbf9185[m
+Merge: 97d11f2 b0895f2
+Author: keduit <keduit@505-01>
+Date:   Thu Feb 16 20:30:41 2023 +0900
+
+    Merge branch 'master' of https://github.com/StrHyunSoo/final_project.git
+
+[33mcommit b0895f231e9c014379a03fe673495f8f966fa67b[m
+Merge: e41d02e 684378a
+Author: StrHyunSoo <gustn995@gmail.com>
+Date:   Thu Feb 16 20:30:34 2023 +0900
+
+    Merge branch 'emptysky2022:master' into master
+
+[33mcommit 97d11f27513375e1371856c05ce00f5de630b649[m
+Merge: c547ad0 e41d02e
+Author: keduit <keduit@505-01>
+Date:   Thu Feb 16 20:30:18 2023 +0900
+
+    Merge branch 'master' of https://github.com/StrHyunSoo/final_project.git
+
+[33mcommit c547ad0d57a72fd6e961859c2054cb335575d2a4[m
+Merge: 18ef531 4e5a64b
+Author: keduit <keduit@505-01>
+Date:   Thu Feb 16 20:27:39 2023 +0900
+
+    Merge remote-tracking branch 'upstream/master'
+
+[33mcommit 684378abbce315c5f5f6fbb40e01692f911d8f5b[m[33m ([m[1;31mupstream/master[m[33m)[m
+Author: ByeongJun An <113837724+ByeongJunAn@users.noreply.github.com>
+Date:   Thu Feb 16 20:23:52 2023 +0900
+
+    게시판 추가 (#64)
+
+[33mcommit e41d02ed477d5ca971cf23fe2ddbfbfc22f5b20c[m
+Merge: 18ef531 4e5a64b
+Author: StrHyunSoo <gustn995@gmail.com>
+Date:   Thu Feb 16 20:22:44 2023 +0900
+
+    Merge branch 'emptysky2022:master' into master
+
+[33mcommit 4e5a64bf23df651109cae19d31708f3aecd4513a[m
+Author: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+Date:   Thu Feb 16 20:07:13 2023 +0900
+
+    camp API 사용해서 정보 가져오기 (#63)
+
+[33mcommit c00ae4cde1fe4cf6f29e618de5fb8a26587603b8[m
+Author: lagoon284 <107830914+lagoon284@users.noreply.github.com>
+Date:   Thu Feb 16 17:57:04 2023 +0900
+
+    restful 기능 구현 중 (#62)
+    
+    Co-authored-by: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+
+[33mcommit 20ff76e19a59f191337e89e59940d305bc2a4385[m
+Author: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+Date:   Thu Feb 16 16:45:17 2023 +0900
+
+    Item에 Querydsl 적용 (#61)
+
+[33mcommit 722cedfd0ca1ef7c52d4277e4f7e0a531adc5765[m
+Author: mechuri <108450449+mecuri@users.noreply.github.com>
+Date:   Thu Feb 16 12:38:48 2023 +0900
+
+    dsl stashed 주석 수정 (#60)
+
+[33mcommit 9aedec158e65c263d7f9bfaff2decbe08584fade[m
+Author: StrHyunSoo <gustn995@gmail.com>
+Date:   Thu Feb 16 09:24:15 2023 +0900
+
+    1. 달력추가. (#58)
+    
+    Co-authored-by: keduit <keduit@505-01>
+    Co-authored-by: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+
+[33mcommit 18ef53167aca1c10d0bc837585bab5738ac37770[m
+Author: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+Date:   Thu Feb 16 09:23:54 2023 +0900
+
+    properties에서 api키 제거
+
+[33mcommit fca2a85bfe5339339e73e60a304a77180e0663d0[m
+Author: Yongun <0310hwang@naver.com>
+Date:   Thu Feb 16 09:21:58 2023 +0900
+
+    로그인 기능 개발 (#59)
+    
+    Co-authored-by: keduit <keduit@505-17>
+    Co-authored-by: yoooooungwoon <kim0310hwang@gmail.com>
+    Co-authored-by: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+
+[33mcommit a6698de8a02af533bc918bb3e5cfc16cf7c4ecd8[m
+Author: StrHyunSoo <gustn995@gmail.com>
+Date:   Thu Feb 16 01:17:04 2023 +0900
+
+    1.달력 추가
+
+[33mcommit e3c03ec0a212be25d33f195c2fd9a6ffe094deb1[m
+Author: keduit <keduit@505-01>
+Date:   Wed Feb 15 19:45:14 2023 +0900
+
+    1. api 일단 올려놓음
+
+[33mcommit 7a185a3a3660d177d3474c7e5db6d5fb531b03d1[m
+Merge: 88cd7b7 6182aa7
+Author: StrHyunSoo <gustn995@gmail.com>
+Date:   Wed Feb 15 17:47:35 2023 +0900
+
+    Merge branch 'emptysky2022:master' into master
+
+[33mcommit 6182aa73efa316d76ddb14e34e49ff6dce70dff7[m
+Author: StrHyunSoo <gustn995@gmail.com>
+Date:   Wed Feb 15 17:18:33 2023 +0900
+
+    1. 어제 못올린거 재업로드 (#54)
+    
+    Co-authored-by: keduit <keduit@505-01>
+    Co-authored-by: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+
+[33mcommit 88cd7b792584ea7095e442b553add9f74fcb6bed[m
+Merge: 54f9ed3 3dfeeb9
+Author: keduit <keduit@505-01>
+Date:   Wed Feb 15 17:16:17 2023 +0900
+
+    1. 어제 안올라간거 올림
+
+[33mcommit 3dfeeb9e45bae86e7e8a58b702b659c6653b25c9[m
+Author: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+Date:   Wed Feb 15 15:09:13 2023 +0900
+
+    Item, ItemReview 테이블과 View 연결 후 간단하게 View 샘플 이용해서 테스트 (#55)
+
+[33mcommit 54f9ed3c24c2254e4ae7579579ee34f138aee380[m
+Author: keduit <keduit@505-01>
+Date:   Wed Feb 15 14:09:26 2023 +0900
+
+    1. 어제 못올린거 재업로드
+
+[33mcommit bf64daaf9a9583cd13082f6fe549d880efbad060[m
+Merge: f18f5f2 da722e1
+Author: keduit <keduit@505-01>
+Date:   Wed Feb 15 14:07:18 2023 +0900
+
+    Merge branch 'master' of https://github.com/StrHyunSoo/final_project.git
+
+[33mcommit da722e1a0e05f4f09d2600c596bbd9c4c691a254[m
+Merge: ba2bf5c 69a54b7
+Author: StrHyunSoo <gustn995@gmail.com>
+Date:   Wed Feb 15 14:06:12 2023 +0900
+
+    Merge branch 'emptysky2022:master' into master
+
+[33mcommit 69a54b78dae4700a9f2f727e5c9d1f2317dde682[m
+Author: emptysky2022 <emptysky2022@gmail.com>
+Date:   Wed Feb 15 09:28:14 2023 +0900
+
+    .gitignore와 application.properties 충돌 수정
+
+[33mcommit ba2bf5cfed99335b1b8681d5d3067eb9b38439d6[m
+Merge: 787f422 ea0fca7
+Author: StrHyunSoo <gustn995@gmail.com>
+Date:   Tue Feb 14 21:49:40 2023 +0900
+
+    Merge branch 'emptysky2022:master' into master
+
+[33mcommit 9a586bf9479190bb57744af3bb24557113ad7182[m
+Merge: 514c11b ea0fca7
+Author: emptysky2022 <emptysky2022@gmail.com>
+Date:   Tue Feb 14 20:16:55 2023 +0900
+
+    Merge remote-tracking branch 'origin/master' into emptysky
+
+[33mcommit 514c11bd837c9628cd33eb415b00a53141f93286[m
+Author: emptysky2022 <emptysky2022@gmail.com>
+Date:   Tue Feb 14 20:15:31 2023 +0900
+
+    save and checkout master
+
+[33mcommit ea0fca7fbd49d6531788e36ab7f16d3b192ddb22[m
+Author: Yongun <0310hwang@naver.com>
+Date:   Tue Feb 14 20:13:39 2023 +0900
+
+    깃허브 충돌처리 (#52)
+    
+    Co-authored-by: keduit <keduit@505-17>
+    Co-authored-by: yoooooungwoon <kim0310hwang@gmail.com>
+
+[33mcommit 4a3c3799e92759cf4bfecf4c6f37a0b2ebbafd32[m
+Author: Yongun <0310hwang@naver.com>
+Date:   Tue Feb 14 20:03:06 2023 +0900
+
+    Feat: "로그인 개발" (#50)
+    
+    Co-authored-by: keduit <keduit@505-17>
+    Co-authored-by: yoooooungwoon <kim0310hwang@gmail.com>
+
+[33mcommit 4e75f6e36fa293841ad2f8664af578ec4be424f5[m
+Author: StrHyunSoo <gustn995@gmail.com>
+Date:   Tue Feb 14 18:57:28 2023 +0900
+
+    1. Camp Entity 수정 및 html 파일 / querydsl 수정  (#49)
+    
+    Co-authored-by: keduit <keduit@505-01>
+    Co-authored-by: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+
+[33mcommit f18f5f2d7d1c7ba34d8df4b31efacd7425ebd016[m
+Author: keduit <keduit@505-01>
+Date:   Tue Feb 14 18:55:30 2023 +0900
+
+    1. Camp Entity 수정
+    2. Camp Controller 추가
+    3. Html 파일 수정.
+
+[33mcommit 787f4220a1048f5b03517a5c8e66bce3c4cdbd4d[m
+Merge: c239fab 906a622
+Author: StrHyunSoo <gustn995@gmail.com>
+Date:   Tue Feb 14 18:51:16 2023 +0900
+
+    Merge branch 'emptysky2022:master' into master
+
+[33mcommit 906a62232598870ce38178b0cd2537ea4a979bca[m
+Author: mechuri <108450449+mecuri@users.noreply.github.com>
+Date:   Tue Feb 14 18:30:53 2023 +0900
+
+    Reply 수정중 (#48)
+
+[33mcommit cf63c87a8c795cf90740607cb1ea082fd6f44c6a[m
+Author: emptysky2022 <emptysky2022@gmail.com>
+Date:   Tue Feb 14 18:02:38 2023 +0900
+
+    API-KEY랑 OAuth properties 분리, .gitignore 추가
+
+[33mcommit 2ace51f0501ecde6353289403735d286de1a26f6[m
+Merge: d9f8c30 c239fab
+Author: keduit <keduit@505-01>
+Date:   Tue Feb 14 16:19:20 2023 +0900
+
+    Merge branch 'master' of https://github.com/StrHyunSoo/final_project.git
+
+[33mcommit c239fababe6ed1c47978e2f392ad06e20c9beea6[m
+Merge: c6a0b1b 071d1e7
+Author: StrHyunSoo <gustn995@gmail.com>
+Date:   Tue Feb 14 16:19:07 2023 +0900
+
+    Merge branch 'emptysky2022:master' into master
+
+[33mcommit 071d1e7c3485fb1d6b53ed241c13df324491c091[m
+Author: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+Date:   Tue Feb 14 16:17:06 2023 +0900
+
+    Item 날아간거 재업로드 & html에 데이터 넣기 (#47)
+
+[33mcommit d9f8c309755b3b09f65048582c7152a1b4ef6d8e[m
+Merge: 044a3d8 c6a0b1b
+Author: keduit <keduit@505-01>
+Date:   Tue Feb 14 15:54:12 2023 +0900
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 044a3d857f5d750d58ed44b8e1e6570d761cebe1[m
+Author: keduit <keduit@505-01>
+Date:   Tue Feb 14 15:54:02 2023 +0900
+
+    pull 받기위해서 올림
+
+[33mcommit c6a0b1b0201509b3d263b8f1831c9b6cf5688ff3[m
+Merge: 00bbee1 1def6f5
+Author: StrHyunSoo <gustn995@gmail.com>
+Date:   Tue Feb 14 15:40:33 2023 +0900
+
+    Merge branch 'emptysky2022:master' into master
+
+[33mcommit 1def6f58567f89cd5422f41139d1ed9b71040698[m
+Author: lagoon284 <107830914+lagoon284@users.noreply.github.com>
+Date:   Tue Feb 14 15:36:24 2023 +0900
+
+    list 뷰단에 정보 뿌리고 받기 구현 (#46)
+    
+    Co-authored-by: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+
+[33mcommit 245166a0d2bc176e401ef37a038449990779c6a2[m
+Author: Yongun <0310hwang@naver.com>
+Date:   Tue Feb 14 14:52:49 2023 +0900
+
+    로그인 개발 (#45)
+    
+    Co-authored-by: keduit <keduit@505-17>
+    Co-authored-by: yoooooungwoon <kim0310hwang@gmail.com>
+
+[33mcommit 8109170056257a1c953844b48d948cbbdb1c30e8[m
+Author: mechuri <108450449+mecuri@users.noreply.github.com>
+Date:   Tue Feb 14 14:11:17 2023 +0900
+
+    게시판 Service 수정중, page 추가 (#44)
+
+[33mcommit 15f62e32bd28a7c83c41a69bbc55a8a03fad844c[m
+Author: StrHyunSoo <gustn995@gmail.com>
+Date:   Tue Feb 14 13:52:02 2023 +0900
+
+    1. 삭제 부분 재업로드 (#43)
+    
+    Co-authored-by: keduit <keduit@505-01>
+    Co-authored-by: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+
+[33mcommit 00bbee1764a953e152470ad2386ad570ce5cfc2f[m
+Merge: b587007 f6faaa8
+Author: StrHyunSoo <gustn995@gmail.com>
+Date:   Tue Feb 14 12:40:33 2023 +0900
+
+    Merge branch 'master' into master
+
+[33mcommit b587007a3274eca4d22e14254bd3f1c072763875[m
+Author: keduit <keduit@505-01>
+Date:   Tue Feb 14 12:36:44 2023 +0900
+
+    1.파일삭제 재업로드
+
+[33mcommit f6faaa8c38a097936450b418865e47044911ee41[m
+Author: StrHyunSoo <gustn995@gmail.com>
+Date:   Tue Feb 14 12:19:00 2023 +0900
+
+    1. CampCaledner Entity 변경 (#42)
+    
+    Co-authored-by: keduit <keduit@505-01>
+    Co-authored-by: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+
+[33mcommit b6851d8bd851041a7ee909a554bc279995b47780[m
+Merge: 6d9be3d 79e5f64
+Author: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+Date:   Tue Feb 14 12:18:53 2023 +0900
+
+    Merge branch 'master' into master
+
+[33mcommit 6d9be3dc14e5c56510ab7871f25094c129373b91[m
+Author: keduit <keduit@505-01>
+Date:   Tue Feb 14 12:11:08 2023 +0900
+
+    1. QueryDsl 부분 추가
+    2. CampCaledner Entity 변경
+
+[33mcommit 79e5f644a8aa51b66051f294bdd5e276d2fc34d8[m
+Author: StrHyunSoo <gustn995@gmail.com>
+Date:   Tue Feb 14 09:09:21 2023 +0900
+
+    1. Camp QueryDsl 부분 추가  (#41)
+
+[33mcommit 20951fb72fa6c26f058f3e7da19a56b8dab1bca5[m
+Merge: 8f211f3 0ff6883
+Author: StrHyunSoo <gustn995@gmail.com>
+Date:   Tue Feb 14 00:03:54 2023 +0900
+
+    Merge branch 'master' of https://github.com/StrHyunSoo/final_project
+
+[33mcommit 8f211f34f2454edfc269d4b1a5b9241a67ee2de8[m
+Author: StrHyunSoo <gustn995@gmail.com>
+Date:   Tue Feb 14 00:00:58 2023 +0900
+
+    git bash 에서 test
+
+[33mcommit 0ff6883d7b0f4ebf5446d0299597a2894e83ae1d[m
+Author: lagoon284 <107830914+lagoon284@users.noreply.github.com>
+Date:   Mon Feb 13 20:28:19 2023 +0900
+
+    Member part 수정 완. (#40)
+    
+    Co-authored-by: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+
+[33mcommit 4cf81ac8f3b175c2a51089428fbd4340753f2748[m
+Merge: b6e5cc5 cd94baa
+Author: emptysky2022 <emptysky2022@gmail.com>
+Date:   Mon Feb 13 19:37:29 2023 +0900
+
+    폴더 구조 변경 & 코드 날아간 대형사고 처리
+
+[33mcommit b6e5cc5279f5c6afa4f9371d3222ac4d4c2c0486[m
+Merge: 86f2ccc c7bbca4
+Author: emptysky2022 <emptysky2022@gmail.com>
+Date:   Mon Feb 13 19:11:54 2023 +0900
+
+    백업
+
+[33mcommit cd94baaec918875f1910c2f65033698762b6c02e[m
+Author: emptysky2022 <emptysky2022@gmail.com>
+Date:   Mon Feb 13 18:48:45 2023 +0900
+
+    폴더구조 교체 & 푸시
+
+[33mcommit 86f2ccc837e173962b1fbf036cd86e17e956b6e5[m
+Merge: 9f68e79 1308dba
+Author: mechuri <108450449+mecuri@users.noreply.github.com>
+Date:   Mon Feb 13 18:29:03 2023 +0900
+
+    Merge branch 'emptysky2022:master' into master
+
+[33mcommit c7bbca40346e3e308855a1d29c9ef6b4bbf99e07[m
+Author: keduit <keduit@505-01>
+Date:   Mon Feb 13 17:49:15 2023 +0900
+
+    1. 폴더 구조 변경 / 아무튼 많이변경
+
+[33mcommit 1308dbaf4262ce210fb06f9ed7cecc09278c0192[m
+Author: mechuri <108450449+mecuri@users.noreply.github.com>
+Date:   Mon Feb 13 17:23:37 2023 +0900
+
+    게시판 댓글 (#38)
+
+[33mcommit 9f68e79b5006dad1f104843eb16b15b1cc271197[m
+Merge: 6ddfc58 27ac635
+Author: mechuri <108450449+mecuri@users.noreply.github.com>
+Date:   Mon Feb 13 17:18:10 2023 +0900
+
+    Merge branch 'emptysky2022:master' into master
+
+[33mcommit 27ac635ae5907ea87b93faa8d851d99b5fbac5e2[m
+Author: ByeongJun An <113837724+ByeongJunAn@users.noreply.github.com>
+Date:   Mon Feb 13 17:12:05 2023 +0900
+
+    테스트용 뷰 업로드 (#37)
+
+[33mcommit 6ddfc58df19bb4842b83f82c2cd04e5eaf59c371[m
+Merge: 29da9e5 982f4fd
+Author: mechuri <108450449+mecuri@users.noreply.github.com>
+Date:   Mon Feb 13 17:00:10 2023 +0900
+
+    Merge branch 'emptysky2022:master' into master
+
+[33mcommit 29da9e5e3c8b21875f05e4455612cbc04c412be4[m
+Author: KEDUIT-PC\keduit <sdy9404@gmail.com>
+Date:   Mon Feb 13 16:58:08 2023 +0900
+
+    *쓸데없는 주석 지움*
+
+[33mcommit 982f4fd1935d7d96cc7ae3ac113704174e5ecb6e[m
+Author: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+Date:   Mon Feb 13 15:01:52 2023 +0900
+
+    item 관련 controller, custom select를 제외한 나머지 구현 (#36)
+
+[33mcommit b93dcd8af234ebd8bae3ddfdf1d5e468bae500c6[m
+Author: StrHyunSoo <gustn995@gmail.com>
+Date:   Mon Feb 13 11:45:54 2023 +0900
+
+    Camp DTO 추가 (#35)
+    
+    Co-authored-by: keduit <keduit@505-01>
+
+[33mcommit 32e291f8d1d4c8c60f1f8699f21e82992d679ec2[m
+Author: keduit <keduit@505-01>
+Date:   Mon Feb 13 09:08:32 2023 +0900
+
+    Merge branch 'master' of https://github.com/StrHyunSoo/final_project.git
+
+[33mcommit 64b10193416f45acaf9efc0dccfe4cf5a390fdbc[m
+Author: KEDUIT-PC\keduit <sdy9404@gmail.com>
+Date:   Fri Feb 10 17:41:31 2023 +0900
+
+    *게시판 댓글 작성중*
+
+[33mcommit 311704a46d99c053981025c936f8197f377d2a6d[m
+Merge: 07018f8 3a1ab2c
+Author: mechuri <108450449+mecuri@users.noreply.github.com>
+Date:   Fri Feb 10 15:34:43 2023 +0900
+
+    Merge branch 'emptysky2022:master' into master
+
+[33mcommit 3a1ab2c998df26b7104993bb7c82538eaa8043b0[m
+Author: lagoon284 <107830914+lagoon284@users.noreply.github.com>
+Date:   Fri Feb 10 15:28:56 2023 +0900
+
+    소규모 수정 진행. (#33)
+    
+    Co-authored-by: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+
+[33mcommit 07018f80be95982afef47dc5d2b0ce394edafb15[m
+Author: mechuri <108450449+mecuri@users.noreply.github.com>
+Date:   Fri Feb 10 14:15:24 2023 +0900
+
+    Campers-ERDiagram.drawio 업데이트
+
+[33mcommit 2d43a4c8bb778e37bf42bb12e2bb7b8badfd0f9e[m
+Author: mechuri <108450449+mecuri@users.noreply.github.com>
+Date:   Fri Feb 10 11:29:47 2023 +0900
+
+    Campers-ERDiagram.drawio이 추가되었습니다.
+
+[33mcommit 83a98f402bc82607dd7a2ef7e424b65ec7059152[m
+Author: lagoon284 <107830914+lagoon284@users.noreply.github.com>
+Date:   Fri Feb 10 09:45:27 2023 +0900
+
+    잔오류 수정 (#32)
+    
+    Co-authored-by: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+
+[33mcommit 952a9ba2d8e41518637d9d6b7d72b34dd460659b[m
+Author: lagoon284 <107830914+lagoon284@users.noreply.github.com>
+Date:   Fri Feb 10 09:26:44 2023 +0900
+
+    병합 에러 수정 및 불필요한 파일 삭제 (#31)
+    
+    Co-authored-by: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+
+[33mcommit fa4107fdbb2037ebc4ae32d3b95c46b61d269140[m
+Author: StrHyunSoo <gustn995@gmail.com>
+Date:   Fri Feb 10 09:23:37 2023 +0900
+
+    각종 문제해결 및 Camp Service 생성 (#30)
+
+[33mcommit 7ee06587950c71aa071588f44b723bd7a5cc19cf[m
+Author: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+Date:   Thu Feb 9 20:57:42 2023 +0900
+
+    테이블 구조 변경 및 코드 변경 (#29)
+
+[33mcommit 963ec939fbb1696c37fb48e87f8f8cb70ca67baf[m
+Author: mechuri <108450449+mecuri@users.noreply.github.com>
+Date:   Thu Feb 9 18:39:02 2023 +0900
+
+    Board 작업중 (#22)
+
+[33mcommit 4150b39673280e088e7c533d3ae5961f6bf8aa4f[m
+Author: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+Date:   Thu Feb 9 01:16:01 2023 +0900
+
+    User관련 Member로 변환 (#19)
+
+[33mcommit ce523e5ad4de909278a17ecd0edc68fca92e77d7[m
+Author: StrHyunSoo <gustn995@gmail.com>
+Date:   Thu Feb 9 00:51:17 2023 +0900
+
+    1:N 관계에서  부모db 삭제시 자식db 동시 삭제  기능확인 2. user -> member 리펙토링 중 안 되어있는 부분수정 (#18)
+    
+    Co-authored-by: keduit <keduit@505-01>
+
+[33mcommit b2e07287161b065cd8de96e91cd151ebc9e61feb[m
+Author: StrHyunSoo <gustn995@gmail.com>
+Date:   Wed Feb 8 20:17:41 2023 +0900
+
+    1. Repository Test Code Commit (#17)
+    
+    Co-authored-by: keduit <keduit@505-01>
+
+[33mcommit 6107bbd68d5a23d3dd8774c7997ce239d6f5803e[m
+Author: mechuri <108450449+mecuri@users.noreply.github.com>
+Date:   Wed Feb 8 19:10:14 2023 +0900
+
+    클래스 변동사항. (#16)
+
+[33mcommit 53e7ce4b1910eb1a47e45ed4c170289412fa6d88[m
+Author: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+Date:   Wed Feb 8 17:56:55 2023 +0900
+
+    Item History, Item Review, Shopping Cart DTO와 Repository, Service까지 완료 (#15)
+
+[33mcommit 7507d75078edfbe5c6d583ce24e9389e3f58be34[m
+Author: StrHyunSoo <gustn995@gmail.com>
+Date:   Wed Feb 8 16:50:34 2023 +0900
+
+    2 (#14)
+    
+    * 1. Camp Entity 추가로 생성
+    2. Camp Repository 추가로 생성
+    
+    * test
+    
+    ---------
+    
+    Co-authored-by: keduit <keduit@505-01>
+
+[33mcommit 13bc1fa1828f245eb0331da692826a145025b027[m
+Merge: 380ea57 e7acd6a
+Author: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+Date:   Wed Feb 8 16:12:48 2023 +0900
+
+    Merge pull request #13 from StrHyunSoo/master
+    
+    1. Camp
+
+[33mcommit e7acd6a99bf473ac9d2ebc28cfad8272785aee02[m
+Merge: b4c84a2 380ea57
+Author: StrHyunSoo <gustn995@gmail.com>
+Date:   Wed Feb 8 16:06:41 2023 +0900
+
+    Merge branch 'emptysky2022:master' into master
+
+[33mcommit b4c84a226d8797142ce72d8c7793160eb418d5d9[m
+Author: keduit <keduit@505-01>
+Date:   Wed Feb 8 16:04:57 2023 +0900
+
+    1. Camp entity
+
+[33mcommit 380ea57cca4ee846894389dfc13aa49e7634f1c8[m
+Merge: 99dba0b 9d623c8
+Author: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+Date:   Wed Feb 8 14:40:17 2023 +0900
+
+    Merge pull request #11 from mecuri/master
+    
+    Controller 수정중
+
+[33mcommit 9d623c85d7260b11865f2cfc99427e82cf2f77ad[m
+Merge: 184bbb9 99dba0b
+Author: mechuri <108450449+mecuri@users.noreply.github.com>
+Date:   Wed Feb 8 14:37:01 2023 +0900
+
+    Merge branch 'emptysky2022:master' into master
+
+[33mcommit 184bbb97c5fd50542a0f679f3f474e4ec1e656fa[m
+Author: KEDUIT-PC\keduit <sdy9404@gmail.com>
+Date:   Wed Feb 8 14:35:42 2023 +0900
+
+    컨트롤러 수정중
+
+[33mcommit 0c572f231998b914abcc6357684943058cf12687[m
+Author: keduit <keduit@505-01>
+Date:   Wed Feb 8 14:26:21 2023 +0900
+
+    1. test
+
+[33mcommit 99dba0b85cc51c94f1e2d971f50a3540539ff5f5[m
+Merge: ed1cb90 fa07f2e
+Author: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+Date:   Wed Feb 8 11:49:26 2023 +0900
+
+    Merge pull request #9 from ByeongJunAn/master
+    
+    css 틀 구현 & 샘플 제작
+
+[33mcommit fa07f2e5b83f73cbc589d9bc6be19d3c76ea6b6e[m
+Author: ByeongJunAn <abj5237@nate.com>
+Date:   Wed Feb 8 11:48:34 2023 +0900
+
+    css 틀 구현 & 샘플 제작
+
+[33mcommit 9dae40051e60fdebfeed9a40bf59e81d060b481a[m
+Merge: 30f5b00 ed1cb90
+Author: mechuri <108450449+mecuri@users.noreply.github.com>
+Date:   Wed Feb 8 11:16:39 2023 +0900
+
+    Merge branch 'emptysky2022:master' into master
+
+[33mcommit ed1cb9050be8759f31aa79dcb73d5d4f3e1b0f6a[m
+Merge: ada43b7 9ffca99
+Author: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+Date:   Wed Feb 8 11:12:43 2023 +0900
+
+    Merge pull request #7 from lagoon284/master
+    
+    패키지 네이밍 변경, member 관련 내용추가
+
+[33mcommit 9ffca991765cedf48b040a2d24e4deef5a395c62[m
+Author: lagoon284 <lagoon284@naver.com>
+Date:   Wed Feb 8 11:01:35 2023 +0900
+
+    패키지 네이밍 변경, member 관련 내용추가
+
+[33mcommit ada43b7fd090535494cb7b58d17c4b7e391e46ff[m
+Merge: bfaf4e3 4b19e43
+Author: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+Date:   Tue Feb 7 18:27:18 2023 +0900
+
+    Merge pull request #6 from emptysky2022/emptysky
+    
+    네이버 쇼핑 API 사용해서 DB에 값 저장하기 테스트
+
+[33mcommit 4b19e43365c12b2ae38b3f8edcfa7ac248db7cf7[m
+Author: emptysky2022 <emptysky2022@gmail.com>
+Date:   Tue Feb 7 18:25:07 2023 +0900
+
+    네이버 쇼핑 API 사용해서 DB에 값 저장하기 테스트
+
+[33mcommit bfaf4e3567b44ae85168ff24f7b037c18356c02b[m
+Merge: 884b3e4 b3222cf
+Author: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+Date:   Tue Feb 7 16:14:08 2023 +0900
+
+    Merge pull request #5 from emptysky2022/emptysky
+    
+    Item Service, DTO, Repository 및 테스트 업데이트
+
+[33mcommit b3222cf76ec6eabab206f8e4eba03af6d47e5a16[m
+Author: emptysky2022 <emptysky2022@gmail.com>
+Date:   Tue Feb 7 15:59:43 2023 +0900
+
+    Item Service, DTO, Repository 및 테스트 업데이트
+
+[33mcommit 884b3e40c360c051f8c23e5b2714e89aac672a88[m
+Merge: b0a7515 7b22c9a
+Author: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+Date:   Tue Feb 7 11:23:21 2023 +0900
+
+    Merge pull request #4 from lagoon284/master
+    
+    camp 테이블 생성 및 테스트 코드 작성
+
+[33mcommit 7b22c9a5f0edd2130f91ac2f431740b10bbc5e65[m
+Author: lagoon284 <lagoon284@naver.com>
+Date:   Tue Feb 7 11:17:17 2023 +0900
+
+    camp 테이블 생성 및 테스트 코드 작성
+
+[33mcommit 30f5b0060677a3c7a2ffa196503a464cf9ecd45f[m
+Author: KEDUIT-PC\keduit <sdy9404@gmail.com>
+Date:   Mon Feb 6 19:05:21 2023 +0900
+
+    다영 - 테스트 2
+
+[33mcommit 22ddba67b408fdaebf41fbaafaf3649807d34c3a[m
+Author: KEDUIT-PC\keduit <sdy9404@gmail.com>
+Date:   Mon Feb 6 19:00:22 2023 +0900
+
+    다영 - 수정 테스트 해봄
+
+[33mcommit b0a75158d6b8fdcbf284892a894df2561a2f4e16[m
+Merge: 9648729 dd1938f
+Author: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+Date:   Thu Feb 2 20:20:18 2023 +0900
+
+    Merge pull request #2 from lagoon284/master
+    
+    아악
+
+[33mcommit dd1938fcb7c603a3362c3ff94947a0cefe196095[m
+Author: lagoon284 <lagoon284@naver.com>
+Date:   Thu Feb 2 19:49:53 2023 +0900
+
+    dkdk
+
+[33mcommit 914f2bbc952868c742d7cfc5abfb8b0f681a9514[m
+Author: lagoon284 <lagoon284@naver.com>
+Date:   Thu Feb 2 19:41:14 2023 +0900
+
+    이거뭐임 test
+
+[33mcommit 56731e8caf8ac03580382271a43b253371ace81b[m
+Merge: 18bb590 9648729
+Author: lagoon284 <107830914+lagoon284@users.noreply.github.com>
+Date:   Thu Feb 2 19:15:57 2023 +0900
+
+    Merge branch 'emptysky2022:master' into master
+
+[33mcommit 96487298f80ee74bed8e050b7cbb4df8d6018e7c[m
+Author: emptysky2022 <emptysky2022@gmail.com>
+Date:   Wed Feb 1 20:35:56 2023 +0900
+
+    gitignore maven, springboot
+
+[33mcommit b6c939081c67cf43ce46fc50e4e910b751e45209[m
+Author: emptysky2022 <emptysky2022@gmail.com>
+Date:   Wed Feb 1 20:23:00 2023 +0900
+
+    create user, item, board table
+
+[33mcommit 18bb5901edd7ad1ed7971c8d74cc486fd6240430[m
+Author: emptysky2022 <emptysky2022@gmail.com>
+Date:   Tue Jan 17 09:50:47 2023 +0900
+
+    create first_PR folder
+
+[33mcommit 781f658135ef8b69fa974e256270023232a7c4d3[m
+Author: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+Date:   Tue Jan 17 09:33:03 2023 +0900
+
+    Update README.md
+
+[33mcommit 0a336cc8e87ec238f0421c02fd0c24b988946305[m
+Author: emptysky2022 <100741315+emptysky2022@users.noreply.github.com>
+Date:   Tue Jan 17 09:32:24 2023 +0900
+
+    Initial commit

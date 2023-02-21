@@ -70,30 +70,44 @@ function loadReadData(bno){
 }
 
 function loadModifyData(bno){
-	
-    let boardListRE = $("#boardListRE_modify");
-    $.getJSON("/sample/list/" + bno, function(readInfo){
-		console.log(readInfo);
+
+   let boardListRE = $("#boardListRE_modify");
+   $.getJSON("/sample/list/" + bno, function(readInfo){
+      console.log(readInfo);
       
-      	const [board, reply, user] = readInfo;
-      	console.log("readInfo[0] : ", board);
+      const [board, reply, user] = readInfo;
+      console.log("readInfo[0] : ", board);
       
-      	let str = "";
+      let str = "";
       
-      	str += '<h3>글 수정 페이지입니다.</h3>'
-      	str += '  <div class="boardListRE_bno">';
+      str += '<h3>글 수정 페이지입니다.</h3>'
+      str += '  <div class="boardListRE_bno">';
+      str += '    <label>번호</label><input type="text" id="modiBno" name="bno" value=' + board.bno + ' readonly></div>';
+      str += '  <div class="boardListRE_title">';
+      str += '    <label>제목</label><input type="text" id="modiName" name="title" value=' + board.title + '></div>';
+      str += '  <div class="boardListRE_content">'
+      str += '    <label>내용</label><textarea id="updateContent" rows="5" name="content">' + board.content + '</textarea></div>';
+      str += '    <input type="hidden" id="modiMno" name="mno" value="' + user.mno + '" readonly>';
+      str += '    <input type="hidden" id="modinickname" name="nickname" value="' + user.id + '" readonly>';
+      str += '  <div><label>사진</label><input type="text" name="image"></div>';
+      str += '  <div><button type="button" id="boardModify">저장하기</button>&nbsp;&nbsp;<button type="reset">되돌리기</button></div>'
+      
+      let str = "";
+      
+      str += '<h3>글 수정 페이지입니다.</h3>'
+      str += '  <div class="boardListRE_bno">';
   	 	str += '    <label>번호</label><input type="text" id="modiBno" name="bno" value=' + board.bno + ' readonly></div>';
-      	str += '  <div class="boardListRE_title">';
-      	str += '    <label>제목</label><input type="text" id="modiName" name="title" value=' + board.title + '></div>';
-      	str += '  <div class="boardListRE_content">'
-      	str += '    <label>내용</label><textarea id="updateContent" rows="5" name="content">' + board.content + '</textarea></div>';
-      	str += '    <input type="hidden" id="modiMno" name="mno" value="' + user.mno + '" readonly>';
-      	str += '    <input type="hidden" id="modinickname" name="nickname" value="' + user.id + '" readonly>';
-      	str += '  <div><label>사진</label><input type="text" name="image"></div>';
-      	str += '  <div><button type="button" id="boardModify">저장하기</button>&nbsp;&nbsp;<button type="reset">되돌리기</button></div>'
+      str += '  <div class="boardListRE_title">';
+      str += '    <label>제목</label><input type="text" id="modiName" name="title" value=' + board.title + '></div>';
+      str += '  <div class="boardListRE_content">'
+      str += '    <label>내용</label><textarea id="updateContent" rows="5" name="content">' + board.content + '</textarea></div>';
+      str += '    <input type="hidden" id="modiMno" name="mno" value="' + user.mno + '" readonly>';
+      str += '    <input type="hidden" id="modinickname" name="nickname" value="' + user.id + '" readonly>';
+      str += '  <div><label>사진</label><input type="text" name="image"></div>';
+      str += '  <div><button type="button" id="boardModify">저장하기</button>&nbsp;&nbsp;<button type="reset">되돌리기</button></div>'
       
-      	boardListRE.html(str);
-      	console.log("리드 모디파이 완");
+      boardListRE.html(str);
+      console.log("리드 모디파이 완");
    })
 }
 
@@ -153,7 +167,7 @@ function loadRemoveData(bno){
 	setTimeout(() => { // 
 		loadRefreshData();
 	}, 1500);	
-   
+
 }
 
 $(document).on("click", "#boardModify", function(){

@@ -21,7 +21,7 @@ public interface CampQuerydsl {
 	  * @param count 1 ~ count 개 까지 받아오기 <br>
 	  * @return List<?> List WildCard
 	  */
-	public List<?> findHeartRank(TableType table, int count);
+	public List<?> findHeartOrCountRank(TableType table, int count, String findType);
 	
 	
 	 /** 
@@ -36,7 +36,14 @@ public interface CampQuerydsl {
 	  * @param cno camp 부모번호 <br>
 	  * @return List<?> List WildCard
 	  */
-	public List<?> findDataOfCamp(TableType table, Long cno);
+	public List<?> findDataOfCamp(TableType table, Long cno, String findData);
+	
+	 /** 
+	  * @param addData 더할 데이터 ex)count , heart, star 명 <br>
+	  * @param no 해당 캠프타입 번호 <br>
+	  * @return List<?> List WildCard
+	  */
+	public void addData(TableType table, Long no, String addData);
 	
 }
 	
