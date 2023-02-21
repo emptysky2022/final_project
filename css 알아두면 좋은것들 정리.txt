@@ -1,3 +1,6 @@
+참고 사이트:
+https://clarkson-fluid-demo.squarespace.com/about
+
 << css 이미지 크기>>
 거의 모든 이미지 들에 부모 요소인 div로 감싸놨습니다.
 불러오는 이미지 크기의 변경이 필요할 경우

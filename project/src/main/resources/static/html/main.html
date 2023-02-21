@@ -6,60 +6,65 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>main</title>
-     <!--제이쿼리 연결-->
+    <!--제이쿼리 연결-->
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-     <!--구글 폰트 링크-->
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Varela+Round&display=swap"
-         rel="stylesheet">
-     <link rel="stylesheet"
-         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!--구글 폰트 링크-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Varela+Round&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <!--swiper-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-     <!-- Swiper JS -->
-     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <!--폰트 그림 링크-->
     <script src="https://kit.fontawesome.com/bb87a5faf0.js" crossorigin="anonymous"></script>
-     <!--css 연결-->
+    <!--css 연결-->
     <link rel="stylesheet" type="text/css" href="../css/main.css">
     <!--js연결-->
     <script type="text/javascript" src="../js/main.js" defer></script>
-   
-   
-    
-   
+
+
+
+
 </head>
 
 <body>
     <!--=====사용할 페이지 전체 범위=====-->
     <div class="container">
+
         <!--====메인 header====-->
         <header>
+
             <div class="header box1">
                 <!--네비게이션 로고-->
                 <div class="header_logomenu box2">
+
                     <a class="header_logo box3" href="#">
                         <img src="../img/logo3.png" alt="">
                     </a>
-                    <!--네비게이션 메뉴목록-->
-                    <ul class="header_menu box2">
-                        <li class="menu1 box3"><a class="item" href="">apple</a></li>
-                        <li class="menu2 box3"><a class="item" href="">cherry</a></li>
-                        <li class="menu3 box3"><a class="item" href="">banana</a></li>
-                        <li class="menu4 box3"><a class="item" href="">melon</a></li>
-                    </ul>
+
+
+
 
                 </div>
 
-
+                <!--네비게이션 메뉴목록-->
+                <ul class="header_menu box2">
+                    <li class="menu1 box3"><a class="item" href="">apple</a></li>
+                    <li class="menu2 box3"><a class="item" href="">cherry</a></li>
+                    <li class="menu3 box3"><a class="item" href="">banana</a></li>
+                    <li class="menu4 box3"><a class="item" href="">melon</a></li>
+                </ul>
 
 
                 <!--우측 상단 마이페이지-->
                 <ul class="header_mypage box2">
-                    <a class="login" href="">Login</a>
-                    <div class="logout box3">Logout</div>
-                    <li class="signupbox3 box3">
+                    <li class="signuplogbox box3">
+                        <a class="login" href="../html/login.html">Login</a>
+                        <a class="logout" href="">Logout</a>
                         <a href="../html/signup.html" class="signup box4">
                             Sign Up
                         </a>
@@ -76,31 +81,52 @@
                     <i class="fa-solid fa-bars item"></i>
                 </a>
             </div>
+            <div class="navimage">
+                <img src="../img/mainbackground.jpg" alt="">
+            </div>
         </header>
+
+
         <!--====메인====-->
         <main>
+            <div class="navimageadd">
+                <div class="ni_textbox">
+                    <div class="ni_text">캠프하는 사람들<p></p> Campers 입니다 </div>
+                </div>
+                <div class="ni_btnbox">
+                    <a class="ni_btn" href="">캠핑장 보러 가기</a>
+                </div>
+            </div>
+
+            <div class="sectext1">
+                <div class="iconbox">
+                    <img class="icon" src="../img/backicon1.svg" alt="">
+                  
+                </div>
+            </div>
 
             <!----메인 슬라이드---->
-            <div class="slide box1">
-                <div class="swiper mySwiper">
+            <!-- <div class="slide box1">
+                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
-                      <div class="swiper-slide">
-                        <img src="../img/slide1.jpg" alt="">
-                      </div>
-                      <div class="swiper-slide">Slide 2</div>
-                      <div class="swiper-slide">Slide 3</div>
+                        <div class="swiper-slide">
+                            <img src="../img/slide1.jpg" alt="">
+                        </div>
+                        <div class="swiper-slide">Slide 2</div>
+                        <div class="swiper-slide">Slide 3</div>
                     </div>
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
-                    <div class="swiper-pagination"></div>
-                    <div class="autoplay-progress">
+                    <div class="swiper-pagination"></div>  -->
+            <!-- <div class="autoplay-progress">
                       <svg viewBox="0 0 48 48">
                         <circle cx="24" cy="24" r="20"></circle>
                       </svg>
                       <span></span>
-                    </div>
-                  </div>
-            </div>
+                    </div> -->
+            <!-- </div>
+            </div> -->
+
 
 
             <!----메인 바디---->
@@ -116,9 +142,9 @@
 
                     <!----------------캠핑 판매물품 박스------------->
                     <div class="cp box3 ">
+                        <h1 class="cp_tilte item">Camper Product<p class="cp_comment item2">많은 제품을 확인하여 보세요. <a class="cp_link" href="">캠핑 물품 구매하기</a></p><br></h1>
 
-                        <h1 class="cp_tilte item">Camper Product</h1><br>
-                        <p class="cp_comment item2">많은 제품을 확인하여 보세요.</p>
+                        
 
                         <!--캠핑 판매 목록 -->
                         <div class="cp_box box4">
@@ -128,55 +154,6 @@
                                 </a>
                                 <p class="cp_name item_2">화로</p>
                             </div>
-                            <div class="cp_pakege2 box5">
-                                <a class="item" href="">
-                                    <img class="cp_img item" src="../img/happy3.jpg">
-                                </a>
-                                <p class="cp_name item_2">화로</p>
-                            </div>
-                            <div class="cp_pakege3 box5">
-                                <a class="item" href="">
-                                    <img class="cp_img item" src="../img/happy3.jpg">
-                                </a>
-                                <p class="cp_name item_2">화로</p>
-                            </div>
-                            <div class="cp_pakege4 box5">
-                                <a class="item" href="">
-                                    <img class="cp_img item" src="../img/happy3.jpg">
-                                </a>
-                                <p class="cp_name item_2">화로</p>
-                            </div>
-                            <div class="cp_pakege5 box5">
-                                <a class="item" href="">
-                                    <img class="cp_img item" src="../img/happy3.jpg">
-                                </a>
-                                <p class="cp_name item_2">화로</p>
-                            </div>
-                            <div class="cp_pakege6 box5">
-                                <a class="item" href="">
-                                    <img class="cp_img item" src="../img/happy3.jpg">
-                                </a>
-                                <p class="cp_name item_2">화로</p>
-                            </div>
-                            <div class="cp_pakege7 box5">
-                                <a class="item" href="">
-                                    <img class="cp_img item" src="../img/happy3.jpg">
-                                </a>
-                                <p class="cp_name item_2">화로</p>
-                            </div>
-                            <div class="cp_pakege8 box5">
-                                <a class="item" href="">
-                                    <img class="cp_img item" src="../img/happy3.jpg">
-                                </a>
-                                <p class="cp_name item_2">화로</p>
-                            </div>
-                            <div class="cp_pakege9 box5">
-                                <a class="item" href="">
-                                    <img class="cp_img item" src="../img/happy3.jpg">
-                                </a>
-                                <p class="cp_name item_2">화로</p>
-                            </div>
-
                         </div>
                     </div>
                     <!-------------------후기--------------------->

@@ -8,12 +8,15 @@
     --font-size-vm: clamp(1rem, 1vw, 1.2rem);
     --font-size-smpx: clamp(5px, 1vw, 1rem);
 
-    --color-a:#DDFFFF;
-    --color-b:#B8DEEC;
-    --color-c:#A1BAD7;
-    --color-d:#9895B9;
-    --color-e:#937091;
-    --color-f:#864D60;
+   
+    --color-a:#fffffe;
+    --color-b:#E0E0DB;
+    --color-c:#BAC0B8;
+    --color-d:#93A29B;
+    --color-e:#6C8482;
+    --color-f:#4A666D;
+    --color-g:#2F4858; 
+    
 }
   
   h1 {
@@ -93,19 +96,33 @@ a {
 }
 
 a { color: #333; }
-a:visited { color: rgb(0, 0, 0); }
-a:hover { color: var(--color-c); }
-a:active { color: var(--color-d); }
+a:visited { color: var(--color-a); }
+a:hover { color: var(--color-a); }
+a:active { color: var(--color-a); }
 
 
-/*사용할 페이지 전체 범위(가로폭은 보이는 화면의 80%고정, 세로폭은 내용물이 많아지면 자동 증가)*/
+
 body {
-    max-width: 90vw;
+    max-width: 100vw;
    
     margin: auto;
   
    
-}  
+} 
+
+.navimage{
+    position: absolute;
+    height: 70vh;
+}
+
+.navimage img{
+    height: 100%;
+    width: 100vw;
+    object-fit:cover;
+    
+}
+  
+
 
 /*페이지 내 헤더,메인,푸터의 틀 설정*/
 .container{
@@ -113,7 +130,7 @@ body {
     height: auto;
     display: grid;
     grid-template-columns: 1fr  1fr;
-    grid-template-rows: 6rem auto 3rem;
+    grid-template-rows: 6rem auto;
     grid-template-areas:
     'a a'
     'b b'
@@ -121,7 +138,7 @@ body {
 }
 header{
     grid-area: a;
-    
+
 }
 
 main{
@@ -139,44 +156,48 @@ footer{
     display: flex; 
     padding: 0.5rem 2rem;
     position: relative;
-    justify-content: space-between;
     width: 100%;
     height:100% ;
-    
+    background-color: transparent !important;
+    z-index: 99;
 }
 
 .header .header_logomenu {
     display: flex;
-    align-items: center;
+    align-items: end;
     justify-content: center;
-
+    flex-basis: 15%;
 }  
 
+
+
 .header .header_logo img {
-   width: 6rem;
- 
-	filter:invert(33%) sepia(8%) saturate(2246%) hue-rotate(289deg) brightness(100%) contrast(90%);
+   width: 6vh;
+   filter: invert(100%) sepia(0%) saturate(7495%) hue-rotate(222deg) brightness(98%) contrast(100%);
+	
 
    
 }  
 
 .header .header_menu {
-    display: flex; 
+    display: flex;
     background-color: transparent;
-    justify-content: space-evenly;
-    
+    flex-basis: 70%;
+    justify-content: flex-end;
 }
 
 .header .header_menu li {
 
     border-radius: 0.5rem;
-    padding: 0.7rem;
-    margin: 0.2rem;
     display:flex; 
     align-items: center;
     justify-content: center;
 }
 
+.header .header_menu .menu1, .menu2, .menu3, .menu4  {
+    cursor: pointer;
+   flex-basis: 15%;
+}
 
 
 .header .header_mypage {
@@ -185,36 +206,45 @@ footer{
     align-items: center;
     justify-content: center;
     object-fit: cover;
-
+    flex-basis: 15%;
 }
 
 
 
 
 .header .header_mypage .login{
-    margin: 1rem;
-    color: var(--color-f);
-    padding: 1rem 2rem;
+    color: var(--color-a);
     border-radius: 10px;
     font-size:var(--font-size-vm);
     font-weight: bold;
+    flex-basis: 40%;
 }
 
 
 .header .header_mypage .logout{
     display:none;
-    margin: 1rem;
     
-    background-color: var(--color-b);
- padding: 1rem 2rem;
- border-radius: 10px;
- font-size:var(--font-size-vm);
+    
+    color: var(--color-a);
+ 
+    border-radius: 10px;
+    font-size:var(--font-size-vm);
+    font-weight: bold;
+    flex-basis: 40%;
 
 }
 
-.header .header_mypage .signupbox3 .signup{
- color: var(--color-c);
- padding: 1rem 2rem;
+.header .header_mypage .signuplogbox {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+}
+
+
+.header .header_mypage .signuplogbox .signup{
+ color: var(--color-a);
+
  border-radius: 10px;
  font-size:var(--font-size-vm);
 
@@ -243,7 +273,19 @@ footer{
         flex-direction: column;
         align-items: flex-start;
         padding: 1.5rem;
-    }
+        }
+
+    .header .header_logomenu {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+    }  
+    .header .header_logo {
+        
+        width: 100%;
+    }  
 
     .header .header_menu{
         display: none;
@@ -256,13 +298,27 @@ footer{
 
     .header .header_menu li{
         width: 100%;
-        
+        padding: 10px;
     }
 
     .header .header_mypage{
         display: none;
         justify-content: center;
         width: 100%;
+    }
+
+    .header .header_mypage .signuplogbox {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: center;
+        flex-direction: column;
+      
+    }
+
+    .header .header_mypage .signuplogbox a{
+        padding: 10px;
+      
     }
 
     .header .header_hamburger{
@@ -282,11 +338,58 @@ footer{
 }
 
 
-/*********메인 슬라이드이미지*********/
-main .slide {
-    height: 70vh;
+/*네비 바로 밑 사진에 추가할 내용*/
+main .navimageadd{
+    height: 60vh;
+    position: relative;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    
+}
+
+main .navimageadd .ni_textbox{
+    height: 70%;
+    font-size: var(--font-size-md);
+    display: flex;
+    align-items: flex-end;
+}
+
+main .navimageadd .ni_textbox .ni_text{
+    margin: 0 0 3rem 2rem;
+    color: var(--color-a);
+    
+}
+
+main .navimageadd .ni_btnbox {
+    
+}
+
+main .navimageadd .ni_btnbox .ni_btn{
+    color: black;
+    background-color: var(--color-a);
+    padding: 1rem 2rem;
+    margin:2rem;
+    font-size:var(--font-size-smpx)
+}
+
+
+/*첫번째 섹션나누기 상자*/
+.sectext1{
+    height: 30vh;
    
 }
+
+.sectext1 .iconbox .icon2{
+ height: 300px;
+ width: 500px;
+ display: flex;
+ justify-content: end;
+}
+
+/*********메인 슬라이드이미지*********/
+
 .swiper {
     width: 100%;
     height: 100%;
@@ -312,7 +415,7 @@ main .slide {
     flex-direction: row;
   }
 
-  .autoplay-progress {
+  /* .autoplay-progress {
     position: absolute;
     right: 16px;
     bottom: 16px;
@@ -340,7 +443,7 @@ main .slide {
     stroke-dashoffset: calc(125.6 * (1 - var(--progress)));
     stroke-dasharray: 125.6;
     transform: rotate(-90deg);
-  }
+  } */
 
 /*********메인 바디***********/
 main .body {
@@ -376,6 +479,7 @@ main .body .body_center{
     flex-direction: column;
     justify-content: center;
     flex-basis: 80%;
+    
 }
 
 
@@ -387,23 +491,17 @@ main .body .body_center .cp {
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    
+    /* grid-template-rows: repeat(2,1fr); */
+    grid-template-columns: repeat(2, 1fr);
+    background-color: var(--color-b);
 }
 
 main .body .body_center .cp .cp_box{ 
-   display: grid;
-   padding: 1rem;
-
-   grid-template-columns: repeat(4, 1fr);
-  
-   
-   
+   display: grid;  
 }
 
-main .body .body_center .cp .cp_box .box5{
-   
-   margin: 1rem;
-
+.cp .cp_link{
+    background-color: var(--color-g);
 }
 
 @media screen and (max-width:768px) {
@@ -431,6 +529,17 @@ main .body .body_center .cp .cp_box .box5{
 }
 
 
+@media screen and (max-height:480px){
+    main .navimageadd {
+        height: 60vh;
+        position: relative;
+        z-index: 100;
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+}
+
+}
 /******메인 후기******/
 main .body .body_center .review{
     display: flex;
