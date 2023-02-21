@@ -75,7 +75,8 @@ public class ItemAPITests {
 									.price(items.getInt("lprice"))
 									.link(items.getString("link"))
 									.type(i)
-									.count(0)
+									.count((int)(Math.random() * 100))
+									.heart((int)(Math.random() * 100))
 									.build();
 					itemService.register(itemDTO);
 				}
