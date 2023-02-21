@@ -59,7 +59,11 @@ function loadJsonData(ino){
 			  str += '    <div class="rv_star box7_2" id="star">' + getStar(review.star) + '</div></div>';
 			  str += '  <div class="box_r box6">';
 			  str += '    <div class="comment box7">';
-			  str += '      <h2 class="write item">' + review.reviewer + '</h2>';
+			  str += '      <div class="writer box8">';
+			  str += '        <h2 class="write item">' + review.reviewer + '</h2>';
+			  str += '        <a class="modify item" sec:authorize="hasRole(\'MEMBER\')">수정</a>';
+			  str += '        <h1 ' + @{sec:authorize="hasRole(MEMBER)"} + '>asdfsad</h1>';
+			  str += '        <a class="remove item" sec:authorize="isAuthenticated()">삭제</a></div>';
 			  str += '      <p class="content item_2">' + review.content + '</p></div>';
 			  str += '    <div class="rv_like box7"><i id="review_heart" class="fa-sharp fa-solid fa-thumbs-up fa-1x item" onclick="clickReviewHeart(' + review.irno + ')"> ' + review.heart + '</i></div></div></div><hr>';
 			  starAvg += review.star;
@@ -101,7 +105,7 @@ function clickItemHeart(ino){
 		},
 		error: function(err){
 			console.log("로그인 후 이용하실수 있습니다.");
-			location.href="/item/detail/{ino}/login";
+			location.reload();
 		}
 	})
 }
@@ -112,7 +116,15 @@ function clickReviewHeart(irno){
 		success: function(result){
 			console.log("result : " + result);
 			$("#review_heart").html(" " + result);
+		},
+		error: function(err){
+			console.log("로그인 후 이용하실수 있습니다.");
+			location.reload();
 		}
 	})
+}
+
+function modifyCheck(){
+	
 }
 
