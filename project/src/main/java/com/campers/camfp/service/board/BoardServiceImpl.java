@@ -109,6 +109,9 @@ public class BoardServiceImpl implements BoardService {
 //		}
 		
 		Board board = dtoToEntity(boardDTO);
+		
+		log.info("modify board : " + board);
+		
 		boardRepository.save(board);
 	}
 	
