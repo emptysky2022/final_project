@@ -1,9 +1,31 @@
 $(function(){
 	console.log("document ready test")
 	
+	
 });
+
+const urlStr = window.location.href;
+	
+	const url = new URL(urlStr);
+	
+	console.log(urlStr);
+	
+	const urlParams = url.searchParams;
+
+	const page = urlParams.get('page');
+	
+	const type = urlParams.get('type');
+	
+	const keyword = urlParams.get('keyword');
+
+	console.log(page);
+	console.log(type);
+	console.log(keyword);
 	
 function loadReadData(bno){
+	
+	
+	
 	let boardListRE = $("#boardListRE_read");
 	
 	$.getJSON("/sample/list/" + bno, function(result){
@@ -48,6 +70,7 @@ function loadReadData(bno){
 }
 
 function loadModifyData(bno){
+
    let boardListRE = $("#boardListRE_modify");
    $.getJSON("/sample/list/" + bno, function(readInfo){
       console.log(readInfo);
@@ -69,33 +92,52 @@ function loadModifyData(bno){
       str += '  <div><label>사진</label><input type="text" name="image"></div>';
       str += '  <div><button type="button" id="boardModify">저장하기</button>&nbsp;&nbsp;<button type="reset">되돌리기</button></div>'
       
+      let str = "";
+      
+      str += '<h3>글 수정 페이지입니다.</h3>'
+      str += '  <div class="boardListRE_bno">';
+  	 	str += '    <label>번호</label><input type="text" id="modiBno" name="bno" value=' + board.bno + ' readonly></div>';
+      str += '  <div class="boardListRE_title">';
+      str += '    <label>제목</label><input type="text" id="modiName" name="title" value=' + board.title + '></div>';
+      str += '  <div class="boardListRE_content">'
+      str += '    <label>내용</label><textarea id="updateContent" rows="5" name="content">' + board.content + '</textarea></div>';
+      str += '    <input type="hidden" id="modiMno" name="mno" value="' + user.mno + '" readonly>';
+      str += '    <input type="hidden" id="modinickname" name="nickname" value="' + user.id + '" readonly>';
+      str += '  <div><label>사진</label><input type="text" name="image"></div>';
+      str += '  <div><button type="button" id="boardModify">저장하기</button>&nbsp;&nbsp;<button type="reset">되돌리기</button></div>'
+      
       boardListRE.html(str);
       console.log("리드 모디파이 완");
    })
 }
 
 function loadRefreshData(){
-   let boardListRE = $(".refresh_list");
-   $.getJSON("/sample/list/refresh", function(result){
-      let str = "";
-      console.log(result[0].dtoList);
+	
+	urlParams.set("page", page);
+	
+    let boardListRE = $(".refresh_list");
+    $.getJSON("/sample/list/refresh?page="+page, function(result){
+    	let str = "";
+    	console.log(result[0].dtoList);
       
-      $.each(result[0].dtoList, function(index, board){
-         console.log(board);
+    	$.each(result[0].dtoList, function(index, board){
+       		console.log(board);
       
-         str += '<tr>';
-         str += '   <td scope=row>' + board.bno + '</td>';
-         str += '   <td><a onclick="loadReadData(' + board.bno + ')">' + board.title + '</a></td>';
-         str += '   <td>' + board.nickname + '</td>';
-         str += '   <td>' + board.regDate + '</td>';
-         str += '   <td>' + board.count + '</td>';
-         str += '</tr>';
+         	str += '<tr>';
+         	str += '   <td scope=row>' + board.bno + '</td>';
+         	str += '   <td><a onclick="loadReadData(' + board.bno + ')">' + board.title + '</a></td>';
+         	str += '   <td>' + board.nickname + '</td>';
+         	str += '   <td>' + board.regDate + '</td>';
+         	str += '   <td>' + board.count + '</td>';
+         	str += '</tr>';
       
-      })
+      	})
+      	
       
       boardListRE.html(str);
       console.log("리프레시 완");
-   })
+      
+	})
 }
 
 function loadRemoveData(bno){
@@ -124,15 +166,8 @@ function loadRemoveData(bno){
 	
 	setTimeout(() => { // 
 		loadRefreshData();
-	}, 1500);
-	
-   
-   
-   
-   
-   
-   
-   
+	}, 1500);	
+
 }
 
 $(document).on("click", "#boardModify", function(){
