@@ -39,11 +39,12 @@ public class ItemController {
 	}
 	
 	@GetMapping("/detail")
-	public void viewDetail(Long ino, Model model) {
+	public void viewDetail(Long ino, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
 		ItemDTO itemDTO = itemService.getOne(ino);
 		
 		log.info("itemdto = " + itemDTO);
 		model.addAttribute("detail", itemDTO);
+		model.addAttribute("login", principalDetails.getMember().getNickname());
 	}
 	
 	@ResponseBody

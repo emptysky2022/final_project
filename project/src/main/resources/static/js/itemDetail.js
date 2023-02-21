@@ -11,7 +11,7 @@ $(function(){
 				grade=value
 			}
 		}
-	})
+	});
 	$("#confirm").click(function(){
         modalClose(); //모달 닫기 함수 호출
         //컨펌 이벤트 처리
@@ -48,9 +48,10 @@ function loadJsonData(ino){
 	let reviewGroup = $("#reviewGroup");
 	$.getJSON("/review/detail/" + ino, function(result){
 		let str = "";
+		let starAvg = 0;
 		$.each(result, function(index, review){
 			console.log(review);
-			  str += '<div class="rv_r box5 ">';
+			  str += '<div class="rv_l box5 ">';
 			  str += '  <div class="box_l box6">';
 			  str += '    <div class="imgbox box7">';
 			  str += '      <a class="imglink box8" href="">';
@@ -61,8 +62,13 @@ function loadJsonData(ino){
 			  str += '      <h2 class="write item">' + review.reviewer + '</h2>';
 			  str += '      <p class="content item_2">' + review.content + '</p></div>';
 			  str += '    <div class="rv_like box7"><i id="review_heart" class="fa-sharp fa-solid fa-thumbs-up fa-1x item" onclick="clickReviewHeart(' + review.irno + ')"> ' + review.heart + '</i></div></div></div><hr>';
+			  starAvg += review.star;
 		})
+		starAvg = starAvg/result.length;
 		reviewGroup.html(str);
+		$("#sync_star").html(starAvg);
+		setStar();
+		
 		console.log("끝!")
 	})
 }
@@ -73,6 +79,16 @@ function getStar(grade){
 		else star += '☆';
 	}
 	return star;
+}
+function setStar(){
+	let grade = $("#sync_star").html();
+	console.log("grade = " + grade);
+	$("#item_star").html("<div id='sync_star'></div>");
+	$("#sync_star").starrr({
+		readOnly: true,
+		rating: grade
+	});
+	$("#sync_star").append(Math.round(grade * 10) / 10);
 }
 
 function clickItemHeart(ino){

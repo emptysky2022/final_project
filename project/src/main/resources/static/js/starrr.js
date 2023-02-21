@@ -71,7 +71,7 @@ var slice = [].slice;
       $stars = this.getStars();
       results = [];
       for (i = j = 1, ref = this.options.max; 1 <= ref ? j <= ref : j >= ref; i = 1 <= ref ? ++j : --j) {
-        results.push($stars.eq(i - 1).removeClass(rating >= i ? this.options.emptyClass : this.options.fullClass).addClass(rating >= i ? this.options.fullClass : this.options.emptyClass));
+        results.push($stars.eq(i - 1).removeClass(Math.round(rating) >= i ? this.options.emptyClass : this.options.fullClass).addClass(Math.round(rating) >= i ? this.options.fullClass : this.options.emptyClass));
       }
       return results;
     };

@@ -63,7 +63,7 @@ public class Item {
 	
 	private int count;				//조회수
 	
-	private int star;				//별점
+	private double star;			//별점 평균
 	
 	private int heart;				//좋아요, 찜 수
 	
@@ -73,5 +73,10 @@ public class Item {
 	
 	public void increseHeart() {
 		this.heart++;
+	}
+	
+	
+	public void changeStar(double star) {
+		this.star = star;
 	}
 }
