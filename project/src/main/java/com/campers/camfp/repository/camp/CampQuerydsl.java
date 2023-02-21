@@ -38,5 +38,12 @@ public interface CampQuerydsl {
 	  */
 	public List<?> findDataOfCamp(TableType table, Long cno, String findData);
 	
+	 /** 
+	  * @param addData 더할 데이터 ex)count , heart, star 명 <br>
+	  * @param no 해당 캠프타입 번호 <br>
+	  * @return List<?> List WildCard
+	  */
+	public void addData(TableType table, Long no, String addData);
+	
 }
 	

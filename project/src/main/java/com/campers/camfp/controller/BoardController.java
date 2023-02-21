@@ -22,8 +22,6 @@ import com.campers.camfp.dto.board.BoardDTO;
 import com.campers.camfp.dto.board.ReplyDTO;
 import com.campers.camfp.dto.page.PageRequestDTO;
 import com.campers.camfp.dto.page.PageResultDTO;
-import com.campers.camfp.entity.board.Board;
-import com.campers.camfp.entity.member.Member;
 import com.campers.camfp.service.board.BoardService;
 import com.campers.camfp.service.board.ReplyService;
 
@@ -41,13 +39,8 @@ public class BoardController {
    
    @GetMapping("/list")
    public void list(PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
-      log.info("list......" + pageRequestDTO);
       model.addAttribute("result", boardService.getList(pageRequestDTO));
       model.addAttribute("memInfo", principalDetails.getMember());
-      
-      log.info("model : " + model);
-      log.info("로그인 정보 : " + principalDetails.getMember());
-      
    }
    
    @ResponseBody
@@ -112,7 +105,6 @@ public class BoardController {
       
       return new ResponseEntity<Long>(bno, HttpStatus.OK);
       
-      // remove 되지않음. 확인 및 수정 필요함.
    }
    
 }

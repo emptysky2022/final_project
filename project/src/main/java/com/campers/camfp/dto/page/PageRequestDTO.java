@@ -15,8 +15,10 @@ public class PageRequestDTO {
    
    private int page;
    private int size;
-//   private String type;   search 관련 내용
-//   private String keyword;
+   
+   // search
+   private String type;   
+   private String keyword;
    
    public PageRequestDTO() {
       this.page = 1;
