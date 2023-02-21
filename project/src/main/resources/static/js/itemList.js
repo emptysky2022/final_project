@@ -16,8 +16,18 @@ function search(category, keyword, type){
             str += '      <div class="p_reviewbox box7">';
             str += '        <div class="review item">조회수 ' + item.count + '</div></div>';
             str += '      <div class="p_heartbox box7">';
-            str += '        <div class="heart item">찜 ' + item.heart + '</div></div></div></div></div>';
+            str += '        <div class="heart item">찜 ' + item.heart + '</div></div></div>';
+            str += '	<div class="star">' + getStar(item.star) + ' ' + Math.round(item.star * 10)/10 + '</div></div></div>';
 		})
 		list.html(str);
 	})
+}
+
+function getStar(grade){
+	let star = '';
+	for(let i = 1; i <= 5; i++){
+		if(i <= Math.round(grade)) star += '★';
+		else star += '☆';
+	}
+	return star;
 }
