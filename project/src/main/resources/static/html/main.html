@@ -6,19 +6,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>main</title>
-
-    <!--css 연결-->
+     <!--제이쿼리 연결-->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+     <!--구글 폰트 링크-->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Varela+Round&display=swap"
+         rel="stylesheet">
+     <link rel="stylesheet"
+         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!--swiper-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+     <!-- Swiper JS -->
+     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <!--폰트 그림 링크-->
+    <script src="https://kit.fontawesome.com/bb87a5faf0.js" crossorigin="anonymous"></script>
+     <!--css 연결-->
     <link rel="stylesheet" type="text/css" href="../css/main.css">
     <!--js연결-->
     <script type="text/javascript" src="../js/main.js" defer></script>
-
-    <!--구글 폰트 링크-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Varela+Round&display=swap"
-        rel="stylesheet">
-    <!--폰트 그림 링크-->
-    <script src="https://kit.fontawesome.com/bb87a5faf0.js" crossorigin="anonymous"></script>
+   
+   
+    
+   
 </head>
 
 <body>
@@ -28,44 +38,74 @@
         <header>
             <div class="header box1">
                 <!--네비게이션 로고-->
-                <div class="header_logo box2">
-                    <a class="box3" href="#"><img src="" alt="">
-                        캠퍼스사진 </a>
+                <div class="header_logomenu box2">
+                    <a class="header_logo box3" href="#">
+                        <img src="../img/logo3.png" alt="">
+                    </a>
+                    <!--네비게이션 메뉴목록-->
+                    <ul class="header_menu box2">
+                        <li class="menu1 box3"><a class="item" href="">apple</a></li>
+                        <li class="menu2 box3"><a class="item" href="">cherry</a></li>
+                        <li class="menu3 box3"><a class="item" href="">banana</a></li>
+                        <li class="menu4 box3"><a class="item" href="">melon</a></li>
+                    </ul>
+
                 </div>
 
 
-                <!--네비게이션 메뉴목록-->
-                <ul class="header_menu box2_2">
-                    <li class="box3"><a class="item" href="">apple</a></li>
-                    <li class="box3_3"><a class="item" href="">cherry</a></li>
-                    <li class="box3_2"><a class="item" href="">banana</a></li>
-                    <li class="box3_4"><a class="item" href="">melon</a></li>
-                </ul>
+
 
                 <!--우측 상단 마이페이지-->
-                <ul class="header_mypage box2_3">
-                    <li class="box3">
-                        <a href="" class="box3">
-                            <i class="fa-solid fa-user item"></i>
+                <ul class="header_mypage box2">
+                    <a class="login" href="">Login</a>
+                    <div class="logout box3">Logout</div>
+                    <li class="signupbox3 box3">
+                        <a href="../html/signup.html" class="signup box4">
+                            Sign Up
                         </a>
                     </li>
+                    <a class="readmemeberlinkbox" href="../html/readmemeber.html">
+                        <span class="material-symbols-outlined">
+                            person
+                        </span>
+                    </a>
                 </ul>
 
                 <!--햄버거 메뉴-->
-                <a href="#" class="header_hamburger box2_4">
+                <a href="#" class="header_hamburger box2">
                     <i class="fa-solid fa-bars item"></i>
                 </a>
             </div>
         </header>
         <!--====메인====-->
         <main>
+
             <!----메인 슬라이드---->
             <div class="slide box1">
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide">
+                        <img src="../img/slide1.jpg" alt="">
+                      </div>
+                      <div class="swiper-slide">Slide 2</div>
+                      <div class="swiper-slide">Slide 3</div>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                    <div class="autoplay-progress">
+                      <svg viewBox="0 0 48 48">
+                        <circle cx="24" cy="24" r="20"></circle>
+                      </svg>
+                      <span></span>
+                    </div>
+                  </div>
             </div>
 
 
             <!----메인 바디---->
             <div class="body box1">
+
                 <!--메인 바디의 사이드 빈 공간왼쪽-->
                 <div class="aside_l box2">aside_l</div>
 
@@ -75,7 +115,7 @@
                 <div class="body_center box2">
 
                     <!----------------캠핑 판매물품 박스------------->
-                    <div class="cp box3">
+                    <div class="cp box3 ">
 
                         <h1 class="cp_tilte item">Camper Product</h1><br>
                         <p class="cp_comment item2">많은 제품을 확인하여 보세요.</p>
@@ -290,7 +330,7 @@
             </div>
         </main>
         <!--====푸터====-->
-        <footer >
+        <footer>
             <div class="footer box1">
                 adasdasd
             </div>

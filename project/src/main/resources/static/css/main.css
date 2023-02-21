@@ -5,7 +5,16 @@
     --font-size-lg: clamp(1rem, 4vw, 3.5rem);
     --font-size-md: clamp(1.5rem, 3vw, 2.5rem);
     --font-size-sm: clamp(1rem, 2vw, 1.5rem);
-  }
+    --font-size-vm: clamp(1rem, 1vw, 1.2rem);
+    --font-size-smpx: clamp(5px, 1vw, 1rem);
+
+    --color-a:#DDFFFF;
+    --color-b:#B8DEEC;
+    --color-c:#A1BAD7;
+    --color-d:#9895B9;
+    --color-e:#937091;
+    --color-f:#864D60;
+}
   
   h1 {
     font-size: var(--font-size-lg);
@@ -27,6 +36,31 @@
   a {
     font-size: var(--font-size-sm);
   }
+
+/*이미지 등 불러오는거 모아놓음*/
+/*섹션마다 모양 다르게*/
+.custom-shape-divider-top-1676943802 {
+   
+   
+    width: 100%;
+    overflow: hidden;
+   
+}
+
+.custom-shape-divider-top-1676943802 svg {
+    position: relative;
+    display: block;
+    width: calc(102% + 1.3px);
+    height: 152px;
+}
+
+.custom-shape-divider-top-1676943802 .shape-fill {
+    fill: #FFFFFF;
+}
+
+/*로고 모양 css*/
+
+
 
 
 /* "{max-width: 100%;
@@ -58,13 +92,18 @@ a {
     text-decoration: none;
 }
 
+a { color: #333; }
+a:visited { color: rgb(0, 0, 0); }
+a:hover { color: var(--color-c); }
+a:active { color: var(--color-d); }
 
 
 /*사용할 페이지 전체 범위(가로폭은 보이는 화면의 80%고정, 세로폭은 내용물이 많아지면 자동 증가)*/
 body {
-    max-width: 80vw;
-    border: 1px solid red;
+    max-width: 90vw;
+   
     margin: auto;
+  
    
 }  
 
@@ -82,10 +121,12 @@ body {
 }
 header{
     grid-area: a;
+    
 }
 
 main{
     grid-area: b;
+   
 }
 
 footer{
@@ -96,33 +137,38 @@ footer{
 /**********메인 header(header 부분 전체)************/
 .header{
     display: flex; 
-    border: 5px solid orange;
     padding: 0.5rem 2rem;
     position: relative;
     justify-content: space-between;
     width: 100%;
     height:100% ;
-
+    
 }
-.header .header_logo {
-   
-    border: 1px solid purple;
+
+.header .header_logomenu {
     display: flex;
     align-items: center;
     justify-content: center;
-    object-fit: cover;
+
 }  
 
+.header .header_logo img {
+   width: 6rem;
+ 
+	filter:invert(33%) sepia(8%) saturate(2246%) hue-rotate(289deg) brightness(100%) contrast(90%);
+
+   
+}  
 
 .header .header_menu {
     display: flex; 
-    border: 3px solid yellow;
+    background-color: transparent;
     justify-content: space-evenly;
     
 }
 
 .header .header_menu li {
-    border: 1px solid blue;
+
     border-radius: 0.5rem;
     padding: 0.7rem;
     margin: 0.2rem;
@@ -134,14 +180,51 @@ footer{
 
 
 .header .header_mypage {
-    border: 5px solid purple;
+    
     display: flex;
     align-items: center;
     justify-content: center;
     object-fit: cover;
-    padding: 0 2.5rem 0 2.5rem;
+
 }
 
+
+
+
+.header .header_mypage .login{
+    margin: 1rem;
+    color: var(--color-f);
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    font-size:var(--font-size-vm);
+    font-weight: bold;
+}
+
+
+.header .header_mypage .logout{
+    display:none;
+    margin: 1rem;
+    
+    background-color: var(--color-b);
+ padding: 1rem 2rem;
+ border-radius: 10px;
+ font-size:var(--font-size-vm);
+
+}
+
+.header .header_mypage .signupbox3 .signup{
+ color: var(--color-c);
+ padding: 1rem 2rem;
+ border-radius: 10px;
+ font-size:var(--font-size-vm);
+
+ font-weight: bold;
+
+}
+
+.header .header_mypage .readmemeberlinkbox{
+    display: none;
+}
 
 .header .header_hamburger{
     display: none;
@@ -167,6 +250,7 @@ footer{
         flex-direction: column;
         align-items: center;
         width: 100%;
+        justify-content: center;
 
     }
 
@@ -190,31 +274,86 @@ footer{
     .header_mypage.active{
         display: flex;
     }
+
+    .header_mypage{
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 
 /*********메인 슬라이드이미지*********/
 main .slide {
-   
     height: 70vh;
-    border: 1px solid rgb(1, 1, 1);
+   
 }
+.swiper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  
 
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+
+.swiper-wrapper .swiper-slide img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .autoplay-progress {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    z-index: 10;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: var(--swiper-theme-color);
+  }
+
+  .autoplay-progress svg {
+    --progress: 0;
+    position: absolute;
+    left: 0;
+    top: 0px;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    stroke-width: 4px;
+    stroke: var(--swiper-theme-color);
+    fill: none;
+    stroke-dashoffset: calc(125.6 * (1 - var(--progress)));
+    stroke-dasharray: 125.6;
+    transform: rotate(-90deg);
+  }
 
 /*********메인 바디***********/
 main .body {
     display: flex;
-    
+   }
     /* display: grid;
     grid-template-columns: 1fr 8fr 1fr;
     grid-template-rows: auto; */
-    border: 1px solid orange;
-    
-}
+
 
 /*메인 바디 왼쪽*/
 main .body .aside_l{
-    border: 1px solid rgb(0, 255, 76);
+
     display: flex;
     flex-basis: 10%;
   
@@ -224,7 +363,7 @@ main .body .aside_l{
 
 /*메인 바디 오른쪽*/
 main .body .aside_r{
-    border: 1px solid rgb(0, 64, 255);
+ 
    display: flex;
    flex-basis: 10%;
   
@@ -232,7 +371,7 @@ main .body .aside_r{
 }
 /*메인 바디 가운데 */
 main .body .body_center{
-    border: 1px solid rgb(158, 90, 2);
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -248,14 +387,13 @@ main .body .body_center .cp {
     flex-direction: column;
     justify-content: center;
     text-align: center;
-
+    
 }
-
 
 main .body .body_center .cp .cp_box{ 
    display: grid;
    padding: 1rem;
-   border: 10px dotted red;
+
    grid-template-columns: repeat(4, 1fr);
   
    
@@ -272,7 +410,7 @@ main .body .body_center .cp .cp_box .box5{
     main .body .body_center .cp .cp_box{ 
         display: grid;
         padding: 1rem;
-        border: 10px dotted red;
+  
         grid-template-columns: repeat(2, 1fr);
        
         
@@ -284,7 +422,7 @@ main .body .body_center .cp .cp_box .box5{
     main .body .body_center .cp .cp_box{ 
         display: grid;
         padding: 1rem;
-        border: 5px dotted red;
+ 
         grid-template-columns: repeat(1, 1fr);
        
         
@@ -299,12 +437,12 @@ main .body .body_center .review{
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    border: 10px solid green;
+
     align-items: center;
 }
 
 main .body .body_center .review .rv{
-    border: 10px solid pink;
+
     display: flex;
     flex-direction: column;
     width: 80%;
@@ -312,7 +450,7 @@ main .body .body_center .review .rv{
 }
 
 main .body .body_center .review .rv .rv_l{
-    border: 5px dotted rgb(60, 0, 255);
+
     display: flex;
     grid-gap: 1rem;
     grid-template-columns: repeat(2,1fr);
@@ -322,7 +460,7 @@ main .body .body_center .review .rv .rv_l{
 }
 
 main .body .body_center .review .rv .rv_r{
-    border: 5px dotted rgb(255, 111, 0);
+
     display: flex;
     grid-gap: 1rem;
     grid-template-columns: repeat(2,1fr);
@@ -342,12 +480,12 @@ main .body .body_center .review .rv .rv_r{
             flex-direction: column;
             justify-content: center;
             text-align: center;
-            border: 10px solid green;
+ 
             align-items: center;
         }
         
         main .body .body_center .review .rv{
-            border: 10px solid pink;
+ 
             display: flex;
             flex-direction: column;
             width: 100%;
@@ -355,7 +493,7 @@ main .body .body_center .review .rv .rv_r{
         }
         
         main .body .body_center .review .rv .rv_l{
-            border: 5px dotted rgb(60, 0, 255);
+    
             display: flex;
             grid-gap: 1rem;
             grid-template-columns: repeat(2,1fr);
@@ -367,7 +505,7 @@ main .body .body_center .review .rv .rv_r{
         }
         
         main .body .body_center .review .rv .rv_r{
-            border: 5px dotted rgb(255, 111, 0);
+
             display: flex;
             grid-gap: 1rem;
             grid-template-columns: repeat(2,1fr);
@@ -383,7 +521,7 @@ main .body .body_center .review .rv .rv_r{
 
 /******캠핑 평가 및 등록******/
 main .body .body_center .cger{
-    border: 5px solid rgb(51, 255, 0);
+
     display: flex;
     justify-content: center;
     
@@ -391,7 +529,7 @@ main .body .body_center .cger{
 
 main .body .body_center .cger .cg{
     display: flex;
-    border: 5px solid rgb(248, 0, 0);
+
     text-align: center;
     flex-direction: row;
     justify-content: space-around;
@@ -400,7 +538,7 @@ main .body .body_center .cger .cg{
 
 main .body .body_center .cger .cg .cg_evaluate{
     display: flex;
-    border: 5px solid rgb(236, 248, 0);
+
     margin: 1rem;
     flex-direction: column;
     justify-content: space-between; 
@@ -409,7 +547,7 @@ main .body .body_center .cger .cg .cg_evaluate{
 
 main .body .body_center .cger .cg .cg_evaluate .imgbox{
    display: flex;
-    border: 5px dotted rgb(11, 0, 85);
+
    
     height: auto;
     
@@ -417,7 +555,7 @@ main .body .body_center .cger .cg .cg_evaluate .imgbox{
 
 main .body .body_center .cger .cg .cg_reserve{
     display: flex;
-    border: 5px solid rgb(11, 85, 0);
+
     margin: 1rem;
     flex-direction: column;
     justify-content: space-between; 
@@ -427,8 +565,6 @@ main .body .body_center .cger .cg .cg_reserve{
 
 
 main .body .body_center .cger .cg .cg_reserve .imgbox{
-   
-    border: 5px dotted rgb(11, 0, 85);
     
     height: auto;
     
@@ -436,7 +572,7 @@ main .body .body_center .cger .cg .cg_reserve .imgbox{
 
 @media screen and (max-width:768px) {
     main .body .body_center .cger{
-        border: 5px solid rgb(51, 255, 0);
+   
         display: flex;
         justify-content: center;
         
@@ -444,7 +580,6 @@ main .body .body_center .cger .cg .cg_reserve .imgbox{
     
     main .body .body_center .cger .cg{
         display: flex;
-        border: 1px solid rgb(248, 0, 0);
         text-align: center;
         flex-direction: column;
         
@@ -453,7 +588,6 @@ main .body .body_center .cger .cg .cg_reserve .imgbox{
     
     main .body .body_center .cger .cg .cg_evaluate{
         display: flex;
-        border: 5px solid rgb(236, 248, 0);
         margin: 0;
         flex-direction: column;
         justify-content: space-between; 
@@ -463,14 +597,12 @@ main .body .body_center .cger .cg .cg_reserve .imgbox{
     
     main .body .body_center .cger .cg .cg_evaluate .imgbox{
        display: flex;
-        border: 5px dotted rgb(11, 0, 85);
         height: auto;
         margin: 0;
     }
     
     main .body .body_center .cger .cg .cg_reserve{
         display: flex;
-        border: 5px solid rgb(11, 85, 0);
         margin: 0;
         flex-direction: column;
         justify-content: space-between; 
@@ -480,8 +612,6 @@ main .body .body_center .cger .cg .cg_reserve .imgbox{
     
     
     main .body .body_center .cger .cg .cg_reserve .imgbox{
-       
-        border: 5px dotted rgb(11, 0, 85);
         
         height: auto;
         
@@ -492,7 +622,6 @@ main .body .body_center .cger .cg .cg_reserve .imgbox{
 
 
 .footer{
-    border: 3px solid red;
     background-color: black;
     color: aliceblue;
     width: 100%;
