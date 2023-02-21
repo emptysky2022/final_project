@@ -6,7 +6,9 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import com.campers.camfp.dto.item.ItemReviewDTO;
+import com.campers.camfp.entity.item.Item;
 import com.campers.camfp.entity.item.ItemReview;
+import com.campers.camfp.repository.item.ItemRepository;
 import com.campers.camfp.repository.item.ItemReviewRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -18,12 +20,16 @@ import lombok.extern.log4j.Log4j2;
 public class ItemReviewServiceImpl implements ItemReviewService{
 
 	private final ItemReviewRepository itemReviewRepository;
+	private final ItemRepository itemRepository;
 
 	@Override
 	public Long register(ItemReviewDTO itemReviewDTO) {
 		log.info("register item review : " + itemReviewDTO);
 		ItemReview itemReview = dtoToEntity(itemReviewDTO);
 		itemReviewRepository.save(itemReview);
+		Item item = itemRepository.findById(itemReviewDTO.getIno()).get();
+		item.changeStar(itemReviewRepository.countStar(itemReviewDTO.getIno()));
+		itemRepository.save(item);
 		return itemReview.getIrno();
 	}
 

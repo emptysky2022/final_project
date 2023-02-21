@@ -42,14 +42,19 @@ public class Board extends BaseEntity {
 	@JoinColumn(name="mno")
 	private Member member;
 
-	private String category; // 
+	private String category;
 	
 	private int count; // 조회수
 	
 	private int heart; // 좋아요
 	
-//	public void change(String title, String content) {
-//		this.title = title;
-//		this.content = content;
-//	}
+	public void change(String title, String content) {
+		this.title = title;
+		this.content = content;
+	}
+	
+	public void increseCount() {
+		this.count++;
+	}
+	
 }
