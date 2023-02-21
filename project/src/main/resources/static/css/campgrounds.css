@@ -298,16 +298,12 @@ main .body .body_center{
     
 }
 
-
-
-
-
 .sec3{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    height: 50vh;
+    height: 100vh;
 }
 
 
@@ -551,3 +547,42 @@ main .body .body_center{
     background-color: black;
     color: aliceblue;
 }
+
+/* test*/
+.OUTLINE {
+    stroke-linejoin:round;
+    stroke: #ffffff;
+    stroke-width: 0.5;
+	fill: #34495e;
+	opacity: 1;
+}
+
+.OUTLINE:hover {
+	opacity: 0.3;
+}
+
+.TEXT {
+    fill: #ffffff;
+    font-size: 16;
+    font-weight: bold;
+    text-anchor: middle;
+}
+
+button {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+button:hover {
+  background-color: #3e8e41;
+}
+
+button:active {
+  background-color: #3e8e41;
+  transform: translateY(1px);
+}
+
