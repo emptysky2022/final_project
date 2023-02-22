@@ -23,6 +23,8 @@ public class PageRequestDTO {
    public PageRequestDTO() {
       this.page = 1;
       this.size = 15;
+      this.type = "";
+      this.keyword = "";
    }
    
    public Pageable getPageable(Sort sort) {
