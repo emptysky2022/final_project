@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class CampCalenderDTO {
 
 	private int ccno;
-	private Camp camp;
+	private Long cno;
 	private LocalDateTime startdate;
 	private LocalDateTime enddate;
 

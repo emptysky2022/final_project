@@ -27,7 +27,11 @@ public interface CampService {
 	
 	public List<Object> findDataOfMember(TableType table, Long mno);
 	
-	public List<Object> findDataOfCamp(TableType table, Long cno, String findData);
+	public List<Object> findDataOfCamp(TableType table, Long cno, String[] findData);
+	
+	public void addData(TableType table, Long cno, String findData);
+	
+	public List<CampDTO> findManayDataOfCamp(String[] findDatas, String[] findLocations);
 	
 	/**
 	 * @param table 변환할 table 명 table <br>
@@ -43,7 +47,7 @@ public interface CampService {
 			
 			CampDTO campDTO = (CampDTO) dto;
 			Camp camp = Camp.builder().cno(campDTO.getCno())
-									  .member(Member.builder().mno(campDTO.getMember().getMno()).build())
+									  .member(Member.builder().mno(campDTO.getMno()).build())
 									  .name(campDTO.getName())
 									  .thumbnail(campDTO.getThumbnail())
 									  .location(campDTO.getCountry())
@@ -62,7 +66,7 @@ public interface CampService {
 			
 			CampReviewDTO reviewDTO = (CampReviewDTO) dto;
 			CampReview campReview = CampReview.builder().crno(reviewDTO.getCrno())
-														.camp(Camp.builder().cno(reviewDTO.getCamp().getCno()).build())
+														.camp(Camp.builder().cno(reviewDTO.getCno()).build())
 														.capture(reviewDTO.getCapture())
 														.content(reviewDTO.getContent())
 														.reviewer(reviewDTO.getReviewer())
@@ -76,7 +80,7 @@ public interface CampService {
 			
 			CampCalenderDTO calenderDTO = (CampCalenderDTO) dto;
 			CampCalender campCalender = CampCalender.builder().ccno(calenderDTO.getCcno())
-										.camp(Camp.builder().cno(calenderDTO.getCamp().getCno()).build())
+										.camp(Camp.builder().cno(calenderDTO.getCno()).build())
 										.startdate(calenderDTO.getStartdate())
 										.enddate(calenderDTO.getEnddate())
 										.build();
@@ -103,7 +107,7 @@ public interface CampService {
 			
 			Camp camp = (Camp) entity;
 			CampDTO campDTO = CampDTO.builder().cno(camp.getCno())
-					  						   .member(Member.builder().mno(camp.getMember().getMno()).build())
+					  						   .mno(camp.getMember().getMno())
 					  						   .name(camp.getName())
 					  						   .thumbnail(camp.getThumbnail())
 					  						   .country(camp.getLocation())
@@ -124,7 +128,7 @@ public interface CampService {
 			
 			CampReview review = (CampReview) entity;
 			CampReviewDTO campReview = CampReviewDTO.builder().crno(review.getCrno())
-														.camp(Camp.builder().cno(review.getCamp().getCno()).build())
+														.cno(review.getCamp().getCno())
 														.capture(review.getCapture())
 														.content(review.getContent())
 														.reviewer(review.getReviewer())
@@ -137,7 +141,7 @@ public interface CampService {
 		case CAMPCALENDER:
 			CampCalender calender = (CampCalender) entity;
 			CampCalenderDTO campCalender = CampCalenderDTO.builder().ccno(calender.getCcno())
-										.camp(Camp.builder().cno(calender.getCamp().getCno()).build())
+										.cno(calender.getCamp().getCno())
 										.startdate(calender.getStartdate())
 										.enddate(calender.getEnddate())
 										.build();

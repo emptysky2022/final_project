@@ -31,7 +31,7 @@ public class Reply extends BaseEntity{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long rno;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name="bno")
 	private Board board;
 	
@@ -43,7 +43,6 @@ public class Reply extends BaseEntity{
 	
 	private int heart;
 	
-	// ReplyServiceImpl에서 쓸건데....왜 써여
 	public void changeContent(String content) {
 		this.content = content;
 	}

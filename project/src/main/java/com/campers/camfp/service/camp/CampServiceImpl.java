@@ -245,7 +245,7 @@ public class CampServiceImpl implements CampService {
 	}
 
 	@Override
-	public List<Object> findDataOfCamp(TableType table, Long cno, String findData) {
+	public List<Object> findDataOfCamp(TableType table, Long cno, String[] findData) {
 
 		List<Object> result = new ArrayList<>();
 		
@@ -281,5 +281,23 @@ public class CampServiceImpl implements CampService {
 		
 		
 		return result;
+	}
+
+	@Override
+	public void addData(TableType table, Long cno, String findData) {
+		
+		campRepository.addData(table, cno, findData);
+		
+	}
+
+	@Override
+	public List<CampDTO> findManayDataOfCamp(String[] findDatas, String[] findLocations) {
+		List<Camp> camp = campRepository.findManayDataOfCamp(findDatas, findLocations);
+		List<CampDTO> dto = new ArrayList<>();
+		camp.forEach(value -> {
+			dto.add((CampDTO) EntityToDTO(TableType.CAMP, value));
+			});
+		
+		return dto;
 	}
 }

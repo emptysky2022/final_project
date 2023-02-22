@@ -49,7 +49,7 @@ public class ReplyController {
 		return new ResponseEntity<Long>(replyNum, HttpStatus.OK);
 	}
 	
-	@PutMapping("/{bno}/{replyNum}")
+	@PutMapping("/{replyNum}")
 	public ResponseEntity<Long> modifyReply(@PathVariable Long replyNum, @RequestBody ReplyDTO replyDTO) {
 		
 		log.info("modify---------------");
@@ -62,7 +62,7 @@ public class ReplyController {
 	
 	
 	@DeleteMapping("/{bno}/{replyNum}")
-	public ResponseEntity<Long> removeReply(@PathVariable("replyNum") Long replyNum) {
+	public ResponseEntity<Long> removeReply(@PathVariable("replyNum") Long replyNum) { 
 		
 		log.info("remove---------------");
 		log.info("replyNum : " + replyNum);
@@ -71,6 +71,5 @@ public class ReplyController {
 		
 		return new ResponseEntity<Long>(replyNum, HttpStatus.OK);
 	}
-	
 	
 }

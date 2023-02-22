@@ -79,7 +79,9 @@ $(function(){
 		})       
         
     });
-    $("#modal-open").click(function(){        
+    $("#modal-open").click(function(){
+		$("#modify").hide();
+		$("#confirm").show();       
         $("#popup").css('display','flex').hide().fadeIn();
         //팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
     });
@@ -107,6 +109,7 @@ function checkExtension(fileName, fileSize){
 	return true;
 }
 
+//리뷰 목록 불러오기
 function loadJsonData(ino){
 	let reviewGroup = $("#reviewGroup");
 	$.getJSON("/review/detail/" + ino, function(result){
@@ -115,7 +118,6 @@ function loadJsonData(ino){
 		let str = "";
 		let starAvg = 0;
 		$.each(reviews, function(index, review){
-			console.log(review);
 			  str += '<div class="rv_l box5 ">';
 			  str += '  <div class="box_l box6">';
 			  str += '    <div class="imgbox box7">';

@@ -7,10 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>무슨페이지인가요?</title>
 
+    
     <!--css 연결-->
     <link rel="stylesheet" type="text/css" href="../css/campgroundsdetail.css">
+    <link th:href="@{../css/starrr.css}" rel="stylesheet">
     <!--js연결-->
     <script type="text/javascript" src="/js/main.js" defer></script>
+	<script th:src="@{../js/starrr.js}"></script>
      <!--api 연결-->
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=aa8506f7754a9c4a3ff7ed61e6db518a&libraries=services"></script>
 									
@@ -120,9 +123,9 @@
 				</div>
                         
                     <!------------------지도 + 출발지 + 날씨--------------------->
-                    <div class="sec2 box3">
+                    <div class="sec2 box3" style="max-width : none; z-index: 1;">
                          
-                         <div id="map" style="width:40%;height:350px;"></div>
+                         <div id="map" style="width:40%;height:350px;max-width : none"></div>
 							
                         <div class="mapweatherbox box4">
                             <div class="startbox box5">
@@ -162,12 +165,16 @@
                     <!---------------후기-------------------->
                     <div class="sec3 box3">
                         <div class="reviewwritebox box4">
-                            <a href="#" class="reviewwrite item">후기 작성하기</a>
+                           <div class="modal-btn-box">
+        						<button type="button" id="modal-open">리뷰 작성</button>
+						   </div>
                         </div>
                     </div>
+                    
                     <div class="sec4 box3">
                     
                         <div class="rv box4"></div>
+                        
                         
                         	<a class="list-group replyList">
 								<!-- rest 로 들어옴 -->
@@ -245,7 +252,61 @@
                     </div>
                 </div>
 
-
+						     <!--모달을 감쌀 박스-->
+						    <div class="popup-wrap" id="popup" style="z-index: 1;">
+						        <!--실질적 모달팝업-->
+						        <div class="popup"> 
+						            <!--로고 영역-->
+						            <div class="popup-head"> 
+						                <span class="head-title"> 로고</span>
+						            </div>
+						            <!--컨텐츠 영역-->
+						            <div class="popup-body"> 
+						                <div class="body-content">
+						                 <div class="body-titlebox">리뷰 작성하기</div>
+						                    <hr>
+						                    <div class="body-contentbox">
+						                       <div class="campgroundsbox">
+						                            <div class="campimgbox">
+						                                
+						                            </div>
+						                            <div class="campexplainbox">
+						                                <div class="ce_title"></div> 
+						                                <div class="ce_preice">
+						                                </div>
+						                               
+						                            </div>
+						                       </div>
+						                       <hr>
+						                       <div class="starbox">
+						                            <div class="star_title">별점을 선택하세요</div>
+						                            <div class="starsizeupbox">
+						                                <div class="starrr star" id="select_star"></div>  
+						                            </div>  
+						                       </div>
+						                       
+						                       <hr>
+						                       <div class="textreviewbox">
+						                            <div class="tr_texttitle">리뷰 내용</div>
+						                            <textarea class="tr_text" id="content" placeholder="솔직한 이용후기를 작성해주세요"></textarea>
+						
+						                       </div>
+						                       <hr>
+						                       <div class="addimgbox">
+						                            <div class="addimgtitle">이미지 추가</div>
+						                            <input type="file" id="picture" class="addimg">
+						                       </div>
+						                    </div>
+						                </div>
+						            </div>
+						            <!--푸터 버튼 영역-->
+						            <div class="popup-foot">  
+						                <span class="pop-btn close" id="close">창 닫기</span>
+						                <span class="pop-btn confirm" id="confirm">확인</span>
+						               
+						            </div>
+						        </div>
+						    </div>
 
                 <!--메인 바디의 사이드 빈 공간 오른쪽-->
                 <div class="aside_r box2">aside_r</div>
@@ -266,13 +327,14 @@
     </div>
     
     <script th:inline="javascript">
+    
     // 카카오 지도 API 따로 놓았음
     var address = /*[[${result.address}]]*/null;
     
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	mapOption = {
-    	center: new kakao.maps.LatLng(33.450501, 126.570667), // 지도의 중심좌표
-    	level: 12 // 지도의 확대 레벨
+    	center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+    	level: 13 // 지도의 확대 레벨
 	};  
 
 	// 지도를 생성합니다    
@@ -284,6 +346,9 @@
 	// 주소로 좌표를 검색합니다
 	geocoder.addressSearch(address, function(result, status) {
 
+		x = result[0].road_address.x;
+		y = result[0].road_address.y;
+		
 	 	// 정상적으로 검색이 완료됐으면 
  	if (status === kakao.maps.services.Status.OK) {
 
@@ -294,14 +359,17 @@
     	    position: coords
     	});
 
-        // 인포윈도우로 장소에 대한 설명을 표시합니다
-        var infowindow = new kakao.maps.InfoWindow({
-            content: '<article style="width:150px;text-align:center;padding:6px 0;">우리회사</article>'
-        });
-        infowindow.open(map, marker);
+    	var iwContent = '<div class="map" style="max-width :none; height:100px" "> <a href="https://map.kakao.com/link/to/'+address+','+x+','+y+'" style="color:blue; " target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+        iwPosition = new kakao.maps.LatLng(33.450701, 126.570667); //인포윈도우 표시 위치입니다
 
-        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-        map.setCenter(coords);
+    	// 인포윈도우를 생성합니다
+    	var infowindow = new kakao.maps.InfoWindow({
+        	position : iwPosition, 
+        	content : iwContent 
+    	});
+      
+    	// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+    	infowindow.open(map, marker); 
 		} 
 		////////////////////////////////API 끝//////////////////////////////
 	});    
@@ -319,6 +387,8 @@
     	 var startdate = [];
     	 var enddate = [];
     	 
+    	 var green = [];
+    	 
     	 var noReservation = [];
     	 
  	    
@@ -331,9 +401,9 @@
  	    		"day"   : 0
  	    	},
  	    	{
-	    	    	 "year"  : 0,
-	    	    	 "month" : 0,
-	    	    	 "day"  : 0 
+	    	    "year"  : 0,
+	    	    "month" : 0,
+	    	    "day"  : 0 
 						
  	    	}
  	    ]
@@ -492,7 +562,7 @@
     	     });
      	 
      	 	function clearDate(){
-     	 		
+     	 		// 내가 누른거 색상 바꾸고.
      	 		$("#calendar"+Reservation[0].day).css("background-color","white");
      	 		$("#calendar"+Reservation[1].day).css("background-color","white");
      	 		Reservation[0].year = 0;
@@ -501,86 +571,14 @@
      	 		Reservation[1].year = 0;
      	 		Reservation[1].month = 0;
      	 		Reservation[1].day = 0;
+     	 		
+     	 		// 기존에 눌린 거 색상 바꾼다.
+     	 		for (let gre of green){
+     	 			$("#calendar"+gre).css("background-color","white");
+     	 		}
 
      	 	}
      	 	 
-     	 	  
-    	    function paintbutton(a){
-    	    	
-    			// 세이프티 체크 
-    			// 둘다들어왔을때 사이에 빨간색이 있다면?
-    			var startday = new Date(Reservation[0].year, Reservation[0].month, Reservation[0].day);
-    		    var endday = new Date(Reservation[1].year, Reservation[1].month, Reservation[1].day);
-    		    var buffer;
-    		    
-    		    if (startday > endday){
-    		    	buffer = startday;
-    		    	startday = endday;
-    		    	endday = buffer;
-    		    }
-    		    
-    		    var diff = endday.getDate() - startday.getDate();
-    		    var bor = true;
-    		    
-    		    
-	    			for (var re =startday.getDate(); re < startday.getDate()+diff; re++){
-    				if ($("#calendar"+re).css( "background-color" ) =='rgb(255, 0, 0)'){
-    					bor = false;
-    				}
-    			}  
-				
-    			if (bor == false){
-    				alert("예약날짜가 겹칩니다 확인해주세요.");
-    				clearDate();
-    				return;
-    			}
-
-        		  // 기본 적으로 둘다 데이터가 있는경우 에만 실행
-        		  if (Reservation[0].year > 1 && Reservation[1].year > 1){
-        			  
-        			  // 몇일 차이나는지 구하는 로직
-            		  var startday = new Date(Reservation[0].year, Reservation[0].month, Reservation[0].day);
-            		  var enbday = new Date(Reservation[1].year, Reservation[1].month, Reservation[1].day);
-            		  var diff = enbday.getTime() - startday.getTime();
-            		  diff = diff / (1000*60*60*24);
-            		  
-            		  var monthyear = $("#month-year").html();
-   		  
-            		  var yea = $("#month-year").html().substring(0,4).trim();
-            		  var mon = $("#month-year").html().substring(4,$("#month-year").html().length).replace("년","").replace("월","").trim();
-            			
-            		  var planday = startday;
-            		  
-            		  for (var j = 0; j <= diff; j++){
-            		  // start 년도랑 같은년인지
-            		  if (planday.getFullYear() == yea){
-            			  
-            		  		// 같은달인지 
-            		  		// month 계산 이상해서 하나올림
-                		  	if (planday.getMonth() == mon){
-                		  		
-                    		  		if (planday.getDate() == a){
-                    		  			
-                    		  			if ($("#calendar"+planday.getDate()).css( "background-color" ) !='rgb(255, 0, 0)'){
-                    		  				
-                		  					$("#calendar"+planday.getDate()).css("background-color","green");
-                		  					
-                    		  			}else{
-                    		  				alert("예약 불가능한 날짜입니다.");
-                    		  				break;
-                    		  			}
-                    		  			
-                		  		
-                    		  		}
-                		  		
-                		  	}
-            		  	}
-            		  
-               		  // 시작날짜부터 다른만큼 하나씩 올림
-                	  planday.setDate(startday.getDate() + 1);
-        		  }
-        	}
-      	  }
       	  
       	  function calculation(Reservation){
       		  
@@ -616,13 +614,27 @@
       	  }
      	 	  
     	    function paintbutton(a){
-
+    	    	outter : for (var a=0; a<31; a++){    	    				
+    				
+    			
         		  // 기본 적으로 둘다 데이터가 있는경우 에만 실행
         		  if (Reservation[0].year > 1 && Reservation[1].year > 1){
         			  
         			  // 몇일 차이나는지 구하는 로직
             		  var startday = new Date(Reservation[0].year, Reservation[0].month, Reservation[0].day);
             		  var enbday = new Date(Reservation[1].year, Reservation[1].month, Reservation[1].day);
+            		 
+            		  var bufferstart;
+            		  var bufferend;
+            		  
+
+            		  if (startday > enbday){
+            			  bufferstart = startday;
+            			  bufferend = enbday;
+            			  enbday = bufferstart;
+            			  startday = bufferend;
+            		  }
+            		  
             		  var diff = enbday.getTime() - startday.getTime();
             		  diff = diff / (1000*60*60*24);
             		  
@@ -633,39 +645,40 @@
             			
             		  var planday = startday;
             		  
-            		  for (var j = 0; j <= diff; j++){
-            			  
-               		  
+               		  inner : for (var j = 0; j <= diff; j++){
+
             		  // start 년도랑 같은년인지
             		  if (planday.getFullYear() == yea){
             			  
-            			  console.log(planday.getMonth() );
             		  		// 같은달인지 
             		  		// month 계산 이상해서 하나올림
                 		  	if (planday.getMonth() == mon){
                 		  		
-                		  			console.log("같은달?");
                     		  		if (planday.getDate() == a){
                     		  			
-                    		  			if ($("#calendar"+planday.getDate()).css( "background-color" ) !='rgb(255, 0, 0)'){	                    		  			
+                    		  			if ($("#calendar"+planday.getDate()).css( "background-color" ) !='rgb(255, 0, 0)'){	
+                    		  				
+                    		  				// 그린넣어주고 클린할떄 없앤다.
+                    		  				green.push(planday.getDate());
                 		  					$("#calendar"+planday.getDate()).css("background-color","green");
-                    		  			}else{
+                		  					console.log("반복중");
+                    		  			} else{ //red 를 만났다.
+                    		  				bred = true;
+                    		  				console.log("불가능 날이래");
+                    		  				// 예약을 초기화 시켜야해.
+                    		  				clearDate(Reservation);
                     		  				alert("예약 불가능한 날짜입니다.");
-                    		  				break;
-                    		  			}
-                    		  			
-                		  		
+                    		  				break outter;
                     		  		}
-                		  		
+                    		  	}
                 		  	}
             		  	}
-            		  
                		  // 시작날짜부터 다른만큼 하나씩 올림
                 	  planday.setDate(startday.getDate() + 1);
-        		  }
+        		 }
         	}
       	  }
-      	  
+    	    
       	  function calculation(Reservation){
       		  
       		  var startday = Reservation[0];
@@ -698,6 +711,8 @@
       	  
      	 	
     	  }
+    	    // 포문 종료
+    }
     	  generateCalendar();
 
     	  $("#prev-month").on("click", function() {
@@ -772,7 +787,23 @@
     	  //프로그램 처음 로드시 loadJSON 호출;
     	  // 밑에서 해야함
 		  loadJSON();
-  
+    	  
+  		  //////////////////모달 부분//////////////
+  		
+		    $("#modal-open").click(function(){        
+		        $("#popup").css('display','flex').hide().fadeIn();
+		        //팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
+		    });
+  		
+		    $("#close").click(function(){
+		        modalClose(); //모달 닫기 함수 호출
+		    });
+		    
+		    function modalClose(){
+		        $("#popup").fadeOut(); //페이드아웃 효과
+		    }
+		    // loadJsonData(cno);
+		    
     	});
 	</script>
 						

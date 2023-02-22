@@ -25,104 +25,77 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService {
 
-	public final BoardRepository boardRepository;
-	public final ReplyRepository replyRepository;
-	
-	@Override
-	public Long register(BoardDTO boardDTO) {
+   public final BoardRepository boardRepository;
+   public final ReplyRepository replyRepository;
+   
+   @Override
+   public Long register(BoardDTO boardDTO) {
 
-		log.info("BoardDTO---------------");
-		log.info(boardDTO);
-		log.info("BoardDTO---------------");
-		
-		Board enBoard = dtoToEntity(boardDTO);
-		log.info(enBoard);
-		
-		boardRepository.save(enBoard);
-		
-		return enBoard.getBno();
-	}
+      log.info("BoardDTO---------------");
+      log.info(boardDTO);
+      log.info("BoardDTO---------------");
+      
+      Board enBoard = dtoToEntity(boardDTO);
+      log.info(enBoard);
+      
+      boardRepository.save(enBoard);
+      
+      return enBoard.getBno();
+   }
 
-	@Override
-	public PageResultDTO<BoardDTO, Object[]> getList(PageRequestDTO pageRequestDTO) {
-		
-		Pageable pageable = pageRequestDTO.getPageable(Sort.by("bno").descending());
+   @Override
+   public PageResultDTO<BoardDTO, Object[]> getList(PageRequestDTO pageRequestDTO) {
+      
+      Pageable pageable = pageRequestDTO.getPageable(Sort.by("bno").descending());
 
-		log.info("pageRequestDTO : " + pageRequestDTO);
-		
-		Function<Object[], BoardDTO> fn = (en -> entityToDTO((Board) en[0], (Member) en[1], (Long) en[2]));
+      log.info("pageRequestDTO : " + pageRequestDTO);
+      log.info("pageable : " + pageable);
+      
+      Function<Object[], BoardDTO> fn = (en -> entityToDTO((Board) en[0], (Member) en[1], (Long) en[2]));
+      
+      // 검색 조건 추가를 위해 Querydsl로 변경함
+      Page<Object[]> result = boardRepository.searchPage(pageRequestDTO.getType(), pageRequestDTO.getKeyword(), pageable);
+      
+//      Page<Object[]> result = boardRepository.getBoardWithReplyCount(pageable);
+      
+      return new PageResultDTO<>(result, fn);
+   }
+   
+   @Override
+   public BoardDTO read(Long bno) {
+      
+      Object result = boardRepository.getBoardByBno(bno);
+      
+      Object[] arr = (Object[]) result;
+      
+      ((Board) arr[0]).increseCount();
+      boardRepository.save((Board) arr[0]);
+      
+      return entityToDTO((Board) arr[0], (Member) arr[1], (Long) arr[2]);
+   }
 
-		Page<Object[]> result = boardRepository.getBoardWithReplyCount(pageable);
-		
-		
-		return new PageResultDTO<>(result, fn);
-	}
-	
-//	public PageResultDTO<BoardDTO, Object[]> getList(PageRequestDTO pageRequestDTO) {
-//		
-//		Pageable pageable = pageRequestDTO.getPageable(Sort.by("bno").descending());
-//		
-//		log.info("pageRequestDTO : " + pageRequestDTO);
-//		
-//		Function<Object[], BoardDTO> fn = (en -> entityToDTO((Board) en[0], (Member) en[1], (Long) en[2]));
-//		
-//		Page<Object[]> result = boardRepository.getBoardWithReplyCount(pageable);
-//		
-//		
-//		return new PageResultDTO<>(result, fn);
-//	}
-	
-	@Override
-	public BoardDTO read(Long bno) {
-		
-		Object result = boardRepository.getBoardByBno(bno);
-		
-		Object[] arr = (Object[]) result;
-		
-		return entityToDTO((Board) arr[0], (Member) arr[1], (Long) arr[2]);
-	}
+   @Transactional
+   @Override
+   public void removeWithReplies(BoardDTO boardDTO) {
+      
+      System.out.println(boardDTO);
+      
+      replyRepository.deleteReply(boardDTO.getBno());
+      boardRepository.deleteBoard(boardDTO.getBno(), boardDTO.getMno());
+   }
 
-	@Transactional
-	@Override
-	public void removeWithReplies(BoardDTO boardDTO) {
-		
-//		Board board = Board.builder().bno(boardDTO.getBno()).build();
-//		Member member = Member.builder().mno(boardDTO.getMno()).build();
-		
-		System.out.println(boardDTO);
-		
-		System.out.println("1");
-		
-		replyRepository.deleteReply(boardDTO.getBno());
-		System.out.println("2");
-		boardRepository.deleteBoard(boardDTO.getBno(), boardDTO.getMno());
-		System.out.println("3");
-	}
-
-	@Override
-	public void modify(BoardDTO boardDTO) {
-		
-//		Board board = boardRepository.findById(boardDTO.getBno()).get();
-//		
-//		if(board != null) {
-//			board.change(boardDTO.getTitle(), boardDTO.getContent());
-//		}
-		
-		Board board = dtoToEntity(boardDTO);
-		
-		log.info("modify board : " + board);
-		
-		boardRepository.save(board);
-	}
-	
-	
-
-
+   @Override
+   public void modify(BoardDTO boardDTO) {
+      
+      Board board = boardRepository.findById(boardDTO.getBno()).get();
+      
+      if(board != null) {
+         board.change(boardDTO.getTitle(), boardDTO.getContent());
+      }
+      
+      log.info("modify board : " + board);
+      
+      boardRepository.save(board);
+   }
 
 }
-
-
-
-
-
-
