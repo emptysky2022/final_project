@@ -32,7 +32,8 @@ public class CampRestController {
 	public ResponseEntity<List<CampReviewDTO>> getListByReview(@PathVariable("cno") Long cno){
 		System.out.println("탔음");
 		List<CampReviewDTO> reviews = new ArrayList<>();
-		campService.findDataOfCamp(TableType.CAMPREVIEW, cno, "별점순").forEach(value -> {
+		String[] datas = {"별점순"};
+		campService.findDataOfCamp(TableType.CAMPREVIEW, cno, datas).forEach(value -> {
 			reviews.add((CampReviewDTO) value);
 		});
 		
@@ -41,13 +42,14 @@ public class CampRestController {
 		return new ResponseEntity<> (reviews, HttpStatus.OK);
 	}
 	
-	@GetMapping(value = "list/{type}")
-	public ResponseEntity<List<CampDTO>> getListByCamp(@PathVariable("type") String type){
+	@GetMapping(value = "list/{type}/{locations}")
+	public ResponseEntity<List<CampDTO>> getListByCamp(@PathVariable("type") String[] type, @PathVariable("locations") String[] locations){
 		List<CampDTO> campdtoList = new ArrayList<>();
+		System.out.println(locations);
+		System.out.println(type);
 		
-		campService.findDataOfCamp(TableType.CAMP, 0L, type).forEach(value -> {
-			campdtoList.add((CampDTO) value);
-		});
+		campdtoList = campService.findManayDataOfCamp(type, locations);
+			
 		log.info(campdtoList);
 		return new ResponseEntity<> (campdtoList, HttpStatus.OK);
 	}

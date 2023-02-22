@@ -136,7 +136,7 @@ public class CampRepositoryTests {
 			
 
 		
-		for (int i =11; i<12; i++) {
+		for (int i =106; i<107; i++) {
 			
 		
 

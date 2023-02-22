@@ -27,7 +27,11 @@ public interface CampService {
 	
 	public List<Object> findDataOfMember(TableType table, Long mno);
 	
-	public List<Object> findDataOfCamp(TableType table, Long cno, String findData);
+	public List<Object> findDataOfCamp(TableType table, Long cno, String[] findData);
+	
+	public void addData(TableType table, Long cno, String findData);
+	
+	public List<CampDTO> findManayDataOfCamp(String[] findDatas, String[] findLocations);
 	
 	/**
 	 * @param table 변환할 table 명 table <br>
