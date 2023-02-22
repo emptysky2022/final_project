@@ -15,6 +15,7 @@ $(function(){
 	});
 	$("#capture").on("change", function(){
 		console.log("capture change event");
+		// 이미지 업로드 클릭시 파일 받아서 uploadAjax controller로 이동
 		let formData = new FormData();
 		const inputFile = $(this);
 		const files = inputFile[0].files;
@@ -43,6 +44,7 @@ $(function(){
 			dataType: "json",
 			success: function(result){
 				console.log(result);
+				//결과값중 uuid, filePath등등 있는데 imageURL만 뽑아서 리스트에 넣기
 				result.map(({imageURL}) => image.push(imageURL));
 				console.log(image);
 			},
@@ -54,6 +56,7 @@ $(function(){
 	$("#confirm").click(function(){
         modalClose(); //모달 닫기 함수 호출
         //컨펌 이벤트 처리
+		//등록할 때 data를 ItemReviewDTO, List<String>으로 받아야 함
         let data = {
 			review : {
 			content : $("#content").val(),
