@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="../css/campgroundsdetail.css">
     <link rel="stylesheet" type="text/css" href="../css/reviewwrite.css">
     <!--js연결-->
-    <script type="text/javascript" src="../js/itemDetail.js" defer></script>
+    <script type="text/javascript" th:inline="javascript" src="../js/itemDetail.js" defer></script>
 
     <!--구글 폰트 링크-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -98,15 +98,15 @@
                         </div>
 
                         <div class="cg_explainbox box4">
-                            <div class="cg_explain item">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+                            <div class="cg_explain item"><a th:href="${detail.link}">[[${detail.link}]]</a></div>
                         </div>
 
                         <div class="cg_hashtagbox box4">
-                            <div class="cg_hashtag item"> #차박 #오늘도 #성공적</div>
+                            <div class="cg_hashtag item">[[${detail.category1}]] | [[${detail.category2}]]</div>
                         </div>
                     </div>
 					<!-- 리뷰 추가 모달창 -->
-                    <div class="modal-btn-box">
+                    <div class="modal-btn-box" sec:authorize="isAuthenticated()">
         				<button type="button" id="modal-open">리뷰 작성</button>
 						    </div>
 						     <!--모달을 감쌀 박스-->
@@ -151,7 +151,7 @@
 						                       <hr>
 						                       <div class="addimgbox">
 						                            <div class="addimgtitle">이미지 추가</div>
-						                            <input type="file" id="picture" class="addimg">
+						                            <input type="file" id="capture" class="addimg" multiple>
 						                       </div>
 						                    </div>
 						                </div>
