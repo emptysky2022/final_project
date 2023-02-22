@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class CampDTO {
 
 	private Long cno;
-	private Member member;
+	private Long mno;
 	private String name;
 	private String thumbnail;
 	private String country;
