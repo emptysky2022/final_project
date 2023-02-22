@@ -33,6 +33,7 @@ $(document).ready(function() {
 	function modalClose() {
 		$("#popup").fadeOut(); //페이드아웃 효과
 	}
+
 	function getStar(grade) {
 		let star = '';
 		for (let i = 1; i <= 5; i++) {
@@ -60,6 +61,11 @@ $(document).ready(function() {
 	var enddate = [];
 	var green = [];
 	var noReservation = [];
+	var startday;
+	var endday;
+	
+	var send1;
+	var send2;
 
 
 	// day 클경우 endDay    	    
@@ -103,6 +109,8 @@ $(document).ready(function() {
 		for (let gre of green) {
 			$("#calendar" + gre).css("background-color", "white");
 		}
+		// 다 지웠으니 초기화
+		green = [];
 
 	}
 
@@ -111,7 +119,7 @@ $(document).ready(function() {
 		$("#month-year").text(new Date(year, month).toLocaleDateString('ko-KR', { year: 'numeric', month: 'long' }));
 
 		$("#days").empty();
-		var numDays = new Date(year, month + 1, 0).getDate();
+		var numDays = new Date(year, month + 1, 0);
 
 		var currentYear = $("#month-year").text().substring(0, 4).trim();
 		var currentMonth = $("#month-year").text().replace('월', '');
@@ -129,11 +137,18 @@ $(document).ready(function() {
 
 
 		// 번호 돌리기
-		for (var i = 1; i <= numDays; i++) {
+		for (var i = 1; i <= numDays.getDate(); i++) {
+
+			// 7일 만 계산해서 요일표시
+			var week = String(new Date(year, month + 1, i)).substring(0, 3);;
+			if (i <= 7) {
+				var num = String(i);
+				$("." + num).html(week);
+			}
 
 			var day = $("<div class='child' id='calendar" + i + "'>").text(i);
 			$("#days").append(day);
-			paintbutton(i);
+			//paintbutton(i);
 
 			// 받아온 campCalender 만큼 반복
 			for (var d = 0; d < clenderList.length; d++) {
@@ -233,13 +248,9 @@ $(document).ready(function() {
 						Reservation[1].month = day.substr(5, day.length).replace("월", "").trim();
 						Reservation[1].day = $(this).html();
 
-						// 앞뒤 데이터를 [0] 에 더 작은 날짜 [1] 에 더큰날짜를 넣어준다.
-						calculation(Reservation);
-
 						// 페인트 입히기
-						for (var a = 0; a < 31; a++) {
-							paintbutton(a);
-						}
+						paintbutton();
+
 					}
 				}
 			}
@@ -249,82 +260,83 @@ $(document).ready(function() {
 
 		function calculation(Reservation) {
 
-			var startday = Reservation[0];
-			var endday = Reservation[1];
-			var buffer;
+			startday = Reservation[0];
+			endday = Reservation[1];
+			var buffer = {
+				"year": 0,
+				"month": 0,
+				"day": 0
+			}
+
+			console.log(startday);
+			console.log(endday);
+
 			// 시작년 과 종료 년이 같을경우
-			if (startday.year == endday.year) {
+			if (Number(startday.year) == Number(endday.year)) {
 
 				// 시작달과 종료달이 같은결우
-				if (startday.month == endday.month) {
+				if (Number(startday.month) == Number(endday.month)) {
 
 					// 시작일 이 종료일 보다 크면
-					if (startday.day > endday.day) {
-
-						buffer = startday.day;
+					if (Number(startday.day) > Number(endday.day)) {
+						buffer.day = startday.day;
 						startday.day = endday.day;
-						endday.day = buffer;
+						endday.day = buffer.day;
 					}
-				}
 
-				// 시작일이 종료일보다 클경우
-				if (startday.month > endday.month) {
-
-					buffer = startday.month;
+					// 시작 달이 종료 달 보다 더 큰경우
+				} else if (Number(startday.month) > Number(endday.month)) {
+					buffer.month = startday.month;
+					buffer.day = startday.day;
 					startday.month = endday.month;
-					endday.month = buffer;
+					startday.day = endday.day;
+					endday.month = buffer.month;
+					endday.day = buffer.day;
 				}
+
+				// 시작 년이 종료 년 보다 더 큰경우
+			} else if (Number(startday.year) > Number(endday.year)) {
+				buffer = startday;
+				startday = endday;
+				endday = buffer;
 			}
+
 			Reservation[0] = startday;
 			Reservation[1] = endday;
+			startday = Reservation[0];
+			endday = Reservation[1];
 
 		}
 
-		function paintbutton(a) {
-			outter: for (var a = 0; a < 31; a++) {
+		function paintbutton() {
+
+			// 앞뒤 데이터를 [0] 에 더 작은 날짜 [1] 에 더큰날짜를 넣어준다.
+			calculation(Reservation);
+
+			outter: for (var a = 0; a < 34; a++) {
+
 
 
 				// 기본 적으로 둘다 데이터가 있는경우 에만 실행
 				if (Reservation[0].year > 1 && Reservation[1].year > 1) {
 
 					// 몇일 차이나는지 구하는 로직
-					var startday = new Date(Reservation[0].year, Reservation[0].month, Reservation[0].day);
-					var enbday = new Date(Reservation[1].year, Reservation[1].month, Reservation[1].day);
+					startday = new Date(Reservation[0].year, Reservation[0].month, Reservation[0].day);
+					endday = new Date(Reservation[1].year, Reservation[1].month, Reservation[1].day);
 
-					var bufferstart;
-					var bufferend;
-
-
-					if (startday > enbday) {
-						bufferstart = startday;
-						bufferend = enbday;
-						enbday = bufferstart;
-						startday = bufferend;
-					}
-
-					var diff = enbday.getTime() - startday.getTime();
+					var diff = endday.getTime() - startday.getTime();
 					diff = diff / (1000 * 60 * 60 * 24);
-
-					var monthyear = $("#month-year").html();
 
 					var yea = $("#month-year").html().substring(0, 4).trim();
 					var mon = $("#month-year").html().substring(4, $("#month-year").html().length).replace("년", "").replace("월", "").trim();
 
 					var planday = startday;
-
 					inner: for (var j = 0; j <= diff; j++) {
 
-						// start 년도랑 같은년인지
 						if (planday.getFullYear() == yea) {
-
-							// 같은달인지 
-							// month 계산 이상해서 하나올림
 							if (planday.getMonth() == mon) {
-
 								if (planday.getDate() == a) {
-
 									if ($("#calendar" + planday.getDate()).css("background-color") != 'rgb(255, 0, 0)') {
-
 										// 그린넣어주고 클린할떄 없앤다.
 										green.push(planday.getDate());
 										$("#calendar" + planday.getDate()).css("background-color", "green");
@@ -338,76 +350,65 @@ $(document).ready(function() {
 								}
 							}
 						}
+
+						// 12 월달은 계산식이 달라서 추가.
+						if (planday.getMonth() == "0" && mon == "12") {
+
+							if ($("#calendar" + planday.getDate()).css("background-color") != 'rgb(255, 0, 0)') {
+								// 그린넣어주고 클린할떄 없앤다.
+								green.push(planday.getDate());
+								$("#calendar" + planday.getDate()).css("background-color", "green");
+							} else { //red 를 만났다.
+								bred = true;
+								// 예약을 초기화 시켜야해.
+								clearDate(Reservation);
+								alert("예약 불가능한 날짜입니다.");
+								break outter;
+							}
+						}
 						// 시작날짜부터 다른만큼 하나씩 올림
 						planday.setDate(startday.getDate() + 1);
 					}
 				}
 			}
-
-			function calculation(Reservation) {
-
-				var startday = Reservation[0];
-				var endday = Reservation[1];
-				var buffer;
-				// 시작년 과 종료 년이 같을경우
-				if (startday.year == endday.year) {
-
-					// 시작달과 종료달이 같은결우
-					if (startday.month == endday.month) {
-
-						// 시작일 이 종료일 보다 크면
-						if (startday.day > endday.day) {
-
-							buffer = startday.day;
-							startday.day = endday.day;
-							endday.day = buffer;
-						}
-					}
-
-					// 시작일이 종료일보다 클경우
-					if (startday.month > endday.month) {
-
-						buffer = startday.month;
-						startday.month = endday.month;
-						endday.month = buffer;
-					}
-				}
-			}
-
-
 		}
 		// 포문 종료
 	}
 	generateCalendar();
 
 
-	$("#RVmodal-open").click(function() {
+	$("#reservation").click(function() {
 		//팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
-		$("#popup").css('display', 'flex').hide().fadeIn();
+		$("#RVpopup").css('display', 'flex').hide().fadeIn();
+
+		var startDate = new Date(Reservation[0].year, Reservation[0].month - 1, Reservation[0].day);
+		var endDate = new Date(Reservation[1].year, Reservation[1].month - 1, Reservation[1].day);
+		
+		send1 = startDate;
+		send2 = endDate;
+		$("#start-day cite").html(startDate);
+		$("#end-day cite").html(endDate);
 
 		// 로드시 숫자를 -> ☆ 로 바꿈 
 		$("#sync_star").html(getStar($("#sync_star").html()));
 	});
 
 	$("#RVclose").click(function() {
-		modalClose(); //모달 닫기 함수 호출
+		console.log("취소");
+		rvmodalClose(); //모달 닫기 함수 호출
 	});
 
 	$("#RVconfirm").click(function() {
-		clickCampConfirm();
+		clickCampReservation();
 	});
 
-
-
+	function rvmodalClose() {
+		$("#RVpopup").fadeOut(); //페이드아웃 효과
+	}
 
 	$("#reset").on("click", function() {
 		clearDate();
 	});
-
-	$("#reservation").on("click", function() {
-		console.log("눌림");
-	});
-
 
 	$("#days .child").on("click", function() {
 
@@ -476,7 +477,6 @@ $(document).ready(function() {
 		})
 	};
 	function clickCampConfirm() {
-		;
 
 		$.ajax({
 			url: "/camp/review/register",
@@ -499,6 +499,25 @@ $(document).ready(function() {
 				location.href = "/camp/campgroundsdetail/{cno}/login";
 			}
 		});
+	}
+	
+	function clickCampReservation(){
+		$.ajax({
+			url : "/camp/calendar/register",
+			method : "POST",
+			contentType: "application/json",
+			data : JSON.stringify({
+				cno : cno,
+				startdate : send1,
+				enddate : send2
+			}),
+			success: function(reuslt){
+				
+			},
+			error : function(err){
+				
+			}
+		})
 	}
 
 	function clickCampHeart(cno) {

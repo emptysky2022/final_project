@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.campers.camfp.config.auth.PrincipalDetails;
 import com.campers.camfp.config.type.CampingType;
 import com.campers.camfp.config.type.TableType;
+import com.campers.camfp.dto.camp.CampCalenderDTO;
 import com.campers.camfp.dto.camp.CampDTO;
 import com.campers.camfp.dto.camp.CampReviewDTO;
 import com.campers.camfp.service.camp.CampService;
@@ -73,6 +74,25 @@ public class CampRestController {
 		campService.register(TableType.CAMPREVIEW, dto);
 		return new ResponseEntity(nickname, HttpStatus.OK);  
 		
+	}
+	
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@PostMapping("calendar/register")
+	public ResponseEntity<String> calendarRegister(@RequestBody CampCalenderDTO dto, @AuthenticationPrincipal PrincipalDetails principalDetails){
+		
+		String nickname = principalDetails.getMember().getNickname();
+		System.out.println(nickname);
+		log.info(dto);
+		
+		if (nickname == null) {
+			return new ResponseEntity("", HttpStatus.ALREADY_REPORTED);  
+		}
+		
+		dto.setReservationer(nickname);
+		campService.register(TableType.CAMPCALENDER, dto);
+		
+		return new ResponseEntity("", HttpStatus.OK);
 	}
 
 }
