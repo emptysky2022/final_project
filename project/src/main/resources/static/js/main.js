@@ -41,26 +41,27 @@ document.addEventListener('DOMContentLoaded', ()=> {
   .pause(1500)
   .delete(14, {delay: 1000})
   .pause(1500)
-  .type('고민 하지 마세요!')
+  .type('Campers와 함께')
   
-  .go()
-  .loop()
+  .go() 
+  
+ 
 })
 
 
 
-//scrollOut 스크롤 내릴때 효과
-// ScrollOut({
+// scrollOut 스크롤 내릴때 효과
+ScrollOut({
   
-//   onShown: (element) => {
-//     new TypeIt(".scroll", {
-//       startDelay: 500,
-//       cursor: false,
-//     })
-//     .pause(2000)
-//     .go();
-//   },
-// });
+  onShown: (element) => {
+    new TypeIt(".scroll", {
+      startDelay: 500,
+      cursor: false,
+    })
+    .pause(2000)
+    .go();
+  },
+});
 
 
 ScrollOut({

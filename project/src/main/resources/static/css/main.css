@@ -103,7 +103,10 @@ a:visited { color: var(--color-a); }
 a:hover { color: var(--color-a); }
 a:active { color: var(--color-a); }
 
-
+img{
+    max-width: 100%;
+    vertical-align: top;
+}
 
 body {
     max-width: 100vw;
@@ -115,7 +118,7 @@ body {
 
 .navimage{
     position: absolute;
-    height: 70vh;
+    height: 80vh;
 }
 
 .navimage img{
@@ -343,7 +346,7 @@ footer{
 
 /*네비 바로 밑 사진에 추가할 내용*/
 main .navimageadd{
-    height: 60vh;
+    height: 70vh;
     position: relative;
     z-index: 100;
     display: flex;
