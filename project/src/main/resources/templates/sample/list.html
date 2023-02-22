@@ -10,7 +10,8 @@
   src="https://code.jquery.com/jquery-3.6.3.min.js"
   integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
   crossorigin="anonymous"></script>
-<script type="text/javascript" src="../js/boardRead.js" defer></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+	<script type="text/javascript" src="../js/boardRead.js" defer></script>
 </head>
 <body>
 	<!-- 게시글 등록 : 시작 -->
@@ -101,7 +102,7 @@
          </table>
       </div>
    	  <!-- 페이징 처리 시작 -->
-      <div>
+	 <div>
          <ul class="pagination h-100 justify-content-center align-items-conter">
 			<li class="page-item" th:if="${result.prev}">
 				<a class="page-link" th:onclick="" th:href="@{/sample/list(page=${result.start-1},
@@ -130,7 +131,7 @@
       <div id="search">
    	  <form id="searchForm">
    		<select name="type">
-   			<option value="" th:selected="${pageRequestDTO.type == null}"></option>
+   			<option value="" th:selected="${pageRequestDTO.type == null}">전체</option>
    			<option value="t" th:selected="${pageRequestDTO.type == 't'}">제목</option>
    			<option value="c" th:selected="${pageRequestDTO.type == 'c'}">내용</option>
    			<option value="w" th:selected="${pageRequestDTO.type == 'w'}">작성자</option>
@@ -139,7 +140,7 @@
    			<option value="tcw" th:selected="${pageRequestDTO.type == 'tcw'}">제목 or 내용 or 작성자</option>
    		</select>
    		<input type="text" name="keyword" th:value="${pageRequestDTOkeyword}">
-   		<button type="button" id="searchBtn">검색</button>
+   		<button type="submit">검색</button>
    	  </form>
       </div>
       <!-- 검색 : 끝 -->
