@@ -1,6 +1,6 @@
+let image = new Array();
+let ino = new URLSearchParams(window.location.search).get("ino");
 $(function(){
-	let image = new Array();
-	let ino = new URLSearchParams(window.location.search).get("ino");
 	var grade=$(".starrr").html();
 	console.log("grade : " + grade);
 	$(".starrr").html("");
@@ -8,7 +8,6 @@ $(function(){
 		rating: grade,
 		change: function(e, value){
 			if(value){
-				console.log(value)
 				grade=value
 			}
 		}
@@ -72,6 +71,7 @@ $(function(){
 			contentType: "application/json",
 			data: JSON.stringify(data),
 			success: function(ino){
+				$("#select_star").starrr('setRating', 0);
 				$("#content").val("");
 				$("#capture").val("");
 				loadJsonData(ino);
@@ -79,6 +79,7 @@ $(function(){
 		})       
         
     });
+	
     $("#modal-open").click(function(){
 		$("#modify").hide();
 		$("#confirm").show();       
@@ -88,11 +89,11 @@ $(function(){
     $("#close").click(function(){
         modalClose(); //모달 닫기 함수 호출
     });
-    function modalClose(){
-        $("#popup").fadeOut(); //페이드아웃 효과
-    }
     loadJsonData(ino);
 })
+function modalClose(){
+    $("#popup").fadeOut(); //페이드아웃 효과
+}
 
 function checkExtension(fileName, fileSize){
 	console.log("extension function in");
@@ -127,10 +128,10 @@ function loadJsonData(ino){
 			  str += '  <div class="box_r box6">';
 			  str += '    <div class="comment box7">';
 			  str += '        <h2 class="write item">' + review.reviewer + '</h2>';
-			  if(review.reviewer == member.nickname){		  
+			  if(review.reviewer == member.nickname){
 				  str += '    <div class="writer box8">';
-				  str += '      <a class="modify item" onclick="modify()">수정</a>';
-				  str += '      <a class="remove item" onclick="remove()">삭제</a></div>';
+				  str += '      <a class="modify item" onclick="modify(' + review.irno + ')">수정</a>';
+				  str += '      <a class="remove item" onclick="remove(' + review.irno + ')">삭제</a></div>';
 			  }
 			  str += '      <p class="content item_2">' + review.content + '</p></div>';
 			  str += '    <div class="rv_like box7"><i id="review_heart" class="fa-sharp fa-solid fa-thumbs-up fa-1x item" onclick="clickReviewHeart(' + review.irno + ')"> ' + review.heart + '</i></div></div></div><hr>';
@@ -193,7 +194,47 @@ function clickReviewHeart(irno){
 	})
 }
 
-function modify(){
+async function modify(irno){
+	$("#modify").show();
+	$("#confirm").hide(); 
+	$.ajax({
+		url: "/review/" + irno,
+		success: function(result){
+			console.log(result);
+			$("#select_star").starrr('setRating', result.star);
+			$("#content").html(result.content);
+			$("#capture").html(result.capture);
+		}
+	})
+	let popup = await $("#popup");
 	
+	popup.css('display','flex').hide().fadeIn();
+	$("#modify").click(function(){
+        modalClose(); //모달 닫기 함수 호출
+        //수정 이벤트 처리
+		//등록할 때 data를 ItemReviewDTO, List<String>으로 받아야 함
+        let data = {
+			review : {
+			irno: irno,
+			content : $("#content").val(),
+			star : $("#select_star").data('starrr').options.rating
+			},
+			image : image
+		};
+		console.log(data);
+		$.ajax({
+			url: "/review/modify",
+			method: "POST",
+			contentType: "application/json",
+			data: JSON.stringify(data),
+			success: function(ino){
+				$("#content").val("");
+				$("#capture").val("");
+				$("#select_star").starrr('setRating', 0);
+				loadJsonData(ino);
+			}
+		})       
+        
+    });
 }
 
