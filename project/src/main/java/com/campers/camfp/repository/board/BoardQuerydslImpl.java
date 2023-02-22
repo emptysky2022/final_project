@@ -26,7 +26,7 @@ import lombok.extern.log4j.Log4j2;
 
 @Repository
 @Log4j2
-public class BoardQuerydslImpl extends QuerydslRepositorySupport implements BoardQuerydsl{
+public class BoardQuerydslImpl extends QuerydslRepositorySupport implements BoardQuerydsl {
 	
 	public BoardQuerydslImpl() {
 		super(Board.class);
@@ -51,33 +51,35 @@ public class BoardQuerydslImpl extends QuerydslRepositorySupport implements Boar
 		jpqlQuery.leftJoin(member).on(board.member.eq(member));
 		jpqlQuery.leftJoin(reply).on(reply.board.eq(board));
 		
-		JPQLQuery<Tuple> tuple = jpqlQuery.select(board, member.nickname, reply.count());
+		JPQLQuery<Tuple> tuple = jpqlQuery.select(board, member, reply.count());
 		
 		BooleanBuilder booleanBuilder = new BooleanBuilder();
 		BooleanExpression expression = board.bno.gt(0L); // board의 bno가 0L보다 클 때
 		
 		booleanBuilder.and(expression);
 		
-		if(type != null) {
-			String[] typeArr = type.split("");
-			BooleanBuilder conditionBuilder = new BooleanBuilder();
-			for(String t : typeArr) {
-				switch(t) {
-				case "t" :
-					conditionBuilder.or(board.title.contains(keyword));
-					break;
-				case "w" :
-					conditionBuilder.or(member.nickname.contains(keyword));
-					break;
-				case "c" :
-					conditionBuilder.or(board.content.contains(keyword));
-					break;
-				}
-				
+		if (type == null || "".equals("")) {
+			type = "twc";
+		}
+		
+		String[] typeArr = type.split("");
+		BooleanBuilder conditionBuilder = new BooleanBuilder();
+		for(String t : typeArr) {
+			switch(t) {
+			case "t" :
+				conditionBuilder.or(board.title.contains(keyword));
+				break;
+			case "w" :
+				conditionBuilder.or(member.nickname.contains(keyword));
+				break;
+			case "c" :
+				conditionBuilder.or(board.content.contains(keyword));
+				break;
 			}
 			
-			booleanBuilder.and(conditionBuilder);
 		}
+		
+		booleanBuilder.and(conditionBuilder);
 		
 		tuple.where(booleanBuilder);
 		
