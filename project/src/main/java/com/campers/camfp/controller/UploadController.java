@@ -2,6 +2,9 @@ package com.campers.camfp.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -9,13 +12,17 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.campers.camfp.dto.UploadResultDTO;
+import com.mysema.commons.lang.URLEncoder;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -25,6 +32,9 @@ public class UploadController {
 	//업로드시 이미지가 저장될 기본위치
 	@Value("${com.campers.camfp.upload.path}")
 	private String uploadPath;
+	
+	@Value("${com.campers.camfp.defaultImage}")
+	private String defaultImage;
 	
 	@PostMapping("/uploadAjax")
 	public ResponseEntity<List<UploadResultDTO>> uploadFile(MultipartFile[] uploadFiles, String webPath){
@@ -70,5 +80,40 @@ public class UploadController {
 		
 		log.info("uploadFolder path : " + uploadFolder.getPath());
 		return uploadFolder.getPath();
+	}
+	
+	//imageURL 저장해둔 곳에서 값을 가져와서 실제 이미지로 바꿔서 보여줌
+	@GetMapping("/display")
+	public ResponseEntity<byte[]> getImage(String fileName, String size){
+		ResponseEntity<byte[]> result = null;
+		File file = null;
+		try {
+			String srcFileName = !fileName.equals("null")? URLDecoder.decode(fileName, "UTF-8") : uploadPath + File.separator + defaultImage;
+			
+			log.info("fileName : " + srcFileName);
+			
+			if(srcFileName == null) {
+				file = new File(uploadPath, defaultImage);
+				log.info("filename default : " + file);
+			} else {
+				file = new File(srcFileName);
+			}
+			
+			if(size != null && size.equals("1")) {
+				file = new File(file.getParent(), file.getName().substring(2));
+			}
+			
+			log.info(file);
+			
+			HttpHeaders header = new HttpHeaders();
+			
+			header.add("Content-Type", Files.probeContentType(file.toPath()));
+
+			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			result = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return result;
 	}
 }

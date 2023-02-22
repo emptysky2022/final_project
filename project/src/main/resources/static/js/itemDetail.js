@@ -1,4 +1,5 @@
 $(function(){
+	let image = new Array();
 	let ino = new URLSearchParams(window.location.search).get("ino");
 	var grade=$(".starrr").html();
 	console.log("grade : " + grade);
@@ -12,8 +13,8 @@ $(function(){
 			}
 		}
 	});
-	$("#picture").on("change", function(){
-		console.log("picture change event");
+	$("#capture").on("change", function(){
+		console.log("capture change event");
 		let formData = new FormData();
 		const inputFile = $(this);
 		const files = inputFile[0].files;
@@ -42,7 +43,8 @@ $(function(){
 			dataType: "json",
 			success: function(result){
 				console.log(result);
-				showResult(result);
+				result.map(({imageURL}) => image.push(imageURL));
+				console.log(image);
 			},
 			error: function(xhr, text, errorThrown){
 				console.log(text);
@@ -52,19 +54,23 @@ $(function(){
 	$("#confirm").click(function(){
         modalClose(); //모달 닫기 함수 호출
         //컨펌 이벤트 처리
+        let data = {
+			review : {
+			content : $("#content").val(),
+			ino : ino,
+			star : $("#select_star").data('starrr').options.rating
+			},
+			image : image
+		};
+		console.log(data);
 		$.ajax({
 			url: "/review/register",
 			method: "POST",
 			contentType: "application/json",
-			data: JSON.stringify({
-				content : $("#content").val(),
-				picture : $("#picture").val(),
-				ino : ino,
-				star : $("#select_star").data('starrr').options.rating
-			}),
+			data: JSON.stringify(data),
 			success: function(ino){
 				$("#content").val("");
-				$("#picture").val("");
+				$("#capture").val("");
 				loadJsonData(ino);
 			}
 		})       
@@ -111,7 +117,7 @@ function loadJsonData(ino){
 			  str += '  <div class="box_l box6">';
 			  str += '    <div class="imgbox box7">';
 			  str += '      <a class="imglink box8" href="">';
-			  str += '        <img class="rv_img item" src="' + review.capture + '"></a></div>';
+			  str += '        <img class="rv_img item" src="/display?fileName=' + review.capture + '"></a></div>';
 			  str += '    <div class="rv_star box7_2" id="star">' + getStar(review.star) + '</div></div>';
 			  str += '  <div class="box_r box6">';
 			  str += '    <div class="comment box7">';
