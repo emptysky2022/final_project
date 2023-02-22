@@ -236,7 +236,7 @@ main .body .body_center {
 .sec1 {
     display: flex;
     flex-basis: auto;
-    height: 120vh;
+    height: 140vh;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;

@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.campers.camfp.config.type.CampingType;
 import com.campers.camfp.config.type.TableType;
 import com.campers.camfp.dto.camp.CampCalenderDTO;
 import com.campers.camfp.dto.camp.CampDTO;
@@ -53,7 +54,12 @@ public class CampController {
 
 		CampDTO campdto = (CampDTO) campService.findbyId(TableType.CAMP, cno);
 		
-		campService.findDataOfCamp(TableType.CAMPCALENDER, cno, "").forEach(value ->{
+		// camp 조회수 늘리기
+		campService.addData(TableType.CAMP, cno, "count");
+		
+		// camp data 가져오기
+		String[] data = {"조회순"};
+		campService.findDataOfCamp(TableType.CAMPCALENDER, cno, data).forEach(value ->{
 			calenderList.add((CampCalenderDTO) value);
 		});
 		
