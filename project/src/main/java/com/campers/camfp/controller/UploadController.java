@@ -86,18 +86,13 @@ public class UploadController {
 	@GetMapping("/display")
 	public ResponseEntity<byte[]> getImage(String fileName, String size){
 		ResponseEntity<byte[]> result = null;
-		File file = null;
 		try {
+			//파일 이름이 없다면(null) noImage의 파일 이름으로 대체
 			String srcFileName = !fileName.equals("null")? URLDecoder.decode(fileName, "UTF-8") : uploadPath + File.separator + defaultImage;
 			
 			log.info("fileName : " + srcFileName);
 			
-			if(srcFileName == null) {
-				file = new File(uploadPath, defaultImage);
-				log.info("filename default : " + file);
-			} else {
-				file = new File(srcFileName);
-			}
+			File file = new File(srcFileName);
 			
 			if(size != null && size.equals("1")) {
 				file = new File(file.getParent(), file.getName().substring(2));
@@ -107,8 +102,9 @@ public class UploadController {
 			
 			HttpHeaders header = new HttpHeaders();
 			
+			//파일 타입 가져오는건가...
 			header.add("Content-Type", Files.probeContentType(file.toPath()));
-
+			//ResponseEntity에 파일 추가
 			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
 		} catch (Exception e) {
 			log.error(e.getMessage());

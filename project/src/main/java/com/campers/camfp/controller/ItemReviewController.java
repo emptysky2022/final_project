@@ -62,46 +62,22 @@ public class ItemReviewController {
 	}
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ResponseEntity<Long> registerReviewOfItem(@RequestBody ObjectNode obj, @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception{
-		//문제 : @RequestBody는 단일 객체만 처리할수 있다. 여러개 쓰는건 불가능하다. 
-//		for(UploadResultDTO image : imageURL) {
-//			itemReviewDTO.setCapture(image.getImageURL());
-//		}
-//		
-//		itemReviewDTO.setReviewer(principalDetails.getMember().getNickname());
-//		itemReviewService.register(itemReviewDTO);
-//		
-//		return new ResponseEntity<>(itemReviewDTO.getIno(), HttpStatus.OK);
-		
-		//1차시도 : 두개의 객체를 각각의 Json타입 변수로 들고와 저장한다.(근데 가져올 타입을 몰라서 Model을 넣어봄)
-//		ItemReviewDTO itemReviewDTO = (ItemReviewDTO) model.getAttribute("review");
-//		log.info("register controller dto : " + model.getAttribute("review"));
-//		log.info("register image dto : " + model.getAttribute("image"));
-//		return new ResponseEntity<>(itemReviewDTO.getIno(), HttpStatus.OK);
-		
-		//2차시도 : ObjectNode를 통해 가져온 값들을 매핑한다.
+		//RequestBody는 단일개체만 가능, ObjectNode로 값 가져옴(ItemReviewDTO, ImageURL)
 		log.info(obj);
+		//ObjectNode의 값을 타입변경해줄 mapper
 		ObjectMapper mapper = new ObjectMapper();
+		//review라는 이름으로 넘어온 ItemReviewDTO의 JSON data를 ItemReviewDTO로 받아서 넘겨줌
 		ItemReviewDTO itemReviewDTO = mapper.treeToValue(obj.get("review"), ItemReviewDTO.class);
 		log.info("itemReview : " + itemReviewDTO);
-//		log.info("imageDTO : " + mapper.treeToValue(obj.get("image"), UploadResultDTO[].class));
-//		List<UploadResultDTO> imageDTO = Arrays.asList(mapper.(obj.get("image"), UploadResultDTO[].class));
 		
+		//ImageURL이 여러개이면 List타입으로 받아야 하기 때문에 reader 선언
 		ObjectReader reader = mapper.readerFor(new TypeReference<List<String>>() {});
-		log.info("여긴 됨");
 		
+		//readValue로 값 읽어서 List에 저장
 		List<String> imageURLList = reader.readValue(obj.get("image"));
-		log.info("여긴 안됨");
-//		
-//		for(UploadResultDTO imageDTO : imageDTOList) {
-//			itemReviewDTO.setCapture(imageDTO.getImageURL());
-//			log.info("포문 안에 있음");
-//		}
 		for(String imageURL : imageURLList) {
 			itemReviewDTO.setCapture(imageURL);
-			log.info("포문 안에 있음");			
 		}
-		
-		log.info("아님 여기?");
 		
 		itemReviewDTO.setReviewer(principalDetails.getMember().getNickname());
 		itemReviewService.register(itemReviewDTO);
