@@ -16,7 +16,7 @@ public class CampReviewDTO {
 
 	private int crno;
 
-	private Camp camp;
+	private Long cno;
 	private String capture;
 
 	private String content;

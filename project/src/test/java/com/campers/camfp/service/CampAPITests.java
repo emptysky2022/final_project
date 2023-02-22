@@ -88,7 +88,7 @@ public class CampAPITests {
 					}
 					System.out.println(campType);
 					CampDTO campDTO = CampDTO.builder()
-									.member(Member.builder().mno(1L).build())
+									.cno(1L)
 									.name(camp.getString("facltNm"))
 									.thumbnail(camp.getString("firstImageUrl"))
 									.country(camp.getString("doNm"))
