@@ -708,6 +708,84 @@ align-items: center;
   
 }
 
+/*댓글 등록*/
+
+.commentbox{
+  display: flex;
+  flex-direction: column;
+}
+
+.commenttextbox{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
+.commenttextregister{
+  
+}
+
+
+
+/*댓글 입력창이며, 댓글 등록 버튼 누르면 display:none을 display:flex로 바꾸는 js 필요*/
+.ct_reg_btnbox{
+  display: flex;
+  flex-direction: row;
+   /* display: none; */
+}
+
+.ct_reg{
+  flex-basis: 80%;
+  resize: none;
+}
+
+
+
+/*댓글 등록 버튼*/
+.ct_btn{
+ flex-basis: 20%;
+}
+
+.commentwriterbox{
+  margin: 1rem 0 1rem 2rem;
+}
+
+.commentdetailbox{
+   margin: 0 0 1rem 1rem;
+}
+/**/
+
+.ct_wr_debox{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+.commentwriterbox{
+  display: flex;
+  flex-direction: row;
+}
+
+
+
+/*댓글 삭제 버튼*/
+
+
+
+.commentdeletebox{
+  display: flex;
+    flex-direction: row;
+    flex-basis: 10%;
+    height: 100%;
+    align-items: center;
+}
+
+.commentdelete{
+  flex-basis: 50%;
+}
+
 
 /*게시글 수정하기*/
 

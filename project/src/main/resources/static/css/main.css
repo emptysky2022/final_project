@@ -2,6 +2,9 @@
 
 
 :root {
+    --ti-cursor-margin-left:0.3;
+    --ti-cursor-color:var(--color-a);
+
     --font-size-lg: clamp(1rem, 4vw, 3.5rem);
     --font-size-md: clamp(1.5rem, 3vw, 2.5rem);
     --font-size-sm: clamp(1rem, 2vw, 1.5rem);
@@ -391,68 +394,66 @@ main .navimageadd .ni_btnbox .ni_btn{
 /*********메인 슬라이드이미지*********/
 
 .swiper {
-    width: 100%;
+    width: 80vw;
     height: 100%;
-    position: relative;
+    background: #000;
   }
-  
 
   .swiper-slide {
-    text-align: center;
     font-size: 18px;
-    background: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
+    color: #fff;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 40px 60px;
+  
   }
 
-.swiper-wrapper .swiper-slide img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: flex;
-    flex-direction: row;
-  }
-
-  /* .autoplay-progress {
-    position: absolute;
-    right: 16px;
-    bottom: 16px;
-    z-index: 10;
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: var(--swiper-theme-color);
-  }
-
-  .autoplay-progress svg {
-    --progress: 0;
+  .parallax-bg {
     position: absolute;
     left: 0;
-    top: 0px;
-    z-index: 10;
-    width: 100%;
+    top: 0;
+    width: 130% !important;
     height: 100%;
-    stroke-width: 4px;
-    stroke: var(--swiper-theme-color);
-    fill: none;
-    stroke-dashoffset: calc(125.6 * (1 - var(--progress)));
-    stroke-dasharray: 125.6;
-    transform: rotate(-90deg);
-  } */
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: center;
+    max-width: 130%;
+    opacity: 0.3;
+  
+ 
+  }
+
+  .swiper-slide .title {
+    font-size: var(--font-size-md);
+    font-weight: 300;
+    font-weight: bold;
+  }
+
+  .swiper-slide .subtitle {
+    font-size: 21px;
+  }
+
+  .swiper-slide .text {
+    font-size: var(--font-size-sm);
+    max-width: 400px;
+    line-height: 1.3;
+  }
+
+
+/*섹션 나누기3*/
+
+.sectext3{
+    min-height: 10vh;
+}
+
+
 
 /*********메인 바디***********/
 main .body {
     display: flex;
+    justify-content: center;
    }
-    /* display: grid;
-    grid-template-columns: 1fr 8fr 1fr;
-    grid-template-rows: auto; */
-
+ 
 
 /*메인 바디 왼쪽*/
 main .body .aside_l{
@@ -486,47 +487,64 @@ main .body .body_center{
 
 
 /******메인 판매물품박스*******/
-main .body .body_center .cp {
-    display: grid;
+.body_center .cp {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+
+    min-height: 50vh;
+    align-items: center;
+}
+
+
+
+.body_center .cp .cp_textbox {
+    display: flex;
     flex-direction: column;
+    height: 100%;
+    width: 100%;
+    flex-basis: 45%;
+    align-items: flex-start;
     justify-content: center;
-    text-align: center;
-    /* grid-template-rows: repeat(2,1fr); */
-    grid-template-columns: repeat(2, 1fr);
-    background-color: var(--color-b);
 }
 
-main .body .body_center .cp .cp_box{ 
-   display: grid;  
-}
-
-.cp .cp_link{
+.body_center .cp .cp_textbox .cp_link{
+    padding: 10px 1.5rem;
+    
     background-color: var(--color-g);
 }
 
+
+.body_center .cp .cp_imgbox { 
+    height: 100%;
+    width: 100%;
+    flex-basis: 45%;
+} 
+
+.body_center .cp .cp_imgbox .cp_img{ 
+   display: flex; 
+   height: 100%;
+   width: 100%;
+}
+
+
+
+
 @media screen and (max-width:768px) {
-    main .body .body_center .cp .cp_box{ 
-        display: grid;
-        padding: 1rem;
-  
-        grid-template-columns: repeat(2, 1fr);
+    .body_center .cp {
+        display: flex;
+        flex-direction: column;
        
-        
-        
+    }
+    .body_center .cp .cp_textbox {
+       order:2
+    }
+    .body_center .cp .cp_imgbox {
+        order:1
      }
 }
 
-@media screen and (max-width:480px) {
-    main .body .body_center .cp .cp_box{ 
-        display: grid;
-        padding: 1rem;
- 
-        grid-template-columns: repeat(1, 1fr);
-       
-        
-        
-     }
-}
 
 
 @media screen and (max-height:480px){
@@ -540,127 +558,75 @@ main .body .body_center .cp .cp_box{
 }
 
 }
-/******메인 후기******/
-main .body .body_center .review{
+
+/*섹션 나누기2*/
+.sectext2{
+    min-height: 10vh;
+}
+
+
+/*캠핑장 바로가기*/
+body .body_center .cg{
     display: flex;
-    flex-direction: column;
+    min-height: 50vh;
+    justify-content: space-between;
+}
+
+body .body_center .cg .cg_textbox{
+    flex-basis: 45%;
+    height: 100%;
     justify-content: center;
-    text-align: center;
-
-    align-items: center;
-}
-
-main .body .body_center .review .rv{
-
+    align-items: end;
     display: flex;
     flex-direction: column;
-    width: 80%;
-    
 }
 
-main .body .body_center .review .rv .rv_l{
-
-    display: flex;
-    grid-gap: 1rem;
-    grid-template-columns: repeat(2,1fr);
-    grid-auto-rows: minmax(10rem,auto);
-    align-items:center;
-    margin: 3rem 3rem 0 0;
+body .body_center .cg .cg_textbox .campregisterbox{
+    background-color: var(--color-d);
 }
 
-main .body .body_center .review .rv .rv_r{
+body .body_center .cg .cg_textbox .cg_link{
+    padding: 10px 1.5rem;
 
-    display: flex;
-    grid-gap: 1rem;
-    grid-template-columns: repeat(2,1fr);
-    grid-auto-rows: minmax(10rem,auto);
-    align-items:center;
-    flex-direction: row-reverse;
-    margin: 3rem 0 0  3rem ;
-    
-}
-
-
-
-    
-    @media screen and (max-width:768px) {
-        main .body .body_center .review{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            text-align: center;
- 
-            align-items: center;
-        }
-        
-        main .body .body_center .review .rv{
- 
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            
-        }
-        
-        main .body .body_center .review .rv .rv_l{
-    
-            display: flex;
-            grid-gap: 1rem;
-            grid-template-columns: repeat(2,1fr);
-            grid-auto-rows: minmax(10rem,auto);
-            align-items:center;
-            flex-direction: column;
-            margin: 0;
-            
-        }
-        
-        main .body .body_center .review .rv .rv_r{
-
-            display: flex;
-            grid-gap: 1rem;
-            grid-template-columns: repeat(2,1fr);
-            grid-auto-rows: minmax(10rem,auto);
-            align-items:center;
-            flex-direction: column;
-            margin: 0;
-            
-        }
-   
-}
-
-
-/******캠핑 평가 및 등록******/
-main .body .body_center .cger{
-
-    display: flex;
+    background-color: var(--color-g);
     justify-content: center;
-    
-}
-
-main .body .body_center .cger .cg{
     display: flex;
+}
 
-    text-align: center;
-    flex-direction: row;
-    justify-content: space-around;
+
+
+body .body_center .cg .cg_imgbox{
+    flex-basis: 45%;
+    
     
 }
 
-main .body .body_center .cger .cg .cg_evaluate{
-    display: flex;
-
-    margin: 1rem;
-    flex-direction: column;
-    justify-content: space-between; 
-    width: 40%;
-}
-
-main .body .body_center .cger .cg .cg_evaluate .imgbox{
-   display: flex;
-
-   
-    height: auto;
+body .body_center .cg .cg_imgbox .cp_link img{
+    height: 100%;
     
 }
+
+@media screen and (max-width:768px) {
+    .body_center .cg {
+        display: flex;
+        flex-direction: column;
+       
+    }
+
+  
+
+    .body_center .cg .cg_comment{
+        text-align: end;
+       
+    }
+}
+
+/*섹션나누기3*/
+.sectext3{
+    min-height: 10vh;
+}
+
+
 
 main .body .body_center .cger .cg .cg_reserve{
     display: flex;
@@ -680,35 +646,7 @@ main .body .body_center .cger .cg .cg_reserve .imgbox{
 }
 
 @media screen and (max-width:768px) {
-    main .body .body_center .cger{
    
-        display: flex;
-        justify-content: center;
-        
-    }
-    
-    main .body .body_center .cger .cg{
-        display: flex;
-        text-align: center;
-        flex-direction: column;
-        
-        
-    }
-    
-    main .body .body_center .cger .cg .cg_evaluate{
-        display: flex;
-        margin: 0;
-        flex-direction: column;
-        justify-content: space-between; 
-        width: 100%;
-        
-    }
-    
-    main .body .body_center .cger .cg .cg_evaluate .imgbox{
-       display: flex;
-        height: auto;
-        margin: 0;
-    }
     
     main .body .body_center .cger .cg .cg_reserve{
         display: flex;
@@ -732,6 +670,38 @@ main .body .body_center .cger .cg .cg_reserve .imgbox{
 
 .footer{
     background-color: black;
-    color: aliceblue;
+    color: var(--color-f);
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+.footer .footerbox{
+    display: flex;
+}
+
+
+@media screen and (max-width:480px){
+    .footer .footerbox{
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+
+
+/*스크롤 내릴때 효과주는 것*/
+[data-scroll] {
+    transition: all 1.5s cubic-bezier(0.42, 0.0, 0.58, 1.0);
+    opacity: 0;
+    will-change: transform, scale, opacity;
+    transform: translateY(6rem) scale(0.93);
+  }
+  [data-scroll="in"] {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  [data-scroll="out"] {
+    opacity: 0;
+  }

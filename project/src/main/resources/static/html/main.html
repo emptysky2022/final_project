@@ -15,6 +15,15 @@
         rel="stylesheet">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!--typeit(페이지에 글씨입력되는것처럼 보이는 것)-->
+    <script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js" loop="true"></script>
+
+    <!--scrollOut(스크롤 내릴때 효과주는것)-->
+    <script src="https://unpkg.com/scroll-out/dist/scroll-out.min.js"></script>
+
+    <!--스크롤 내릴때 요소마다 다르게 주는 스크립트-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rellax/1.12.1/rellax.min.js"></script>
+
     <!--swiper-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <!-- Swiper JS -->
@@ -89,217 +98,163 @@
 
         <!--====메인====-->
         <main>
-            <div class="navimageadd">
+            <div class="navimageadd" >
                 <div class="ni_textbox">
-                    <div class="ni_text">캠프하는 사람들<p></p> Campers 입니다 </div>
+                    <div class="ni_text">캠프하는 사람들<p></p> Campers와 함께  </div>
                 </div>
                 <div class="ni_btnbox">
                     <a class="ni_btn" href="">캠핑장 보러 가기</a>
                 </div>
             </div>
 
+
+            <!--섹션나누기1-->
             <div class="sectext1">
                 <div class="iconbox">
                     <img class="icon" src="../img/backicon1.svg" alt="">
-                  
+
                 </div>
             </div>
 
-            <!----메인 슬라이드---->
-            <!-- <div class="slide box1">
-                 <div class="swiper mySwiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <img src="../img/slide1.jpg" alt="">
-                        </div>
-                        <div class="swiper-slide">Slide 2</div>
-                        <div class="swiper-slide">Slide 3</div>
-                    </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-pagination"></div>  -->
-            <!-- <div class="autoplay-progress">
-                      <svg viewBox="0 0 48 48">
-                        <circle cx="24" cy="24" r="20"></circle>
-                      </svg>
-                      <span></span>
-                    </div> -->
-            <!-- </div>
-            </div> -->
+
 
 
 
             <!----메인 바디---->
             <div class="body box1">
 
-                <!--메인 바디의 사이드 빈 공간왼쪽-->
-                <div class="aside_l box2">aside_l</div>
-
-
-
                 <!--메인 바디 가운데 공간-->
                 <div class="body_center box2">
 
                     <!----------------캠핑 판매물품 박스------------->
                     <div class="cp box3 ">
-                        <h1 class="cp_tilte item">Camper Product<p class="cp_comment item2">많은 제품을 확인하여 보세요. <a class="cp_link" href="">캠핑 물품 구매하기</a></p><br></h1>
-
+                        <div class="cp_textbox">
                         
+                            <h1 class="cp_title item ">캠핑 용품</h1>
+                            <p class="cp_comment item2"> 베스트 인기 상품 Lorem ipsum dolor sit amet consectetur adipisicing
+                                elit. Unde molestiae, minima iure provident culpa, soluta expedita autem numquam sequi
+                                excepturi nam cupiditate architecto earum veniam blanditiis voluptatum eveniet quisquam
+                                quos.</p>
+                            <a class="cp_link" href="" >캠핑 물품 구매</a><br>
+                        </div>
 
-                        <!--캠핑 판매 목록 -->
-                        <div class="cp_box box4">
-                            <div class="cp_pakege1 box5">
-                                <a class="item" href="">
-                                    <img class="cp_img item" src="../img/happy3.jpg">
-                                </a>
-                                <p class="cp_name item_2">화로</p>
-                            </div>
+
+                        <div class="cp_imgbox box5">
+                            <a class="cp_link item" href="">
+                                <img class="cp_img item" src="../img/family4.jpg">
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <!--섹션나누기2-->
+                    <div class="sectext2">
+                        <div class="iconbox">
+
                         </div>
                     </div>
+
+                    <!--캠핑장 바로가기-->
+                    <div class="cg box3">
+                        <div class="cg_imgbox" >
+                            <a class="cp_link" href="">
+                                <img src="../img/background4.jpg" alt="">
+                            </a>
+                        </div>
+
+                        <div class="cg_textbox">
+                            <!---------------캠핑장 등록-------------------->
+                            <div class="campregisterbox">
+                                <a class="campregister" href="" >캠핑장 등록하러 가기</a>
+                            </div>
+                            <h1 class="cg_title scroll" > 캠핑장</h1>
+
+                            <p class="cg_comment">
+                                베스트 캠핑 장소 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit iste et
+                                ullam veritatis qui odit optio, dicta nihil, quae illum commodi repellat aperiam nisi
+                                laboriosam nostrum quaerat magnam beatae eius.
+                            </p>
+                            <a class="cg_link" href="">캠핑장 예약</a>
+
+                        </div>
+
+                    </div>
+
+
+                    <!--섹션 나누기3-->
+                    <div class="sectext3"></div>
+
                     <!-------------------후기--------------------->
-                    <div class="review box3">
-                        <div class="slideup item box4">▲</div>
-                        <div class="rv box4">
-                            <!--후기 목록-->
-                            <div class="rv_l box5 ">
-                                <div class="box_l box6">
-                                    <div class="imgbox box7">
-                                        <a class="imglink box8" href="">
-                                            <img class="rv_img item" src="../img/happy4.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="rv_star box7_2">
-                                        <p class="item">★★★★★</p>
+                    <!-- Swiper -->
+
+                    <div class="swiperlocation">
+                        <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
+                            class="swiper mySwiper">
+                            <div class="parallax-bg" style="
+          background-image: url(../img/background2.jpg);
+        " data-swiper-parallax="-23%"></div>
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="title" data-swiper-parallax="-300"> 캠핑장 이름</div>
+                                    <div class="subtitle" data-swiper-parallax="-200">별점</div>
+                                    <div class="text" data-swiper-parallax="-100">
+                                        <p>
+                                            대충 리뷰 적힌 내용
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+                                            dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla
+                                            laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
+                                            Integer laoreet magna nec elit suscipit, ac laoreet nibh euismod.
+                                            Aliquam hendrerit lorem at elit facilisis rutrum. Ut at
+
+                                        </p>
                                     </div>
                                 </div>
-                                <div class="box_r box6">
-                                    <div class="comment box7">
-                                        <h2 class="write item">user1</h2>
-                                        <p class="content item_2">Lorem ipsum dolor, sit amet consectetur adipisicing
-                                            elit. Repellat, debitis placeat? Maiores quia, sapiente praesentium ratione,
-                                            similique reprehenderit aliquid quae nihil voluptatem laboriosam aliquam
-                                            assumenda consequuntur doloremque voluptas, autem explicabo!</p>
+                                <div class="swiper-slide">
+                                    <div class="title" data-swiper-parallax="-300">Slide 2</div>
+                                    <div class="subtitle" data-swiper-parallax="-200">Subtitle</div>
+                                    <div class="text" data-swiper-parallax="-100">
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+                                            dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla
+                                            laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
+                                            Integer laoreet magna nec elit suscipit, ac laoreet nibh euismod.
+                                            Aliquam hendrerit lorem at elit facilisis rutrum. Ut at
+                                            ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec,
+                                            tincidunt ut libero. Aenean feugiat non eros quis feugiat.
+                                        </p>
                                     </div>
-                                    <div class="rv_like box7">
-                                        <i class="fa-sharp fa-solid fa-thumbs-up item"></i>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="title" data-swiper-parallax="-300">Slide 3</div>
+                                    <div class="subtitle" data-swiper-parallax="-200">Subtitle</div>
+                                    <div class="text" data-swiper-parallax="-100">
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+                                            dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla
+                                            laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
+                                            Integer laoreet magna nec elit suscipit, ac laoreet nibh euismod.
+                                            Aliquam hendrerit lorem at elit facilisis rutrum. Ut at
+                                            ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec,
+                                            tincidunt ut libero. Aenean feugiat non eros quis feugiat.
+                                        </p>
                                     </div>
                                 </div>
                             </div>
-
-
-                            <div class="rv_r box5 ">
-                                <div class="box_l box6">
-                                    <div class="imgbox box7">
-                                        <a class="imglink box8" href="">
-                                            <img class="rv_img item" src="../img/happy4.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="rv_star box7_2">
-                                        <p class="item">★★★★★</p>
-                                    </div>
-                                </div>
-                                <div class="box_r box6">
-                                    <div class="comment box7">
-                                        <h2 class="write item">user2</h2>
-                                        <p class="content item_2">Lorem ipsum dolor, sit amet consectetur adipisicing
-                                            elit. Repellat, debitis placeat? Maiores quia, sapiente praesentium ratione,
-                                            similique reprehenderit aliquid quae nihil voluptatem laboriosam aliquam
-                                            assumenda consequuntur doloremque voluptas, autem explicabo!</p>
-                                    </div>
-                                    <div class="rv_like box7">
-                                        <i class="fa-sharp fa-solid fa-thumbs-up item"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="rv_l box5 ">
-                                <div class="box_l box6">
-                                    <div class="imgbox box7">
-                                        <a class="imglink box8" href="">
-                                            <img class="rv_img item" src="../img/happy4.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="rv_star box7_2">
-                                        <p class="item">★★★★★</p>
-                                    </div>
-                                </div>
-                                <div class="box_r box6">
-                                    <div class="comment box7">
-                                        <h2 class="write item">user3</h2>
-                                        <p class="content item_2">Lorem ipsum dolor, sit amet consectetur adipisicing
-                                            elit. Repellat, debitis placeat? Maiores quia, sapiente praesentium ratione,
-                                            similique reprehenderit aliquid quae nihil voluptatem laboriosam aliquam
-                                            assumenda consequuntur doloremque voluptas, autem explicabo!</p>
-                                    </div>
-                                    <div class="rv_like box7">
-                                        <i class="fa-sharp fa-solid fa-thumbs-up item"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="rv_r box5 ">
-                                <div class="box_l box6">
-                                    <div class="imgbox box7">
-                                        <a class="imglink box8" href="">
-                                            <img class="rv_img item" src="../img/happy4.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="rv_star box7_2">
-                                        <p class="item">★★★★★</p>
-                                    </div>
-                                </div>
-                                <div class="box_r box6">
-                                    <div class="comment box7">
-                                        <h2 class="write item">user4</h2>
-                                        <p class="content item_2">Lorem ipsum dolor, sit amet consectetur adipisicing
-                                            elit. Repellat, debitis placeat? Maiores quia, sapiente praesentium ratione,
-                                            similique reprehenderit aliquid quae nihil voluptatem laboriosam aliquam
-                                            assumenda consequuntur doloremque voluptas, autem explicabo!</p>
-                                    </div>
-                                    <div class="rv_like box7">
-                                        <i class="fa-sharp fa-solid fa-thumbs-up item"></i>
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-pagination"></div>
                         </div>
-
-                        <div class="checkdown box4">▼</div>
                     </div>
 
-                    <!---------------캠핑평가 및 등록-------------------->
-                    <div class="cger box3">
-                        <!--캠핑장 박스-->
-                        <div class="cg box4">
-                            <!--캠핑장 평가-->
-                            <div class="cg_evaluate box5">
-                                <div class="imgbox box6">
-                                    <a class="imglink box7" href="">
-                                        <img class="cg_img item" src="../img/happy8.jpg">
-                                    </a>
-                                </div>
-                                <h3 class="title item">캠핑장을 평가하세요</h3>
-                                <h4 class="content item_2">캠핑장을 평가함으로 쿠폰이 생성됩니다</h4>
-                            </div>
-                            <!-- 캠핑장 등록-->
-                            <div class="cg_reserve box5">
-                                <div class="imgbox box6">
-                                    <a class="imglink box7" href="">
-                                        <img class="cg_img item" src="../img/happy8.jpg">
-                                    </a>
-                                </div>
-                                <h3 class="title item">캠핑장을 등록하세요</h3>
-                                <h4 class="content item_2">캠핑장을 등록함으로 더 많은 예약 가능합니다</h4>
-                            </div>
-                        </div>
-
+                    <div class="sectext3">
+                        <a class="cp_link" href="">
+                        </a>
                     </div>
+
+
+
 
                 </div>
-                <!--메인 바디의 사이드 빈 공간 오른쪽-->
-                <div class="aside_r box2">aside_r</div>
-
 
 
 
@@ -309,7 +264,23 @@
         <!--====푸터====-->
         <footer>
             <div class="footer box1">
-                adasdasd
+                <div class="logobox">
+                    <div class="logo">Campers</div>
+                </div>
+                <div class="footerbox">
+                    <span>|</span>
+                    <a class="login">로그인</a>    
+                    <span>|</span>
+                    <a class="register">회원가입</a>
+                    <span>|</span>
+                    <div class="phone">010-1234-5678</div>
+                    <span>|</span>
+                    <div class="email">abc123@naver.com</div>
+                    <span>|</span>
+                </div>
+                <div class="copyright">
+                    <div class="">Copyright © 2023 www.campers.com. All rights reserved.</div>
+                </div>
             </div>
         </footer>
 
