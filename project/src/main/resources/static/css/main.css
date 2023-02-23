@@ -102,13 +102,13 @@ a {
 }
 
 a:visited {
-    color : var(--color-g)
+    color : var(--color-b)
   }
   a:hover {
     color : var(--color-d)
   }
   a:active {
-    color : var(--color-d)
+    color : var(--color-e)
   }
 
 img{
@@ -774,64 +774,70 @@ main .body .body_center .cger .cg .cg_reserve .imgbox{
   }
 
 
+  /*푸터*/
 
-
-.footer{
-    background-color: black;
-    color: var(--color-f);
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    min-width: 12vh;
-}
-
-.footer .logobox{
-   flex-basis: 30%;
-}
-
-.footer .logobox .logo{
+footer {
+    background-color: #f8f8f8;
+    color: #333;
+    font-size: 14px;
+    padding: 20px;
     display: flex;
     justify-content: center;
- }
- 
-
-
-.footer .footerbox{
+    align-items: center;
+  }
+  
+  .footerbox {
     display: flex;
-    min-height: 12vh;
+    align-items: center;
+  }
+  
+  .logobox {
+    margin-right: 20px;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .ph_emboxbox {
+    margin-right: 20px;
+  }
+  
+  .phone, .email {
+    margin-bottom: 10px;
+  }
+  
+  .log_regbox {
+    display: flex;
+    align-items: center;
+  }
+  
+  .log_regbox a {
+    margin-left: 10px;
+  }
+  
+  .log_regbox span {
+    margin: 0 5px;
+  }
 
-}
 
 
-
-.footer .footerbox a, div, span{
-    color: var(--color-a);
+@media screen and (max-width:768px){
+    .footerbox{
+        flex-direction: column;
+    }
 }
 
 
 
 
 @media screen and (max-width:480px){
-    .footer .footerbox{
+    .footerbox .ph_emboxbox{
         display: flex;
         flex-wrap: wrap;
     }
-}
+} 
 
 
 
-/*스크롤 내릴때 효과주는 것*/
-[data-scroll] {
-    transition: all 1.5s cubic-bezier(0.42, 0.0, 0.58, 1.0);
-    opacity: 0;
-    will-change: transform, scale, opacity;
-    transform: translateY(6rem) scale(0.93);
-  }
-  [data-scroll="in"] {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-  [data-scroll="out"] {
-    opacity: 0;
-  }
