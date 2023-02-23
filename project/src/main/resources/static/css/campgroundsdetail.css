@@ -243,8 +243,15 @@ main .body .body_center {
 }
 
 .sec1 .campgroundimgbox {
-	width: 60vh;
+	min-width: 10rem;
+    width: 80%;
 }
+
+.sec1 .campgroundimg {
+	width: 100%;
+    display: flex;
+}
+
 
 .sec1 .titlebox {
     display: flex;
@@ -254,6 +261,22 @@ main .body .body_center {
 
 .sec1 .cg_explainbox{
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-width: 100px;
+    width: 40vw;
+}
+
+.sec1 .cg_explain{
+    width: 100%;
+}
+
+
+.sec1 .cg_heart{
+	width: 50px;
+	display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .sec2 {

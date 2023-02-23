@@ -112,4 +112,24 @@ public class UploadController {
 		}
 		return result;
 	}
+	
+	@PostMapping("/removeFile")
+	public ResponseEntity<Boolean> removeFile(String[] fileNames){
+		boolean result = true;
+		try {
+			for(String fileName : fileNames) {
+				
+				fileName = URLDecoder.decode(fileName, "UTF-8");
+				File file = new File(fileName);
+				result = file.delete();
+				
+				if(!result) return new ResponseEntity<Boolean>(false, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+			return new ResponseEntity<Boolean>(result, HttpStatus.OK);
+			
+		}catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return new ResponseEntity<Boolean>(false, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 }

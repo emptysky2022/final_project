@@ -8,11 +8,24 @@ $(function(){
 		rating: grade,
 		change: function(e, value){
 			if(value){
+				console.log(value)
 				grade=value
 			}
 		}
 	});
 	$("#capture").on("change", function(){
+		$.ajax({
+			url: '/removeFile',
+			data: {fileNames: image},
+			dataType: 'text',
+			type: 'post', 
+			success: function(result){
+				image = [];
+			},
+			error: function(err){
+				alert(err);
+			}
+		})
 		console.log("capture change event");
 		// 이미지 업로드 클릭시 파일 받아서 uploadAjax controller로 이동
 		let formData = new FormData();
@@ -93,6 +106,7 @@ $(function(){
 })
 function modalClose(){
     $("#popup").fadeOut(); //페이드아웃 효과
+    
 }
 
 function checkExtension(fileName, fileSize){
@@ -197,18 +211,19 @@ function clickReviewHeart(irno){
 async function modify(irno){
 	$("#modify").show();
 	$("#confirm").hide(); 
-	$.ajax({
-		url: "/review/" + irno,
-		success: function(result){
-			console.log(result);
-			$("#select_star").starrr('setRating', result.star);
-			$("#content").html(result.content);
-			$("#capture").html(result.capture);
-		}
-	})
-	let popup = await $("#popup");
+	try{
+		
+	const result = await $.get("/review/"+irno);
+	console.log(result);
+	image = result.capture;
+	$("#content").val(result.content);
+	$("#select_star").starrr('setRating', result.star);		
+	} catch(e){
+		console.error("리뷰 수정 데이터 오류", e);
+		alert(e);
+	}
 	
-	popup.css('display','flex').hide().fadeIn();
+	$("#popup").css('display','flex').hide().fadeIn();
 	$("#modify").click(function(){
         modalClose(); //모달 닫기 함수 호출
         //수정 이벤트 처리
@@ -224,7 +239,7 @@ async function modify(irno){
 		console.log(data);
 		$.ajax({
 			url: "/review/modify",
-			method: "POST",
+			method: "PUT",
 			contentType: "application/json",
 			data: JSON.stringify(data),
 			success: function(ino){
@@ -236,5 +251,16 @@ async function modify(irno){
 		})       
         
     });
+}
+
+function remove(irno){
+	$.ajax({
+		url: "/review/" + irno,
+		method: "delete",
+		success: function(result){
+			alert("댓글을 삭제하였습니다.");
+			loadJsonData(ino);
+		}
+	})
 }
 

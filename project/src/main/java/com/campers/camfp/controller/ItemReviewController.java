@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -92,7 +93,7 @@ public class ItemReviewController {
 		return new ResponseEntity<>(itemReviewDTO.getIno(), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	@RequestMapping(value = "/modify", method = RequestMethod.PUT)
 	public ResponseEntity<Long> modifyReviewOfItem(@RequestBody ObjectNode obj, @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception{
 		//RequestBody는 단일개체만 가능, ObjectNode로 값 가져옴(ItemReviewDTO, ImageURL)
 		log.info(obj);
@@ -117,6 +118,13 @@ public class ItemReviewController {
 		return new ResponseEntity<>(ino, HttpStatus.OK);
 	}
 	
-	
+	@DeleteMapping("/{irno}")
+	public ResponseEntity<String> deleteReviewOfItem(@PathVariable Long irno){
+		log.info("delete mapping : " + irno);
+		
+		itemReviewService.remove(irno);
+		
+		return new ResponseEntity<>("리뷰 삭제 성공", HttpStatus.OK);
+	}
 	
 }
