@@ -539,6 +539,16 @@ main .body .body_center {
     background-color:rgb(54, 54, 54);/*배경색*/
     box-shadow: 5px 10px 10px 1px rgba(0,0,0,.3); /*팝업이 허공에 떠있는 듯한 느낌을 주기 위한 그림자 효과.*/
   }
+  
+    /*모달의 몸체*/
+  .RVpopup{
+    width:100%;
+    max-width:600px;          /*팝업의 최대 크기지정*/
+    border-radius:10px;     
+    overflow:hidden;          /*각을 없앴을 때 내부 영역이 튀어나오는걸 방지*/
+    background-color:rgb(54, 54, 54);/*배경색*/
+    box-shadow: 5px 10px 10px 1px rgba(0,0,0,.3); /*팝업이 허공에 떠있는 듯한 느낌을 주기 위한 그림자 효과.*/
+  }
 
   /*모달의 헤더(로고) 부분*/
   .popup-head{
@@ -699,6 +709,21 @@ main .body .body_center {
 }
 
 /* TEST */
+
+.start-day{
+	width: 50%;
+	text-align : center;
+	float: left;
+	line-height: 20px;
+}
+
+.end-day{
+	width: 50%;
+	text-align : center;
+	float: right;
+	line-height: 20px;
+}
+
 #calendar {
   width: 300px;
   margin: 20px auto;

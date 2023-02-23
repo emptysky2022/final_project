@@ -17,7 +17,7 @@ $(document).ready(function() {
 
 	$("#modal-open").click(function() {
 		//팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
-		$("#popup").css('display', 'flex').hide().fadeIn();
+		$("#RVpopup").css('display', 'flex').hide().fadeIn();
 
 		// 로드시 숫자를 -> ☆ 로 바꿈 
 		$("#sync_star").html(getStar($("#sync_star").html()));
@@ -169,7 +169,7 @@ $(document).ready(function() {
 				str += "<div class='campgroundsbox box'  onclick='location.href=\"/camp/campgroundsdetail?cno=" + camp.cno + "\"''>";
 				str += "<input type = 'hidden' name='cno' th:value ='" + camp.cno + "''>";
 				str += "<div class='cg_imgbox box5'>";
-				str += "<img class='cg_img item' th:src=" + camp.thumbnail + ">";
+				str += "<img class='cg_img item' src=" + camp.thumbnail + ">";
 				str += "</div>";
 				str += "<div class='cg_rightbox box4'>"
 				str += "<div class='title item'>" + camp.name + "</div>";
