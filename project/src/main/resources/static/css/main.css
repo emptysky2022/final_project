@@ -101,7 +101,15 @@ a {
     color: #333;
 }
 
-
+a:visited {
+    color : var(--color-g)
+  }
+  a:hover {
+    color : var(--color-d)
+  }
+  a:active {
+    color : var(--color-d)
+  }
 
 img{
     max-width: 100%;
@@ -170,7 +178,7 @@ footer{
 
 .header .header_logomenu {
     display: flex;
-    align-items: end;
+    align-items: baseline;
     justify-content: center;
     flex-basis: 15%;
 }  
@@ -178,8 +186,9 @@ footer{
 
 
 .header .header_logo img {
-   width: 6vh;
-   filter: invert(100%) sepia(0%) saturate(7495%) hue-rotate(222deg) brightness(98%) contrast(100%);
+    width: 7vw;
+    height: 10vh;
+ 
 	
 
    
@@ -198,6 +207,13 @@ footer{
     display:flex; 
     align-items: center;
     justify-content: center;
+    color: var(--color-a);
+}
+
+.header .header_menu li a{
+
+   
+    color: var(--color-a);
 }
 
 .header .header_menu .menu1, .menu2, .menu3, .menu4  {
@@ -229,10 +245,7 @@ footer{
 
 .header .header_mypage .logout{
     display:none;
-    
-    
     color: var(--color-a);
- 
     border-radius: 10px;
     font-size:var(--font-size-vm);
     font-weight: bold;
@@ -250,6 +263,7 @@ footer{
 .header .header_mypage .signuplogbox a{
   font-size: var(--font-size-vm);
   font-weight: normal;
+  color: var(--color-a);
 }
 
 
@@ -767,23 +781,36 @@ main .body .body_center .cger .cg .cg_reserve .imgbox{
     color: var(--color-f);
     width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    min-width: 12vh;
 }
+
+.footer .logobox{
+   flex-basis: 30%;
+}
+
+.footer .logobox .logo{
+    display: flex;
+    justify-content: center;
+ }
+ 
+
 
 .footer .footerbox{
     display: flex;
+    min-height: 12vh;
+
 }
 
-a:not(.footerbox a){
-    color:#333;
-    font-size: var(--font-size-sm);
+
+
+.footer .footerbox a, div, span{
+    color: var(--color-a);
 }
 
-a { color: #333; }
-a:visited:not(){ color: #333; }
-a:hover { color: var(--color-a); }
-a:active { color: var(--color-a); }
+
+
 
 @media screen and (max-width:480px){
     .footer .footerbox{
