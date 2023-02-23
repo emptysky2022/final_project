@@ -542,6 +542,13 @@ main .body .body_center{
     }
 }
 
+@media screen and (max-width:1024px){
+    .sec3 .campmapbox .map{
+    	width:  90%;
+    	height: 90%;
+    }
+}
+
 .footer{
     border: 3px solid red;
     background-color: black;
@@ -586,3 +593,6 @@ button:active {
   transform: translateY(1px);
 }
 
+.sec2 .map{
+	max-width: none;
+}

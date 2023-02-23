@@ -7,10 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>무슨페이지인가요?</title>
 
+    
     <!--css 연결-->
     <link rel="stylesheet" type="text/css" href="../css/campgroundsdetail.css">
+    <link th:href="@{../css/starrr.css}" rel="stylesheet">
     <!--js연결-->
     <script type="text/javascript" src="/js/main.js" defer></script>
+	<script th:src="@{../js/starrr.js}"></script>
      <!--api 연결-->
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=aa8506f7754a9c4a3ff7ed61e6db518a&libraries=services"></script>
 									
@@ -120,9 +123,9 @@
 				</div>
                         
                     <!------------------지도 + 출발지 + 날씨--------------------->
-                    <div class="sec2 box3">
+                    <div class="sec2 box3" style="max-width : none; z-index: 1;">
                          
-                         <div id="map" style="width:40%;height:350px;"></div>
+                         <div id="map" style="width:40%;height:350px;max-width : none"></div>
 							
                         <div class="mapweatherbox box4">
                             <div class="startbox box5">
@@ -162,12 +165,16 @@
                     <!---------------후기-------------------->
                     <div class="sec3 box3">
                         <div class="reviewwritebox box4">
-                            <a href="#" class="reviewwrite item">후기 작성하기</a>
+                           <div class="modal-btn-box">
+        						<button type="button" id="modal-open">리뷰 작성</button>
+						   </div>
                         </div>
                     </div>
+                    
                     <div class="sec4 box3">
                     
                         <div class="rv box4"></div>
+                        
                         
                         	<a class="list-group replyList">
 								<!-- rest 로 들어옴 -->
@@ -245,7 +252,61 @@
                     </div>
                 </div>
 
-
+						     <!--모달을 감쌀 박스-->
+						    <div class="popup-wrap" id="popup" style="z-index: 1;">
+						        <!--실질적 모달팝업-->
+						        <div class="popup"> 
+						            <!--로고 영역-->
+						            <div class="popup-head"> 
+						                <span class="head-title"> 로고</span>
+						            </div>
+						            <!--컨텐츠 영역-->
+						            <div class="popup-body"> 
+						                <div class="body-content">
+						                 <div class="body-titlebox">리뷰 작성하기</div>
+						                    <hr>
+						                    <div class="body-contentbox">
+						                       <div class="campgroundsbox">
+						                            <div class="campimgbox">
+						                                
+						                            </div>
+						                            <div class="campexplainbox">
+						                                <div class="ce_title"></div> 
+						                                <div class="ce_preice">
+						                                </div>
+						                               
+						                            </div>
+						                       </div>
+						                       <hr>
+						                       <div class="starbox">
+						                            <div class="star_title">별점을 선택하세요</div>
+						                            <div class="starsizeupbox">
+						                                <div class="starrr star" id="select_star"></div>  
+						                            </div>  
+						                       </div>
+						                       
+						                       <hr>
+						                       <div class="textreviewbox">
+						                            <div class="tr_texttitle">리뷰 내용</div>
+						                            <textarea class="tr_text" id="content" placeholder="솔직한 이용후기를 작성해주세요"></textarea>
+						
+						                       </div>
+						                       <hr>
+						                       <div class="addimgbox">
+						                            <div class="addimgtitle">이미지 추가</div>
+						                            <input type="file" id="picture" class="addimg">
+						                       </div>
+						                    </div>
+						                </div>
+						            </div>
+						            <!--푸터 버튼 영역-->
+						            <div class="popup-foot">  
+						                <span class="pop-btn close" id="close">창 닫기</span>
+						                <span class="pop-btn confirm" id="confirm">확인</span>
+						               
+						            </div>
+						        </div>
+						    </div>
 
                 <!--메인 바디의 사이드 빈 공간 오른쪽-->
                 <div class="aside_r box2">aside_r</div>
@@ -298,7 +359,7 @@
     	    position: coords
     	});
 
-    	var iwContent = '<div class="dd" id="tte" style="padding:5px; width="500px" ">Hello World! <br><a href="https://map.kakao.com/link/map/'+address+','+x+','+y+'" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/'+address+','+x+','+y+'" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+    	var iwContent = '<div class="map" style="max-width :none; height:100px" "> <a href="https://map.kakao.com/link/to/'+address+','+x+','+y+'" style="color:blue; " target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
         iwPosition = new kakao.maps.LatLng(33.450701, 126.570667); //인포윈도우 표시 위치입니다
 
     	// 인포윈도우를 생성합니다
@@ -340,9 +401,9 @@
  	    		"day"   : 0
  	    	},
  	    	{
-	    	    	 "year"  : 0,
-	    	    	 "month" : 0,
-	    	    	 "day"  : 0 
+	    	    "year"  : 0,
+	    	    "month" : 0,
+	    	    "day"  : 0 
 						
  	    	}
  	    ]
@@ -726,7 +787,23 @@
     	  //프로그램 처음 로드시 loadJSON 호출;
     	  // 밑에서 해야함
 		  loadJSON();
-  
+    	  
+  		  //////////////////모달 부분//////////////
+  		
+		    $("#modal-open").click(function(){        
+		        $("#popup").css('display','flex').hide().fadeIn();
+		        //팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
+		    });
+  		
+		    $("#close").click(function(){
+		        modalClose(); //모달 닫기 함수 호출
+		    });
+		    
+		    function modalClose(){
+		        $("#popup").fadeOut(); //페이드아웃 효과
+		    }
+		    // loadJsonData(cno);
+		    
     	});
 	</script>
 						

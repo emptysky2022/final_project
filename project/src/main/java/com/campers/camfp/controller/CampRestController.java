@@ -6,13 +6,18 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.campers.camfp.config.auth.PrincipalDetails;
 import com.campers.camfp.config.type.CampingType;
 import com.campers.camfp.config.type.TableType;
+import com.campers.camfp.dto.camp.CampCalenderDTO;
 import com.campers.camfp.dto.camp.CampDTO;
 import com.campers.camfp.dto.camp.CampReviewDTO;
 import com.campers.camfp.service.camp.CampService;
@@ -52,6 +57,42 @@ public class CampRestController {
 			
 		log.info(campdtoList);
 		return new ResponseEntity<> (campdtoList, HttpStatus.OK);
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@PostMapping("review/register")
+	public ResponseEntity<String> reviewRegister(@RequestBody CampReviewDTO dto, @AuthenticationPrincipal PrincipalDetails principalDetails){
+		System.out.println("나탔따.");
+		log.info(dto);
+		String nickname = principalDetails.getMember().getNickname();
+		
+		if (nickname == null) {
+			return new ResponseEntity("", HttpStatus.ALREADY_REPORTED);  
+		}
+		
+		dto.setReviewer(principalDetails.getMember().getNickname());
+		campService.register(TableType.CAMPREVIEW, dto);
+		return new ResponseEntity(nickname, HttpStatus.OK);  
+		
+	}
+	
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@PostMapping("calendar/register")
+	public ResponseEntity<String> calendarRegister(@RequestBody CampCalenderDTO dto, @AuthenticationPrincipal PrincipalDetails principalDetails){
+		
+		String nickname = principalDetails.getMember().getNickname();
+		System.out.println(nickname);
+		log.info(dto);
+		
+		if (nickname == null) {
+			return new ResponseEntity("", HttpStatus.ALREADY_REPORTED);  
+		}
+		
+		dto.setReservationer(nickname);
+		campService.register(TableType.CAMPCALENDER, dto);
+		
+		return new ResponseEntity("", HttpStatus.OK);
 	}
 
 }

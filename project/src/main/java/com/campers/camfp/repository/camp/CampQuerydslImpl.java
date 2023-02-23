@@ -137,10 +137,6 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 			camp.select(Q_CAMP);
 			camp.from(Q_CAMP);
 			
-			// 위치 종류 없음 폐기 
-			
-			
-			
 			// 캠프종류 , 별점으로 찾는곳
 			for (String query : findDatas) {
 				switch(query) {
@@ -269,6 +265,7 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 				
 				// 왜 fetchone 으로 못쓰는 걸까 알아보고 바꿔야 겠다.
 				Object buffer = camp.fetch().get(0);
+				
 				Integer value = (Integer) buffer;
 				data = value;
 				//
@@ -278,7 +275,7 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 				camp.select(Q_CAMP.heart);
 				camp.where(Q_CAMP.cno.eq(no));
 
-				// 왜 fetchone 으로 못쓰는 걸까 알아보고 바꿔야 겠다.
+				// 왜 fetch one 으로 못쓰는 걸까 알아보고 바꿔야 겠다.
 				Object buffer2 = camp.fetch().get(0);
 				Integer value2 = (Integer) buffer2;
 				data = value2;			
@@ -288,7 +285,7 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 				camp.select(Q_CAMP.star);
 				camp.where(Q_CAMP.cno.eq(no));
 				
-				// 왜 fetchone 으로 못쓰는 걸까 알아보고 바꿔야 겠다.
+				// 왜 fetch one 으로 못쓰는 걸까 알아보고 바꿔야 겠다.
 				Object buffer3 = camp.fetch().get(0);
 				Integer value3 = (Integer) buffer3;
 				data = value3;
