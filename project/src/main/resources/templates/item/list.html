@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
@@ -12,6 +12,9 @@
 	  src="https://code.jquery.com/jquery-3.6.3.min.js"
 	  integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
 	  crossorigin="anonymous"></script>
+	<!-- starrr(임시) -->
+	<script th:src="@{../js/starrr.js}"></script>
+    <link th:href="@{../css/starrr.css}" rel="stylesheet">
 	  
     <!--css 연결-->
     <link rel="stylesheet" type="text/css" href="../css/camperproduct.css">
@@ -83,7 +86,8 @@
                     </div>
 
                     <div class="producttypebox box4">
-                        <div class="allselect item" onclick="search('', '', 'count')">카테고리</div>
+                        <div class="allselect item">카테고리</div>
+                        <h1 sec:authorize="!isAuthenticated()">이스터에그</h1>
                         <div class="tent box5">
                             <div class="tentitem1 item">돔 텐트</div>
                             <div class="tentitem2 item_2">리빙쉘 텐트</div>
@@ -151,25 +155,6 @@
                 <!-------------------판매상품 목록--------------------->
                 <div class="sec3 box3" id="list">
                 <!-- th:attr="onclick=|showDetail(${item.ino})|" -->
-                	<div class="productbox box4" th:each="item : ${result.dtoList}" th:attr="onclick=|location.href='@{/item/detail(ino=${item.ino})}'|">
-                		<div class="p_imgbox box5">
-                            <img class="p_img item" th:src="${item.thumbnail}">
-                        </div>
-                        <div class="p_contentbox box5">
-                            <div class="p_writingbox box6">
-                                <div class="p_title item">[[${item.name}]]</div>
-                                <div class="p_explan item_2">가격 : [[${item.price}]]원</div>
-                            </div>
-                            <div class="p_reviewheartbox box6">
-                                <div class="p_reviewbox box7">
-                                    <div class="review item">조회수 [[${item.count}]]</div>
-                                </div>
-                                <div class="p_heartbox box7">
-                                    <div class="heart item">찜 [[${item.heart}]]</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 				<!-- ---------판매상품 목록 끝------------ -->
             </div> 

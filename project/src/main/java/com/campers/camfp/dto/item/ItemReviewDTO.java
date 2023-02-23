@@ -19,4 +19,5 @@ public class ItemReviewDTO {
 	//Member nickname
 	private String reviewer;
 	private int heart;
+	private int star;
 }

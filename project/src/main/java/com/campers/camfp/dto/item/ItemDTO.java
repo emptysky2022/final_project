@@ -24,7 +24,7 @@ public class ItemDTO {
 	private String link;
 	private int type;
 	private int count;
-	private int star;
+	private double star;
 	private int heart;
 	
 }

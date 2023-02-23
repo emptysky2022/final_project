@@ -136,7 +136,7 @@ public class CampRepositoryTests {
 			
 
 		
-		for (int i =11; i<12; i++) {
+		for (int i =106; i<107; i++) {
 			
 		
 
@@ -201,7 +201,13 @@ public class CampRepositoryTests {
 	@Test
 	public void delteTest() {
 
-		campReviewRepository.delete(CampReview.builder().camp(getCampNum(2)).reviewer("").content("").build());
+		campReviewRepository.delete(CampReview.builder().crno(101).camp(getCampNum(2)).reviewer("").content("").build());
+	}
+	
+	@Test
+	public void delteTest2() {
+
+		campRepository.delete(Camp.builder().cno(3L).build());
 	}
 
 	@Test

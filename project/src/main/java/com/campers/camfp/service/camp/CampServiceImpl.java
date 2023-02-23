@@ -111,7 +111,7 @@ public class CampServiceImpl implements CampService {
 
 	}
 
-	public List<Object> findHeartRank(TableType table, int num) {
+	public List<Object> findHeartOrCountRank(TableType table, int num, String findType) {
 
 		List<Object> bufferList = new ArrayList<>();
 		List<Object> resultList = new ArrayList<>();
@@ -119,12 +119,12 @@ public class CampServiceImpl implements CampService {
 		switch (table) {
 
 		case CAMP:
-			List<Camp> camplist =  (List<Camp>) campRepository.findHeartRank(table, num);
+			List<Camp> camplist =  (List<Camp>) campRepository.findHeartOrCountRank(table, num, findType);
 			camplist.forEach(camp -> bufferList.add(camp));
 			break;
 
 		case CAMPREVIEW:
-			List<CampReview> reivewlist = (List<CampReview>) campRepository.findHeartRank(table, num);
+			List<CampReview> reivewlist = (List<CampReview>) campRepository.findHeartOrCountRank(table, num, findType);
 			reivewlist.forEach(review -> bufferList.add(review));
 			break;
 
@@ -245,21 +245,28 @@ public class CampServiceImpl implements CampService {
 	}
 
 	@Override
-	public List<Object> findDataOfCamp(TableType table, Long cno) {
+	public List<Object> findDataOfCamp(TableType table, Long cno, String[] findData) {
 
 		List<Object> result = new ArrayList<>();
 		
 		switch (table) {
+		
+		case CAMP:
+			List<Camp> campList = (List<Camp>) campRepository.findDataOfCamp(table, cno, findData);
+			campList.forEach(value -> {
+				result.add(EntityToDTO(table, value));
+			});
+			break;
 
 		case CAMPREVIEW:
-			List<CampReview> reivewList = (List<CampReview>) campRepository.findDataOfCamp(table, cno);
+			List<CampReview> reivewList = (List<CampReview>) campRepository.findDataOfCamp(table, cno, findData);
 			reivewList.forEach(value -> {
 				result.add(EntityToDTO(table, value));
 			});
 			break;
 			
 		case CAMPCALENDER:
-			List<CampCalender> calenderList = (List<CampCalender>) campRepository.findDataOfCamp(table, cno);
+			List<CampCalender> calenderList = (List<CampCalender>) campRepository.findDataOfCamp(table, cno, findData);
 			calenderList.forEach(value -> {
 				result.add(EntityToDTO(table, value));
 			});
@@ -274,5 +281,23 @@ public class CampServiceImpl implements CampService {
 		
 		
 		return result;
+	}
+
+	@Override
+	public void addData(TableType table, Long cno, String findData) {
+		
+		campRepository.addData(table, cno, findData);
+		
+	}
+
+	@Override
+	public List<CampDTO> findManayDataOfCamp(String[] findDatas, String[] findLocations) {
+		List<Camp> camp = campRepository.findManayDataOfCamp(findDatas, findLocations);
+		List<CampDTO> dto = new ArrayList<>();
+		camp.forEach(value -> {
+			dto.add((CampDTO) EntityToDTO(TableType.CAMP, value));
+			});
+		
+		return dto;
 	}
 }

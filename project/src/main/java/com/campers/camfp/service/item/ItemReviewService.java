@@ -24,7 +24,7 @@ public interface ItemReviewService {
 	int heartOfMember(Long irno);
 
 	//리뷰 수정하기
-	void modify(ItemReviewDTO itemReviewDTO);
+	Long modify(ItemReviewDTO itemReviewDTO);
 	
 	//리뷰 삭제하기
 	void remove(Long irno);
@@ -36,6 +36,7 @@ public interface ItemReviewService {
 								.reviewer(itemReviewDTO.getReviewer())
 								.capture(itemReviewDTO.getCapture())
 								.content(itemReviewDTO.getContent())
+								.star(itemReviewDTO.getStar())
 								.item(Item.builder().ino(itemReviewDTO.getIno()).build())
 								.build();
 		
@@ -51,6 +52,7 @@ public interface ItemReviewService {
 								.capture(itemReview.getCapture())
 								.content(itemReview.getContent())
 								.heart(itemReview.getHeart())
+								.star(itemReview.getStar())
 								.build();
 		
 		return itemReviewDTO;

@@ -693,7 +693,7 @@ main .body .body_center {
         width: 80%;
         height: 3rem;
         border-radius: 0.2rem;
-        margin: 0 0 1rem 0;
+        margin: 0;
         padding: 0;
         display: flex;
     }
