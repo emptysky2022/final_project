@@ -82,6 +82,7 @@ public interface CampService {
 			CampCalender campCalender = CampCalender.builder().ccno(calenderDTO.getCcno())
 										.camp(Camp.builder().cno(calenderDTO.getCno()).build())
 										.startdate(calenderDTO.getStartdate())
+										.reservationer(calenderDTO.getReservationer())
 										.enddate(calenderDTO.getEnddate())
 										.build();
 			value = campCalender;
@@ -144,6 +145,7 @@ public interface CampService {
 										.cno(calender.getCamp().getCno())
 										.startdate(calender.getStartdate())
 										.enddate(calender.getEnddate())
+										.reservationer(calender.getReservationer())
 										.build();
 			value = campCalender;
 			break;
