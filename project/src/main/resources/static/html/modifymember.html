@@ -5,10 +5,7 @@
 	<meta charset="UTF-8">
 	<title>Modify Membership</title>
 
-	<!--css 연결-->
-	<link rel="stylesheet" type="text/css" href="../css/modifymember.css">
-	<!--js연결-->
-	<script type="text/javascript" src="/js/main.js" defer></script>
+	
 
 	<!--구글 폰트 링크-->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +14,10 @@
 		rel="stylesheet">
 	<!--폰트 그림 링크-->
 	<script src="https://kit.fontawesome.com/bb87a5faf0.js" crossorigin="anonymous"></script>
-
+<!--css 연결-->
+	<link rel="stylesheet" type="text/css" href="../css/modifymember.css">
+	<!--js연결-->
+	<script type="text/javascript" src="../js/modifymember.js" defer></script>
 </head>
 
 <body>
@@ -74,7 +74,7 @@
 						<div class="titlecommentbox box4">
 							<p class="titlecommenttext item">회원님의 개인정보를 수정하실 수 있습니다. </p>
 						</div>
-
+					</div>
 						<form th:action="@{/sample/modify}" th:method="post">
 							<div class="sec2 box3">
 								<div class="profileimgbox box4">
@@ -99,12 +99,10 @@
 									
 										<input class="nickname item_2" type="text" name="nickname"
 											th:value="${memberDTO.nickname}" placeholder="별명 변경하기">
-										<div class="nicknamecheckbox">
-											<input class="nicknamecheck" type="button" value="중복 확인">
+									
 										</div>
 									
-								</div>
-
+								
 								<div class="namebox box4">
 									<p class="nametext item">이름</p>
 									<input class="name item_2" type="text" name="name" th:value="${memberDTO.name}"
@@ -152,9 +150,16 @@
 									<div class="deletebox box4">
 										<button class="delete item" type="button">삭제</button>
 									</div>
+
+									
+								</div>
+								<div class="memberdeletebtnbox">
+									<button class="memberdeletebtn" onclick="handleOnClick()">
+										회원탈퇴
+									</button>
 								</div>
 							</div>
-
+						
 						</form>
 
 
@@ -169,7 +174,7 @@
 							<a th:href="@{/sample/main(id=${memberDTO.id})}">
 							<button type="button" name="mainpagebtn">메인으로</button>
 							</a>     -->
-					</div>
+					<!-- </div> -->
 
 
 

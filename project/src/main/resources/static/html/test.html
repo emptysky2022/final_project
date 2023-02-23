@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../css/test.css">
+</head>
+<body>
+    <form th:action="@{/sample/modify}" th:method="post">
+        <div class="sec2 box3">
+            <div class="profileimgbox box4">
+                <!-- <p class="profiletext item"></p> -->
+                <input class="profileimg item_2" type="text" name="image"
+                    th:value="${memberDTO.image}" placeholder="프로필 사진">
+            </div>
+
+
+            <!-- <div class="idbox box4">
+                <p type="text" class="idtext item">아이디</p>
+                <input class="id item_2" type="text" name="id" th:value="${memberDTO.id}" readonly>
+            </div>
+
+            <div class="passwordbox box4">
+                <p type="password" class="passwordtext item">비밀번호</p>
+                <input class="password item_2" type="password" name="pass"
+                    th:value="${memberDTO.pass}" placeholder="비밀번호 변경하기">
+            </div> -->
+            <div class="nicknamebox box4">
+                <p class="nicknametext item">별명</p>
+                
+                    <input class="nickname item_2" type="text" name="nickname"
+                        th:value="${memberDTO.nickname}" placeholder="별명 변경하기">
+                
+                    </div>
+                
+            
+            <div class="namebox box4">
+                <p class="nametext item">이름</p>
+                <input class="name item_2" type="text" name="name" th:value="${memberDTO.name}"
+                    placeholder="이름 변경하기">
+            </div>
+            
+            <div class="agebox box4">
+                <p class="agetext item">나이</p>
+                <input class="age item_2" type="text" name="age" th:value="${memberDTO.age}"
+                    readonly>
+            </div>
+            <div class="genderbox box4">
+                <p class="gendertext item">성별</p>
+                <!-- onFocus, onChange = select에 readonly 효과 줌 -->
+                <!-- 이거 db에 저장된 option으로 표출하고 싶은데 어떻ㄱ 하져? -->
+                <select class="gender item_2" name="gender"
+                    onFocus="this.initiaSelect = this.selectedIndex;"
+                    onChange="this.selectedIndex = this.initalSelect;">
+                    <option value="true">남자</option>
+                    <option value="false">여자</option>
+                </select>
+            </div>
+            <div class="addressbox box4">
+                <p class="addresstext item">주소</p>
+                <input class="address item_2" type="text" name="address"
+                    th:value="${memberDTO.address}" placeholder="주소 변경하기">
+            </div>
+            <div class="phonebox box4">
+                <p class="phonetext item">전화번호</p>
+                <input class="phone item_2" type="text" name="phone" th:value="${memberDTO.phone}"
+                    placeholder="전화번호 변경하기">
+            </div>
+            <div class="introducebox box4">
+                <p class="introducetext item">소개</p>
+                <textarea class="introduce item_2" name="introduce"
+                    th:value="${memberDTO.introduce}" placeholder="소개글 변경하기"></textarea>
+            </div>
+
+            <div class="buttonbox">
+                <div class="modifybox box4">
+                    <button class="modify item" type="button">완료</button>
+                </div>
+
+                <!--삭제버튼 나중에 (회원탈퇴) 등으로 변경 될 수 있음-->
+                <div class="deletebox box4">
+                    <button class="delete item" type="button">삭제</button>
+                </div>
+            </div>
+        </div>
+    
+    </form>
+</body>
+</html>
