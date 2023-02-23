@@ -33,9 +33,7 @@ public class ItemController {
 	private final ItemService itemService;
 
 	@GetMapping("/list")
-	public void itemList(PageRequestDTO pageRequestDTO, Model model) {
-		log.info(itemService.getListOfPage(pageRequestDTO, null));
-		model.addAttribute("result", itemService.getListOfPage(pageRequestDTO, null));
+	public void itemList() { //itemList.js에서 document.ready후 /list/data 호출
 	}
 	
 	@GetMapping("/detail")
@@ -44,7 +42,7 @@ public class ItemController {
 		
 		log.info("itemdto = " + itemDTO);
 		model.addAttribute("detail", itemDTO);
-		model.addAttribute("login", principalDetails.getMember().getNickname());
+//		model.addAttribute("login", principalDetails.getMember().getNickname());
 	}
 	
 	@ResponseBody

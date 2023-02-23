@@ -44,7 +44,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{ //이 필터�
 			// test용 로그인 코드 (게시판용)
 	        .antMatchers("/sample/list").access("hasRole('ROLE_MEMBER')")
 	        // test용 로그인 코드 (item)
-	        .antMatchers("/item/**").authenticated()
+//	      .antMatchers("/item/**").authenticated()
+	        // test용 로그인 코드 (camp)
+	        .antMatchers("/camp/**").authenticated()
+
 	        
 			.anyRequest().permitAll()//그 외에는 전부 허용
 		.and() //user나 admin으로 가면 로그인페이지로 자동으로 이동됨

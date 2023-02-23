@@ -1,3 +1,8 @@
+$(function(){
+	console.log("document ready")
+	search('','','');
+})
+
 function search(category, keyword, type){
 	let list = $("#list");
 	$.getJSON("/item/list/data?category="+category+"&keyword="+keyword+"&type="+type, function(result){
