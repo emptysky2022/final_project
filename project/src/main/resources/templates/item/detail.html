@@ -94,11 +94,14 @@
                         </div>
                         
                         <div class="cg_heartbox box4" th:onclick="clickItemHeart('[[${detail.ino}]]')">
-                        	<div class="cg_heart item" id="item_heart">[[${detail.heart}]]</div>
+                        	<div class="cg_heart item" id="item_heart">
+                        		<img calss="heartImg" sec:authorize="!isAuthenticated()" src="../img/empty_heart.png">
+                        		[[${detail.heart}]]
+                        	</div>
                         </div>
 
                         <div class="cg_explainbox box4">
-                            <div class="cg_explain item"><a th:href="${detail.link}">[[${detail.link}]]</a></div>
+                            <a class="cg_explain item" th:href="${detail.link}">[[${detail.link}]]</a>
                         </div>
 
                         <div class="cg_hashtagbox box4">
@@ -153,6 +156,7 @@
 						                            <div class="addimgtitle">이미지 추가</div>
 						                            <input type="file" id="capture" class="addimg" multiple>
 						                       </div>
+						                       <hr>
 						                    </div>
 						                </div>
 						            </div>
@@ -160,7 +164,7 @@
 						            <div class="popup-foot">  
 						                <span class="pop-btn close" id="close">창 닫기</span>
 						                <span class="pop-btn confirm" id="confirm">확인</span>
-						               
+						               	<span class="pop-btn confirm" id="modify">수정</span>
 						            </div>
 						        </div>
 						    </div>

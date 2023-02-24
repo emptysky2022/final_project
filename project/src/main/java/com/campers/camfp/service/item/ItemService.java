@@ -26,7 +26,7 @@ public interface ItemService {
 	int heartOfMember(Long ino);
 
 	//상품 수정하기
-	void modify(ItemDTO itemDTO);
+	Long modify(ItemDTO itemDTO);
 	
 	//상품 삭제하기
 	void remove(Long ino);

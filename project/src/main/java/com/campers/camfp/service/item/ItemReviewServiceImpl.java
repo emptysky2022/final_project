@@ -66,15 +66,23 @@ public class ItemReviewServiceImpl implements ItemReviewService{
 	}
 
 	@Override
-	public void modify(ItemReviewDTO itemReviewDTO) {
-		log.info("modify item review : " + itemReviewDTO);
+	public Long modify(ItemReviewDTO itemReviewDTO) {
+		itemReviewDTO.setIno(itemReviewRepository.findById(itemReviewDTO.getIrno()).get().getItem().getIno());
 		ItemReview itemReview = dtoToEntity(itemReviewDTO);
 		itemReviewRepository.save(itemReview);
+		Item item = itemRepository.findById(itemReview.getItem().getIno()).get();
+		item.changeStar(itemReviewRepository.countStar(itemReviewDTO.getIno()));
+		itemRepository.save(item);
+		return item.getIno();
 	}
 
 	@Override
 	public void remove(Long irno) {
 		log.info("remove item review num : " + irno);
+		Long ino = itemReviewRepository.findById(irno).get().getItem().getIno();
+		Item item = itemRepository.findById(ino).get();
+		item.changeStar(itemReviewRepository.countStar(ino));
+		itemRepository.save(item);
 		itemReviewRepository.deleteById(irno);
 	}
 

@@ -53,9 +53,6 @@ var slice = [].slice;
     };
 
     Starrr.prototype.setRating = function(rating) {
-      if (this.options.rating === rating) {
-        rating = void 0;
-      }
       this.options.rating = rating;
       this.syncRating();
       return this.$el.trigger('starrr:change', rating);
