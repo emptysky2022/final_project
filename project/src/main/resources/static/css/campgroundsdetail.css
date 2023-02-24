@@ -540,16 +540,6 @@ main .body .body_center {
     box-shadow: 5px 10px 10px 1px rgba(0,0,0,.3); /*팝업이 허공에 떠있는 듯한 느낌을 주기 위한 그림자 효과.*/
   }
   
-    /*모달의 몸체*/
-  .RVpopup{
-    width:100%;
-    max-width:600px;          /*팝업의 최대 크기지정*/
-    border-radius:10px;     
-    overflow:hidden;          /*각을 없앴을 때 내부 영역이 튀어나오는걸 방지*/
-    background-color:rgb(54, 54, 54);/*배경색*/
-    box-shadow: 5px 10px 10px 1px rgba(0,0,0,.3); /*팝업이 허공에 떠있는 듯한 느낌을 주기 위한 그림자 효과.*/
-  }
-
   /*모달의 헤더(로고) 부분*/
   .popup-head{
     width:100%;
@@ -562,8 +552,6 @@ main .body .body_center {
     max-height: 100px;
     color: #ffffff;
   }
-
-
 
   /*모달의 몸통 부분*/
   .popup-body{                /*몸통*/
