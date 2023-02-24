@@ -118,9 +118,6 @@ public class ItemReviewController {
 		return new ResponseEntity<>(ino, HttpStatus.OK);
 	}
 	
-<<<<<<< HEAD
-	
-=======
 	@DeleteMapping("/{irno}")
 	public ResponseEntity<String> deleteReviewOfItem(@PathVariable Long irno){
 		log.info("delete mapping : " + irno);
@@ -129,6 +126,5 @@ public class ItemReviewController {
 		
 		return new ResponseEntity<>("리뷰 삭제 성공", HttpStatus.OK);
 	}
->>>>>>> 59e453cbe9f9a48f400e2c480b77333f299b270a
 	
 }
