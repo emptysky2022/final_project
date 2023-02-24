@@ -60,7 +60,6 @@ a {
 /*사용할 페이지 전체 범위(가로폭은 보이는 화면의 80%고정, 세로폭은 내용물이 많아지면 자동 증가)*/
 body {
     max-width: 80vw;
-    border: 1px solid red;
     margin: auto;
 
 }
@@ -94,7 +93,6 @@ footer {
 /**********메인 header(header 부분 전체)************/
 .header {
     display: flex;
-    border: 5px solid orange;
     padding: 0.5rem 2rem;
     position: relative;
     justify-content: space-between;
@@ -105,7 +103,6 @@ footer {
 
 .header .header_logo {
 
-    border: 1px solid purple;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -115,13 +112,11 @@ footer {
 
 .header .header_menu {
     display: flex;
-    border: 3px solid yellow;
     justify-content: space-evenly;
 
 }
 
 .header .header_menu li {
-    border: 1px solid blue;
     border-radius: 0.5rem;
     padding: 0.7rem;
     margin: 0.2rem;
@@ -133,7 +128,6 @@ footer {
 
 
 .header .header_mypage {
-    border: 5px solid purple;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -198,13 +192,11 @@ main .body {
     /* display: grid;
     grid-template-columns: 1fr 8fr 1fr;
     grid-template-rows: auto; */
-    border: 1px solid orange;
     flex-direction: row;
 }
 
 /*메인 바디 왼쪽*/
 main .body .aside_l {
-    border: 1px solid rgb(0, 255, 76);
     display: flex;
     flex-basis: 10%;
 
@@ -214,7 +206,6 @@ main .body .aside_l {
 
 /*메인 바디 오른쪽*/
 main .body .aside_r {
-    border: 1px solid rgb(0, 64, 255);
     display: flex;
     flex-basis: 10%;
 
@@ -223,7 +214,6 @@ main .body .aside_r {
 
 /*메인 바디 가운데 */
 main .body .body_center {
-    border: 1px solid rgb(158, 90, 2);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -512,14 +502,13 @@ flex-basis: 20%;
 }
 
 .sec2 .dropdownsearchbox .searchbox .search{
-    border: 2px solid gray;
      width: 30%;
     height: 100%;
     min-width: 6rem;
 }
 
 
-/*판매상품의 사진+조회수+찜*/
+/*판매상품의 사진+조회수+찜+별점*/
 .sec3{
     display: grid;
     grid-template-columns: repeat(4,1fr);
@@ -550,7 +539,6 @@ flex-basis: 20%;
 .sec3 .productbox .p_contentbox{
     display: flex;
     flex-direction: column;
-  
 }
 
 .sec3 .p_contentbox .p_reviewheartbox{
@@ -559,6 +547,12 @@ flex-basis: 20%;
     justify-content: space-evenly;
 }
 
+.sec3 .p_contentbox{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
 
 
 @media screen and (max-width:1024px){
@@ -663,7 +657,5 @@ flex-basis: 20%;
 
 
 .footer {
-    border: 3px solid red;
-    background-color: black;
     color: aliceblue;
 }
