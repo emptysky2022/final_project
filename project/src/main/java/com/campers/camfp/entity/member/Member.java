@@ -1,13 +1,19 @@
 package com.campers.camfp.entity.member;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.campers.camfp.config.type.GenderType;
+import com.campers.camfp.entity.item.ItemReview;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -70,7 +76,7 @@ public class Member {
 	//사용자 소개
 	@Column(length = 1000)
 	private String introduce;
-
+	
 	public void change(String pw, String nickname, String profileImg, String name, int age, String address,
 			String phone, String introduce) {
 		

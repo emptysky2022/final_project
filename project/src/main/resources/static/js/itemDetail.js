@@ -14,18 +14,8 @@ $(function(){
 		}
 	});
 	$("#capture").on("change", function(){
-		$.ajax({
-			url: '/removeFile',
-			data: {fileNames: image},
-			dataType: 'text',
-			type: 'post', 
-			success: function(result){
-				image = [];
-			},
-			error: function(err){
-				alert(err);
-			}
-		})
+		image = [];
+		console.log(image);
 		console.log("capture change event");
 		// 이미지 업로드 클릭시 파일 받아서 uploadAjax controller로 이동
 		let formData = new FormData();
@@ -47,6 +37,8 @@ $(function(){
 			console.log(value)
 		}
 		console.log(formData);
+		console.log("Ajax 바깥 스코프");
+		console.log(image);
 		$.ajax({
 			url: '/uploadAjax',
 			processData: false,
@@ -63,8 +55,8 @@ $(function(){
 			error: function(xhr, text, errorThrown){
 				console.log(text);
 			}
-		})
-	})
+		});
+	});
 	$("#confirm").click(function(){
         modalClose(); //모달 닫기 함수 호출
         //컨펌 이벤트 처리

@@ -37,22 +37,7 @@ $(function(){
     });
     
     $("#thumbnail").on("change", function(){
-		if(image.length != 0){
-			console.log("")
-			$.ajax({
-				url: '/removeFile',
-				data: {fileNames: image},
-				dataType: 'text',
-				type: 'post', 
-				success: function(result){
-					console.log("hello")
-					image = [];
-				},
-				error: function(err){
-					alert(err);
-				}
-			})
-		}
+		image = [];
 		console.log("capture change event");
 		// 이미지 업로드 클릭시 파일 받아서 uploadAjax controller로 이동
 		let formData = new FormData();
@@ -69,7 +54,7 @@ $(function(){
 			appended = true;
 		})
 		if(!appended) {return};
-		formData.append("webPath", "itemReview");
+		formData.append("webPath", "item");
 		for(let value of formData.values()){
 			console.log(value)
 		}

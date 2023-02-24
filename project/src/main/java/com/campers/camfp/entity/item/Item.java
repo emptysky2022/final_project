@@ -35,7 +35,7 @@ public class Item {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long ino;				//기본키 AUTO_INCREMENT
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	private Member member;
 	
 	@Column(length = 200, nullable = false)
