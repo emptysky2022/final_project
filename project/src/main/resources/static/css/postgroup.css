@@ -456,9 +456,10 @@ strong {
    width: 10vw;
 }
 
+/* 비어있음
 .boardwrite .titlebox dd {
     
-}
+} */
 
 .boardwrite .titlebox input[type="text"] {
     padding: 5px;
@@ -721,10 +722,10 @@ align-items: center;
   justify-content: space-between;
 }
 
-
+/* 비어있음
 .commenttextregister{
   
-}
+} */
 
 
 
@@ -993,6 +994,8 @@ align-items: center;
   width: 7%;
   height: 7%;
 }
+
+/* /top, 위치 버튼 css */
 
 
 

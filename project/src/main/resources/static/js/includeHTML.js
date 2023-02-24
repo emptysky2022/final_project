@@ -31,5 +31,4 @@ function includeHTML(callback) {
         return;
       }
     }
-   
   }
