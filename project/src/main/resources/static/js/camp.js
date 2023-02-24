@@ -2,6 +2,18 @@ $(document).ready(function() {
 
 	//// 별점 관리 /////
 	var grade = $(".starrr").html();
+	var campRegister = $(".modal");
+	let makeLocation = "";
+	var makeType = [];
+	var campType = "";
+
+	// 검색 타입
+	let searchType = "";
+
+	// 캠핑 타입
+	var type = "";
+	let listGroup = $(".test");
+
 	console.log("grade : " + grade);
 	$(".starrr").html("");
 
@@ -15,26 +27,10 @@ $(document).ready(function() {
 		}
 	});
 
-	$("#modal-open").click(function() {
-		//팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
-		$("#popup").css('display', 'flex').hide().fadeIn();
-
-		// 로드시 숫자를 -> ☆ 로 바꿈 
-		$("#sync_star").html(getStar($("#sync_star").html()));
-	});
-
-	$("#close").click(function() {
-		modalClose(); //모달 닫기 함수 호출
-	});
-
-	$("#confirm").click(function() {
-		clickCampConfirm();
-	});
-
-
 	function modalClose() {
 		$("#popup").fadeOut(); //페이드아웃 효과
 	}
+
 	function getStar(grade) {
 		let star = '';
 		for (let i = 1; i <= 5; i++) {
@@ -54,8 +50,73 @@ $(document).ready(function() {
 		$("#sync_star").append(Math.round(grade * 10) / 10);
 	}
 
+	/* 캠프 등록 관련 메소드 시작*/
+	// 모달 오픈 
+	$(campRegister).on("click", function() {
+		console.log("나눌림");
+		//팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
+		$("#popup").css('display', 'flex').hide().fadeIn();
+	});
 
-	// 지역말고 캠핑장 별 표시 //
+
+	$("#close").click(function() {
+		console.log("모달 닫기");
+		modalClose(); //모달 닫기 함수 호출
+	});
+
+	$("#confirm").click(function() {
+		campType = makeType.join(",");
+
+		alert($(".campName").val());
+		alert($(".address").val());
+		alert($(".campintorduce").val());
+		alert(makeLocation);
+
+
+		funcCampRegister();
+
+	});
+
+	$(".makeLocation").on("click", "#type", function() {
+		// 기존 꺼 연한 파란색으로 바꿔준다.
+		$(".makeLocation #type").css("background-color", "#A2C4E1");
+
+		// 눌른거 찐 파랑으로 바꿔버림.
+		$(this).css("background-color", "#0062cc");
+
+		// 값 넣어주기
+		makeLocation = $(this).html();
+
+
+	})
+
+
+	$(".makeType").on("click", "#type", function() {
+		var type = $(this).html();
+		var findNum = makeType.indexOf(type);
+		console.log(findNum);
+
+		// 값이 없음
+		if (findNum == -1) {
+			// 눌른거 찐 파랑으로 바꿔버림.
+			$(this).css("background-color", "#0062cc");
+			makeType.push(type);
+		} else {
+			console.log(makeType);
+			makeType = makeType.filter(function(item) {
+				return item != type;
+			})
+			// 기존 꺼 연한 파란색으로 바꿔준다.
+			$(this).css("background-color", "#A2C4E1");
+		}
+
+		console.log(makeType);
+
+
+	});
+
+
+	/* 캠프 등록 관련 메소드 종료 */
 
 	// 지역 타입 한국말 써봄
 	var locations = [];
@@ -77,13 +138,6 @@ $(document).ready(function() {
 	locations[14] = "경상북도";
 	locations[15] = "경상남도";
 	locations[16] = "제주도";
-
-	// 검색 타입
-	let searchType = "";
-
-	// 캠핑 타입
-	var type = "";
-	let listGroup = $(".test");
 
 	// 캠핑 타입 확인
 	$("#campType").on("click", "#type", function() {
@@ -159,6 +213,7 @@ $(document).ready(function() {
 
 	});
 
+
 	function loadJSON() {
 		console.log("loadjson");
 		$.getJSON('/camp/list/' + type + '/' + locations, function(arr) {
@@ -169,7 +224,7 @@ $(document).ready(function() {
 				str += "<div class='campgroundsbox box'  onclick='location.href=\"/camp/campgroundsdetail?cno=" + camp.cno + "\"''>";
 				str += "<input type = 'hidden' name='cno' th:value ='" + camp.cno + "''>";
 				str += "<div class='cg_imgbox box5'>";
-				str += "<img class='cg_img item' th:src=" + camp.thumbnail + ">";
+				str += "<img class='cg_img item' src=" + camp.thumbnail + ">";
 				str += "</div>";
 				str += "<div class='cg_rightbox box4'>"
 				str += "<div class='title item'>" + camp.name + "</div>";
@@ -185,4 +240,23 @@ $(document).ready(function() {
 			});
 		});
 	};
-}); 
+	function funcCampRegister() {
+		$.ajax({
+			url: "/camp/register",
+			contentType: "application/json",
+			method: "POST",
+			data: JSON.stringify({
+				name: $(".campName").val(),
+				address: $(".address").val(),
+				campintroduce: $(".campintorduce").val(),
+				camptype: campType,
+				location: makeLocation,
+				thumbnail: "test.jpg"
+			}), success: function(result) {
+				alert(result);
+			}, fail: function(result) {
+				alert(result);
+			}
+		})
+	}
+});

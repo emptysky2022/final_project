@@ -554,6 +554,7 @@ flex-basis: 20%;
     align-items: center;
 }
 
+
 @media screen and (max-width:1024px){
     .sec3{
         display: grid;

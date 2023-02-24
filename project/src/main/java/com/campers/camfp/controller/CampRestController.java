@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.campers.camfp.config.auth.PrincipalDetails;
 import com.campers.camfp.config.type.CampingType;
 import com.campers.camfp.config.type.TableType;
+import com.campers.camfp.dto.camp.CampCalenderDTO;
 import com.campers.camfp.dto.camp.CampDTO;
 import com.campers.camfp.dto.camp.CampReviewDTO;
 import com.campers.camfp.service.camp.CampService;
@@ -66,13 +67,50 @@ public class CampRestController {
 		String nickname = principalDetails.getMember().getNickname();
 		
 		if (nickname == null) {
-			return new ResponseEntity("", HttpStatus.ALREADY_REPORTED);  
+			return new ResponseEntity("", HttpStatus.INTERNAL_SERVER_ERROR);  
 		}
 		
 		dto.setReviewer(principalDetails.getMember().getNickname());
 		campService.register(TableType.CAMPREVIEW, dto);
 		return new ResponseEntity(nickname, HttpStatus.OK);  
 		
+	}
+	
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@PostMapping("calendar/register")
+	public ResponseEntity<String> calendarRegister(@RequestBody CampCalenderDTO dto, @AuthenticationPrincipal PrincipalDetails principalDetails){
+		
+		String nickname = principalDetails.getMember().getNickname();
+		
+		log.info("컨트롤러 데이터");
+		log.info(dto);
+		
+		if (nickname == null) {
+			return new ResponseEntity("", HttpStatus.INTERNAL_SERVER_ERROR);  
+		}
+		
+		dto.setReservationer(nickname);
+		campService.register(TableType.CAMPCALENDER, dto);
+		
+		return new ResponseEntity("", HttpStatus.OK);
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@PostMapping("/register")
+	public ResponseEntity<String> campRegister(@RequestBody CampDTO dto, @AuthenticationPrincipal PrincipalDetails principalDetails){
+		log.info(dto);
+		
+		Long mno = principalDetails.getMember().getMno();
+		log.info(mno);
+		
+		if (mno == null) {
+			return new ResponseEntity ("erro", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		dto.setMno(mno);
+		campService.register(TableType.CAMP, dto);
+		
+		return new ResponseEntity(dto.getName(), HttpStatus.OK);
 	}
 
 }

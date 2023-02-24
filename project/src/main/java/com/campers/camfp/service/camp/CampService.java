@@ -50,7 +50,7 @@ public interface CampService {
 									  .member(Member.builder().mno(campDTO.getMno()).build())
 									  .name(campDTO.getName())
 									  .thumbnail(campDTO.getThumbnail())
-									  .location(campDTO.getCountry())
+									  .location(campDTO.getLocation())
 									  .camptype(campDTO.getCamptype())
 									  .address(campDTO.getAddress())
 									  .campintroduce(campDTO.getCampintroduce())
@@ -82,6 +82,7 @@ public interface CampService {
 			CampCalender campCalender = CampCalender.builder().ccno(calenderDTO.getCcno())
 										.camp(Camp.builder().cno(calenderDTO.getCno()).build())
 										.startdate(calenderDTO.getStartdate())
+										.reservationer(calenderDTO.getReservationer())
 										.enddate(calenderDTO.getEnddate())
 										.build();
 			value = campCalender;
@@ -110,7 +111,6 @@ public interface CampService {
 					  						   .mno(camp.getMember().getMno())
 					  						   .name(camp.getName())
 					  						   .thumbnail(camp.getThumbnail())
-					  						   .country(camp.getLocation())
 					  						   .address(camp.getAddress())
 					  						   .unit(camp.getUnit())
 					  						   .location(camp.getLocation())
@@ -144,6 +144,7 @@ public interface CampService {
 										.cno(calender.getCamp().getCno())
 										.startdate(calender.getStartdate())
 										.enddate(calender.getEnddate())
+										.reservationer(calender.getReservationer())
 										.build();
 			value = campCalender;
 			break;
