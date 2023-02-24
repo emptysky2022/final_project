@@ -67,7 +67,7 @@ public class CampRestController {
 		String nickname = principalDetails.getMember().getNickname();
 		
 		if (nickname == null) {
-			return new ResponseEntity("", HttpStatus.INTERNAL_SERVER_ERROR);  
+			return new ResponseEntity("", HttpStatus.ALREADY_REPORTED);  
 		}
 		
 		dto.setReviewer(principalDetails.getMember().getNickname());
@@ -82,35 +82,17 @@ public class CampRestController {
 	public ResponseEntity<String> calendarRegister(@RequestBody CampCalenderDTO dto, @AuthenticationPrincipal PrincipalDetails principalDetails){
 		
 		String nickname = principalDetails.getMember().getNickname();
-		
-		log.info("컨트롤러 데이터");
+		System.out.println(nickname);
 		log.info(dto);
 		
 		if (nickname == null) {
-			return new ResponseEntity("", HttpStatus.INTERNAL_SERVER_ERROR);  
+			return new ResponseEntity("", HttpStatus.ALREADY_REPORTED);  
 		}
 		
 		dto.setReservationer(nickname);
 		campService.register(TableType.CAMPCALENDER, dto);
 		
 		return new ResponseEntity("", HttpStatus.OK);
-	}
-	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@PostMapping("/register")
-	public ResponseEntity<String> campRegister(@RequestBody CampDTO dto, @AuthenticationPrincipal PrincipalDetails principalDetails){
-		log.info(dto);
-		
-		Long mno = principalDetails.getMember().getMno();
-		log.info(mno);
-		
-		if (mno == null) {
-			return new ResponseEntity ("erro", HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		dto.setMno(mno);
-		campService.register(TableType.CAMP, dto);
-		
-		return new ResponseEntity(dto.getName(), HttpStatus.OK);
 	}
 
 }

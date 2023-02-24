@@ -63,9 +63,9 @@ $(document).ready(function() {
 	var noReservation = [];
 	var startday;
 	var endday;
-
-	var utcStartDate;
-	var utcEndDate;
+	
+	var send1;
+	var send2;
 
 
 	// day 클경우 endDay    	    
@@ -254,6 +254,7 @@ $(document).ready(function() {
 					}
 				}
 			}
+
 			// 힌색 넣자
 		});
 
@@ -382,21 +383,14 @@ $(document).ready(function() {
 
 		var startDate = new Date(Reservation[0].year, Reservation[0].month - 1, Reservation[0].day);
 		var endDate = new Date(Reservation[1].year, Reservation[1].month - 1, Reservation[1].day);
+		
+		send1 = startDate;
+		send2 = endDate;
+		$("#start-day cite").html(startDate);
+		$("#end-day cite").html(endDate);
 
-		utcStartDate = startDate;
-		utcEndDate = endDate;
-
-		console.log(utcStartDate);
-		console.log(utcEndDate);
-
-		$("#start-day cite").html(utcStartDate);
-		$("#end-day cite").html(utcEndDate);
-
-		// 보내줄 앤데 하루가 자꾸 내려가서 올림...
-		utcStartDate.setDate(utcStartDate.getDate() + 1);
-		utcEndDate.setDate(utcEndDate.getDate() + 1);
-
-
+		// 로드시 숫자를 -> ☆ 로 바꿈 
+		$("#sync_star").html(getStar($("#sync_star").html()));
 	});
 
 	$("#RVclose").click(function() {
@@ -405,14 +399,7 @@ $(document).ready(function() {
 	});
 
 	$("#RVconfirm").click(function() {
-		// 예약 
 		clickCampReservation();
-
-		// 캘린더 다시 load();
-		generateCalendar();
-
-		// 모달 닫기 함수 호출
-		rvmodalClose(); //모달 닫기 함수 호출
 	});
 
 	function rvmodalClose() {
@@ -485,8 +472,8 @@ $(document).ready(function() {
 				str += "</div>";
 				str += "</div>";
 
+				listGroup.html(str);
 			})
-			listGroup.html(str);
 		})
 	};
 	function clickCampConfirm() {
@@ -513,25 +500,22 @@ $(document).ready(function() {
 			}
 		});
 	}
-
-	function clickCampReservation() {
-		console.log(utcStartDate);
-		console.log(utcEndDate);
-
+	
+	function clickCampReservation(){
 		$.ajax({
-			url: "/camp/calendar/register",
-			method: "POST",
+			url : "/camp/calendar/register",
+			method : "POST",
 			contentType: "application/json",
-			data: JSON.stringify({
-				cno: cno,
-				startdate: utcStartDate,
-				enddate: utcEndDate
+			data : JSON.stringify({
+				cno : cno,
+				startdate : send1,
+				enddate : send2
 			}),
-			success: function(reuslt) {
-
+			success: function(reuslt){
+				
 			},
-			error: function(err) {
-
+			error : function(err){
+				
 			}
 		})
 	}

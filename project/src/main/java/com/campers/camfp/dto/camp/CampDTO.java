@@ -22,6 +22,7 @@ public class CampDTO {
 	private Long mno;
 	private String name;
 	private String thumbnail;
+	private String country;
 	private String address;
 	private String location;
 	private String camptype;

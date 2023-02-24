@@ -91,7 +91,7 @@ public class CampAPITests {
 									.cno(1L)
 									.name(camp.getString("facltNm"))
 									.thumbnail(camp.getString("firstImageUrl"))
-									.location(camp.getString("doNm"))
+									.country(camp.getString("doNm"))
 									.campintroduce(data)
 									.address(camp.getString("addr1") + camp.getString("addr2"))
 									.heart(iValue)
