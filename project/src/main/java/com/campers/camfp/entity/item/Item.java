@@ -1,5 +1,8 @@
 package com.campers.camfp.entity.item;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.campers.camfp.entity.member.Member;
@@ -31,7 +35,7 @@ public class Item {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long ino;				//기본키 AUTO_INCREMENT
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
 	private Member member;
 	
 	@Column(length = 200, nullable = false)
@@ -66,6 +70,9 @@ public class Item {
 	private double star;			//별점 평균
 	
 	private int heart;				//좋아요, 찜 수
+	
+	@OneToMany(mappedBy = "item", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<ItemReview> itemReviews = new ArrayList<>();
 	
 	public void increseCount() {
 		this.count++;
