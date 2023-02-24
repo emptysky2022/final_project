@@ -48,6 +48,11 @@ public class CampRepositoryTests {
 	}
 
 	@Test
+	public void locdate() {
+		System.out.println(LocalDateTime.now());
+	}
+	
+	@Test
 	public void test1() {
 		findTable(type.CAMP);
 	}

@@ -72,10 +72,11 @@ public class ItemServiceImpl implements ItemService{
 		return resultDTO;
 	}
 	
-	public void modify(ItemDTO itemDTO) {
+	public Long modify(ItemDTO itemDTO) {
 		Item item = dtoToEntity(itemDTO);
 		log.info("modify item " + itemDTO);
 		itemRepository.save(item);
+		return itemDTO.getIno();
 	}
 
 	@Override

@@ -24,7 +24,7 @@ public interface ItemReviewService {
 	int heartOfMember(Long irno);
 
 	//리뷰 수정하기
-	void modify(ItemReviewDTO itemReviewDTO);
+	Long modify(ItemReviewDTO itemReviewDTO);
 	
 	//리뷰 삭제하기
 	void remove(Long irno);

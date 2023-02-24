@@ -1,6 +1,6 @@
+let image = new Array();
+let ino = new URLSearchParams(window.location.search).get("ino");
 $(function(){
-	let image = new Array();
-	let ino = new URLSearchParams(window.location.search).get("ino");
 	var grade=$(".starrr").html();
 	console.log("grade : " + grade);
 	$(".starrr").html("");
@@ -14,6 +14,18 @@ $(function(){
 		}
 	});
 	$("#capture").on("change", function(){
+		$.ajax({
+			url: '/removeFile',
+			data: {fileNames: image},
+			dataType: 'text',
+			type: 'post', 
+			success: function(result){
+				image = [];
+			},
+			error: function(err){
+				alert(err);
+			}
+		})
 		console.log("capture change event");
 		// 이미지 업로드 클릭시 파일 받아서 uploadAjax controller로 이동
 		let formData = new FormData();
@@ -72,6 +84,7 @@ $(function(){
 			contentType: "application/json",
 			data: JSON.stringify(data),
 			success: function(ino){
+				$("#select_star").starrr('setRating', 0);
 				$("#content").val("");
 				$("#capture").val("");
 				loadJsonData(ino);
@@ -79,18 +92,22 @@ $(function(){
 		})       
         
     });
-    $("#modal-open").click(function(){        
+	
+    $("#modal-open").click(function(){
+		$("#modify").hide();
+		$("#confirm").show();       
         $("#popup").css('display','flex').hide().fadeIn();
         //팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
     });
     $("#close").click(function(){
         modalClose(); //모달 닫기 함수 호출
     });
-    function modalClose(){
-        $("#popup").fadeOut(); //페이드아웃 효과
-    }
     loadJsonData(ino);
 })
+function modalClose(){
+    $("#popup").fadeOut(); //페이드아웃 효과
+    
+}
 
 function checkExtension(fileName, fileSize){
 	console.log("extension function in");
@@ -107,6 +124,7 @@ function checkExtension(fileName, fileSize){
 	return true;
 }
 
+//리뷰 목록 불러오기
 function loadJsonData(ino){
 	let reviewGroup = $("#reviewGroup");
 	$.getJSON("/review/detail/" + ino, function(result){
@@ -115,7 +133,6 @@ function loadJsonData(ino){
 		let str = "";
 		let starAvg = 0;
 		$.each(reviews, function(index, review){
-			console.log(review);
 			  str += '<div class="rv_l box5 ">';
 			  str += '  <div class="box_l box6">';
 			  str += '    <div class="imgbox box7">';
@@ -125,10 +142,10 @@ function loadJsonData(ino){
 			  str += '  <div class="box_r box6">';
 			  str += '    <div class="comment box7">';
 			  str += '        <h2 class="write item">' + review.reviewer + '</h2>';
-			  if(review.reviewer == member.nickname){		  
+			  if(review.reviewer == member.nickname){
 				  str += '    <div class="writer box8">';
-				  str += '      <a class="modify item" onclick="modify()">수정</a>';
-				  str += '      <a class="remove item" onclick="remove()">삭제</a></div>';
+				  str += '      <a class="modify item" onclick="modify(' + review.irno + ')">수정</a>';
+				  str += '      <a class="remove item" onclick="remove(' + review.irno + ')">삭제</a></div>';
 			  }
 			  str += '      <p class="content item_2">' + review.content + '</p></div>';
 			  str += '    <div class="rv_like box7"><i id="review_heart" class="fa-sharp fa-solid fa-thumbs-up fa-1x item" onclick="clickReviewHeart(' + review.irno + ')"> ' + review.heart + '</i></div></div></div><hr>';
@@ -191,7 +208,59 @@ function clickReviewHeart(irno){
 	})
 }
 
-function modify(){
+async function modify(irno){
+	$("#modify").show();
+	$("#confirm").hide(); 
+	try{
+		
+	const result = await $.get("/review/"+irno);
+	console.log(result);
+	image = result.capture;
+	$("#content").val(result.content);
+	$("#select_star").starrr('setRating', result.star);		
+	} catch(e){
+		console.error("리뷰 수정 데이터 오류", e);
+		alert(e);
+	}
 	
+	$("#popup").css('display','flex').hide().fadeIn();
+	$("#modify").click(function(){
+        modalClose(); //모달 닫기 함수 호출
+        //수정 이벤트 처리
+		//등록할 때 data를 ItemReviewDTO, List<String>으로 받아야 함
+        let data = {
+			review : {
+			irno: irno,
+			content : $("#content").val(),
+			star : $("#select_star").data('starrr').options.rating
+			},
+			image : image
+		};
+		console.log(data);
+		$.ajax({
+			url: "/review/modify",
+			method: "PUT",
+			contentType: "application/json",
+			data: JSON.stringify(data),
+			success: function(ino){
+				$("#content").val("");
+				$("#capture").val("");
+				$("#select_star").starrr('setRating', 0);
+				loadJsonData(ino);
+			}
+		})       
+        
+    });
+}
+
+function remove(irno){
+	$.ajax({
+		url: "/review/" + irno,
+		method: "delete",
+		success: function(result){
+			alert("댓글을 삭제하였습니다.");
+			loadJsonData(ino);
+		}
+	})
 }
 

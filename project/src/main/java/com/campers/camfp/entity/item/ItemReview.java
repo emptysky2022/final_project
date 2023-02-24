@@ -34,7 +34,7 @@ public class ItemReview extends BaseEntity{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long irno;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false ,cascade = CascadeType.REMOVE)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	private Item item;
 	
 	private String capture;

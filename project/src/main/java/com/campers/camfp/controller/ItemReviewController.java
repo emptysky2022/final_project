@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,13 +45,20 @@ public class ItemReviewController {
 	String uploadPath;
 	
 	@GetMapping("/detail/{ino}")
-	public ResponseEntity<List<Object>> getReviewOfItem(@PathVariable Long ino, @AuthenticationPrincipal PrincipalDetails principalDetails){
+	public ResponseEntity<List<Object>> getReviewsOfItem(@PathVariable Long ino, @AuthenticationPrincipal PrincipalDetails principalDetails){
 		List<ItemReviewDTO> result = itemReviewService.getReviewOfItem(ino);
 		if(principalDetails != null) {
 			return new ResponseEntity<>(List.of(result, principalDetails.getMember()), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(List.of(result, ""), HttpStatus.OK);
 		}
+	}
+	
+	@GetMapping("/{irno}")
+	public ResponseEntity<ItemReviewDTO> getOneReview(@PathVariable Long irno){
+		ItemReviewDTO itemReviewDTO = itemReviewService.getOne(irno);
+		
+		return new ResponseEntity<ItemReviewDTO>(itemReviewDTO, HttpStatus.OK);
 	}
 	
 	@GetMapping("/heart/{irno}")
@@ -83,6 +91,40 @@ public class ItemReviewController {
 		itemReviewService.register(itemReviewDTO);
 		
 		return new ResponseEntity<>(itemReviewDTO.getIno(), HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/modify", method = RequestMethod.PUT)
+	public ResponseEntity<Long> modifyReviewOfItem(@RequestBody ObjectNode obj, @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception{
+		//RequestBody는 단일개체만 가능, ObjectNode로 값 가져옴(ItemReviewDTO, ImageURL)
+		log.info(obj);
+		//ObjectNode의 값을 타입변경해줄 mapper
+		ObjectMapper mapper = new ObjectMapper();
+		//review라는 이름으로 넘어온 ItemReviewDTO의 JSON data를 ItemReviewDTO로 받아서 넘겨줌
+		ItemReviewDTO itemReviewDTO = mapper.treeToValue(obj.get("review"), ItemReviewDTO.class);
+		log.info("itemReview : " + itemReviewDTO);
+		
+		//ImageURL이 여러개이면 List타입으로 받아야 하기 때문에 reader 선언
+		ObjectReader reader = mapper.readerFor(new TypeReference<List<String>>() {});
+		
+		//readValue로 값 읽어서 List에 저장
+		List<String> imageURLList = reader.readValue(obj.get("image"));
+		for(String imageURL : imageURLList) {
+			itemReviewDTO.setCapture(imageURL);
+		}
+		
+		itemReviewDTO.setReviewer(principalDetails.getMember().getNickname());
+		Long ino = itemReviewService.modify(itemReviewDTO);
+		
+		return new ResponseEntity<>(ino, HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/{irno}")
+	public ResponseEntity<String> deleteReviewOfItem(@PathVariable Long irno){
+		log.info("delete mapping : " + irno);
+		
+		itemReviewService.remove(irno);
+		
+		return new ResponseEntity<>("리뷰 삭제 성공", HttpStatus.OK);
 	}
 	
 }
