@@ -4,7 +4,6 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
@@ -27,6 +26,7 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService{
 	
 	@Autowired
 	private MemberRepository memberRepository;
+	
 	
 	//userRequest는 code를 받아서 accessToken을 응답받은 객체
 	@Override
@@ -58,42 +58,41 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService{
 			oAuth2UserInfo = new NaverUserInfo((Map)oAuth2User.getAttributes().get("response"));
 		}else if (userRequest.getClientRegistration().getRegistrationId().equals("kakao")){
 			System.out.println("카카오 로그인 요청");
-			oAuth2UserInfo = new KakaoUserInfo((Map) oAuth2User.getAttributes().get("properties"),(Map) oAuth2User.getAttributes().get("kakao_account")); //get("kakao_account")가 필요함 여기서 이메일을 뽑아낼 수 있음
+			//Object  oAuth2UserInfo2 = oAuth2User.getAttributes().get("id");
+			//System.out.println("asdfsadf"+oAuth2UserInfo2);
+			oAuth2UserInfo = new KakaoUserInfo((Map) oAuth2User.getAttributes().get("properties"),(Map) oAuth2User.getAttributes().get("kakao_account"), oAuth2User.getAttributes().get("id")); //get("kakao_account")가 필요함 여기서 이메일을 뽑아낼 수 있음
 		} else {
 			System.out.println("다른 로그인은 지원하지 않습니다");
 		}
 		
 		Optional<Member> memberOptional = 
-				memberRepository.findByIdAndNickname(oAuth2UserInfo.getEmail(), oAuth2UserInfo.getNickname());
-		Member member;
-		String pw ="dyd";
-		String grade= "ROLE_MEMBER";
-		
+				memberRepository.findByIdAndNickname(oAuth2UserInfo.getProvider()+"_"+oAuth2UserInfo.getEmail(), oAuth2UserInfo.getProvider()+"_"+oAuth2UserInfo.getProviderId());
+		//이미 생성된 가입자인지 확인
+		Member member = null;
 		if (memberOptional.isPresent()) {
 			member = memberOptional.get();
 			// member가 존재하면 update 해주기
-			member.setNickname(oAuth2UserInfo.getNickname());
+			//member.setNickname(oAuth2UserInfo.getNickname()); 이거하면 닉네임 변경됨
 			memberRepository.save(member);
 		} else {
-			System.out.println("되??");
-			System.out.println("test"+oAuth2UserInfo.getEmail());
-			System.out.println("test"+oAuth2UserInfo.getNickname());
-			System.out.println("test"+oAuth2UserInfo.getName());
-			System.out.println("test"+oAuth2UserInfo.getProfileImg());
+			//여기로 추가정보 입력받아서 회원가입 진행
 			member = Member.builder()
-								.nickname(oAuth2UserInfo.getNickname())
-								.id(oAuth2UserInfo.getEmail())
-								.grade(grade)
-								.pw(pw)
+								.nickname(oAuth2UserInfo.getProvider()+"_"+oAuth2UserInfo.getProviderId())
+								.id(oAuth2UserInfo.getProvider()+"_"+oAuth2UserInfo.getEmail())
+								.grade("ROLE_MEMBER")
+								.pw("dyd")
 								.profileImg(oAuth2UserInfo.getProfileImg())
 								.name(oAuth2UserInfo.getName())
-								//.age(age)
+								.age(0)
 								.phone(oAuth2UserInfo.getPhone())
-								//.gender(gender)
+								.gender(null)
 								.build();
 			memberRepository.save(member);
 		}
 		
 		return new PrincipalDetails(member, oAuth2User.getAttributes()); 
 	}
+
+
+
 }
