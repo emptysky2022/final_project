@@ -151,87 +151,36 @@
 									</div>
 								</div>
 							</div>
-
 						</form>
-
-
-
-
-						<!-- <a th:href="@{/sample/modify(id=${memberDTO.id})}">
-								<button type="button" name="modifypagebtn">조회하기</button>
-								</a>
-								<a th:href="@{/sample/mypage(id=${memberDTO.id})}">
-								<button type="button" name="mypagebtn">마이페이지로</button>
-								</a>
-								<a th:href="@{/sample/main(id=${memberDTO.id})}">
-								<button type="button" name="mainpagebtn">메인으로</button>
-								</a>     -->
 					</div>
 
 					<!-------------------메인바디 2번칸--------------------->
 
 
-					<div class="sec3 box3">
-						<table class="shoppingcart box4">
-							<tr class="tr_1 box5">
-								<th class="th_1 item">상품</th>
-								<td class="td1">임의단어1</td>
-								<td class="td1_2">임의단어1</td>
-							</tr>
-							<tr class="tr_2 box5">
-								<th class="th_2 item">상품명</th>
-								<td class="td2">임의단어</td>
-								<td class="td2_2">임의단어</td>
-							</tr>
-							<tr class="tr_3">
-								<th class="th_3">판매가</th>
-								<td class="td3">임의단어3</td>
-								<td class="td3_2">임의단어3</td>
-							</tr>
-							<tr class="tr_4">
-								<th class="th_4">판매자</th>
-								<td class="td4">임의단어4</td>
-								<td class="td4_2">임의단어4</td>
-							</tr>
-							<tr class="tr_5">
-								<th class="th_5">임의헤더</th>
-								<td class="td5">임의단어5</td>
-								<td class="td5_2">임의단어5</td>
-							</tr>
-							<tr class="tr_6">
-								<th class="th_6">임의헤더</th>
-								<td class="td6">임의단어5</td>
-								<td class="td6_2">임의단어5</td>
-							</tr>
-							<tr class="tr_7">
-								<th class="th_7">임의헤더</th>
-								<td class="td7">임의단어5</td>
-								<td class="td7_2">임의단어5</td>
-							</tr>
-							<tr class="tr_8">
-								<th class="th_8">임의헤더</th>
-								<td class="td8">임의단어5</td>
-								<td class="td8_2">임의단어5</td>
-							</tr>
-							<tr class="tr_9">
-								<th class="th_9">임의헤더</th>
-								<td class="td9">임의단어5</td>
-								<td class="td9_2">임의단어5</td>
-							</tr>
-							<tr class="tr_10">
-								<th class="th_10">임의헤더</th>
-								<td class="td10">임의단어5</td>
-								<td class="td10_2">임의단어5</td>
-							</tr>
+					<div class="sec3">
+						<h2>결제 기록</h2>
+						<ul class="shoppingcart box4">
+						  <li>
+							<div class="date">2023-02-20</div>
+							<div class="product-name">맥북 프로</div>
+							<div class="price">2,500,000원</div>
+							<div class="status">완료</div>
+							<div class="edit"><button class="edit-btn">수정</button></div>
+						  </li>
+						  <li>
+							<div class="date">2023-02-15</div>
+							<div class="product-name">아이폰 13</div>
+							<div class="price">1,200,000원</div>
+							<div class="status">미완료</div>
+							<div class="edit"><button class="edit-btn">수정</button></div>
+						  </li>
+						  <!-- 결제 내역이 더 있을 경우, 추가로 항목을 생성하여 표시 -->
+						</ul>
+					  </div>
+					  
+					  
 
-
-						</table>
-
-
-						<div class="orderbox box4">
-							<button class="orderbtn item">주문하기</button>
-						</div>
-					</div>
+					<!-- </div> -->
 
 					<!---------------메인바디 3번칸-------------------->
 					<div class="sec4 box3">
@@ -276,6 +225,10 @@
 						</div>
 					</div>
 
+
+
+
+					<!--좋아요 내역-->
 					<div class="sec5 box3">
 						<div class="titlebox">
 							<div class="title">좋아요 내역</div>
@@ -365,9 +318,9 @@
 									<a href="#" class="num">3</a>
 									<a href="#" class="num">4</a>
 									<a href="#" class="num">5</a>
-									<a href="#" class="num">&gt;</a>
-									<a href="#" class="num">&gt;&gt;</a>
-								</div>
+									<a href="#" class="bt_next item_4">&gt;</a>
+									<a href="#" class="bt_last item_5">&gt;&gt;</a>
+								  </div>
 							</div>
 
 							<div id="tab02" class="tab-contents">
@@ -426,19 +379,21 @@
 								</div>
 								<!--페이지 번호-->
 								<div class="boardpage box5">
-									<a href="#" class="bt_first item">&lt;&lt;</a>
-									<a href="#" class="bt_prev item_2">&lt;</a>
-									<a href="#" class="num item_3">1</a>
+									<a href="#" class="bt_first ">&lt;&lt;</a>
+									<a href="#" class="bt_prev ">&lt;</a>
+									<a href="#" class="num ">1</a>
 									<a href="#" class="num">2</a>
 									<a href="#" class="num">3</a>
 									<a href="#" class="num">4</a>
 									<a href="#" class="num">5</a>
-									<a href="#" class="num">&gt;</a>
-									<a href="#" class="num">&gt;&gt;</a>
+									<a href="#" class="bt_prev">&gt;</a>
+									<a href="#" class="bt_last">&gt;&gt;</a>
 								</div>
 							</div>
 
 
+
+							<!--게시글-->
 							<div id="tab03" class="tab-contents">
 								<h2>게시글</h2>
 								<div class="postgroupbox">
@@ -520,15 +475,15 @@
 
 								<!--페이지 번호-->
 								<div class="boardpage box5">
-									<a href="#" class="bt_first item">&lt;&lt;</a>
-									<a href="#" class="bt_prev item_2">&lt;</a>
-									<a href="#" class="num item_3">1</a>
+									<a href="#" class="bt_first ">&lt;&lt;</a>
+									<a href="#" class="bt_prev ">&lt;</a>
+									<a href="#" class="num ">1</a>
 									<a href="#" class="num">2</a>
 									<a href="#" class="num">3</a>
 									<a href="#" class="num">4</a>
 									<a href="#" class="num">5</a>
-									<a href="#" class="num">&gt;</a>
-									<a href="#" class="num">&gt;&gt;</a>
+									<a href="#" class="bt_prev">&gt;</a>
+									<a href="#" class="bt_last">&gt;&gt;</a>
 								</div>
 							</div>
 
@@ -539,11 +494,11 @@
 								<div class="reviewbox">
 									<div class="rv_textbox">
 										<div class="rv_upline">
-											<div class="rv_write">
-												작성자
-											</div>
 											<div class="rv_date">
 												작성일
+											</div>
+											<div classs="rv_postgroup">
+												어느 게시글에서 댓글 썼는지 보여주는 곳
 											</div>
 										</div>
 										<div class="rv_downline">
@@ -558,11 +513,11 @@
 								<div class="reviewbox">
 									<div class="rv_textbox">
 										<div class="rv_upline">
-											<div class="rv_write">
-												작성자
-											</div>
 											<div class="rv_date">
-												작성일
+												2023-02-24
+											</div>
+											<div classs="rv_postgroup">
+												대충게시판제목써있는글
 											</div>
 										</div>
 										<div class="rv_downline">
@@ -577,11 +532,11 @@
 								<div class="reviewbox">
 									<div class="rv_textbox">
 										<div class="rv_upline">
-											<div class="rv_write">
-												작성자
-											</div>
 											<div class="rv_date">
-												작성일
+												2023-02-24
+											</div>
+											<div classs="rv_postgroup">
+												대충게시판제목써있는글
 											</div>
 										</div>
 										<div class="rv_downline">
@@ -596,11 +551,11 @@
 								<div class="reviewbox">
 									<div class="rv_textbox">
 										<div class="rv_upline">
-											<div class="rv_write">
-												작성자
-											</div>
 											<div class="rv_date">
-												작성일
+												2023-02-24
+											</div>
+											<div classs="rv_postgroup">
+												대충게시판제목써있는글
 											</div>
 										</div>
 										<div class="rv_downline">
@@ -615,11 +570,11 @@
 								<div class="reviewbox">
 									<div class="rv_textbox">
 										<div class="rv_upline">
-											<div class="rv_write">
-												작성자
-											</div>
 											<div class="rv_date">
-												작성일
+												2023-02-24
+											</div>
+											<div classs="rv_postgroup">
+												대충게시판제목써있는글
 											</div>
 										</div>
 										<div class="rv_downline">
@@ -634,11 +589,11 @@
 								<div class="reviewbox">
 									<div class="rv_textbox">
 										<div class="rv_upline">
-											<div class="rv_write">
-												작성자
-											</div>
 											<div class="rv_date">
-												작성일
+												2023-02-24
+											</div>
+											<div classs="rv_postgroup">
+												대충게시판제목써있는글
 											</div>
 										</div>
 										<div class="rv_downline">
@@ -652,15 +607,15 @@
 								</div>
 								<!--페이지 번호-->
 								<div class="boardpage box5">
-									<a href="#" class="bt_first item">&lt;&lt;</a>
-									<a href="#" class="bt_prev item_2">&lt;</a>
-									<a href="#" class="num item_3">1</a>
+									<a href="#" class="bt_first ">&lt;&lt;</a>
+									<a href="#" class="bt_prev ">&lt;</a>
+									<a href="#" class="num ">1</a>
 									<a href="#" class="num">2</a>
 									<a href="#" class="num">3</a>
 									<a href="#" class="num">4</a>
 									<a href="#" class="num">5</a>
-									<a href="#" class="num">&gt;</a>
-									<a href="#" class="num">&gt;&gt;</a>
+									<a href="#" class="bt_prev">&gt;</a>
+									<a href="#" class="bt_last">&gt;&gt;</a>
 								</div>
 							</div>
 						</div>

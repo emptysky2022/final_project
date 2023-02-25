@@ -8,7 +8,6 @@ $(function(){
 		rating: grade,
 		change: function(e, value){
 			if(value){
-				console.log(value)
 				grade=value
 			}
 		}
@@ -106,6 +105,7 @@ $(function(){
 })
 function modalClose(){
     $("#popup").fadeOut(); //페이드아웃 효과
+
     
 }
 
@@ -211,6 +211,7 @@ function clickReviewHeart(irno){
 async function modify(irno){
 	$("#modify").show();
 	$("#confirm").hide(); 
+
 	try{
 		
 	const result = await $.get("/review/"+irno);
@@ -239,6 +240,7 @@ async function modify(irno){
 		console.log(data);
 		$.ajax({
 			url: "/review/modify",
+			method: "POST",
 			method: "PUT",
 			contentType: "application/json",
 			data: JSON.stringify(data),
