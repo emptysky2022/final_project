@@ -96,6 +96,7 @@ public class CampAPITests {
 									.address(camp.getString("addr1") + camp.getString("addr2"))
 									.heart(iValue)
 									.camptype(campType)
+									.unit(1)
 									.build();
 					campService.register(TableType.CAMP, campDTO);
 				}

@@ -7,9 +7,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.campers.camfp.entity.heartlist.HeartList;
+import com.campers.camfp.config.type.ProductType;
+import com.campers.camfp.entity.heart.Heart;
 import com.campers.camfp.entity.member.Member;
-import com.campers.camfp.repository.member.HeartListRepository;
+import com.campers.camfp.repository.heart.HeartListRepository;
 
 @SpringBootTest
 public class HeartListRepositoryTest {
@@ -20,16 +21,13 @@ public class HeartListRepositoryTest {
 	@Test
 	public void insertHeart() {
 		
-		IntStream.rangeClosed(1, 50).forEach(i -> {
+		IntStream.rangeClosed(1, 2).forEach(i -> {
 			
-			Long mno = (long) ((Math.random() * 10) + 1);
-			Long pkNum = (long) ((Math.random() * 50) + 1);
-			int productType = (int) ((Math.random() * 3));
 			
-			HeartList heartList = HeartList.builder()
-										   .member(Member.builder().mno(mno).build())
-										   .productNum(pkNum)
-										   .productType(productType)
+			Heart heartList = Heart.builder()
+										   .member(Member.builder().mno(1L).build())
+										   .productNum(1l)
+										   .productType(ProductType.BOARD)
 										   .build();
 			
 			heartListRepository.save(heartList);
@@ -38,7 +36,7 @@ public class HeartListRepositoryTest {
 	
 	@Test
 	public void testGetList() {
-		List<HeartList> heartList = heartListRepository.findAll();
+		List<Heart> heartList = heartListRepository.findAll();
 		
 		heartList.forEach(heart -> System.out.println(heart));
 //		System.out.println(heartList);

@@ -459,7 +459,14 @@ $(document).ready(function() {
 		$.getJSON('/camp/reply/' + cno, function(arr) {
 
 			let str = "";
-			$.each(arr, function(index, reply) {
+			const [reply, member] = arr;
+
+			console.log("reply");
+			console.log(reply);
+			console.log("member");
+			console.log(member);
+
+			$.each(reply, function(index, reply) {
 				let direction = index % 2 == 0 ? 'l' : 'r';
 				crno = reply.crno;
 				str += "<div class='rv_" + direction + "'box5>";
@@ -482,6 +489,14 @@ $(document).ready(function() {
 				str += "<div class='rv_like box7'>";
 				str += "<i class='fa-sharp fa-solid fa-thumbs-up fa-1x item'></i>"
 				str += "</div>";
+				
+				if (member.nickname == reply.reviewer) {
+					str += '<div class="modify-box">';
+					str += '      <button class="modify" id=' + reply.rno + ' >수정</button>';
+					str += '      <button class="remove" id=' + reply.rno + '> 삭제</button>';
+					str += '</div>';
+				}
+				
 				str += "</div>";
 				str += "</div>";
 
