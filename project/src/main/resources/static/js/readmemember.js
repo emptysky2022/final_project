@@ -32,3 +32,15 @@ $tabSelect.on('change', function() {
   $(target).show();
 });
 });
+
+
+
+
+// 결제 내역 수정 버튼 클릭 시 동작하는 이벤트 리스너
+const editBtns = document.querySelectorAll('.edit-btn');
+editBtns.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    // 클릭한 결제 내역의 정보를 가져와서 수정하는 로직을 구현
+    console.log('결제 내역 수정 버튼이 클릭되었습니다.');
+  });
+});

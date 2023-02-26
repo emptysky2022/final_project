@@ -297,9 +297,7 @@ main .body .body_center {
 .sec2 {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-
-
+ 
 }
 
 .sec2 .profileimgbox {
@@ -373,17 +371,19 @@ main .body .body_center {
 
 
 
+
 /*이름*/
-.sec2 .namebox {
+ .namebox {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: baseline;
+  
 }
 
 .sec2 .namebox .nametext {
     flex-basis: 30%;
-}
+}  
 
 .sec2 .namebox .name {
     flex-basis: auto;
@@ -391,7 +391,6 @@ main .body .body_center {
     height: 3.5rem;
     border-radius: 0.2rem;
     margin: 0 0 1.5rem 0;
-    max-width: 500px;
 }
 
 /*닉네임*/
@@ -406,9 +405,6 @@ main .body .body_center {
     flex-basis: 30%;
 }
 
- 
-
-
 
 .sec2 .nicknamebox .nickname {
     flex-basis: auto;
@@ -416,7 +412,7 @@ main .body .body_center {
     height: 3.5rem;
     border-radius: 0.2rem;
     margin: 0 0 1.5rem 0;
-    max-width: 440px;
+   
 }
 
 
@@ -440,7 +436,8 @@ main .body .body_center {
     height: 3.5rem;
     border-radius: 0.2rem;
     margin: 0 0 1.5rem 0;
-    max-width: 500px;
+
+  
 }
 
 /*성별*/
@@ -461,7 +458,7 @@ main .body .body_center {
     height: 3.5rem;
     border-radius: 0.2rem;
     margin: 0 0 1.5rem 0;
-    max-width: 500px;
+ 
 }
 
 /*주소*/
@@ -482,7 +479,7 @@ main .body .body_center {
     height: 3.5rem;
     border-radius: 0.2rem;
     margin: 0 0 1.5rem 0;
-    max-width: 500px;
+  
 }
 
 /*전화번호*/
@@ -503,7 +500,6 @@ main .body .body_center {
     height: 3.5rem;
     border-radius: 0.2rem;
     margin: 0 0 1.5rem 0;
-    max-width: 500px;
 }
 
 /*소개*/
@@ -528,7 +524,6 @@ main .body .body_center {
     border-radius: 0.2rem;
     margin: 0 0 1.5rem 0;
     padding: 2rem;
-    max-width: 500px;
     overscroll-behavior: contain;
     overflow: auto;
     /*자동 줄바꿈*/
@@ -602,11 +597,13 @@ main .body .body_center {
 
     }
 
-    .sec2 {}
+    .sec2 {
+        margin: 1rem;
+    }
 
 
     /*아이디*/
-    .sec2 .idbox {
+    /* .sec2 .idbox {
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
@@ -628,11 +625,11 @@ main .body .body_center {
         margin: 0 0 1rem 0;
         padding: 0;
 
-    }
+    } */
 
 
     /*비밀번호*/
-    .sec2 .passwordbox {
+    /* .sec2 .passwordbox {
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
@@ -652,7 +649,7 @@ main .body .body_center {
         margin: 0 0 1rem 0;
         padding: 0;
 
-    }
+    } */
 
 
 
@@ -671,12 +668,12 @@ main .body .body_center {
 
     .sec2 .namebox .name {
         flex-basis: auto;
-        width: 100%;
+        width: 80%;
         height: 3rem;
         border-radius: 0.2rem;
         margin: 0 0 1rem 0;
         padding: 0;
-
+        display: flex;
     }
 
     /*닉네임*/
@@ -693,12 +690,12 @@ main .body .body_center {
 
     .sec2 .nicknamebox .nickname {
         flex-basis: auto;
-        width: 100%;
+        width: 80%;
         height: 3rem;
         border-radius: 0.2rem;
-        margin: 0;
+        margin: 0 0 1rem 0;
         padding: 0;
-
+        display: flex;
     }
 
 
@@ -716,11 +713,12 @@ main .body .body_center {
 
     .sec2 .agebox .age {
         flex-basis: auto;
-        width: 100%;
+        width: 80%;
         height: 3rem;
         border-radius: 0.2rem;
         margin: 0 0 1rem 0;
         padding: 0;
+        display: flex;
 
     }
 
@@ -738,11 +736,12 @@ main .body .body_center {
 
     .sec2 .genderbox .gender {
         flex-basis: auto;
-        width: 100%;
+        width: 80%;
         height: 3rem;
         border-radius: 0.2rem;
         margin: 0 0 1rem 0;
         padding: 0;
+        display: flex;
 
     }
 
@@ -760,12 +759,12 @@ main .body .body_center {
 
     .sec2 .addressbox .address {
         flex-basis: auto;
-        width: 100%;
+        width: 80%;
         height: 3rem;
         border-radius: 0.2rem;
         margin: 0 0 1rem 0;
         padding: 0;
-
+        display: flex;
     }
 
     /*전화번호*/
@@ -782,11 +781,12 @@ main .body .body_center {
 
     .sec2 .phonebox .phone {
         flex-basis: auto;
-        width: 100%;
+        width: 80%;
         height: 3rem;
         border-radius: 0.2rem;
         margin: 0 0 1rem 0;
         padding: 0;
+        display: flex;
 
     }
 
@@ -804,11 +804,12 @@ main .body .body_center {
 
     .sec2 .introducebox .introduce {
         flex-basis: auto;
-        width: 100%;
+        width: 80%;
         height: 3rem;
         border-radius: 0.2rem;
         margin: 0 0 1rem 0;
         padding: 0;
+        display: flex;
 
 
     }
@@ -1021,10 +1022,20 @@ main .body .body_center {
         height: 2rem;
 
     }
+}
+.nick_ok{
+color:#008000;
+display: none;
+}
 
+.nick_already{
+color: red; 
+display: none;
+}
 
-
-
+.memberdeletebtnbox{
+    display: flex;
+    flex-direction: row-reverse;
 }
 
 

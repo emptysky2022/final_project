@@ -8,7 +8,6 @@ $(function(){
 		rating: grade,
 		change: function(e, value){
 			if(value){
-				console.log(value)
 				grade=value
 			}
 		}
@@ -98,6 +97,7 @@ $(function(){
 })
 function modalClose(){
     $("#popup").fadeOut(); //페이드아웃 효과
+
     
 }
 
@@ -200,9 +200,24 @@ function clickReviewHeart(irno){
 	})
 }
 
+function clickItemCart(ino){
+	console.log("cart click");
+	$.ajax({
+		url: "/cart/item/" + ino,
+		method: "POST",
+		success: function(result){
+			alert("장바구니에 추가 완료!");
+		},
+		error: function(err){
+			alert("로그인 후 이용하실 수 있습니다.");
+		}
+	})
+}
+
 async function modify(irno){
 	$("#modify").show();
 	$("#confirm").hide(); 
+
 	try{
 		
 	const result = await $.get("/review/"+irno);
@@ -231,6 +246,7 @@ async function modify(irno){
 		console.log(data);
 		$.ajax({
 			url: "/review/modify",
+			method: "POST",
 			method: "PUT",
 			contentType: "application/json",
 			data: JSON.stringify(data),

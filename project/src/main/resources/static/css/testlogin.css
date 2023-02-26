@@ -25,16 +25,11 @@
 
 /*모달을 감쌀 박스의 css*/
 .popup-wrap{
-    background-color:rgba(0,0,0,.3);  /*배경색과 투명도로 살짝 어둡지만 투명한 배경*/
-    justify-content:center; /*수평 중앙정렬*/
-    align-items:center;     /*수직 중앙정렬*/
-    position:fixed;         /*포지션 픽스, 화면이 스크롤되더라도 고정되기 위함*/ 
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;               /*모든 방향에 0을 주면 화면에 꽉차게 됩니다.*/
-    display:none;  /*이벤트가 발생할 때 띄우기 위해 숨김*/
-    padding:15px; 
+    display: flex;
+  
+    align-items: center;
+    justify-content: center;
+   
   }
 
   /*모달의 몸체*/
@@ -81,7 +76,7 @@
   }
   .body-contentbox{           /*컨텐츠 내용 영역*/
     word-break:break-word;    /*단어가 짤리지 않음*/
-    overflow-y:auto;          /*내부요소가 지정한 세로 값보다 클 경우 스크롤 생성*/
+   
     min-height:10vh;         /*최소 높이*/
     max-height:60vh;         /*최대 높이*/
   }

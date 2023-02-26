@@ -3,19 +3,20 @@ package com.campers.camfp.service.shoppingcart;
 import java.util.List;
 
 import com.campers.camfp.dto.shopingcart.ShoppingCartDTO;
+import com.campers.camfp.entity.item.Item;
 import com.campers.camfp.entity.member.Member;
 import com.campers.camfp.entity.shoppingcart.ShoppingCart;
 
 public interface ShoppingCartService {
 
 	//장바구니 추가
-	Long register(ShoppingCartDTO shoppingCartDTO);
+	Long register(Long ino, Long mno);
 	
 	//상품 장바구니 하나 가져오기
 	ShoppingCartDTO getOne(Long sno);
 	
 	//사용자가 넣은 장바구니 목록 가져오기
-	List<ShoppingCartDTO> getCartOfMember(String mid);
+	List<ShoppingCartDTO> getCartOfMember(Long mno);
 	
 	//장바구니 수정
 	void modify(ShoppingCartDTO shoppingCartDTO);
@@ -29,6 +30,7 @@ public interface ShoppingCartService {
 									.sno(shoppingCartDTO.getSno())
 									.member(Member.builder().mno(shoppingCartDTO.getMno()).build())
 									.ino(shoppingCartDTO.getIno())
+									.amount(shoppingCartDTO.getAmount())
 									.build();
 		
 		return shoppingCart;
@@ -40,6 +42,7 @@ public interface ShoppingCartService {
 				.sno(shoppingCart.getSno())
 				.mno(shoppingCart.getMember().getMno())
 				.ino(shoppingCart.getIno())
+				.amount(shoppingCart.getAmount())
 				.build();
 		
 		return shoppingCartDTO;

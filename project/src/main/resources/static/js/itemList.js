@@ -2,32 +2,62 @@ let itemDTO;
 let image = new Array();
 $(function(){
 	console.log("document ready")
-	$("#modal-open").click(function(){
-		$("#modify").hide();
-		$("#confirm").show();       
-        $("#popup").css('display','flex').hide().fadeIn();
+	$("#item-modal-open").click(function(){
+		$("#item-modal-open #modify").hide();
+		$("#item-modal-open #confirm").show();
+        $("#item-popup").css('display','flex').hide().fadeIn();
         //팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
     });
     
-    $("#close").click(function(){
+	
+    
+    $(".close").click(function(){
+		console.log('클릭은 되나')
         modalClose(); //모달 닫기 함수 호출
     });
     
-    $("#confirm").click(function(){
+    
+    
+    $("#cart-popup .confirm").click(async function(){
+        modalClose(); //모달 닫기 함수 호출
+        console.log("여긴 cart 수정부분")
+        
+        const cartItems = await $.get("/cart/list");
+        const data = cartItems.map((item) => {
+			return {
+				amount : parseInt($(this).parent().parent().find(`tr#${item.sno}`).find(".amount").val()),
+				ino : item.ino,
+				sno : item.sno,
+				mno : item.mno
+			}
+		});
+		
+		console.log(data);
+		$.ajax({
+			url: "/cart/items",
+			method: "PUT",
+			data: JSON.stringify(data),
+			contentType: "application/json",
+			success: function(result){
+				console.log(result);
+			},
+			error: function(err){
+				alert("잠시후에 다시 실행해주시길 바랍니다.")
+			}
+		})
+    });
+    
+    $("#item-popup #confirm").click(function(){
         modalClose(); //모달 닫기 함수 호출
         getData();
-        //컨펌 이벤트 처리
-		//등록할 때 data를 ItemReviewDTO, List<String>으로 받아야 함
         let data = {
 			item : itemDTO,
 			image : image
 		};
 		console.log(data);
 		$.ajax({
-			url: "/item/register",
+			url: "/cart/modify",
 			method: "POST",
-			contentType: "application/json",
-			data: JSON.stringify(data),
 			success: function(ino){
 				$("#content").val("");
 				$("#capture").val("");
@@ -35,7 +65,6 @@ $(function(){
 			}
 		})       
     });
-    
     $("#thumbnail").on("change", function(){
 		image = [];
 		console.log("capture change event");
@@ -82,8 +111,107 @@ $(function(){
 	search('','','');
 })
 
+
+
 function modalClose(){
-    $("#popup").fadeOut(); //페이드아웃 효과
+    $("#cart-popup").fadeOut(); //페이드아웃 효과
+    $("#item-popup").fadeOut(); //페이드아웃 효과
+}
+
+function cartModal(){
+	const $cart= $("#cart-popup table");
+	const $count = $("#cartCount");
+	
+	$.ajax({
+		url: "/cart/items",
+		method: "GET",
+		dataType: "json",
+		success: function(result){
+			console.log(result);
+			if(result.length == 0){
+				$("#cart-popup .popup .popup-body").html(`
+					<div class="noneCart">
+						<h1>장바구니가 텅 비었습니다.</h1>
+					</div>
+				`)
+			}else{
+				
+				$cart.html( `
+					<th class="selectall">
+                        <input type="checkbox" name="cartitem" id="cbx_chkAll" value="selectall">
+                    </th>
+                    <th class="productinfoheader">상품 정보</th>
+                    <th class="amountheader">수량</th>
+                    <th class="amountallheader">주문금액</th>
+				` );
+				const cartHtml = result.map(([{thumbnail, name, brand, price}, cartDTO]) => 
+					`
+						<tr id="${cartDTO.sno}">
+                            <td class="select">
+                                <input type="checkbox" name="chk" value="select">
+                            </td>
+
+                            <td class="productinfobox">
+                                <div class="productimgbox">
+                                    <img class="productimg" src="${thumbnail}" alt="">
+                                </div>
+                                <div class="producttextbox">
+                                    <div class="productname">${name}</div>
+                                    <div class="brandname">${brand}</div>
+                                    <div class="price">${price}원</div>
+                                </div>
+                            </td>
+
+                            <td class="amountbox">
+                                <input type="number" class="amount" value="${cartDTO.amount}"></div>
+                            </td>
+
+                            <td class="amountallbox">
+                                <div class="amountall">${cartDTO.amount * price}원</div>
+                            </td>
+                        </tr>
+					`
+				).join("")
+				
+				$cart.append(cartHtml);
+				$count.html(`총 ${result.length}개의 상품`)
+			}
+			$("#cart-modal-open #confirm").show();
+	        $("#cart-popup").css('display','flex').hide().fadeIn();
+		    $("#cbx_chkAll").click(function() {
+				console.log("여기 들어감")
+				if($("#cbx_chkAll").is(":checked")) $("input[name=chk]").prop("checked", true);
+				else $("input[name=chk]").prop("checked", false);
+			});
+			$("input[name=chk]").click(function() {
+				var total = $("input[name=chk]").length;
+				var checked = $("input[name=chk]:checked").length;
+		
+				if(total != checked) $("#cbx_chkAll").prop("checked", false);
+				else $("#cbx_chkAll").prop("checked", true); 
+			});
+		},
+		error: function(err){
+			alert("로그인 후 이용하실 수 있습니다.");
+		}
+	})		
+};
+
+function deleteCart(){
+	const items = $("#cart-popup").find("table tr").map(async function(){
+		if($(this).find("input[type=checkbox]").is(":checked") == true){
+			const sno = $(this).attr('id');
+			$.ajax({
+				url: "/cart/" + sno,
+				method: "DELETE",
+				success: function(result){
+					cartModal();
+				}
+			})
+		}
+	});
+	
+	
 }
 
 function getData(ino){

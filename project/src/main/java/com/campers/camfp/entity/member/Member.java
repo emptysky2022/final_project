@@ -1,19 +1,15 @@
 package com.campers.camfp.entity.member;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.campers.camfp.config.type.GenderType;
-import com.campers.camfp.entity.item.ItemReview;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,19 +21,20 @@ import lombok.ToString;
 @Entity
 @Table(name="member")
 @Builder
-@Setter
 @Getter
+@Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class Member {
 	
+
 	//사용자 number
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long mno;
 	
-	@Column(length =50, unique = true, nullable = false)
+	@Column(length =100, unique = true, nullable = false)
 	private String id;
 	
 	//사용자 패스워드
@@ -45,7 +42,7 @@ public class Member {
 	private String pw;
 	
 	//사용자 닉네임
-	@Column(length = 10, nullable = false, unique = true)
+	@Column(length = 50, nullable = false, unique=true)
 	private String nickname;
 	
 	//사용자 프로필 사진
@@ -60,6 +57,7 @@ public class Member {
 	private int age;
 	
 	//사용자 성별
+	@Enumerated(EnumType.STRING)
 	private GenderType gender;
 	
 	//사용자 주소
@@ -76,19 +74,8 @@ public class Member {
 	//사용자 소개
 	@Column(length = 1000)
 	private String introduce;
-	
-	public void change(String pw, String nickname, String profileImg, String name, int age, String address,
-			String phone, String introduce) {
-		
-		this.pw  = pw;
-		this.nickname = nickname;
-		this.profileImg = profileImg;
-		this.name = name;
-		this.age = age;
-		this.address = address;
-		this.phone = phone;
-		this.introduce = introduce;
-	}
+
+
 
 	public Member(String id, String pw, String nickname, String profileImg, String name, int age,
 			GenderType gender, String address, String phone, String grade, String introduce) {
@@ -105,8 +92,19 @@ public class Member {
 		this.introduce = introduce;
 	}
 
+	public void change(String nickname, String name, String phone, String introduce, int age, String address,
+			String profileImg, GenderType gender) {
+		this.nickname = nickname;
+		this.profileImg = profileImg;
+		this.name = name;
+		this.age = age;
+		this.address = address;
+		this.phone = phone;
+		this.introduce = introduce;
+		this.gender= gender;
+		
+	}
 
-	
-	
-	
+
 }
+

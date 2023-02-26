@@ -31,7 +31,7 @@ public class History {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long hno;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false ,cascade = CascadeType.REMOVE)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	private Member member;
 	
 	@Column(nullable = false)
