@@ -52,7 +52,6 @@ public class GoogleUserInfo implements OAuth2UserInfo{
 		return null;
 	}
 
-
 //	@Override
 //	public boolean getGender() {
 //		return false;

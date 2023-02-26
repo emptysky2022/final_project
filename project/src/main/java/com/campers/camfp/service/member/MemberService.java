@@ -4,14 +4,23 @@ import com.campers.camfp.dto.member.MemberDTO;
 import com.campers.camfp.entity.member.Member;
 
 public interface MemberService {
-
-	Long register(MemberDTO memberDTO);
 	
-	MemberDTO get(String mno);
+//	Long register(MemberDTO memberDTO);
+//	
+//	MemberDTO get(String mno);
+//	
+//	void remove(Long mno);
+//	
+	//id, 닉네임 중복검사
+	public int idCheck(String id);
+	public int nickCheck(String nickname);
+	void  deleteByMno(Long mno);
 	
-	void remove(Long mno);
+	//회원가입
+	void signup(MemberDTO memberDTO);
+	//회원정보수정
+	public void modify(MemberDTO memberDTO, Member member);
 	
-	void modify(MemberDTO memberDTO);
 	
 	default Member dtoToEntity(MemberDTO memberDTO) {
 		Member member = Member.builder().mno(memberDTO.getMno())
@@ -39,7 +48,7 @@ public interface MemberService {
 												 .profileImg(member.getProfileImg())
 												 .name(member.getName())
 												 .age(member.getAge())
-												 .gender(member.getGender())
+												.gender(member.getGender())
 												 .address(member.getAddress())
 												 .phone(member.getPhone())
 												 .grade(member.getGrade())
@@ -48,7 +57,6 @@ public interface MemberService {
 		
 		return memberDTO;
 	}
-	
-	
+
 	
 }
