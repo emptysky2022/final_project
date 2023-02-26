@@ -4,8 +4,12 @@ $(document).ready(function() {
 	var grade = $(".starrr").html();
 	var campRegister = $(".modal");
 	let makeLocation = "";
+	let modifyLocation = "";
+	let modifyType = [];
 	var makeType = [];
-	var campType = "";
+	var campType = [];
+	let makeCamp = "";
+	let Camp = "";
 
 	// 검색 타입
 	let searchType = "";
@@ -13,110 +17,6 @@ $(document).ready(function() {
 	// 캠핑 타입
 	var type = "";
 	let listGroup = $(".test");
-
-	console.log("grade : " + grade);
-	$(".starrr").html("");
-
-	$('.starrr').starrr({
-		rating: grade,
-		change: function(e, value) {
-			if (value) {
-				console.log(value)
-				grade = value
-			}
-		}
-	});
-
-	function modalClose() {
-		$("#popup").fadeOut(); //페이드아웃 효과
-	}
-
-	function getStar(grade) {
-		let star = '';
-		for (let i = 1; i <= 5; i++) {
-			if (i <= grade) star += '★';
-			else star += '☆';
-		}
-		return star;
-	}
-	function setStar() {
-		let grade = $("#sync_star").html();
-		console.log("grade = " + grade);
-		$("#item_star").html("<div id='sync_star'></div>");
-		$("#sync_star").starrr({
-			readOnly: true,
-			rating: grade
-		});
-		$("#sync_star").append(Math.round(grade * 10) / 10);
-	}
-
-	/* 캠프 등록 관련 메소드 시작*/
-	// 모달 오픈 
-	$(campRegister).on("click", function() {
-		console.log("나눌림");
-		//팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
-		$("#popup").css('display', 'flex').hide().fadeIn();
-	});
-
-
-	$("#close").click(function() {
-		console.log("모달 닫기");
-		modalClose(); //모달 닫기 함수 호출
-	});
-
-	$("#confirm").click(function() {
-		campType = makeType.join(",");
-
-		alert($(".campName").val());
-		alert($(".address").val());
-		alert($(".campintorduce").val());
-		alert(makeLocation);
-
-
-		funcCampRegister();
-
-	});
-
-	$(".makeLocation").on("click", "#type", function() {
-		// 기존 꺼 연한 파란색으로 바꿔준다.
-		$(".makeLocation #type").css("background-color", "#A2C4E1");
-
-		// 눌른거 찐 파랑으로 바꿔버림.
-		$(this).css("background-color", "#0062cc");
-
-		// 값 넣어주기
-		makeLocation = $(this).html();
-
-
-	})
-
-
-	$(".makeType").on("click", "#type", function() {
-		var type = $(this).html();
-		var findNum = makeType.indexOf(type);
-		console.log(findNum);
-
-		// 값이 없음
-		if (findNum == -1) {
-			// 눌른거 찐 파랑으로 바꿔버림.
-			$(this).css("background-color", "#0062cc");
-			makeType.push(type);
-		} else {
-			console.log(makeType);
-			makeType = makeType.filter(function(item) {
-				return item != type;
-			})
-			// 기존 꺼 연한 파란색으로 바꿔준다.
-			$(this).css("background-color", "#A2C4E1");
-		}
-
-		console.log(makeType);
-
-
-	});
-
-
-	/* 캠프 등록 관련 메소드 종료 */
 
 	// 지역 타입 한국말 써봄
 	var locations = [];
@@ -139,27 +39,196 @@ $(document).ready(function() {
 	locations[15] = "경상남도";
 	locations[16] = "제주도";
 
+	console.log("grade : " + grade);
+	$(".starrr").html("");
+
+	$('.starrr').starrr({
+		rating: grade,
+		change: function(e, value) {
+			if (value) {
+				console.log(value)
+				grade = value
+			}
+		}
+	});
+
+	// 캠프 생성 모달
+	function modalClose() {
+		$("#popup").fadeOut(); //페이드아웃 효과
+	}
+
+	function modifyModalClose() {
+		$("#modify-popup").fadeOut(); //페이드아웃 효과
+	}
+
+	function getStar(grade) {
+		let star = '';
+		for (let i = 1; i <= 5; i++) {
+			if (i <= grade) star += '★';
+			else star += '☆';
+		}
+		return star;
+	}
+	function setStar() {
+		let grade = $("#sync_star").html();
+		console.log("grade = " + grade);
+		$("#item_star").html("<div id='sync_star'></div>");
+		$("#sync_star").starrr({
+			readOnly: true,
+			rating: grade
+		});
+		$("#sync_star").append(Math.round(grade * 10) / 10);
+	}
+
+	// 캠핑장 수정
+	listGroup.on('click', '.modify', function(event) {
+		var cno = $(this).attr('id');
+
+		//팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
+		$("#modify-popup").css('display', 'flex').hide().fadeIn();
+
+		// 캠핑장 수정 하기전 데이터 받아오기.
+		getCamp(cno);
+	});
+
+	//캠핑장 삭제
+	listGroup.on('click', '.remove', function(event) {
+		var cno = $(this).attr('id');
+
+		if (confirm("정말로 삭제 하시겠습니까?")) {
+			campRemove(cno);
+		} else {
+			alert("삭제를 취소하였습니다.");
+		}
+	});
+
+	/* 캠프 등록 관련 메소드 시작*/
+	// 모달 오픈 
+	$(campRegister).on("click", function() {
+		console.log("나눌림");
+		//팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
+		$("#popup").css('display', 'flex').hide().fadeIn();
+	});
+
+
+	// 캠프 생성 모달 닫기
+	$("#close").click(function() {
+		console.log("모달 닫기");
+		modalClose(); //모달 닫기 함수 호출
+	});
+
+	//캠프 생성 
+	$("#confirm").click(function() {
+		makeCamp = makeType.join(",");
+		funcCampRegister();
+	});
+
+	// 캠프 수정 모달 닫기
+	$(".modify-close").click(function() {
+		clearModify();
+		modifyModalClose(); //모달 닫기 함수 호출
+	});
+
+	// 캠프 수정
+	$(".modify-confirm").click(function() {
+		cmapModify();
+		modifyModalClose(); //모달 닫기 함수 호출
+	});
+
+	$(".makeLocation").on("click", "#type", function() {
+		// 기존 꺼 연한 파란색으로 바꿔준다.
+		$(".makeLocation #type").css("background-color", "#A2C4E1");
+
+		// 눌른거 찐 파랑으로 바꿔버림.
+		$(this).css("background-color", "#0062cc");
+
+		// 값 넣어주기
+		makeLocation = $(this).html();
+	})
+
+	$(".modifyLocation").on("click", "#type", function() {
+		// 기존 꺼 연한 파란색으로 바꿔준다.
+		$(".modifyLocation #type").css("background-color", "#A2C4E1");
+
+		// 눌른거 찐 파랑으로 바꿔버림.
+		$(this).css("background-color", "#0062cc");
+
+		// 값 넣어주기
+		modifyLocation = $(this).html();
+	})
+
+
+	$(".modifyType").on("click", "#type", function() {
+		var type = $(this).html();
+		var findNum = modifyType.indexOf(type);
+		console.log(findNum);
+
+		// 값이 없음
+		if (findNum == -1) {
+			// 눌른거 찐 파랑으로 바꿔버림.
+			$(this).css("background-color", "#0062cc");
+			modifyType.push(type);
+		} else {
+			console.log(makeType);
+			modifyType = modifyType.filter(function(item) {
+				return item != type;
+			})
+			// 기존 꺼 연한 파란색으로 바꿔준다.
+			$(this).css("background-color", "#A2C4E1");
+		}
+
+		console.log(makeType);
+	});
+
+	$(".makeType").on("click", "#type", function() {
+		var type = $(this).html();
+		var findNum = makeType.indexOf(type);
+		console.log(findNum);
+
+		// 값이 없음
+		if (findNum == -1) {
+			// 눌른거 찐 파랑으로 바꿔버림.
+			$(this).css("background-color", "#0062cc");
+			makeType.push(type);
+		} else {
+			console.log(makeType);
+			makeType = makeType.filter(function(item) {
+				return item != type;
+			})
+			// 기존 꺼 연한 파란색으로 바꿔준다.
+			$(this).css("background-color", "#A2C4E1");
+		}
+
+		console.log(makeType);
+	});
+
+	/* 캠프 등록 관련 메소드 종료 */
 	// 캠핑 타입 확인
 	$("#campType").on("click", "#type", function() {
 
-		// 비어있을떄는 온전히 값을 넣어줌
-		if (type == "") {
+		type = $(this).html();
+		var findNum = campType.indexOf(type);
+		console.log(findNum);
 
-			// type 에 값넣기
-			type = $(this).html();
-
-			// 비어있지 않을시에는
+		// 값이 없음
+		if (findNum == -1) {
+			// 눌른거 찐 파랑으로 바꿔버림.
+			$(this).css("background-color", "#0062cc");
+			campType.push(type);
 		} else {
-
-			// this html 이 없을 경우
-			if (type.indexOf($(this).html()) == -1) {
-
-				// , 붙여서 넣어줌
-				type += "," + $(this).html();
-				console.log(type);
-			}
+			console.log(campType);
+			campType = campType.filter(function(item) {
+				return item != type;
+			})
+			// 기존 꺼 연한 파란색으로 바꿔준다.
+			$(this).css("background-color", "#A2C4E1");
 		}
+		type = campType.join(",");
 		console.log(type);
+
+		// 누를 떄마다 호출
+
+		loadJSON();
 	});
 
 
@@ -174,23 +243,22 @@ $(document).ready(function() {
 			locations.push(clicklocation);
 		} else { // 값이 있는지 확인
 
-			// 값을 없앨때 동작하는 로직 1.색상 흐리게하고 기본값에서 제거한다.
+			// 값을 없앨때 동작하는 로직 색상 흐리게하고 기본값에서 제거한다.
 			console.log("값이있어서 지울게");
 			$(this).css('opacity', 0.3);
 			locations.splice(dataHere, 1);
 		}
 		// 값조건 체크 완료
-		console.log(locations.length);
+		loadJSON();
 	});
 
+	// 검색 
 	$("#search").on("click", "#type", function() {
 		// 기본값일경우
 		searchType = "";
 		searchType = $(this).html();
 
 		type += "," + searchType;
-		console.log(type);
-
 		// 실행
 		loadJSON();
 
@@ -213,33 +281,178 @@ $(document).ready(function() {
 
 	});
 
+	function clearModify() {
+
+		makeType = [];
+		modifyLocation = "";
+
+		// 버튼 타입 요소 가져오기
+		const type = $('.modifyType button');
+		const locationType = $('.modifyLocation button');
+		// 있던 타입 버튼들의 배열 
+		type.each(function(index, value) {
+			$(value).css("background-color", "#A2C4E1");
+
+		});
+
+		// 있떤 타입들의 배열
+		locationType.each(function(index, value) {
+			$(value).css("background-color", "#A2C4E1");
+		});
+	}
+
+	async function getCamp(cno) {
+
+		const result = await $.get("/camp/campData/" + cno);
+
+		console.log(result);
+
+		var address = result.address;
+		var campintroduce = result.campintroduce;
+		var camptype = result.camptype;
+		var location = result.location;
+		var name = result.name;
+		var thumbnail = result.thumbnail;
+		var star = result.star;
+		var count = result.count;
+		var heart = result.heart;
+		var unit = result.unit;
+
+		$(".modify-campName").val(name);
+		$(".modify-campintorduce").val(campintroduce);
+		$(".modify-address").val(address);
+		$(".modify-thumbnail").val(thumbnail);
+		$(".modify-campName").val(name);
+		$(".modify-cno").val(cno);
+		$(".modify-star").val(star);
+		$(".modify-count").val(count);
+		$(".modify-heart").val(heart);
+		$(".modify-unit").val(unit);
+
+		$(".modify-popup .makeType").val();
+
+		// 버튼 타입 요소 가져오기
+		const type = $('.modifyType button');
+
+
+		// 있던 타입 버튼들의 배열 
+		type.each(function(index, value) {
+			if (camptype.includes($(value).html())) {
+				$(value).css("background-color", "#0062cc");
+				makeType.push(type);
+			} else {
+				$(value).css("background-color", "#A2C4E1");
+			}
+		});
+
+
+		// 버튼 타입 요소 가져오기
+		const locationType = $('.modifyLocation button');
+
+		// 있떤 타입들의 배열
+		locationType.each(function(index, value) {
+
+			if (location.includes($(value).html())) {
+				$(value).css("background-color", "#0062cc");
+				modifyLocation = $(value).html();
+			} else {
+				$(value).css("background-color", "#A2C4E1");
+			}
+		});
+	}
+
+	function cmapModify() {
+
+		var type2 = modifyType.join(",");
+		console.log(modifyType);
+		console.log(type);
+
+		$.ajax({
+			url: "/camp/modify",
+			contentType: "application/json",
+			method: "PUT",
+			data: JSON.stringify({
+
+				cno: $(".modify-cno").val(),
+				name: $(".modify-campName").val(),
+				campintroduce: $(".modify-campintorduce").val(),
+				address: $(".modify-address").val(),
+				thumbnail: $(".modify-thumbnail").val(),
+				camptype: type2,
+				location: modifyLocation,
+				star: $(".modify-star").val(),
+				count: $(".modify-count").val(),
+				heart: $(".modify-heart").val(),
+				unit: $(".modify-unit").val(),
+			})
+		})
+	}
+
+	function campRemove(cno) {
+		$.ajax({
+			url: "/camp/remove/" + cno,
+			method: "DELETE",
+			success: function() {
+				alert("캠핑장 을 삭제하였습니다.");
+			}
+		})
+	}
+
 
 	function loadJSON() {
-		console.log("loadjson");
-		$.getJSON('/camp/list/' + type + '/' + locations, function(arr) {
 
+		if (type == "") {
+			type = "별점순"
+		}
+		var url = '/camp/list/' + type + '/' + locations;
+
+		$.getJSON(url, function(arr) {
+			listGroup.html("");
 			let str = "";
-			$.each(arr, function(index, camp) {
+			const [camp, member] = arr;
+			$.each(camp, function(index, camp) {
 
-				str += "<div class='campgroundsbox box'  onclick='location.href=\"/camp/campgroundsdetail?cno=" + camp.cno + "\"''>";
+
+				str += "<div class='campgroundsbox box'>";
 				str += "<input type = 'hidden' name='cno' th:value ='" + camp.cno + "''>";
-				str += "<div class='cg_imgbox box5'>";
+				str += "<div class='cg_imgbox box5' onclick='location.href=\"/camp/campgroundsdetail?cno=" + camp.cno + "\"''>";
 				str += "<img class='cg_img item' src=" + camp.thumbnail + ">";
 				str += "</div>";
 				str += "<div class='cg_rightbox box4'>"
 				str += "<div class='title item'>" + camp.name + "</div>";
 				str += "<div class='cg_starbox item'>";
 				str += "<div class='star item'>" + getStar(camp.star) + "  (" + (camp.count) + ")</div>";
+
+
 				str += "</div>";
 				str += "<div class='cg_explainbox box5'>";
 				str += "<div class='explain item'>" + camp.address + "</div>";
 				str += "</div>";
+				
+				str += "<img class='heart'width=30px height=30px src='../img/full_heart.png'>";
+				str += "<img class='heart'width=30px height=30px src='../img/empty_heart.png'>";
+
+				// 버튼 HTML 생성 시 data-cno 속성 추가
+				if (member.mno === camp.mno) {
+					str += '<div class="modify-box">';
+					str += '  <button class="modify" id="' + camp.cno + '">수정</button>';
+					str += '  <button class="remove" id="' + camp.cno + '">삭제</button>';
+					str += '</div>';
+				}
+
 				str += "</div>";
 				str += "</div>";
-				listGroup.html(str);
+
+
 			});
+			listGroup.html(str);
 		});
 	};
+	
+	function heartCheck() {
+		
+	}
+
 	function funcCampRegister() {
 		$.ajax({
 			url: "/camp/register",
@@ -249,7 +462,7 @@ $(document).ready(function() {
 				name: $(".campName").val(),
 				address: $(".address").val(),
 				campintroduce: $(".campintorduce").val(),
-				camptype: campType,
+				camptype: makeCamp,
 				location: makeLocation,
 				thumbnail: "test.jpg"
 			}), success: function(result) {
@@ -259,4 +472,6 @@ $(document).ready(function() {
 			}
 		})
 	}
+
+	loadJSON();
 });
