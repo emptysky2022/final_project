@@ -17,6 +17,7 @@
     <link th:href="@{../css/starrr.css}" rel="stylesheet">
 	  
     <!--css 연결-->
+    <link rel="stylesheet" type="text/css" href="../css/cart.css">
     <link rel="stylesheet" type="text/css" href="../css/camperproduct.css">
     <link rel="stylesheet" type="text/css" href="../css/reviewwrite.css">
     <!--js연결-->
@@ -55,7 +56,7 @@
                 <!--우측 상단 마이페이지-->
                 <ul class="header_mypage box2_3">
                     <li class="box3">
-                        <a href="" class="box3">
+                        <a class="box3" id="cart-modal-open" onclick="cartModal()">
                             <i class="fa-solid fa-user item"></i>
                         </a>
                     </li>
@@ -164,10 +165,10 @@
                 <!--판매 상품 등록-->
                 <!-- 리뷰 추가 모달창 -->
                 <div class="modal-btn-box" sec:authorize="isAuthenticated()">
-        			<button type="button" id="modal-open">아이템 추가</button>
+        			<button type="button" id="item-modal-open">아이템 추가</button>
 				</div>
 				<!--모달을 감쌀 박스-->
-				<div class="popup-wrap" id="popup">
+				<div class="popup-wrap" id="item-popup">
 			        <!--실질적 모달팝업-->
 			        <div class="popup"> 
 			            <!--로고 영역-->
@@ -253,6 +254,43 @@
 					</div>
 				</div>
 				<!-- 추가 모달 끝 -->
+				
+    <!--모달을 감쌀 박스-->
+    <div class="popup-wrap" id="cart-popup">
+        <!--실질적 모달팝업-->
+        <div class="popup">
+            <!--로고 영역-->
+            <div class="popup-head">
+                <span class="head-title"> 로고</span>
+            </div>
+            <!--컨텐츠 영역-->
+            <div class="popup-body">
+                <div class="body-content">
+                    <div class="body-titlebox">장바구니</div>
+                    <hr>
+                    <div class="body-contentbox">
+                        <table>
+                        </table>
+                        <div class="sumbox">
+                            <div class="sumcount" id="cartCount"></div>
+                            <input type="button" class="sumbutton"  id="btn_showChkList" name="btn_showChkList" value="총합 확인">
+                            <div class="sumprice" id="txt_getChkList"></div>
+                        </div>
+
+                        <div class="btnbox">
+                            <div class="delete" onclick="deleteCart()">선택 상품 삭제</div>
+                            <div class="selectorder" >선택 상품 주문</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--푸터 버튼 영역-->
+            <div class="popup-foot">
+                <span class="pop-btn close" id="cart-close">창 닫기</span>
+                <span class="pop-btn confirm">확인</span>
+            </div>
+        </div>
+    </div>
             </div>
 
 
