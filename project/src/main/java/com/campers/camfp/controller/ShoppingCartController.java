@@ -78,7 +78,6 @@ public class ShoppingCartController {
 	
 	@PutMapping("/items")
 	public ResponseEntity<String> changeAmountOfItem(@RequestBody List<ShoppingCartDTO> cartList, @AuthenticationPrincipal PrincipalDetails principalDetails){
-		log.info("여기 들와짐?");
 		log.info(cartList);
 		if(principalDetails != null) {
 			cartList.forEach(cart -> {
@@ -91,10 +90,13 @@ public class ShoppingCartController {
 		}
 	}
 	
-	@DeleteMapping("/{sno}")
-	public ResponseEntity<String> removeCartOfItem(@PathVariable Long sno){
+	@DeleteMapping("/items")
+	public ResponseEntity<String> removeCartOfItem(@RequestBody List<Long> snos){
 		log.info("delete cart");
-		cartService.remove(sno);
+		snos.forEach(sno -> {
+			cartService.remove(sno);
+		});
+		
 		return new ResponseEntity<>("remove success!", HttpStatus.OK);
 	}
 }
