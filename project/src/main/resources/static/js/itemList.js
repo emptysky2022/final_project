@@ -121,7 +121,7 @@ function modalClose(){
 function cartModal(){
 	const $cart= $("#cart-popup table");
 	const $count = $("#cartCount");
-	
+	const $checkPrice = $("#txt_getChkList");
 	$.ajax({
 		url: "/cart/items",
 		method: "GET",
@@ -137,12 +137,14 @@ function cartModal(){
 			}else{
 				
 				$cart.html( `
-					<th class="selectall">
-                        <input type="checkbox" name="cartitem" id="cbx_chkAll" value="selectall">
-                    </th>
-                    <th class="productinfoheader">상품 정보</th>
-                    <th class="amountheader">수량</th>
-                    <th class="amountallheader">주문금액</th>
+					<tr>
+						<th class="selectall">
+	                        <input type="checkbox" name="cartitem" id="cbx_chkAll" value="selectall">
+	                    </th>
+	                    <th class="productinfoheader">상품 정보</th>
+	                    <th class="amountheader">수량</th>
+	                    <th class="amountallheader">주문금액</th>
+                    </tr>
 				` );
 				const cartHtml = result.map(([{thumbnail, name, brand, price}, cartDTO]) => 
 					`
@@ -176,12 +178,14 @@ function cartModal(){
 				$cart.append(cartHtml);
 				$count.html(`총 ${result.length}개의 상품`)
 			}
+			checkPrice($checkPrice);
 			$("#cart-modal-open #confirm").show();
 	        $("#cart-popup").css('display','flex').hide().fadeIn();
 		    $("#cbx_chkAll").click(function() {
 				console.log("여기 들어감")
 				if($("#cbx_chkAll").is(":checked")) $("input[name=chk]").prop("checked", true);
 				else $("input[name=chk]").prop("checked", false);
+				checkPrice($checkPrice);
 			});
 			$("input[name=chk]").click(function() {
 				var total = $("input[name=chk]").length;
@@ -189,7 +193,15 @@ function cartModal(){
 		
 				if(total != checked) $("#cbx_chkAll").prop("checked", false);
 				else $("#cbx_chkAll").prop("checked", true); 
+				checkPrice($checkPrice);
 			});
+			$("#cart-popup input[type=number]").bind("keyup mouseup", function(){
+				const price = parseInt($(this).parent().prev().find(".price").html());
+				const amount = $(this).val();
+				
+				$(this).parent().next().find(".amountall").html(`${price * amount}원`);
+				checkPrice($checkPrice);
+			})
 		},
 		error: function(err){
 			alert("로그인 후 이용하실 수 있습니다.");
@@ -198,20 +210,33 @@ function cartModal(){
 };
 
 function deleteCart(){
+	let snos = new Array();
 	const items = $("#cart-popup").find("table tr").map(async function(){
-		if($(this).find("input[type=checkbox]").is(":checked") == true){
-			const sno = $(this).attr('id');
-			$.ajax({
-				url: "/cart/" + sno,
-				method: "DELETE",
-				success: function(result){
-					cartModal();
-				}
-			})
+		if($(this).find("input[name=chk]").is(":checked") == true){
+			snos.push(parseInt($(this).attr('id')));			
 		}
 	});
-	
-	
+	console.log(snos);
+	$.ajax({
+		url: "/cart/items",
+		method: "DELETE",
+		contentType: "application/json",
+		data: JSON.stringify(snos),
+		success: function(result){
+			cartModal();
+		}
+	})
+}
+
+function checkPrice($el){
+	let price = 0;
+	const items = $("#cart-popup").find("table tr").map(async function(){
+		if($(this).find("input[name=chk]").is(":checked") == true){
+			const itemPrice = parseInt($(this).find(".amountall").html());
+			price = price + itemPrice;
+		}
+	});
+	$el.html(`${price}원`);
 }
 
 function getData(ino){
