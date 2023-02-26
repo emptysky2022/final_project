@@ -35,6 +35,7 @@ public class CampReview extends BaseEntity{
 
 	// 지연로딩 설정
 	// 조인 컬럼 설정
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "cno")
 	private Camp camp;
@@ -45,7 +46,7 @@ public class CampReview extends BaseEntity{
 	@Column(length = 200, nullable = false)
 	private String content;
 
-	@Column(length = 20, nullable = false)
+	@Column(length = 50, nullable = false)
 	private String reviewer;
 
 	private int heart;

@@ -192,13 +192,6 @@
 						</div>
 					</div>
 
-					<div id="campType">
-						<button id="type">일반</button>
-						<button id="type">카라반</button>
-						<button id="type">글램핑</button>
-						<button id="type">자동차</button>
-					</div>
-
 					<!--드롭다운 메뉴2-->
 					<div class="sec4 box3">
 						<!--드롭다운메뉴-->
@@ -213,6 +206,14 @@
 							</div>
 						</div>
 					</div>
+
+					<div id="campType">
+						<button id="type">일반</button>
+						<button id="type">카라반</button>
+						<button id="type">글램핑</button>
+						<button id="type">자동차</button>
+					</div>
+
 
 					<!--캠핑장 사진 및 평점-->
 					<a class="list-group replyList"> <!-- rest 로 들어옴 -->
@@ -244,7 +245,7 @@
 
 					<!--캠핑장 등록?-->
 					<div class="sec6 box3">
-					
+
 						<div class="product_registration modal">
 							<div class="p_r_imgbox box5">
 								<img src="../img/happy12.jpg" class="p_r_img item">
@@ -253,7 +254,7 @@
 							<div class="p_r_title box5">캠핑장을 등록하세요</div>
 							<div class="p_r_content box5">좋은 상품</div>
 						</div>
-						
+
 
 						<div class="p_explanbox box4">
 							<textarea class="explan item" name="explan" cols="30" rows="10"
@@ -265,99 +266,190 @@
 						</div>
 					</div>
 
-						     <!--예약 모달을 감쌀 박스-->
-						    <div class="popup-wrap" id="popup" style="z-index: 1;">
-						        <!--실질적 모달팝업-->
-						        <div class="popup"> 
-						            <!--로고 영역-->
-						            <div class="popup-head"> 
-						                <span class="head-title"> 로고</span>
-						            </div>
-						            <!--컨텐츠 영역-->
-						            <div class="popup-body"> 
-						                <div class="body-content">
-						                 <div class="body-titlebox">캠핑장 등록하기</div>
-						                    <hr>
-						                    <div class="body-contentbox">
-						                       <div class="campgroundsbox">
-						                       		<div class="textreviewbox">
-						                            	<div class="tr_texttitle">캠핑장 이름</div>
-						                            	<input type="text" class="campName">
-						                       		</div>
-						                       <hr>
-			                       					<div class="textreviewbox">
-						                            	<div class="tr_texttitle">캠핑장 종류 (중복 가능합니다.)</div>
-						                            	<div class="makeType">
-															<button id="type">일반</button>
-															<button id="type">카라반</button>
-															<button id="type">글램핑</button>
-															<button id="type">자동차</button>
-						                            	</div>
-						                       		</div>
-						                       		<hr>
-			                       					<div class="textreviewbox">
-						                            	<div class="tr_texttitle">지역 선택</div>
-						                            	<div class="makeLocation" style="line-height: 40px"> 
-															<button id="type">서울시</button>
-															<button id="type">부산시</button>
-															<button id="type">대구시</button>
-															<button id="type">인천시</button>
-															<button id="type">광주시</button>
-															<button id="type">대전시</button>
-															<button id="type">울산시</button>
-															<button id="type">세종시</button>
-															<button id="type">경기도</button>
-															<button id="type">강원도</button>
-															<button id="type">충청북도</button>
-															<button id="type">충청남도</button>
-															<button id="type">전라북도</button>
-															<button id="type">전라남도</button>
-															<button id="type">경상북도</button>
-															<button id="type">경상남도</button>
-															<button id="type">제주도</button>
-						                            	</div>
-						                       		</div>
-						                       		<hr>
-			                       					<div class="textreviewbox">
-						                            	<div class="tr_texttitle">캠핑장 위치</div>
-														<input type="text" class="address">
-						                       		</div>
-						                       		<hr>
-			                       					<div class="textreviewbox">
-						                            	<div class="tr_texttitle">캠핑장 소개</div>
-						                            	<textarea rows="15" cols="30" class="campintorduce"></textarea>
-						                       		</div>
-						                       		<hr>
-						                       		<div class="addimgbox">
-						                            	<div class="tr_texttitle">이미지 추가	</div>
-														<label for="thumbnail" class="custom-file-upload">
-														  <i class="fas fa-cloud-upload-alt"></i> 파일 선택
-														</label>						                            	
-						                            	<input type="file" id="thumbnail" class="addimg" multiple style="display: none">
-						                       		</div>
-						                       		<hr>
-						                       </div>
+					<!--예약 모달을 감쌀 박스-->
+					<div class="popup-wrap" id="popup" style="z-index: 1;">
+						<!--실질적 모달팝업-->
+						<div class="popup">
+							<!--로고 영역-->
+							<div class="popup-head">
+								<span class="head-title"> 로고</span>
+							</div>
+							<!--컨텐츠 영역-->
+							<div class="popup-body">
+								<div class="body-content">
+									<div class="body-titlebox">캠핑장 등록하기</div>
+									<hr>
+									<div class="body-contentbox">
+										<div class="campgroundsbox">
+											<div class="textreviewbox">
+												<div class="tr_texttitle">캠핑장 이름</div>
+												<input type="text" class="campName">
+											</div>
+											<hr>
+											<div class="textreviewbox">
+												<div class="tr_texttitle">캠핑장 종류 (중복 가능합니다.)</div>
+												<div class="makeType">
+													<button id="type">일반</button>
+													<button id="type">카라반</button>
+													<button id="type">글램핑</button>
+													<button id="type">자동차</button>
+												</div>
+											</div>
+											<hr>
+											<div class="textreviewbox">
+												<div class="tr_texttitle">지역 선택</div>
+												<div class="makeLocation" style="line-height: 40px">
+													<button id="type">서울시</button>
+													<button id="type">부산시</button>
+													<button id="type">대구시</button>
+													<button id="type">인천시</button>
+													<button id="type">광주시</button>
+													<button id="type">대전시</button>
+													<button id="type">울산시</button>
+													<button id="type">세종시</button>
+													<button id="type">경기도</button>
+													<button id="type">강원도</button>
+													<button id="type">충청북도</button>
+													<button id="type">충청남도</button>
+													<button id="type">전라북도</button>
+													<button id="type">전라남도</button>
+													<button id="type">경상북도</button>
+													<button id="type">경상남도</button>
+													<button id="type">제주도</button>
+												</div>
+											</div>
+											<hr>
+											<div class="textreviewbox">
+												<div class="tr_texttitle">캠핑장 위치</div>
+												<input type="text" class="address">
+											</div>
+											<hr>
+											<div class="textreviewbox">
+												<div class="tr_texttitle">캠핑장 소개</div>
+												<textarea rows="15" cols="30" class="campintorduce"></textarea>
+											</div>
+											<hr>
+											<div class="addimgbox">
+												<div class="tr_texttitle">이미지 추가</div>
+												<label for="thumbnail" class="custom-file-upload"> <i
+													class="fas fa-cloud-upload-alt"></i> 파일 선택
+												</label> <input type="file" id="thumbnail" class="addimg" multiple
+													style="display: none">
+											</div>
+											<hr>
+										</div>
 
-						                    </div>
-						                </div>
-						            </div>
-						            <!--푸터 버튼 영역-->
-						            <div class="popup-foot">  
-						                <span class="pop-btn close" id="close">창 닫기</span>
-						                <span class="pop-btn confirm" id="confirm">예약</span>
-						               
-						            </div>
-						        </div>
-						    </div>
+									</div>
+								</div>
+							</div>
+							<!--푸터 버튼 영역-->
+							<div class="popup-foot">
+								<span class="pop-btn close" id="close">창 닫기</span> <span
+									class="pop-btn confirm" id="confirm">예약</span>
 
-			<!--메인 바디의 사이드 빈 공간 오른쪽-->
-			<div class="aside_r box2">aside_r</div>
-	</div>
-	</main>
-	<!--====푸터====-->
-	<footer>
-		<div class="footer box1">푸터자리</div>
-	</footer>
+							</div>
+						</div>
+					</div>
+					
+					
+					<!--수정모달 감쌀 박스-->
+					<div class="popup-wrap" id="modify-popup" style="z-index: 1;">
+						<!--실질적 모달팝업-->
+						<div class="popup">
+							<!--로고 영역-->
+							<div class="popup-head">
+								<span class="head-title"> 로고</span>
+							</div>
+							<!--컨텐츠 영역-->
+							<div class="popup-body">
+								<div class="body-content">
+									<div class="body-titlebox">캠핑장 수정하기</div>
+									<hr>
+									<div class="body-contentbox">
+										<div class="campgroundsbox">
+											<div class="textreviewbox">
+												<div class="tr_texttitle">캠핑장 이름</div>
+												<input type="text" class="modify-campName">
+												<input type="hidden" class="modify-cno">
+												<input type="hidden" class="modify-star">
+												<input type="hidden" class="modify-count">
+												<input type="hidden" class="modify-heart">
+												<input type="hidden" class="modify-unit">
+											</div>
+											<hr>
+											<div class="textreviewbox">
+												<div class="tr_texttitle">캠핑장 종류 (중복 가능합니다.)</div>
+												<div class="modifyType">
+													<button id="type">일반</button>
+													<button id="type">카라반</button>
+													<button id="type">글램핑</button>
+													<button id="type">자동차</button>
+												</div>
+											</div>
+											<hr>
+											<div class="textreviewbox">
+												<div class="tr_texttitle">지역 선택</div>
+												<div class="modifyLocation" style="line-height: 40px">
+													<button id="type">서울시</button>
+													<button id="type">부산시</button>
+													<button id="type">대구시</button>
+													<button id="type">인천시</button>
+													<button id="type">광주시</button>
+													<button id="type">대전시</button>
+													<button id="type">울산시</button>
+													<button id="type">세종시</button>
+													<button id="type">경기도</button>
+													<button id="type">강원도</button>
+													<button id="type">충청북도</button>
+													<button id="type">충청남도</button>
+													<button id="type">전라북도</button>
+													<button id="type">전라남도</button>
+													<button id="type">경상북도</button>
+													<button id="type">경상남도</button>
+													<button id="type">제주도</button>
+												</div>
+											</div>
+											<hr>
+											<div class="textreviewbox">
+												<div class="tr_texttitle">캠핑장 위치</div>
+												<input type="text" class="modify-address">
+											</div>
+											<hr>
+											<div class="textreviewbox">
+												<div class="tr_texttitle">캠핑장 소개</div>
+												<textarea rows="15" cols="30" class="modify-campintorduce"></textarea>
+											</div>
+											<hr>
+											<div class="addimgbox">
+												<div class="tr_texttitle">이미지 추가</div>
+												<label for="thumbnail" class="custom-file-upload"> <i
+													class="fas fa-cloud-upload-alt"></i> 파일 선택
+												</label> <input type="file" id="modify-thumbnail" class="addimg" multiple
+													style="display: none">
+											</div>
+											<hr>
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<!--푸터 버튼 영역-->
+							<div class="popup-foot">
+								<span class="pop-btn modify-close" id="close">창 닫기</span> <span
+									class="pop-btn modify-confirm" id="confirm">수정</span>
+
+							</div>
+						</div>
+					</div>
+
+					<!--메인 바디의 사이드 빈 공간 오른쪽-->
+					<div class="aside_r box2">aside_r</div>
+				</div>
+		</main>
+		<!--====푸터====-->
+		<footer>
+			<div class="footer box1">푸터자리</div>
+		</footer>
 
 
 	</div>

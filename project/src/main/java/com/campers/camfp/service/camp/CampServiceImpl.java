@@ -234,7 +234,7 @@ public class CampServiceImpl implements CampService {
 			break;
 		}
 
-		return (Long) result;
+		return result;
 
 	}
 
