@@ -24,12 +24,12 @@ public class PrincipalDetailsService implements UserDetailsService{
 	//시큐리티 session(Authentication(내부에 UserDetails가 들어가고))내부에 들어감
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Member member = memberRepository.findByName(username);
+		Member member = memberRepository.findById(username);
 		if(member !=null) {
 			return new PrincipalDetails(member);
 		}
 		
-		return null;
+		return null; 
 	}
 
 }

@@ -693,7 +693,7 @@ main .body .body_center {
         width: 80%;
         height: 3rem;
         border-radius: 0.2rem;
-        margin: 0;
+        margin: 0 0 1rem 0;
         padding: 0;
         display: flex;
     }
@@ -1022,6 +1022,15 @@ main .body .body_center {
         height: 2rem;
 
     }
+}
+.nick_ok{
+color:#008000;
+display: none;
+}
+
+.nick_already{
+color: red; 
+display: none;
 }
 
 .memberdeletebtnbox{

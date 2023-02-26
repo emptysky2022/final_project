@@ -7,9 +7,10 @@
 </head>
 
 <!--css 연결-->
-<link rel="stylesheet" type="text/css" href="../static/css/signup.css">
+<link rel="stylesheet" type="text/css" href="../css/signup.css">
 <!--js연결-->
-<script type="text/javascript" src="" defer></script>
+<script type="text/javascript" th:src="@{../js/signup.js}" defer></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <!--구글 폰트 링크-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,21 +34,21 @@
 			<div class="loginapitext item">소셜 로그인</div>
 			<div class="loginapi box2">
 				<div class="buttonbox_g box3">
-					<a class="button_g box4" href="">
+					<a class="button_g box4" href="/oauth2/authorization/google">
 						<img class="logoimg_gw item_1" src="../img/googleSignUpWide.png" alt="googleLogoWide">
 						<img class="logoimg_g item_2" src="../img/googleLogo.png" alt="googleLogo">
 					</a>
 				</div>
 
 				<div class="buttonbox_n box3">
-					<a class="button_n box4" href="">
+					<a class="button_n box4" href="/oauth2/authorization/naver">
 						<img class="logoimg_nw item_1" src="../img/naverSignUpWide.png" alt="naverLogoWide">
 						<img class="logoimg_n item_2" src="../img/naverLogo.png" alt="googleLogo">
 					</a>
 				</div>
 
 				<div class="buttonbox_k box3">
-					<a class="button_k box4" href="">
+					<a class="button_k box4" href="/oauth2/authorization/kakao">
 						<img class="logoimg_kw item_1" src="../img/kakaoSignUpWide.png" alt="kakaoLogoWide">
 						<img class="logoimg_k item_2" src="../img/kakaoLogo.png" alt="googleLogo">
 					</a>
@@ -69,7 +70,7 @@
 			</div>
 
 			<!--자료 가져오기 form태그-->
-			<form th:action="@{/sample/Login}" th:method="post">
+			<form th:action="@{/signup}"  th:method="post" th:object="${memberDTO}">
 				<!--회원가입 입력 단락-->
 				<div class="sec4 box2">
 					<div class="profileimgbox box3">
@@ -79,37 +80,45 @@
 
 					<div class="idbox box3">
 						<p type="text" class="idtext item">아이디</p>
-						<input type="text" class="id item_2" name="id" placeholder="아이디를 입력해주세요." required>
+						<input type="text" class="id item_2" id="id" name="id" minlength="6" maxlength="20" oninput="checkId()" placeholder="아이디는 영어 소문자와 숫자만 사용하여 6~20자리여야 합니다." required>
+							<span class="id_ok">사용 가능한 아이디입니다.</span>
+							<span class="id_already">중복된 아이디입니다.</span>
+						<!-- <div th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Incorrect data </div> -->
+						<!--  <span th:text="${valid_id}"></span> --> 
 					</div>
 					<div class="passwordbox box3">
 						<p type="password" class="passwordtext item">비밀번호</p>
-						<input type="password" class="password item" name="pass" placeholder="비밀번호를 입력해주세요." required>
+						<input type="password" class="password item" id="pw" name ="pw" minlength="8" maxlength="20" placeholder="비밀번호는 문자+숫자+하나의 특수문자 사용하여 8~20자리여야 합니다." required>
 					</div>
 
 					<div class="passwordcheckbox box3">
 						<p class="passwordchecktext item">비밀번호 확인
 						</p>
-						<input class="passwordcheck item_2" type="password" name="passcheck"
-							placeholder="비밀번호를 입력해주세요." required>
+						<input  type="password"class="passwordcheck item_2" id="passcheck" name="passcheck"  placeholder="비밀번호를 한번 더 입력해주세요." required>
+					<p id="rePwdErr">비밀번호와 일치하지 않습니다. 다시 입력해 주세요.</p>
 					</div>
-
+						
+						
 					<div class="namebox box3">
 						<p class="nametext item">이름</p>
 						<input class="name item_2" type="text" name="name" placeholder="이름를 입력해주세요." required>
 					</div>
 					<div class="nicknamebox box3">
 						<p class="nicknametext item">별명</p>
-						<input class="nickname item_2" type="text" name="nickname" placeholder="별명를 입력해주세요.">
+						<input class="nickname item_2"  type="text" name="nickname" id="nickname" oninput="checkNick()"minlength="2" maxlength="10"placeholder="별명은 특수문자를 포함하지 않은 2~10자리여야 합니다.">
+						<span class="nick_ok">사용 가능한 별명입니다.</span>
+						<span class="nick_already">중복된 별명입니다.</span>
+						
 					</div>
 					<div class="agebox box3">
 						<p class="agetext item">나이</p>
-						<input class="age item_2" type="text" name="age" placeholder="나이를 입력해주세요.">
+						<input class="age item_2" type="text" name="age" placeholder="나이를 입력해주세요. ex) 20">
 					</div>
 					<div class="genderbox box3">
 						<p class="gendertext item">성별</p>
 						<select class="gender item_2" name="gender">
-							<option value="true">남자</option>
-							<option value="false">여자</option>
+							<option value="MALE">남자</option>
+							<option value="FEMALE">여자</option>
 						</select>
 					</div>
 					<div class="addressbox box3">
@@ -125,19 +134,18 @@
 						<textarea class="introduce item_2" name="introduce" placeholder="간단한 소개를 부탁드려요"></textarea>
 					</div>
 				</div>
-			</form>
-			<p class="sec5 box2">이메일 수신 동의 - 아직 api 미구현</p>
-
+			
 		
 		
-		<div class="sec6 box2" >
-		<button type="submit" name="joinMember" class="registerBtn item">회원가입</button>
-		</div>
+			<div class="sec6 box2" >
+			<button type="submit" name="joinMember" class="registerBtn item">회원가입</button>
+			</div>
+		</form>
 
 
 
 		<div class="sec7 box2">
-			이미 회원이신가요?<a class="loginlink item" href="#">로그인</a>
+			이미 회원이신가요?<a class="loginlink item" href="/login">로그인</a>
 		</div>
 
 	</div>

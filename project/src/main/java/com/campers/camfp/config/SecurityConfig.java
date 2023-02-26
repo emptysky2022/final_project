@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -24,6 +24,12 @@ public class SecurityConfig{ //이 필터가 기본 필터에 등록이됨
 
 	@Autowired
 	private PrincipalOauth2UserService principalOauth2UserService;
+	
+		/** AuthenticationManager 빈 등록 **/
+	   @Bean
+	    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+	        return authenticationConfiguration.getAuthenticationManager();
+	    }
 	
 	//해당 메서드의 리턴되는 오브젝트를 IoC로 등록
 	@Bean
@@ -50,6 +56,7 @@ public class SecurityConfig{ //이 필터가 기본 필터에 등록이됨
 			.defaultSuccessUrl("/")//로그인이 완료되면 메인페이지로감
 		.and()
 			.logout()
+			.logoutUrl("/logout")
 			.invalidateHttpSession(true)
 			.logoutSuccessUrl("/")
 		.and()

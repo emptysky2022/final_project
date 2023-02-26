@@ -1217,6 +1217,26 @@ body .container{
     margin: 1rem;
 }
 
+.id_ok{
+color:#008000;
+display: none;
+}
+
+.id_already{
+color: red; 
+display: none;
+}
+
+.nick_ok{
+color:#008000;
+display: none;
+}
+
+.nick_already{
+color: red; 
+display: none;
+}
+
 
 
 /*로그인 박스*/
