@@ -314,6 +314,67 @@
 						        </div>
 						    </div>
 						    
+					<!--수정모달 감쌀 박스-->
+					<div class="popup-wrap" id="modify-popup" style="z-index: 1;">
+						<!--실질적 모달팝업-->
+						<div class="popup">
+							<!--로고 영역-->
+							<div class="popup-head">
+								<span class="head-title"> 로고</span>
+							</div>
+							<!--컨텐츠 영역-->
+							<div class="popup-body">
+								<div class="body-content">
+									<div class="body-titlebox">리뷰 수정하기</div>
+									<hr>
+						                    <div class="body-contentbox">
+						                       <div class="campgroundsbox">
+						                            <div class="campimgbox">	    
+						                               <img class="campgroundimg item" src="../img/happy13.jpg" th:src="${result.thumbnail}">                            
+						                            </div>
+						                            <div class="campexplainbox">
+						                                <div class="ce_name">
+						                                	[[${result.name}]]
+						                                </div> 
+						                             	<div class="cg_starbox box4">
+                           						 			<div class="cg_star item" id="item_star">
+                           						 				<div id="sync_star">[[${result.star}]]</div>
+                           						 			</div>
+                        								</div>
+						                               
+						                            </div>
+						                       </div>
+						                       <hr>
+						                       <div class="starbox">
+						                            <div class="star_title">별점을 선택하세요</div>
+						                            <div class="starsizeupbox">
+						                                <div class="starrr star" id="select_star"></div>  
+						                            </div>  
+						                       </div>
+						                       
+						                       <hr>
+						                       <div class="textreviewbox">
+						                            <div class="tr_texttitle">리뷰 내용</div>
+						                            <textarea class="tr_text" id="content" placeholder="솔직한 이용후기를 작성해주세요"></textarea>
+						
+						                       </div>
+						                       <hr>
+						                       <div class="addimgbox">
+						                            <div class="addimgtitle">이미지 추가</div>
+						                            <input type="file" id="picture" class="addimg">
+						                       </div>
+						                    </div>	
+						                </div>
+							</div>
+							<!--푸터 버튼 영역-->
+							<div class="popup-foot">
+								<span class="pop-btn modify-close" id="close">창 닫기</span> <span
+									class="pop-btn modify-confirm" id="confirm">수정</span>
+
+							</div>
+						</div>
+					</div>
+						    
 						    
 						    
 						    

@@ -220,7 +220,7 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 
 			case "heart":
 				update.set(Q_CAMP_REVIEW.heart, findData(table, no, addData) + 1)
-						.where(Q_CAMP_REVIEW.crno.eq(no.intValue())).execute();
+						.where(Q_CAMP_REVIEW.crno.eq((long) no.intValue())).execute();
 				break;
 
 			case "star":
@@ -289,7 +289,7 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 
 			case "heart":
 				review.select(Q_CAMP.heart);
-				review.where(Q_CAMP_REVIEW.crno.eq(no.intValue()));
+				review.where(Q_CAMP_REVIEW.crno.eq((long) no.intValue()));
 
 				// 왜 fetchone 으로 못쓰는 걸까 알아보고 바꿔야 겠다.
 				Object buffer = review.fetch().get(0);

@@ -1,58 +1,4 @@
 $(document).ready(function() {
-
-	//// 별점 관리 /////
-	var grade = $(".starrr").html();
-	$(".starrr").html("");
-
-	$('.starrr').starrr({
-		rating: grade,
-		change: function(e, value) {
-			if (value) {
-				grade = value
-			}
-		}
-	});
-
-	$("#modal-open").click(function() {
-		//팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
-		$("#popup").css('display', 'flex').hide().fadeIn();
-
-		// 로드시 숫자를 -> ☆ 로 바꿈 
-		$("#sync_star").html(getStar($("#sync_star").html()));
-	});
-
-	$("#close").click(function() {
-		modalClose(); //모달 닫기 함수 호출
-	});
-
-	$("#confirm").click(function() {
-		clickCampConfirm();
-	});
-
-
-	function modalClose() {
-		$("#popup").fadeOut(); //페이드아웃 효과
-	}
-
-	function getStar(grade) {
-		let star = '';
-		for (let i = 1; i <= 5; i++) {
-			if (i <= grade) star += '★';
-			else star += '☆';
-		}
-		return star;
-	}
-	function setStar() {
-		let grade = $("#sync_star").html();
-		$("#item_star").html("<div id='sync_star'></div>");
-		$("#sync_star").starrr({
-			readOnly: true,
-			rating: grade
-		});
-		$("#sync_star").append(Math.round(grade * 10) / 10);
-	}
-
-
 	//// 나부터 다른거////
 
 	var midldate = false;
@@ -458,6 +404,93 @@ $(document).ready(function() {
 	let crno = "";
 	let listGroup = $(".sec4 .box4");
 
+	//// 별점 관리 /////
+	var grade = $(".starrr").html();
+	$(".starrr").html("");
+
+	$('.starrr').starrr({
+		rating: grade,
+		change: function(e, value) {
+			if (value) {
+				grade = value
+			}
+		}
+	});
+
+	$("#modal-open").click(function() {
+		//팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
+		$("#popup").css('display', 'flex').hide().fadeIn();
+
+		// 로드시 숫자를 -> ☆ 로 바꿈 
+		$("#sync_star").html(getStar($("#sync_star").html()));
+	});
+
+	// 리뷰 작성 모달 닫기
+	$("#close").click(function() {
+		modalClose(); //모달 닫기 함수 호출
+	});
+
+	// 리뷰 작성 모달 열기
+	$("#confirm").click(function() {
+		clickCampConfirm();
+	});
+
+	// 리뷰 수정 모달 닫기
+	$(".modify-close").click(function() {
+		modifyModalClose(); //모달 닫기 함수 호출
+	});
+
+	// 리뷰 수정
+	$(".modify-confirm").click(function() {
+		cmapModify();
+		modifyModalClose(); //모달 닫기 함수 호출
+	});
+
+	// 리뷰 작성 모달 닫기
+	function modalClose() {
+		$("#popup").fadeOut(); //페이드아웃 효과
+	}
+
+	// 리뷰 수정 모달 닫기
+	function modifyModalClose() {
+		$("#modify-popup").fadeOut(); //페이드아웃 효과
+	}
+
+	function getStar(grade) {
+		let star = '';
+		for (let i = 1; i <= 5; i++) {
+			if (i <= grade) star += '★';
+			else star += '☆';
+		}
+		return star;
+	}
+	function setStar() {
+		let grade = $("#sync_star").html();
+		$("#item_star").html("<div id='sync_star'></div>");
+		$("#sync_star").starrr({
+			readOnly: true,
+			rating: grade
+		});
+		$("#sync_star").append(Math.round(grade * 10) / 10);
+	}
+
+
+
+	// 댓글 생성
+	listGroup.on('click', '.modify', function(event) {
+		var crno = $(this).attr('id');
+
+		//팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
+		$("#modify-popup").css('display', 'flex').hide().fadeIn();
+	});
+
+	//댓글 삭제
+	listGroup.on('click', '.remove', function(event) {
+		var crno = $(this).attr('id');
+		removeReview(crno);
+		console.log(crno);
+	});
+
 	//하트 추가
 	listGroup.on('click', '.saveHeart', function() {
 		var cno = $(this).attr('id');
@@ -498,10 +531,7 @@ $(document).ready(function() {
 			let str = "";
 			const [reply, member] = arr;
 
-			console.log("reply");
 			console.log(reply);
-			console.log("member");
-			console.log(member);
 
 			$.each(reply, function(index, reply) {
 				let direction = index % 2 == 0 ? 'l' : 'r';
@@ -542,7 +572,7 @@ $(document).ready(function() {
 				} else {
 					str += "<img class='saveHeart' id=" + reply.crno + " data-id= 'empty' width=30px height=30px src='../img/empty_heart.png'>";
 				}
-				
+
 
 				if (member.nickname == reply.reviewer) {
 					str += '<div class="modify-box">';
@@ -576,7 +606,7 @@ $(document).ready(function() {
 			}
 		})
 	}
-	
+
 	function removeHeart(cno, heart, hlno) {
 		console.log(hlno);
 		console.log(cno);
@@ -608,7 +638,7 @@ $(document).ready(function() {
 			}), dataType: "json"
 		}).responseText
 	}
-	
+
 	function clickCampConfirm() {
 
 		$.ajax({
@@ -653,6 +683,14 @@ $(document).ready(function() {
 			error: function(err) {
 
 			}
+		})
+	}
+	
+	function removeReview(crno){
+		
+		$.ajax({
+			url : "/camp/review/" + Number(crno),
+			method : "DELETE"
 		})
 	}
 
