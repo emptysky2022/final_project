@@ -76,7 +76,7 @@ $(function(){
 		const inputFile = $(this);
 		const files = inputFile[0].files;
 		let appended = false;
-		
+		console.log(image);
 		$.each(files, function(index, file){
 			if(!checkExtension(file.name, file.size)){
 				return false;
@@ -101,8 +101,8 @@ $(function(){
 			success: function(result){
 				console.log(result);
 				//결과값중 uuid, filePath등등 있는데 imageURL만 뽑아서 리스트에 넣기
-				result.map(({uuid, fileName}) => image.push(uuid + fileName));
-				$("#imageChange").attr('src', '/display?fileName='+image[image.length - 1]);
+				result.map(({uuid, fileName}) => image.push(uuid + '_' + fileName));
+				$("#imageChange").attr('src', '/display?fileName='+image[image.length - 1]+'&folderType=item');
 				console.log(image);
 			},
 			error: function(xhr, text, errorThrown){
@@ -318,7 +318,13 @@ function search(category, keyword, type){
 			if(item.thumbnail != null && item.thumbnail.split(':')[0] === "https"){
 				str += '    <img class="p_img item" src=' + item.thumbnail + '></div>';
 			} else{
-				str += '    <img class="p_img item" src=/display?fileName=' + item.thumbnail + '></div>';
+				console.log(item)
+				let imageURLs = item.thumbnail.split(',');
+				console.log(imageURLs);
+				for(var i = 0; i < imageURLs.length-1; i++){
+					str += '    <img class="p_img item" src=/display?fileName=' + imageURLs[i] + '&folderType=item>';
+				}
+				str += '</div>';
 			}
             str += '  <div class="p_contentbox box5">';
             str += '    <div class="p_writingbox box6">';
@@ -362,7 +368,8 @@ async function modify(ino){
 		$("#imageChange").attr("src", result.thumbnail);
 		image.push(result.thumbnail);
 	} else{
-		$("#imageChange").attr("src", "/display?fileName="+result.thumbnail);
+		let itemURLs = result.thumbnail.split(',');
+		$("#imageChange").attr("src", "/display?fileName="+itemURLs[itemURLs.length-2]+"&folderType=item");
 	}
 	$("#name").val(result.name);
 	$("#price").val(result.price);

@@ -60,6 +60,7 @@ public class UploadController {
 			String uuid = UUID.randomUUID().toString().substring(0, 7);
 			//서버에 저장될 파일 이름
 			String saveName = folderPath + File.separator + uuid + "_" + fileName;
+			log.info("saveName" + saveName);
 			//파일 경로 얻어오기
 			Path savePath = Paths.get(saveName);
 			
@@ -90,12 +91,18 @@ public class UploadController {
 		ResponseEntity<byte[]> result = null;
 			
 		try {
-			String srcFileName = !fileName.equals("null")? URLDecoder.decode(fileName, "UTF-8") : uploadPath + File.separator + defaultImage;
+			String srcFileName;
+			File file;
+			if(fileName.equals("null")) {
+				srcFileName = defaultImage;
+				file = new File(uploadPath + File.separator + srcFileName);
+			}else {
+				srcFileName = URLDecoder.decode(fileName, "UTF-8");
+				file = new File(uploadPath + File.separator + folderType + File.separator + srcFileName);
+			}
 			
 			log.info("fileName : " + srcFileName);
 			
-			File file = new File(uploadPath + File.separator + srcFileName);
-
 			log.info(file);
 			
 			HttpHeaders header = new HttpHeaders();

@@ -79,7 +79,7 @@ public class ItemController {
 		
 		//readValue로 값 읽어서 List에 저장
 		List<String> imageURLList = reader.readValue(obj.get("image"));
-		String imageURLs = null;
+		String imageURLs = "";
 		for(String imageURL : imageURLList) {
 			imageURLs += imageURL + ",";
 		}
@@ -103,18 +103,18 @@ public class ItemController {
 		ItemDTO itemDTO = mapper.treeToValue(obj.get("item"), ItemDTO.class);
 		log.info("item : " + itemDTO);
 		
-		if(itemDTO.getThumbnail() == null) {
-			//ImageURL이 여러개이면 List타입으로 받아야 하기 때문에 reader 선언
-			ObjectReader reader = mapper.readerFor(new TypeReference<List<String>>() {});
-			
-			//readValue로 값 읽어서 List에 저장
-			List<String> imageURLList = reader.readValue(obj.get("image"));
-			for(String imageURL : imageURLList) {
-				log.info("어디서 안되는거야");
-				itemDTO.setThumbnail(imageURL);
-			}
+		String imageURLs = itemDTO.getThumbnail() == null ? "" : itemDTO.getThumbnail() + ",";
+		//ImageURL이 여러개이면 List타입으로 받아야 하기 때문에 reader 선언
+		ObjectReader reader = mapper.readerFor(new TypeReference<List<String>>() {});
+		
+		//readValue로 값 읽어서 List에 저장
+		List<String> imageURLList = reader.readValue(obj.get("image"));
+		for(String imageURL : imageURLList) {
+			log.info("어디서 안되는거야");
+			imageURLs += imageURL + ",";
 		}
 		
+		itemDTO.setThumbnail(imageURLs);
 		itemDTO.setMaker(principalDetails.getMember().getNickname());
 		itemDTO.setMno(principalDetails.getMember().getMno());
 		Long ino = itemService.modify(itemDTO);
