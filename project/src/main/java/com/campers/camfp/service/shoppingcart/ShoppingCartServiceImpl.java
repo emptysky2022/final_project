@@ -1,11 +1,14 @@
 package com.campers.camfp.service.shoppingcart;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
 import com.campers.camfp.dto.shopingcart.ShoppingCartDTO;
+import com.campers.camfp.entity.item.Item;
 import com.campers.camfp.entity.shoppingcart.ShoppingCart;
+import com.campers.camfp.repository.item.ItemRepository;
 import com.campers.camfp.repository.shoppingcart.ShoppingCartRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -19,8 +22,14 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
 	private final ShoppingCartRepository shoppingCartRepository;
 
 	@Override
-	public Long register(ShoppingCartDTO shoppingCartDTO) {
-		log.info("register shopping cart : " + shoppingCartDTO);
+	public Long register(Long ino, Long mno) {
+		ShoppingCartDTO shoppingCartDTO = ShoppingCartDTO.builder()
+											.ino(ino)
+											.mno(mno)
+											.amount(1)
+											.build();
+											
+		
 		ShoppingCart shoppingCart = dtoToEntity(shoppingCartDTO);
 		shoppingCartRepository.save(shoppingCart);
 		return shoppingCart.getSno();
@@ -34,9 +43,13 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
 	}
 
 	@Override
-	public List<ShoppingCartDTO> getCartOfMember(String mid) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ShoppingCartDTO> getCartOfMember(Long mno) {
+		List<ShoppingCart> entities = shoppingCartRepository.findCartOfMember(mno).get();
+		
+		List<ShoppingCartDTO> result = entities.stream().map(en ->entityToDto(en)).collect(Collectors.toList());
+		
+		log.info(result);
+		return result;
 	}
 
 	@Override

@@ -7,6 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -34,7 +35,8 @@ public class ItemReview extends BaseEntity{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long irno;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "item_ino", nullable = false)
 	private Item item;
 	
 	private String capture;
