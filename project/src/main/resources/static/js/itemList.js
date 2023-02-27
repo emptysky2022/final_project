@@ -56,9 +56,12 @@ $(function(){
 		};
 		console.log(data);
 		$.ajax({
-			url: "/cart/modify",
+			url: "/item/register",
 			method: "POST",
+			data: JSON.stringify(data),
+			contentType: "application/json",
 			success: function(ino){
+				console.log(ino + "통과!")
 				$("#content").val("");
 				$("#capture").val("");
 				search('','','');
@@ -98,7 +101,7 @@ $(function(){
 			success: function(result){
 				console.log(result);
 				//결과값중 uuid, filePath등등 있는데 imageURL만 뽑아서 리스트에 넣기
-				result.map(({imageURL}) => image.push(imageURL));
+				result.map(({uuid, fileName}) => image.push(uuid + fileName));
 				$("#imageChange").attr('src', '/display?fileName='+image[image.length - 1]);
 				console.log(image);
 			},
@@ -260,14 +263,25 @@ function checkPrice($el){
 }
 
 function getData(ino){
-	itemDTO = {
-		ino: ino,
-		name: $("#name").val(),
-		price: $("#price").val(),
-		brand: $("#brand").val(),
-		maker: $("#maker").val(),
-		link: $("#link").val(),
-		category1: $("select[name=category]").val()
+	if(ino){
+		itemDTO = {
+			ino: ino,
+			name: $("#name").val(),
+			price: $("#price").val(),
+			brand: $("#brand").val(),
+			maker: $("#maker").val(),
+			link: $("#link").val(),
+			category1: $("select[name=category]").val()
+		}
+	} else{
+		itemDTO = {
+			name: $("#name").val(),
+			price: $("#price").val(),
+			brand: $("#brand").val(),
+			maker: $("#maker").val(),
+			link: $("#link").val(),
+			category1: $("select[name=category]").val()
+		}
 	}
 	$("#name").val("");
 	$("#price").val("");
@@ -301,7 +315,7 @@ function search(category, keyword, type){
 			str += '<div class="productbox box4" >';
 			str += '<div onclick="location.href=\'/item/detail?ino=' + item.ino + '\'">';
 			str += '  <div class="p_imgbox box5">';
-			if(item.thumbnail.split(':')[0] === "https"){
+			if(item.thumbnail != null && item.thumbnail.split(':')[0] === "https"){
 				str += '    <img class="p_img item" src=' + item.thumbnail + '></div>';
 			} else{
 				str += '    <img class="p_img item" src=/display?fileName=' + item.thumbnail + '></div>';
@@ -363,7 +377,7 @@ async function modify(ino){
 		alert(e);
 	}
 	
-	$("#popup").css('display','flex').hide().fadeIn();
+	$("#item-popup").css('display','flex').hide().fadeIn();
 	$("#modify").click(function(){
         modalClose(); //모달 닫기 함수 호출
         getData(ino);

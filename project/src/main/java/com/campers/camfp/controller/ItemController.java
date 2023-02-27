@@ -66,7 +66,7 @@ public class ItemController {
 	@ResponseBody
 	@PostMapping("/register")
 	public ResponseEntity<Long> registerItem(@RequestBody ObjectNode obj, @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception {
-		//RequestBody는 단일개체만 가능, ObjectNode로 값 가져옴(ItemReviewDTO, ImageURL)
+		//RequestBody는 단일개체만 가능, ObjectNode로 값 가져옴(ItemDTO, ImageURL)
 		log.info(obj);
 		//ObjectNode의 값을 타입변경해줄 mapper
 		ObjectMapper mapper = new ObjectMapper();
@@ -79,9 +79,11 @@ public class ItemController {
 		
 		//readValue로 값 읽어서 List에 저장
 		List<String> imageURLList = reader.readValue(obj.get("image"));
+		String imageURLs = null;
 		for(String imageURL : imageURLList) {
-			itemDTO.setThumbnail(imageURL);
+			imageURLs += imageURL + ",";
 		}
+		itemDTO.setThumbnail(imageURLs);
 		
 		itemDTO.setMaker(principalDetails.getMember().getNickname());
 		itemDTO.setMno(principalDetails.getMember().getMno());
