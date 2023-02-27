@@ -57,7 +57,7 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 			camp.fetch();
 			data = camp.fetch();
 
-			break;
+			break;   
 
 		default:
 			log.info("알수 없는 데이터 형식입니다 해당 데이터 는 table 에 없습니다. tableType : " + table);
