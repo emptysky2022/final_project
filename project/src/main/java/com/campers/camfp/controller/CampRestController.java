@@ -22,6 +22,7 @@ import com.campers.camfp.config.type.TableType;
 import com.campers.camfp.dto.camp.CampCalenderDTO;
 import com.campers.camfp.dto.camp.CampDTO;
 import com.campers.camfp.dto.camp.CampReviewDTO;
+import com.campers.camfp.dto.heart.HeartDTO;
 import com.campers.camfp.dto.member.MemberDTO;
 import com.campers.camfp.entity.member.Member;
 import com.campers.camfp.service.camp.CampService;
@@ -65,7 +66,6 @@ public class CampRestController {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@PostMapping("review/register")
 	public ResponseEntity<String> reviewRegister(@RequestBody CampReviewDTO dto, @AuthenticationPrincipal PrincipalDetails principalDetails){
-		System.out.println("나탔따.");
 		log.info(dto);
 		String nickname = principalDetails.getMember().getNickname();
 		log.info(principalDetails.getMember());
@@ -138,5 +138,4 @@ public class CampRestController {
 		
 		return new ResponseEntity<String>(dto.getName(), HttpStatus.OK);
 	}
-
 }
