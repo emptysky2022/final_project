@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.campers.camfp.config.type.StateType;
 import com.campers.camfp.dto.history.HistoryDTO;
 import com.campers.camfp.service.history.HistoryService;
 
@@ -20,7 +21,7 @@ public class HistoryServiceTests {
 		IntStream.rangeClosed(1, 50).forEach(i -> {
 			HistoryDTO historyDTO = HistoryDTO.builder()
 											.amount(1)
-											.state((byte)1)
+											.state("배송중")
 											.build();
 			historyService.register(historyDTO);
 		});
@@ -29,7 +30,7 @@ public class HistoryServiceTests {
 	@Test
 	public void modifyDummy() {
 		HistoryDTO historyDTO = historyService.getOne(2L);
-		historyDTO.setState((byte)2);
+		historyDTO.setState("배송완료");
 		historyDTO.setAmount(2);
 		historyService.modify(historyDTO);
 	}

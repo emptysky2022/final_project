@@ -20,7 +20,7 @@ import lombok.extern.log4j.Log4j2;
 public class ShoppingCartServiceImpl implements ShoppingCartService{
 
 	private final ShoppingCartRepository shoppingCartRepository;
-
+	
 	@Override
 	public Long register(Long ino, Long mno) {
 		ShoppingCartDTO shoppingCartDTO = ShoppingCartDTO.builder()

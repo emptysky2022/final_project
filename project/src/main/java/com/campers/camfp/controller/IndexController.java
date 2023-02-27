@@ -3,14 +3,12 @@ package com.campers.camfp.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
@@ -25,10 +23,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.campers.camfp.config.auth.PrincipalDetails;
 import com.campers.camfp.config.validator.CheckIdValidator;
 import com.campers.camfp.config.validator.CheckNicknameValidator;
 import com.campers.camfp.dto.member.MemberDTO;
+import com.campers.camfp.entity.member.Member;
 import com.campers.camfp.repository.member.MemberRepository;
 import com.campers.camfp.service.member.MemberService;
 @Controller //view를 리턴하겟다
@@ -219,4 +219,18 @@ public class IndexController {
 	}
 	
 	
+	@GetMapping("/sample/read")
+	public void readMember(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
+		Member member = principalDetails.getMember();
+		MemberDTO memberDTO = MemberDTO.builder()
+				.mno(member.getMno())
+				.profileImg(member.getProfileImg())
+				.name(member.getName())
+				.nickname(member.getNickname())
+				.age(member.getAge())
+				.pw(member.getPw())
+				.build();
+		
+		model.addAttribute("memberDTO", memberDTO);
+	}
 }
