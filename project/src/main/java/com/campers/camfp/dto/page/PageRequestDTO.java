@@ -17,6 +17,7 @@ public class PageRequestDTO {
    private int size;
    
    // search
+   private String category;
    private String type;   
    private String keyword;
    
@@ -25,6 +26,7 @@ public class PageRequestDTO {
       this.size = 15;
       this.type = "";
       this.keyword = "";
+      this.category = "";
    }
    
    public Pageable getPageable(Sort sort) {

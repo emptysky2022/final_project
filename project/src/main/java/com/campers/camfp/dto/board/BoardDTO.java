@@ -21,7 +21,7 @@ public class BoardDTO {
 	private String title;
 	private String content;
 	private Long mno;
-	private String nickname; // 이렇게 쓰는게 맞을까여
+	private String nickname;
 	private String category;
 	private int replyCount;		// SH : 리플카운트가 없어서 추가함.
 	private int count;
