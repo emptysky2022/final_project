@@ -35,7 +35,7 @@ public class Reply extends BaseEntity{
 	@JoinColumn(name="bno")
 	private Board board;
 	
-	@Column(length = 20, nullable = false)
+	@Column(length = 50, nullable = false)
 	private String replyer;
 
 	@Column(length = 2000, nullable = false)

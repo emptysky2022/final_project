@@ -1,150 +1,239 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script> -->
-<title>Board List Page</title>
-<script
-  src="https://code.jquery.com/jquery-3.6.3.min.js"
-  integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
-  crossorigin="anonymous"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-	<script type="text/javascript" src="../js/boardRead.js" defer></script>
-</head>
-<body>
-	<!-- 게시글 등록 : 시작 -->
-    <div id="boardListRE_register" class="regiBoard" name="register">
-      <h3>글 등록 페이지입니다.</h3>
-      <form th:action="@{/sample/register}" th:method="post">
-         <div>
-            <input type="hidden" name="nickname" th:value="|${memInfo.nickname}|" readonly>
-            <input type="hidden" name="mno" th:value="|${memInfo.mno}|" readonly>
-            
-            <label>제목</label>
-            <input type="text" name="title">
-         </div>
-         
-         <div>
-            <label>내용</label>
-            <textarea rows="5" name="content"></textarea>
-         </div>
-         
-         <div>
-            <label>사진 첨부</label>
-            <input type="text" name="image">
-         </div>
-         
-         <div>
-            <button type="submit">등록하기</button>
-            <button type="reset">비우기</button>
-         </div>
-      </form>
-   </div>
-   <!-- 게시글 등록 : 끝-->
-	<br>
-   <!-- 게시글 수정 : 시작 -->
-   <div name="modify" class="sec2" id="boardListRE_modify">
-         
-   </div>
 
-   <!-- 게시글 수정 : 끝-->
-   <br>
-	<!-- 게시글 상세 : 시작 -->
-   <th:block>
-   <div class="sec3" id="boardListRE_read">
-   <!-- 스크립트에서 str 삽입될 공간 -->
-   </div>
-   </th:block>
-   <!-- 게시글 상세 : 끝-->
-   <br>
-   
-   <!-- 댓글 수정 : 시작 -->
-   <div id="modifyReply">
-	   <h3>댓글 수정하세요</h3>
-	   <h6 id="modifyReplyer"></h6>
-	   <textarea id="modifyContent" placeholder="수정할 내용을 적으세요"></textarea>
-	   <button id="modifyReplyBtn">수정하기</button>
-	   <button id="modifyReplyBtn-reset">취소하기</button>
-   </div>
-   <!-- 댓글 수정 : 끝 -->
-   
-	<!-- 게시글 목록 : 시작 -->
-   <div name="list">
-      <h3>게시글 목록 페이지입니다.</h3>
-   
-      <div class="container mt-3">
-         <h2>게시글 목록</h2>
-         <span>
-            <button type="button" class="regiShow btn btn-primary" style="float:right">글 등록하기</button>
-         </span>
-         
-         <table class="table table-striped">
-            <thead>
-               <tr>
-                  <th>No</th>
-                  <th>제목</th>
-                  <th>작성자</th>
-                  <th>작성일</th>
-                  <th>조회수</th>
-               </tr>
-            </thead>
-            <tbody class="refresh_list">
-               <!--/* <tr th:each="dto:${result.dtoList}">
-                  <td scope=row>[[${dto.bno}]]</td>
-                  <td><a th:onclick="|loadReadData(${dto.bno})|" onclick="toggleBtn1()" >[[${dto.title}]] <b><small>&#91;[[${dto.replyCount}]]&#93;</small></b></a></td>
-                  <td>[[${dto.nickname}]]</td>
-                  <td>[[${#temporals.format(dto.regDate, 'yyyy/MM/dd hh:mm:ss')}]]</td>
-                  <td>[[${dto.count}]]</td>
-               </tr> */-->
-            </tbody>
-         </table>
-      </div>
-   	  <!-- 페이징 처리 시작 -->
-	 <div>
-         <ul class="pagination h-100 justify-content-center align-items-conter">
-			<li class="page-item" th:if="${result.prev}">
-				<a class="page-link" th:onclick="" th:href="@{/sample/list(page=${result.start-1},
-															type=${pageRequestDTO.type},
-															keyword=${pageRequestDTO.keyword}
-											  )}" tabindex="-1">이전</a>
-			</li>
-			
-			<li th:class="'page-item '+ ${result.page == page ? 'active' : ''} "
-			th:each="page: ${result.pageList}"><a class="page-link" th:href="@{/sample/list(page=${page},
-																						   type=${pageRequestDTO.type},
-																						   keyword=${pageRequestDTO.keyword}
-																			 )}">[[${page}]]</a>
-			</li>
-			
-			<li class="page-item" th:if="${result.next}">
-				<a class="page-link" th:href="@{/sample/list(page=${result.end + 1},
-															type=${pageRequestDTO.type},
-															keyword=${pageRequestDTO.keyword}
-											  )}">다음</a>
-			</li>
-		</ul>
-      </div>
-      <!-- 페이징 처리 끝 -->
-      <!-- 검색 : 시작 -->
-      <div id="search">
-   	  <form id="searchForm">
-   		<select name="type">
-   			<option value="" th:selected="${pageRequestDTO.type == null}">전체</option>
-   			<option value="t" th:selected="${pageRequestDTO.type == 't'}">제목</option>
-   			<option value="c" th:selected="${pageRequestDTO.type == 'c'}">내용</option>
-   			<option value="w" th:selected="${pageRequestDTO.type == 'w'}">작성자</option>
-   			<option value="tc" th:selected="${pageRequestDTO.type == 'tc'}">제목 or 내용</option>
-   			<option value="tw" th:selected="${pageRequestDTO.type == 'tw'}">제목 or 작성자</option>
-   			<option value="tcw" th:selected="${pageRequestDTO.type == 'tcw'}">제목 or 내용 or 작성자</option>
-   		</select>
-   		<input type="text" name="keyword" th:value="${pageRequestDTOkeyword}">
-   		<button type="submit">검색</button>
-   	  </form>
-      </div>
-      <!-- 검색 : 끝 -->
-   </div>
-   <!-- 게시글 목록 : 끝 -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판</title>
+
+    <!--css 연결-->
+    <link rel="stylesheet" type="text/css" href="../css/postgroup.css">
+    <!--js연결-->
+    <script type="text/javascript" src="../js/postgroup.js" defer></script>
+
+    <!--제이쿼리 연결-->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <!--구글 폰트 링크-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Varela+Round&display=swap"
+        rel="stylesheet">
+    <!--폰트 그림 링크-->
+    <script src="https://kit.fontawesome.com/bb87a5faf0.js" crossorigin="anonymous"></script>
+    <!-- moment - Date js 라이브러리 -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!--====메인 header====-->
+        <header>
+            <div class="header box1">
+                <!--네비게이션 로고-->
+                <div class="header_logo box2">
+                    <a class="box3" href="#"><img src="" alt="">
+                        캠퍼스사진 </a>
+
+                </div>
+
+
+                <!--네비게이션 메뉴목록-->
+                <ul class="header_menu box2_2">
+                    <li class="box3"><a class="item" href="">apple</a></li>
+                    <li class="box3_3"><a class="item" href="">cherry</a></li>
+                    <li class="box3_2"><a class="item" href="">banana</a></li>
+                    <li class="box3_4"><a class="item" href="">melon</a></li>
+
+                </ul>
+
+                <!--우측 상단 마이페이지-->
+                <ul class="header_mypage box2_3">
+                    <li class="box3">
+                        <a href="" class="box3">
+                            <i class="fa-solid fa-user item"></i>
+                        </a>
+                    </li>
+                </ul>
+
+                <!--햄버거 메뉴-->
+                <a href="#" class="header_hamburger box2_4">
+                    <i class="fa-solid fa-bars item"></i>
+                </a>
+            </div>
+        </header>
+        <main>
+            <div class="body box1">
+                <!--메인 바디의 사이드 빈 공간왼쪽-->
+                <div class="aside_l box2">aside_l</div>
+                <!--메인 바디 가운데 공간-->
+                <div class="body_center box2">
+                    <!--게시글 메뉴바-->
+
+                    <div class="sec1 box3 " name="test">
+                        <div class="titlebox box4">
+                            <strong class="titletext item">게시글 작성하기
+                            </strong>
+                            <p class="explain item">게시글을 작성하실 수 있습니다.</p>
+                        </div>
+                        <div class="boardwritebox box4">
+                            <div class="boardwrite box5">
+                                <form th:action="@{/sample/register}" th:method="post">
+                                	<input type="hidden" id="memberNickname" name="nickname" th:value="|${memInfo.nickname}|" readonly>
+           							<input type="hidden" name="mno" th:value="|${memInfo.mno}|" readonly>
+                                <div class="titlebox box6">
+                                    <dl>
+                                        <dt class="titletext item">제목</dt>
+                                        <dd class="title item"><input name="title" type="text" placeholder="제목 입력"></dd>
+                                        <dd class="title item">
+                                        	<select name="category">
+                                        		<option>서울특별시</option>
+                                        		<option>경기도</option>
+                                        		<option>부산광역시</option>
+                                        		<option>대구광역시</option>
+                                        		<option>인천광역시</option>
+                                        		<option>울산광역시</option>
+                                        		<option>세종특별자치시</option>
+                                        		<option>강원도</option>
+                                        		<option>충청도</option>
+                                        		<option>전라도</option>
+                                        		<option>경상도</option>
+                                        		<option>제주특별자치도</option>
+                                        	</select>
+                                        </dd>
+                                    </dl> 
+                                </div>
+                              
+                                <div class="content">
+                                    <textarea name="content" placeholder="내용 입력"></textarea>
+                                </div>
+                                <div class="buttonbox box5">
+                                    <button type="submit" class="on">등록</button>
+                                    <button type="reset" class="cancel">비우기</button>
+                                </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="sec2 box3" id="boardModifyForm">
+                        <div class="titlebox box4">
+                            <strong class="titletext item">게시글 수정하기
+                            </strong>
+                            <p class="explain item">작성한 게시글을 수정하실 수 있습니다.</p>
+                        </div>
+                        <div class="boardmodifybox box4">
+                            <div class="boardmodify box5">
+                            	<div id="modifyBoard"></div>
+                                
+                            </div>
+                            <div class="button">
+                                <button type="button" id="boardModify" class="on">수정완료</button>
+                                <a href="" class="cancel">취소</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div id="boardList" class="sec3 box3">
+                        
+                        <div id="readList"></div>
+                        
+                        <div id="repliesListRE">
+                        	  
+                        </div>
+                    </div>
+                <a name="listlevel"></a>
+                    <div id="sec4" class="sec4 box3">
+                        
+                        <div class="titlebox box4">
+                            <strong class="titletext item">게시판 목록
+                            </strong>
+                            <div class="btnendbox box5">
+                                <p class="explain item">게시글을 작성하실 수 있습니다</p>
+                                <div class="button box6">
+                                    <a class="on item" onclick="toggleBtn1()">글쓰기</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="boardlistbox box4">
+                            <div class="boardlist box5">
+                                <div class="top box6">
+                                    <div class="num item">번호</div>
+                                    <div class="title item_2">제목</div>
+                                    <div class="writer item_3">글쓴이</div>
+                                    <div class="date item_4">작성일</div>
+                                    <div class="count item_5">조회</div>
+                                </div>
+                            </div>
+                            <div class="boardlist box5" id="getList">
+                            </div>
+                         </div>
+                            
+                            <!-- 페이징 처리 시작 -->
+							<div class="pagingEl">
+							</div>
+     						<!-- 페이징 처리 끝 -->
+                            
+                            <!-- 검색 기능 시작 -->
+                            <div id="search">
+	   	  						<form id="searchForm">
+	   	  						<label for="category">지역</label>
+	   	  							<select id='category' name="category">
+	   	  								<option value="">전체</option>
+	                                	<option>서울특별시</option>
+	                                    <option>경기도</option>
+	                                    <option>부산광역시</option>
+	                                    <option>대구광역시</option>
+	                                    <option>인천광역시</option>
+	                                    <option>울산광역시</option>
+	                                    <option>세종특별자치시</option>
+	                                    <option>강원도</option>
+	                                    <option>충청도</option>
+	                                    <option>전라도</option>
+	                                    <option>경상도</option>
+	                                    <option>제주특별자치도</option>
+                      				</select>
+	   								<select name="type">
+							   			<option value="" th:selected="${pageRequestDTO.type == null}">전체</option>
+							   			<option value="t" th:selected="${pageRequestDTO.type == 't'}">제목</option>
+							   			<option value="c" th:selected="${pageRequestDTO.type == 'c'}">내용</option>
+							   			<option value="w" th:selected="${pageRequestDTO.type == 'w'}">작성자</option>
+							   			<option value="tc" th:selected="${pageRequestDTO.type == 'tc'}">제목 or 내용</option>
+							   			<option value="tw" th:selected="${pageRequestDTO.type == 'tw'}">제목 or 작성자</option>
+	   								</select>
+	   								<input type="text" name="keyword" th:value="${pageRequestDTO.keyword}">
+	   								<button type="submit">검색</button>
+	   	  						</form>
+     						</div>
+     						<!-- 검색 기능 끝 -->
+	
+
+                        </div>
+
+                    </div>
+                </div>
+                
+                <!--메인 바디의 사이드 빈 공간 오른쪽-->
+                <div class="aside_r box2">
+                    <div class="listlevelbox">
+                        <a href="#listlevel" class="listlevel"><img src="../img/black1.jpg"></a>
+                    </div>
+                    <div class="toplevelbox">
+                        <a  href="#" id="toplevel"><img src="../img/outdoor1.jpg" ></a>
+                    </div>
+                </div>
+        </main>
+        <!--====푸터====-->
+        <footer>
+            <div class="footer box1">
+                푸터자리
+            </div>
+        </footer>
+
+
+    </div>
 </body>
+
 </html>

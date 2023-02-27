@@ -40,7 +40,7 @@ public class BoardQuerydslImpl extends QuerydslRepositorySupport implements Boar
    }
 
    @Override
-   public Page<Object[]> searchPage(String type, String keyword, Pageable pageable) {
+   public Page<Object[]> searchPage(String type, String keyword, String category, Pageable pageable) {
       log.info("--------------- searchPage() -----------------");
       
       QBoard board = QBoard.board;
@@ -58,10 +58,16 @@ public class BoardQuerydslImpl extends QuerydslRepositorySupport implements Boar
       
       booleanBuilder.and(expression);
       
-      if (type == null || "".equals("")) {
-         type = "twc";
+      // category
+      if(category != null && !"".equals(category)) {
+    	  booleanBuilder.and(board.category.eq(category));
       }
       
+      // type
+      if (type != null && "".equals(type)) {
+    	  type = "twc";
+      }
+          
       String[] typeArr = type.split("");
       BooleanBuilder conditionBuilder = new BooleanBuilder();
       for(String t : typeArr) {
@@ -76,9 +82,8 @@ public class BoardQuerydslImpl extends QuerydslRepositorySupport implements Boar
             conditionBuilder.or(board.content.contains(keyword));
             break;
          }
-         
       }
-      
+          
       booleanBuilder.and(conditionBuilder);
       
       tuple.where(booleanBuilder);
