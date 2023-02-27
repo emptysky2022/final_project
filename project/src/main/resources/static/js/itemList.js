@@ -211,7 +211,7 @@ function cartModal(){
 
 function deleteCart(){
 	let snos = new Array();
-	const items = $("#cart-popup").find("table tr").map(async function(){
+	const items = $("#cart-popup").find("table tr").map(function(){
 		if($(this).find("input[name=chk]").is(":checked") == true){
 			snos.push(parseInt($(this).attr('id')));			
 		}
@@ -224,6 +224,26 @@ function deleteCart(){
 		data: JSON.stringify(snos),
 		success: function(result){
 			cartModal();
+		}
+	})
+}
+
+function orderCart(){
+	let snos = new Array();
+	const items = $("#cart-popup").find("table tr").map(function(){
+		if($(this).find("input[name=chk]").is(":checked") == true){
+			snos.push(parseInt($(this).attr('id')));			
+		}
+	});
+	console.log(snos);
+	$.ajax({
+		url: "/history/items",
+		method: "POST",
+		contentType: "application/json",
+		data: JSON.stringify(snos),
+		success: function(result){
+			console.log("orderCart 등록 성공?")
+			deleteCart();
 		}
 	})
 }

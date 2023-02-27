@@ -16,4 +16,5 @@ public class ShoppingCartDTO {
 	//Item number
 	private Long ino;
 	private int amount;
+	private int price;
 }

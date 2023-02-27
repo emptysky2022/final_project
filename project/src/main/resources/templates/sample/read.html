@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Read Membership</title>
+
+	<!--css 연결-->
+	<link rel="stylesheet" type="text/css" href="../css/readmemember.css">
+	<!--js연결-->
+	<script type="text/javascript" src="../js/readtest.js" defer></script>
+	<!--제이쿼리 연결-->
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+
+	<!--구글 폰트 링크-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Varela+Round&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+	<!--폰트 그림 링크-->
+	<script src="https://kit.fontawesome.com/bb87a5faf0.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+	<div class="container">
+		<!--====메인 header====-->
+		<header>
+			<div class="header box1">
+				<!--네비게이션 로고-->
+				<div class="header_logo box2">
+					<a class="box3" href="#"><img src="" alt="">
+						캠퍼스사진 </a>
+
+				</div>
+
+
+				<!--네비게이션 메뉴목록-->
+				<ul class="header_menu box2_2">
+					<li class="box3"><a class="item" href="">apple</a></li>
+					<li class="box3_3"><a class="item" href="">cherry</a></li>
+					<li class="box3_2"><a class="item" href="">banana</a></li>
+					<li class="box3_4"><a class="item" href="">melon</a></li>
+				</ul>
+
+				<!--우측 상단 마이페이지-->
+				<ul class="header_mypage box2_3">
+					<li class="box3">
+						<a href="" class="box3">
+							<i class="fa-solid fa-user item"></i>
+						</a>
+					</li>
+				</ul>
+
+				<!--햄버거 메뉴-->
+				<a href="#" class="header_hamburger box2_4">
+					<i class="fa-solid fa-bars item"></i>
+				</a>
+			</div>
+		</header>
+		<main>
+			<div class="body box1">
+				<!--메인 바디의 사이드 빈 공간왼쪽-->
+				<div class="aside_l box2">aside_l</div>
+
+
+
+				<!--메인 바디 가운데 공간-->
+				<div class="body_center box2">
+
+					<!----------------메인바디 1번칸------------->
+					<div class="sec1 box3">
+						<div class="titlebox box4">
+							<div class="titletext item">나의 정보</div>
+						</div>
+						<div class="titlecommentbox box4">
+							<p class="titlecommenttext item">회원님의 개인정보를 확인하실 수 있습니다. </p>
+						</div>
+
+						<form th:action="@{/sample/modify}" th:method="post">
+							<div class="sec2 box3">
+								<div class="profileimgbox box4">
+									<!-- <p class="profiletext item"></p> -->
+									<input class="profileimg item_2" type="text" name="image"
+										th:src="${memberDTO.profileImg}" readonly>
+								</div>
+
+
+								<div class="idbox box4">
+									<p type="text" class="idtext item">아이디</p>
+									<input class="id item_2" type="text" name="id" th:value="${memberDTO.id}" readonly>
+								</div>
+
+								<div class="passwordbox box4">
+									<p type="password" class="passwordtext item">비밀번호</p>
+									<input class="password item_2" type="password" name="pw"
+										th:value="${memberDTO.pw}" readonly>
+								</div>
+								<div class="namebox box4">
+									<p class="nametext item">이름</p>
+									<input class="name item_2" type="text" name="name" th:value="${memberDTO.name}"
+										readonly>
+								</div>
+								<div class="nicknamebox box4">
+									<p class="nicknametext item">별명</p>
+									<input class="nickname item_2" type="text" name="nickname"
+										th:value="${memberDTO.nickname}" readonly>
+								</div>
+								<div class="agebox box4">
+									<p class="agetext item">나이</p>
+									<input class="age item_2" type="text" name="age" th:value="${memberDTO.age}"
+										readonly>
+								</div>
+								<div class="genderbox box4">
+									<p class="gendertext item">성별</p>
+									<!-- onFocus, onChange = select에 readonly 효과 줌 -->
+									<!-- 이거 db에 저장된 option으로 표출하고 싶은데 어떻ㄱ 하져? -->
+									<select class="gender item_2" name="gender"
+										onFocus="this.initiaSelect = this.selectedIndex;"
+										onChange="this.selectedIndex = this.initalSelect;">
+										<option value="true">남자</option>
+										<option value="false">여자</option>
+									</select>
+								</div>
+								<div class="addressbox box4">
+									<p class="addresstext item">주소</p>
+									<input class="address item_2" type="text" name="address"
+										th:value="${memberDTO.address}" readonly>
+								</div>
+								<div class="phonebox box4">
+									<p class="phonetext item">전화번호</p>
+									<input class="phone item_2" type="text" name="phone" th:value="${memberDTO.phone}"
+										readonly>
+								</div>
+								<div class="introducebox box4">
+									<p class="introducetext item">소개</p>
+									<textarea class="introduce item_2" name="introduce"
+										th:value="${memberDTO.introduce}" readonly></textarea>
+								</div>
+
+								<div class="buttonbox">
+									<div class="modifybox box4">
+										<button class="modify item" type="button">나의 정보 수정</button>
+									</div>
+
+									<!--삭제버튼 나중에 (회원탈퇴) 등으로 변경 될 수 있음-->
+									<div class="deletebox box4">
+										<button class="delete item" type="button">삭제</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+
+					<!-------------------메인바디 2번칸--------------------->
+
+
+					<div class="sec3">
+						<h2>결제 기록</h2>
+						<ul class="shoppingcart box4">
+						  <li>
+							<div class="date">2023-02-20</div>
+							<div class="product-name">맥북 프로</div>
+							<div class="price">2,500,000원</div>
+							<div class="status">완료</div>
+							<div class="edit"><button class="edit-btn">수정</button></div>
+						  </li>
+						  <li>
+							<div class="date">2023-02-15</div>
+							<div class="product-name">아이폰 13</div>
+							<div class="price">1,200,000원</div>
+							<div class="status">미완료</div>
+							<div class="edit"><button class="edit-btn">수정</button></div>
+						  </li>
+						  <li>
+							<div class="date">2023-02-15</div>
+							<div class="product-name">아이폰 13</div>
+							<div class="price">1,200,000원</div>
+							<div class="status">미완료</div>
+							<div class="edit"><button class="edit-btn">수정</button></div>
+						  </li>
+						  <li>
+							<div class="date">2023-02-15</div>
+							<div class="product-name">아이폰 13</div>
+							<div class="price">1,200,000원</div>
+							<div class="status">미완료</div>
+							<div class="edit"><button class="edit-btn">수정</button></div>
+						  </li>
+						  <li>
+							<div class="date">2023-02-15</div>
+							<div class="product-name">아이폰 13</div>
+							<div class="price">1,200,000원</div>
+							<div class="status">미완료</div>
+							<div class="edit"><button class="edit-btn">수정</button></div>
+						  </li>
+						  <li>
+							<div class="date">2023-02-15</div>
+							<div class="product-name">아이폰 13</div>
+							<div class="price">1,200,000원</div>
+							<div class="status">미완료</div>
+							<div class="edit"><button class="edit-btn">수정</button></div>
+						  </li>
+						  <li>
+							<div class="date">2023-02-15</div>
+							<div class="product-name">아이폰 13</div>
+							<div class="price">1,200,000원</div>
+							<div class="status">미완료</div>
+							<div class="edit"><button class="edit-btn">수정</button></div>
+						  </li>
+						  <li>
+							<div class="date">2023-02-15</div>
+							<div class="product-name">아이폰 13</div>
+							<div class="price">1,200,000원</div>
+							<div class="status">미완료</div>
+							<div class="edit"><button class="edit-btn">수정</button></div>
+						  </li>
+						  <li>
+							<div class="date">2023-02-15</div>
+							<div class="product-name">아이폰 13</div>
+							<div class="price">1,200,000원</div>
+							<div class="status">미완료</div>
+							<div class="edit"><button class="edit-btn">수정</button></div>
+						  </li>
+						  <li>
+							<div class="date">2023-02-15</div>
+							<div class="product-name">아이폰 13</div>
+							<div class="price">1,200,000원</div>
+							<div class="status">미완료</div>
+							<div class="edit"><button class="edit-btn">수정</button></div>
+						  </li>
+						  <!-- 결제 내역이 더 있을 경우, 추가로 항목을 생성하여 표시 -->
+						</ul>
+					  </div>
+					  
+					  
+
+					<!-- </div> -->
+
+					<!---------------메인바디 3번칸-------------------->
+					<div class="sec4 box3" id="campBox">
+						<!--캠핑장-->
+						<div class="campgroundsbox box4">
+							<div class="campgrounds_title item">캠핑장</div>
+							<div class="campgrounds_name item_2">봄날의 햇살</div>
+							<div class="campgrounds_date item_3">2023-02-27(월)~2023-02-28(화)</div>
+							<div class="campgrounds_expense item_4">비용:8000원</div>
+						</div>
+						<div class="campgroundsbox box4">
+							<div class="campgrounds_title item">캠핑장</div>
+							<div class="campgrounds_name item_2">봄날의 햇살</div>
+							<div class="campgrounds_date item_3">2023-02-27(월)~2023-02-28(화)</div>
+							<div class="campgrounds_expense item_4">비용:8000원</div>
+						</div>
+						<div class="campgroundsbox box4">
+							<div class="campgrounds_title item">캠핑장</div>
+							<div class="campgrounds_name item_2">봄날의 햇살</div>
+							<div class="campgrounds_date item_3">2023-02-27(월)~2023-02-28(화)</div>
+							<div class="campgrounds_expense item_4">비용:8000원</div>
+						</div>
+						<div class="campgroundsbox box4">
+							<div class="campgrounds_title item">캠핑장</div>
+							<div class="campgrounds_name item_2">봄날의 햇살</div>
+							<div class="campgrounds_date item_3">2023-02-27(월)~2023-02-28(화)</div>
+							<div class="campgrounds_expense item_4">비용:8000원</div>
+						</div>
+					</div>
+
+
+
+
+					<!--좋아요 내역-->
+					<div class="sec5 box3">
+						<div class="titlebox">
+							<div class="title">좋아요 내역</div>
+						</div>
+
+						<div class="tabs">
+							<div class="tab-button-outer">
+								<ul id="tab-button">
+									<li><a href="#tab01">캠핑장</a></li>
+									<li><a href="#tab02">아이템</a></li>
+									<li><a href="#tab03">게시글</a></li>
+									<li><a href="#tab04">댓글</a></li>
+
+								</ul>
+							</div>
+							<div class="tab-select-outer">
+								표시 선택：
+								<select id="tab-select">
+									<option value="#tab01">캠프</option>
+									<option value="#tab02">아이템</option>
+									<option value="#tab03">게시글</option>
+									<option value="#tab04">댓글</option>
+
+								</select>
+							</div>
+
+							<div id="tab01" class="tab-contents">
+								<h2>캠핑장</h2>
+								<div class="campgroundsbox">
+									<div class="cg_imgbox">
+										<img src="../img/family20.jpg" alt="">
+									</div>
+									<div class="cg_textbox">
+										<div class="cg_texttitle">
+											기억캠핑장
+										</div>
+										<div class="cg_view">조회수 : 35</div>
+										<div class="cg_wish list">찜 수 : 12</div>
+									</div>
+									<div class="cg_imgbox">
+										<img src="../img/family20.jpg" alt="">
+									</div>
+									<div class="cg_textbox">
+										<div class="cg_texttitle">
+											기억캠핑장
+										</div>
+										<div class="cg_view">조회수 : 35</div>
+										<div class="cg_wish list">찜 수 : 12</div>
+									</div>
+									<div class="cg_imgbox">
+										<img src="../img/family20.jpg" alt="">
+									</div>
+									<div class="cg_textbox">
+										<div class="cg_texttitle">
+											기억캠핑장
+										</div>
+										<div class="cg_view">조회수 : 35</div>
+										<div class="cg_wish list">찜 수 : 12</div>
+									</div>
+									<div class="cg_imgbox">
+										<img src="../img/family20.jpg" alt="">
+									</div>
+									<div class="cg_textbox">
+										<div class="cg_texttitle">
+											기억캠핑장
+										</div>
+										<div class="cg_view">조회수 : 35</div>
+										<div class="cg_wish list">찜 수 : 12</div>
+									</div>
+									<div class="cg_imgbox">
+										<img src="../img/family20.jpg" alt="">
+									</div>
+									<div class="cg_textbox">
+										<div class="cg_texttitle">
+											기억캠핑장
+										</div>
+										<div class="cg_view">조회수 : 35</div>
+										<div class="cg_wish list">찜 수 : 12</div>
+									</div>
+								</div>
+								<!--페이지 번호-->
+								<div class="boardpage box5">
+									<a href="#" class="bt_first item">&lt;&lt;</a>
+									<a href="#" class="bt_prev item_2">&lt;</a>
+									<a href="#" class="num item_3">1</a>
+									<a href="#" class="num">2</a>
+									<a href="#" class="num">3</a>
+									<a href="#" class="num">4</a>
+									<a href="#" class="num">5</a>
+									<a href="#" class="bt_next item_4">&gt;</a>
+									<a href="#" class="bt_last item_5">&gt;&gt;</a>
+								  </div>
+							</div>
+
+							<div id="tab02" class="tab-contents">
+								<h2>아이템</h2>
+								<div class="campporductbox">
+									<div class="cp_imgbox">
+										<img src="../img/family31.jpg" alt="">
+									</div>
+									<div class="cp_textbox">
+										<div class="cp_texttitle">
+											니은화로
+										</div>
+										<div class="cp_view">조회수 : 35</div>
+										<div class="cp_wish list">찜 수 : 12</div>
+									</div>
+									<div class="cp_imgbox">
+										<img src="../img/family31.jpg" alt="">
+									</div>
+									<div class="cp_textbox">
+										<div class="cp_texttitle">
+											니은화로
+										</div>
+										<div class="cp_view">조회수 : 35</div>
+										<div class="cp_wish list">찜 수 : 12</div>
+									</div>
+									<div class="cp_imgbox">
+										<img src="../img/family31.jpg" alt="">
+									</div>
+									<div class="cp_textbox">
+										<div class="cp_texttitle">
+											니은화로
+										</div>
+										<div class="cp_view">조회수 : 35</div>
+										<div class="cp_wish list">찜 수 : 12</div>
+									</div>
+									<div class="cp_imgbox">
+										<img src="../img/family31.jpg" alt="">
+									</div>
+									<div class="cp_textbox">
+										<div class="cp_texttitle">
+											니은화로
+										</div>
+										<div class="cp_view">조회수 : 35</div>
+										<div class="cp_wish list">찜 수 : 12</div>
+									</div>
+									<div class="cp_imgbox">
+										<img src="../img/family31.jpg" alt="">
+									</div>
+									<div class="cp_textbox">
+										<div class="cp_texttitle">
+											니은화로
+										</div>
+										<div class="cp_view">조회수 : 35</div>
+										<div class="cp_wish list">찜 수 : 12</div>
+									</div>
+								</div>
+								<!--페이지 번호-->
+								<div class="boardpage box5">
+									<a href="#" class="bt_first ">&lt;&lt;</a>
+									<a href="#" class="bt_prev ">&lt;</a>
+									<a href="#" class="num ">1</a>
+									<a href="#" class="num">2</a>
+									<a href="#" class="num">3</a>
+									<a href="#" class="num">4</a>
+									<a href="#" class="num">5</a>
+									<a href="#" class="bt_prev">&gt;</a>
+									<a href="#" class="bt_last">&gt;&gt;</a>
+								</div>
+							</div>
+
+
+
+							<!--게시글-->
+							<div id="tab03" class="tab-contents">
+								<h2>게시글</h2>
+								<div class="postgroupbox">
+									<div class="pg_textbox">
+										<div class="pg_upline">
+											<div class="pg_write">
+												작성자
+											</div>
+											<div class="pg_date">
+												작성일
+											</div>
+										</div>
+										<div class="pg_downline">
+
+											<div class="pg_texttitle">
+												게시글 제목
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="postgroupbox">
+									<div class="pg_textbox">
+										<div class="pg_upline">
+											<div class="pg_write">
+												최석호
+											</div>
+											<div class="pg_date">
+												2023-02-20
+											</div>
+										</div>
+										<div class="pg_downline">
+
+											<div class="pg_texttitle">
+												가나다라마바사아자카타파하
+											</div>
+											<div class="pg_reviewnum">[2]</div>
+										</div>
+									</div>
+								</div>
+								<div class="postgroupbox">
+									<div class="pg_textbox">
+										<div class="pg_upline">
+											<div class="pg_write">
+												최석호
+											</div>
+											<div class="pg_date">
+												2023-02-20
+											</div>
+										</div>
+										<div class="pg_downline">
+
+											<div class="pg_texttitle">
+												아야어여오요우유으이
+											</div>
+											<div class="pg_reviewnum"></div>
+										</div>
+									</div>
+								</div>
+								<div class="postgroupbox">
+									<div class="pg_textbox">
+										<div class="pg_upline">
+											<div class="pg_write">
+												최석호
+											</div>
+											<div class="pg_date">
+												2023-02-20
+											</div>
+										</div>
+										<div class="pg_downline">
+
+											<div class="pg_texttitle">
+												도레미파솔라시도
+											</div>
+											<div class="pg_reviewnum">[6]</div>
+										</div>
+									</div>
+								</div>
+
+								<!--페이지 번호-->
+								<div class="boardpage box5">
+									<a href="#" class="bt_first ">&lt;&lt;</a>
+									<a href="#" class="bt_prev ">&lt;</a>
+									<a href="#" class="num ">1</a>
+									<a href="#" class="num">2</a>
+									<a href="#" class="num">3</a>
+									<a href="#" class="num">4</a>
+									<a href="#" class="num">5</a>
+									<a href="#" class="bt_prev">&gt;</a>
+									<a href="#" class="bt_last">&gt;&gt;</a>
+								</div>
+							</div>
+
+
+
+							<div id="tab04" class="tab-contents">
+								<h2>댓글</h2>
+								<div class="reviewbox">
+									<div class="rv_textbox">
+										<div class="rv_upline">
+											<div class="rv_date">
+												작성일
+											</div>
+											<div classs="rv_postgroup">
+												어느 게시글에서 댓글 썼는지 보여주는 곳
+											</div>
+										</div>
+										<div class="rv_downline">
+
+											<div class="rv_text">
+												내용
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="reviewbox">
+									<div class="rv_textbox">
+										<div class="rv_upline">
+											<div class="rv_date">
+												2023-02-24
+											</div>
+											<div classs="rv_postgroup">
+												대충게시판제목써있는글
+											</div>
+										</div>
+										<div class="rv_downline">
+
+											<div class="rv_text">
+												내용
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="reviewbox">
+									<div class="rv_textbox">
+										<div class="rv_upline">
+											<div class="rv_date">
+												2023-02-24
+											</div>
+											<div classs="rv_postgroup">
+												대충게시판제목써있는글
+											</div>
+										</div>
+										<div class="rv_downline">
+
+											<div class="rv_text">
+												내용
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="reviewbox">
+									<div class="rv_textbox">
+										<div class="rv_upline">
+											<div class="rv_date">
+												2023-02-24
+											</div>
+											<div classs="rv_postgroup">
+												대충게시판제목써있는글
+											</div>
+										</div>
+										<div class="rv_downline">
+
+											<div class="rv_text">
+												내용
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="reviewbox">
+									<div class="rv_textbox">
+										<div class="rv_upline">
+											<div class="rv_date">
+												2023-02-24
+											</div>
+											<div classs="rv_postgroup">
+												대충게시판제목써있는글
+											</div>
+										</div>
+										<div class="rv_downline">
+
+											<div class="rv_text">
+												내용
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="reviewbox">
+									<div class="rv_textbox">
+										<div class="rv_upline">
+											<div class="rv_date">
+												2023-02-24
+											</div>
+											<div classs="rv_postgroup">
+												대충게시판제목써있는글
+											</div>
+										</div>
+										<div class="rv_downline">
+
+											<div class="rv_text">
+												내용
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<!--페이지 번호-->
+								<div class="boardpage box5">
+									<a href="#" class="bt_first ">&lt;&lt;</a>
+									<a href="#" class="bt_prev ">&lt;</a>
+									<a href="#" class="num ">1</a>
+									<a href="#" class="num">2</a>
+									<a href="#" class="num">3</a>
+									<a href="#" class="num">4</a>
+									<a href="#" class="num">5</a>
+									<a href="#" class="bt_prev">&gt;</a>
+									<a href="#" class="bt_last">&gt;&gt;</a>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+
+
+
+
+
+				<!--메인 바디의 사이드 빈 공간 오른쪽-->
+				<div class="aside_r box2">aside_r</div>
+			</div>
+
+		</main>
+
+
+
+
+
+		<!--====푸터====-->
+		<footer>
+			<div class="footer box1">
+				푸터자리
+			</div>
+		</footer>
+
+	</div>
+</body>
+
+</html>
