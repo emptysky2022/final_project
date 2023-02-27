@@ -832,7 +832,7 @@ align-items: center;
 
 .ct_wr_debox{
   display: flex;
-  flex-direction: row;
+    flex-direction: column;
   justify-content: space-between;
 
 }
