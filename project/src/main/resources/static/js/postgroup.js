@@ -158,6 +158,11 @@ $(function(){
    
 });
 
+function formatTime(str) {
+    var date = new Date(str);
+    return date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes();
+}
+
 
 // 게시물 목록
 // 게시글 새로고침하기(실질적 새로고침 아님.) --> 다영 - 새로고침되는거 위에ㅔ서 고침
@@ -179,11 +184,6 @@ async function loadRefreshData(x) {
    
    page = x || 1; // x or 1(x = null, undefined, 0)
    
-   function formatTime(str) {
-      var date = new Date(str);
-      return date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes();
-   }
-	
     // 오류 발생하면 catch 실행 (await 실패 시 오류처리 하기위해 꼭 써야함, 또는 다른 오류 났을 때도 많이 씀)
 	try {
         const response = await $.get("/sample/list/refresh", {page, keyword, type, category});
@@ -199,15 +199,15 @@ async function loadRefreshData(x) {
         // ` BackTick(억음부호)로 사용 시 변수를 바로 사용할 수 있어 많이 사용함
         // html += '<td>...' 방식은 사용 지양해야함
         const html = boardList.map(({bno, title, regDate, nickname, replyCount, count}) =>
-            `<div>
-               <div class="num item">${bno}</div>
-               <div class="title item_2"><a onclick="loadReadData(${bno}), toggleBtn3()">${title}<b><small>[${replyCount}]</small></b></a></div>
-               <div class="writer item_3">${nickname}</div>
-               <div class="date item_4">${formatTime(regDate)}</div>
-               <div class="count item_5">${count}</div>
-             </div>`
+            `<tr>
+               <td class="num item">${bno}</td>
+               <td class="title item_2"><a onclick="loadReadData(${bno}), toggleBtn3()">${title}<b><small>[${replyCount}]</small></b></a></td>
+               <td class="writer item_3">${nickname}</td>
+               <td class="date item_4">${formatTime(regDate)}</td>
+               <td class="count item_5">${count}</td>
+             </tr>`
         ).join("");
-      
+        
         $board.html(html);
       
       	let pagination = `<ul class="pagination h-100 justfy-content-center align-items-conter boardpage box5">`;
@@ -254,8 +254,9 @@ function loadReadData(bno) {
        
        boardListRE.html(`
        						<div class="titlebox box4">
-       							<strong class="titletext item">게시글 상세보기</strong>
-       							<p class="explain item">작성된 게시글을 확인하실 수 있습니다.</p>
+       							<div class="titleStrong read">
+       								<strong class="titletext item">게시글 상세</strong>
+       							</div>
        						</div>
        						<div class="boardviewbox box4">
        							<div class="boardview box5">
@@ -264,20 +265,20 @@ function loadReadData(bno) {
        										<dl class="numbox box6">
        											<dt class="numtext item">번호</dt>
        											<dd class="num item" name="bno">${board.bno}</dd>
-       											<input type="hidden" id="boardBno" value="${board.bno}">
+       											<input type="hidden" name="hiddenBno" id="boardBno" value="${board.bno}">
        										</dl>
+									  	    <dl class="datebox box6">
+										        <dt class="datetext item">작성일</dt>
+										        <dd class="date item_2" name="regDate">${formatTime(board.regDate)}</dd>
+									        </dl>
+									        <dl class="viewsbox box6">
+										        <dt class="viewstitle item">조회수</dt>
+										        <dd class="views item_2" name="count">${board.count}</dd>
+									        </dl>
        										<dl class="writebox box6">
        											<dt class="writetext item">글쓴이</dt>
        											<dd class="write item_2" name="writer" id="boardWirter${board.nickname}">${board.nickname}</dd>
        										</dl>
-									  	   <dl class="datebox box6">
-										       <dt class="datetext item">작성일</dt>
-										       <dd class="date item_2" name="regDate">${board.regDate}</dd>
-									       </dl>
-									       <dl class="viewsbox box6">
-										       <dt class="viewstitle item">조회수</dt>
-										       <dd class="views item_2" name="count">${board.count}</dd>
-									       </dl>
        									</div>
 								        <div class="content item" name="content"><pre>${board.content}</pre></div>
 								    </div>
@@ -285,15 +286,22 @@ function loadReadData(bno) {
 								<div class="boardviewbox box4">
 								    <div class="button box5">
 										<a onclick="loadModifyData(${board.bno}), toggleBtn2()" id="modifyBtn" class="modify item_2">수정하기</a>
+										<div class="img">
+											<img class="heartImg saveHeart removeHeart" data-id="" src="../img/empty_heart.png" onclick="clickHeart${board.bno}">
+											<input type="hidden" id="boardHeart" value="${board.heart}">
+											<h6>${board.heart}</h6>
+										</div>
 									    <button type="button" id="boardRemove" class="on" onclick="loadRemoveData(${board.bno})">삭제하기</button>
 								    </div>
 							    </div>
 							    <div class="commentbox">
 							        <div class="commenttextbox">
-							        <div class="commenttextregister">댓글 등록</div>
+							        <div class="commenttextregister">
+							        	<p>댓글 등록</p>
+							        </div>
 							    </div>
 							    <div class="ct_reg_btnbox">
-								    <textarea name="ct_reg" class="ct_reg" cols="20" rows="3" placeholder="댓글을 입력하세요" id="replyContent"></textarea>
+								    <textarea name="ct_reg" class="ct_reg" cols="20" rows="5" placeholder=" 댓글을 입력하세요" id="replyContent"></textarea>
 								    <input type="hidden" id="userNickname" value="${user.nickname}">
 								    <input type="button" class="ct_btn" value="등록하기" onclick="loadRegisterReplyData(${board.bno})">
 							    </div>
@@ -329,23 +337,25 @@ function loadModifyData(bno, nickname){
         
         const [board, reply, user] = readInfo;
         
-        let str = "";
+        let str = `
+        			<div class="titlebox">'
+		        		<dl>
+		           			<dt class="titletext item">제목</dt>
+		        			<dd><input type="text" id="modifyTitle" value="${board.title}"></dd>
+		        		</dl>
+		        		<dl>
+		           			<dt>글쓴이</dt>
+		        			<dd><input type="text" value="${board.nickname}" readonly></dd>
+		        		</dl>
+       				 </div>
+        			<div class="content">
+        				<textarea id="modifyContent">${board.content}</textarea>'
+        			</div>
+		        	<input type="hidden" id="modifyBno" name="bno" value="${board.bno}">
+		        	<input type="hidden" id="modifyMno" name="mno" value="${user.mno}">
+        		  `;
         
-        str += '	<div class="titlebox">'
-        str += '  	<dl>';
-        str += '     		<dt class="titletext item">제목</dt>';
-        str += '  		<dd><input type="text" id="modifyTitle" value="' + board.title + '"></dd>';
-        str += '		</dl>';
-        str += '  	<dl>';
-        str += '     		<dt>글쓴이</dt>';
-        str += '  		<dd><input type="text" value="' + board.nickname + '" readonly></dd>';
-        str += '		</dl>';
-        str += '  </div>';
-        str += '	<div class="content">';
-        str += '		<textarea id="modifyContent">' + board.content + '</textarea>'
-        str += '	</div>';
-        str += '	<input type="hidden" id="modifyBno" name="bno" value="' + board.bno + '">';
-        str += '	<input type="hidden" id="modifyMno" name="mno" value="' + user.mno + '">';
+        	
         
         modifyBoard.html(str);
         console.log("modify form read");
@@ -430,26 +440,29 @@ async function loadReadRepliesData(bno, rno) {
       for(var reply of result) {
          console.log(reply);
          
-         str += `	<div class="ct_wr_debox">`;
-         str += ` 		<div class="ct_wrbox">`;
-         str += `			<div class="commentwriterbox">`;
-         str += `				<div class="commentwriter" id="replyer${reply.rno}"><span name="memreplyer">${reply.replyer}</span></div>`;
-         str += `				<input type="hidden" id="replyContentRno" value="${reply.rno}">`;
-         str += `				<input type="hidden" id="replyContentBno" value="${reply.bno}">`;
-         str += `				<input type="hidden" id="memreplyer" value="${reply.replyer}">`;
-         str += `			</div>`;
-         str += `		</div>`;
-         str += `		<div class="commentdetailbox">`;
-         str += `			<div class="commentdetail replyContentBox" id="content${reply.rno}">${reply.content}</div>`;
-         str += `			<input type="hidden" name="showReplyContent${reply.rno}" value="${reply.content}">`;
-		 str += `			<div id="modifyContentDiv${reply.rno}"></div>`;
-         str += `		</div>`;
-         str += `	</div>`;
-         str += `	<button class="hideModifyBtn${reply.rno}" id="removeReplyBtn" onclick="removeReply(${reply.bno}, ${reply.rno})">댓글 삭제</button>`;
-         str += `	<button class="hideModifyBtn${reply.rno}" id="modifyReplyBtn" onclick="modifyReply(${reply.bno}, ${reply.rno})" value="${reply.rno}">댓글 수정</button>`;
-         str += `	<button id="replyHeart" value="${reply.heart}"></button>`;
-         str += `<hr>`;
-         
+         let str = `
+         				<div class="readReply">
+         					<div class="ct_wr_debox">  
+           						<div class="ct_wrbox">  
+          							<div class="commentwriterbox">  
+          								<div class="commentwriter" id="replyer${reply.rno}"><span name="memreplyer">${reply.replyer}</span></div>  
+          								<input type="hidden" id="replyContentRno" value="${reply.rno}">  
+          								<input type="hidden" id="replyContentBno" value="${reply.bno}">  
+          								<input type="hidden" id="memreplyer" value="${reply.replyer}">  
+          							</div>  
+          						/div>  
+          						<div class="commentdetailbox">  
+          							<div class="commentdetail replyContentBox" id="content${reply.rno}">${reply.content}</div>  
+          							<input type="hidden" name="showReplyContent${reply.rno}" value="${reply.content}">  
+		  							<div id="modifyContentDiv${reply.rno}"></div>  
+          						</div>  
+          					</div>  
+          					<button class="hideModifyBtn${reply.rno}" id="removeReplyBtn" onclick="removeReply(${reply.bno}, ${reply.rno})">댓글 삭제</button>  
+          					<button class="hideModifyBtn${reply.rno}" id="modifyReplyBtn" onclick="modifyReply(${reply.bno}, ${reply.rno})" value="${reply.rno}">댓글 수정</button>  
+          					<button id="replyHeart" value="${reply.heart}"></button>  
+          					<hr>	
+         				</div>	
+         		   `;			
       }
 
       repliesListRE.html(str);
@@ -558,4 +571,91 @@ function modifyContentBox(rno) {
       }
    })
    $("#modifyContentDiv").hide();
+}
+
+// 하트 클릭 이벤트
+
+//하트 추가
+listGroup.on('click', '.saveHeart', function() {
+   var cno = $(this).attr('id');
+   var hlno = $(this).attr('data-id');
+   var heart = $(this);
+   saveHeart(cno, heart, hlno);
+});
+
+//하트 삭제
+listGroup.on('click', '.removeHeart', function() {
+   var cno = $(this).attr('id');
+   var hlno = $(this).attr('data-id');
+   var heart = $(this);
+
+   removeHeart(cno, heart, hlno);
+});
+
+
+function saveHeart(bno, heart) {
+   console.log(하트);
+   $.ajax({
+      url: "/heart/save",
+      contentType: "application/json",
+      method: "post",
+      data: JSON.stringify({
+         productNum: bno,
+         productType: "BOARD",
+         // 동기처리
+         async: false
+      }), success: function(hlno) {
+         console.log("탔음");
+         changeHeartImg(true, heart, hlno);
+      }
+   })
+}
+
+function removeHeart(bno, heart, hlno) {
+   console.log(hlno);
+   console.log(bno);
+   $.ajax({
+      url: "/heart/remove",
+      contentType: "application/json",
+      method: "DELETE",
+      data: JSON.stringify({
+         hlno: Number(hlno),
+         productNum: bno,
+         async: false,
+         productType: "BOARD",
+      }), success: changeHeartImg(false, heart, hlno),
+         fail: console.log("실패")
+   })
+}
+
+function changeHeartImg(flag, heart, hlno) {
+   console.log(flag);
+   console.log(hlno);
+   heart.attr("src", flag ? "../img/full_heart.png" : "../img/empty_heart.png");
+
+   if (flag) {
+      heart.removeClass("saveHeart");
+      heart.addClass("removeHeart");
+      heart.attr("data-id", hlno.hlno);
+   } else {
+      heart.removeClass("removeHeart");
+      heart.addClass("saveHeart");
+      heart.attr("data-id", hlno);
+   }
+
+};
+
+// 하트 확인 메서드
+function heartCheck(no) {
+   return $.ajax({
+      url: "/heart/getOne",
+      contentType: "application/json",
+      // 동기처리
+      async: false,
+      method: "POST",
+      data: JSON.stringify({
+         productNum: no,
+         productType: "CAMP"
+      }), dataType: "json"
+   }).responseText
 }

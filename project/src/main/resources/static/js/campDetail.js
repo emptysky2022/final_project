@@ -453,8 +453,45 @@ $(document).ready(function() {
 	//////////////////////달력 끝 /////////////////////////
 	//////////////////////댓글 기능/////////////////////////
 
+
+
 	let crno = "";
 	let listGroup = $(".sec4 .box4");
+
+	//하트 추가
+	listGroup.on('click', '.saveHeart', function() {
+		var cno = $(this).attr('id');
+		var hlno = $(this).attr('data-id');
+		var heart = $(this);
+		saveHeart(cno, heart, hlno);
+	});
+
+	//하트 삭제
+	listGroup.on('click', '.removeHeart', function() {
+		var cno = $(this).attr('id');
+		var hlno = $(this).attr('data-id');
+		var heart = $(this);
+
+		removeHeart(cno, heart, hlno);
+	});
+
+	// 이미지 클래스 data-id 변경 메서드
+	function changeHeartImg(flag, heart, hlno) {
+		console.log(flag);
+		console.log(hlno);
+		heart.attr("src", flag ? "../img/full_heart.png" : "../img/empty_heart.png");
+
+		if (flag) {
+			heart.removeClass("saveHeart");
+			heart.addClass("removeHeart");
+			heart.attr("data-id", hlno.hlno);
+		} else {
+			heart.removeClass("removeHeart");
+			heart.addClass("saveHeart");
+			heart.attr("data-id", hlno);
+		}
+
+	};
 	function loadJSON() {
 		$.getJSON('/camp/reply/' + cno, function(arr) {
 
@@ -489,14 +526,31 @@ $(document).ready(function() {
 				str += "<div class='rv_like box7'>";
 				str += "<i class='fa-sharp fa-solid fa-thumbs-up fa-1x item'></i>"
 				str += "</div>";
-				
-				if (member.nickname == reply.reviewer) {
-					str += '<div class="modify-box">';
-					str += '      <button class="modify" id=' + reply.rno + ' >수정</button>';
-					str += '      <button class="remove" id=' + reply.rno + '> 삭제</button>';
-					str += '</div>';
+
+				var heartData = "";
+				try {
+					heartData = JSON.parse(heartCheck(reply.crno));
+				} catch {
+
+				}
+
+				// 하트 한 항목이라면 ?
+				if (Number(heartData.hlno) > 0) {
+					// 눌렷을때 행동을 class Name 으로줌
+					console.log(heartData.hlno);
+					str += "<img class='removeHeart' id=" + reply.crno + " data-id= " + heartData.hlno + " width=30px height=30px src='../img/full_heart.png'>";
+				} else {
+					str += "<img class='saveHeart' id=" + reply.crno + " data-id= 'empty' width=30px height=30px src='../img/empty_heart.png'>";
 				}
 				
+
+				if (member.nickname == reply.reviewer) {
+					str += '<div class="modify-box">';
+					str += '      <button class="modify" id=' + reply.crno + '>수정</button>';
+					str += '      <button class="remove" id=' + reply.crno + '> 삭제</button>';
+					str += '</div>';
+				}
+
 				str += "</div>";
 				str += "</div>";
 
@@ -504,6 +558,57 @@ $(document).ready(function() {
 			listGroup.html(str);
 		})
 	};
+
+	function saveHeart(cno, heart) {
+		console.log(heart);
+		$.ajax({
+			url: "/heart/save",
+			contentType: "application/json",
+			method: "post",
+			data: JSON.stringify({
+				productNum: cno,
+				productType: "CAMPREVIEW",
+				// 동기처리
+				async: false
+			}), success: function(hlno) {
+				console.log("탔음");
+				changeHeartImg(true, heart, hlno);
+			}
+		})
+	}
+	
+	function removeHeart(cno, heart, hlno) {
+		console.log(hlno);
+		console.log(cno);
+		$.ajax({
+			url: "/heart/remove",
+			contentType: "application/json",
+			method: "DELETE",
+			data: JSON.stringify({
+				hlno: Number(hlno),
+				productNum: cno,
+				async: false,
+				productType: "CAMPREVIEW",
+			}), success: changeHeartImg(false, heart, hlno),
+			fail: console.log("실패")
+		})
+	}
+
+	// 하트 확인 메서드
+	function heartCheck(no) {
+		return $.ajax({
+			url: "/heart/getOne",
+			contentType: "application/json",
+			// 동기처리
+			async: false,
+			method: "POST",
+			data: JSON.stringify({
+				productNum: no,
+				productType: "CAMPREVIEW"
+			}), dataType: "json"
+		}).responseText
+	}
+	
 	function clickCampConfirm() {
 
 		$.ajax({
@@ -551,29 +656,6 @@ $(document).ready(function() {
 		})
 	}
 
-	function clickCampHeart(cno) {
-		$.ajax({
-			url: "/camp/heart/" + cno,
-			contentType: "text/plain",
-			success: function(result) {
-				$("#item_heart").html(result);
-			},
-			error: function(err) {
-				alert("로그인 후 이용하실수 있습니다.");
-				location.href = "/item/campgroundsdetail/{cno}/login";
-			}
-		});
-	}
-
-	function clickReviewHeart(crno) {
-		$.ajax({
-			url: "/camp/heart/" + crno,
-			contentType: "text/plain",
-			success: function(result) {
-				$("#review_heart").html(" " + result);
-			}
-		});
-	}
 	//프로그램 처음 로드시 loadJSON 호출;
 	// 밑에서 해야함
 	loadJSON();

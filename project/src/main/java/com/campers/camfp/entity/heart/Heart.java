@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Table(name="heart_list")
+@Table(name="heart")
 @ToString(exclude = "member")
 @Getter
 @Builder
@@ -39,7 +39,7 @@ public class Heart {
 	private Long hlno;
 	
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	@ManyToOne(fetch = FetchType.LAZY, optional = false ,cascade = CascadeType.REMOVE)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	private Member member;
 	
 	@Column(nullable = false)

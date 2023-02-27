@@ -14,8 +14,12 @@
   }
   
   p {
-    font-size: var(--font-size-sm);
+    font-size: initial;
     
+  }
+  
+  pre {
+  	font-size: inherit;
   }
   
   blockquote {
@@ -26,7 +30,12 @@
     font-size: var(--font-size-sm);
   }
 
-  
+@font-face {
+    font-family: 'Happiness-Sans-Title';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Happiness-Sans-Title.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 
 
 /* "{max-width: 100%;
@@ -38,9 +47,8 @@
     padding: 0;
     max-width: 100%;
     height: auto;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-family: 'Varela Round', sans-serif;
-	  word-wrap: break-word;
+    font-family: 'Happiness-Sans-Title';
+	word-wrap: break-word;
     box-sizing: border-box;
     font-size: var(--font-size-xsm);
 }
@@ -210,7 +218,6 @@ main .body {
 
 /*메인 바디 왼쪽*/
 main .body .aside_l{
-    border: 1px solid rgb(0, 255, 76);
     display: flex;
     flex-basis: 10%;
   
@@ -220,7 +227,6 @@ main .body .aside_l{
 
 /*메인 바디 오른쪽*/
 main .body .aside_r{
-    border: 1px solid rgb(0, 64, 255);
    display: flex;
    flex-basis: 10%;
   
@@ -228,7 +234,6 @@ main .body .aside_r{
 }
 /*메인 바디 가운데 */
 main .body .body_center{
-    border: 1px solid rgb(158, 90, 2);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -243,19 +248,10 @@ main .body .body_center{
   flex-direction: column;
 } 
 
-
-
-
-
-
-
-
-
-
-
 /*게시판 목록*/
 strong {
   font-size: 3rem;
+  justify-content: center;
 }
 
 .sec5{
@@ -263,15 +259,13 @@ strong {
 }
 
 .btnendbox{
-  display: flex;
   justify-content: space-between;
   align-items: baseline;
-  width: 97%;
+  width: 100%;
   padding-bottom: 1%;
 }
 
 .btnendbox .explain{
-  padding-left: 2rem ;
 }
 
 .btnendbox .button{
@@ -283,10 +277,9 @@ strong {
 
 
 .btnendbox .button .on{
-  background-color: rgb(0, 0, 0);
+  background-color: #1F2550;
   color: rgb(255, 255, 255);
-  border-radius: 3px;
-  width: 7vw;
+  width: 10vw;
   height: 3vw;
   display: flex;
   justify-content: center;
@@ -296,14 +289,12 @@ strong {
   min-height: 3rem;
 }
 
-
 .boardlist{
   width: 100%;
   border-top: 2px solid #000;
 }
 
 .boardlist > div.top {
-  border-bottom: 1px solid #999;
   display: flex;
   background-color: #EAEAEA;
 }
@@ -320,7 +311,7 @@ strong {
 .boardlist > div > div {
   display: inline-block;
   padding: 15px 0;
-  text-align: center;
+  padding-inline-start: 5px;
   font-size: 1rem;
 }
 
@@ -330,19 +321,24 @@ strong {
 
 .boardlist .num {
   width: 10%;
+  text-align: center;
 }
 
 .boardlist .title {
   width: 55%;
-  text-align: left;
+  padding-right: 5px;
 }
 
 .boardlist .top .title {
   text-align: center;
 }
 
-.boardlist .writer {
-  width: 10%;
+.boardlist > title item_2 {
+	padding-inline-start: 5px;
+}
+
+.writer item_3 {
+  text-align: end;
 }
 
 .boardlist .date {
@@ -350,9 +346,40 @@ strong {
 }
 
 .boardlist .count {
-  width: 10%;
+  width:5%;
+  
 }
 
+.boardlist .strong{
+	text-align: center;
+}
+
+table {
+     width: 100%;
+     border-collapse: seperate;
+     border-spacing: 0px 0px;
+     border-top: 1px solid black;
+     border-bottom: 1px solid black;
+     font-family: 'MICEGothic Bold';
+}
+
+table tr {
+	border-bottom: 1px dashed #808080;
+}
+
+table, th, td {
+	border-bottom: 1px dashed #808080;
+}
+
+th {
+	background-color: #efefef;
+	padding : 10px 5px;
+	font-size: small;
+}
+
+td {
+	padding: 10px;
+}
 
 @media screen and (max-width:768px){
   .boardlist .count {
@@ -365,6 +392,7 @@ strong {
 
   .boardlist .writer {
     width: 15%;
+    text-align: end;
   }
 
   .boardlist .title {
@@ -374,8 +402,38 @@ strong {
 
   .boardlist .num {
     width: 15%;
+    text-align: center;
+  }
+  
+  .boardlist > title item_2 {
+	padding-inline-start: 5px;
   }
 }
+
+.img {
+	width: 5vw;
+	height: 3vw;
+}
+
+.img > h6 {
+	margin-left: 2.1vw;
+}
+
+.heartImg {
+	width: 2vw;
+    height: 2vw;
+    display: flex;
+    justify-content: center;
+    margin-left: 1.5vw;
+    margin-top: 1vw;
+}
+
+
+/*검색*/
+#search {
+	width: 80%;
+}
+/**/
 
 /*숫자 버튼*/
 .boardpage {
@@ -435,6 +493,21 @@ strong {
     font-size: 0;
 }
 
+.titlebox .box4 {
+	align-items: center;
+	text-align: center;
+	background-color: red; 
+}
+div.titleStrong{
+	margin-top: 5%;
+	margin-left: 37%;
+	margin-right: 38%;
+	margin-bottom: 3%;
+}
+
+div.titleStrong read{
+	margin-bottom: 30px; 
+}
 
 .boardwrite .titlebox dl {
     font-size: 0;
@@ -481,7 +554,8 @@ strong {
   padding: 15px;
   border: 0;
   flex-direction: column;
-   border-bottom: 1px solid #000;
+  border-bottom: 1px solid #000;
+  font-size: 1.4rem;
 }
 
 .boardwrite .content .imguploadbox{
@@ -511,8 +585,7 @@ strong {
 
 .boardwrite .buttonbox .cancel{
   border: 1px solid rgb(0, 0, 0);
-  border-radius: 3px;
-  width: 7vw;
+  width: 10vw;
   height: 3vw;
   display: flex;
   justify-content: center;
@@ -524,10 +597,9 @@ strong {
 }
 
 .boardwrite .buttonbox .on{
-  background-color: rgb(0, 0, 0);
+  background-color: #1F2550;
   color: rgb(255, 255, 255);
-  border-radius: 3px;
-  width: 7vw;
+  width: 10vw;
   height: 3vw;
   display: flex;
   justify-content: center;
@@ -538,6 +610,9 @@ strong {
   margin: 1rem;
 }
 
+#readList > .titlebox box4 {
+	padding: 10px 5px;
+}
 
 @media screen and (max-width:768px){
   .sec1{
@@ -608,16 +683,16 @@ align-items: center;
 
 /*게시글 상세보기*/
 .boardviewbox .button{
-  display: flex;
+  	display: flex;
     flex-direction: row;
     justify-content: center;
+    margin-top: 2%;
 }
 
 .boardviewbox .button .modify{
-  background-color: rgb(0, 0, 0);
+  background-color: #1F2550;
   color: rgb(255, 255, 255);
-  border-radius: 3px;
-  width: 7vw;
+  width: 10vw;
   height: 3vw;
   display: flex;
   justify-content: center;
@@ -629,9 +704,8 @@ align-items: center;
 }
 
 .boardviewbox .button .on{
-  border: 1px solid rgb(0, 0, 0);
-  border-radius: 3px;
-  width: 7vw;
+  border: 1px solid #1F2550;
+  width: 10vw;
   height: 3vw;
   display: flex;
   justify-content: center;
@@ -648,6 +722,7 @@ align-items: center;
   border-top: 2px solid #000;
   display: flex;
   flex-direction: column;
+  margin-top: 30px;
 }
 
 .boardview .title {
@@ -667,7 +742,7 @@ align-items: center;
 .boardview .infobox dl {
   position: relative;
   display: inline-block;
-  padding: 0 20px;
+  padding: 0 7px;
   
 }
 
@@ -709,6 +784,8 @@ align-items: center;
   
 }
 
+
+
 /*댓글 등록*/
 
 .commentbox{
@@ -722,17 +799,12 @@ align-items: center;
   justify-content: space-between;
 }
 
-/* 비어있음
-.commenttextregister{
-  
-} */
-
-
 
 /*댓글 입력창이며, 댓글 등록 버튼 누르면 display:none을 display:flex로 바꾸는 js 필요*/
 .ct_reg_btnbox{
   display: flex;
   flex-direction: row;
+  margin-top: 3px;
    /* display: none; */
 }
 
@@ -745,7 +817,8 @@ align-items: center;
 
 /*댓글 등록 버튼*/
 .ct_btn{
- flex-basis: 20%;
+    flex-basis: 20%;
+    font-size: revert;
 }
 
 .commentwriterbox{
@@ -769,6 +842,15 @@ align-items: center;
   flex-direction: row;
 }
 
+/* 댓글 상세 */
+#repliesListRE {
+	margin-top: 10px;
+}
+
+.readReply {
+	margin-top: 10px;
+}
+/*---------*/
 
 
 /*댓글 삭제 버튼*/
@@ -798,10 +880,9 @@ align-items: center;
 
 
 .boardmodifybox .button .on{
-  background-color: rgb(0, 0, 0);
+  background-color: #1F2550;
   color: rgb(255, 255, 255);
-  border-radius: 3px;
-  width: 7vw;
+  width: 10vw;
   height: 3vw;
   display: flex;
   justify-content: center;
@@ -813,9 +894,8 @@ align-items: center;
 }
 
 .boardmodifybox .button .cancel{
-  border: 1px solid rgb(0, 0, 0);
-    border-radius: 3px;
-    width: 7vw;
+  border: 1px solid #1F2550;
+    width: 10vw;
     height: 3vw;
     display: flex;
     justify-content: center;
@@ -828,6 +908,7 @@ align-items: center;
 
 .boardmodify {
   border-top: 2px solid #000;
+  margin-top: 30px;
 }
 
 .boardmodify .title,
@@ -843,6 +924,7 @@ align-items: center;
 
 .boardmodify .titlebox {
   padding: 15px;
+  padding-left: 50px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -890,16 +972,22 @@ align-items: center;
 }
 
 .boardmodify .content textarea {
-     display: flex;
+    display: flex;
     width: 100%;
     min-height: 50vh;
     padding: 15px;
     border: 0;
+    font-size: 1.4rem;
+}
+
+#modifyBoard {
+	justify-content: center;
 }
 
 @media screen and (max-width:768px){
   .boardmodify .titlebox {
     padding: 15px;
+    padding: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
