@@ -1,5 +1,7 @@
 package com.campers.camfp.service;
 
+import java.util.stream.IntStream;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,8 +25,9 @@ public class BoardServiceTest {
 		int count = (int)((Math.random() * 5000) + 1);
 		int heart = (int)((Math.random() * 1000) + 1);
 		
-		Member member = Member.builder().mno(5L).build();
-		
+		Member member = Member.builder().mno(1L).build();
+		IntStream.rangeClosed(1, 100).forEach(i -> {
+			
 		BoardDTO boardDTO = BoardDTO.builder()
 											  .title("Service Test")
 											  .content("Service Test")
@@ -35,6 +38,7 @@ public class BoardServiceTest {
 											  .build();
 		
 		boardService.register(boardDTO);
+		});
 		// test -> updateDate까지 표시됨..
 	}
 	
