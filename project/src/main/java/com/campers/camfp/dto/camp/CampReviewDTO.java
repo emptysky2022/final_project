@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CampReviewDTO {
 
-	private int crno;
+	private Long crno;
 
 	private Long cno;
 	private String capture;

@@ -31,12 +31,12 @@ public class CampReview extends BaseEntity{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int crno;
+	private Long crno;
 
 	// 지연로딩 설정
 	// 조인 컬럼 설정
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	@ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.REMOVE)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "cno")
 	private Camp camp;
 

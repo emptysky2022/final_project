@@ -1,58 +1,4 @@
 $(document).ready(function() {
-
-	//// 별점 관리 /////
-	var grade = $(".starrr").html();
-	$(".starrr").html("");
-
-	$('.starrr').starrr({
-		rating: grade,
-		change: function(e, value) {
-			if (value) {
-				grade = value
-			}
-		}
-	});
-
-	$("#modal-open").click(function() {
-		//팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
-		$("#popup").css('display', 'flex').hide().fadeIn();
-
-		// 로드시 숫자를 -> ☆ 로 바꿈 
-		$("#sync_star").html(getStar($("#sync_star").html()));
-	});
-
-	$("#close").click(function() {
-		modalClose(); //모달 닫기 함수 호출
-	});
-
-	$("#confirm").click(function() {
-		clickCampConfirm();
-	});
-
-
-	function modalClose() {
-		$("#popup").fadeOut(); //페이드아웃 효과
-	}
-
-	function getStar(grade) {
-		let star = '';
-		for (let i = 1; i <= 5; i++) {
-			if (i <= grade) star += '★';
-			else star += '☆';
-		}
-		return star;
-	}
-	function setStar() {
-		let grade = $("#sync_star").html();
-		$("#item_star").html("<div id='sync_star'></div>");
-		$("#sync_star").starrr({
-			readOnly: true,
-			rating: grade
-		});
-		$("#sync_star").append(Math.round(grade * 10) / 10);
-	}
-
-
 	//// 나부터 다른거////
 
 	var midldate = false;
@@ -453,18 +399,139 @@ $(document).ready(function() {
 	//////////////////////달력 끝 /////////////////////////
 	//////////////////////댓글 기능/////////////////////////
 
+
+
 	let crno = "";
 	let listGroup = $(".sec4 .box4");
+
+	//// 별점 관리 /////
+	var grade = $(".starrr").html();
+	$(".starrr").html("");
+
+	$('.starrr').starrr({
+		rating: grade,
+		change: function(e, value) {
+			if (value) {
+				grade = value
+			}
+		}
+	});
+
+	$("#modal-open").click(function() {
+		//팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
+		$("#popup").css('display', 'flex').hide().fadeIn();
+
+		// 로드시 숫자를 -> ☆ 로 바꿈 
+		$("#sync_star").html(getStar($("#sync_star").html()));
+	});
+
+	// 리뷰 작성 모달 닫기
+	$("#close").click(function() {
+		modalClose(); //모달 닫기 함수 호출
+	});
+
+	// 리뷰 작성 모달 열기
+	$("#confirm").click(function() {
+		clickCampConfirm();
+	});
+
+	// 리뷰 수정 모달 닫기
+	$(".modify-close").click(function() {
+		modifyModalClose(); //모달 닫기 함수 호출
+	});
+
+	// 리뷰 수정
+	$(".modify-confirm").click(function() {
+		cmapModify();
+		modifyModalClose(); //모달 닫기 함수 호출
+	});
+
+	// 리뷰 작성 모달 닫기
+	function modalClose() {
+		$("#popup").fadeOut(); //페이드아웃 효과
+	}
+
+	// 리뷰 수정 모달 닫기
+	function modifyModalClose() {
+		$("#modify-popup").fadeOut(); //페이드아웃 효과
+	}
+
+	function getStar(grade) {
+		let star = '';
+		for (let i = 1; i <= 5; i++) {
+			if (i <= grade) star += '★';
+			else star += '☆';
+		}
+		return star;
+	}
+	function setStar() {
+		let grade = $("#sync_star").html();
+		$("#item_star").html("<div id='sync_star'></div>");
+		$("#sync_star").starrr({
+			readOnly: true,
+			rating: grade
+		});
+		$("#sync_star").append(Math.round(grade * 10) / 10);
+	}
+
+
+
+	// 댓글 생성
+	listGroup.on('click', '.modify', function(event) {
+		var crno = $(this).attr('id');
+
+		//팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
+		$("#modify-popup").css('display', 'flex').hide().fadeIn();
+	});
+
+	//댓글 삭제
+	listGroup.on('click', '.remove', function(event) {
+		var crno = $(this).attr('id');
+		removeReview(crno);
+		console.log(crno);
+	});
+
+	//하트 추가
+	listGroup.on('click', '.saveHeart', function() {
+		var cno = $(this).attr('id');
+		var hlno = $(this).attr('data-id');
+		var heart = $(this);
+		saveHeart(cno, heart, hlno);
+	});
+
+	//하트 삭제
+	listGroup.on('click', '.removeHeart', function() {
+		var cno = $(this).attr('id');
+		var hlno = $(this).attr('data-id');
+		var heart = $(this);
+
+		removeHeart(cno, heart, hlno);
+	});
+
+	// 이미지 클래스 data-id 변경 메서드
+	function changeHeartImg(flag, heart, hlno) {
+		console.log(flag);
+		console.log(hlno);
+		heart.attr("src", flag ? "../img/full_heart.png" : "../img/empty_heart.png");
+
+		if (flag) {
+			heart.removeClass("saveHeart");
+			heart.addClass("removeHeart");
+			heart.attr("data-id", hlno.hlno);
+		} else {
+			heart.removeClass("removeHeart");
+			heart.addClass("saveHeart");
+			heart.attr("data-id", hlno);
+		}
+
+	};
 	function loadJSON() {
 		$.getJSON('/camp/reply/' + cno, function(arr) {
 
 			let str = "";
 			const [reply, member] = arr;
 
-			console.log("reply");
 			console.log(reply);
-			console.log("member");
-			console.log(member);
 
 			$.each(reply, function(index, reply) {
 				let direction = index % 2 == 0 ? 'l' : 'r';
@@ -489,14 +556,31 @@ $(document).ready(function() {
 				str += "<div class='rv_like box7'>";
 				str += "<i class='fa-sharp fa-solid fa-thumbs-up fa-1x item'></i>"
 				str += "</div>";
-				
+
+				var heartData = "";
+				try {
+					heartData = JSON.parse(heartCheck(reply.crno));
+				} catch {
+
+				}
+
+				// 하트 한 항목이라면 ?
+				if (Number(heartData.hlno) > 0) {
+					// 눌렷을때 행동을 class Name 으로줌
+					console.log(heartData.hlno);
+					str += "<img class='removeHeart' id=" + reply.crno + " data-id= " + heartData.hlno + " width=30px height=30px src='../img/full_heart.png'>";
+				} else {
+					str += "<img class='saveHeart' id=" + reply.crno + " data-id= 'empty' width=30px height=30px src='../img/empty_heart.png'>";
+				}
+
+
 				if (member.nickname == reply.reviewer) {
 					str += '<div class="modify-box">';
-					str += '      <button class="modify" id=' + reply.rno + ' >수정</button>';
-					str += '      <button class="remove" id=' + reply.rno + '> 삭제</button>';
+					str += '      <button class="modify" id=' + reply.crno + '>수정</button>';
+					str += '      <button class="remove" id=' + reply.crno + '> 삭제</button>';
 					str += '</div>';
 				}
-				
+
 				str += "</div>";
 				str += "</div>";
 
@@ -504,6 +588,57 @@ $(document).ready(function() {
 			listGroup.html(str);
 		})
 	};
+
+	function saveHeart(cno, heart) {
+		console.log(heart);
+		$.ajax({
+			url: "/heart/save",
+			contentType: "application/json",
+			method: "post",
+			data: JSON.stringify({
+				productNum: cno,
+				productType: "CAMPREVIEW",
+				// 동기처리
+				async: false
+			}), success: function(hlno) {
+				console.log("탔음");
+				changeHeartImg(true, heart, hlno);
+			}
+		})
+	}
+
+	function removeHeart(cno, heart, hlno) {
+		console.log(hlno);
+		console.log(cno);
+		$.ajax({
+			url: "/heart/remove",
+			contentType: "application/json",
+			method: "DELETE",
+			data: JSON.stringify({
+				hlno: Number(hlno),
+				productNum: cno,
+				async: false,
+				productType: "CAMPREVIEW",
+			}), success: changeHeartImg(false, heart, hlno),
+			fail: console.log("실패")
+		})
+	}
+
+	// 하트 확인 메서드
+	function heartCheck(no) {
+		return $.ajax({
+			url: "/heart/getOne",
+			contentType: "application/json",
+			// 동기처리
+			async: false,
+			method: "POST",
+			data: JSON.stringify({
+				productNum: no,
+				productType: "CAMPREVIEW"
+			}), dataType: "json"
+		}).responseText
+	}
+
 	function clickCampConfirm() {
 
 		$.ajax({
@@ -550,30 +685,15 @@ $(document).ready(function() {
 			}
 		})
 	}
-
-	function clickCampHeart(cno) {
+	
+	function removeReview(crno){
+		
 		$.ajax({
-			url: "/camp/heart/" + cno,
-			contentType: "text/plain",
-			success: function(result) {
-				$("#item_heart").html(result);
-			},
-			error: function(err) {
-				alert("로그인 후 이용하실수 있습니다.");
-				location.href = "/item/campgroundsdetail/{cno}/login";
-			}
-		});
+			url : "/camp/review/" + Number(crno),
+			method : "DELETE"
+		})
 	}
 
-	function clickReviewHeart(crno) {
-		$.ajax({
-			url: "/camp/heart/" + crno,
-			contentType: "text/plain",
-			success: function(result) {
-				$("#review_heart").html(" " + result);
-			}
-		});
-	}
 	//프로그램 처음 로드시 loadJSON 호출;
 	// 밑에서 해야함
 	loadJSON();
