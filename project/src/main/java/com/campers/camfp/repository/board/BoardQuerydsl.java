@@ -9,6 +9,6 @@ public interface BoardQuerydsl {
 
 	Board searchBoard();
 	
-	Page<Object[]> searchPage(String type, String keyword, Pageable pageable);
+	Page<Object[]> searchPage(String type, String keyword, String category, Pageable pageable);
 	
 }
