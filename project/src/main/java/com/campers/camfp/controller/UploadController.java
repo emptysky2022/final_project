@@ -18,6 +18,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -114,17 +116,16 @@ public class UploadController {
 	}
 	
 	@PostMapping("/removeFile")
-	public ResponseEntity<Boolean> removeFile(String[] fileNames){
-		boolean result = true;
+	public ResponseEntity<Boolean> removeFile(String fileName){
+		log.info("fileName");
+		log.info(fileName);
+
 		try {
-			for(String fileName : fileNames) {
+
+			fileName = URLDecoder.decode(fileName, "UTF-8");
+			File file = new File(fileName);
+			boolean result = file.delete();
 				
-				fileName = URLDecoder.decode(fileName, "UTF-8");
-				File file = new File(fileName);
-				result = file.delete();
-				
-				if(!result) return new ResponseEntity<Boolean>(false, HttpStatus.INTERNAL_SERVER_ERROR);
-			}
 			return new ResponseEntity<Boolean>(result, HttpStatus.OK);
 			
 		}catch (UnsupportedEncodingException e) {

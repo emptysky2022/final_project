@@ -1,12 +1,21 @@
 package com.campers.camfp.service.history;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.campers.camfp.config.type.HistoryType;
+import com.campers.camfp.config.type.StateType;
 import com.campers.camfp.dto.history.HistoryDTO;
 import com.campers.camfp.entity.history.History;
+import com.campers.camfp.entity.item.Item;
+import com.campers.camfp.entity.shoppingcart.ShoppingCart;
+import com.campers.camfp.repository.camp.CampCalenderRepository;
+import com.campers.camfp.repository.camp.CampRepository;
 import com.campers.camfp.repository.history.HistoryRepository;
+import com.campers.camfp.repository.item.ItemRepository;
+import com.campers.camfp.repository.shoppingcart.ShoppingCartRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -17,6 +26,11 @@ import lombok.extern.log4j.Log4j2;
 public class HistoryServiceImpl implements HistoryService{
 
 	private final HistoryRepository historyRepository;
+	private final ItemRepository itemRepository;
+	private final ShoppingCartRepository shoppingCartRepository;
+	private final CampRepository campRepository;
+	private final CampCalenderRepository campCalenderRepository;
+	
 
 	@Override
 	public Long register(HistoryDTO historyDTO) {
@@ -27,6 +41,23 @@ public class HistoryServiceImpl implements HistoryService{
 	}
 
 	@Override
+	public void registerOfCart(List<Long> snos) {
+		snos.forEach(sno -> {
+			ShoppingCart cart = shoppingCartRepository.findById(sno).get();
+			Item item = itemRepository.findById(cart.getIno()).get();
+			History history = History.builder()
+								.member(cart.getMember())
+								.historyType(HistoryType.ITEM.toString())
+								.historyNum(item.getIno())
+								.state(StateType.PAY_END.toString())
+								.price(item.getPrice())
+								.amount(cart.getAmount())
+								.build();
+			historyRepository.save(history);
+		});
+	}
+	
+	@Override
 	public HistoryDTO getOne(Long hno) {
 		History history = historyRepository.findById(hno).get();
 		HistoryDTO historyDTO = entityToDto(history);
@@ -36,8 +67,25 @@ public class HistoryServiceImpl implements HistoryService{
 	}
 
 	@Override
-	public List<HistoryDTO> getHistoryOfUser(String mid) {
-		return null;
+	public List<HistoryDTO> getHistoryOfMember(Long mno) {
+		List<History> historyEntities = historyRepository.getHistoryOfMember(mno);
+		
+		List<HistoryDTO> result = historyEntities.stream()
+				.map(entity -> entityToDto(entity))
+				.map(dto -> {
+					if(dto.getHistoryType() == HistoryType.ITEM) {
+						dto.setName(itemRepository.
+								findById(dto.getHistoryNum()).get().getName());
+						return dto;
+					}else {
+						//임시로 채워넣음
+						dto.setName(campRepository.findById(dto.getHistoryNum()).get().getName());
+						return dto;
+					}
+				})
+				.collect(Collectors.toList());
+		log.info("result = " + result);
+		return result;
 	}
 
 	@Override
@@ -52,6 +100,7 @@ public class HistoryServiceImpl implements HistoryService{
 		log.info("delete  history num : " + hno);
 		historyRepository.deleteById(hno);
 	}
+
 
 
 

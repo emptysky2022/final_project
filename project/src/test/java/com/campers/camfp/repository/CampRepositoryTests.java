@@ -15,6 +15,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.campers.camfp.config.type.CampingType;
 import com.campers.camfp.config.type.GenderType;
+import com.campers.camfp.config.type.StateType;
 import com.campers.camfp.config.type.TableType;
 import com.campers.camfp.entity.camp.Camp;
 import com.campers.camfp.entity.camp.CampCalender;
@@ -195,7 +196,7 @@ public class CampRepositoryTests {
 	@Test
 	public void createHistoryTests() {
 		byte a = 1;
-		History history = History.builder().member(Member.builder().mno(1L).build()).amount(1).state(a).build();
+		History history = History.builder().member(Member.builder().mno(1L).build()).amount(1).state(StateType.PAY_END.toString()).build();
 		historyRepository.save(history);
 	}
 

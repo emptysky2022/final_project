@@ -26,6 +26,7 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.querydsl.jpa.impl.JPAUpdateClause;
+import com.querydsl.sql.types.Null;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -42,7 +43,6 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 		super(Camp.class);
 		// TODO Auto-generated constructor stub
 	}
-	
 
 	@Override
 	public List<?> findByAddress(TableType table, String address) {
@@ -75,33 +75,33 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 
 		switch (table) {
 		case CAMP:
-			
+
 			JPQLQuery<Camp> camp = from(Q_CAMP);
 			camp.select(Q_CAMP);
 			camp.from(Q_CAMP);
 			if (findType == "조회순") {
-				camp.orderBy(Q_CAMP.heart.desc());				
+				camp.orderBy(Q_CAMP.heart.desc());
 			}
 			if (findType == "별점순") {
-				camp.orderBy(Q_CAMP.count.desc());								
+				camp.orderBy(Q_CAMP.count.desc());
 			}
 			camp.limit(count);
 			data = camp.fetch();
 			break;
 
 		case CAMPREVIEW:
-			
+
 			JPQLQuery<CampReview> review = from(Q_CAMP_REVIEW);
 			review.select(Q_CAMP_REVIEW);
 			review.from(Q_CAMP_REVIEW);
-			
+
 			if (findType == "별점순") {
-				review.orderBy(Q_CAMP.heart.desc());				
+				review.orderBy(Q_CAMP.heart.desc());
 			}
 			if (findType == "조회순") {
-				review.orderBy(Q_CAMP.count.desc());								
+				review.orderBy(Q_CAMP.count.desc());
 			}
-			
+
 			review.limit(count);
 			data = review.fetch();
 
@@ -121,25 +121,24 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 		return null;
 	}
 
-
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public List<?> findDataOfCamp(TableType table, Long cno, String[] findDatas) {
-		
+
 		List<?> data = new ArrayList<>();
 		BooleanBuilder conditionCampBuilder = new BooleanBuilder();
 		OrderSpecifier<?> direction = null;
 		switch (table) {
-		
+
 		case CAMP:
 			JPQLQuery<Camp> camp = from(Q_CAMP);
-			
+
 			camp.select(Q_CAMP);
 			camp.from(Q_CAMP);
-			
+
 			// 캠프종류 , 별점으로 찾는곳
 			for (String query : findDatas) {
-				switch(query) {
+				switch (query) {
 				case "일반":
 				case "카라반":
 				case "글램핑":
@@ -148,29 +147,25 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 					break;
 				case "별점순":
 					direction = new OrderSpecifier(Order.DESC, Q_CAMP.heart);
-						break;
+					break;
 				case "조회순":
 					direction = new OrderSpecifier(Order.DESC, Q_CAMP.count);
-						break;	
+					break;
 				}
 			}
-			
-			data = camp.where(conditionCampBuilder)
-					.orderBy(direction)
-                    .limit(6)
-                    .fetch();
+
+			data = camp.where(conditionCampBuilder).orderBy(direction).limit(6).fetch();
 
 			break;
-			
-		
+
 		case CAMPREVIEW:
 			JPQLQuery<CampReview> review = from(Q_CAMP_REVIEW);
 			review.where(Q_CAMP_REVIEW.camp.cno.eq(cno));
 			data = review.fetch();
 			break;
-			
+
 		case CAMPCALENDER:
-			JPQLQuery<CampCalender> calender = from(Q_CAMP_CALENDER);	
+			JPQLQuery<CampCalender> calender = from(Q_CAMP_CALENDER);
 			calender.where(Q_CAMP_CALENDER.camp.cno.eq(cno));
 			data = calender.fetch();
 			break;
@@ -183,61 +178,52 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 		return data;
 	}
 
-
 	@Override
 	@Transactional
 	public void addData(TableType table, Long no, String addData) {
-		
-		JPAUpdateClause update;  
+
+		JPAUpdateClause update;
 
 		// 두개지만 추가 될 가능성 없지 않아서 case 문 씀
-		switch(table) {
-		
-		case CAMP :
-			
+		switch (table) {
+
+		case CAMP:
+
 			update = new JPAUpdateClause(getEntityManager(), Q_CAMP);
-			
-			switch(addData) {
-			 
+
+			switch (addData) {
+
 			case "count":
-				 update.set(Q_CAMP.count, findData(table, no, addData) + 1)
-				.where(Q_CAMP.cno.eq(no))
-				.execute();
+				update.set(Q_CAMP.count, findData(table, no, addData) + 1).where(Q_CAMP.cno.eq(no)).execute();
 				break;
-				
-			case "heart": 
-				 update.set(Q_CAMP.heart, findData(table, no, addData) + 1)
-				.where(Q_CAMP.cno.eq(no))
-				.execute();
+
+			case "heart":
+				update.set(Q_CAMP.heart, findData(table, no, addData) + 1).where(Q_CAMP.cno.eq(no)).execute();
 				break;
-				
-			case "star": 
-				 update.set(Q_CAMP.star, findData(table, no, addData) + 1)
-				.where(Q_CAMP.cno.eq(no))
-				.execute();
+
+			case "star":
+				update.set(Q_CAMP.star, findData(table, no, addData) + 1).where(Q_CAMP.cno.eq(no)).execute();
 				break;
-				
+
 			}
-			
-			
+
 			break;
-			
-		case CAMPREVIEW :
+
+		case CAMPREVIEW:
 			update = new JPAUpdateClause(getEntityManager(), Q_CAMP_REVIEW);
-			
-			switch(addData) {
-			 
+
+			switch (addData) {
+
 			case "count":
 				log.info("난 그런거 없음");
 				break;
-				
-			case "heart": 
-				 update.set(Q_CAMP_REVIEW.heart, findData(table, no, addData) + 1)
-				.where(Q_CAMP_REVIEW.crno.eq(no.intValue()))
-				.execute();
+
+			case "heart":
+				update.set(Q_CAMP_REVIEW.heart, findData(table, no, addData) + 1)
+						.where(Q_CAMP_REVIEW.crno.eq(no.intValue())).execute();
 				break;
-				
-			case "star": 
+
+			case "star":
 				log.info("난 그런거 없음");
 				break;
 			}
@@ -245,135 +231,165 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 		}
 	}
 
-
 	@Override
 	public int findData(TableType table, Long no, String findData) {
-		
-		int data =0;
-		
-		switch(table) {
-		
-		case CAMP :
-				JPQLQuery<Camp> camp = from(Q_CAMP);
-				
-				
-			switch(findData) {
-			
+
+		int data = 0;
+
+		switch (table) {
+
+		case CAMP:
+			JPQLQuery<Camp> camp = from(Q_CAMP);
+
+			switch (findData) {
+
 			case "count":
 				camp.select(Q_CAMP.count);
 				camp.where(Q_CAMP.cno.eq(no));
-				
+
 				// 왜 fetchone 으로 못쓰는 걸까 알아보고 바꿔야 겠다.
 				Object buffer = camp.fetch().get(0);
-				
+
 				Integer value = (Integer) buffer;
 				data = value;
 				//
 				break;
-			
-			case "heart": 
+
+			case "heart":
 				camp.select(Q_CAMP.heart);
 				camp.where(Q_CAMP.cno.eq(no));
 
 				// 왜 fetch one 으로 못쓰는 걸까 알아보고 바꿔야 겠다.
 				Object buffer2 = camp.fetch().get(0);
 				Integer value2 = (Integer) buffer2;
-				data = value2;			
-			 	break;
-			
-			case "star": 
+				data = value2;
+				break;
+
+			case "star":
 				camp.select(Q_CAMP.star);
 				camp.where(Q_CAMP.cno.eq(no));
-				
+
 				// 왜 fetch one 으로 못쓰는 걸까 알아보고 바꿔야 겠다.
 				Object buffer3 = camp.fetch().get(0);
 				Integer value3 = (Integer) buffer3;
 				data = value3;
 				break;
 			}
-			
 
 			break;
 
-			case CAMPREVIEW :
-				JPQLQuery<CampReview> review = from(Q_CAMP_REVIEW);
-				
-				switch(findData) {
-				
-				case "count":
-					log.info("난그런거 없음");
-					break;
-				
-				case "heart": 
-					review.select(Q_CAMP.heart);
-					review.where(Q_CAMP_REVIEW.crno.eq(no.intValue()));
-					
-					// 왜 fetchone 으로 못쓰는 걸까 알아보고 바꿔야 겠다.
-					Object buffer = review.fetch().get(0);
-					Integer value = (Integer) buffer;
-					data = value;
-				 	break;
-				
-				case "star": 
-					log.info("난그런거 없음");
-					break;
-				}
-				
-			
+		case CAMPREVIEW:
+			JPQLQuery<CampReview> review = from(Q_CAMP_REVIEW);
+
+			switch (findData) {
+
+			case "count":
+				log.info("난그런거 없음");
+				break;
+
+			case "heart":
+				review.select(Q_CAMP.heart);
+				review.where(Q_CAMP_REVIEW.crno.eq(no.intValue()));
+
+				// 왜 fetchone 으로 못쓰는 걸까 알아보고 바꿔야 겠다.
+				Object buffer = review.fetch().get(0);
+				Integer value = (Integer) buffer;
+				data = value;
+				break;
+
+			case "star":
+				log.info("난그런거 없음");
+				break;
+			}
+
 			break;
-		
+
 		}
-		
-		
+
 		return data;
 	}
-
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public List<Camp> findManayDataOfCamp(String[] findDatas, String[] findLocations) {
-		
+
 		List<Camp> data = new ArrayList<>();
 		BooleanBuilder conditionBuilder = new BooleanBuilder();
 		BooleanBuilder conditionLocaitonBuilder = new BooleanBuilder();
 		OrderSpecifier<?> direction = null;
-	
-			JPQLQuery<Camp> camp = from(Q_CAMP);
-			camp.select(Q_CAMP);
-			camp.from(Q_CAMP);
 
+		JPQLQuery<Camp> camp = from(Q_CAMP);
+		camp.select(Q_CAMP);
+		camp.from(Q_CAMP);
+
+		// 정렬 방식을 정하지 못했을 경우 넣어줌 default 값
+		log.info(findLocations[0]);
+		if (findLocations[0] == "noData") {
+			conditionLocaitonBuilder.or(QCamp.camp.location.contains("서울시"));
+			conditionLocaitonBuilder.or(QCamp.camp.location.contains("부산시"));
+			conditionLocaitonBuilder.or(QCamp.camp.location.contains("대구시"));
+			conditionLocaitonBuilder.or(QCamp.camp.location.contains("인천시"));
+			conditionLocaitonBuilder.or(QCamp.camp.location.contains("광주시"));
+			conditionLocaitonBuilder.or(QCamp.camp.location.contains("대전시"));
+			conditionLocaitonBuilder.or(QCamp.camp.location.contains("울산시"));
+			conditionLocaitonBuilder.or(QCamp.camp.location.contains("세종시"));
+			conditionLocaitonBuilder.or(QCamp.camp.location.contains("경기도"));
+			conditionLocaitonBuilder.or(QCamp.camp.location.contains("강원도"));
+			conditionLocaitonBuilder.or(QCamp.camp.location.contains("충청북도"));
+			conditionLocaitonBuilder.or(QCamp.camp.location.contains("충청남도"));
+			conditionLocaitonBuilder.or(QCamp.camp.location.contains("전라북도"));
+			conditionLocaitonBuilder.or(QCamp.camp.location.contains("전라남도"));
+			conditionLocaitonBuilder.or(QCamp.camp.location.contains("경상북도"));
+			conditionLocaitonBuilder.or(QCamp.camp.location.contains("경상남도"));
+			conditionLocaitonBuilder.or(QCamp.camp.location.contains("제주도"));
+		} else {
 
 			// 캠핑장 위치 종류
 			for (String locationQuery : findLocations) {
 				conditionLocaitonBuilder.or(QCamp.camp.location.contains(locationQuery));
 			}
-			
-			
-			
-			// 캠프종류 , 별점으로 찾는곳
-			for (String query : findDatas) {
-				switch(query) {
-				case "일반":
-				case "카라반":
-				case "글램핑":
-				case "자동차":
-					conditionBuilder.or(QCamp.camp.camptype.contains(query));
-					break;
-				case "별점순":
-					direction = new OrderSpecifier(Order.DESC, Q_CAMP.heart);
-						break;
-				case "조회순":
-					direction = new OrderSpecifier(Order.DESC, Q_CAMP.count);
-						break;	
-				}
-			}
-			
-			data = camp.where(conditionBuilder.and(conditionLocaitonBuilder))
-					.orderBy(direction)
-                    .limit(6)
-                    .fetch();
+		}
 
+		// 캠프종류 , 별점으로 찾는곳
+		for (String query : findDatas) {
+			switch (query) {
+			case "일반":
+			case "카라반":
+			case "글램핑":
+			case "자동차":
+				conditionBuilder.or(QCamp.camp.camptype.contains(query));
+				break;
+			case "별점순":
+				direction = new OrderSpecifier(Order.DESC, Q_CAMP.heart);
+				break;
+			case "조회순":
+				direction = new OrderSpecifier(Order.DESC, Q_CAMP.count);
+				break;
+			}
+		}
+
+		// 정렬 방식을 정하지 못했을 경우 넣어줌 default 값
+		if (direction == null) {
+			direction = new OrderSpecifier(Order.DESC, Q_CAMP.heart);
+
+		}
 		
+		log.info(conditionBuilder);
+		log.info(conditionBuilder.not());
+		
+		if (conditionBuilder.not() == null) {
+			log.info("null 임");
+			conditionBuilder.or(QCamp.camp.camptype.contains("일반"));
+			conditionBuilder.or(QCamp.camp.camptype.contains("카라반"));
+			conditionBuilder.or(QCamp.camp.camptype.contains("글램핑"));
+			conditionBuilder.or(QCamp.camp.camptype.contains("자동차"));
+		}
+
+		data = camp.where(conditionBuilder.and(conditionLocaitonBuilder))
+				.orderBy(direction)
+				.limit(6)
+				.fetch();
+
 		return data;
 	}
 }

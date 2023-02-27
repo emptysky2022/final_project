@@ -54,7 +54,7 @@ public class BoardServiceImpl implements BoardService {
       Function<Object[], BoardDTO> fn = (en -> entityToDTO((Board) en[0], (Member) en[1], (Long) en[2]));
       
       // 검색 조건 추가를 위해 Querydsl로 변경함
-      Page<Object[]> result = boardRepository.searchPage(pageRequestDTO.getType(), pageRequestDTO.getKeyword(), pageable);
+      Page<Object[]> result = boardRepository.searchPage(pageRequestDTO.getType(), pageRequestDTO.getKeyword(), pageRequestDTO.getCategory(),pageable);
       
 //      Page<Object[]> result = boardRepository.getBoardWithReplyCount(pageable);
       

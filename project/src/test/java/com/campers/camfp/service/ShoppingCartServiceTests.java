@@ -23,7 +23,7 @@ public class ShoppingCartServiceTests {
 												.mno(2L)
 												.ino((long)i)
 												.build();
-			shoppingCartService.register(shoppingCartDTO);
+			shoppingCartService.register(shoppingCartDTO.getIno(), shoppingCartDTO.getMno());
 		});
 	}
 

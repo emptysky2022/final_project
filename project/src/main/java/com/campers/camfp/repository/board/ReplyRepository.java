@@ -18,7 +18,7 @@ public interface ReplyRepository extends JpaRepository<Reply, Long>{
 	// ReplyServiceImpl - getListOfBoard()에서 쓸건데 어떻게 쓰는거람..
 //	@EntityGraph(attributePaths = {"board"}, type = EntityGraphType.FETCH)
 	
-	@Query("select r from Reply r where r.board = :board")
+	@Query("select r from Reply r where r.board = :board order by r.rno desc")
 	List<Reply> findByBoard(Board board);
 
 	// 게시글로 댓글 가져오기 - Rno 기준
