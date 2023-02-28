@@ -18,6 +18,7 @@ import com.campers.camfp.dto.page.PageResultDTO;
 import com.campers.camfp.entity.board.Board;
 import com.campers.camfp.entity.item.Item;
 import com.campers.camfp.entity.member.Member;
+import com.campers.camfp.repository.history.HistoryRepository;
 import com.campers.camfp.repository.item.ItemRepository;
 import com.querydsl.core.util.StringUtils;
 
@@ -30,6 +31,7 @@ import lombok.extern.log4j.Log4j2;
 public class ItemServiceImpl implements ItemService{
 	
 	private final ItemRepository itemRepository;
+	private final HistoryRepository historyRepository;
 
 	@Override
 	public Long register(ItemDTO itemDTO) {
