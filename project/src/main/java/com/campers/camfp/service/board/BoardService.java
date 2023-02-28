@@ -39,11 +39,11 @@ public interface BoardService {
 		return entityBoard;
 	}
 	
-	default BoardDTO entityToDTO(Board board, Member member, Long replyCount) {
-		
+	default BoardDTO entityToDTO(Board board, Member member, Long replyCount, Long heartCount) {
 		BoardDTO boardDTO = BoardDTO.builder().bno(board.getBno())
 										      .title(board.getTitle())
-										      .content(board.getContent())
+											  .content(board.getContent())
+											  .heart(heartCount.intValue())
 										      .mno(member.getMno())
 										      .nickname(member.getNickname())
 										      .category(board.getCategory())

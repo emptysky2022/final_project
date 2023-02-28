@@ -1,12 +1,9 @@
 package com.campers.camfp.controller;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,16 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.campers.camfp.config.auth.PrincipalDetails;
 import com.campers.camfp.dto.item.ItemDTO;
-import com.campers.camfp.dto.item.ItemReviewDTO;
 import com.campers.camfp.dto.page.PageRequestDTO;
 import com.campers.camfp.dto.page.PageResultDTO;
 import com.campers.camfp.service.item.ItemService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectReader;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.querydsl.core.util.StringUtils;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -65,24 +55,8 @@ public class ItemController {
 
 	@ResponseBody
 	@PostMapping("/register")
-	public ResponseEntity<Long> registerItem(@RequestBody ObjectNode obj, @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception {
-		//RequestBody는 단일개체만 가능, ObjectNode로 값 가져옴(ItemReviewDTO, ImageURL)
-		log.info(obj);
-		//ObjectNode의 값을 타입변경해줄 mapper
-		ObjectMapper mapper = new ObjectMapper();
-		//review라는 이름으로 넘어온 ItemReviewDTO의 JSON data를 ItemReviewDTO로 받아서 넘겨줌
-		ItemDTO itemDTO = mapper.treeToValue(obj.get("item"), ItemDTO.class);
-		log.info("itemReview : " + itemDTO);
-		
-		//ImageURL이 여러개이면 List타입으로 받아야 하기 때문에 reader 선언
-		ObjectReader reader = mapper.readerFor(new TypeReference<List<String>>() {});
-		
-		//readValue로 값 읽어서 List에 저장
-		List<String> imageURLList = reader.readValue(obj.get("image"));
-		for(String imageURL : imageURLList) {
-			itemDTO.setThumbnail(imageURL);
-		}
-		
+	public ResponseEntity<Long> registerItem(@RequestBody ItemDTO itemDTO, @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception {		
+		log.info("itemDTO = " + itemDTO);
 		itemDTO.setMaker(principalDetails.getMember().getNickname());
 		itemDTO.setMno(principalDetails.getMember().getMno());
 		Long ino = itemService.register(itemDTO);
@@ -92,27 +66,7 @@ public class ItemController {
 	
 	@ResponseBody
 	@PutMapping("/modify")
-	public ResponseEntity<Long> modifyItem(@RequestBody ObjectNode obj, @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception {
-		//RequestBody는 단일개체만 가능, ObjectNode로 값 가져옴(ItemReviewDTO, ImageURL)
-		log.info(obj);
-		//ObjectNode의 값을 타입변경해줄 mapper
-		ObjectMapper mapper = new ObjectMapper();
-		//review라는 이름으로 넘어온 ItemReviewDTO의 JSON data를 ItemReviewDTO로 받아서 넘겨줌
-		ItemDTO itemDTO = mapper.treeToValue(obj.get("item"), ItemDTO.class);
-		log.info("item : " + itemDTO);
-		
-		if(itemDTO.getThumbnail() == null) {
-			//ImageURL이 여러개이면 List타입으로 받아야 하기 때문에 reader 선언
-			ObjectReader reader = mapper.readerFor(new TypeReference<List<String>>() {});
-			
-			//readValue로 값 읽어서 List에 저장
-			List<String> imageURLList = reader.readValue(obj.get("image"));
-			for(String imageURL : imageURLList) {
-				log.info("어디서 안되는거야");
-				itemDTO.setThumbnail(imageURL);
-			}
-		}
-		
+	public ResponseEntity<Long> modifyItem(@RequestBody ItemDTO itemDTO, @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception {
 		itemDTO.setMaker(principalDetails.getMember().getNickname());
 		itemDTO.setMno(principalDetails.getMember().getMno());
 		Long ino = itemService.modify(itemDTO);

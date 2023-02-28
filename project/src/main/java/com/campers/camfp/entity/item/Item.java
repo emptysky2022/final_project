@@ -71,7 +71,7 @@ public class Item {
 	
 	private int heart;				//좋아요, 찜 수
 	
-	@OneToMany(mappedBy = "item", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
 	private List<ItemReview> itemReviews = new ArrayList<>();
 	
 	public void increseCount() {

@@ -1,5 +1,5 @@
 let itemDTO;
-let image = new Array();
+let imageStr = '';
 $(function(){
 	console.log("document ready")
 	$("#item-modal-open").click(function(){
@@ -33,6 +33,7 @@ $(function(){
 		});
 		
 		console.log(data);
+		
 		$.ajax({
 			url: "/cart/items",
 			method: "PUT",
@@ -50,30 +51,28 @@ $(function(){
     $("#item-popup #confirm").click(function(){
         modalClose(); //모달 닫기 함수 호출
         getData();
-        let data = {
-			item : itemDTO,
-			image : image
-		};
-		console.log(data);
 		$.ajax({
-			url: "/cart/modify",
+			url: "/item/register",
 			method: "POST",
+			data: JSON.stringify(itemDTO),
+			contentType: "application/json",
 			success: function(ino){
-				$("#content").val("");
+				console.log(ino + "통과!")
+				$("#link").val("");
 				$("#capture").val("");
 				search('','','');
 			}
 		})       
     });
     $("#thumbnail").on("change", function(){
-		image = [];
+		imageStr = '';
 		console.log("capture change event");
 		// 이미지 업로드 클릭시 파일 받아서 uploadAjax controller로 이동
 		let formData = new FormData();
 		const inputFile = $(this);
 		const files = inputFile[0].files;
 		let appended = false;
-		
+		console.log(imageStr);
 		$.each(files, function(index, file){
 			if(!checkExtension(file.name, file.size)){
 				return false;
@@ -98,9 +97,11 @@ $(function(){
 			success: function(result){
 				console.log(result);
 				//결과값중 uuid, filePath등등 있는데 imageURL만 뽑아서 리스트에 넣기
-				result.map(({imageURL}) => image.push(imageURL));
-				$("#imageChange").attr('src', '/display?fileName='+image[image.length - 1]);
-				console.log(image);
+				result.map(({uuid, fileName}) => imageStr += uuid+'_'+fileName+',');
+				imageStr = imageStr.substring(imageStr.length-1, 0);
+				let getImageURL = imageStr.split(',');
+				$("#imageChange").attr('src', '/display?fileName='+ getImageURL[getImageURL.length-1] +'&folderType=item');
+				console.log(imageStr);
 			},
 			error: function(xhr, text, errorThrown){
 				console.log(text);
@@ -146,7 +147,7 @@ function cartModal(){
 	                    <th class="amountallheader">주문금액</th>
                     </tr>
 				` );
-				const cartHtml = result.map(([{thumbnail, name, brand, price}, cartDTO]) => 
+				const cartHtml = result.map(([{thumbnail, name, brand, price, image}, cartDTO]) => 
 					`
 						<tr id="${cartDTO.sno}">
                             <td class="select">
@@ -155,7 +156,7 @@ function cartModal(){
 
                             <td class="productinfobox">
                                 <div class="productimgbox">
-                                    <img class="productimg" src="${thumbnail}" alt="">
+                                    <img class="productimg" src="${image.split(',')[image.split(',').length-1]}" alt="">
                                 </div>
                                 <div class="producttextbox">
                                     <div class="productname">${name}</div>
@@ -260,14 +261,28 @@ function checkPrice($el){
 }
 
 function getData(ino){
-	itemDTO = {
-		ino: ino,
-		name: $("#name").val(),
-		price: $("#price").val(),
-		brand: $("#brand").val(),
-		maker: $("#maker").val(),
-		link: $("#link").val(),
-		category1: $("select[name=category]").val()
+	console.log($("select[name=category]").val())
+	if(ino){
+		itemDTO = {
+			ino: ino,
+			name: $("#name").val(),
+			price: $("#price").val(),
+			brand: $("#brand").val(),
+			maker: $("#maker").val(),
+			link: $("#link").val(),
+			thumbnail: imageStr,
+			category1: $("select[name=category]").val()
+		}
+	} else{
+		itemDTO = {
+			name: $("#name").val(),
+			price: $("#price").val(),
+			brand: $("#brand").val(),
+			maker: $("#maker").val(),
+			link: $("#link").val(),
+			thumbnail: imageStr,
+			category1: $("select[name=category]").val()
+		}
 	}
 	$("#name").val("");
 	$("#price").val("");
@@ -301,10 +316,10 @@ function search(category, keyword, type){
 			str += '<div class="productbox box4" >';
 			str += '<div onclick="location.href=\'/item/detail?ino=' + item.ino + '\'">';
 			str += '  <div class="p_imgbox box5">';
-			if(item.thumbnail.split(':')[0] === "https"){
+			if(item.thumbnail != null && item.thumbnail.split(':')[0] === "https"){
 				str += '    <img class="p_img item" src=' + item.thumbnail + '></div>';
 			} else{
-				str += '    <img class="p_img item" src=/display?fileName=' + item.thumbnail + '></div>';
+				str += '    <img class="p_img item" src=/display?fileName=' + item.thumbnail.split(',')[item.thumbnail.split(',').length-1] + '&folderType=item></div>';
 			}
             str += '  <div class="p_contentbox box5">';
             str += '    <div class="p_writingbox box6">';
@@ -346,9 +361,10 @@ async function modify(ino){
 	
 	if(result.thumbnail.split(':')[0] === "https"){
 		$("#imageChange").attr("src", result.thumbnail);
-		image.push(result.thumbnail);
+		imageStr += result.thumbnail;
 	} else{
-		$("#imageChange").attr("src", "/display?fileName="+result.thumbnail);
+		let itemURLs = result.thumbnail.split(',');
+		$("#imageChange").attr("src", "/display?fileName="+itemURLs[itemURLs.length-1]+"&folderType=item");
 	}
 	$("#name").val(result.name);
 	$("#price").val(result.price);
@@ -363,22 +379,17 @@ async function modify(ino){
 		alert(e);
 	}
 	
-	$("#popup").css('display','flex').hide().fadeIn();
+	$("#item-popup").css('display','flex').hide().fadeIn();
 	$("#modify").click(function(){
         modalClose(); //모달 닫기 함수 호출
         getData(ino);
         //수정 이벤트 처리
 		//등록할 때 data를 ItemReviewDTO, List<String>으로 받아야 함
-        let data = {
-			item : itemDTO,
-			image : image
-		};
-		console.log(data);
 		$.ajax({
 			url: "/item/modify",
 			method: "PUT",
 			contentType: "application/json",
-			data: JSON.stringify(data),
+			data: JSON.stringify(itemDTO),
 			success: function(ino){
 				search('','','');
 			}

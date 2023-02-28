@@ -31,7 +31,7 @@ public class BoardServiceTest {
 		BoardDTO boardDTO = BoardDTO.builder()
 											  .title("Service Test")
 											  .content("Service Test")
-											  .mno(member.getMno())
+											  .mno(1L)
 											  .category("경기도")
 											  .count(count)
 											  .heart(heart)
