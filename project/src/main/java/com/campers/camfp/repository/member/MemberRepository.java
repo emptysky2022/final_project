@@ -18,7 +18,7 @@ public interface MemberRepository extends JpaRepository<Member, Long>{
 	public Member findById(String username); //Jpa Query methods 검색 
 	
 	// SELECT * FROM member WHERE Id = ?1 and Nickname = ?2
-		Optional<Member>  findByIdAndNickname(String id, String nickname);
+		Optional<Member> findByIdAndNickname(String id, String nickname);
 		
 		//중복검사
 		 @Query("SELECT COUNT(m.id) FROM Member m WHERE m.id = :id")
@@ -37,8 +37,5 @@ public interface MemberRepository extends JpaRepository<Member, Long>{
 		   " where id = :id",
 		   nativeQuery = true)
 	Object getMemberById(@Param("id") String id);
-
-
-	
 
 }

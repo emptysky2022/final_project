@@ -41,7 +41,7 @@ public class CampAPITests {
         String api_key = API_KEY;
         
         //반복(총 몇개의 캠프 정보를 넣을지)
-        IntStream.range(0, 100).forEach(i -> {
+        IntStream.range(0, 10).forEach(i -> {
         	
 	    	String requestHeaders = "";
 	    	//페이지 결과 수(캠핑장 개수)

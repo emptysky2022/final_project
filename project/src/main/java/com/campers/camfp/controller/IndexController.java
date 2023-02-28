@@ -76,7 +76,7 @@ public class IndexController {
 	
 	@GetMapping({"","/"})
 	public  String index() {
-		return "index";
+		return "main";
 	}
 	
 	@GetMapping("/member")
@@ -101,9 +101,12 @@ public class IndexController {
 		return "login";
 	}
 	
-	@GetMapping("/testlogin")
-	public String login2() {
-		return "testlogin";
+	@Secured("ROLE_MEMBER")
+	@GetMapping("/readmember")
+	public String readMember(@AuthenticationPrincipal PrincipalDetails principalDetails,Model model) {
+		model.addAttribute("member",principalDetails.getMember());
+		System.out.println("introduce : "+principalDetails.getMember().getIntroduce());
+		return "readmember";
 	}
 	
 	@Secured("ROLE_MEMBER")
@@ -126,7 +129,7 @@ public class IndexController {
 				//Authentication authentication = authenticate(new UsernamePasswordAuthenticationToken(member.getUsername(), member.getPassword()));
 				// 2. 새로 생성한 authentication 객체를 SecurityContextHolder안에 SecurityContext안에 set한다.
 				//SecurityContextHolder.getContext().setAuthentication(authentication);
-        return "redirect:/";
+        return "redirect:/login";
 				//return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 			
 //		memberDTO = memberDTO.builder()
@@ -219,18 +222,18 @@ public class IndexController {
 	}
 	
 	
-	@GetMapping("/sample/read")
-	public void readMember(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
-		Member member = principalDetails.getMember();
-		MemberDTO memberDTO = MemberDTO.builder()
-				.mno(member.getMno())
-				.profileImg(member.getProfileImg())
-				.name(member.getName())
-				.nickname(member.getNickname())
-				.age(member.getAge())
-				.pw(member.getPw())
-				.build();
-		
-		model.addAttribute("memberDTO", memberDTO);
-	}
+//	@GetMapping("/sample/read")
+//	public void readMember(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
+//		Member member = principalDetails.getMember();
+//		MemberDTO memberDTO = MemberDTO.builder()
+//				.mno(member.getMno())
+//				.profileImg(member.getProfileImg())
+//				.name(member.getName())
+//				.nickname(member.getNickname())
+//				.age(member.getAge())
+//				.pw(member.getPw())
+//				.build();
+//		
+//		model.addAttribute("memberDTO", memberDTO);
+//	}
 }
