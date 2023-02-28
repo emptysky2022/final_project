@@ -50,4 +50,6 @@ public class CampReview extends BaseEntity{
 	private String reviewer;
 
 	private int heart;
+	
+	private int star;
 }

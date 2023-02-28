@@ -44,7 +44,7 @@ public class ItemReview extends BaseEntity{
 	@Column(length=2000, nullable = false)
 	private String content;
 		
-	@Column(length=20, nullable = false)
+	@Column(length=50, nullable = false)
 	private String reviewer;
 	
 	private int heart;
