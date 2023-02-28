@@ -1237,14 +1237,19 @@ color: red;
 display: none;
 }
 
-
-
 /*로그인 박스*/
 .sectionbreak .sec7{
     display: flex;
     justify-content: end;
 }
 
+.ready{
+	margin-bottom:1rem;
+}
+
+.rePwdErr{
+	display:none;
+}
 .sectionbreak .sec7 .loginlink{
 
 }
