@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+
+<header th:fragment="headerFragment">
+	<div class="header box1">
+	    <!--네비게이션 로고-->
+	    <div class="header_logomenu box2">
+	
+	        <a class="header_logo box3" href="#">
+	            <img src="../img/mainLogo.png" alt="">
+	        </a>
+	    </div>
+	
+	    <!--사이드메뉴-->
+	    <div class="main_box">
+	        <input type="checkbox" id="check">
+	        <div class="btn_one">
+	            <label for="check">
+	                <i class="fas fa-bars"></i>
+	            </label>
+	        </div>
+	        <div class="sidebar_menu">
+	            <div class="logo">
+	                <a href="#">Campers</a>
+	            </div>
+	            <div class="btn_two">
+	                <label for="check">
+	                    <i class="fas fa-times"></i>
+	                </label>
+	            </div>
+	            <div class="menu">
+	                <ul>
+	                    <li><i class="fa-solid fa-campground"></i>
+	                        <a href="#" class="item">캠핑장</a>
+	                    </li>
+	                    <li>
+	                        <i class="fa-solid fa-box"></i>
+	                        <a href="#">상품</a>
+	                    </li>
+	                    <li>
+	                        <i class="fa-solid fa-comment"></i>
+	                        <a href="#">게시판</a>
+	                    </li>
+	                    <li>
+	                        <i class="fa-solid fa-right-to-bracket"></i>
+	                        <a href="#">로그인</a>
+	                    </li>
+	                    <li>
+	                        <i class="fa-solid fa-right-from-bracket"></i>
+	                        <a href="#">로그아웃</a>
+	                    </li>
+	                    <li>
+	                        <i class="fa-solid fa-user-plus"></i>
+	                        <a href="#">회원가입</a>
+	                    </li>
+	                    <li>
+	                        <i class="fa-solid fa-user"></i>
+	                        <a href="#">내 정보</a>
+	                    </li>
+	                </ul>
+	            </div>
+	            
+	        </div>
+	    </div>
+	    <!---->
+	
+	    <!--네비게이션 메뉴목록-->
+	    <ul class="header_menu box2">
+	        <li class="menu1 box3"><a class="item" href="">캠핑장</a></li>
+	        <li class="menu2 box3"><a class="item" href="">상품</a></li>
+	        <li class="menu3 box3"><a class="item" href="">게시판</a></li>
+	    </ul>
+	
+	    <!--우측 상단 마이페이지-->
+	    <ul class="header_mypage box2">
+	        <li class="signuplogbox box3">
+	            <a class="login" href="../html/login.html">로그인</a>
+	            <a class="logout" href="">로그아웃</a>
+	            <a href="../html/signup.html" class="signup box4">
+	               회원가입
+	            </a>
+	        </li>
+	        <a class="readmemeberlinkbox" href="../html/readmemeber.html">
+	            <span class="material-symbols-outlined">
+	                person
+	            </span>
+	        </a>
+	    </ul>
+	</div>
+
+</header>
+
+</body>
+</html>
