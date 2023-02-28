@@ -31,7 +31,7 @@ public class BoardRepositoryTest {
 	@Test
 	public void testInsert() {
 		
-		IntStream.rangeClosed(1, 50).forEach(i -> {
+		IntStream.rangeClosed(51, 200).forEach(i -> {
 			
 			int count = (int)((Math.random() * 5000) + 1);
 			int heart = (int)((Math.random() * 1000) + 1);

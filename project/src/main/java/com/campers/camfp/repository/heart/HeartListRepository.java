@@ -13,4 +13,6 @@ public interface HeartListRepository extends JpaRepository<Heart, Long>, HeartQu
 	@Query("select h from Heart h left join Member m on h.member=m where m.mno=:mno group by h")
 	List<Heart> getHeartByMember(Long mno);
 
+	Long countHeartByProductNumAndProductType(Long productNum, ProductType productType);
+
 }

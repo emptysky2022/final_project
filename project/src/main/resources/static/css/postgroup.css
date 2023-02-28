@@ -410,24 +410,28 @@ td {
   }
 }
 
-.img {
-	width: 5vw;
-	height: 3vw;
+#readList .heart-box {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		text-align: center;
+		margin: 1rem;
 }
-
+#readList .heart {
+	align-self: center;
+	width: 22px;
+	height: 22px;
+	background-size: 22px 22px;
+}
 .img > h6 {
-	margin-left: 2.1vw;
+	margin-left: 0;
 }
-
-.heartImg {
-	width: 2vw;
-    height: 2vw;
-    display: flex;
-    justify-content: center;
-    margin-left: 1.5vw;
-    margin-top: 1vw;
+.heart.h-on {
+	background-image: url("/img/full_heart.png");
 }
-
+.heart.h-off {
+	background-image: url("/img/empty_heart.png");
+}
 
 /*검색*/
 #search {
@@ -832,7 +836,7 @@ align-items: center;
 
 .ct_wr_debox{
   display: flex;
-  flex-direction: row;
+    flex-direction: column;
   justify-content: space-between;
 
 }
