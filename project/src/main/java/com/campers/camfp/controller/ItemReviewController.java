@@ -69,24 +69,8 @@ public class ItemReviewController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ResponseEntity<Long> registerReviewOfItem(@RequestBody ObjectNode obj, @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception{
-		//RequestBody는 단일개체만 가능, ObjectNode로 값 가져옴(ItemReviewDTO, ImageURL)
-		log.info(obj);
-		//ObjectNode의 값을 타입변경해줄 mapper
-		ObjectMapper mapper = new ObjectMapper();
-		//review라는 이름으로 넘어온 ItemReviewDTO의 JSON data를 ItemReviewDTO로 받아서 넘겨줌
-		ItemReviewDTO itemReviewDTO = mapper.treeToValue(obj.get("review"), ItemReviewDTO.class);
-		log.info("itemReview : " + itemReviewDTO);
-		
-		//ImageURL이 여러개이면 List타입으로 받아야 하기 때문에 reader 선언
-		ObjectReader reader = mapper.readerFor(new TypeReference<List<String>>() {});
-		
-		//readValue로 값 읽어서 List에 저장
-		List<String> imageURLList = reader.readValue(obj.get("image"));
-		for(String imageURL : imageURLList) {
-			itemReviewDTO.setCapture(imageURL);
-		}
-		
+	public ResponseEntity<Long> registerReviewOfItem(@RequestBody ItemReviewDTO itemReviewDTO, @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception{
+		log.info("nickname : " + principalDetails.getMember().getNickname());
 		itemReviewDTO.setReviewer(principalDetails.getMember().getNickname());
 		itemReviewService.register(itemReviewDTO);
 		
@@ -94,24 +78,7 @@ public class ItemReviewController {
 	}
 
 	@RequestMapping(value = "/modify", method = RequestMethod.PUT)
-	public ResponseEntity<Long> modifyReviewOfItem(@RequestBody ObjectNode obj, @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception{
-		//RequestBody는 단일개체만 가능, ObjectNode로 값 가져옴(ItemReviewDTO, ImageURL)
-		log.info(obj);
-		//ObjectNode의 값을 타입변경해줄 mapper
-		ObjectMapper mapper = new ObjectMapper();
-		//review라는 이름으로 넘어온 ItemReviewDTO의 JSON data를 ItemReviewDTO로 받아서 넘겨줌
-		ItemReviewDTO itemReviewDTO = mapper.treeToValue(obj.get("review"), ItemReviewDTO.class);
-		log.info("itemReview : " + itemReviewDTO);
-		
-		//ImageURL이 여러개이면 List타입으로 받아야 하기 때문에 reader 선언
-		ObjectReader reader = mapper.readerFor(new TypeReference<List<String>>() {});
-		
-		//readValue로 값 읽어서 List에 저장
-		List<String> imageURLList = reader.readValue(obj.get("image"));
-		for(String imageURL : imageURLList) {
-			itemReviewDTO.setCapture(imageURL);
-		}
-		
+	public ResponseEntity<Long> modifyReviewOfItem(@RequestBody ItemReviewDTO itemReviewDTO, @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception{
 		itemReviewDTO.setReviewer(principalDetails.getMember().getNickname());
 		Long ino = itemReviewService.modify(itemReviewDTO);
 		

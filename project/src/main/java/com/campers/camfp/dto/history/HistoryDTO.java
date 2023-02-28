@@ -35,6 +35,7 @@ public class HistoryDTO {
 	
 	private int price;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDateTime regDate;
 	
 	//item일때

@@ -93,7 +93,7 @@ public class UploadController {
 		try {
 			String srcFileName;
 			File file;
-			if(fileName.equals("null")) {
+			if(fileName.equals("null") || fileName.equals("")) {
 				srcFileName = defaultImage;
 				file = new File(uploadPath + File.separator + srcFileName);
 			}else {
