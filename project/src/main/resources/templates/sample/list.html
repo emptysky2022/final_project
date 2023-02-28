@@ -24,8 +24,31 @@
 <script src="https://kit.fontawesome.com/bb87a5faf0.js"
 	crossorigin="anonymous"></script>
 <!-- moment - Date js 라이브러리 -->
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+<style>
+	#readList .heart-box {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		text-align: center;
+		margin: 1rem;
+	}
+	#readList .heart {
+		align-self: center;
+		width: 40px;
+		height: 40px;
+		background-size: 40px 40px;
+	}
+	.img > h6 {
+		margin-left: 0;
+	}
+	.heart.h-on {
+		background-image: url("/img/full_heart.png");
+	}
+	.heart.h-off {
+		background-image: url("/img/empty_heart.png");
+	}
+</style>
 </head>
 
 <body>
@@ -228,7 +251,7 @@
 						src="../img/black1.jpg"></a>
 				</div>
 				<div class="toplevelbox">
-					<a href="#" id="toplevel"><img src="../img/outdoor1.jpg"></a>
+					<a href="#" id="toplevel"><img src="../img/mainLogo.png"></a>
 				</div>
 			</div>
 		</main>
