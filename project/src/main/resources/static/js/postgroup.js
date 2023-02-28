@@ -214,25 +214,27 @@ async function loadRefreshData(x) {
       
         if(isPrev) {
 	    	pagination += `<li class="page-item">
-	    				<a class="page-link bt_prev item_2" onclick="loadRefreshData()" tabindex="-1">이전</a>
-	    				</li>`;
+	    				       <a class="page-link bt_prev item_2" onclick="loadRefreshData()" tabindex="-1">이전</a>
+	    				   </li>`;
 	    }
 	    
 	    for(const value of pageInfo) {
 	    	pagination += `<li class="page-item num ${pageNum == page ? 'active' : ''}">
-	    				<a class="page-link" onclick="loadRefreshData(${value})">${value}</a>
-	    				<input type="hidden" name="pageValue" value="${value}">
-	    				</li>`;
+	    				       <a class="page-link" onclick="loadRefreshData(${value})">${value}</a>
+	    				       <input type="hidden" name="pageValue" value="${value}">
+	    				   </li>`;
 	    }
 	    
 	    if(isNext) {
-	    	pagination = `<li class="page-item num">
+	    	pagination += `<li class="page-item num">
 	    				<a class="page-link" onclick="loadRefreshData(${endPage + 1})">다음</a><li></ul>`;
 	    }
 	    pagination += "</ul>"
 	    $paging.html(pagination);
 	    
 	    page = $(".pagingEl").find("[name='pageValue']").val();
+	    
+	    console.log("sjldkjsdlfkjsdf");
     } catch (e) {
         console.error("게시판 불러오는 중 오류 발생", e);
         alert(e);
@@ -246,7 +248,9 @@ async function loadReadData(bno) {
         const [board, reply, user] = await $.getJSON(`/sample/list/${bno}`);
         const heart = await heartCheck(bno);
         const hlno = heart ? JSON.parse(heart).hlno : undefined;
-
+		
+		console.log("board : ", board);
+		
         $boardList.html(`
         <div class="titlebox box4">
             <div class="titleStrong read">
@@ -308,7 +312,7 @@ async function loadReadData(bno) {
             $("#modifyBtn").hide();
             $("#boardRemove").hide();
         }
-
+		
         setTimeout(() => {
             loadReadRepliesData(bno);
         }, 500);
@@ -440,12 +444,13 @@ async function loadReadRepliesData(bno, rno) {
                             <div class="commentdetailbox">  
                                 <div class="commentdetail replyContentBox" id="content${reply.rno}">${reply.content}</div>  
                                 <input type="hidden" name="showReplyContent${reply.rno}" value="${reply.content}">  
-                                <div id="modifyContentDiv${reply.rno}"></div>  
                             </div>
                         </div>  
-                        <button class="hideModifyBtn${reply.rno}" id="removeReplyBtn" onclick="removeReply(${reply.bno}, ${reply.rno})">댓글 삭제</button>  
-                        <button class="hideModifyBtn${reply.rno}" id="modifyReplyBtn" onclick="modifyReply(${reply.bno}, ${reply.rno})" value="${reply.rno}">댓글 수정</button>  
-                        <button id="replyHeart" value="${reply.heart}"></button>  
+                        <div id="replyBtn">
+                        	<button class="hideModifyBtn${reply.rno}" id="removeReplyBtn" onclick="removeReply(${reply.bno}, ${reply.rno})">댓글 삭제</button>  
+                        	<button class="hideModifyBtn${reply.rno}" id="modifyReplyBtn" onclick="modifyReply(${reply.bno}, ${reply.rno})" value="${reply.rno}">댓글 수정</button>  
+                        	<button id="replyHeart" value="${reply.heart}"></button>  
+                        </div>
                         <hr>	
                     </div>	
          		   `;			
@@ -524,9 +529,13 @@ function removeReply(bno, rno) {
 function modifyReply(bno, rno) {
 	
 	$("#content" + rno).html(
-		`<input type="text" id="modifyContentBox" placeholder="수정할 내용을 입력하세요.">
-		 <button type="button" id="modifyContentBtn" onclick="modifyContentBox(${rno})">수정하기</button>
-		 <button type="button" id="cancelContentBtn" onclick="cancelModify(${rno})">취소</button>
+		`<div id="modifyContentDiv">
+			<input type="text" id="modifyContentBox" placeholder="수정할 내용을 입력하세요.">
+		 	<div id="contentBtn">
+		 		<button type="button" id="modifyContentBtn" onclick="modifyContentBox(${rno})">수정하기</button>
+		 		<button type="button" id="cancelContentBtn" onclick="cancelModify(${rno})">취소</button>
+		 	</div>
+		 </div>
 		`);
 }
 

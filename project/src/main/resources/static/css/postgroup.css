@@ -856,11 +856,80 @@ align-items: center;
 }
 /*---------*/
 
+/**/
+
 
 /*댓글 삭제 버튼*/
+#replyBtn {
+	display: flex;
+}
 
+#removeReplyBtn {
+	border: 1px solid #1F2550;
+    width: 4vw;
+    height: 0.1vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    min-width: 6rem;
+    min-height: 2rem;
+    margin: 5px;
+}
 
+#modifyReplyBtn {
+	background-color: #1F2550;
+    color: rgb(255, 255, 255);
+    width: 4vw;
+    height: 0.1vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    min-width: 6rem;
+    min-height: 2rem;
+    margin: 5px;
+    
+}
 
+/*댓글 수정*/
+#modifyContentDiv {
+	display: flex;
+}
+
+#modifyContentBox {
+	width: 300px;
+    height: 25px;
+    font-size: 12px;
+}
+
+#modifyContentBtn {
+	background-color: #1F2550;
+    color: rgb(255, 255, 255);
+    width: 6vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 4rem;
+    min-height: 1rem;
+    margin: 3px;
+}
+
+#cancelContentBtn {
+	border: 1px solid #1F2550;
+    width: 6vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 4rem;
+    min-height: 1rem;
+    margin: 3px;
+}
+
+#contentBtn {
+	display: flex;
+}
+/*-------*/
 .commentdeletebox{
   display: flex;
     flex-direction: row;
