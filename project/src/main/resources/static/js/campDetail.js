@@ -369,10 +369,6 @@ $(document).ready(function() {
 		clearDate();
 	});
 
-	$("#days .child").on("click", function() {
-
-	});
-
 	$("#prev-month").on("click", function() {
 		if (month == 0) {
 			month = 11;
@@ -430,7 +426,7 @@ $(document).ready(function() {
 		modalClose(); //모달 닫기 함수 호출
 	});
 
-	// 리뷰 작성 모달 열기
+	// 리뷰 작성 버튼 클릭
 	$("#confirm").click(function() {
 		clickCampConfirm();
 	});
@@ -442,7 +438,8 @@ $(document).ready(function() {
 
 	// 리뷰 수정
 	$(".modify-confirm").click(function() {
-		cmapModify();
+		var crno = $(".crno").val();
+		replyModify(crno);
 		modifyModalClose(); //모달 닫기 함수 호출
 	});
 
@@ -476,10 +473,11 @@ $(document).ready(function() {
 
 
 
-	// 댓글 생성
+	// 댓글 수정 모달 열기
 	listGroup.on('click', '.modify', function(event) {
 		var crno = $(this).attr('id');
-
+		getReview(crno);
+		
 		//팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
 		$("#modify-popup").css('display', 'flex').hide().fadeIn();
 	});
@@ -526,7 +524,7 @@ $(document).ready(function() {
 
 	};
 	function loadJSON() {
-		$.getJSON('/camp/reply/' + cno, function(arr) {
+		$.getJSON('/camp/reply/list/' + cno, function(arr) {
 
 			let str = "";
 			const [reply, member] = arr;
@@ -590,7 +588,6 @@ $(document).ready(function() {
 	};
 
 	function saveHeart(cno, heart) {
-		console.log(heart);
 		$.ajax({
 			url: "/heart/save",
 			contentType: "application/json",
@@ -608,8 +605,6 @@ $(document).ready(function() {
 	}
 
 	function removeHeart(cno, heart, hlno) {
-		console.log(hlno);
-		console.log(cno);
 		$.ajax({
 			url: "/heart/remove",
 			contentType: "application/json",
@@ -685,17 +680,56 @@ $(document).ready(function() {
 			}
 		})
 	}
-	
-	function removeReview(crno){
-		
+
+	function removeReview(crno) {
+
 		$.ajax({
-			url : "/camp/review/" + Number(crno),
-			method : "DELETE"
+			url: "/camp/review/" + Number(crno),
+			method: "DELETE"
 		})
 	}
 
-	//프로그램 처음 로드시 loadJSON 호출;
-	// 밑에서 해야함
-	loadJSON();
+	async function getReview(crno) {
+		console.log("탔음");
+		const result = await $.get("/camp/reply/one/" + crno)
 
-});
+		console.log(result);
+		var regdate = result.regdate;
+		var capture = result.capture;
+		var heart = result.heart;
+		var star = result.star;
+		var content = result.content;
+		
+		console.log(content);
+		console.log(star);
+		console.log(content);
+
+		$("#modify-content").val(content);
+		$("#modify-select_star").val(star);
+		$(".crno").val(crno);
+		$(".regdate").val(regdate);
+		$(".heart").val(heart);
+	}
+	
+	function replyModify(crno){
+		console.log($("#modify-content").val());
+		$.ajax({
+			url : "/review/modify",
+			contentType : "application/json",
+			method : "PUT",
+			data : JSON.stringify({
+				cno : $(".sec3 .sec4").attr('id'),
+				crno : crno,
+				capture : $("#modify-picture").val(),
+				content : $("#modify-content").val(),
+				star : $("#modify-select_star").val(),
+				regdate : $(".regdate").val()
+			})
+		})
+	}
+
+		//프로그램 처음 로드시 loadJSON 호출;
+		// 밑에서 해야함
+		loadJSON();
+
+	});
