@@ -2,10 +2,8 @@ function deleteMember()  {
     
     if(confirm("정말로 회원탈퇴 하시겠습니까?")==true){
 		location.href="/memberDelete";
-	
 	}else
 	return false;
-
 }
   
   function checkNick(){
@@ -31,3 +29,9 @@ function deleteMember()  {
 		}
 	});
 };
+
+function submitmessage(){
+	alert("회원 정보 수정이 완료되었습니다. 다시 로그인 부탁드립니다!!")
+}
+
+
