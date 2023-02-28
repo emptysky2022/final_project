@@ -70,6 +70,7 @@ public interface CampService {
 														.capture(reviewDTO.getCapture())
 														.content(reviewDTO.getContent())
 														.reviewer(reviewDTO.getReviewer())
+														.star(reviewDTO.getStar())
 														.heart(reviewDTO.getHeart())
 														.build();
 			
@@ -132,6 +133,7 @@ public interface CampService {
 														.capture(review.getCapture())
 														.content(review.getContent())
 														.reviewer(review.getReviewer())
+														.star(review.getStar())
 														.heart(review.getHeart())
 														.build();
 			
