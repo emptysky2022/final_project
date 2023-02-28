@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<body>
+
+	<section th:fragment="section1Fragment">
+	
+		<div class="sec1 box3 " name="test">
+			<div class="titlebox box4">
+				<div class="titleStrong">
+					<strong class="titletext item">게시글 작성</strong>
+				</div>
+			</div>
+			
+			<div class="boardwritebox box4">
+				<div class="boardwrite box5">
+					<form th:action="@{/sample/register}" th:method="post">
+						<input type="hidden" id="memberNickname" name="nickname"
+							th:value="|${memInfo.nickname}|" readonly> <input
+							type="hidden" name="mno" th:value="|${memInfo.mno}|" readonly>
+						<div class="titlebox box6">
+							<dl>
+								<dt class="titletext item">제목</dt>
+								<dd class="title item">
+									<input name="title" type="text" placeholder="제목 입력">
+								</dd>
+								<dt class="titletext item">지역</dt>
+								<dd class="title item">
+									<select name="category">
+										<option>서울특별시</option>
+										<option>경기도</option>
+										<option>부산광역시</option>
+										<option>대구광역시</option>
+										<option>인천광역시</option>
+										<option>울산광역시</option>
+										<option>세종특별자치시</option>
+										<option>강원도</option>
+										<option>충청도</option>
+										<option>전라도</option>
+										<option>경상도</option>
+										<option>제주특별자치도</option>
+									</select>
+								</dd>
+							</dl>
+						</div>
+
+						<div class="content">
+							<textarea name="content" placeholder="내용 입력"></textarea>
+						</div>
+						<div class="buttonbox box5">
+							<button type="submit" class="on">등록</button>
+							<button type="reset" class="cancel">비우기</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+	</section>
+	
+	
+	<section th:fragment="section2Fragment">
+	
+		<div class="sec2 box3" id="boardModifyForm">
+			<div class="titlebox box4">
+				<div class="titleStrong">
+					<strong class="titletext item">게시글 수정 </strong>
+				</div>
+			</div>
+			<div class="boardmodifybox box4">
+				<div class="boardmodify box5">
+					<div id="modifyBoard"></div>
+
+				</div>
+				<div class="button">
+					<button type="button" id="boardModify" class="on">수정완료</button>
+					<button onclick="toggleBtn2()" class="cancel">취소</button>
+				</div>
+			</div>
+
+		</div>
+	
+	</section>
+	
+	
+	<section th:fragment="section3Fragment">
+	
+		<div id="boardList" class="sec3 box3">
+
+			<div id="readList"></div>
+
+			<div id="repliesListRE"></div>
+		</div>
+	
+	</section>
+	
+	<section th:fragment="section4Fragment">
+	
+		<div id="sec4" class="sec4 box3">
+
+			<div class="titlebox box4">
+				<div class="titleStrong">
+					<strong class="titletext_item">게시판 목록</strong>
+				</div>
+
+				<div class="btnendbox box5">
+					<div class="button box6">
+						<!-- 검색 기능 시작 -->
+						<div id="search">
+							<form id="searchForm">
+								<label for="category">지역</label> <select id='category'
+									name="category">
+									<option value="">전체</option>
+									<option>서울특별시</option>
+									<option>경기도</option>
+									<option>부산광역시</option>
+									<option>대구광역시</option>
+									<option>인천광역시</option>
+									<option>울산광역시</option>
+									<option>세종특별자치시</option>
+									<option>강원도</option>
+									<option>충청도</option>
+									<option>전라도</option>
+									<option>경상도</option>
+									<option>제주특별자치도</option>
+								</select> <select name="type">
+									<option value="" th:selected="${pageRequestDTO.type == null}">전체</option>
+									<option value="t" th:selected="${pageRequestDTO.type == 't'}">제목</option>
+									<option value="c" th:selected="${pageRequestDTO.type == 'c'}">내용</option>
+									<option value="w" th:selected="${pageRequestDTO.type == 'w'}">작성자</option>
+									<option value="tc"
+										th:selected="${pageRequestDTO.type == 'tc'}">제목 or
+										내용</option>
+									<option value="tw"
+										th:selected="${pageRequestDTO.type == 'tw'}">제목 or
+										작성자</option>
+								</select> <input type="text" name="keyword"
+									th:value="${pageRequestDTO.keyword}">
+								<button type="submit">검색</button>
+							</form>
+						</div>
+						<!-- 검색 기능 끝 -->
+						<button class="on item" onclick="toggleBtn1()">글쓰기</button>
+					</div>
+				</div>
+			</div>
+			<table class="boardlistbox box4">
+				<thead class="boardlist box5">
+					<tr class="top box6">
+						<th class="num item">번호</th>
+						<th class="title item_2">제목</th>
+						<th class="writer item_3">글쓴이</th>
+						<th class="date item_4">작성일</th>
+						<th class="count item_5">조회</th>
+					</tr>
+				</thead>
+				<tbody class="boardlist box5" id="getList">
+				</tbody>
+			</table>
+
+			<!-- 페이징 처리 시작 -->
+			<div class="pagingEl"></div>
+			<!-- 페이징 처리 끝 -->
+		</div>
+	
+	</section>
+	
+</body>
+</html>
