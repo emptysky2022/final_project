@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CampCalenderDTO {
 
-	private int ccno;
+	private Long ccno;
 	private Long cno;
 	private String reservationer;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
