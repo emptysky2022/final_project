@@ -147,8 +147,20 @@ function cartModal(){
 	                    <th class="amountallheader">주문금액</th>
                     </tr>
 				` );
-				const cartHtml = result.map(([{thumbnail, name, brand, price, image}, cartDTO]) => 
-					`
+				const cartHtml = result.map(([{thumbnail, name, brand, price}, cartDTO]) => {
+					let images = '';
+					if(thumbnail.split(',').length != 1){
+						images = thumbnail.split(',').map((URL) => 
+							`<img class="productimg" src="/display?fileName=${URL}&folderType=item">`
+						).join('');
+					} else {
+						if(thumbnail.split(':').length != 1){
+							images = `<img class="productimg" src="${thumbnail}">`;
+						}else{
+							images = `<img class="productimg" src="/display?fileName=${thumbnail}&folderType=item">`;
+						}
+					}
+					return `
 						<tr id="${cartDTO.sno}">
                             <td class="select">
                                 <input type="checkbox" name="chk" value="select">
@@ -156,7 +168,9 @@ function cartModal(){
 
                             <td class="productinfobox">
                                 <div class="productimgbox">
-                                    <img class="productimg" src="${image.split(',')[image.split(',').length-1]}" alt="">
+                           `
+                            + images + 
+                           `
                                 </div>
                                 <div class="producttextbox">
                                     <div class="productname">${name}</div>
@@ -174,7 +188,7 @@ function cartModal(){
                             </td>
                         </tr>
 					`
-				).join("")
+				}).join("")
 				
 				$cart.append(cartHtml);
 				$count.html(`총 ${result.length}개의 상품`)
