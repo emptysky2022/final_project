@@ -631,3 +631,7 @@ body .container{
     text-decoration:underline;
     
 }
+.alert-danger{
+	color : red;
+	font-size:2.0rem;
+}

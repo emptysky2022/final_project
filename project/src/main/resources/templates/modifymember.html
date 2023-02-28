@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
@@ -142,17 +143,17 @@
 								<div class="introducebox box4">
 									<p class="introducetext item">소개</p>
 									<textarea class="introduce item_2" name="introduce"
-										th:value="${member.getIntroduce()}" placeholder="소개글 변경하기"></textarea>
+										placeholder="소개글 변경하기">[[${member.getIntroduce}]]</textarea>
 								</div>
 
 								<div class="buttonbox">
 									<div class="modifybox box4">
-										<button class="modify item" type="submit">완료</button>
+										<button class="modify item" type="submit" onclick="submitmessage()">완료</button>
 									</div>
 
 									<!--삭제버튼 나중에 (회원탈퇴) 등으로 변경 될 수 있음-->
 									<div class="deletebox box4">
-										<a href="/"><button class="delete item" type="button" >취소</button></a>
+										<a href="/readmember"><button class="delete item" type="button" >취소</button></a>
 									</div>
 								</div>
 									</form>

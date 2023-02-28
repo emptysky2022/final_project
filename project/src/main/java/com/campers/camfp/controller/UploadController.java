@@ -57,9 +57,10 @@ public class UploadController {
 			//폴더 만들기(+ register 모달 띄운 타입에 따라 폴더 분류)
 			String folderPath = makeFolder(webPath);
 			//랜덤값(파일 이름 중복 방지)
-			String uuid = UUID.randomUUID().toString();
+			String uuid = UUID.randomUUID().toString().substring(0, 7);
 			//서버에 저장될 파일 이름
 			String saveName = folderPath + File.separator + uuid + "_" + fileName;
+			log.info("saveName" + saveName);
 			//파일 경로 얻어오기
 			Path savePath = Paths.get(saveName);
 			
@@ -84,33 +85,35 @@ public class UploadController {
 		return uploadFolder.getPath();
 	}
 	
-	//imageURL 저장해둔 곳에서 값을 가져와서 실제 이미지로 바꿔서 보여줌
+	//imageURL 저장해둔 곳에서 값을 가져와서 실제 이미지로 바꿔서 보여줌 folderType는 디렉토리 하위 폴더(itemreview, item, etc)
 	@GetMapping("/display")
-	public ResponseEntity<byte[]> getImage(String fileName, String size){
+	public ResponseEntity<byte[]> getImage(String fileName, String folderType){
 		ResponseEntity<byte[]> result = null;
+			
 		try {
-			//파일 이름이 없다면(null) noImage의 파일 이름으로 대체
-			String srcFileName = !fileName.equals("null")? URLDecoder.decode(fileName, "UTF-8") : uploadPath + File.separator + defaultImage;
+			String srcFileName;
+			File file;
+			if(fileName.equals("null")) {
+				srcFileName = defaultImage;
+				file = new File(uploadPath + File.separator + srcFileName);
+			}else {
+				srcFileName = URLDecoder.decode(fileName, "UTF-8");
+				file = new File(uploadPath + File.separator + folderType + File.separator + srcFileName);
+			}
 			
 			log.info("fileName : " + srcFileName);
-			
-			File file = new File(srcFileName);
-			
-			if(size != null && size.equals("1")) {
-				file = new File(file.getParent(), file.getName().substring(2));
-			}
 			
 			log.info(file);
 			
 			HttpHeaders header = new HttpHeaders();
 			
-			//파일 타입 가져오는건가...
 			header.add("Content-Type", Files.probeContentType(file.toPath()));
+			
 			//ResponseEntity에 파일 추가
 			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
-		} catch (Exception e) {
+		}catch (Exception e) {
 			log.error(e.getMessage());
-			result = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<byte[]>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return result;
 	}
