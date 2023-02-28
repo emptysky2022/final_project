@@ -65,12 +65,11 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService{
 			System.out.println("다른 로그인은 지원하지 않습니다");
 		}
 		
-		Optional<Member> memberOptional = 
-				memberRepository.findByIdAndNickname(oAuth2UserInfo.getProvider()+"_"+oAuth2UserInfo.getEmail(), oAuth2UserInfo.getProvider()+"_"+oAuth2UserInfo.getProviderId());
+		Member member= 
+				memberRepository.findById(oAuth2UserInfo.getProvider()+"_"+oAuth2UserInfo.getEmail());
 		//이미 생성된 가입자인지 확인
-		Member member = null;
-		if (memberOptional.isPresent()) {
-			member = memberOptional.get();
+
+		if (!(member==null)) {
 			// member가 존재하면 update 해주기
 			//member.setNickname(oAuth2UserInfo.getNickname()); 이거하면 닉네임 변경됨
 			memberRepository.save(member);

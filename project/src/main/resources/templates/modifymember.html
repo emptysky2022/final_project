@@ -102,11 +102,11 @@
 										<input class="nickname item_2" type="text" name="nickname" id="nickname"
 											th:value="${member.getNickname}" oninput="checkNick()" minlength="2" maxlength="10"
 											placeholder="별명 변경하기(별명은 특수문자를 포함하지 않은 2~10자리여야 합니다.)">
+										</div>
+										<p class="nicknamebox box4 ready">
 											<span class="nick_ok">사용 가능한 별명입니다.</span>
 											<span class="nick_already">중복된 별명입니다.</span>
-									
-										</div>
-									
+										</p>
 								
 								<div class="namebox box4">
 									<p class="nametext item">이름</p>
