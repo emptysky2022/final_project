@@ -3,6 +3,7 @@ package com.campers.camfp.repository.board;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.campers.camfp.entity.heart.QHeart;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -46,12 +47,14 @@ public class BoardQuerydslImpl extends QuerydslRepositorySupport implements Boar
       QBoard board = QBoard.board;
       QReply reply = QReply.reply;
       QMember member = QMember.member;
-      
+      QHeart heart = QHeart.heart;
+
       JPQLQuery<Board> jpqlQuery = from(board);
       jpqlQuery.leftJoin(member).on(board.member.eq(member));
       jpqlQuery.leftJoin(reply).on(reply.board.eq(board));
+      jpqlQuery.leftJoin(heart).on(heart.productNum.eq(board.bno));
       
-      JPQLQuery<Tuple> tuple = jpqlQuery.select(board, member, reply.count());
+      JPQLQuery<Tuple> tuple = jpqlQuery.select(board, member, reply.count(), heart.count());
       
       BooleanBuilder booleanBuilder = new BooleanBuilder();
       BooleanExpression expression = board.bno.gt(0L); // board의 bno가 0L보다 클 때
@@ -114,7 +117,7 @@ public class BoardQuerydslImpl extends QuerydslRepositorySupport implements Boar
       long count = tuple.fetchCount();
       log.info("count : " + count);
       
-      return new PageImpl<Object[]>(result.stream().map(t -> t.toArray()).collect(Collectors.toList()), pageable, count);
+      return new PageImpl<Object[]>(result.stream().map(Tuple::toArray).collect(Collectors.toList()), pageable, count);
    }
    
 }
