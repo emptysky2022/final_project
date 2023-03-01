@@ -495,6 +495,7 @@ $(document).ready(function() {
 
 
 			});
+			setStar();
 			listGroup.html(str);
 		});
 	};
@@ -549,7 +550,28 @@ $(document).ready(function() {
 		}).responseText
 	}
 
+	function imageSave(thumnail, type) {
+		var formData = new FormData();
+		var files = $(thumnail)[0].files;
+		console.log(files);
+
+		for (var i = 0; i < files.length; i++) {
+			console.log(files[i]);
+			formData.append("thumbnail", files[i]);
+		}
+
+		$.ajax({
+			url: "/camp/imgsave/",
+			processData: false, // 데이터 처리하지 않음
+			contentType: false, // 컨텐츠 타입을 false로 설정하여 FormData가 알아서 설정하도록 함
+			method: "POST",
+			data: formData
+		})
+	}
+
 	function funcCampRegister() {
+		imageSave("#thumbnail", "camp");
+
 		$.ajax({
 			url: "/camp/register",
 			contentType: "application/json",

@@ -2,6 +2,8 @@ package com.campers.camfp.service.camp;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.campers.camfp.config.type.TableType;
 import com.campers.camfp.dto.camp.CampCalenderDTO;
 import com.campers.camfp.dto.camp.CampDTO;
@@ -32,6 +34,8 @@ public interface CampService {
 	public void addData(TableType table, Long cno, String findData);
 	
 	public List<CampDTO> findManayDataOfCamp(String[] findDatas, String[] findLocations);
+	
+	public boolean saveImage(MultipartFile[] files);
 	
 	/**
 	 * @param table 변환할 table 명 table <br>

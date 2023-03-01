@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.campers.camfp.config.auth.PrincipalDetails;
 import com.campers.camfp.config.type.CampingType;
@@ -38,38 +40,23 @@ public class CampRestController {
 
 	private final CampService campService;
 
-	@GetMapping(value = "reply/list/{cno}")
-	public ResponseEntity<List<Object>> getListByReview(@PathVariable("cno") Long cno,
+	@PostMapping("/register")
+	public ResponseEntity<String> campRegister(@RequestBody CampDTO dto,
 			@AuthenticationPrincipal PrincipalDetails principalDetails) {
-		System.out.println("탔음");
-		List<CampReviewDTO> reviews = new ArrayList<>();
-		String[] datas = { "별점순" };
-		campService.findDataOfCamp(TableType.CAMPREVIEW, cno, datas).forEach(value -> {
-			reviews.add((CampReviewDTO) value);
-		});
-
-		log.info(reviews);
-		return new ResponseEntity<>(List.of(reviews, principalDetails.getMember()), HttpStatus.OK);
-	}
-	
-	@GetMapping("/reply/one/{crno}")
-	public ResponseEntity<CampReviewDTO> getOneByReview(@PathVariable("crno") Long crno){
-		Object data = campService.findbyId(TableType.CAMPREVIEW, crno);
-		
-		CampReviewDTO value = (CampReviewDTO) data;
-		
-		return new ResponseEntity<CampReviewDTO>(value, HttpStatus.OK);
-		
-	}
-	
-	@PutMapping("/reply/modify")
-	public ResponseEntity<String> updateReview(@RequestBody CampReviewDTO dto){
 		log.info(dto);
-		
-		campService.modify(TableType.CAMPREVIEW, dto);
-		return new ResponseEntity<String>("성공", HttpStatus.OK);
-	}
 
+		Long mno = principalDetails.getMember().getMno();
+		log.info(mno);
+
+		if (mno == null) {
+			return new ResponseEntity<String>("erro", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		dto.setMno(mno);
+		campService.register(TableType.CAMP, dto);
+
+		return new ResponseEntity<String>(dto.getName(), HttpStatus.OK);
+	}
+	
 	@GetMapping(value = "list/{type}/{locations}")
 	public ResponseEntity<List<Object>> getListByCamp(@PathVariable("type") String[] type,
 			@PathVariable("locations") String[] locations, @AuthenticationPrincipal PrincipalDetails principalDetails) {
@@ -81,31 +68,6 @@ public class CampRestController {
 		log.info(campdtoList);
 
 		return new ResponseEntity<>(List.of(campdtoList, principalDetails.getMember()), HttpStatus.OK);
-	}
-
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@PostMapping("review/register")
-	public ResponseEntity<String> reviewRegister(@RequestBody CampReviewDTO dto,
-			@AuthenticationPrincipal PrincipalDetails principalDetails) {
-		log.info(dto);
-		String nickname = principalDetails.getMember().getNickname();
-		log.info(principalDetails.getMember());
-		if (nickname == null) {
-			return new ResponseEntity("", HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-
-		dto.setReviewer(principalDetails.getMember().getNickname());
-		campService.register(TableType.CAMPREVIEW, dto);
-		return new ResponseEntity(nickname, HttpStatus.OK);
-	}
-
-	@DeleteMapping("review/{crno}")
-	public ResponseEntity<Long> reviewRemove(@PathVariable("crno") Long crno) {
-		log.info(crno);
-		campService.remove(TableType.CAMPREVIEW, crno);
-
-		return new ResponseEntity<Long>(HttpStatus.OK);
-
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -153,20 +115,67 @@ public class CampRestController {
 		return new ResponseEntity<String>("", HttpStatus.OK);
 	}
 
-	@PostMapping("/register")
-	public ResponseEntity<String> campRegister(@RequestBody CampDTO dto,
+	@GetMapping(value = "reply/list/{cno}")
+	public ResponseEntity<List<Object>> getListByReview(@PathVariable("cno") Long cno,
+			@AuthenticationPrincipal PrincipalDetails principalDetails) {
+		System.out.println("탔음");
+		List<CampReviewDTO> reviews = new ArrayList<>();
+		String[] datas = { "별점순" };
+		campService.findDataOfCamp(TableType.CAMPREVIEW, cno, datas).forEach(value -> {
+			reviews.add((CampReviewDTO) value);
+		});
+
+		log.info(reviews);
+		return new ResponseEntity<>(List.of(reviews, principalDetails.getMember()), HttpStatus.OK);
+	}
+
+	@GetMapping("/reply/one/{crno}")
+	public ResponseEntity<CampReviewDTO> getOneByReview(@PathVariable("crno") Long crno) {
+		Object data = campService.findbyId(TableType.CAMPREVIEW, crno);
+
+		CampReviewDTO value = (CampReviewDTO) data;
+
+		return new ResponseEntity<CampReviewDTO>(value, HttpStatus.OK);
+
+	}
+
+	@PutMapping("/reply/modify")
+	public ResponseEntity<String> updateReview(@RequestBody CampReviewDTO dto,
 			@AuthenticationPrincipal PrincipalDetails principalDetails) {
 		log.info(dto);
-
-		Long mno = principalDetails.getMember().getMno();
-		log.info(mno);
-
-		if (mno == null) {
-			return new ResponseEntity<String>("erro", HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		dto.setMno(mno);
-		campService.register(TableType.CAMP, dto);
-
-		return new ResponseEntity<String>(dto.getName(), HttpStatus.OK);
+		dto.setReviewer(principalDetails.getMember().getNickname());
+		campService.modify(TableType.CAMPREVIEW, dto);
+		return new ResponseEntity<String>("성공", HttpStatus.OK);
 	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@PostMapping("review/register")
+	public ResponseEntity<String> reviewRegister(@RequestBody CampReviewDTO dto,
+			@AuthenticationPrincipal PrincipalDetails principalDetails) {
+		log.info(dto);
+		String nickname = principalDetails.getMember().getNickname();
+		log.info(principalDetails.getMember());
+		if (nickname == null) {
+			return new ResponseEntity("", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		dto.setReviewer(principalDetails.getMember().getNickname());
+		campService.register(TableType.CAMPREVIEW, dto);
+		return new ResponseEntity(nickname, HttpStatus.OK);
+	}
+
+	@DeleteMapping("review/{crno}")
+	public ResponseEntity<Long> reviewRemove(@PathVariable("crno") Long crno) {
+		log.info(crno);
+		campService.remove(TableType.CAMPREVIEW, crno);
+
+		return new ResponseEntity<Long>(HttpStatus.OK);
+	}
+	
+	@PostMapping("/imgsave")
+	public ResponseEntity<String> saveImg(@RequestParam("thumbnail")MultipartFile[] files){
+		log.info(files);
+		return new ResponseEntity<String>(campService.saveImage(files)? HttpStatus.OK : HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
 }
