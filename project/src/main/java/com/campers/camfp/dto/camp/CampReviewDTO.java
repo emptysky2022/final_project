@@ -24,5 +24,7 @@ public class CampReviewDTO {
 	private String reviewer;
 
 	private int heart;
+	
+	private int star;
 
 }

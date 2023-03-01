@@ -1,7 +1,6 @@
 "use strict";
 
 /*화면크기가 태블릿 이하일 때, 네비게이션에서 햄버거 누르면 메뉴 보이게 하는 기능 */
-const hamburger = document.querySelector("header .header_hamburger");
 const menu = document.querySelector("header .box2_2");
 const mypage = document.querySelector("header .box2_3");
 var sec1 = document.querySelector('.sec1');
@@ -10,13 +9,6 @@ var sec3 = document.querySelector('.sec3');
 sec1.style.display="none";
 sec2.style.display="none";
 sec3.style.display="none";
-
-console.log(hamburger);
-
-hamburger.addEventListener('click', () => {
-    menu.classList.toggle('active');
-    mypage.classList.toggle('active');
-});
 
 
 /*input file타입의 이미지 파일만 올리게 하기 위해 사용*/
@@ -83,7 +75,7 @@ function toggleBtn3() {
 }
 
 
-/*
+
 $(function() { // 보이기 | 숨기기
 	$(window).scroll(function() {
 	    if ($(this).scrollTop() > 250) { //250 넘으면 버튼이 보여짐니다. 
@@ -97,12 +89,12 @@ $(function() { // 보이기 | 숨기기
   		}, 400); // 속도 400 
   		return false; 
   	}); 
-});*/
+});
 
 
 
 
-/*
+
 $(function() { // 보이기 | 숨기기
 	
   $("#listlevel").click(function() { 
@@ -118,7 +110,7 @@ $(function() { // 보이기 | 숨기기
   }
   }); // 버튼 클릭시
 }); 
-*/
+
 
 
 // $(function() { // 보이기 | 숨기기
@@ -201,7 +193,7 @@ async function loadRefreshData(x) {
         const html = boardList.map(({bno, title, regDate, nickname, replyCount, count}) =>
             `<tr>
                <td class="num item">${bno}</td>
-               <td class="title item_2"><a onclick="loadReadData(${bno}), toggleBtn3(); window.scrollTo(0, 0);">${title}<b><small>[${replyCount}]</small></b></a></td>
+               <td class="title item_2"><a onclick="loadReadData(${bno}), toggleBtn3(); window.scrollTo(0, 0);">${title}&nbsp<b><small>[${replyCount}]</small></b></a></td>
                <td class="writer item_3">${nickname}</td>
                <td class="date item_4">${formatTime(regDate)}</td>
                <td class="count item_5">${count}</td>
@@ -219,7 +211,7 @@ async function loadRefreshData(x) {
 	    }
 	    
 	    for(const value of pageInfo) {
-	    	pagination += `<li class="page-item num ${pageNum == page ? 'active' : ''}">
+	    	pagination += `<li class="page-item num ${value == page ? 'active' : ''}">
 	    				       <a class="page-link" onclick="loadRefreshData(${value})">${value}</a>
 	    				       <input type="hidden" name="pageValue" value="${value}">
 	    				   </li>`;
@@ -234,7 +226,6 @@ async function loadRefreshData(x) {
 	    
 	    page = $(".pagingEl").find("[name='pageValue']").val();
 	    
-	    console.log("sjldkjsdlfkjsdf");
     } catch (e) {
         console.error("게시판 불러오는 중 오류 발생", e);
         alert(e);
@@ -333,7 +324,7 @@ function loadModifyData(bno, nickname){
         const [board, reply, user] = readInfo;
         
         let str = `
-        			<div class="titlebox">'
+        			<div class="titlebox">
 		        		<dl>
 		           			<dt class="titletext item">제목</dt>
 		        			<dd><input type="text" id="modifyTitle" value="${board.title}"></dd>
@@ -344,7 +335,7 @@ function loadModifyData(bno, nickname){
 		        		</dl>
        				 </div>
         			<div class="content">
-        				<textarea id="modifyContent">${board.content}</textarea>'
+        				<textarea id="modifyContent">${board.content}</textarea>
         			</div>
 		        	<input type="hidden" id="modifyBno" name="bno" value="${board.bno}">
 		        	<input type="hidden" id="modifyMno" name="mno" value="${user.mno}">
