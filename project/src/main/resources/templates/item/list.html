@@ -111,19 +111,7 @@
                             <div class="caravanitem3 item_3">일반 캠핑 트레일러</div>
                         </div>
                     </div>
-                    <div class="line">
-                        <hr>
-                    </div>
-                    <div class="priceorderbox box4">
-                        <div class="allselect item">가격</div>
-                        <div class="low item">~50,000</div>
-                        <div class="middle item_2">~150,000</div>
-                        <div class="high item_3">~300,000</div>
-                        <div class="morehigh item_4">제한없음</div>
-                    </div>
-                    <div class="line">
-                        <hr>
-                    </div>
+                    <hr>
                     <!-- <div class="campingtypebox box4">
                         <div class="allselect item">전체선택</div>
                         <div class="glamping item">글램핑</div>
@@ -143,9 +131,10 @@
                             <div class="dropdown box6">
                                 <a href="#" class="dropbtn item">정렬</a>
                                 <div class="subdropdown box7">
-                                    <div class="dropitem item" onclick="search('', '', 'count')"><a>조회순</a></div>
-                                    <div class="dropitem item_2" onclick="search('', '', 'heart')"><a>찜순위</a></div>
-                                    <div class="dropitem item_3" onclick="search('', '', '')"><a>최신순</a></div>
+                                    <div class="dropitem item" onclick="search('', '', 'count', 1)"><a>조회순</a></div>
+                                    <div class="dropitem item_2" onclick="search('', '', 'heart', 1)"><a>찜순위</a></div>
+                                    <div class="dropitem item_3" onclick="search('', '', 'price', 1)"><a>가격순</a></div>
+                                    <div class="dropitem item_4" onclick="search('', '', '', 1)"><a>최신순</a></div>
                                 </div>
                             </div>
                         </div>
@@ -158,6 +147,8 @@
                 <div class="sec3 box3" id="list">
                 <!-- th:attr="onclick=|showDetail(${item.ino})|" -->
                 </div>
+                <div class="pagingEl"></div>
+                
 				<!-- ---------판매상품 목록 끝------------ -->
             </div> 
             <!-- 메인 바디 가운데 공간 끝 -->

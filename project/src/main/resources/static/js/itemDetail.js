@@ -215,6 +215,50 @@ function clickItemHeart(ino){
 	})
 	}
 }
+
+function clickReviewHeart(irno){
+	const $heartdata = $("#review_heart").find(".heartImg").data("id");
+	if($heartdata){
+		console.log($heartdata)
+	$.ajax({
+		url: "/heart/remove",
+		contentType: "application/json",
+		method: "DELETE",
+		data: JSON.stringify({
+			hlno: Number($heartdata),
+			productType: "ITEMREVIEW",
+			productNum: irno
+		}),
+		success: function(result){
+			console.log("안녕 친구들")
+			changeReviewHeart(irno);
+		},
+		error: function(err){
+			console.log("로그인 후 이용해주세요");
+		}
+	})
+		
+	}else{
+		console.log($heartdata)
+	$.ajax({
+		url: "/heart/save",
+		contentType: "application/json",
+		method: "POST",
+		data: JSON.stringify({
+			productType: "ITEMREVIEW",
+			productNum: irno
+		}),
+		success: function(result){
+			console.log("안뇽 친구들")
+			changeReviewHeart(irno);
+		},
+		error: function(err){
+			console.log("로그인 후 이용해주세요");
+		}
+	})
+	}
+}
+
 function changeHeart(ino){
 	console.log(ino)
 	const $heart = $("#item_heart");
@@ -229,10 +273,8 @@ function changeHeart(ino){
 		success: function(result){
 			console.log(result);
 			if(!result){
-				console.log("하트 널, 빈하트 넣어주기");
 				$heart.html('<img class="heartImg" src="../img/empty_heart.png">');
 			} else{
-				console.log("하트 낫널, 찬하트 넣어주기");
 				$heart.html('<img class="heartImg" src="../img/full_heart.png" data-id=' + result.hlno + '>');
 			}
 		},
@@ -241,17 +283,27 @@ function changeHeart(ino){
 		}
 	})
 }
-function clickReviewHeart(irno){
+function changeReviewHeart(irno){
+	console.log(irno)
+	const $reviewHeart = $("#review_heart");
 	$.ajax({
-		url: "/review/heart/" + irno,
-		contentType: "text/plain",
+		url: "/heart/getOne",
+		contentType: "application/json",
+		data: JSON.stringify({
+			productType: "ITEMREVIEW",
+			productNum: irno
+		}),
+		method: "POST",
 		success: function(result){
-			console.log("result : " + result);
-			$("#review_heart").html(" " + result);
+			console.log(result);
+			if(!result){
+				$reviewHeart.html('<img style="width:12px" class="heartImg" src="../img/empty_heart.png">');
+			} else{
+				$reviewHeart.html('<img style="width:12px" class="heartImg" src="../img/full_heart.png" data-id=' + result.hlno + '>');
+			}
 		},
 		error: function(err){
-			console.log("로그인 후 이용하실수 있습니다.");
-			location.reload();
+			$reviewHeart.html('<img style="width:12px" class="heartImg" src="../img/empty_heart.png">');
 		}
 	})
 }
