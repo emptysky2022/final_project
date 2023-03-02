@@ -1,21 +1,31 @@
 package com.campers.camfp.service.camp;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.campers.camfp.config.type.TableType;
+import com.campers.camfp.dto.board.BoardDTO;
 import com.campers.camfp.dto.camp.CampDTO;
+import com.campers.camfp.dto.page.PageRequestDTO;
+import com.campers.camfp.dto.page.PageResultDTO;
+import com.campers.camfp.entity.board.Board;
 import com.campers.camfp.entity.camp.Camp;
 import com.campers.camfp.entity.camp.CampCalender;
 import com.campers.camfp.entity.camp.CampReview;
+import com.campers.camfp.entity.member.Member;
 import com.campers.camfp.repository.camp.CampCalenderRepository;
 import com.campers.camfp.repository.camp.CampRepository;
 import com.campers.camfp.repository.camp.CampReviewRepository;
@@ -301,18 +311,30 @@ public class CampServiceImpl implements CampService {
 	}
 
 	@Override
-	public List<CampDTO> findManayDataOfCamp(String[] findDatas, String[] findLocations) {
-		List<Camp> camp = campRepository.findManayDataOfCamp(findDatas, findLocations);
-		List<CampDTO> dto = new ArrayList<>();
-		camp.forEach(value -> {
-			dto.add((CampDTO) EntityToDTO(TableType.CAMP, value));
+	public PageResultDTO<CampDTO, Object[]> findManayDataOfCamp(PageRequestDTO pageRequestDTO, String[] findDatas,
+			String[] findLocations) {
+
+		Pageable pageable = pageRequestDTO.getPageable(Sort.by("cno").descending());
+
+		// 아무데도
+		Function<Object[], CampDTO> fn = (en -> {
+			// en 이 1개의 컬럼이라 기존에사용하더 entity dto 사용 못해서 새로 만들어줘야함 씨발 좆같은거.
+			return EntityToDTO((Long) en[0], (Long) en[1], (String) en[2], (String) en[3], (String) (String) en[4],
+					(String) en[5], (String) en[6], (String) en[7], (Integer) en[8], (Integer)en[9], (Integer)en[10], (Integer)en[11]);
+
 		});
 
-		return dto;
+		Page<Object[]> result = campRepository.findManayDataOfCamp(findDatas, findLocations, pageable);
+
+		log.info(fn);
+		log.info(result);
+		log.info(pageable);
+
+		return new PageResultDTO<>(result, fn);
 	}
 
 	@Override
 	public Double countStar(Long cno) {
-		return  campRepository.countStar(cno);
+		return campRepository.countStar(cno);
 	}
 }

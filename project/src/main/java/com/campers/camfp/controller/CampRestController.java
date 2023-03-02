@@ -18,9 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.campers.camfp.config.auth.PrincipalDetails;
 import com.campers.camfp.config.type.TableType;
+import com.campers.camfp.dto.board.BoardDTO;
 import com.campers.camfp.dto.camp.CampCalenderDTO;
 import com.campers.camfp.dto.camp.CampDTO;
 import com.campers.camfp.dto.camp.CampReviewDTO;
+import com.campers.camfp.dto.page.PageRequestDTO;
+import com.campers.camfp.dto.page.PageResultDTO;
 import com.campers.camfp.service.camp.CampService;
 
 import lombok.RequiredArgsConstructor;
@@ -51,27 +54,24 @@ public class CampRestController {
 		return new ResponseEntity<String>(dto.getName(), HttpStatus.OK);
 	}
 	
-	@GetMapping(value = "list/{type}/{locations}")
-	public ResponseEntity<List<Object>> getListByCamp(@PathVariable("type") String[] type,
+	@GetMapping(value = "list/{type}/{locations}/{page}")
+	public ResponseEntity<List<Object>> getListByCamp(@PathVariable("page") int page, @PathVariable("type") String[] type,
 			@PathVariable("locations") String[] locations, @AuthenticationPrincipal PrincipalDetails principalDetails) {
 		List<CampDTO> campdtoList = new ArrayList<>();
 		List<Double> avg = new ArrayList<>();
 		
-		log.info(type);
-		log.info(locations);
-		
-		
+		PageRequestDTO dto = new PageRequestDTO();
+		dto.setPage(page);
+			
+		 PageResultDTO<CampDTO, Object[]> boardDTO = campService.findManayDataOfCamp(dto, type, locations);
 
-		campdtoList = campService.findManayDataOfCamp(type, locations);
-		
-		campdtoList.forEach(cno -> {
-			avg.add(campService.countStar(cno.getCno()));
-			log.info(campService.countStar(cno.getCno()));
+		boardDTO.getDtoList().forEach(value -> {
+			avg.add(campService.countStar(value.getCno()));
 		});
 		
 		log.info(campdtoList);
 
-		return new ResponseEntity<>(List.of(campdtoList, principalDetails.getMember(),avg), HttpStatus.OK);
+		return new ResponseEntity<>(List.of(boardDTO, principalDetails.getMember(),avg), HttpStatus.OK);
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })

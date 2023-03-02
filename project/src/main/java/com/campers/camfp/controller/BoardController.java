@@ -39,6 +39,7 @@ public class BoardController {
    
    @GetMapping("/list")
    public void list(PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+	   log.info("첫 데이터 size 확인하자 : " + pageRequestDTO);
       model.addAttribute("result", boardService.getList(pageRequestDTO));
       model.addAttribute("memInfo", principalDetails.getMember());
    }
@@ -47,7 +48,9 @@ public class BoardController {
    @GetMapping(value="/list/refresh", produces = MediaType.APPLICATION_JSON_VALUE)
    public ResponseEntity<List<Object>> getList(PageRequestDTO pageRequestDTO, @AuthenticationPrincipal PrincipalDetails principalDetails) {
       
-      PageResultDTO<BoardDTO, Object[]> boardDTO = boardService.getList(pageRequestDTO);
+	   log.info("둘째 데이터 size 확인하자 : " + pageRequestDTO);
+
+	   PageResultDTO<BoardDTO, Object[]> boardDTO = boardService.getList(pageRequestDTO);
       
       log.info("refresh : " + boardDTO);
       
