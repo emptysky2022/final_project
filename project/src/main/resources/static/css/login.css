@@ -1,44 +1,47 @@
+@charset "utf-8";
+
+/*===================일단 넣으면 되는 부분====================*/	
 :root {
-    --font-size-lg: clamp(1rem, 4vw, 3.5rem);
-    --font-size-md: clamp(1.5rem, 3vw, 2.5rem);
-    --font-size-sm: clamp(1rem, 2vw, 1.5rem);
-}
+    --gap:20px;
 
-h1 {
-    font-size: var(--font-size-lg);
-}
+    --ti-cursor-margin-left:0.3;
+    --ti-cursor-color:var(--color-a);
 
-h2 {
-    font-size: var(--font-size-md);
-}
+    --font-size-lg: clamp(3rem, 5vw, 4rem);
+    --font-size-md: clamp(3.2vw, 3.5vw, 4vw);
+    --font-size-sm: clamp(0.8rem, 1vw, 2vw);
+    --font-size-vm: clamp(0.7rem, 1vw, 1.2rem);
+    --font-size-smpx: clamp(5px, 1vw, 1rem);
 
-p {
-    font-size: var(--font-size-sm);
+   
+    --color-a:#fffffe;  --color-1:#9BDE7E;
+    --color-b:#FFF5FF;  --color-2:#8685EF;
+    --color-c:#FFE8F7;  --color-3:#E67DDB;
+    --color-d:#FFDFCA;  --color-4:#FF83B1;
+    --color-e:#FFE694;  --color-5:#FFA184;
+    --color-f:#F9F871;  --color-6:#FFCC67;
+    --color-g:#2F4858;  --color-7:#2F4858; 
+    --color-h:#43655A;  --color-8:#1C6E7D;
+    --color-i:#628281;  --color-9:#039590;
+    --color-j:#889FA5;  --color-10:#4BBC8E;
+    --color-k:#B1BDC5;  
+    --color-l:#DADDE2; 
     
-}
-
-blockquote {
-    font-size: var(--font-size-md);
-}
-
-a {
-    font-size: var(--font-size-sm);
 }
 
 
 * {
-    padding: 0;
     margin: 0;
-    font-size: 0.5rem;
+    padding: 0;
     left: 0;
     top: 0;
     max-width: 100%;
     height: auto;
     font-family: 'Noto Sans KR', sans-serif;
     font-family: 'Varela Round', sans-serif;
+    
 	word-wrap: break-word;
     box-sizing: border-box;
-    border-radius: 0.5rem;
 }
 
 /*리스트들의 특수기호 제거*/
@@ -50,42 +53,103 @@ li {
 /*하이퍼링크 전체 밑줄 제거*/
 a {
     text-decoration: none;
-    /*부모개체의 속성 그대로*/
+    color: #333;
+}
 
+a:visited {
+    color : var(--color-2)
+  }
+  a:hover {
+    color : var(--color-d)
+  }
+  a:active {
+    color : var(--color-e)
+  }
+
+img{
+    max-width: 100%;
+    vertical-align: top;
+}
+
+
+/*버튼에 마우스 대면 마우스 모양 변경*/
+button{
+  cursor:pointer;
 }
 
 
 
-/*사용할 페이지 전체 범위(가로폭은 보이는 화면의 80%고정, 세로폭은 내용물이 많아지면 자동 증가)*/
-body {
-    display: flex;
+
+
+/*페이지 내 헤더,메인,푸터의 틀 설정*/
+.container{
     max-width: 100vw;
-    height: 100vh;
-    justify-content: center;
-    
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr  1fr;
+    grid-template-rows: 6rem auto;
+    grid-template-areas:
+    'a a'
+    'b b'
+    'c c' 
+}
+header{
+    grid-area: a;
+
+}
+
+main{
+    grid-area: b;
+   
+}
+
+footer{
+    grid-area: c;
+}
+
+/*================/일단 넣으면 되는 부분=================*/
+
+
+
+body {
+    max-width: 100vw;
+    margin: auto;
 }  
 
 /*container 전체 틀 잡기*/
 body .container{
-    width: 70vw;
     height: auto;
     display: flex;
     flex-direction:column;
-    margin: 2rem;
-    justify-content:center;
-    
+   justify-content: space-between;
+   
 }
 
 
-/*sec1*/
-.sec1{
-    justify-content: space-evenly;
+/*sec1 제목라인*/
+.sec1 {
     display: flex;
-    flex-direction:column;
-    text-align: center;
-    flex-basis: 25%;
-    
-}
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    padding: 30px;
+    margin: 2rem;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  .iconbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  }
 
 
 .sec1 .title{
@@ -93,99 +157,340 @@ body .container{
     
 }
 
-/*sec2*/
+
+@media screen and (max-width:768px){
+  h1{
+    font-size: var(--font-size-md);
+  }
+
+  h4{
+    font-size: var(--font-size-sm);
+  }
+ 
+}
+ @media screen and (max-width:480px){
+  .sec1{
+    margin: 1rem;
+  }
+  h1{
+    font-size: 1rem;
+  }
+
+  h4{
+    font-size: 0.8rem}
+ }
+
+
+
+
+/*sec2 로그인 폼*/    
 .sec2{
-    display: flex;
-    margin: 0 0 4rem 0;
-    flex-direction:column;
-    
-   
-    
-}
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 80%;
+  width: 50%;
+  min-width: 550px;
 
-/*소셜로그인 글자 가운데 정렬*/
-.sec2 .loginapitext{
-    text-align: center;
-   
-}
-
-/*sns로그인*/
-.sec2 .loginapi{
-    display: flex;
-    justify-content:center;
-  
-    
-    
 }
 
 
-/*buttonbox 모음*/
-.sec2 .loginapi .box3{
+
+.logintitlebox {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+}
+
+.line {
+  flex-grow: 1;
+  height: 1px;
+  background-color: #ddd;
+}
+
+.logintitle_mobile,
+.logintitle {
+  margin: 0 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.logintitle_mobile{
+  display: none;
+}
+
+@media screen and (max-width:768px){
+  .sec2{
+    width: 80%;
+    max-width: 100%;
+    min-width: auto;
+  }
+
+ .id_passbox .idbox .idtext, .passwordbox .passwordtext{
+  display: none;
+ }
+}
+
+@media screen and (max-width:480px){
+
+  .logintitle_mobile{
     display: flex;
     width: 100%;
-    justify-content:space-evenly;
+    justify-content: center;
+    flex-direction: row;
+  }
+
+  .logintitle{
+    display: none;
+  }
+
+ 
+
+  .id_passbox{
     align-items: center;
-   
-}
+  }
 
-
-.sec2 .loginapi .buttonbox_g{
-    flex-basis: 30%;
-}
-
-.sec2 .loginapi .buttonbox_n{
-    flex-basis: 30%;
-}
-
-.sec2 .loginapi .buttonbox_k{
-    flex-basis: 30%;
-}
-/*----------*/
-
-
-/*logimg 모음*/
-
-.sec2 .loginapi .buttonbox_g .button_g .logoimg_gw{
-    height: 4.5rem;
+  .idbox, .passwordbox {
     display: flex;
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+
+}
+/*.id_passbox*/
+.id_passbox {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 20px 0;
+  
+}
+
+.idbox,
+.passwordbox {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+  text-align: center; 
+}
+
+.idtext,
+.passwordtext {
+  font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+    flex-basis: 50%;
+    text-align: center; 
+}
+
+.inputtd{
+  width: 100%;
+}
+
+.id,
+.password {
+  padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+    width: 80%;
+    max-width: 300px;
+}
+
+.id::placeholder,
+.password::placeholder {
+  color: #999;
+  opacity: 0.8;
+}
+
+
+/*계정 찾기*/
+
+.find_accountbox {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.findaccount {
+  font-size: 14px;
+  
+ 
+  color: #4a4a4a;
     
+   
+  text-decoration: underline;
 }
 
-.sec2 .loginapi .buttonbox_n .button_n .logoimg_nw{
-    display: flex;
-    height: 4.5rem;
+@media screen and (max-width:480px){
+  .idtext, .passwordtext{
+    display: none;
+  }
 }
-.sec2 .loginapi .buttonbox_k .button_k .logoimg_kw{
-    display: flex;
-    height: 4.5rem;
+
+/*로그인 버튼 박스*/
+.login_rg_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
+
+.loginbuttonbox {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.loginbutton {
+  padding: 12px 24px;
+  background-color:  #FFA184;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .loginbutton:hover {
+  
+ 
+    background-color: #FFB8A3;
+    }
+
+.registerlinkbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.registertext {
+  font-size: 14px;
+  color: #4a4a4a;
+  margin-bottom: 10px;
+}
+
+.registers {
+  padding: 10px 18px;
+  
+ 
+border-radius: 4px;
+  
+ 
+transition: all 0.2s ease;
+}
+
+
+.registers:hover {
+  background-color: #eee;
+}
+
+
+
+
+
+/*sec3*/
+.sec3{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+
+.login_api{
+	display:flex;
+}
+
+ 
+
+/*buttonbox 모음*/
+.sec3 .login_api .button_box {
+ display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+   max-width: 12rem;
+}
+
+.sec3 .login_api .button_box:hover {
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.sec3 .login_api .button_box:last-child {
+  margin-right: 0;
+}
+
+
+
+
 /*----------*/
 
 
+/*logoimg 모음*/
 
-
-
-
-
-
-/*화면 480 이상일 때 가릴 것들 모음*/
-.sec2 .loginapi .box3 .box4 .item_3{
-    display: none;
+.logo_img {
+  display: none;
+  padding: 0.3rem;
+  margin: 0;
 }
 
-
-.sec2 .loginapi .box3 .box4 .item_2{
-    display: none;
+.logo_img.wide {
+  display: flex;
+  width: auto;
+  padding: 0.3rem;
 }
+
 /*----------*/
 
+/* 로고별 스타일 */
+.button_box.google {
+  background-color: white;
+}
 
+.button_box.google:hover {
+  background-color: white;
+}
+
+.button_box.naver {
+  background-color: white;
+  
+}
+
+.button_box.naver:hover {
+  background-color: white;
+}
+
+.button_box.kakao {
+  background-color: white;
+}
+
+.button_box.kakao:hover {
+  background-color: white;
+}
+/*----------*/
 
 
 
 
 @media screen and (max-width:768px) {
-    .sec2{
+    .sec3{
         display: flex;
         flex-direction:column;
         justify-content:center;
@@ -194,31 +499,39 @@ body .container{
     }
     
     
-    .sec2 .loginapi{
+    .sec3 .login_api{
         display: flex;
-        height: auto;
+       
         flex-direction:column;
         justify-content: center;
-        
         align-items: center;
     }
     
-    .sec2 .loginapi .box3 .box4{
-  
-        display: flex;
-        justify-content: center;
-        margin: 0.3rem;
-        flex-basis: 35%;
-        height: 4.5rem;
+    .sec3 .login_api .button_box{
+      margin: 0;
     }
 
-    .sec2 .loginapi .box3 .box4 .logotext{
+    .sec3 .login_api .button_box .button .logo_img_wide{
+        display: flex;
+        justify-content: center;
+        padding: 0.3rem;
+        height: auto;
+       
+    }
+
+    .sec3 .login_api .button_box .button .logotext{
         display: none;
     }
+     /* 아이콘 이미지 크기 조절 */
+  .sec3 .login_api .button_box .button .logo_img {
+    height: auto;
+    
+  }
+
 }
 
 @media screen and (max-width:480px) {
-    .sec2{
+    .sec3{
         display: flex;
         flex-direction:column;
         
@@ -227,82 +540,37 @@ body .container{
         
     }
 
-    .sec2 .loginapi{
+    .sec3 .login_api{
         display: flex;
         justify-content: center;
         flex-direction:row;
-        margin: 1rem;
+        
     }
     
-    .sec2 .loginapi .box3{
+    .sec3 .login_api .button_box{
         display: flex;
         justify-content: center;
         flex-direction: column;
         align-items: center;
-        margin: 1rem;
-        max-width: 5rem;
-}
-
-    .sec2 .loginapi .box3 .box4{
-        display: flex;
-        
-        
-
-}
-
-
-
-
-/**/
-.sec2 .loginapi .buttonbox_g .button_g{
-    margin: 0;
-    
-}
-
-.sec2 .loginapi .buttonbox_n .button_n{
-    margin: 0;
-
-}
-
-
-.sec2 .loginapi .buttonbox_k .button_k{
-    margin: 0;
+        max-width: 4rem;
 }
 
 
 /*이미지 아이콘 보이기*/
-.sec2 .loginapi .buttonbox_g .button_g .logoimg_g {
+.sec3 .login_api .button_box .button .logo_img{ 
     display: flex;
-    flex-basis: 33%;
+    flex-basis: 100%;
+    height: auto;
+    justify-content: space-evenly;
 
 }
 
-.sec2 .loginapi .buttonbox_n .button_n .logoimg_n {
-    display: flex;
-   flex-basis: 33%;
-    
- }
 
- .sec2 .loginapi .buttonbox_k .button_k .logoimg_k {
-    display: flex;
-   flex-basis: 33%;
-    
- }
 
 
 
  /*와이드 이미지 숨기기*/
- .sec2 .loginapi .buttonbox_g .button_g .logoimg_gw {
-    display: none;
-    flex-direction: row;
-    
- }
- .sec2 .loginapi .buttonbox_n .button_n .logoimg_nw {
-    display: none;
-    flex-direction: row;
-    
- }
- .sec2 .loginapi .buttonbox_k .button_k .logoimg_kw {
+ .sec3 .login_api .button_box .button .logo_img_wide{
     display: none;
     flex-direction: row;
     
@@ -312,213 +580,94 @@ body .container{
 }
 
 
-
-
-
-/*섹션 크기 80%로 나누기*/    
-.sectionbreak{
-    display: flex;
-    flex-basis: 80%;
-    padding: 0 8%;
-    justify-content: center;
-    flex-direction: column;
-    
+/* 로그인 버튼에 호버 효과를 추가합니다. */
+.sec3 .login_api .button_box:hover {
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
 }
 
-
-/*sec3*/
-.sectionbreak .sec3{
-    width: 100vw;
-    height: auto;
-    display: flex;
-    flex-direction:row;
-    text-align: center;
-    justify-content: center;
-    flex-basis: 25%;
-    align-items: center;
-   
-}
-
-.sectionbreak .sec3 .line {
-    width: 100%;
-    height: auto;
-    flex-basis: 30%;
-    
-}
-
-.sectionbreak .sec3 .logintitle{
-    font-size: 1rem;
-    flex-basis: 70%;
-}
-
-.sectionbreak .sec3 .logintitle_mobile{
-   display:none
-}
-@media screen and (max-width:480px) {
-   /*480px 이하일 때 login 제목 바꾸기 (logintitle, logintitle_mobile의 display 속성 바꾸기)*/
-    .sectionbreak .sec3 .logintitle{
-        display: none;
-    }
-    /*480px 이하일 때 <hr> 선 간격 벌리기*/
-    .sectionbreak .sec3 .logintitle_mobile{
-        display: flex;
-        flex-basis: 60%;
-        justify-content: center;
-    }
-
-   
-    .sectionbreak .sec3 .line {
-        width: 100%;
-        height: auto;
-        flex-basis: 30%;
-    }
-
-   
-
-}
-
-
-/*sec4*/
-.sectionbreak .sec4{
-    display: flex;
-    flex-direction:column;
-    justify-content: space-between;
-    padding: 2rem;
-    
+.sec3 .login_api .button_box .button:hover {
+  transform: translateY(-3px);
 }
 
 
 
-.sectionbreak .sec4 .idbox{
-    text-align: center;
-    flex-basis: 30%;
-    
-}
-
-.sectionbreak .sec4 .idbox .idtext{
-    display: flex;
-    justify-content: start;
-    width: 100%;
-    
-
-}
-
-.sectionbreak .sec4 .idbox .id{
-    width: 100%;
-    height: 3rem;
-    border-radius: 0.2rem;
-    margin: 0 0 1.5rem 0;
-    padding: 2rem;
-    max-width: 400px;
-}
-
-.sectionbreak .sec4 .passwordbox{
-    text-align: center;
-    flex-basis: 30%;
-}
 
 
-.sectionbreak .sec4 .passwordbox .passwordtext{
-    display: flex;
-    justify-content: start;
-}
 
-.sectionbreak .sec4 .passwordbox .password{
-    width: 100%;
-    border-radius: 0.2rem;
-    height: 3rem;
-    padding: 2rem;
-    max-width: 400px;
-}
-
-
-/*sec5*/
-.sectionbreak .sec5{
-    display: flex;
-    max-width: 100vw;
-    height: auto;
-    flex-direction:column;
-    flex-basis: 55%;
-    display: flex;
-    align-items: center;
-}
-
- .findaccountbox{
-    display: flex;
-   
-    max-width: 100vw;
-    height: auto;
-    flex-direction:row-reverse;
-    text-align: center;
-    color: #3498DB;
-}
-
-/* .sectionbreak .sec5 .findaccountbox{
-    display: flex;
-    border: 5px solid rgb(243, 178, 243);
-    max-width: 100vw;
-    height: auto;
-    flex-direction:row-reverse;
-    text-align: center;
-    color: #3498DB;
-    
-   
-} */
-
-.sectionbreak .sec5 .findaccountbox .findaccount{
-    font-size: 0.5rem;
-    -webkit-transform:scale(0.9); 
-  display: flex;
+ /*푸터*/
+ footer {
+    background-color: var(--color-g);
+    color: var(--color-a);
+    font-size: 14px;
+    padding: 20px;
+  }
   
- 
-} 
-
-.sectionbreak .sec5 .loginbuttonbox{
-     display: flex;  
-    width: 80%;
-    max-width: 180px;
+  .footerbox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .logobox {
+    margin-right: 20px;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .ph_emboxbox {
+    margin-right: 20px;
+  }
+  
+  .phone,
+  .email {
+    margin-bottom: 10px;
+  }
+  
+  .log_regbox {
+    display: flex;
+    align-items: center;
+  }
+  
+  .log_regbox a {
+    color: var(--color-a);
+  }
+  
+  .log_regbox span {
+    margin: 0 5px;
+  }
+  
+  .cc {
     text-align: center;
+  }
+  
+  @media screen and (max-width:768px) {
+    .footerbox {
+      flex-direction: column;
+      align-items: flex-start;
+    }
     
-}  
-
-
-.sectionbreak .sec5 .loginbuttonbox .loginbutton {
-    background-color:#3498DB;
-    color: rgb(255, 255, 255);
-    border-radius: 0.5rem;
-    padding: 1.2rem;
-    width: 100%;
-    justify-content: center;
-}
-
-
-
-.sectionbreak .sec5 .registerlinkbox{
+    .logobox {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
     
-    display: flex;
-    flex-direction: row;
-    justify-content:center;
-    flex-basis: 50%;
-    align-items: baseline;
-    margin:1rem;
-}
+    .centerbox {
+      margin-bottom: 10px;
+    }
+  }
+  
+  @media screen and (max-width:480px) {
+    .ph_emboxbox {
+      flex-direction: column;
+    }
 
-.sectionbreak .sec5 .registerlinkbox .registertext{
-    font-size: 10.5%;
-  -webkit-transform:scale(0.9); 
-  display: inline-block;
-}
+   
+  }
+  
+  
 
 
-.sectionbreak .sec5 .registerlinkbox .register{
-    display: flex;
-    text-decoration:dashed;
-    font-size: 1.5rem;
-    text-decoration:solid;
-    
-}
-
-.sectionbreak .sec5 .registerlinkbox .register .a{
-    text-decoration:underline;
-    
-}
