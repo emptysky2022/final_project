@@ -186,14 +186,17 @@ async function loadRefreshData(x) {
 	    const $board = $("#getList");
 	    const $paging = $(".pagingEl");
       
+        console.log(boardList);
+      
         // Array.map은 배열 데이터를 변환해서 새로운 배열로 만들 때 사용함, 많이 쓰니 자주 써보도록
         // .map({bno, title..}) 과 같이 board 안에 데이터를 중괄호로 바로 꺼내는 방식을 비구조화 할당이라고 함, 엄청 많이 쓰이니 공부 필요
         // ` BackTick(억음부호)로 사용 시 변수를 바로 사용할 수 있어 많이 사용함
         // html += '<td>...' 방식은 사용 지양해야함
-        const html = boardList.map(({bno, title, regDate, nickname, replyCount, count}) =>
+        const html = boardList.map(({bno, title, regDate, nickname, replyCount, count, heart}) =>
             `<tr>
                <td class="num item">${bno}</td>
-               <td class="title item_2"><a onclick="loadReadData(${bno}), toggleBtn3(); window.scrollTo(0, 0);">${title}&nbsp<b><small>[${replyCount}]</small></b></a></td>
+               <td class="title item_2"><a onclick="loadReadData(${bno}), toggleBtn3(); window.scrollTo(0, 0);">${title}&nbsp<b><small>[${replyCount}] 
+                   <img id="listHeartImg" src="../img/full_heart.png"><spen id="heartSpen"> ${heart}</spen></small></b></a></td>
                <td class="writer item_3">${nickname}</td>
                <td class="date item_4">${formatTime(regDate)}</td>
                <td class="count item_5">${count}</td>
@@ -286,7 +289,7 @@ async function loadReadData(bno) {
             <div class="commentbox">
                 <div class="commenttextbox">
                 <div class="commenttextregister">
-                    <p>댓글 등록</p>
+                    <strong><p>댓글 등록</p></strong>
                 </div>
             </div>
             <div class="ct_reg_btnbox">
@@ -426,7 +429,9 @@ async function loadReadRepliesData(bno, rno) {
                         <div class="ct_wr_debox">  
                             <div class="ct_wrbox">  
                                 <div class="commentwriterbox">  
-                                    <div class="commentwriter" id="replyer${reply.rno}"><span name="memreplyer">${reply.replyer}</span></div>  
+                                    <div class="commentwriter" id="replyer${reply.rno}">
+                                    	<strong><p name="memreplyer">${reply.replyer}</p></strong>
+                                    </div>  
                                     <input type="hidden" id="replyContentRno" value="${reply.rno}">  
                                     <input type="hidden" id="replyContentBno" value="${reply.bno}">  
                                     <input type="hidden" id="memreplyer" value="${reply.replyer}">  
@@ -440,7 +445,6 @@ async function loadReadRepliesData(bno, rno) {
                         <div id="replyBtn">
                         	<button class="hideModifyBtn${reply.rno}" id="removeReplyBtn" onclick="removeReply(${reply.bno}, ${reply.rno})">댓글 삭제</button>  
                         	<button class="hideModifyBtn${reply.rno}" id="modifyReplyBtn" onclick="modifyReply(${reply.bno}, ${reply.rno})" value="${reply.rno}">댓글 수정</button>  
-                        	<button id="replyHeart" value="${reply.heart}"></button>  
                         </div>
                         <hr>	
                     </div>	

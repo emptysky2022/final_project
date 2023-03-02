@@ -14,9 +14,6 @@ main .body {
 main .body .aside_l{
     display: flex;
     flex-basis: 10%;
-  
-   
-
 }
 
 /*메인 바디 오른쪽*/
@@ -45,8 +42,8 @@ main .body .body_center{
 } 
 
 .sec4 .pagingEl ul .active a{
-   background-color: #7d86c3;
-   display: flex;
+    background-color: #7d86c3;
+    display: flex;
     min-width: 20px;
     min-height: 20px;
     box-sizing: border-box;
@@ -59,8 +56,8 @@ main .body .body_center{
 }
 
 /*게시판 목록*/
-strong {
-  font-size: 3rem;
+strong.titletext_item {
+  font-size: 2rem;
   justify-content: center;
 }
 
@@ -71,6 +68,10 @@ strong {
 #sideBar {
    padding: 3px;
    top: -60px;
+}
+
+#sec4 {
+	margin-top: 5%;
 }
 
 .btnendbox{
@@ -92,6 +93,7 @@ strong {
 
 
 .btnendbox .button .on{
+  border: #1F2550;	
   background-color: #1F2550;
   color: rgb(255, 255, 255);
   width: 10vw;
@@ -101,7 +103,7 @@ strong {
   align-items: center;
   font-weight: bold;
   min-width: 7rem;
-  min-height: 3rem;
+  min-height: 2rem;
   cursor: pointer;
 }
 
@@ -193,7 +195,7 @@ td {
    padding: 10px;
 }
 
-.num.item {
+td.num.item {
    width: 5%;
    border-right: 1px dashed #DCDCDC;
 }
@@ -275,13 +277,25 @@ td {
    background-image: url("/img/empty_heart.png");
 }
 
+#listHeartImg {
+	width: 15px;
+    height: 15px;
+    background-size: 15px 15px;
+    margin-top: 4px;
+    opacity: 60%;
+}
+#heartSpen {
+	color: #FFC0CB;
+	font-size: smaller;
+}
+
 /*검색*/
 #search {
    width: 83%;
 }
 
 #search #searchForm input{
-   width: 25vw;
+   width: 15vw;
    min-width: 110px; 
 }
 /**/
@@ -348,9 +362,10 @@ td {
    background-color: red; 
 }
 div.titleStrong{
-   width: 100%;
+    width: 100%;
     text-align: center;
     margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 div.titleStrong read{
@@ -441,6 +456,10 @@ div.titleStrong read{
   min-width: 7rem;
   min-height: 3rem;
   margin: 1rem;
+}
+
+strong.titletext.item {
+	font-size: 2rem;
 }
 
 .boardwrite .buttonbox .on{
@@ -549,7 +568,7 @@ align-items: center;
 }
 
 .boardviewbox .button .on{
-  border: 1px solid #1F2550;
+  border: 1px solid #696969;
   width: 10vw;
   height: 3vw;
   display: flex;
@@ -612,7 +631,7 @@ align-items: center;
 .boardview .infobox dl dt,
 .boardview .infobox dl dd {
   display: inline-block;
-  font-size: 1.4rem;
+  font-size: 1rem;
 }
 
 .boardview .infobox dl dd {
@@ -666,7 +685,7 @@ align-items: center;
 }
 
 .commentwriterbox{
-  margin: 1rem 0 1rem 2rem;
+	margin: 0px 0px 10px 5px; 
 }
 
 .commentdetailbox{
@@ -722,7 +741,8 @@ align-items: center;
 }
 
 #modifyReplyBtn {
-   background-color: #1F2550;
+	border: #1F2550;
+    background-color: #1F2550;
     color: rgb(255, 255, 255);
     width: 4vw;
     height: 0.1vw;
@@ -954,4 +974,38 @@ align-items: center;
   box-sizing: border-box;
   width: 40vw;
   margin: 1rem;
+}
+}
+
+/* 사이드바 */
+#levelbox {
+	position: fixed;
+    left: 92%;
+    top: 50%;
+    text-align: center;
+    color: #ffffff;
+}
+
+.listlevelbox {
+	margin-bottom: 10px;
+	background-color: #2f4858;
+	min-width: 4rem;
+    min-height: 2rem;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.toplevelbox {
+	background-color: #2f4858;
+	min-width: 4rem;
+    min-height: 2rem;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+a#listlevel, a#toplevel{
+	color: #FFFFFF;
+	font-size: smaller;
 }
