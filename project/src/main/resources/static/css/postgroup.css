@@ -14,9 +14,6 @@ main .body {
 main .body .aside_l{
     display: flex;
     flex-basis: 10%;
-  
-   
-
 }
 
 /*메인 바디 오른쪽*/
@@ -45,8 +42,8 @@ main .body .body_center{
 } 
 
 .sec4 .pagingEl ul .active a{
-	background-color: #7d86c3;
-	display: flex;
+    background-color: #7d86c3;
+    display: flex;
     min-width: 20px;
     min-height: 20px;
     box-sizing: border-box;
@@ -59,8 +56,8 @@ main .body .body_center{
 }
 
 /*게시판 목록*/
-strong {
-  font-size: 3rem;
+strong.titletext_item {
+  font-size: 2rem;
   justify-content: center;
 }
 
@@ -68,7 +65,14 @@ strong {
   padding: 2%;
 }
 
+#sideBar {
+   padding: 3px;
+   top: -60px;
+}
 
+#sec4 {
+	margin-top: 5%;
+}
 
 .btnendbox{
   justify-content: space-between;
@@ -89,6 +93,7 @@ strong {
 
 
 .btnendbox .button .on{
+  border: #1F2550;	
   background-color: #1F2550;
   color: rgb(255, 255, 255);
   width: 10vw;
@@ -98,7 +103,7 @@ strong {
   align-items: center;
   font-weight: bold;
   min-width: 7rem;
-  min-height: 3rem;
+  min-height: 2rem;
   cursor: pointer;
 }
 
@@ -110,11 +115,6 @@ strong {
 .boardlist > div.top {
   display: flex;
   background-color: #EAEAEA;
-}
-
-.boardlist > div {
-
-  font-size: 0;
 }
 
 .boardlist > div:last-child {
@@ -147,7 +147,7 @@ strong {
 }
 
 .boardlist > title item_2 {
-	padding-inline-start: 5px;
+   padding-inline-start: 5px;
 }
 
 .writer item_3 {
@@ -164,7 +164,7 @@ strong {
 }
 
 .boardlist .strong{
-	text-align: center;
+   text-align: center;
 }
 
 table {
@@ -174,24 +174,55 @@ table {
      border-top: 1px solid black;
      border-bottom: 1px solid black;
      font-family: 'MICEGothic Bold';
+     table-layout: fixed;
 }
 
 table tr {
-	border-bottom: 1px dashed #808080;
+   border-bottom: 1px dashed #808080;
 }
 
 table, th, td {
-	border-bottom: 1px dashed #808080;
+   border-bottom: 1px solid #808080;
 }
 
 th {
-	background-color: #efefef;
-	padding : 10px 5px;
-	font-size: small;
+   background-color: #efefef;
+   padding : 10px 5px;
+   font-size: small;
 }
 
 td {
-	padding: 10px;
+   padding: 10px;
+}
+
+td.num.item {
+   width: 5%;
+   border-right: 1px dashed #DCDCDC;
+}
+
+.title.item_2 {
+   width: 35%;
+   padding-right: 10px;
+   border-right: 1px dashed #DCDCDC;
+}
+
+.writer.item_3 {
+   overflow:hidden;
+   white-space : nowrap;
+   text-overflow: ellipsis;
+   width: 12%;
+   text-align: center;
+   border-right: 1px dashed #DCDCDC;
+}
+
+.date.item_4 {
+   text-align: center;
+   border-right: 1px dashed #DCDCDC;
+}
+
+.count.item_5 {
+   text-align: center;
+   width: 5%;
 }
 
 @media screen and (max-width:768px){
@@ -219,48 +250,59 @@ td {
   }
   
   .boardlist > title item_2 {
-	padding-inline-start: 5px;
+   padding-inline-start: 5px;
   }
 }
 
 #readList .heart-box {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		text-align: center;
-		margin: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      margin: 1rem;
 }
 #readList .heart {
-	align-self: center;
-	width: 22px;
-	height: 22px;
-	background-size: 22px 22px;
+   align-self: center;
+   width: 22px;
+   height: 22px;
+   background-size: 22px 22px;
 }
 .img > h6 {
-	margin-left: 0;
+   margin-left: 0;
 }
 .heart.h-on {
-	background-image: url("/img/full_heart.png");
+   background-image: url("/img/full_heart.png");
 }
 .heart.h-off {
-	background-image: url("/img/empty_heart.png");
+   background-image: url("/img/empty_heart.png");
+}
+
+#listHeartImg {
+	width: 15px;
+    height: 15px;
+    background-size: 15px 15px;
+    margin-top: 4px;
+    opacity: 60%;
+}
+#heartSpen {
+	color: #FFC0CB;
+	font-size: smaller;
 }
 
 /*검색*/
 #search {
-	width: 83%;
+   width: 83%;
 }
 
 #search #searchForm input{
-	width: 25vw;
-	min-width: 110px; 
+   width: 15vw;
+   min-width: 110px; 
 }
 /**/
 
 /*숫자 버튼*/
 .boardpage {
   margin: 30px 0 20px 0;
-  font-size: 0;
   display: flex;
   justify-content: center;
   color: #000;
@@ -312,26 +354,25 @@ td {
     flex-direction: row;
     align-items: center;
     border-bottom: 1px solid #000;
-    font-size: 0;
 }
 
 .titlebox .box4 {
-	align-items: center;
-	text-align: center;
-	background-color: red; 
+   align-items: center;
+   text-align: center;
+   background-color: red; 
 }
 div.titleStrong{
-	width: 100%;
+    width: 100%;
     text-align: center;
     margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 div.titleStrong read{
-	margin-bottom: 30px; 
+   margin-bottom: 30px; 
 }
 
 .boardwrite .titlebox dl {
-    font-size: 0;
     display: flex;
     align-items: center;
     flex-basis: 50%;
@@ -417,6 +458,10 @@ div.titleStrong read{
   margin: 1rem;
 }
 
+strong.titletext.item {
+	font-size: 2rem;
+}
+
 .boardwrite .buttonbox .on{
   background-color: #1F2550;
   color: rgb(255, 255, 255);
@@ -432,7 +477,7 @@ div.titleStrong read{
 }
 
 #readList > .titlebox box4 {
-	padding: 10px 5px;
+   padding: 10px 5px;
 }
 
 @media screen and (max-width:768px){
@@ -459,7 +504,6 @@ div.titleStrong read{
   .boardwrite .titlebox{
 border-top: 1px dashed #ddd;
 border-bottom: 1px solid #000;
-font-size: 0;
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -467,7 +511,6 @@ align-items: center;
 
 
   .boardwrite .titlebox{
-  font-size: 0;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -504,7 +547,7 @@ align-items: center;
 
 /*게시글 상세보기*/
 .boardviewbox .button{
-  	display: flex;
+     display: flex;
     flex-direction: row;
     justify-content: center;
     margin-top: 2%;
@@ -525,7 +568,7 @@ align-items: center;
 }
 
 .boardviewbox .button .on{
-  border: 1px solid #1F2550;
+  border: 1px solid #696969;
   width: 10vw;
   height: 3vw;
   display: flex;
@@ -556,7 +599,6 @@ align-items: center;
 .boardview .infobox {
   padding: 15px;
   border-bottom: 1px solid #999;
-  font-size: 0;
   flex-basis: 20%;
 }
 
@@ -589,7 +631,7 @@ align-items: center;
 .boardview .infobox dl dt,
 .boardview .infobox dl dd {
   display: inline-block;
-  font-size: 1.4rem;
+  font-size: 1rem;
 }
 
 .boardview .infobox dl dd {
@@ -643,7 +685,7 @@ align-items: center;
 }
 
 .commentwriterbox{
-  margin: 1rem 0 1rem 2rem;
+	margin: 0px 0px 10px 5px; 
 }
 
 .commentdetailbox{
@@ -665,15 +707,15 @@ align-items: center;
 
 /* 댓글 상세 */
 #repliesListRE {
-	margin-top: 10px;
+   margin-top: 10px;
 }
 
 #repliesListRE button{
-	cursor: pointer;
+   cursor: pointer;
 }
 
 .readReply {
-	margin-top: 10px;
+   margin-top: 10px;
 }
 /*---------*/
 
@@ -682,11 +724,11 @@ align-items: center;
 
 /*댓글 삭제 버튼*/
 #replyBtn {
-	display: flex;
+   display: flex;
 }
 
 #removeReplyBtn {
-	border: 1px solid #1F2550;
+   border: 1px solid #1F2550;
     width: 4vw;
     height: 0.1vw;
     display: flex;
@@ -699,7 +741,8 @@ align-items: center;
 }
 
 #modifyReplyBtn {
-	background-color: #1F2550;
+	border: #1F2550;
+    background-color: #1F2550;
     color: rgb(255, 255, 255);
     width: 4vw;
     height: 0.1vw;
@@ -715,17 +758,17 @@ align-items: center;
 
 /*댓글 수정*/
 #modifyContentDiv {
-	display: flex;
+   display: flex;
 }
 
 #modifyContentBox {
-	width: 300px;
+   width: 300px;
     height: 25px;
     font-size: 12px;
 }
 
 #modifyContentBtn {
-	background-color: #1F2550;
+   background-color: #1F2550;
     color: rgb(255, 255, 255);
     width: 6vw;
     display: flex;
@@ -737,7 +780,7 @@ align-items: center;
 }
 
 #cancelContentBtn {
-	border: 1px solid #1F2550;
+   border: 1px solid #1F2550;
     width: 6vw;
     display: flex;
     justify-content: center;
@@ -748,7 +791,7 @@ align-items: center;
 }
 
 #contentBtn {
-	display: flex;
+   display: flex;
 }
 /*-------*/
 .commentdeletebox{
@@ -773,7 +816,7 @@ align-items: center;
 }
 
 .boardmodifybox .button button, a {
-	cursor: pointer;
+   cursor: pointer;
 }
 
 
@@ -817,7 +860,6 @@ align-items: center;
 .boardmodify .info {
   border-top: 1px dashed #ddd;
   border-bottom: 1px solid #000;
-  font-size: 0;
 }
 
 .boardmodify .titlebox {
@@ -827,13 +869,11 @@ align-items: center;
   flex-direction: row;
   align-items: center;
   border-bottom: 1px solid #000;
-  font-size: 0;
   
 }
 
 
 .boardmodify .titlebox dl {
-  font-size: 0;
   flex-basis: 50%;
 }
 
@@ -879,7 +919,7 @@ align-items: center;
 }
 
 #modifyBoard {
-	justify-content: center;
+   justify-content: center;
 }
 
 @media screen and (max-width:768px){
@@ -934,4 +974,38 @@ align-items: center;
   box-sizing: border-box;
   width: 40vw;
   margin: 1rem;
+}
+}
+
+/* 사이드바 */
+#levelbox {
+	position: fixed;
+    left: 92%;
+    top: 50%;
+    text-align: center;
+    color: #ffffff;
+}
+
+.listlevelbox {
+	margin-bottom: 10px;
+	background-color: #2f4858;
+	min-width: 4rem;
+    min-height: 2rem;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.toplevelbox {
+	background-color: #2f4858;
+	min-width: 4rem;
+    min-height: 2rem;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+a#listlevel, a#toplevel{
+	color: #FFFFFF;
+	font-size: smaller;
 }
