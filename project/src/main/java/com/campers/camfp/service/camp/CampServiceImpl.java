@@ -6,8 +6,10 @@ import java.util.Optional;
 import java.util.function.Consumer;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.campers.camfp.config.type.TableType;
 import com.campers.camfp.dto.camp.CampDTO;
@@ -18,6 +20,7 @@ import com.campers.camfp.repository.camp.CampCalenderRepository;
 import com.campers.camfp.repository.camp.CampRepository;
 import com.campers.camfp.repository.camp.CampReviewRepository;
 
+import antlr.StringUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -25,6 +28,10 @@ import lombok.extern.log4j.Log4j2;
 @Service
 @SuppressWarnings("unchecked")
 public class CampServiceImpl implements CampService {
+
+	// 파일 업로드 경로를 설정합니다.
+	@Value("${upload.path}")
+	private String uploadPath;
 
 	private final CampRepository campRepository;
 	private final CampReviewRepository campReviewRepository;
@@ -64,12 +71,12 @@ public class CampServiceImpl implements CampService {
 
 			break;
 		}
-		
+
 		value = EntityToDTO(table, value);
 
 		return value;
 	}
-	
+
 	@Override
 	public List<Object> findAll(TableType table, Long cno) {
 
@@ -102,7 +109,7 @@ public class CampServiceImpl implements CampService {
 
 			break;
 		}
-		
+
 		buffer.forEach(value -> {
 			result.add(EntityToDTO(table, value));
 		});
@@ -119,7 +126,7 @@ public class CampServiceImpl implements CampService {
 		switch (table) {
 
 		case CAMP:
-			List<Camp> camplist =  (List<Camp>) campRepository.findHeartOrCountRank(table, num, findType);
+			List<Camp> camplist = (List<Camp>) campRepository.findHeartOrCountRank(table, num, findType);
 			camplist.forEach(camp -> bufferList.add(camp));
 			break;
 
@@ -189,6 +196,10 @@ public class CampServiceImpl implements CampService {
 		case CAMPREVIEW:
 			CampReview campReview = (CampReview) DTOToEntity(table, dto);
 			campReviewRepository.save(campReview);
+
+			// 캠핑장 review 생성시 camp star 를 올려줘야함.
+			campRepository.addData(TableType.CAMP, campReview.getCamp().getCno(), "star", campReview.getStar());
+
 			break;
 
 		case CAMPCALENDER:
@@ -248,9 +259,9 @@ public class CampServiceImpl implements CampService {
 	public List<Object> findDataOfCamp(TableType table, Long cno, String[] findData) {
 
 		List<Object> result = new ArrayList<>();
-		
+
 		switch (table) {
-		
+
 		case CAMP:
 			List<Camp> campList = (List<Camp>) campRepository.findDataOfCamp(table, cno, findData);
 			campList.forEach(value -> {
@@ -264,7 +275,7 @@ public class CampServiceImpl implements CampService {
 				result.add(EntityToDTO(table, value));
 			});
 			break;
-			
+
 		case CAMPCALENDER:
 			List<CampCalender> calenderList = (List<CampCalender>) campRepository.findDataOfCamp(table, cno, findData);
 			calenderList.forEach(value -> {
@@ -276,18 +287,17 @@ public class CampServiceImpl implements CampService {
 			System.out.println("Not Found Type : " + table);
 			break;
 
-			
 		}
-		
-		
+
 		return result;
 	}
 
 	@Override
-	public void addData(TableType table, Long cno, String findData) {
-		
-		campRepository.addData(table, cno, findData);
-		
+	public void addData(TableType table, Long cno, String findData, int num) {
+
+		// 조회수니까 1 임
+		campRepository.addData(table, cno, findData, num);
+
 	}
 
 	@Override
@@ -296,8 +306,13 @@ public class CampServiceImpl implements CampService {
 		List<CampDTO> dto = new ArrayList<>();
 		camp.forEach(value -> {
 			dto.add((CampDTO) EntityToDTO(TableType.CAMP, value));
-			});
-		
+		});
+
 		return dto;
+	}
+
+	@Override
+	public Double countStar(Long cno) {
+		return  campRepository.countStar(cno);
 	}
 }
