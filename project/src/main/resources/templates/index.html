@@ -1,11 +1,113 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>Join the Membership</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>main</title>
+	<!--제이쿼리 연결-->
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<!--구글 폰트 링크-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Varela+Round&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+	<!--typeit(페이지에 글씨입력되는것처럼 보이는 것)-->
+	<script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js" loop="true"></script>
+
+	<!--scrollOut(스크롤 내릴때 효과주는것)-->
+	<script src="https://unpkg.com/scroll-out/dist/scroll-out.min.js"></script>
+
+
+	<!--스크롤 내릴때 요소마다 다르게 주는 스크립트-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/rellax/1.12.1/rellax.min.js"></script>
+
+	<!--swiper-->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+	<!-- Swiper JS -->
+	<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+	<!--폰트 그림 링크-->
+	<script src="https://kit.fontawesome.com/bb87a5faf0.js" crossorigin="anonymous"></script>
+	<!--css 연결-->
+	<link rel="stylesheet" type="text/css" href="../css/main.css">
+	<link rel="stylesheet" type="text/css" href="../css/header.css">
+	<!-- <link rel="stylesheet" type="text/css" href="../css/footer.css"> -->
+	<!--js연결-->
+	<script type="text/javascript" src="../js/main.js" defer></script>
+
+
+
 </head>
+
 <body>
-	
-  <h1>홈페이지입니다</h1>
+
+	<div class="container">
+		<!-- header fragment -->
+		<div th:replace="~{fragments/header :: headerFragment}"></div>
+
+		<main>
+
+			<!-- nav fragment -->
+			<div th:replace="~{/fragments/nav :: navFragment}"></div>
+			<div class="navimage">
+				<swiper-container class="nav-mySwiper" pagination="false" pagination-clickable="true" navigation="true"
+					space-between="30" centered-slides="true" autoplay-delay="3500" loop="true"
+					autoplay-disable-on-interaction="false">
+					<swiper-slide class="nav-swiper-slide"><img src="../img/nav_main_top1.jpg"
+							alt=""></swiper-slide>
+					<swiper-slide class="nav-swiper-slide"><img src="../img/nav_main_top2.jpg"
+							alt=""></swiper-slide>
+					<swiper-slide class="nav-swiper-slide"><img src="../img/nav_main_top3.jpg"
+							alt=""></swiper-slide>
+					<swiper-slide class="nav-swiper-slide"><img src="../img/nav_main_top4.jpg"
+							alt=""></swiper-slide>
+				</swiper-container>
+			</div>
+
+
+			<!-- 첫번째 백그라운드 이미지 -->
+			<div class="sectext1">
+				<div class="iconbox">
+					<img src="../img/backicon1.svg" alt=""></img>
+				</div>
+				<div class="iconbox">
+					<img src="../img/backicon3.svg" alt=""></img>
+				</div>
+				<div class="iconbox">
+					<img src="../img/backicon2.svg" alt=""></img>
+				</div>
+			</div>
+
+			<!----메인 바디---->
+			<div class="body box1">
+
+				<!--메인 바디 가운데 공간 안에 섹션 1, 2, 3이 나뉨-->
+				<div class="body_center box2">
+
+					<div th:replace="~{/fragments/main_sec :: section1Fragment}"></div>
+
+					<!--섹션나누기2-->
+					<div class="sectext2">
+						<div class="iconbox">
+							<img src="../img/backicon3.svg" alt="">
+						</div>
+					</div>
+
+					<div th:replace="~{/fragments/main_sec :: section2Fragment}"></div>
+
+					<!--섹션 나누기3-->
+					<div th:replace="~{/fragments/main_sec :: section3Fragment}"></div>
+				</div>
+			</div>
+		</main>
+	</div>
+
+	<!-- footer fragment -->
+	<div th:replace="~{/fragments/footer :: footerFragment}"></div>
+
 </body>
+
 </html>

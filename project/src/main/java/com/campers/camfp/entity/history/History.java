@@ -45,6 +45,8 @@ public class History extends BaseEntity{
 	@Column(nullable = false)
 	private String historyType;
 	
+	private String name;
+	
 	private String state;
 	
 	private int price;

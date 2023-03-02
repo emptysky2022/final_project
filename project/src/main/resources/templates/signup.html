@@ -81,39 +81,44 @@
 					<div class="idbox box3">
 						<p type="text" class="idtext item">아이디</p>
 						<input type="text" class="id item_2" id="id" name="id" minlength="6" maxlength="20" oninput="checkId()" placeholder="아이디는 영어 소문자와 숫자만 사용하여 6~20자리여야 합니다." required>
-							<span class="id_ok">사용 가능한 아이디입니다.</span>
-							<span class="id_already">중복된 아이디입니다.</span>
 						<!-- <div th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Incorrect data </div> -->
 						<!--  <span th:text="${valid_id}"></span> --> 
 					</div>
+							<p class="idbox box3 ready">
+								<span class="id_ok">사용 가능한 아이디입니다.</span>
+								<span class="id_already">중복된 아이디입니다.</span>
+							</p>
 					<div class="passwordbox box3">
 						<p type="password" class="passwordtext item">비밀번호</p>
 						<input type="password" class="password item" id="pw" name ="pw" minlength="8" maxlength="20" placeholder="비밀번호는 문자+숫자+하나의 특수문자 사용하여 8~20자리여야 합니다." required>
 					</div>
-
+						<p class="ready">
 					<div class="passwordcheckbox box3">
 						<p class="passwordchecktext item">비밀번호 확인
 						</p>
 						<input  type="password"class="passwordcheck item_2" id="passcheck" name="passcheck"  placeholder="비밀번호를 한번 더 입력해주세요." required>
-					<p id="rePwdErr">비밀번호와 일치하지 않습니다. 다시 입력해 주세요.</p>
 					</div>
-						
-						
+						<p class="passwordbox box3 ready">
+							<span id="rePwdErr" class="rePwdErr" >비밀번호와 일치하지 않습니다. 다시 입력해 주세요.</span>
+						</p>
 					<div class="namebox box3">
 						<p class="nametext item">이름</p>
 						<input class="name item_2" type="text" name="name" placeholder="이름를 입력해주세요." required>
 					</div>
+					<p class="ready">
 					<div class="nicknamebox box3">
 						<p class="nicknametext item">별명</p>
 						<input class="nickname item_2"  type="text" name="nickname" id="nickname" oninput="checkNick()"minlength="2" maxlength="10"placeholder="별명은 특수문자를 포함하지 않은 2~10자리여야 합니다.">
-						<span class="nick_ok">사용 가능한 별명입니다.</span>
-						<span class="nick_already">중복된 별명입니다.</span>
-						
 					</div>
+						<p class="nicknamebox box3 ready">
+							<span class="nick_ok">사용 가능한 별명입니다.</span>
+							<span class="nick_already">중복된 별명입니다.</span>
+						</p>
 					<div class="agebox box3">
 						<p class="agetext item">나이</p>
 						<input class="age item_2" type="text" name="age" placeholder="나이를 입력해주세요. ex) 20">
 					</div>
+					<p class="ready">
 					<div class="genderbox box3">
 						<p class="gendertext item">성별</p>
 						<select class="gender item_2" name="gender">
@@ -121,18 +126,22 @@
 							<option value="FEMALE">여자</option>
 						</select>
 					</div>
+					<p class="ready">
 					<div class="addressbox box3">
 						<p class="addresstext item">주소</p>
 						<input class="address item_2" type="text" name="address" placeholder="주소를 입력해주세요.">
 					</div>
+					<p class="ready">
 					<div class="phonebox box3">
 						<p class="phonetext item">전화번호</p>
 						<input class="phone item_2" type="text" name="phone" placeholder="전화번호를 입력해주세요.">
 					</div>
+					<p class="ready">
 					<div class="introducebox box3">
 						<p class="introducetext item">소개</p>
 						<textarea class="introduce item_2" name="introduce" placeholder="간단한 소개를 부탁드려요"></textarea>
 					</div>
+					<p class="ready">
 				</div>
 			
 		
