@@ -38,7 +38,7 @@ public class CampRestController {
 
 	private final CampService campService;
 
-	@GetMapping(value = "reply/{cno}")
+	@GetMapping(value = "reply/list/{cno}")
 	public ResponseEntity<List<Object>> getListByReview(@PathVariable("cno") Long cno,
 			@AuthenticationPrincipal PrincipalDetails principalDetails) {
 		System.out.println("탔음");
@@ -50,6 +50,24 @@ public class CampRestController {
 
 		log.info(reviews);
 		return new ResponseEntity<>(List.of(reviews, principalDetails.getMember()), HttpStatus.OK);
+	}
+	
+	@GetMapping("/reply/one/{crno}")
+	public ResponseEntity<CampReviewDTO> getOneByReview(@PathVariable("crno") Long crno){
+		Object data = campService.findbyId(TableType.CAMPREVIEW, crno);
+		
+		CampReviewDTO value = (CampReviewDTO) data;
+		
+		return new ResponseEntity<CampReviewDTO>(value, HttpStatus.OK);
+		
+	}
+	
+	@PutMapping("/reply/modify")
+	public ResponseEntity<String> updateReview(@RequestBody CampReviewDTO dto){
+		log.info(dto);
+		
+		campService.modify(TableType.CAMPREVIEW, dto);
+		return new ResponseEntity<String>("성공", HttpStatus.OK);
 	}
 
 	@GetMapping(value = "list/{type}/{locations}")

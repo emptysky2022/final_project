@@ -1,4 +1,4 @@
-let image = new Array();
+let image = '';
 let ino = new URLSearchParams(window.location.search).get("ino");
 $(function(){
 	var grade=$(".starrr").html();
@@ -48,7 +48,8 @@ $(function(){
 			success: function(result){
 				console.log(result);
 				//결과값중 uuid, filePath등등 있는데 imageURL만 뽑아서 리스트에 넣기
-				result.map(({imageURL}) => image.push(imageURL));
+				result.map(({uuid, fileName}) => image += uuid+'_'+fileName+',');
+				image.substring(-1, 0);
 				console.log(image);
 			},
 			error: function(xhr, text, errorThrown){
@@ -61,12 +62,10 @@ $(function(){
         //컨펌 이벤트 처리
 		//등록할 때 data를 ItemReviewDTO, List<String>으로 받아야 함
         let data = {
-			review : {
 			content : $("#content").val(),
 			ino : ino,
-			star : $("#select_star").data('starrr').options.rating
-			},
-			image : image
+			star : $("#select_star").data('starrr').options.rating,
+			capture: image
 		};
 		console.log(data);
 		$.ajax({
@@ -129,7 +128,9 @@ function loadJsonData(ino){
 			  str += '  <div class="box_l box6">';
 			  str += '    <div class="imgbox box7">';
 			  str += '      <a class="imglink box8" href="">';
-			  str += '        <img class="rv_img item" src="/display?fileName=' + review.capture + '"></a></div>';
+			  for(let image of review.capture.split(',')){
+			  	str += '        <img class="rv_img item" src="/display?fileName=' + image + '&folderType=itemReview"></a></div>';
+			  }
 			  str += '    <div class="rv_star box7_2" id="star">' + getStar(review.star) + '</div></div>';
 			  str += '  <div class="box_r box6">';
 			  str += '    <div class="comment box7">';
@@ -236,12 +237,10 @@ async function modify(irno){
         //수정 이벤트 처리
 		//등록할 때 data를 ItemReviewDTO, List<String>으로 받아야 함
         let data = {
-			review : {
 			irno: irno,
 			content : $("#content").val(),
-			star : $("#select_star").data('starrr').options.rating
-			},
-			image : image
+			star : $("#select_star").data('starrr').options.rating,
+			capture: image
 		};
 		console.log(data);
 		$.ajax({

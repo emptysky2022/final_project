@@ -49,6 +49,7 @@ public class HistoryServiceImpl implements HistoryService{
 								.member(cart.getMember())
 								.historyType(HistoryType.ITEM.toString())
 								.historyNum(item.getIno())
+								.name(item.getName())
 								.state(StateType.PAY_END.toString())
 								.price(item.getPrice())
 								.amount(cart.getAmount())
@@ -70,20 +71,10 @@ public class HistoryServiceImpl implements HistoryService{
 	public List<HistoryDTO> getHistoryOfMember(Long mno) {
 		List<History> historyEntities = historyRepository.getHistoryOfMember(mno);
 		
+		log.info(historyEntities);
+		
 		List<HistoryDTO> result = historyEntities.stream()
-				.map(entity -> entityToDto(entity))
-				.map(dto -> {
-					if(dto.getHistoryType() == HistoryType.ITEM) {
-						dto.setName(itemRepository.
-								findById(dto.getHistoryNum()).get().getName());
-						return dto;
-					}else {
-						//임시로 채워넣음
-						dto.setName(campRepository.findById(dto.getHistoryNum()).get().getName());
-						return dto;
-					}
-				})
-				.collect(Collectors.toList());
+				.map(entity -> entityToDto(entity)).collect(Collectors.toList());
 		log.info("result = " + result);
 		return result;
 	}
