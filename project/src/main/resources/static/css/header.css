@@ -128,13 +128,13 @@ footer{
 
 /**********메인 header(header 부분 전체)************/
 .header{
-    display: flex; 
-    margin: 1rem;
+   display: flex;
     position: relative;
-    width:auto;
-    height:100% ;
-    background-color: transparent !important;
+    width: auto;
+    height: 100%;
     z-index: 99;
+    background-color: #5c585885;
+    padding: 1rem;
 }
 
 /**/
@@ -333,6 +333,7 @@ footer {
         justify-content: center;
         flex-direction: column;
         width: 100%;
+       
     }  
     .header .header_logo {
         
@@ -397,7 +398,7 @@ footer {
   display: flex;
   z-index: 10;
   background-size: cover;
-  height: 100vh;
+  height: auto;
   width: 100%;
 }
 .sidebar_box .sidebar_menu{
