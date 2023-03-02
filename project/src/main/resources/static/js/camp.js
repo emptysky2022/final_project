@@ -10,6 +10,7 @@ $(document).ready(function() {
 	var campType = [];
 	let makeCamp = "";
 	let Camp = "";
+	let imgpath = "";
 
 	// 검색 타입
 	let searchType = "";
@@ -445,20 +446,24 @@ $(document).ready(function() {
 		$.getJSON(url, function(arr) {
 			listGroup.html("");
 			let str = "";
-			const [camp, member] = arr;
+			const [camp, member, avg] = arr;
 			$.each(camp, function(index, camp) {
 
 
 				str += "<div class='campgroundsbox box'>";
 				str += "<input type = 'hidden' name='cno' th:value ='" + camp.cno + "''>";
 				str += "<div class='cg_imgbox box5' onclick='location.href=\"/camp/campgroundsdetail?cno=" + camp.cno + "\"''>";
-				str += "<img class='cg_img item' src=" + camp.thumbnail + ">";
+
+				var image = camp.thumbnail.split(",");
+
+				str += "<img class='cg_img item' src=/display?fileName=" + image[0] + "&folderType=camp>";
+
 				str += "</div>";
 				str += "<div class='cg_rightbox box4'>"
 				str += "<div class='title item'>" + camp.name + "</div>";
 				str += "<div class='cg_starbox item'>";
-				str += "<div class='star item'>" + getStar(camp.star) + "  (" + (camp.count) + ")</div>";
-
+				
+				str += "<div class='star item'>" + getStar(avg[index]) + "  (" + (avg[index]) + ")</div>";
 
 				str += "</div>";
 				str += "<div class='cg_explainbox box5'>";
@@ -550,28 +555,44 @@ $(document).ready(function() {
 		}).responseText
 	}
 
-	function imageSave(thumnail, type) {
+	$("#thumbnail").on("change", function(){
 		var formData = new FormData();
-		var files = $(thumnail)[0].files;
+		var files = $("#thumbnail")[0].files;
 		console.log(files);
 
 		for (var i = 0; i < files.length; i++) {
-			console.log(files[i]);
-			formData.append("thumbnail", files[i]);
+			console.log(files[i].name);
+			formData.append("uploadFiles", files[i]);
 		}
-
+		formData.append("webPath", "camp");
+		var i = 0;
 		$.ajax({
-			url: "/camp/imgsave/",
+			url: "/uploadAjax",
 			processData: false, // 데이터 처리하지 않음
 			contentType: false, // 컨텐츠 타입을 false로 설정하여 FormData가 알아서 설정하도록 함
 			method: "POST",
-			data: formData
+			data: formData,
+			dataType: "json",
+			success: function(result) {
+				result.forEach(data => {
+					if (i == 0) {
+						imgpath = data.uuid + "_" + data.fileName;
+					} else {
+						imgpath += "," + data.uuid + "_" + data.fileName;
+					}
+					i++;
+				})
+
+			},
+			error: function(xhr, text, errorThrown) {
+				console.log(text);
+			}
 		})
-	}
+	});
+
 
 	function funcCampRegister() {
-		imageSave("#thumbnail", "camp");
-
+		console.log(imgpath);
 		$.ajax({
 			url: "/camp/register",
 			contentType: "application/json",
@@ -582,7 +603,7 @@ $(document).ready(function() {
 				campintroduce: $(".campintorduce").val(),
 				camptype: makeCamp,
 				location: makeLocation,
-				thumbnail: "test.jpg"
+				thumbnail: imgpath
 			}), success: function(result) {
 				alert(result);
 			}, fail: function(result) {

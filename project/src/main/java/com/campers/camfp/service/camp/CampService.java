@@ -31,11 +31,11 @@ public interface CampService {
 	
 	public List<Object> findDataOfCamp(TableType table, Long cno, String[] findData);
 	
-	public void addData(TableType table, Long cno, String findData);
+	public void addData(TableType table, Long cno, String findData, int num);
 	
 	public List<CampDTO> findManayDataOfCamp(String[] findDatas, String[] findLocations);
 	
-	public boolean saveImage(MultipartFile[] files);
+	public Double countStar(Long cno);
 	
 	/**
 	 * @param table 변환할 table 명 table <br>

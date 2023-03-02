@@ -19,7 +19,6 @@ import com.campers.camfp.entity.camp.CampReview;
 import com.campers.camfp.repository.camp.CampCalenderRepository;
 import com.campers.camfp.repository.camp.CampRepository;
 import com.campers.camfp.repository.camp.CampReviewRepository;
-import com.campers.camfp.util.FileUploadUtil;
 
 import antlr.StringUtils;
 import lombok.RequiredArgsConstructor;
@@ -197,6 +196,10 @@ public class CampServiceImpl implements CampService {
 		case CAMPREVIEW:
 			CampReview campReview = (CampReview) DTOToEntity(table, dto);
 			campReviewRepository.save(campReview);
+
+			// 캠핑장 review 생성시 camp star 를 올려줘야함.
+			campRepository.addData(TableType.CAMP, campReview.getCamp().getCno(), "star", campReview.getStar());
+
 			break;
 
 		case CAMPCALENDER:
@@ -290,9 +293,10 @@ public class CampServiceImpl implements CampService {
 	}
 
 	@Override
-	public void addData(TableType table, Long cno, String findData) {
+	public void addData(TableType table, Long cno, String findData, int num) {
 
-		campRepository.addData(table, cno, findData);
+		// 조회수니까 1 임
+		campRepository.addData(table, cno, findData, num);
 
 	}
 
@@ -308,9 +312,7 @@ public class CampServiceImpl implements CampService {
 	}
 
 	@Override
-	public boolean saveImage(MultipartFile[] files) {
-
-		return FileUploadUtil.saveFile(uploadPath, files);
-
+	public Double countStar(Long cno) {
+		return  campRepository.countStar(cno);
 	}
 }

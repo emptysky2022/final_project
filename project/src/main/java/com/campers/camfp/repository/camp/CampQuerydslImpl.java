@@ -2,6 +2,7 @@ package com.campers.camfp.repository.camp;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.print.DocFlavor.READER;
@@ -20,6 +21,7 @@ import com.campers.camfp.entity.camp.QCamp;
 import com.campers.camfp.entity.camp.QCampCalender;
 import com.campers.camfp.entity.camp.QCampReview;
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Order;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
@@ -80,10 +82,13 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 			camp.select(Q_CAMP);
 			camp.from(Q_CAMP);
 			if (findType == "조회순") {
-				camp.orderBy(Q_CAMP.heart.desc());
+				camp.orderBy(Q_CAMP.count.desc());
 			}
 			if (findType == "별점순") {
-				camp.orderBy(Q_CAMP.count.desc());
+				camp.orderBy(Q_CAMP.star.desc());
+			}
+			if (findType == "하트순") {
+				camp.orderBy(Q_CAMP.heart.desc());
 			}
 			camp.limit(count);
 			data = camp.fetch();
@@ -180,7 +185,7 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 
 	@Override
 	@Transactional
-	public void addData(TableType table, Long no, String addData) {
+	public void addData(TableType table, Long no, String addData, int num) {
 
 		JPAUpdateClause update;
 
@@ -194,15 +199,15 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 			switch (addData) {
 
 			case "count":
-				update.set(Q_CAMP.count, findData(table, no, addData) + 1).where(Q_CAMP.cno.eq(no)).execute();
+				update.set(Q_CAMP.count, findData(table, no, addData) + num).where(Q_CAMP.cno.eq(no)).execute();
 				break;
 
 			case "heart":
-				update.set(Q_CAMP.heart, findData(table, no, addData) + 1).where(Q_CAMP.cno.eq(no)).execute();
+				update.set(Q_CAMP.heart, findData(table, no, addData) + num).where(Q_CAMP.cno.eq(no)).execute();
 				break;
 
 			case "star":
-				update.set(Q_CAMP.star, findData(table, no, addData) + 1).where(Q_CAMP.cno.eq(no)).execute();
+				update.set(Q_CAMP.star, findData(table, no, addData) + num).where(Q_CAMP.cno.eq(no)).execute();
 				break;
 
 			}

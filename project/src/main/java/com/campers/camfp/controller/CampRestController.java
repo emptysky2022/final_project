@@ -14,19 +14,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.campers.camfp.config.auth.PrincipalDetails;
-import com.campers.camfp.config.type.CampingType;
 import com.campers.camfp.config.type.TableType;
 import com.campers.camfp.dto.camp.CampCalenderDTO;
 import com.campers.camfp.dto.camp.CampDTO;
 import com.campers.camfp.dto.camp.CampReviewDTO;
-import com.campers.camfp.dto.heart.HeartDTO;
-import com.campers.camfp.dto.member.MemberDTO;
-import com.campers.camfp.entity.member.Member;
 import com.campers.camfp.service.camp.CampService;
 
 import lombok.RequiredArgsConstructor;
@@ -61,13 +55,23 @@ public class CampRestController {
 	public ResponseEntity<List<Object>> getListByCamp(@PathVariable("type") String[] type,
 			@PathVariable("locations") String[] locations, @AuthenticationPrincipal PrincipalDetails principalDetails) {
 		List<CampDTO> campdtoList = new ArrayList<>();
+		List<Double> avg = new ArrayList<>();
+		
 		log.info(type);
 		log.info(locations);
+		
+		
 
 		campdtoList = campService.findManayDataOfCamp(type, locations);
+		
+		campdtoList.forEach(cno -> {
+			avg.add(campService.countStar(cno.getCno()));
+			log.info(campService.countStar(cno.getCno()));
+		});
+		
 		log.info(campdtoList);
 
-		return new ResponseEntity<>(List.of(campdtoList, principalDetails.getMember()), HttpStatus.OK);
+		return new ResponseEntity<>(List.of(campdtoList, principalDetails.getMember(),avg), HttpStatus.OK);
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -170,12 +174,6 @@ public class CampRestController {
 		campService.remove(TableType.CAMPREVIEW, crno);
 
 		return new ResponseEntity<Long>(HttpStatus.OK);
-	}
-	
-	@PostMapping("/imgsave")
-	public ResponseEntity<String> saveImg(@RequestParam("thumbnail")MultipartFile[] files){
-		log.info(files);
-		return new ResponseEntity<String>(campService.saveImage(files)? HttpStatus.OK : HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 }
