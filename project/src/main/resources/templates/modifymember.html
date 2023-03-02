@@ -17,6 +17,8 @@
 	<script src="https://kit.fontawesome.com/bb87a5faf0.js" crossorigin="anonymous"></script>
 <!--css 연결-->
 	<link rel="stylesheet" type="text/css" href="../css/modifymember.css">
+	<link rel="stylesheet" type="text/css" href="../css/main.css">
+	<link rel="stylesheet" type="text/css" href="../css/header.css">
 	<!--js연결-->
 	<script type="text/javascript" src="../js/modifymember.js" defer></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -24,40 +26,9 @@
 
 <body>
 	<div class="container">
-		<!--====메인 header====-->
-		<header>
-			<div class="header box1">
-				<!--네비게이션 로고-->
-				<div class="header_logo box2">
-					<a class="box3" href="#"><img src="" alt="">
-						캠퍼스사진 </a>
+		<!-- header fragment -->
+		<div th:replace="~{fragments/header :: headerFragment}"></div>
 
-				</div>
-
-
-				<!--네비게이션 메뉴목록-->
-				<ul class="header_menu box2_2">
-					<li class="box3"><a class="item" href="">apple</a></li>
-					<li class="box3_3"><a class="item" href="">cherry</a></li>
-					<li class="box3_2"><a class="item" href="">banana</a></li>
-					<li class="box3_4"><a class="item" href="">melon</a></li>
-				</ul>
-
-				<!--우측 상단 마이페이지-->
-				<ul class="header_mypage box2_3">
-					<li class="box3">
-						<a href="" class="box3">
-							<i class="fa-solid fa-user item"></i>
-						</a>
-					</li>
-				</ul>
-
-				<!--햄버거 메뉴-->
-				<a href="#" class="header_hamburger box2_4">
-					<i class="fa-solid fa-bars item"></i>
-				</a>
-			</div>
-		</header>
 		<main>
 			<div class="body box1">
 				<!--메인 바디의 사이드 빈 공간왼쪽-->
@@ -164,25 +135,6 @@
 										회원탈퇴
 									</button>
 								</div>
-							
-						
-						
-
-
-
-
-						<!-- <a th:href="@{/sample/modify(id=${member.id})}">
-							<button type="button" name="modifypagebtn">조회하기</button>
-							</a>
-							<a th:href="@{/sample/mypage(id=${member.id})}">
-							<button type="button" name="mypagebtn">마이페이지로</button>
-							</a>
-							<a th:href="@{/sample/main(id=${member.id})}">
-							<button type="button" name="mainpagebtn">메인으로</button>
-							</a>     -->
-					<!-- </div> -->
-
-
 
 
 				</div>
@@ -194,22 +146,8 @@
 			</div>
 		</main>
 
-
-
-
-
-
-		<!--====푸터====-->
-		<footer>
-			<div class="footer box1">
-				푸터자리
-			</div>
-		</footer>
-
-
-	</div>
-
-
+<!-- footer fragment -->
+	<div th:replace="~{/fragments/footer :: footerFragment}"></div>
 </body>
 
 </html>
