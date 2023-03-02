@@ -98,9 +98,9 @@
                             <div class="cg_star item" id="item_star"><div id="sync_star">[[${detail.star}]]</div></div>
                         </div>
                         
-                        <div class="cg_heartbox box4" th:onclick="clickItemHeart('[[${detail.ino}]]')">
-                        	<div class="cg_heart item" id="item_heart">
-                        		<img calss="heartImg" sec:authorize="!isAuthenticated()" src="../img/empty_heart.png">
+                        <div class="cg_heartbox box4">
+                        	<div class="cg_heart item" id="item_heart" th:onclick="clickItemHeart('[[${detail.ino}]]')">
+                        		
                         		[[${detail.heart}]]
                         	</div>
                         </div>

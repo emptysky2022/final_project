@@ -117,6 +117,7 @@ function checkExtension(fileName, fileSize){
 
 //리뷰 목록 불러오기
 function loadJsonData(ino){
+	changeHeart(ino);	
 	let reviewGroup = $("#reviewGroup");
 	$.getJSON("/review/detail/" + ino, function(result){
 		const [reviews, member] = result;
@@ -173,16 +174,70 @@ function setStar(){
 }
 
 function clickItemHeart(ino){
+	const $heartdata = $("#item_heart").find(".heartImg").data("id");
+	if($heartdata){
+		console.log($heartdata)
 	$.ajax({
-		url: "/item/heart/" + ino,
-		contentType: "text/plain",
+		url: "/heart/remove",
+		contentType: "application/json",
+		method: "DELETE",
+		data: JSON.stringify({
+			hlno: Number($heartdata),
+			productType: "ITEM",
+			productNum: ino
+		}),
 		success: function(result){
-			console.log("result : " + result);
-			$("#item_heart").html(result);
+			console.log("안녕 친구들")
+			changeHeart(ino);
 		},
 		error: function(err){
-			console.log("로그인 후 이용하실수 있습니다.");
-			location.reload();
+			console.log("로그인 후 이용해주세요");
+		}
+	})
+		
+	}else{
+		console.log($heartdata)
+	$.ajax({
+		url: "/heart/save",
+		contentType: "application/json",
+		method: "POST",
+		data: JSON.stringify({
+			productType: "ITEM",
+			productNum: ino
+		}),
+		success: function(result){
+			console.log("안뇽 친구들")
+			changeHeart(ino);
+		},
+		error: function(err){
+			console.log("로그인 후 이용해주세요");
+		}
+	})
+	}
+}
+function changeHeart(ino){
+	console.log(ino)
+	const $heart = $("#item_heart");
+	$.ajax({
+		url: "/heart/getOne",
+		contentType: "application/json",
+		data: JSON.stringify({
+			productType: "ITEM",
+			productNum: ino
+		}),
+		method: "POST",
+		success: function(result){
+			console.log(result);
+			if(!result){
+				console.log("하트 널, 빈하트 넣어주기");
+				$heart.html('<img class="heartImg" src="../img/empty_heart.png">');
+			} else{
+				console.log("하트 낫널, 찬하트 넣어주기");
+				$heart.html('<img class="heartImg" src="../img/full_heart.png" data-id=' + result.hlno + '>');
+			}
+		},
+		error: function(err){
+			$heart.html('<img class="heartImg" src="../img/empty_heart.png">');
 		}
 	})
 }
