@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/security/tags">
 <head>
 <meta charset="UTF-8">
 </head>
@@ -45,21 +45,21 @@
 									<i class="postgroup fa-solid fa-comment"></i>
 									<a href="/sample/list">게시판</a>
 								</li>
-								<li class="loginbox">
+								<li class="loginbox"  sec:authorize ="isAnonymous()" >
 									<i class="login fa-solid fa-right-to-bracket"></i>
 									<a href="/login">로그인</a>
 								</li>
-								<li class="logoutbox">
+								<li class="logoutbox" sec:authorize ="isAuthenticated()">
 									<i class="logout fa-solid fa-right-from-bracket"></i>
 									<a href="/logout">로그아웃</a>
 								</li>
-								<li class="signupbox">
+								<li class="signupbox" sec:authorize ="isAnonymous()">
 									<i class="signup fa-solid fa-user-plus"></i>
 									<a href="/signup">회원가입</a>
 								</li>
-								<li class="readmemeberbox">
+								<li class="readmemeberbox" sec:authorize ="isAuthenticated()">
 									<i class="readmemeber fa-solid fa-user"></i>
-									<a href="#">내 정보</a>
+									<a href="/readmember">내 정보</a>
 								</li>
 							</ul>
 						</div>
@@ -77,11 +77,11 @@
 				<!-- 우측 상단 마이페이지 -->
 				<ul class="header_mypage box2">
 					<li class="signuplogbox box3">
-						<a class="login" href="/login">로그인</a>
-						<a class="logout" href="/logout">로그아웃</a>
-						<a href="../html/signup.html" class="signup box4">회원가입</a>
+						<a class="login"   sec:authorize ="isAnonymous()" href="/login">로그인</a>
+						<a class="logout"  sec:authorize ="isAuthenticated()" href="/logout">로그아웃</a>
+						<a class="signup box4"  sec:authorize ="isAnonymous()"  href="/signup">회원가입</a>
 						<!--내정보 페이지 링크 아이콘-->
-						<a class="readmemeberlinkbox" href="../html/readmemeber.html">
+						<a class="readmemeberlinkbox"  sec:authorize ="isAuthenticated()" href="/readmember">
 							<span class="readmemeber material-symbols-outlined">
 								person
 							</span>

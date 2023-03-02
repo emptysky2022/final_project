@@ -133,8 +133,9 @@ footer{
     width: auto;
     height: 100%;
     z-index: 99;
-    background-color: #5c585885;
+    background-color: #5c5858;
     padding: 1rem;
+    
 }
 
 /**/
@@ -230,11 +231,6 @@ footer{
   color: var(--color-a);
 }
 
-
-
-.header .header_mypage .readmemeberlinkbox{
-    display: none;
-}
 
 
 .sidebar_box{
@@ -438,16 +434,7 @@ footer {
   padding: 14px 20px;
 }
 
- /*로그인 안했을때 로그아웃 버튼, 내 정보 버튼 display:none으로 숨기기*/
- .sidebar_menu .menu .logoutbox{
-  display: none;
- }
 
- .sidebar_menu .menu .readmemeberbox{
-   display: none;
-  }
-
-  
 .sidebar_menu .menu i{
   color: #fff;
   font-size: 20px;
