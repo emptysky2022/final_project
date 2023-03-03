@@ -54,14 +54,17 @@ public class CampRestController {
 		return new ResponseEntity<String>(dto.getName(), HttpStatus.OK);
 	}
 	
-	@GetMapping(value = "list/{type}/{locations}/{page}")
-	public ResponseEntity<List<Object>> getListByCamp(@PathVariable("page") int page, @PathVariable("type") String[] type,
+	@GetMapping(value = "list/{type}/{locations}/{page}/{size}")
+	public ResponseEntity<List<Object>> getListByCamp(@PathVariable("page") int page,@PathVariable("size") int size,  @PathVariable("type") String[] type,
 			@PathVariable("locations") String[] locations, @AuthenticationPrincipal PrincipalDetails principalDetails) {
 		List<CampDTO> campdtoList = new ArrayList<>();
 		List<Double> avg = new ArrayList<>();
 		
 		PageRequestDTO dto = new PageRequestDTO();
 		dto.setPage(page);
+		dto.setSize(size);
+		
+		log.info(dto);
 			
 		 PageResultDTO<CampDTO, Object[]> boardDTO = campService.findManayDataOfCamp(dto, type, locations);
 
