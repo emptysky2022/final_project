@@ -86,7 +86,7 @@ body {
 
 .navimage{
     position: absolute;
-    height: 80vh;
+    height: 60vh;
 }
 
 .navimage img{
@@ -133,7 +133,7 @@ footer{
     width: auto;
     height: 100%;
     z-index: 99;
-    background-color: #5c5858;
+    background-color: #5c585885;
     padding: 1rem;
     
 }
