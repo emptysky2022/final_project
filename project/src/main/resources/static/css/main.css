@@ -73,7 +73,10 @@ swiper-button-next{
 	display:none;
 }
 
-
+section {
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
 
 /*첫번째 섹션나누기 상자*/
 .sectext1{

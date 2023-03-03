@@ -91,8 +91,8 @@ $(function() { // 보이기 | 숨기기
 
 $(function() { // 보이기 | 숨기기
   	$("#listlevel").click(function() { 
-	var location = document.querySelector(".sec4").offsetTop;
-  	window.scrollTo({top:location, behavior:'smooth'});
+	let location = document.querySelector(".sec4").offsetTop;
+  	scrollTo({ top: location, behavior: "smooth" });
   }); // 버튼 클릭시
 }); 
 
