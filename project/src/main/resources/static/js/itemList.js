@@ -15,6 +15,11 @@ $(function(){
         //팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
     });
     
+	$("#cart-popup").click(function(){
+        $("#cart-modal").css('display','flex').hide().fadeIn();
+        //팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
+    });
+    
 	
     
     $(".close").click(function(){
