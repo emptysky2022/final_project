@@ -4,18 +4,122 @@
 <meta charset="UTF-8">
 </head>
 <body>
-	
-	<section th:fragment="campGroundsSection1">
-	
-	</section>
-	
-	<section th:fragment="campGroundsSection2">
-	
-	</section>
-	
-	
-	
-	
 
+	<section th:fragment="campGroundsSection0">  </section>
+
+	<section th:fragment="campGroundsSection1">
+		<!----------------제목------------->
+		<div class="sec1 box3">
+			<div class="titlebox box4">
+				<div class="title item">Camp</div>
+			</div>
+		</div>
+
+		<!-------------------캠핑장 드롭다운메뉴--------------------->
+		<div class="sec2 box3">
+			<!--드롭다운메뉴-->
+			<div class="dropdowncampbox box4">
+				<div class="dropdown box5">
+					<a href="#" class="dropbtn item">캠핑종류</a>
+					<div class="subdropdown box7">
+						<div class="dropitem item">
+							<a href="#">와일드 캠핑</a>
+						</div>
+						<div class="dropitem item_2">
+							<a href="#">글램핑</a>
+						</div>
+						<div class="dropitem item_3">
+							<a href="#">오토캠핑장</a>
+						</div>
+						<div class="dropitem item_4">
+							<a href="#">oo캠핑장</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section th:fragment="campGroundsSection2">
+		<!--드롭다운 메뉴2-->
+		<div class="sec4 box3">
+			<!--드롭다운메뉴-->
+			<div class="dropdowncampingbox box4">
+				<div class="dropdown box5">
+					<a href="#" class="dropbtn item">정렬</a>
+					<div id="search" class="subdropdown box7">
+						<button id="type" class="dropitem item">조회순</button>
+						<button id="type" class="dropitem item_2">별점순</button>
+						<button id="type" class="dropitem item_3">최신순</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="campType">
+			<button id="type">일반</button>
+			<button id="type">카라반</button>
+			<button id="type">글램핑</button>
+			<button id="type">자동차</button>
+		</div>
+
+
+		<!--캠핑장 사진 및 평점-->
+		<a class="list-group replyList"> <!-- rest 로 들어옴 -->
+		</a>
+
+		<div class="sec5 box3 test">
+			<div class="sec5 box3">
+				<div class="campgroundsbox box4" th:each="camp : ${result}"
+					th:attr="onclick=|location.href='@{/camp/campgroundsdetail(cno=${camp.cno})}'|">
+					<input type="hidden" name="cno" th:value="${camp.cno}">
+					<div class="cg_imgbox box5">
+						<img class="cg_img item" th:src="${camp.thumbnail}">
+					</div>
+					<div class="cg_rightbox box4">
+						<div class="title item">[[${camp.name}]]</div>
+
+						<div class="cg_starbox item">
+							<div class="star item">[[${camp.heart}]]</div>
+						</div>
+
+						<div class="cg_explainbox box5">
+							<div class="explain item">[[${camp.address}]]</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 페이징 처리 시작 -->
+		<div class="pagingEl"></div>
+		<!-- 페이징 처리 끝 -->
+	</section>
+
+	<section th:fragment="campGroundsSection3">
+		<!--캠핑장 등록?-->
+		<div class="sec6 box3">
+
+			<div class="product_registration modal">
+				<div class="p_r_imgbox box5">
+					<img src="../img/happy12.jpg" class="p_r_img item">
+				</div>
+
+				<div class="p_r_title box5">캠핑장을 등록하세요</div>
+				<div class="p_r_content box5">좋은 상품</div>
+			</div>
+
+
+			<div class="p_explanbox box4">
+				<textarea class="explan item" name="explan" cols="30" rows="10"
+					placeholder="
+                          1.대충 설명하는글 
+                          2.대충 설명하는글 
+                          3.대충 설명하는글 
+                          4.대충 설명하는글"></textarea>
+			</div>
+		</div>
+	</section>
 </body>
 </html>

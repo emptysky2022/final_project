@@ -436,7 +436,7 @@ $(document).ready(function() {
 	}
 
 
-	function loadJSON() {
+	function loadJSON(x) {
 
 		console.log("프로그램 시작");
 
@@ -444,16 +444,17 @@ $(document).ready(function() {
 			type = "별점순"
 		}
 		console.log(page);
-		
-		
-		var url = '/camp/list/' + type + '/' + locations + '/' + page;
+
+		page = x || 1; // x or 1(x = null, undefined, 0)
+
+		var url = '/camp/list/' + type + '/' + locations + '/' + page + '/' + size;
 
 		$.getJSON(url, function(arr) {
 			listGroup.html("");
 			let str = "";
 			const [camp, member, avg] = arr;
 			console.log(camp);
-			
+
 			$.each(camp.dtoList, function(index, camp) {
 
 
@@ -512,7 +513,42 @@ $(document).ready(function() {
 
 			});
 			setStar();
+
+			const [result] = arr;
+			const { page: pageNum, prev: isPrev, next: isNext, end: endPage } = result;
+
+			console.log(pageNum);
+			console.log(isPrev);
+			console.log(isNext);
+			console.log(endPage);
+
+			let pagination = `<ul class="pagination h-100 justfy-content-center align-items-conter boardpage box5">`;
+
+			if (isPrev) {
+				pagination += `<li class="page-item">
+	    				       <a class="page-link bt_prev item_2" onclick="pageLoad()" tabindex="-1">이전</a>
+	    				   </li>`;
+			}
+
+			for (const value of camp.pageList) {
+				pagination += `<li class="page-item num ${value == page ? 'active' : ''}">
+	    				       <button class="rqwrqw" id=${value}>${value}</button>
+	    				       <input type="hidden" name="pageValue" value="${value}">
+	    				   </li>`;
+			}
+
+			if (isNext) {
+				pagination += `<li class="page-item num">
+	    				<a class="page-link" onclick="pageLoad(${endPage + 1})">다음</a><li></ul>`;
+			}
+
+
+			pagination += "</ul>"
+			page = $(".pagingEl").find("[name='pageValue']").val();
+			$paging.html(pagination);
+
 			listGroup.html(str);
+
 		});
 	};
 
@@ -624,7 +660,7 @@ $(document).ready(function() {
 	}
 
 	// 페이징 처리를 위한 부분 따로 모아둠 //////////////////////////////
-
+	const $paging = $(".pagingEl");
 	// 페이징 / 검색을 위해 url 따오는 것들(url param 추출)   
 	let urlStr = window.location.href;
 	console.log(urlStr);
@@ -634,14 +670,17 @@ $(document).ready(function() {
 
 	let urlParams = url.searchParams;
 	let page = urlParams.get('page');
-	let keyword = "";
-	
+	let size = 10;
 
 	// 리스트 첫 페이지에서 page 파라미터가 null이라서 페이지를 읽어오지 못함.
 	// if문으로 null 일 경우 1로 바꿔줌.
 	if (page == null) {
 		page = 1;
 	}
+
+	$paging.on("click", ".rqwrqw", function() {
+		loadJSON($(this).attr("id"));
+	});
 
 	loadJSON();
 });
