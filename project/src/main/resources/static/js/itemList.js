@@ -22,7 +22,7 @@ $(function(){
     
 	
     
-    $(".close").click(function(){
+    $("#close").click(function(){
 		console.log('클릭은 되나')
         modalClose(); //모달 닫기 함수 호출
     });
@@ -128,6 +128,7 @@ $(function(){
 function modalClose(){
     $("#cart-popup").fadeOut(); //페이드아웃 효과
     $("#item-popup").fadeOut(); //페이드아웃 효과
+    $("#popup").fadeOut(); //페이드아웃 효과    
 }
 
 function cartModal(){

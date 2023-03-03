@@ -89,14 +89,14 @@ $(function(){
         $("#popup").css('display','flex').hide().fadeIn();
         //팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
     });
-    $("#close").click(function(){
+    $(".close").click(function(){
         modalClose(); //모달 닫기 함수 호출
     });
     loadJsonData(ino);
 })
 function modalClose(){
-    $("#popup").fadeOut(); //페이드아웃 효과
-
+    $("#popup").fadeOut(); //페이드아웃 효과    
+    console.log($("#popup").html())
     
 }
 
