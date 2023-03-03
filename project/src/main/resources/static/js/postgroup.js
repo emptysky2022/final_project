@@ -318,9 +318,10 @@ async function loadReadData(bno) {
 
 
 // 게시글 수정하기 함수
-function loadModifyData(bno, nickname){
+function loadModifyData(bno){
 	
-    let modifyBoard = $("#modifyBoard");
+    let $modifyBoard = $("#modifyBoard");
+    
     $.getJSON("/sample/list/" + bno, function(readInfo){
         console.log(readInfo);
         
@@ -346,7 +347,15 @@ function loadModifyData(bno, nickname){
         
         	
         
-        modifyBoard.html(str);
+        $modifyBoard.html(str);
+        
+        $modifyBoard.ready(function() {
+			let scrollTop = $(window).scrollTop();
+			
+			var captionTop = $("#boardModifyForm").offset().top;
+			
+			$('html, body').animate({scrollTop:captionTop}, 600);		
+		})
         console.log("modify form read");
     })
 }
@@ -354,8 +363,6 @@ function loadModifyData(bno, nickname){
 // 게시판 수정하기 버튼 눌렸을 때 작동하는 함수
 $(document).on("click", "#boardModify", function(){
 
-	toggleBtn3();
-	
 	var bno = $("#modifyBno").val();
     var board = {
         bno: bno,
@@ -439,6 +446,7 @@ async function loadReadRepliesData(bno, rno) {
                             </div>  
                             <div class="commentdetailbox">  
                                 <div class="commentdetail replyContentBox" id="content${reply.rno}">${reply.content}</div>  
+                                <div id="inputContent${reply.rno}"></div>
                                 <input type="hidden" name="showReplyContent${reply.rno}" value="${reply.content}">  
                             </div>
                         </div>  
@@ -453,6 +461,7 @@ async function loadReadRepliesData(bno, rno) {
 
       repliesListRE.html(str);
       $(".modifyReplyContent").hide();
+      $("#inputContent" + rno).hide();
       
       $.each(replyResult, function(idx, reply) {
 	      hideModifyButton(reply.rno, reply.replyer);	
@@ -523,9 +532,14 @@ function removeReply(bno, rno) {
 // '댓글수정' 버튼 함수
 function modifyReply(bno, rno) {
 	
-	$("#content" + rno).html(
+	$("#content" + rno).hide();
+	$("#inputCotent" + rno).show();
+	
+	const replyContent = $("#content" + rno).val();
+	
+	$("#inputContent" + rno).html(
 		`<div id="modifyContentDiv">
-			<input type="text" id="modifyContentBox" placeholder="수정할 내용을 입력하세요.">
+			<input type="text" id="modifyContentBox" placeholder="${replyContent}">
 		 	<div id="contentBtn">
 		 		<button type="button" id="modifyContentBtn" onclick="modifyContentBox(${rno})">수정하기</button>
 		 		<button type="button" id="cancelContentBtn" onclick="cancelModify(${rno})">취소</button>
@@ -536,9 +550,9 @@ function modifyReply(bno, rno) {
 
 // 댓글 수정 '취소' 버튼
 function cancelModify(rno) {
-	const showReplyContent = $("#showReplyContent" + rno).val();
+	$("inputContent" + rno).hide();
 	
-	$("#content" + rno).html(showReplyContent);
+	$("#content" + rno).show();
 }
 
 
