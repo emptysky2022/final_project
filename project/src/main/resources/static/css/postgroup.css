@@ -204,6 +204,9 @@ td.num.item {
    width: 35%;
    padding-right: 10px;
    border-right: 1px dashed #DCDCDC;
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
 }
 
 .writer.item_3 {
@@ -236,11 +239,11 @@ td.num.item {
 
   .boardlist .writer {
     width: 15%;
-    text-align: end;
+    text-align: center;
   }
 
   .boardlist .title {
-    width: 70%;
+    width: 45%;
     text-align: left;
   }
 
