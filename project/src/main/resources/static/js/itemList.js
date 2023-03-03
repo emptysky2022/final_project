@@ -1,7 +1,11 @@
 let itemDTO;
 let imageStr = '';
 let page = new URLSearchParams(document.location.search).get('page');
-let condition = '';
+let condition = {
+	category:'',
+	keyword:'',
+	type:''
+};
 $(function(){
 	console.log("document ready")
 	$("#item-modal-open").click(function(){
@@ -324,16 +328,17 @@ function checkExtension(fileName, fileSize){
 
 function search(category, keyword, type, value){
 	condition = {
-		category: category,
-		keyword: keyword,
-		type: type
+		category: category?category:condition.category,
+		keyword: keyword.value?keyword.value:condition.keyword,
+		type: type?type:condition.type
 	}
+	console.log(condition)
 	if(category){		
-		$(".tent :button[value='" + category + "']").css('background-color', 'rgb(0, 98, 204)');
+		$(".tent :button").css('background-color', 'rgb(162, 196, 225)');
 		$(".tent :button[value='" + category + "']").css('background-color', 'rgb(0, 98, 204)');
 	}
 	let list = $("#list");
-	$.getJSON("/item/list/data?category="+category+"&keyword="+keyword+"&type="+type+"&page="+value+"&size=16", function(result){
+	$.getJSON("/item/list/data?category="+condition.category+"&keyword="+condition.keyword+"&type="+condition.type+"&page="+value+"&size=16", function(result){
 		let str = "";
 		console.log(result)
 		const [pageDTO, member] = result
