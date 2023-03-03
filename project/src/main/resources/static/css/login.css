@@ -125,6 +125,12 @@ body .container{
    
 }
 
+<!-- 왜 안먹는지 모름 -->
+ .alert{
+	color : red;
+	font-size:2.0rem;
+}
+
 
 /*sec1 제목라인*/
 .sec1 {
@@ -251,8 +257,6 @@ body .container{
   .logintitle{
     display: none;
   }
-
- 
 
   .id_passbox{
     align-items: center;
@@ -664,7 +668,6 @@ transition: all 0.2s ease;
     .ph_emboxbox {
       flex-direction: column;
     }
-
    
   }
   

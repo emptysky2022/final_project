@@ -43,41 +43,47 @@
 				</div>
 
 
-
+			<form th:action ="@{/loginProc}" method="post">
 				<div class="sec2 box1">
 					<div class="logintitlebox box2">
 						<div class="logintitle_mobile item_2">campers 로그인</div>
 						<div class="logintitle item_2">campers 아이디 로그인</div>
 					</div>
 
-
+				
 					<table class="id_passbox box2">
 						<tr class="idbox box3">
 							<td class="idtext item">아이디
 							</td>
 							<td class="inputtd">
-							<input type="text" class="id item_2" name="id" placeholder="아이디를 입력하세요">
+							<input type="text" class="id item_2" name="username" placeholder="아이디를 입력하세요">
 							</td>
 						</tr>
 						<tr class="passwordbox box3">
 							<td class="passwordtext item">비밀번호
 							</td>
-							<td class="inputtd"><input type="password" class="password item" name="pass" placeholder="비밀번호를 입력하세요">
+							<td class="inputtd"><input type="password" class="password item" name="password" placeholder="비밀번호를 입력하세요">
 							</td>
 						</tr>
+					
 					</table>
+					<div th:if="${param.error}">
+            			<div class="alert">사용자ID 또는 비밀번호를 확인해 주세요.</div>
+        			</div>
+					
 					<div class="find_accountbox box3">
 						<a href="" class="findaccount item"> 계정 찾기 </a>
 					</div>
 					<div class="login_rg_box box2">
 
 						<div class="loginbuttonbox box3">
-							<div class="loginbutton item">로그인</div>
+							<input type="submit"  class="loginbutton item" value="로그인"></input>
 						</div>
+					</form>
 						<div class="registerlinkbox box3">
 							<div class="registertext item">아직 회원가입을 하지 않으셨나요?</div>
 							<div class="registers box4">
-								<a class="a item" href="">회원가입</a>
+								<a class="a item" href="/signup">회원가입</a>
 							</div>
 						</div>
 					</div>

@@ -2,12 +2,19 @@ package com.campers.camfp.repository.camp;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.print.DocFlavor.READER;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;
@@ -20,6 +27,7 @@ import com.campers.camfp.entity.camp.QCamp;
 import com.campers.camfp.entity.camp.QCampCalender;
 import com.campers.camfp.entity.camp.QCampReview;
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Order;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
@@ -57,7 +65,7 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 			camp.fetch();
 			data = camp.fetch();
 
-			break;   
+			break;
 
 		default:
 			log.info("알수 없는 데이터 형식입니다 해당 데이터 는 table 에 없습니다. tableType : " + table);
@@ -80,10 +88,13 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 			camp.select(Q_CAMP);
 			camp.from(Q_CAMP);
 			if (findType == "조회순") {
-				camp.orderBy(Q_CAMP.heart.desc());
+				camp.orderBy(Q_CAMP.count.desc());
 			}
 			if (findType == "별점순") {
-				camp.orderBy(Q_CAMP.count.desc());
+				camp.orderBy(Q_CAMP.star.desc());
+			}
+			if (findType == "하트순") {
+				camp.orderBy(Q_CAMP.heart.desc());
 			}
 			camp.limit(count);
 			data = camp.fetch();
@@ -180,7 +191,7 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 
 	@Override
 	@Transactional
-	public void addData(TableType table, Long no, String addData) {
+	public void addData(TableType table, Long no, String addData, int num) {
 
 		JPAUpdateClause update;
 
@@ -194,15 +205,15 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 			switch (addData) {
 
 			case "count":
-				update.set(Q_CAMP.count, findData(table, no, addData) + 1).where(Q_CAMP.cno.eq(no)).execute();
+				update.set(Q_CAMP.count, findData(table, no, addData) + num).where(Q_CAMP.cno.eq(no)).execute();
 				break;
 
 			case "heart":
-				update.set(Q_CAMP.heart, findData(table, no, addData) + 1).where(Q_CAMP.cno.eq(no)).execute();
+				update.set(Q_CAMP.heart, findData(table, no, addData) + num).where(Q_CAMP.cno.eq(no)).execute();
 				break;
 
 			case "star":
-				update.set(Q_CAMP.star, findData(table, no, addData) + 1).where(Q_CAMP.cno.eq(no)).execute();
+				update.set(Q_CAMP.star, findData(table, no, addData) + num).where(Q_CAMP.cno.eq(no)).execute();
 				break;
 
 			}
@@ -311,16 +322,33 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public List<Camp> findManayDataOfCamp(String[] findDatas, String[] findLocations) {
+	public Page<Object[]> findManayDataOfCamp(String[] findDatas, String[] findLocations, Pageable pageable) {
 
 		List<Camp> data = new ArrayList<>();
 		BooleanBuilder conditionBuilder = new BooleanBuilder();
 		BooleanBuilder conditionLocaitonBuilder = new BooleanBuilder();
 		OrderSpecifier<?> direction = null;
 
+		JPQLQuery<Tuple> tuple = from(Q_CAMP).select(Q_CAMP.cno 
+												    ,Q_CAMP.member.mno
+													 , Q_CAMP.name
+													 , Q_CAMP.thumbnail
+													 , Q_CAMP.location
+													 , Q_CAMP.camptype
+													 , Q_CAMP.campintroduce
+													 , Q_CAMP.address
+													 , Q_CAMP.unit
+													 , Q_CAMP.count
+													 , Q_CAMP.star
+													 , Q_CAMP.heart);
+		
+		
 		JPQLQuery<Camp> camp = from(Q_CAMP);
 		camp.select(Q_CAMP);
 		camp.from(Q_CAMP);
+		
+		
+
 
 		// 정렬 방식을 정하지 못했을 경우 넣어줌 default 값
 		log.info(findLocations[0]);
@@ -385,11 +413,15 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 			conditionBuilder.or(QCamp.camp.camptype.contains("자동차"));
 		}
 
-		data = camp.where(conditionBuilder.and(conditionLocaitonBuilder))
-				.orderBy(direction)
-				.limit(6)
-				.fetch();
-
-		return data;
+		tuple.where(conditionBuilder.and(conditionLocaitonBuilder))
+				.orderBy(direction).offset(pageable.getOffset()).limit(pageable.getPageSize()).fetch();
+		
+		 List<Tuple> result = tuple.fetch(); // 검색 결과 리스트
+	      log.info("result : " + result);   
+	      
+	      long count = tuple.fetchCount();
+	      log.info("count : " + count);
+	      
+		return new PageImpl<Object[]>(tuple.stream().map(Tuple::toArray).collect(Collectors.toList()), pageable, count);
 	}
 }

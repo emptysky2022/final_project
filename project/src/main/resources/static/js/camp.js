@@ -10,6 +10,7 @@ $(document).ready(function() {
 	var campType = [];
 	let makeCamp = "";
 	let Camp = "";
+	let imgpath = "";
 
 	// 검색 타입
 	let searchType = "";
@@ -437,28 +438,43 @@ $(document).ready(function() {
 
 	function loadJSON() {
 
+		console.log("프로그램 시작");
+
 		if (type == "") {
 			type = "별점순"
 		}
-		var url = '/camp/list/' + type + '/' + locations;
+		console.log(page);
+		
+		
+		var url = '/camp/list/' + type + '/' + locations + '/' + page;
 
 		$.getJSON(url, function(arr) {
 			listGroup.html("");
 			let str = "";
-			const [camp, member] = arr;
-			$.each(camp, function(index, camp) {
+			const [camp, member, avg] = arr;
+			console.log(camp);
+			
+			$.each(camp.dtoList, function(index, camp) {
 
 
 				str += "<div class='campgroundsbox box'>";
 				str += "<input type = 'hidden' name='cno' th:value ='" + camp.cno + "''>";
 				str += "<div class='cg_imgbox box5' onclick='location.href=\"/camp/campgroundsdetail?cno=" + camp.cno + "\"''>";
-				str += "<img class='cg_img item' src=" + camp.thumbnail + ">";
+
+				try {
+					var image = camp.thumbnail.split(",");
+					str += "<img class='cg_img item' src=/display?fileName=" + image[0] + "&folderType=camp>";
+				} catch {
+					str += "<img class='cg_img item' src=/display?fileName=" + "" + "&folderType=camp>";
+				}
+
+
 				str += "</div>";
 				str += "<div class='cg_rightbox box4'>"
 				str += "<div class='title item'>" + camp.name + "</div>";
 				str += "<div class='cg_starbox item'>";
-				str += "<div class='star item'>" + getStar(camp.star) + "  (" + (camp.count) + ")</div>";
 
+				str += "<div class='star item'>" + getStar(avg[index]) + "  (" + (avg[index]) + ")</div>";
 
 				str += "</div>";
 				str += "<div class='cg_explainbox box5'>";
@@ -495,6 +511,7 @@ $(document).ready(function() {
 
 
 			});
+			setStar();
 			listGroup.html(str);
 		});
 	};
@@ -549,7 +566,44 @@ $(document).ready(function() {
 		}).responseText
 	}
 
+	$("#thumbnail").on("change", function() {
+		var formData = new FormData();
+		var files = $("#thumbnail")[0].files;
+		console.log(files);
+
+		for (var i = 0; i < files.length; i++) {
+			console.log(files[i].name);
+			formData.append("uploadFiles", files[i]);
+		}
+		formData.append("webPath", "camp");
+		var i = 0;
+		$.ajax({
+			url: "/uploadAjax",
+			processData: false, // 데이터 처리하지 않음
+			contentType: false, // 컨텐츠 타입을 false로 설정하여 FormData가 알아서 설정하도록 함
+			method: "POST",
+			data: formData,
+			dataType: "json",
+			success: function(result) {
+				result.forEach(data => {
+					if (i == 0) {
+						imgpath = data.uuid + "_" + data.fileName;
+					} else {
+						imgpath += "," + data.uuid + "_" + data.fileName;
+					}
+					i++;
+				})
+
+			},
+			error: function(xhr, text, errorThrown) {
+				console.log(text);
+			}
+		})
+	});
+
+
 	function funcCampRegister() {
+		console.log(imgpath);
 		$.ajax({
 			url: "/camp/register",
 			contentType: "application/json",
@@ -560,13 +614,33 @@ $(document).ready(function() {
 				campintroduce: $(".campintorduce").val(),
 				camptype: makeCamp,
 				location: makeLocation,
-				thumbnail: "test.jpg"
+				thumbnail: imgpath
 			}), success: function(result) {
 				alert(result);
 			}, fail: function(result) {
 				alert(result);
 			}
 		})
+	}
+
+	// 페이징 처리를 위한 부분 따로 모아둠 //////////////////////////////
+
+	// 페이징 / 검색을 위해 url 따오는 것들(url param 추출)   
+	let urlStr = window.location.href;
+	console.log(urlStr);
+
+	let url = new URL(urlStr);
+	console.log(urlStr);
+
+	let urlParams = url.searchParams;
+	let page = urlParams.get('page');
+	let keyword = "";
+	
+
+	// 리스트 첫 페이지에서 page 파라미터가 null이라서 페이지를 읽어오지 못함.
+	// if문으로 null 일 경우 1로 바꿔줌.
+	if (page == null) {
+		page = 1;
 	}
 
 	loadJSON();

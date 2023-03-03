@@ -523,6 +523,7 @@ $(document).ready(function() {
 		}
 
 	};
+	
 	function loadJSON() {
 		$.getJSON('/camp/reply/list/' + cno, function(arr) {
 
@@ -583,6 +584,7 @@ $(document).ready(function() {
 				str += "</div>";
 
 			})
+			setStar();
 			listGroup.html(str);
 		})
 	};
@@ -685,8 +687,9 @@ $(document).ready(function() {
 
 		$.ajax({
 			url: "/camp/review/" + Number(crno),
-			method: "DELETE"
-		})
+			method: "DELETE",
+			success: loadJSON()
+		}) 
 	}
 
 	async function getReview(crno) {
@@ -699,30 +702,27 @@ $(document).ready(function() {
 		var heart = result.heart;
 		var star = result.star;
 		var content = result.content;
-		
-		console.log(content);
-		console.log(star);
-		console.log(content);
+		console.log(getStar(star));
 
 		$("#modify-content").val(content);
-		$("#modify-select_star").val(star);
+		$("#modify-select_star").val(getStar(star));
 		$(".crno").val(crno);
 		$(".regdate").val(regdate);
 		$(".heart").val(heart);
 	}
 	
 	function replyModify(crno){
-		console.log($("#modify-content").val());
+		console.log($("#modify-select_star").val());
 		$.ajax({
-			url : "/review/modify",
+			url : "/camp/reply/modify",
 			contentType : "application/json",
 			method : "PUT",
 			data : JSON.stringify({
-				cno : $(".sec3 .sec4").attr('id'),
+				cno : cno,
 				crno : crno,
 				capture : $("#modify-picture").val(),
 				content : $("#modify-content").val(),
-				star : $("#modify-select_star").val(),
+				star 	: $("#modify-select_star").data('starrr').options.rating,
 				regdate : $(".regdate").val()
 			})
 		})

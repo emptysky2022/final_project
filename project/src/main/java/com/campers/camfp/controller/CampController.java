@@ -54,8 +54,8 @@ public class CampController {
 
 		CampDTO campdto = (CampDTO) campService.findbyId(TableType.CAMP, cno);
 		
-		// camp 조회수 늘리기
-		campService.addData(TableType.CAMP, cno, "count");
+		// camp 조회수 늘리기 조회수라 1 올림
+		campService.addData(TableType.CAMP, cno, "count", 1);
 		
 		// camp data 가져오기
 		String[] data = {"조회순"};
@@ -63,6 +63,7 @@ public class CampController {
 			calenderList.add((CampCalenderDTO) value);
 		});
 		
+		model.addAttribute("avg", campService.countStar(cno));
 		model.addAttribute("result", campdto);
 		model.addAttribute("calender", calenderList);
 		log.info(campdto);

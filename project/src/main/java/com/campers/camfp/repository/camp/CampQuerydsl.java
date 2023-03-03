@@ -1,7 +1,10 @@
 package com.campers.camfp.repository.camp;
 
 import java.util.List;
+import java.util.Map;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.campers.camfp.config.type.TableType;
@@ -46,17 +49,19 @@ public interface CampQuerydsl {
 	  * @param findLocations camp 지역 <br>
 	  * @return List<Camp> 부득이하게 camp 만 너무 많은 로직이 들어간 데이터가 필요해서 camp 형식으로 작성함.
 	  */
-	public List<Camp> findManayDataOfCamp(String[] findDatas, String[] findLocations);
+	public Page<Object[]> findManayDataOfCamp(String[] findDatas, String[] findLocations, Pageable pageable);
 	
 	 /** 
 	  * @param addData 더할 데이터 ex)count , heart, star 명 <br>
 	  * @param no 해당 캠프타입 번호 <br>
+	  * @param num 얼만큼 더할지 <br>
 	  * @return List<?> List WildCard
 	  */
-	public void addData(TableType table, Long no, String addData);
+	public void addData(TableType table, Long no, String addData, int num);
 	
 	
 	public int findData(TableType table, Long no, String findData);
+
 	
 }
 	
