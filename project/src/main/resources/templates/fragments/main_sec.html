@@ -2,31 +2,32 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+
+	<!--swiper-->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+	<!-- Swiper JS -->
+	<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js" defer></script>
 </head>
 <body>
 
 <section th:fragment="section1Fragment">
-
-	        <!----------------캠핑 판매물품 박스------------->
-	        <div class="cp box3 ">
-	            <div class="cp_textbox">
-	
-	                <h1 class="cp_title item "> 캠핑 용품</h1>
-	                <p class="cp_comment item2"> 베스트 인기 상품 Lorem ipsum dolor sit amet consectetur adipisicing
-	                    elit. Unde molestiae, minima iure provident culpa, soluta expedita autem numquam sequi
-	                    excepturi nam cupiditate architecto earum veniam blanditiis voluptatum eveniet quisquam
-	                    quos.</p>
-	                <a class="cp_link" href="">캠핑 물품 구매</a><br>
-	            </div>
-	
-	            <div class="cp_imgbox box5">
-	                <a class="cp_link item" href="">
-	                    <img class="cp_img item" src="../img/family4.jpg" >
-	                </a>
-	            </div>
-	
-	        </div>
-
+	<div class="cp box3 swit">
+		        <div class="cp_textbox">
+			
+		            <h1 class="cp_title item "> 캠핑 용품</h1>
+		            <p class="cp_comment item2" >ㅁㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㄹㅇ</p>
+		            <a class="cp_link" href="/item/list">캠핑 물품 구매</a><br>
+		        </div>
+		
+		        <div class="cp_imgbox box5">
+		            <a class="cp_link item" href="">
+		            </a>
+		        </div>
+		
+		    </div>
+	<div id="sec1-container">	
+	<script src="../js/sec1.js"></script>
+	</div>
 </section>
 
 <section th:fragment="section2Fragment">

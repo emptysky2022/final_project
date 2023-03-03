@@ -6,6 +6,8 @@
 <body>
 
 <header th:fragment="headerFragment">
+	<link rel="stylesheet" type="text/css" href="../css/cart.css">
+    <script type="text/javascript" src="../js/itemList.js" defer></script>	
 	<div class="header box1">
 				<!-- 네비게이션 로고 -->
 				<div class="header_logomenu box2">
@@ -86,6 +88,9 @@
 								person
 							</span>
 						</a>
+						<a class="cart-popup">
+							<img src="../img/shoppingcart.png">
+						</a>
 					</li>
 
 				</ul>
@@ -94,6 +99,43 @@
 	
 
 </header>
+
+<div th:fragment="cartFragment">
+	<div class="popup-wrap" id="cart-modal">
+        <!--실질적 모달팝업-->
+        <div class="popup">
+            <!--로고 영역-->
+            <div class="popup-head">
+                <span class="head-title"> 로고</span>
+            </div>
+            <!--컨텐츠 영역-->
+            <div class="popup-body">
+                <div class="body-content">
+                    <div class="body-titlebox">장바구니</div>
+                    <hr>
+                    <div class="body-contentbox">
+                        <table>
+                        </table>
+                        <div class="sumbox">
+                            <div class="sumcount" id="cartCount"></div>
+                            <div class="sumprice" id="txt_getChkList"></div>
+                        </div>
+
+                        <div class="btnbox">
+                            <div class="delete" onclick="deleteCart()">선택 상품 삭제</div>
+                            <div class="selectorder" onclick="orderCart()">선택 상품 주문</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--푸터 버튼 영역-->
+            <div class="popup-foot">
+                <span class="pop-btn close" id="cart-close">창 닫기</span>
+                <span class="pop-btn confirm">임시저장</span>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
