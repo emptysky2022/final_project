@@ -1,21 +1,5 @@
-:root {
-    --font-size-lg: clamp(2rem, 4vw, 3.5rem);
-    --font-size-md: clamp(1.5rem, 3vw, 2.5rem);
-    --font-size-sm: clamp(1rem, 2vw, 1.5rem);
-    --font-size-vm: clamp(1px, 10px, 1.2rem)
-}
-
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing: border-box;
-  }
   p{
     margin-top:10px;
-  }
-  .container{
-    width:100%;
   }
   .modal-btn-box{
     width:100%;
@@ -29,6 +13,7 @@
     border:1px solid #e1e1e1;
     cursor:pointer;
     padding-top:8px;
+    margin-bottom: 15px;
   }
 
 /*모달을 감쌀 박스의 css*/
@@ -64,7 +49,8 @@
     display:flex; /*로고 이미지나 텍스트를 중앙 정렬하기 위한 flex 및 정렬*/
     align-items:center;
     justify-content:center;
-    
+    min-height: 50px;
+    max-height: 100px;
     color: #ffffff;
   }
 
