@@ -22,7 +22,7 @@ blockquote {
 }
 
 a {
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-vm);
 }
 
 
@@ -475,14 +475,14 @@ flex-basis: 20%;
 }
 
 .dropdownbox>.dropdown:hover .subdropdown {
-    height: 13rem;
+    height: 11rem;
     /*서브메뉴 li한개의 높이 50*5*/
     transition-duration: 1s;
     display: block;
 }
 
 .dropitem {
-    line-height: 50px;
+    line-height: 25px;
 
 }
 
@@ -710,7 +710,52 @@ flex-basis: 20%;
         align-items: center;
     }
 }
+button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+  background-color: #A2C4E1;
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
 
+/* 버튼 호버 스타일 */
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #0062cc;
+}
+
+/* 버튼 액티브 스타일 */
+button:active {	
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.custom-file-upload {
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  color: #fff;
+  background-color: #A2C4E1;
+  border-radius: 30px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.custom-file-upload:hover {
+  background-color: #0062cc;
+}
+
+.custom-file-upload i {
+  margin-right: 5px;
+}
 
 .footer {
     color: aliceblue;

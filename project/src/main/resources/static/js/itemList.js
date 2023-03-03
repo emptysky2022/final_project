@@ -328,6 +328,10 @@ function search(category, keyword, type, value){
 		keyword: keyword,
 		type: type
 	}
+	if(category){		
+		$(".tent :button[value='" + category + "']").css('background-color', 'rgb(0, 98, 204)');
+		$(".tent :button[value='" + category + "']").css('background-color', 'rgb(0, 98, 204)');
+	}
 	let list = $("#list");
 	$.getJSON("/item/list/data?category="+category+"&keyword="+keyword+"&type="+type+"&page="+value+"&size=16", function(result){
 		let str = "";

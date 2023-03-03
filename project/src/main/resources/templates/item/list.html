@@ -74,7 +74,6 @@
             <div class="aside_l box2">aside_l</div>
 
 
-
             <!--메인 바디 가운데 공간-->
             <div class="body_center box2">
 
@@ -89,26 +88,25 @@
 
                     <div class="producttypebox box4">
                         <div class="allselect item">카테고리</div>
-                        <h1 sec:authorize="!isAuthenticated()">이스터에그</h1>
                         <div class="tent box5">
-                            <div class="tentitem1 item">돔 텐트</div>
-                            <div class="tentitem2 item_2">리빙쉘 텐트</div>
-                            <div class="tentitem3 item_3">터널형 텐트</div>
+                            <button class="tentitem1 item" value="취사용품" onclick="search('취사용품','','',1)">취사용품</button>
+                            <button class="tentitem2 item_2" value="랜턴" onclick="search('랜턴','','',1)">랜턴</button>
+                            <button class="tentitem3 item_3" value="캠핑가구" onclick="search('캠핑가구','','',1)">캠핑가구</button>
                         </div>
-                        <div class="pole box5">
-                            <div class="poleitem1 item">스틸</div>
-                            <div class="poleitem2 item_2">알루미늄</div>
-                            <div class="poleitem3 item_3">화이버 글라스</div>
+                        <div class="tent box5">
+                            <button class="tentitem1 item" value="기타캠핑용품" onclick="search('기타캠핑용품','','',1)">기타캠핑용품</button>
+                            <button class="tentitem1 item_2" value="텐트" onclick="search('텐트','','',1)">텐트</button>
+                            <button class="tentitem1 item_3" value="캠핑매트" onclick="search('캠핑매트','','',1)">캠핑매트</button>
                         </div>
-                        <div class="hammer box5">
-                            <div class="hammeritem1 item">나무망치</div>
-                            <div class="hammeritem2 item_2">쇠망치</div>
-                            <div class="hammeritem3 item_3">우레탄(고무)망치</div>
+                        <div class="tent box5">
+                            <button class="tentitem1 item" value="아이스박스" onclick="search('아이스박스','','',1)">아이스박스</button>
+                            <button class="tentitem1 item_2" value="침낭" onclick="search('침낭','','',1)">침낭</button>
+                            <button class="tentitem1 item_3" value="텐트/타프용품" onclick="search('텐트/타프용품','','',1)">텐트/타프용품</button>
                         </div>
-                        <div class="caravan box5">
-                            <div class="caravanitem1 item">카고 트레일러</div>
-                            <div class="caravanitem2 item_2">폴딩 트레일러</div>
-                            <div class="caravanitem3 item_3">일반 캠핑 트레일러</div>
+                        <div class="tent box5">
+                            <button class="tentitem1 item" value="타프" onclick="search('타프','','',1)">타프</button>
+                            <button class="tentitem1 item_2" value="천막" onclick="search('천막','','',1)">천막</button>
+                            <button class="tentitem1 item_3" value="캠핑왜건" onclick="search('캠핑왜건','','',1)">캠핑왜건</button>
                         </div>
                     </div>
                     <hr>
@@ -131,10 +129,10 @@
                             <div class="dropdown box6">
                                 <a href="#" class="dropbtn item">정렬</a>
                                 <div class="subdropdown box7">
-                                    <div class="dropitem item" onclick="search('', '', 'count', 1)"><a>조회순</a></div>
-                                    <div class="dropitem item_2" onclick="search('', '', 'heart', 1)"><a>찜순위</a></div>
-                                    <div class="dropitem item_3" onclick="search('', '', 'price', 1)"><a>가격순</a></div>
-                                    <div class="dropitem item_4" onclick="search('', '', '', 1)"><a>최신순</a></div>
+                                    <button class="dropitem item" onclick="search('', '', 'count', 1)"><a>조회순</a></button>
+                                    <button class="dropitem item_2" onclick="search('', '', 'heart', 1)"><a>찜순위</a></button>
+                                    <button class="dropitem item_3" onclick="search('', '', 'price', 1)"><a>가격순</a></button>
+                                    <button class="dropitem item_4" onclick="search('', '', '', 1)"><a>최신순</a></button>
                                 </div>
                             </div>
                         </div>
