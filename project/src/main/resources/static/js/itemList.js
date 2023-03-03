@@ -1,5 +1,11 @@
 let itemDTO;
 let imageStr = '';
+let page = new URLSearchParams(document.location.search).get('page');
+let condition = {
+	category:'',
+	keyword:'',
+	type:''
+};
 $(function(){
 	console.log("document ready")
 	$("#item-modal-open").click(function(){
@@ -9,9 +15,14 @@ $(function(){
         //팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
     });
     
+	$("#cart-popup").click(function(){
+        $("#cart-modal").css('display','flex').hide().fadeIn();
+        //팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
+    });
+    
 	
     
-    $(".close").click(function(){
+    $("#close").click(function(){
 		console.log('클릭은 되나')
         modalClose(); //모달 닫기 함수 호출
     });
@@ -60,7 +71,7 @@ $(function(){
 				console.log(ino + "통과!")
 				$("#link").val("");
 				$("#capture").val("");
-				search('','','');
+				search('','','', 1);
 			}
 		})       
     });
@@ -109,7 +120,7 @@ $(function(){
 		});
 	});
     
-	search('','','');
+	search('','','', 1);
 })
 
 
@@ -117,6 +128,7 @@ $(function(){
 function modalClose(){
     $("#cart-popup").fadeOut(); //페이드아웃 효과
     $("#item-popup").fadeOut(); //페이드아웃 효과
+    $("#popup").fadeOut(); //페이드아웃 효과    
 }
 
 function cartModal(){
@@ -320,9 +332,19 @@ function checkExtension(fileName, fileSize){
 	return true;
 }
 
-function search(category, keyword, type){
+function search(category, keyword, type, value){
+	condition = {
+		category: category?category:condition.category,
+		keyword: keyword.value?keyword.value:condition.keyword,
+		type: type?type:condition.type
+	}
+	console.log(condition)
+	if(category){		
+		$(".tent :button").css('background-color', 'rgb(162, 196, 225)');
+		$(".tent :button[value='" + category + "']").css('background-color', 'rgb(0, 98, 204)');
+	}
 	let list = $("#list");
-	$.getJSON("/item/list/data?category="+category+"&keyword="+keyword+"&type="+type, function(result){
+	$.getJSON("/item/list/data?category="+condition.category+"&keyword="+condition.keyword+"&type="+condition.type+"&page="+value+"&size=16", function(result){
 		let str = "";
 		console.log(result)
 		const [pageDTO, member] = result
@@ -347,13 +369,45 @@ function search(category, keyword, type){
             str += '	<div class="star">' + getStar(item.star) + ' ' + Math.round(item.star * 10)/10 + '</div></div></div>';
            	if(member.mno === item.mno){
 				  str += '    <div class="writer box8">';
-				  str += '      <a class="modify item" onclick="modify(' + item.ino + ')">수정</a>';
-				  str += '      <a class="remove item" onclick="remove(' + item.ino + ')">삭제</a></div>';				
+				  str += '      <a class="modify item" onclick="modify(' + item.ino + ', ' + value + ')">수정</a>';
+				  str += '      <a class="remove item" onclick="remove(' + item.ino + ', ' + value + ')">삭제</a></div>';				
 			}	
 			str += '</div>';
+	
 		})
 		list.html(str);
+		
+		const $paging = $(".pagingEl");
+		const {page: pageNum, prev: isPrev, next: isNext, end: endPage} = pageDTO;
+		
+		let pagination = `<ul class="pagination h-100 justfy-content-center align-items-conter boardpage box5">`;
+      
+        if(isPrev) {
+	    	pagination += `<li class="page-item">
+	    				       <a class="page-link bt_prev item_2" onclick="pageClick(${pageDTO.start-1})" tabindex="-1">이전</a>
+	    				   </li>`;
+	    }
+	    
+	    for(const value of pageDTO.pageList) {
+	    	pagination += `<li class="page-item num ${value == pageDTO.page ? 'active' : ''}">
+	    				       <a class="page-link" onclick="pageClick(${value})">${value}</a>
+	    				       <input type="hidden" name="pageValue" value="${value}">
+	    				   </li>`;
+	    }
+	    
+	    if(isNext) {
+	    	pagination += `<li class="page-item num">
+	    				<a class="page-link" onclick="pageClick(${endPage + 1})">다음</a><li></ul>`;
+	    }
+	    pagination += "</ul>"
+	    $paging.html(pagination);
+	    
+	    page = $(".pagingEl").find("[name='pageValue']").val();
 	})
+}
+
+function pageClick(page){
+	search(condition.category, condition.keyword, condition.type, page);
 }
 
 function getStar(grade){
@@ -365,7 +419,7 @@ function getStar(grade){
 	return star;
 }
 
-async function modify(ino){
+async function modify(ino, value){
 	$("#modify").show();
 	$("#confirm").hide(); 
 	try{
@@ -405,20 +459,20 @@ async function modify(ino){
 			contentType: "application/json",
 			data: JSON.stringify(itemDTO),
 			success: function(ino){
-				search('','','');
+				search('','','', value);
 			}
 		})       
         
     });
 }
 
-function remove(ino){
+function remove(ino, value){
 	$.ajax({
 		url: "/item/" + ino,
 		method: "delete",
 		success: function(result){
 			alert("아이템을 삭제하였습니다.");
-			search('','','');
+			search('','','', value);
 		}
 	})
 }
