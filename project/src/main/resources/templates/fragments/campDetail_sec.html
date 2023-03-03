@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+
+	<!--  캠핑장 정보 -->
+	<section th:fragment="campGroundsSection1">
+		<div class="titlebox box4">
+			<div class="title item">Camper Product Details</div>
+		</div>
+
+		<div
+			th:if="${#strings.arraySplit(result.thumbnail, ',').length == 1 and #strings.arraySplit(result.thumbnail, ':').length == 1}">
+			<img class="campgroundimg item"
+				th:src="@{'/display?fileName=&folderType=camp'}">
+		</div>
+		<div th:if="${#strings.arraySplit(result.thumbnail, ':').length != 1}">
+			<img class="campgroundimg item" th:src="${result.thumbnail}">
+		</div>
+
+		<div
+			th:if="${#strings.arraySplit(result.thumbnail, ',').length != 1 and #strings.arraySplit(result.thumbnail, ':').length == 1}"
+			class="campgroundimgbox box4"
+			th:each="image : ${#strings.arraySplit(result.thumbnail, ',')}">
+			<img class="campgroundimg item"
+				th:src="@{'/display?fileName=' + ${image} + '&folderType=camp'}">
+		</div>
+
+		<div class="cg_titlebox box4">
+			<div class="cg_title item">[[${result.name}]]</div>
+		</div>
+
+
+		<div class="cg_starbox box4">
+			<div class="cg_star item" id="item_star">
+				<div id="sync_star">[[${avg}]]</div>
+			</div>
+		</div>
+
+		<div class="cg_explainbox box4">
+			<div class="cg_explain item">[[${result.campintroduce}]]</div>
+		</div>
+
+		<div class="cg_hashtagbox box4">
+			<div class="cg_hashtag item">#[[${result.camptype}]]</div>
+		</div>
+	</section>
+	<!--  캠핑장 정보 끝 -->
+
+
+	<!--  예약 -->
+	<section th:fragment="campGroundsSection2">
+		<div id="calendar">
+			<div id="month-year"></div>
+			<div id="weekdays">
+				<div class="1">Mon</div>
+				<div class="2">Tue</div>
+				<div class="3">Wed</div>
+				<div class="4">Thu</div>
+				<div class="5">Fri</div>
+				<div class="6">Sat</div>
+				<div class="7">Sun</div>
+			</div>
+			<div id="days"></div>
+			<div id="buttons">
+				<button id="prev-month">Prev</button>
+				<button id="next-month">Next</button>
+				<button id="reservation">reservation</button>
+				<button id="reset">RE</button>
+			</div>
+		</div>
+		</div>
+	</section>
+	<!--  예약 끝 -->
+
+
+	<!--  지도 & 날씨 -->
+	<section th:fragment="campGroundsSection3">
+		<div class="sec2 box3" style="max-width : none; z-index: 1;">
+                         
+                         <div id="map" style="width:40%;height:350px;max-width : none"></div>
+							
+                        <div class="mapweatherbox box4">
+                            <div class="startbox box5">
+                                <div class="startplacetext item">출발지</div>
+                                <input type="text" class="startplace item_2">
+                            </div>
+                            <div class="starttimebox box5">
+                                <div class="starttimetext item">출발 시간</div>
+                                <input type="time" class="starttime item_2">
+                            </div>
+
+
+                            <div class="totaltimebox box5">
+                                <div class="totaltime item">총 소요 시간</div>
+                            </div>
+
+
+
+                            <div class="weatherbox box5">
+                                <div class="weatherplacebox box6">
+                                    <div class="weatherplace item">부산 날씨</div>
+                                </div>
+                                <div class="comerainbox box6">
+                                    <div class="comerain item">강수 확률 70%</div>
+                                </div>
+                                <div class="windspeedbox box6">
+                                    <div class="windspeed item">북풍1.4m</div>
+                                </div>
+
+                                <div class="searchbox box6">
+                                    <button type="button" class="search item">검색</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+	</section>
+	<!--  지도 & 날씨 끝 -->
+
+	<!--  댓글 -->
+	<section th:fragment="campGroundsSection4"></section>
+	<!--  댓글 끝 -->
+
+
+</body>
+</html>
