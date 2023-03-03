@@ -34,30 +34,6 @@
     <!--js연결-->
 	<script type="text/javascript" src="../js/postgroup.js" defer></script>
     
-<style>
-	#readList .heart-box {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		text-align: center;
-		margin: 1rem;
-	}
-	#readList .heart {
-		align-self: center;
-		width: 40px;
-		height: 40px;
-		background-size: 40px 40px;
-	}
-	.img > h6 {
-		margin-left: 0;
-	}
-	.heart.h-on {
-		background-image: url("/img/full_heart.png");
-	}
-	.heart.h-off {
-		background-image: url("/img/empty_heart.png");
-	}
-</style>
 </head>
 
 <body>
@@ -90,12 +66,14 @@
 			</div>
 
 			<!--메인 바디의 사이드 빈 공간 오른쪽-->
+			<div id="levelbox">
 				<div class="listlevelbox">
-					<a href="#listlevel" class="listlevel">게시판</a>
+					<a id="listlevel">게시판</a>
 				</div>
 				<div class="toplevelbox">
-					<a href="#" id="toplevel">TOP</a>
+					<a id="toplevel">TOP</a>
 				</div>
+			</div>
 		</main>
 		</div>
 		

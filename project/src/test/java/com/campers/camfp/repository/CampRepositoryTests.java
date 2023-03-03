@@ -28,6 +28,9 @@ import com.campers.camfp.repository.camp.CampReviewRepository;
 import com.campers.camfp.repository.history.HistoryRepository;
 import com.campers.camfp.repository.member.MemberRepository;
 
+import lombok.extern.log4j.Log4j2;
+
+@Log4j2
 @SpringBootTest
 public class CampRepositoryTests {
 
@@ -51,6 +54,12 @@ public class CampRepositoryTests {
 	@Test
 	public void locdate() {
 		System.out.println(LocalDateTime.now());
+	}
+	
+	@Test
+	public void testttt() {
+		Double d = campRepository.countStar(39L);
+		log.info(d);
 	}
 	
 	@Test

@@ -6,33 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>무슨페이지인가요?</title>
-    
-    <!--구글 폰트 링크-->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Varela+Round&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-		
-	<!--typeit(페이지에 글씨입력되는것처럼 보이는 것)-->
-	<script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js" loop="true"></script>
 
-	<!--scrollOut(스크롤 내릴때 효과주는것)
-	<script src="https://unpkg.com/scroll-out/dist/scroll-out.min.js"></script> -->
-
-	<!--스크롤 내릴때 요소마다 다르게 주는 스크립트
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/rellax/1.12.1/rellax.min.js"></script> -->
-
-	<!--폰트 그림 링크-->
-	<script src="https://kit.fontawesome.com/bb87a5faf0.js" crossorigin="anonymous"></script>
-    
-    <!--css 연결-->
-    <link rel="stylesheet" type="text/css" href="../css/campgroundsdetail.css">
-    <link rel="stylesheet" type="text/css" href="../css/reviewwrite.css">
-    <link rel="stylesheet" type="text/css" href="../css/header.css">
-    
-    <!--js연결-->
-    <script type="text/javascript" th:inline="javascript" src="../js/itemDetail.js" defer></script>
-    
 	<!-- jquery -->
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
   
@@ -40,16 +14,64 @@
 	<script th:src="@{../js/starrr.js}"></script>
     <link th:href="@{../css/starrr.css}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css"/>
+    
+    <!--css 연결-->
+    <link rel="stylesheet" type="text/css" href="../css/campgroundsdetail.css">
+    <link rel="stylesheet" type="text/css" href="../css/reviewwrite.css">
+    <!--js연결-->
+    <script type="text/javascript" th:inline="javascript" src="../js/itemDetail.js" defer></script>
+
+    <!--구글 폰트 링크-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Varela+Round&display=swap"
+        rel="stylesheet">
+    <!--폰트 그림 링크-->
+    <script src="https://kit.fontawesome.com/bb87a5faf0.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div class="container">
-       
-       <!-- header fragment -->
-		<div th:replace="~{fragments/header :: headerFragment}"></div>
-       
+        <!--====메인 header====-->
+        <header>
+            <div class="header box1">
+                <!--네비게이션 로고-->
+                <div class="header_logo box2">
+                    <a class="box3" href="#"><img src="" alt="">
+                        캠퍼스사진 </a>
+
+                </div>
+
+
+                <!--네비게이션 메뉴목록-->
+                <ul class="header_menu box2_2">
+                    <li class="box3"><a class="item" href="">apple</a></li>
+                    <li class="box3_3"><a class="item" href="">cherry</a></li>
+                    <li class="box3_2"><a class="item" href="">banana</a></li>
+                    <li class="box3_4"><a class="item" href="">melon</a></li>
+                </ul>
+
+                <!--우측 상단 마이페이지-->
+                <ul class="header_mypage box2_3">
+                    <li class="box3">
+                        <a href="" class="box3">
+                            <i class="fa-solid fa-user item"></i>
+                        </a>
+                    </li>
+                </ul>
+
+                <!--햄버거 메뉴-->
+                <a href="#" class="header_hamburger box2_4">
+                    <i class="fa-solid fa-bars item"></i>
+                </a>
+            </div>
+        </header>
         <main>
             <div class="body box1">
+                <!--메인 바디의 사이드 빈 공간왼쪽-->
+                <div class="aside_l box2">aside_l</div>
+
+
 
                 <!--메인 바디 가운데 공간-->
                 <div class="body_center box2">
@@ -76,9 +98,9 @@
                             <div class="cg_star item" id="item_star"><div id="sync_star">[[${detail.star}]]</div></div>
                         </div>
                         
-                        <div class="cg_heartbox box4">
-                        	<div class="cg_heart item" id="item_heart" th:onclick="clickItemHeart('[[${detail.ino}]]')">
-                        		
+   						<div class="cg_heartbox box4" th:onclick="clickItemHeart('[[${detail.ino}]]')">
+                        	<div class="cg_heart item" id="item_heart">
+                        		<img class="heartImg" sec:authorize="!isAuthenticated()" src="../img/empty_heart.png">
                         		[[${detail.heart}]]
                         	</div>
                         </div>
@@ -160,13 +182,30 @@
                         <div class="rv box4" id="reviewGroup">
 
                         </div>
+
+
                     </div>
+
+
                 </div>
+
+
+
+                <!--메인 바디의 사이드 빈 공간 오른쪽-->
+                <div class="aside_r box2">aside_r</div>
+
+
             </div>
+
+
         </main>
-        
-        <!-- footer fragment -->
-		<div th:replace="~{/fragments/footer :: footerFragment}"></div>
+        <!--====푸터====-->
+        <footer>
+            <div class="footer box1">
+                푸터자리
+            </div>
+        </footer>
+
 
     </div>
 </body>

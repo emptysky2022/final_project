@@ -6,52 +6,75 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Camper Product</title>
-    
-    <!--구글 폰트 링크-->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Varela+Round&display=swap"
-		rel="stylesheet">
-	<link rel="stylesheet"
-		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-		
-	<!--typeit(페이지에 글씨입력되는것처럼 보이는 것)-->
-	<script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js" loop="true"></script>
 
-	<!--scrollOut(스크롤 내릴때 효과주는것)
-	<script src="https://unpkg.com/scroll-out/dist/scroll-out.min.js"></script> -->
-
-	<!--스크롤 내릴때 요소마다 다르게 주는 스크립트
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/rellax/1.12.1/rellax.min.js"></script> -->
-
-	<!--폰트 그림 링크-->
-	<script src="https://kit.fontawesome.com/bb87a5faf0.js" crossorigin="anonymous"></script>
-	
-	<!--css 연결-->
-	<link rel="stylesheet" type="text/css" href="../css/header.css">
-	<link rel="stylesheet" type="text/css" href="../css/cart.css">
-    <link rel="stylesheet" type="text/css" href="../css/camperproduct.css">
-    <link rel="stylesheet" type="text/css" href="../css/reviewwrite.css">
-	
-	<!--js연결-->
-    <script type="text/javascript" src="../js/itemList.js" ></script>
-    
-    <!-- jquery -->
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
-    
-    <!-- starrr(임시) -->
+	<!-- jquery -->
+	<script
+	  src="https://code.jquery.com/jquery-3.6.3.min.js"
+	  integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+	  crossorigin="anonymous"></script>
+	<!-- starrr(임시) -->
 	<script th:src="@{../js/starrr.js}"></script>
     <link th:href="@{../css/starrr.css}" rel="stylesheet">
+	  
+    <!--css 연결-->
+    <link rel="stylesheet" type="text/css" href="../css/cart.css">
+    <link rel="stylesheet" type="text/css" href="../css/camperproduct.css">
+    <link rel="stylesheet" type="text/css" href="../css/reviewwrite.css">
+    <!--js연결-->
+    <script type="text/javascript" src="../js/itemList.js" ></script>
+
+    <!--구글 폰트 링크-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Varela+Round&display=swap"
+        rel="stylesheet">
+    <!--폰트 그림 링크-->
+    <script src="https://kit.fontawesome.com/bb87a5faf0.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div class="container">
+        <!--====메인 header====-->
+        <header>
+            <div class="header box1">
+                <!--네비게이션 로고-->
+                <div class="header_logo box2">
+                    <a class="box3" href="#"><img src="" alt="">
+                        캠퍼스사진 </a>
 
-		<!-- header fragment -->
-		<div th:replace="~{fragments/header :: headerFragment}"></div>
-		
+                </div>
+
+
+                <!--네비게이션 메뉴목록-->
+                <ul class="header_menu box2_2">
+                    <li class="box3"><a class="item" href="">apple</a></li>
+                    <li class="box3_3"><a class="item" href="">cherry</a></li>
+                    <li class="box3_2"><a class="item" href="">banana</a></li>
+                    <li class="box3_4"><a class="item" href="">melon</a></li>
+                </ul>
+
+                <!--우측 상단 마이페이지-->
+                <ul class="header_mypage box2_3">
+                    <li class="box3">
+                        <a class="box3" id="cart-modal-open" onclick="cartModal()">
+                            <i class="fa-solid fa-user item"></i>
+                        </a>
+                    </li>
+                </ul>
+
+                <!--햄버거 메뉴-->
+                <a href="#" class="header_hamburger box2_4">
+                    <i class="fa-solid fa-bars item"></i>
+                </a>
+            </div>
+        </header>
         <main>
         <div class="body box1">
+            <!--메인 바디의 사이드 빈 공간왼쪽-->
+            <div class="aside_l box2">aside_l</div>
+
+
+
             <!--메인 바디 가운데 공간-->
             <div class="body_center box2">
 
@@ -66,28 +89,41 @@
 
                     <div class="producttypebox box4">
                         <div class="allselect item">카테고리</div>
+                        <h1 sec:authorize="!isAuthenticated()">이스터에그</h1>
                         <div class="tent box5">
-                            <button class="tentitem1 item" value="취사용품" onclick="search('취사용품','','',1)">취사용품</button>
-                            <button class="tentitem2 item_2" value="랜턴" onclick="search('랜턴','','',1)">랜턴</button>
-                            <button class="tentitem3 item_3" value="캠핑가구" onclick="search('캠핑가구','','',1)">캠핑가구</button>
+                            <div class="tentitem1 item">돔 텐트</div>
+                            <div class="tentitem2 item_2">리빙쉘 텐트</div>
+                            <div class="tentitem3 item_3">터널형 텐트</div>
                         </div>
-                        <div class="tent box5">
-                            <button class="tentitem1 item" value="기타캠핑용품" onclick="search('기타캠핑용품','','',1)">기타캠핑용품</button>
-                            <button class="tentitem1 item_2" value="텐트" onclick="search('텐트','','',1)">텐트</button>
-                            <button class="tentitem1 item_3" value="캠핑매트" onclick="search('캠핑매트','','',1)">캠핑매트</button>
+                        <div class="pole box5">
+                            <div class="poleitem1 item">스틸</div>
+                            <div class="poleitem2 item_2">알루미늄</div>
+                            <div class="poleitem3 item_3">화이버 글라스</div>
                         </div>
-                        <div class="tent box5">
-                            <button class="tentitem1 item" value="아이스박스" onclick="search('아이스박스','','',1)">아이스박스</button>
-                            <button class="tentitem1 item_2" value="침낭" onclick="search('침낭','','',1)">침낭</button>
-                            <button class="tentitem1 item_3" value="텐트/타프용품" onclick="search('텐트/타프용품','','',1)">텐트/타프용품</button>
+                        <div class="hammer box5">
+                            <div class="hammeritem1 item">나무망치</div>
+                            <div class="hammeritem2 item_2">쇠망치</div>
+                            <div class="hammeritem3 item_3">우레탄(고무)망치</div>
                         </div>
-                        <div class="tent box5">
-                            <button class="tentitem1 item" value="타프" onclick="search('타프','','',1)">타프</button>
-                            <button class="tentitem1 item_2" value="천막" onclick="search('천막','','',1)">천막</button>
-                            <button class="tentitem1 item_3" value="캠핑왜건" onclick="search('캠핑왜건','','',1)">캠핑왜건</button>
+                        <div class="caravan box5">
+                            <div class="caravanitem1 item">카고 트레일러</div>
+                            <div class="caravanitem2 item_2">폴딩 트레일러</div>
+                            <div class="caravanitem3 item_3">일반 캠핑 트레일러</div>
                         </div>
                     </div>
-                    <hr>
+                    <div class="line">
+                        <hr>
+                    </div>
+                    <div class="priceorderbox box4">
+                        <div class="allselect item">가격</div>
+                        <div class="low item">~50,000</div>
+                        <div class="middle item_2">~150,000</div>
+                        <div class="high item_3">~300,000</div>
+                        <div class="morehigh item_4">제한없음</div>
+                    </div>
+                    <div class="line">
+                        <hr>
+                    </div>
                     <!-- <div class="campingtypebox box4">
                         <div class="allselect item">전체선택</div>
                         <div class="glamping item">글램핑</div>
@@ -107,15 +143,14 @@
                             <div class="dropdown box6">
                                 <a href="#" class="dropbtn item">정렬</a>
                                 <div class="subdropdown box7">
-                                    <button class="dropitem item" onclick="search('', '', 'count', 1)"><a>조회순</a></button>
-                                    <button class="dropitem item_2" onclick="search('', '', 'heart', 1)"><a>찜순위</a></button>
-                                    <button class="dropitem item_3" onclick="search('', '', 'price', 1)"><a>가격순</a></button>
-                                    <button class="dropitem item_4" onclick="search('', '', '', 1)"><a>최신순</a></button>
+                                    <div class="dropitem item" onclick="search('', '', 'count')"><a>조회순</a></div>
+                                    <div class="dropitem item_2" onclick="search('', '', 'heart')"><a>찜순위</a></div>
+                                    <div class="dropitem item_3" onclick="search('', '', '')"><a>최신순</a></div>
                                 </div>
                             </div>
                         </div>
                         <div class="searchbox box5">
-                        	<input  type="text" class="search item" placeholder="검색상자" onblur="search('',this,'',1)"></input>
+                        	<input  type="text" class="search item" placeholder="검색상자"></input>
                         </div>
                     </div>
                 </div>
@@ -123,8 +158,6 @@
                 <div class="sec3 box3" id="list">
                 <!-- th:attr="onclick=|showDetail(${item.ino})|" -->
                 </div>
-                <div class="pagingEl"></div>
-                
 				<!-- ---------판매상품 목록 끝------------ -->
             </div> 
             <!-- 메인 바디 가운데 공간 끝 -->
@@ -257,13 +290,26 @@
             </div>
         </div>
     </div>
-        </main>
             </div>
 
-	<!-- footer fragment -->
-	<div th:replace="~{/fragments/footer :: footerFragment}"></div>
 
+            <!--메인 바디의 사이드 빈 공간 오른쪽-->
+            <div class="aside_r box2">aside_r</div>
+
+
+
+
+
+
+        </div>
         
+        </main><!--====푸터====-->
+        <footer>
+            <div class="footer box1">
+                푸터자리
+            </div>
+        </footer>
         
+    </div>
 </body>
 </html>

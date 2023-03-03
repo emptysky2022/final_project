@@ -130,12 +130,12 @@
                        <a class="login modal-content"  sec:authorize ="isAnonymous()" href="/login">로그인</a>
                        <a class="logout" sec:authorize ="isAuthenticated()" href="/logout">로그아웃</a>
                        <a href="/signup" sec:authorize ="isAnonymous()" class="signup box4">회원가입</a>
-                    </li>
-                    <a class="readmemeberlinkbox" href="/readmember">
-                        <span class="material-symbols-outlined">
-                            person
+                	<a class="readmemeberlinkbox" sec:authorize ="isAuthenticated()" href="/readmember">
+                       <span class="material-symbols-outlined">
+                       person
                         </span>
                     </a>
+                   </li>
                 </ul>
 
 

@@ -83,27 +83,17 @@
                         <div class="titlebox box4">
                             <div class="title item">Camper Product Details</div>
                         </div>
-                        
-                        <div th:if="${#strings.arraySplit(result.thumbnail, ',').length == 1 and #strings.arraySplit(result.thumbnail, ':').length == 1}">
-						    <img class="campgroundimg item" th:src="@{'/display?fileName=&folderType=camp'}">
-						</div>
-						<div th:if="${#strings.arraySplit(result.thumbnail, ':').length != 1}">
-						    <img class="campgroundimg item" th:src="${result.thumbnail}">
-						</div>
-						
-                        <div th:if="${#strings.arraySplit(result.thumbnail, ',').length != 1 and #strings.arraySplit(result.thumbnail, ':').length == 1}" class="campgroundimgbox box4" th:each="image : ${#strings.arraySplit(result.thumbnail, ',')}">
-						    <img class="campgroundimg item" th:src="@{'/display?fileName=' + ${image} + '&folderType=camp'}">
-						</div>
+
+                        <div class="campgroundimgbox box4">
+                            <img class="campgroundimg item" src="../img/happy13.jpg" th:src="${result.thumbnail}">
+                        </div>
 
                         <div class="cg_titlebox box4">
                             <div class="cg_title item">[[${result.name}]]</div>
                         </div>
                         
-                        
-                       <div class="cg_starbox box4">
-                            <div class="cg_star item" id="item_star">
-                            <div id="sync_star">[[${avg}]]</div
-                            ></div>
+                        <div class="cg_starbox box4">
+                            <div class="cg_star item">★★★★☆</div>
                         </div>
 
                         <div class="cg_explainbox box4">
@@ -220,11 +210,11 @@
 						                                <div class="ce_name">
 						                                	[[${result.name}]]
 						                                </div> 
-												 <div class="cg_starbox box4">
-							                            <div class="cg_star item" id="item_star">
-							                            <div id="sync_star">[[${avg}]]</div
-							                            ></div>
-							                        </div>
+						                             	<div class="cg_starbox box4">
+                           						 			<div class="cg_star item" id="item_star">
+                           						 				<div id="sync_star">[[${result.star}]]</div>
+                           						 			</div>
+                        								</div>
 						                               
 						                            </div>
 						                       </div>
@@ -350,12 +340,12 @@
 						                                <input type="hidden" class="regdate">
 						                                <input type="hidden" class="heart">
 						                                <input type="hidden" class="reviewer">
-								                       <div class="cg_starbox box4">
-								                            <div class="cg_star item" id="item_star">
-								                            <div id="sync_star">[[${avg}]]</div
-								                            ></div>
-								                        </div>
-														                               
+						                             	<div class="cg_starbox box4">
+                           						 			<div class="cg_star item" id="modify-item_star">
+                           						 				<div id="sync_star">[[${result.star}]]</div>
+                           						 			</div>
+                        								</div>
+						                               
 						                            </div>
 						                       </div>
 						                       <hr>

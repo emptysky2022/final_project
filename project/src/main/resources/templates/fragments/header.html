@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/security/tags">
 <head>
 <meta charset="UTF-8">
 </head>
@@ -9,7 +9,7 @@
 	<div class="header box1">
 				<!-- 네비게이션 로고 -->
 				<div class="header_logomenu box2">
-					<a class="header_logo box3" href="#">
+					<a class="header_logo box3" href="/">
 						<img src="../img/logo.svg" class="logoimg">
 					</a>
 				</div>
@@ -35,31 +35,31 @@
 							<ul>
 								<li class="campgroundbox">
 									<i class="campground fa-solid fa-campground"></i>
-									<a href="#" class="item">캠핑장</a>
+									<a href="/camp/campgrounds" class="item">캠핑장</a>
 								</li>
 								<li class="productbox">
 									<i class="product fa-solid fa-box"></i>
-									<a href="#">상품</a>
+									<a href="/item/list">상품</a>
 								</li>
 								<li class="postgroupbox">
 									<i class="postgroup fa-solid fa-comment"></i>
 									<a href="/sample/list">게시판</a>
 								</li>
-								<li class="loginbox">
+								<li class="loginbox"  sec:authorize ="isAnonymous()" >
 									<i class="login fa-solid fa-right-to-bracket"></i>
 									<a href="/login">로그인</a>
 								</li>
-								<li class="logoutbox">
+								<li class="logoutbox" sec:authorize ="isAuthenticated()">
 									<i class="logout fa-solid fa-right-from-bracket"></i>
-									<a href="#">로그아웃</a>
+									<a href="/logout">로그아웃</a>
 								</li>
-								<li class="signupbox">
+								<li class="signupbox" sec:authorize ="isAnonymous()">
 									<i class="signup fa-solid fa-user-plus"></i>
 									<a href="/signup">회원가입</a>
 								</li>
-								<li class="readmemeberbox">
+								<li class="readmemeberbox" sec:authorize ="isAuthenticated()">
 									<i class="readmemeber fa-solid fa-user"></i>
-									<a href="#">내 정보</a>
+									<a href="/readmember">내 정보</a>
 								</li>
 							</ul>
 						</div>
@@ -69,19 +69,19 @@
 
 				<!-- 네비게이션 메뉴목록 -->
 				<ul class="header_menu box2">
-					<li class="menu1 box3"><a class="item" href="">캠핑장</a></li>
-					<li class="menu2 box3"><a class="item" href="">상품</a></li>
-					<li class="menu3 box3"><a class="item" href="">게시판</a></li>
+					<li class="menu1 box3"><a class="item" href="/camp/campgrounds">캠핑장</a></li>
+					<li class="menu2 box3"><a class="item" href="/item/list">상품</a></li>
+					<li class="menu3 box3"><a class="item" href="/sample/list">게시판</a></li>
 				</ul>
 
 				<!-- 우측 상단 마이페이지 -->
 				<ul class="header_mypage box2">
 					<li class="signuplogbox box3">
-						<a class="login" href="../html/login.html">로그인</a>
-						<a class="logout" href="">로그아웃</a>
-						<a href="../html/signup.html" class="signup box4">회원가입</a>
+						<a class="login"   sec:authorize ="isAnonymous()" href="/login">로그인</a>
+						<a class="logout"  sec:authorize ="isAuthenticated()" href="/logout">로그아웃</a>
+						<a class="signup box4"  sec:authorize ="isAnonymous()"  href="/signup">회원가입</a>
 						<!--내정보 페이지 링크 아이콘-->
-						<a class="readmemeberlinkbox" href="../html/readmemeber.html">
+						<a class="readmemeberlinkbox"  sec:authorize ="isAuthenticated()" href="/readmember">
 							<span class="readmemeber material-symbols-outlined">
 								person
 							</span>
