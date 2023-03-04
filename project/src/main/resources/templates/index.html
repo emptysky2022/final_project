@@ -42,7 +42,13 @@
     <link rel="stylesheet" type="text/css" href="../css/camperproduct.css">
     <link rel="stylesheet" type="text/css" href="../css/reviewwrite.css">
 	
+	<!--  별점 연결 -->
+	<script th:src="@{../js/starrr.js}"></script>
+	<link th:href="@{../css/starrr.css}" rel="stylesheet">
+	
 	<!--js연결-->
+	<script type="text/javascript" src="../js/main.js" defer></script>
+	<script type="text/javascript" src="../js/camp.js" defer></script>
 	<script type="text/javascript" src="../js/main.js" defer></script>
 
 
@@ -85,6 +91,8 @@
 					<!--섹션나누기2-->
 					<div th:replace="~{/fragments/main_sec :: section2Fragment}"></div>
 
+					<!--섹션나누기3-->
+					<div th:replace="~{fragments/camp_sec :: campGroundsMainSection3}"></div>
 					
 					<!--섹션 나누기3-->
 					<div class="swiperlocation">
