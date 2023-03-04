@@ -14,7 +14,7 @@ $(function(){
         $("#item-popup").css('display','flex').hide().fadeIn();
         //팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
     });
-
+    
     $("#item-close").click(function(){
 		console.log('클릭은 되나')
         modalClose(); //모달 닫기 함수 호출

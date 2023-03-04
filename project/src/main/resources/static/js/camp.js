@@ -18,7 +18,7 @@ $(document).ready(function() {
 	// 캠핑 타입
 	var type = "";
 	let listGroup = $(".test");
-
+	let size = $(".test").attr("id");
 	// 지역 타입 한국말 써봄
 	var locations = [];
 
@@ -431,6 +431,7 @@ $(document).ready(function() {
 			method: "DELETE",
 			success: function() {
 				alert("캠핑장 을 삭제하였습니다.");
+				loadJSON();
 			}
 		})
 	}
@@ -462,11 +463,20 @@ $(document).ready(function() {
 				str += "<input type = 'hidden' name='cno' th:value ='" + camp.cno + "''>";
 				str += "<div class='cg_imgbox box5' onclick='location.href=\"/camp/campgroundsdetail?cno=" + camp.cno + "\"''>";
 
+				console.log(camp.thumbnail);
+			
 				try {
-					var image = camp.thumbnail.split(",");
-					str += "<img class='cg_img item' src=/display?fileName=" + image[0] + "&folderType=camp>";
+					if (camp.thumbnail != null && camp.thumbnail.split(':')[0] === "https") {
+						console.log(camp);
+						console.log("어");
+						str += "<img class='cg_img item' src=" + camp.thumbnail + ">";
+					} else {
+						console.log("나야");
+						str += "<img class='cg_img item' src=/display?fileName=" + camp.thumbnail.split(',')[camp.thumbnail.split(',').length-1] + "&folderType=camp>";
+					}
 				} catch {
-					str += "<img class='cg_img item' src=/display?fileName=" + "" + "&folderType=camp>";
+					console.log("나도탐?");
+					str += "<img class='cg_img item' src=/display?fileName=" + "http://www.hanawaterjet.com/app/dubu_board/docs/imgs/n/lg_n15287811543531_%EC%9D%B4%EB%AF%B8%EC%A7%80%EB%A5%BC%EC%A4%80%EB%B9%84%EC%A4%91%EC%9E%85%EB%8B%88%EB%8B%A4.jpg" + "&folderType=camp>";
 				}
 
 
@@ -652,15 +662,18 @@ $(document).ready(function() {
 				location: makeLocation,
 				thumbnail: imgpath
 			}), success: function(result) {
-				alert(result);
+				alert("캠핑장이 등록 되었습니다");
+				modalClose();
 			}, fail: function(result) {
-				alert(result);
+				alert("캠핑장이 등록 되지 않았습니다");
+				modalClose();
 			}
 		})
 	}
 
 	// 페이징 처리를 위한 부분 따로 모아둠 //////////////////////////////
 	const $paging = $(".pagingEl");
+
 	// 페이징 / 검색을 위해 url 따오는 것들(url param 추출)   
 	let urlStr = window.location.href;
 	console.log(urlStr);
@@ -670,7 +683,7 @@ $(document).ready(function() {
 
 	let urlParams = url.searchParams;
 	let page = urlParams.get('page');
-	let size = 10;
+
 
 	// 리스트 첫 페이지에서 page 파라미터가 null이라서 페이지를 읽어오지 못함.
 	// if문으로 null 일 경우 1로 바꿔줌.

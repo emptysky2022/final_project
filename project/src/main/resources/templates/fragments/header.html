@@ -6,6 +6,8 @@
 <body>
 
 <header th:fragment="headerFragment">
+	<link rel="stylesheet" type="text/css" href="../css/cart.css">
+    <script type="text/javascript" src="../js/itemList.js" defer></script>	
 	<div class="header box1">
 				<!-- 네비게이션 로고 -->
 				<div class="header_logomenu box2">
@@ -82,9 +84,10 @@
 						<a class="signup box4"  sec:authorize ="isAnonymous()"  href="/signup">회원가입</a>
 						<!--내정보 페이지 링크 아이콘-->
 						<a class="readmemeberlinkbox"  sec:authorize ="isAuthenticated()" href="/readmember">
-							<span class="readmemeber material-symbols-outlined">
-								person
-							</span>
+							<i class="fa-solid fa-user fa-2x"></i>
+						</a>
+						<a class="cart-popup" sec:authorize ="isAuthenticated()">
+							<img src="../img/shoppingcart.png">
 						</a>
 						<a id="cart-popup" sec:authorize ="isAuthenticated()">
 							<img src="../img/shoppingcart.png">

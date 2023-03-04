@@ -2,42 +2,15 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camper Product</title>
-    
-    <!--구글 폰트 링크-->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Varela+Round&display=swap"
-		rel="stylesheet">
-	<link rel="stylesheet"
-		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-		
-	<!--typeit(페이지에 글씨입력되는것처럼 보이는 것)-->
-	<script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js" loop="true"></script>
-
-	<!--scrollOut(스크롤 내릴때 효과주는것)
-	<script src="https://unpkg.com/scroll-out/dist/scroll-out.min.js"></script> -->
-
-	<!--스크롤 내릴때 요소마다 다르게 주는 스크립트
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/rellax/1.12.1/rellax.min.js"></script> -->
-
-	<!--폰트 그림 링크-->
-	<script src="https://kit.fontawesome.com/bb87a5faf0.js" crossorigin="anonymous"></script>
+    <div th:replace="~{fragments/head_sec :: head-sec}"></div>
 	
 	<!--css 연결-->
-	<link rel="stylesheet" type="text/css" href="../css/header.css">
 	<link rel="stylesheet" type="text/css" href="../css/cart.css">
     <link rel="stylesheet" type="text/css" href="../css/camperproduct.css">
     <link rel="stylesheet" type="text/css" href="../css/reviewwrite.css">
-    
-    <!-- jquery -->
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	
 	<!--js연결-->
-    <script type="text/javascript" src="../js/itemList.js" ></script>
+    <script type="text/javascript" src="../js/itemList.js"></script>
     
     <!-- starrr(임시) -->
 	<script th:src="@{../js/starrr.js}"></script>

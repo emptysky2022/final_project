@@ -43,9 +43,8 @@ public class SecurityConfig{ //이 필터가 기본 필터에 등록이됨
 		http.csrf().disable();
 		http.authorizeRequests()
 			.antMatchers("/member/**").authenticated()
-			.antMatchers("/camp/**").authenticated()
 			.antMatchers("/Heart/**").authenticated()
-			.antMatchers("/list/**").authenticated()// /member는 로그인이 되어야지만 접근가능함 댓글같은 곳에 달면 될듯합니다.
+			.antMatchers("/sample/list/**").authenticated()// /member는 로그인이 되어야지만 접근가능함 댓글같은 곳에 달면 될듯합니다.
 			//.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
 			//.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN') and hasRole('ROLE_USER')")
 			.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")

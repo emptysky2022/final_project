@@ -112,30 +112,30 @@
 
   /*******컨텐츠 부분********/
   /*div class말고 다른 선택자로 속성 지정하기*/
-  table{
+  .body-contentbox table{
     width: 100%;
     border-collapse: collapse;
    
   }
 
-  table:nth-last-child(1){
+  .body-contentbox table:nth-last-child(1){
     border-bottom: 2px solid black;
     
   }
-  table td{
+  .body-contentbox table td{
     border-top: 1px solid #000000;
   }
 
-  table tr{
+  .body-contentbox table tr{
     display: flex;
     
   }
 
-  table tr .select{
+  .body-contentbox table tr .select{
     text-align: center;
   }
 
-  table th{
+  .body-contentbox table th{
      background-color: #8d8d8d;
      border-collapse: collapse;
      border-top: 2px solid black;
@@ -145,35 +145,35 @@
   /******div 클래스로 속성 지정하기*****/
  
   /*테이블 헤더 부분*/
-  table .selectall{
+  .body-contentbox table .selectall{
     flex-basis: 5%;
   }
 
-  table .productinfoheader{
+  .body-contentbox table .productinfoheader{
     flex-basis: 60%;
   }
 
-  table .amountheader{
+  .body-contentbox table .amountheader{
     flex-basis: 10%;
   }
 
-  table .amountallheader{
+  .body-contentbox table .amountallheader{
     flex-basis: 25%;
   }
 
 
   /*테이블 td 부분*/
-  table .select{
+  .body-contentbox table .select{
     flex-basis: 5%;
   }
-  table .productinfobox{
+  .body-contentbox table .productinfobox{
     display:flex;
     flex-basis: 60%;
     justify-content: center;
     align-items: center;
   }
 
-  table .amountbox{
+  .body-contentbox table .amountbox{
     flex-basis: 10%;
     display: flex;
     flex-direction: column;
@@ -181,30 +181,30 @@
     justify-content: center;
   }
 
-  table .amount{
+  .body-contentbox table .amount{
     width: 3rem;
   }
 
-  table .amountallbox{
+  .body-contentbox table .amountallbox{
     flex-basis: 25%;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  table .productinfobox .productimgbox{
+  .body-contentbox table .productinfobox .productimgbox{
     width: 3rem;
     height: auto;
     flex-basis: 20%;
   }
 
-  table .productinfobox .productimgbox .productimg{
+  .body-contentbox table .productinfobox .productimgbox .productimg{
     width: 100%;
     height: 100%;
     
   }
 
-  table .productinfobox .producttextbox{
+  .body-contentbox table .productinfobox .producttextbox{
     display: flex;
     flex-direction: column;
     flex-basis: 60%;
@@ -256,28 +256,28 @@
 
 
 @media screen and (max-width:480px){
-  table .amountheader{
+  .body-contentbox table .amountheader{
     flex-basis: 20%;
   }
 
-  table .productinfoheader{
+  .body-contentbox table .productinfoheader{
     flex-basis: 50%;
   }
 
-  table .amountallheader{
+  .body-contentbox table .amountallheader{
     flex-basis: 25%;
   }
   
-  table .productinfobox{
+  .body-contentbox table .productinfobox{
     flex-direction: column;
     flex-basis: 50%;
   }
-  table .amountbox{
+  .body-contentbox table .amountbox{
     flex-basis: 20%;     
 
   }
 
-  table .amountallbox{
+  .body-contentbox table .amountallbox{
     flex-basis: 25%;
   }
 

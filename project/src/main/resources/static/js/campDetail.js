@@ -9,10 +9,8 @@ $(document).ready(function() {
 	var noReservation = [];
 	var startday;
 	var endday;
-
 	var utcStartDate;
 	var utcEndDate;
-
 
 	// day 클경우 endDay    	    
 	// day 작을경우 startDay    	    
@@ -213,8 +211,6 @@ $(document).ready(function() {
 				"day": 0
 			}
 
-			console.log(startday);
-			console.log(endday);
 
 			// 시작년 과 종료 년이 같을경우
 			if (Number(startday.year) == Number(endday.year)) {
@@ -332,8 +328,6 @@ $(document).ready(function() {
 		utcStartDate = startDate;
 		utcEndDate = endDate;
 
-		console.log(utcStartDate);
-		console.log(utcEndDate);
 
 		$("#start-day cite").html(utcStartDate);
 		$("#end-day cite").html(utcEndDate);
@@ -346,13 +340,14 @@ $(document).ready(function() {
 	});
 
 	$("#RVclose").click(function() {
-		console.log("취소");
 		rvmodalClose(); //모달 닫기 함수 호출
 	});
 
 	$("#RVconfirm").click(function() {
 		// 예약 
 		clickCampReservation();
+		
+		alert("예약이 완료 되었습니다.");
 
 		// 캘린더 다시 load();
 		generateCalendar();
@@ -477,7 +472,7 @@ $(document).ready(function() {
 	listGroup.on('click', '.modify', function(event) {
 		var crno = $(this).attr('id');
 		getReview(crno);
-		
+
 		//팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
 		$("#modify-popup").css('display', 'flex').hide().fadeIn();
 	});
@@ -486,7 +481,6 @@ $(document).ready(function() {
 	listGroup.on('click', '.remove', function(event) {
 		var crno = $(this).attr('id');
 		removeReview(crno);
-		console.log(crno);
 	});
 
 	//하트 추가
@@ -508,8 +502,6 @@ $(document).ready(function() {
 
 	// 이미지 클래스 data-id 변경 메서드
 	function changeHeartImg(flag, heart, hlno) {
-		console.log(flag);
-		console.log(hlno);
 		heart.attr("src", flag ? "../img/full_heart.png" : "../img/empty_heart.png");
 
 		if (flag) {
@@ -523,14 +515,16 @@ $(document).ready(function() {
 		}
 
 	};
-	
+
 	function loadJSON() {
+
+		// 날씨 테스트 
+		weatherFindData(start, end);
+
 		$.getJSON('/camp/reply/list/' + cno, function(arr) {
 
 			let str = "";
 			const [reply, member] = arr;
-
-			console.log(reply);
 
 			$.each(reply, function(index, reply) {
 				let direction = index % 2 == 0 ? 'l' : 'r';
@@ -566,7 +560,6 @@ $(document).ready(function() {
 				// 하트 한 항목이라면 ?
 				if (Number(heartData.hlno) > 0) {
 					// 눌렷을때 행동을 class Name 으로줌
-					console.log(heartData.hlno);
 					str += "<img class='removeHeart' id=" + reply.crno + " data-id= " + heartData.hlno + " width=30px height=30px src='../img/full_heart.png'>";
 				} else {
 					str += "<img class='saveHeart' id=" + reply.crno + " data-id= 'empty' width=30px height=30px src='../img/empty_heart.png'>";
@@ -600,7 +593,7 @@ $(document).ready(function() {
 				// 동기처리
 				async: false
 			}), success: function(hlno) {
-				console.log("탔음");
+				console.log("성공");
 				changeHeartImg(true, heart, hlno);
 			}
 		})
@@ -662,9 +655,7 @@ $(document).ready(function() {
 	}
 
 	function clickCampReservation() {
-		console.log(utcStartDate);
-		console.log(utcEndDate);
-
+		
 		$.ajax({
 			url: "/camp/calendar/register",
 			method: "POST",
@@ -689,20 +680,17 @@ $(document).ready(function() {
 			url: "/camp/review/" + Number(crno),
 			method: "DELETE",
 			success: loadJSON()
-		}) 
+		})
 	}
 
 	async function getReview(crno) {
-		console.log("탔음");
 		const result = await $.get("/camp/reply/one/" + crno)
 
-		console.log(result);
 		var regdate = result.regdate;
 		var capture = result.capture;
 		var heart = result.heart;
 		var star = result.star;
 		var content = result.content;
-		console.log(getStar(star));
 
 		$("#modify-content").val(content);
 		$("#modify-select_star").val(getStar(star));
@@ -710,26 +698,145 @@ $(document).ready(function() {
 		$(".regdate").val(regdate);
 		$(".heart").val(heart);
 	}
-	
-	function replyModify(crno){
-		console.log($("#modify-select_star").val());
+
+	function replyModify(crno) {
 		$.ajax({
-			url : "/camp/reply/modify",
-			contentType : "application/json",
-			method : "PUT",
-			data : JSON.stringify({
-				cno : cno,
-				crno : crno,
-				capture : $("#modify-picture").val(),
-				content : $("#modify-content").val(),
-				star 	: $("#modify-select_star").data('starrr').options.rating,
-				regdate : $(".regdate").val()
+			url: "/camp/reply/modify",
+			contentType: "application/json",
+			method: "PUT",
+			data: JSON.stringify({
+				cno: cno,
+				crno: crno,
+				capture: $("#modify-picture").val(),
+				content: $("#modify-content").val(),
+				star: $("#modify-select_star").data('starrr').options.rating,
+				regdate: $(".regdate").val()
 			})
 		})
 	}
 
-		//프로그램 처음 로드시 loadJSON 호출;
-		// 밑에서 해야함
-		loadJSON();
-
+	$(".weather-container").on("click", ".prev", function() {
+		if (start > 0) {
+			start -= viewSize;
+			end -= viewSize;
+			weatherFindData(start, end);
+		}
 	});
+
+	$(".weather-container").on("click", ".next", function() {
+		if (end < 38) {
+			start += viewSize;
+			end += viewSize;
+			weatherFindData(start, end);
+		}else{
+			alter("오늘 날짜로부터 5일 뒤의 정보 까지만 제공됩니다.");
+		}
+	});
+
+
+	var $WeatherContainer = $(".weather-container");
+	var viewSize = 3;
+	var start = 0;
+	var end = viewSize;
+
+	function weatherFindData(start, end) {
+		var num = calcLocationToNum();
+
+		var apiURI = "http://api.openweathermap.org/data/2.5/forecast?id=" + num + "&appid=69e3983d301e56b958de5f85e38f463c"
+		$.ajax({
+			url: apiURI,
+			dataType: "json",
+			type: "GET",
+			async: "false",
+			success: function(data) {
+
+				// 반복할 껀데 첫번째 데이터가 15:00 라 날짜 맞추려면.. 
+				// 3시간 간격 처음만 3개 후 8개씩 마지막은또 4개  총 40개 3/8/8/8/8/4 
+				var str = "";
+				str += '<button class="prev">prev</button>';
+
+				var title = data.list[start].dt_txt.substring(5, 10);
+
+				str += '<div class="date">' + title + '</div>';
+
+
+				for (var i = start; i < end; i++) {
+
+					var time = data.list[i].dt_txt.substring(10, 16);
+
+					str += `<div class="weather-re">
+								<div class="weatherbox">
+									<div class="weather-info">
+										<div class="date">${time}</div>`
+
+					var weatherID = data.list[i].weather[0].id;
+					
+					// weatherID별 날씨 표시
+					switch (true) {
+						case (weatherID >= 200 && weatherID <= 599): // 비
+							str += '<img class="weather-img" src="../img/rain.png">';
+							break;
+						case (weatherID >= 600 && weatherID <= 699): // 눈
+							str += '<img class="weather-img" src="../img/snow.png">';
+							break;
+						case (weatherID >= 700 && weatherID <= 804): // 구름
+							str += '<img class="weather-img" src="../img/cloud.png">';
+							break;
+						case (weatherID = 800): // 해
+							if (Number(time) > 20 || Number(time) < 6) {
+								str += '<img class="weather-img" src="../img/moon.png">';
+							} else {
+								str += '<img class="weather-img" src="../img/sun.png">';
+							}
+							break;
+					}
+
+					var wind = data.list[i].wind.speed;
+					str += `<div class="wind">풍속: ${wind}m/s</div>
+									</div>
+								</div>
+							</div>`;
+				}
+
+				// 시작 위치를 바꿔야해서 올림
+
+				str += '<button class="next">next</button>';
+
+				$WeatherContainer.html(str);
+			}
+		})
+	}
+
+	function calcLocationToNum() {
+
+		var num = "";
+
+		switch (result.location) {
+
+			case "서울시": num = 1835847; break;
+			case "부산시": num = 1838519; break;
+			case "대구시": num = 1835327; break;
+			case "인천시": num = 1843561; break;
+			case "광주시": num = 1841808; break;
+			case "대전시": num = 1835224; break;
+			case "울산시": num = 1833742; break;
+			case "세종시": num = 1835224; break;
+			case "경기도": num = 1841610; break;
+			case "강원도": num = 1843125; break;
+			case "충청남도": num = 1845105; break;
+			case "충청북도": num = 1845106; break;
+			case "전라남도": num = 1845788; break;
+			case "전라북도": num = 1845789; break;
+			case "경상남도": num = 1902028; break;
+			case "경상북도": num = 1841597; break;
+			case "제주도": num = 1846265; break;
+		}
+
+		return num;
+	}
+
+	//프로그램 처음 로드시 loadJSON 호출;
+	// 밑에서 해야함
+	loadJSON();
+
+});

@@ -2,25 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="UTF-8">
-	<title>Login Page</title>
-
-	<!--제이쿼리 연결(필요하면 쓰세요)-->
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
-
-	<!--구글 폰트 링크-->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Varela+Round&display=swap"
-		rel="stylesheet">
-	<link rel="stylesheet"
-		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
-	<!--폰트 그림 링크-->
-	<script src="https://kit.fontawesome.com/bb87a5faf0.js" crossorigin="anonymous"></script>
+	<div th:replace="~{fragments/head_sec :: head-sec}"></div>
+	
 	<!--css 연결-->
 	<link rel="stylesheet" type="text/css" href="../css/login.css">
-	<link rel="stylesheet" type="text/css" href="../css/header.css">
+
 	<!--js연결(필요하면 쓰세요)-->
 	<script type="text/javascript" src="../js/login.js" defer></script>
 
@@ -79,7 +65,6 @@
 						<div class="loginbuttonbox box3">
 							<input type="submit"  class="loginbutton item" value="로그인"></input>
 						</div>
-					</form>
 						<div class="registerlinkbox box3">
 							<div class="registertext item">아직 회원가입을 하지 않으셨나요?</div>
 							<div class="registers box4">
@@ -88,9 +73,9 @@
 						</div>
 					</div>
 				</div>
+			</form>
 
 				<div class="sec3">
-					<button class="login_api_text">간편하게 SNS로 로그인</button>
 					<div class="login_api">
 						<div class="button_box google">
 							<a class="button" href="/oauth2/authorization/google">

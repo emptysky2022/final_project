@@ -31,6 +31,8 @@ public interface CampService {
 
 	public List<Object> findDataOfMember(TableType table, Long mno);
 
+	public List<Object> findReservationDataofMember(String nickName);
+
 	public List<Object> findDataOfCamp(TableType table, Long cno, String[] findData);
 
 	public void addData(TableType table, Long cno, String findData, int num);

@@ -2,28 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<!--구글 폰트 링크-->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Varela+Round&display=swap"
-		rel="stylesheet">
-	<link rel="stylesheet"
-		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-		
-	<!--typeit(페이지에 글씨입력되는것처럼 보이는 것)-->
-	<script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js" loop="true"></script>
-
-	<!--scrollOut(스크롤 내릴때 효과주는것)
-	<script src="https://unpkg.com/scroll-out/dist/scroll-out.min.js"></script> -->
-
-	<!--스크롤 내릴때 요소마다 다르게 주는 스크립트
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/rellax/1.12.1/rellax.min.js"></script> -->
-
-	<!--폰트 그림 링크-->
-	<script src="https://kit.fontawesome.com/bb87a5faf0.js" crossorigin="anonymous"></script>
-	
-	<!-- Jquery 연결 무조건 있어야함 -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<div th:replace="~{fragments/head_sec :: head-sec}"></div>
 	
 	<!--  별점 관련도 일단 있어야함 -->
 	<script th:src="@{../js/starrr.js}"></script>
@@ -31,10 +10,8 @@
 	
 	<!--css 연결-->
 	<link rel="stylesheet" type="text/css" href="../css/campgrounds.css">
-	<link rel="stylesheet" type="text/css" href="../css/header.css">
 	
 	<!--js연결-->
-	<!-- <script type="text/javascript" src="../js/header.js" defer></script> -->
 	<script type="text/javascript" src="../js/camp.js" defer></script>
 </head>
 
@@ -51,10 +28,6 @@
 		<div th:replace="~{fragments/camp_sec :: campGroundsSection2}"></div>
 		
 		<div th:replace="~{fragments/camp_sec :: campGroundsSection3}"></div>
-
-		<!-- 페이징 처리 시작 -->
-		<div class="pagingEl"></div>
-		<!-- 페이징 처리 끝 -->
 		
 		<div th:replace="~{fragments/camp_sec :: campGroundsSection4}"></div>
 
