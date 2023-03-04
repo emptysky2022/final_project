@@ -78,44 +78,28 @@
 
 	<!--  지도 & 날씨 -->
 	<section th:fragment="campGroundsSection3">
-		<div class="sec2 box3" style="max-width : none; z-index: 1;">
-                         
-                         <div id="map" style="width:40%;height:350px;max-width : none"></div>
-							
-                        <div class="mapweatherbox box4">
-                            <div class="startbox box5">
-                                <div class="startplacetext item">출발지</div>
-                                <input type="text" class="startplace item_2">
-                            </div>
-                            <div class="starttimebox box5">
-                                <div class="starttimetext item">출발 시간</div>
-                                <input type="time" class="starttime item_2">
-                            </div>
+		<div class="sec2 box3" style="max-width: none; z-index: 1;">
+
+			<div id="map" style="width: 40%; height: 350px; max-width: none"></div>
 
 
-                            <div class="totaltimebox box5">
-                                <div class="totaltime item">총 소요 시간</div>
-                            </div>
-
-
-
-                            <div class="weatherbox box5">
-                                <div class="weatherplacebox box6">
-                                    <div class="weatherplace item">부산 날씨</div>
-                                </div>
-                                <div class="comerainbox box6">
-                                    <div class="comerain item">강수 확률 70%</div>
-                                </div>
-                                <div class="windspeedbox box6">
-                                    <div class="windspeed item">북풍1.4m</div>
-                                </div>
-
-                                <div class="searchbox box6">
-                                    <button type="button" class="search item">검색</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+			<div class="weather-container">
+				<button class="prev">prev</button>
+				<div class="date">3월 4일</div>	
+				<div class="weather-re">
+					<div class="weatherbox">
+						<div class="weather-info">
+							<div class="date">15:00</div>
+							<img class="weather-img" src="sunny.png">
+							<div class="weather">맑음</div>
+							<div class="wind">풍속: 5m/s</div>
+						</div>
+					</div>
+				</div>
+				<button class="next">next</button>
+			</div>
+		</div>
+		
 	</section>
 	<!--  지도 & 날씨 끝 -->
 
