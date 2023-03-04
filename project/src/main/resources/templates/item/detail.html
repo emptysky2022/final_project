@@ -50,119 +50,16 @@
        
         <main>
             <div class="body box1">
-
                 <!--메인 바디 가운데 공간-->
                 <div class="body_center box2">
-
                     <!----------------캠핑장 사진------------->
-                    <div class="sec1 box3">
-                        <div class="titlebox box4">
-                            <div class="title item">Camper Product Details</div>
-                        </div>
-						<div th:if="${#strings.arraySplit(detail.thumbnail, ',').length == 1 and #strings.arraySplit(detail.thumbnail, ':').length == 1}">
-						    <img class="campgroundimg item" th:src="@{'/display?fileName=&folderType=item'}">
-						</div>
-						<div th:if="${#strings.arraySplit(detail.thumbnail, ':').length != 1}">
-						    <img class="campgroundimg item" th:src="${detail.thumbnail}">
-						</div>
-						<div th:if="${#strings.arraySplit(detail.thumbnail, ',').length != 1 and #strings.arraySplit(detail.thumbnail, ':').length == 1}" class="campgroundimgbox box4" th:each="image : ${#strings.arraySplit(detail.thumbnail, ',')}">
-						    <img class="campgroundimg item" th:src="@{'/display?fileName=' + ${image} + '&folderType=item'}">
-						</div>
-
-                        <div class="cg_titlebox box4">
-                            <div class="cg_title item">[[${detail.name}]]</div>
-                        </div>
-                        <div class="cg_starbox box4">
-                            <div class="cg_star item" id="item_star"><div id="sync_star">[[${detail.star}]]</div></div>
-                        </div>
-                        
-   						<div class="cg_heartbox box4" th:onclick="clickItemHeart('[[${detail.ino}]]')">
-                        	<div class="cg_heart item" id="item_heart">
-                        		<img class="heartImg" sec:authorize="!isAuthenticated()" src="../img/empty_heart.png">
-                        		[[${detail.heart}]]
-                        	</div>
-                        </div>
-                        
-                        <div class="cg_heart box4" th:onclick="clickItemCart('[[${detail.ino}]]')">
-                        	<img alt='<a href="https://www.flaticon.com/free-icons/cart" title="cart icons">Cart icons created by Freepik - Flaticon</a>' src="../img/shoppingcart.png">
-                        </div>
-
-                        <div class="cg_explainbox box4">
-                            <a class="cg_explain item" th:href="${detail.link}">[[${detail.link}]]</a>
-                        </div>
-
-                        <div class="cg_hashtagbox box4">
-                            <div class="cg_hashtag item">[[${detail.category1}]] | [[${detail.category2}]]</div>
-                        </div>
-                    </div>
+                    <div th:replace="~{fragments/item_sec :: detail1Fragment}"></div>
 					<!-- 리뷰 추가 모달창 -->
-                    <div class="modal-btn-box" sec:authorize="isAuthenticated()">
-        				<button type="button" id="modal-open">리뷰 작성</button>
-						    </div>
-						     <!--모달을 감쌀 박스-->
-						    <div class="popup-wrap" id="popup">
-						        <!--실질적 모달팝업-->
-						        <div class="popup"> 
-						            <!--로고 영역-->
-						            <div class="popup-head"> 
-						                <span class="head-title"> 로고</span>
-						            </div>
-						            <!--컨텐츠 영역-->
-						            <div class="popup-body"> 
-						                <div class="body-content">
-						                 <div class="body-titlebox">리뷰 작성하기</div>
-						                    <hr>
-						                    <div class="body-contentbox">
-						                       <div class="campgroundsbox">
-						                            <div class="campimgbox" th:with="images=${#strings.arraySplit(detail.thumbnail, ',')}">
-						                                <img class="campimg" th:src="@{'/display?fileName=' + (${images.length == 0 ? '' : images[images.length-1]}) + '&folderType=item'}">
-						                            </div>
-						                            <div class="campexplainbox">
-						                                <div class="ce_title">[[${detail.name}]]</div> 
-						                                <div class="ce_preice">
-						                                    [[${detail.price}]]원
-						                                </div>
-						                               
-						                            </div>
-						                       </div>
-						                       <hr>
-						                       <div class="starbox">
-						                            <div class="star_title">별점을 선택하세요</div>
-						                            <div class="starsizeupbox">
-						                                <div class="starrr star" id="select_star"></div>  
-						                            </div>  
-						                       </div>
-						                       <hr>
-						                       <div class="textreviewbox">
-						                            <div class="tr_texttitle">리뷰 내용</div>
-						                            <textarea class="tr_text" id="content" placeholder="솔직한 이용후기를 작성해주세요"></textarea>
-						
-						                       </div>
-						                       <hr>
-						                       <div class="addimgbox">
-						                            <div class="addimgtitle">이미지 추가</div>
-						                            <input type="file" id="capture" class="addimg" multiple>
-						                       </div>
-						                       <hr>
-						                    </div>
-						                </div>
-						            </div>
-						            <!--푸터 버튼 영역-->
-						            <div class="popup-foot">  
-						                <span class="pop-btn close" id="close">창 닫기</span>
-						                <span class="pop-btn confirm" id="confirm">확인</span>
-						               	<span class="pop-btn confirm" id="modify">수정</span>
-						            </div>
-						        </div>
-						    </div>
-                    <!---------------후기-------------------->
-                    <div class="sec4 box3">
-                        <div class="rv box4" id="reviewGroup">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    <div th:replace="~{fragments/item_sec :: detail3Fragment}"></div>
+		        </div>
+		    </div>
+            <!---------------후기-------------------->
+            <div th:replace="~{fragments/item_sec :: detail2Fragment}"></div>
         </main>
         
         <!-- footer fragment -->

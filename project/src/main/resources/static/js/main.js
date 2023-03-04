@@ -33,7 +33,7 @@
 
 //스크롤 내릴 때 속도를 다르게 줄 수 있다.
 
-var rellax = new Rellax('.rellax');
+/*var rellax = new Rellax('.rellax');*/
   
 
 

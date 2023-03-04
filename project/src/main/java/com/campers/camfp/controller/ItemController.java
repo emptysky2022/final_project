@@ -33,7 +33,7 @@ import lombok.extern.log4j.Log4j2;
 public class ItemController {
 	
 	private final ItemService itemService;
-
+	
 	@GetMapping("/list")
 	public void itemList() { //itemList.js에서 document.ready후 /list/data 호출
 	}
@@ -112,5 +112,4 @@ public class ItemController {
 		}
 		
 	}
-	
 }
