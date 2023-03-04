@@ -6,8 +6,6 @@
 <body>
 
 <header th:fragment="headerFragment">
-	<link rel="stylesheet" type="text/css" href="../css/cart.css">
-    <script type="text/javascript" src="../js/itemList.js" defer></script>	
 	<div class="header box1">
 				<!-- 네비게이션 로고 -->
 				<div class="header_logomenu box2">
@@ -88,7 +86,7 @@
 								person
 							</span>
 						</a>
-						<a class="cart-popup">
+						<a id="cart-popup" sec:authorize ="isAuthenticated()">
 							<img src="../img/shoppingcart.png">
 						</a>
 					</li>
