@@ -12,7 +12,6 @@ $(document).ready(function() {
 	var utcStartDate;
 	var utcEndDate;
 
-
 	// day 클경우 endDay    	    
 	// day 작을경우 startDay    	    
 	var Reservation = [
@@ -212,8 +211,6 @@ $(document).ready(function() {
 				"day": 0
 			}
 
-			console.log(startday);
-			console.log(endday);
 
 			// 시작년 과 종료 년이 같을경우
 			if (Number(startday.year) == Number(endday.year)) {
@@ -331,8 +328,6 @@ $(document).ready(function() {
 		utcStartDate = startDate;
 		utcEndDate = endDate;
 
-		console.log(utcStartDate);
-		console.log(utcEndDate);
 
 		$("#start-day cite").html(utcStartDate);
 		$("#end-day cite").html(utcEndDate);
@@ -345,13 +340,14 @@ $(document).ready(function() {
 	});
 
 	$("#RVclose").click(function() {
-		console.log("취소");
 		rvmodalClose(); //모달 닫기 함수 호출
 	});
 
 	$("#RVconfirm").click(function() {
 		// 예약 
 		clickCampReservation();
+		
+		alert("예약이 완료 되었습니다.");
 
 		// 캘린더 다시 load();
 		generateCalendar();
@@ -485,7 +481,6 @@ $(document).ready(function() {
 	listGroup.on('click', '.remove', function(event) {
 		var crno = $(this).attr('id');
 		removeReview(crno);
-		console.log(crno);
 	});
 
 	//하트 추가
@@ -507,8 +502,6 @@ $(document).ready(function() {
 
 	// 이미지 클래스 data-id 변경 메서드
 	function changeHeartImg(flag, heart, hlno) {
-		console.log(flag);
-		console.log(hlno);
 		heart.attr("src", flag ? "../img/full_heart.png" : "../img/empty_heart.png");
 
 		if (flag) {
@@ -525,8 +518,6 @@ $(document).ready(function() {
 
 	function loadJSON() {
 
-		console.log(result);
-
 		// 날씨 테스트 
 		weatherFindData(start, end);
 
@@ -534,8 +525,6 @@ $(document).ready(function() {
 
 			let str = "";
 			const [reply, member] = arr;
-
-			console.log(reply);
 
 			$.each(reply, function(index, reply) {
 				let direction = index % 2 == 0 ? 'l' : 'r';
@@ -571,7 +560,6 @@ $(document).ready(function() {
 				// 하트 한 항목이라면 ?
 				if (Number(heartData.hlno) > 0) {
 					// 눌렷을때 행동을 class Name 으로줌
-					console.log(heartData.hlno);
 					str += "<img class='removeHeart' id=" + reply.crno + " data-id= " + heartData.hlno + " width=30px height=30px src='../img/full_heart.png'>";
 				} else {
 					str += "<img class='saveHeart' id=" + reply.crno + " data-id= 'empty' width=30px height=30px src='../img/empty_heart.png'>";
@@ -605,7 +593,7 @@ $(document).ready(function() {
 				// 동기처리
 				async: false
 			}), success: function(hlno) {
-				console.log("탔음");
+				console.log("성공");
 				changeHeartImg(true, heart, hlno);
 			}
 		})
@@ -667,9 +655,7 @@ $(document).ready(function() {
 	}
 
 	function clickCampReservation() {
-		console.log(utcStartDate);
-		console.log(utcEndDate);
-
+		
 		$.ajax({
 			url: "/camp/calendar/register",
 			method: "POST",
@@ -698,16 +684,13 @@ $(document).ready(function() {
 	}
 
 	async function getReview(crno) {
-		console.log("탔음");
 		const result = await $.get("/camp/reply/one/" + crno)
 
-		console.log(result);
 		var regdate = result.regdate;
 		var capture = result.capture;
 		var heart = result.heart;
 		var star = result.star;
 		var content = result.content;
-		console.log(getStar(star));
 
 		$("#modify-content").val(content);
 		$("#modify-select_star").val(getStar(star));
@@ -717,7 +700,6 @@ $(document).ready(function() {
 	}
 
 	function replyModify(crno) {
-		console.log($("#modify-select_star").val());
 		$.ajax({
 			url: "/camp/reply/modify",
 			contentType: "application/json",
@@ -758,7 +740,6 @@ $(document).ready(function() {
 	var end = viewSize;
 
 	function weatherFindData(start, end) {
-		console.log("탔다");
 		var num = calcLocationToNum();
 
 		var apiURI = "http://api.openweathermap.org/data/2.5/forecast?id=" + num + "&appid=69e3983d301e56b958de5f85e38f463c"
@@ -768,8 +749,6 @@ $(document).ready(function() {
 			type: "GET",
 			async: "false",
 			success: function(data) {
-				
-				console.log(data);
 
 				// 반복할 껀데 첫번째 데이터가 15:00 라 날짜 맞추려면.. 
 				// 3시간 간격 처음만 3개 후 8개씩 마지막은또 4개  총 40개 3/8/8/8/8/4 
@@ -791,7 +770,6 @@ $(document).ready(function() {
 										<div class="date">${time}</div>`
 
 					var weatherID = data.list[i].weather[0].id;
-					console.log(weatherID);
 					
 					// weatherID별 날씨 표시
 					switch (true) {
@@ -823,7 +801,7 @@ $(document).ready(function() {
 				// 시작 위치를 바꿔야해서 올림
 
 				str += '<button class="next">next</button>';
-				console.log("완료");
+
 				$WeatherContainer.html(str);
 			}
 		})

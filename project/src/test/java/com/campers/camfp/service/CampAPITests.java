@@ -41,7 +41,7 @@ public class CampAPITests {
         String api_key = API_KEY;
         
         //반복(총 몇개의 캠프 정보를 넣을지)
-        IntStream.range(0, 10).forEach(i -> {
+        IntStream.range(0, 50).forEach(i -> {
         	
 	    	String requestHeaders = "";
 	    	//페이지 결과 수(캠핑장 개수)
@@ -88,7 +88,7 @@ public class CampAPITests {
 					}
 					System.out.println(campType);
 					CampDTO campDTO = CampDTO.builder()
-									.mno(51L)
+									.mno(1L)
 									.name(camp.getString("facltNm"))
 									.thumbnail(camp.getString("firstImageUrl"))
 									.location(camp.getString("doNm"))
@@ -99,6 +99,9 @@ public class CampAPITests {
 									.unit(1)
 									.build();
 					campService.register(TableType.CAMP, campDTO);
+					
+					
+					
 				}
 			} catch (JSONException e) {
 				throw new RuntimeException("JSON 변환 실패", e);
