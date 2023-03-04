@@ -464,13 +464,15 @@ $(document).ready(function() {
 				str += "<div class='cg_imgbox box5' onclick='location.href=\"/camp/campgroundsdetail?cno=" + camp.cno + "\"''>";
 
 				console.log(camp.thumbnail);
-
+			
 				try {
-					var image = camp.thumbnail.split(",");
-					if (image.length > 1) {
-						str += "<img class='cg_img item' src=/display?fileName=" + image[0] + "&folderType=camp>";
+					if (camp.thumbnail != null && camp.thumbnail.split(':')[0] === "https") {
+						console.log(camp);
+						console.log("어");
+						str += "<img class='cg_img item' src=" + camp.thumbnail + ">";
 					} else {
-						str += "<img class='cg_img item' src=/display?fileName=" + image[0] + "&folderType=camp>";
+						console.log("나야");
+						str += "<img class='cg_img item' src=/display?fileName=" + camp.thumbnail.split(',')[camp.thumbnail.split(',').length-1] + "&folderType=camp>";
 					}
 				} catch {
 					console.log("나도탐?");
