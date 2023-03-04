@@ -7,11 +7,11 @@
     --ti-cursor-margin-left:0.3;
     --ti-cursor-color:var(--color-a);
 
-    --font-size-lg: clamp(3rem, 5vw, 4rem);
-    --font-size-md: clamp(3.2vw, 3.5vw, 4vw);
-    --font-size-sm: clamp(0.8rem, 1vw, 2vw);
-    --font-size-vm: clamp(0.7rem, 1vw, 1.2rem);
-    --font-size-smpx: clamp(5px, 1vw, 1rem);
+    --font-size-lg: clamp(21px, 2.5vw, 28px);
+    --font-size-md: clamp(18px, 1.9vw, 25px);
+    --font-size-sm: clamp(15px, 1.6vw, 22px);
+    --font-size-vm: clamp(12px, 1.3vw, 16px);
+    --font-size-smpx: clamp(9px, 1vw, 13px);
    
     --color-a:#fffffe;  --color-1:#9BDE7E;
     --color-b:#FFF5FF;  --color-2:#8685EF;

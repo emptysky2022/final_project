@@ -532,7 +532,7 @@ $(document).ready(function() {
 			console.log(isNext);
 			console.log(endPage);
 
-			let pagination = `<ul class="pagination h-100 justfy-content-center align-items-conter boardpage box5">`;
+			let pagination = `<ul class="pagination h-100 justfy-content-center align-items-conter camppage box5">`;
 
 			if (isPrev) {
 				pagination += `<li class="page-item">
@@ -672,7 +672,7 @@ $(document).ready(function() {
 	}
 
 	// 페이징 처리를 위한 부분 따로 모아둠 //////////////////////////////
-	const $paging = $(".pagingEl");
+	const $paging = $(".camppagingEl");
 
 	// 페이징 / 검색을 위해 url 따오는 것들(url param 추출)   
 	let urlStr = window.location.href;

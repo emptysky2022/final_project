@@ -88,6 +88,10 @@
 						</g>
 					</svg>
 			</div>
+			<div class="infotext">
+				<h3> 이용 안내 </h3><br>
+				<p> ※ 지도 사용안내 <br><br> &nbsp;&nbsp;처음 상태는 모두 선택된 상태입니다.<br> &nbsp;&nbsp;제외를 하시려거든 해당 지역을 클릭해주시면<br> &nbsp;&nbsp;비활성화 됩니다. </p>
+			</div>
 		</div>
 		<!--  지도 끝 -->
 	</section>
@@ -95,29 +99,6 @@
 	<!--  캠핑 종류 -->
 	<section th:fragment="campGroundsSection2">
 		<!-------------------캠핑장 드롭다운메뉴--------------------->
-		<div class="sec2 box3">
-			<!--드롭다운메뉴-->
-			<div class="dropdowncampbox box4">
-				<div class="dropdown box5">
-					<a href="#" class="dropbtn item">캠핑종류</a>
-					<div class="subdropdown box7">
-						<div class="dropitem item">
-							<a href="#">와일드 캠핑</a>
-						</div>
-						<div class="dropitem item_2">
-							<a href="#">글램핑</a>
-						</div>
-						<div class="dropitem item_3">
-							<a href="#">오토캠핑장</a>
-						</div>
-						<div class="dropitem item_4">
-							<a href="#">oo캠핑장</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
 		<!--드롭다운 메뉴2-->
 		<div class="sec4 box3">
 			<!--드롭다운메뉴-->
@@ -133,7 +114,7 @@
 			</div>
 		</div>
 
-		<div id="campType">
+		<div class="camptype" id="campType">
 			<button id="type">일반</button>
 			<button id="type">카라반</button>
 			<button id="type">글램핑</button>
@@ -167,40 +148,7 @@
 		</div>
 
 		<!-- 페이징 처리 시작 -->
-		<div class="pagingEl"></div>
-		<!-- 페이징 처리 끝 -->
-	</section>
-	<!-- 캠핑 평점 끝 -->
-
-
-	<!-- 캠핑 평점 -->
-	<section th:fragment="campGroundsMainSection3">
-		<!--캠핑장 사진 및 평점-->
-		<div class="sec5 box3 test" id="2">
-			<div class="sec5 box3">
-				<div class="campgroundsbox box4" th:each="camp : ${result}"
-					th:attr="onclick=|location.href='@{/camp/campgroundsdetail(cno=${camp.cno})}'|">
-					<input type="hidden" name="cno" th:value="${camp.cno}">
-					<div class="cg_imgbox box5">
-						<img class="cg_img item" th:src="${camp.thumbnail}">
-					</div>
-					<div class="cg_rightbox box4">
-						<div class="title item">[[${camp.name}]]</div>
-
-						<div class="cg_starbox item">
-							<div class="star item">[[${camp.heart}]]</div>
-						</div>
-
-						<div class="cg_explainbox box5">
-							<div class="explain item">[[${camp.address}]]</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- 페이징 처리 시작 -->
-		<div class="pagingEl"></div>
+		<div class="camppagingEl"></div>
 		<!-- 페이징 처리 끝 -->
 	</section>
 	<!-- 캠핑 평점 끝 -->
