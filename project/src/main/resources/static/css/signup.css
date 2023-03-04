@@ -1,91 +1,37 @@
-:root {
-    --font-size-lg: clamp(2rem, 4vw, 3.5rem);
-    --font-size-md: clamp(1.5rem, 3vw, 2.5rem);
-    --font-size-sm: clamp(1rem, 2vw, 1.5rem);
-    --font-size-vm: clamp(1rem, 1vw, 1.2rem)
-}
-
-h1 {
-    font-size: var(--font-size-lg);
-}
-
-h2 {
-    font-size: var(--font-size-md);
-}
-
-p {
-    font-size: var(--font-size-sm);
-    
-}
-
-blockquote {
-    font-size: var(--font-size-md);
-}
-
-a {
-    font-size: var(--font-size-sm);
-}
-
-
-* {
-    padding: 0;
-    margin: 0;
-    font-size: 0.6rem;
-    left: 0;
-    top: 0;
-    max-width: 100%;
-    height: auto;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-family: 'Varela Round', sans-serif;
-	word-wrap: break-word;
-    box-sizing: border-box;
-    border-radius: 0.5rem;
-}
-
-/*리스트들의 특수기호 제거*/
-li {
-    list-style: none;
-}
-
-
-/*하이퍼링크 전체 밑줄 제거*/
-a {
-    text-decoration: none;
-    /*부모개체의 속성 그대로*/
-
-}
-
-
-
-/*사용할 페이지 전체 범위(가로폭은 보이는 화면의 80%고정, 세로폭은 내용물이 많아지면 자동 증가)*/
-body {
+main{
     display: flex;
-    max-width: 100vw;
-    height: 100%;
     justify-content: center;
-    
-}  
-
-/*container 전체 틀 잡기*/
-body .container{
-    width: 80vw;
-    height: auto;
-    display: flex;
-    flex-direction:column;
-    
-    justify-content:center;
-    margin: 5rem;
+    align-items: center;
 }
 
+.secbox{
+    width: 80%;
+}
 
 /*sec1*/
 .sec1{
-    justify-content: space-evenly;
     display: flex;
-    flex-direction:column;
-    text-align: center;
-    flex-basis: 25%;
-    
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+    padding: 30px;
+    margin: 2rem;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0px 2px 6px rgb(0 0 0 / 10%);
+}
+
+.sec1 .icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0px 2px 6px rgb(0 0 0 / 10%);
 }
 
 
@@ -97,68 +43,57 @@ body .container{
 /*sec2*/
 .sec2{
     display: flex;
-    margin: 0 0 4rem 0;
-    flex-direction:column;
-    
-   
-    
-}
-
-/*소셜로그인 글자 가운데 정렬*/
-.sec2 .loginapitext{
-    text-align: center;
-   
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
 }
 
 /*sns로그인*/
 .sec2 .loginapi{
-    display: flex;
-    justify-content:center;
-  
-    
-    
+    /* text-align: center;
+    margin-bottom: 1rem;
+    color: #333; */
+    display:flex;
+	flex-direction:column;
+	align-items:center;
 }
 
 
 /*buttonbox 모음*/
-.sec2 .loginapi .box3{
-    display: flex;
-    width: 100%;
-    justify-content:space-evenly;
-    align-items: center;
-   
-}
-
-
-.sec2 .loginapi .buttonbox_g{
-    flex-basis: 20%;
-}
-
-.sec2 .loginapi .buttonbox_n{
-    flex-basis: 20%;
-}
-
+.sec2 .loginapi .buttonbox_g,
+.sec2 .loginapi .buttonbox_n,
 .sec2 .loginapi .buttonbox_k{
-    flex-basis: 20%;
+    /* display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction:column; */
+    
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 0.3rem;
+    max-width: 12rem;
 }
 /*----------*/
+
+.sec2 .loginapi .button_box:hover {
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
 
 
 /*logimg 모음*/
 
 .sec2 .loginapi .buttonbox_g .button_g .logoimg_gw{
-    height: 4.5rem;
-    display: flex;
-    
+    border-radius: 5px;
 }
 
 .sec2 .loginapi .buttonbox_n .button_n .logoimg_nw{
-    display: flex;
-    height: 4.5rem;
+	border-radius: 5px;
 }
 .sec2 .loginapi .buttonbox_k .button_k .logoimg_kw{
-    display: flex;
-    height: 4.5rem;
+	border-radius: 5px;
 }
 /*----------*/
 
@@ -210,7 +145,6 @@ body .container{
         justify-content: center;
         margin: 0.3rem;
         flex-basis: 35%;
-        height: 4.5rem;
     }
 
     .sec2 .loginapi .box3 .box4 .logotext{
@@ -377,12 +311,61 @@ body .container{
 
 
 /*sec4*/
+input{
+	width : 100%;
+            box-sizing: border-box;
+            padding: 15px;
+ 
+            border-radius: 5px;
+            border: 1px solid rgba(0, 0, 0, 0.233);
+            margin-top:-10px;
+           
+}
+/* input:focus {outline:none;} */
+
+ input:hover{
+            border: 1px solid dodgerblue;
+            box-shadow: 0 0 5px dodgerblue;
+}
+ input:focus::placeholder{
+            color:transparent;
+}
+
+input::placeholder {
+    white-space: normal;
+  
+  }
+
+button:disabled{
+    background-color: #ccc;
+    color: #999;
+    
+}       
+
 .sectionbreak .sec4{
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     justify-content: space-between;
+    margin: 0 auto;
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+    max-width: 80%;
+}
 
-    
+.registerbox{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+}
+
+.registertext{
+    margin-bottom:1rem ;
+    font-size: var(--font-size-md);
+    color: #333;
 }
 
 .sectionbreak .sec4 .profileimgbox{
@@ -398,16 +381,11 @@ body .container{
 
 .sectionbreak .sec4 .profileimgbox .profileimg {
     width: 100%;
-    height: 3rem;
     border-radius: 0.2rem;
     margin: 0 0 1.5rem 0;
-    padding: 3rem;
+    padding: 1rem;
     max-width: 400px;
     
-}
-
-.sectionbreak .sec4 {
-
 }
 
 
@@ -427,13 +405,15 @@ body .container{
 
 .sectionbreak .sec4 .idbox .id{
     width: 100%;
-    height: 6rem;
     border-radius: 0.2rem;
-    margin: 0 0 1.5rem 0;
-    padding: 2rem;
+    padding: 1rem;
     max-width: 400px;
 }
 
+.input-container {
+    position: relative;
+    display: inline-block;
+  }
 
 /*비밀번호*/
 .sectionbreak .sec4 .passwordbox{
@@ -450,10 +430,8 @@ body .container{
 
 .sectionbreak .sec4 .passwordbox .password{
     width: 100%;
-    height: 6rem;
     border-radius: 0.2rem;
-    margin: 0 0 1.5rem 0;
-    padding: 2rem;
+    padding: 1rem;
     max-width: 400px;
 }
 
@@ -472,10 +450,8 @@ body .container{
 
 .sectionbreak .sec4 .passwordcheckbox .passwordcheck{
     width: 100%;
-    height: 6rem;
     border-radius: 0.2rem;
-    margin: 0 0 1.5rem 0;
-    padding: 2rem;
+    padding: 1rem;
     max-width: 400px;
 }
 
@@ -495,10 +471,8 @@ body .container{
 
 .sectionbreak .sec4 .namebox .name{
     width: 100%;
-    height: 6rem;
     border-radius: 0.2rem;
-    margin: 0 0 1.5rem 0;
-    padding: 2rem;
+    padding: 1rem;
     max-width: 400px;
 }
 
@@ -516,10 +490,8 @@ body .container{
 
 .sectionbreak .sec4 .nicknamebox .nickname{
     width: 100%;
-    height: 6rem;
     border-radius: 0.2rem;
-    margin: 0 0 1.5rem 0;
-    padding: 2rem;
+    padding: 1rem;
     max-width: 400px;
 }
 
@@ -538,10 +510,8 @@ body .container{
 
 .sectionbreak .sec4 .agebox .age{
     width: 100%;
-    height: 6rem;
     border-radius: 0.2rem;
-    margin: 0 0 1.5rem 0;
-    padding: 2rem;
+    padding: 1rem;
     max-width: 400px;
 }
 
@@ -559,10 +529,8 @@ body .container{
 
 .sectionbreak .sec4 .genderbox .gender{
     width: 100%;
-    height: 6rem;
     border-radius: 0.2rem;
-    margin: 0 0 1.5rem 0;
-    padding: 2rem;
+    padding: 1rem;
     max-width: 400px;
 }
 
@@ -580,10 +548,8 @@ body .container{
 
 .sectionbreak .sec4 .addressbox .address{
     width: 100%;
-    height: 6rem;
     border-radius: 0.2rem;
-    margin: 0 0 1.5rem 0;
-    padding: 2rem;
+    padding: 1rem;
     max-width: 400px;
 }
 
@@ -601,10 +567,8 @@ body .container{
 
 .sectionbreak .sec4 .phonebox  .phone{
     width: 100%;
-    height: 6rem;
     border-radius: 0.2rem;
-    margin: 0 0 1.5rem 0;
-    padding: 2rem;
+    padding: 1rem;
     max-width: 400px;
 }
 
@@ -622,17 +586,12 @@ body .container{
 
 .sectionbreak .sec4 .introducebox  .introduce{
     width: 100%;
-    height: 6rem;
-    border-radius: 0.2rem;
-    margin: 0 0 1.5rem 0;
     padding: 2rem;
     max-width: 400px;
     overscroll-behavior: contain;
-    overflow:auto;
-    /*자동 줄바꿈*/
-    white-space:pre-wrap;
-    /*사용자가 세로로만 사이즈 조절 가능*/
-    resize:vertical;
+    overflow: auto;
+    white-space: pre-wrap;
+    resize: none;
 }   
 
 
@@ -655,16 +614,7 @@ body .container{
     .sectionbreak .sec4 .profileimgbox .profileimg {
         flex-basis: 25%;
         width: 100%;
-        height: 3rem;
-        border-radius: 0.2rem;
-        margin: 0 0 1.5rem 0;
-        padding: 3rem;
-        max-width: 400px;
         
-    }
-    
-    .sectionbreak .sec4 {
-    
     }
     
     
@@ -684,12 +634,6 @@ body .container{
     
     .sectionbreak .sec4 .idbox .id{
         width: 100%;
-        height: 3rem;
-        border-radius: 0.2rem;
-        margin: 0 0 1.5rem 0;
-        padding: 2rem;
-        max-width: 400px;
-        flex-basis: 25%;
     }
     
     
@@ -709,12 +653,6 @@ body .container{
     
     .sectionbreak .sec4 .passwordbox .password{
         width: 100%;
-        height: 3rem;
-        border-radius: 0.2rem;
-        margin: 0 0 1.5rem 0;
-        padding: 2rem;
-        max-width: 400px;
-        flex-basis: 25%;
     }
     
     /*비밀번호 확인*/
@@ -733,12 +671,6 @@ body .container{
     
     .sectionbreak .sec4 .passwordcheckbox .passwordcheck{
         width: 100%;
-        height: 3rem;
-        border-radius: 0.2rem;
-        margin: 0 0 1.5rem 0;
-        padding: 2rem;
-        max-width: 400px;
-        flex-basis: 25%;
     }
     
     
@@ -758,12 +690,6 @@ body .container{
     
     .sectionbreak .sec4 .namebox .name{
         flex-basis: 25%;
-        width: 100%;
-        height: 3rem;
-        border-radius: 0.2rem;
-        margin: 0 0 1.5rem 0;
-        padding: 2rem;
-        max-width: 400px;
     }
     
     /*닉네임*/
@@ -781,12 +707,6 @@ body .container{
     
     .sectionbreak .sec4 .nicknamebox .nickname{
         flex-basis: 25%;
-        width: 100%;
-        height: 3rem;
-        border-radius: 0.2rem;
-        margin: 0 0 1.5rem 0;
-        padding: 2rem;
-        max-width: 400px;
     }
     
     
@@ -805,12 +725,6 @@ body .container{
     
     .sectionbreak .sec4 .agebox .age{
         flex-basis: 25%;
-        width: 100%;
-        height: 3rem;
-        border-radius: 0.2rem;
-        margin: 0 0 1.5rem 0;
-        padding: 2rem;
-        max-width: 400px;
     }
     
     /*성별*/
@@ -828,12 +742,6 @@ body .container{
     
     .sectionbreak .sec4 .genderbox .gender{
         flex-basis: 25%;
-        width: 100%;
-        height: 3rem;
-        border-radius: 0.2rem;
-        margin: 0 0 1.5rem 0;
-        padding: 2rem;
-        max-width: 400px;
     }
     
     /*주소*/
@@ -851,12 +759,6 @@ body .container{
     
     .sectionbreak .sec4 .addressbox .address{
         flex-basis: 25%;
-        width: 100%;
-        height: 3rem;
-        border-radius: 0.2rem;
-        margin: 0 0 1.5rem 0;
-        padding: 2rem;
-        max-width: 400px;
     }
     
     /*전화번호*/
@@ -874,12 +776,6 @@ body .container{
     
     .sectionbreak .sec4 .phonebox  .phone{
         flex-basis: 25%;
-        width: 100%;
-        height: 3rem;
-        border-radius: 0.2rem;
-        margin: 0 0 1.5rem 0;
-        padding: 2rem;
-        max-width: 400px;
     }
     
     /*소개*/
@@ -897,12 +793,6 @@ body .container{
     
     .sectionbreak .sec4 .introducebox  .introduce{
         flex-basis: 25%;
-        width: 100%;
-        height: 3rem;
-        border-radius: 0.2rem;
-        margin: 0 0 1.5rem 0;
-        padding: 2rem;
-        max-width: 400px;
     }   
     
     
@@ -912,6 +802,17 @@ body .container{
 
 
 @media screen and (max-width: 480px){
+	input{
+        height:2em;
+    }
+    
+    input::placeholder {
+            white-space: normal;
+            position:absolute;
+            top:0;
+            left:0;
+    }
+	
     .sectionbreak .sec4 .profileimgbox{
         display: flex;
         flex-direction: column;
@@ -930,15 +831,10 @@ body .container{
         height: 3rem;
         border-radius: 0.2rem;
         margin: 0 0 1.5rem 0;
-        padding: 3rem;
+
         max-width: 400px;
         
     }
-    
-    .sectionbreak .sec4 {
-    
-    }
-    
     
     /*아이디*/
     .sectionbreak .sec4 .idbox{
@@ -959,9 +855,8 @@ body .container{
         height: 3rem;
         border-radius: 0.2rem;
         margin: 0 0 1.5rem 0;
-        padding: 2rem;
+        
         max-width: 400px;
-        flex-basis: 25%;
     }
     
     
@@ -984,9 +879,8 @@ body .container{
         height: 3rem;
         border-radius: 0.2rem;
         margin: 0 0 1.5rem 0;
-        padding: 2rem;
+        
         max-width: 400px;
-        flex-basis: 25%;
     }
     
     /*비밀번호 확인*/
@@ -1007,9 +901,8 @@ body .container{
         height: 3rem;
         border-radius: 0.2rem;
         margin: 0 0 1.5rem 0;
-        padding: 2rem;
+        
         max-width: 400px;
-        flex-basis: 25%;
     }
     
     
@@ -1028,12 +921,10 @@ body .container{
     }
     
     .sectionbreak .sec4 .namebox .name{
-        flex-basis: 25%;
         width: 100%;
         height: 3rem;
         border-radius: 0.2rem;
         margin: 0 0 1.5rem 0;
-        padding: 2rem;
         max-width: 400px;
     }
     
@@ -1051,12 +942,10 @@ body .container{
     }
     
     .sectionbreak .sec4 .nicknamebox .nickname{
-        flex-basis: 25%;
         width: 100%;
         height: 3rem;
         border-radius: 0.2rem;
         margin: 0 0 1.5rem 0;
-        padding: 2rem;
         max-width: 400px;
     }
     
@@ -1075,12 +964,10 @@ body .container{
     }
     
     .sectionbreak .sec4 .agebox .age{
-        flex-basis: 25%;
         width: 100%;
         height: 3rem;
         border-radius: 0.2rem;
         margin: 0 0 1.5rem 0;
-        padding: 2rem;
         max-width: 400px;
     }
     
@@ -1098,12 +985,10 @@ body .container{
     }
     
     .sectionbreak .sec4 .genderbox .gender{
-        flex-basis: 25%;
         width: 100%;
         height: 3rem;
         border-radius: 0.2rem;
         margin: 0 0 1.5rem 0;
-        padding: 2rem;
         max-width: 400px;
     }
     
@@ -1121,12 +1006,10 @@ body .container{
     }
     
     .sectionbreak .sec4 .addressbox .address{
-        flex-basis: 25%;
         width: 100%;
         height: 3rem;
         border-radius: 0.2rem;
         margin: 0 0 1.5rem 0;
-        padding: 2rem;
         max-width: 400px;
     }
     
@@ -1144,12 +1027,10 @@ body .container{
     }
     
     .sectionbreak .sec4 .phonebox  .phone{
-        flex-basis: 25%;
         width: 100%;
         height: 3rem;
         border-radius: 0.2rem;
         margin: 0 0 1.5rem 0;
-        padding: 2rem;
         max-width: 400px;
     }
     
@@ -1167,28 +1048,13 @@ body .container{
     }
     
     .sectionbreak .sec4 .introducebox  .introduce{
-        flex-basis: 25%;
         width: 100%;
         height: 3rem;
         border-radius: 0.2rem;
         margin: 0 0 1.5rem 0;
-        padding: 2rem;
         max-width: 400px;
     }   
-    
-    
-
-
 }
-
-
-
-
-
-
-
-
-
 
 /*sec5*/
 .sectionbreak .sec5{
@@ -1198,23 +1064,25 @@ body .container{
 
 
 /*회원가입 박스*/
-.sectionbreak .sec6 {
+.sectionbreak .buttonbox {
     display: flex;
     justify-content: center;
     
 }
 
-.sectionbreak .sec6 .registerBtn{
+.sectionbreak .buttonbox .registerBtn{    
     background-color: #3498DB;
-    color: aliceblue;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
     border: none;
-    flex-basis: auto;
-    width:20rem;
-    height: 5rem;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-    margin: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 80%;
+    height: 3rem;
+    text-align: center;
+
 }
 
 .id_ok{
@@ -1240,7 +1108,9 @@ display: none;
 /*로그인 박스*/
 .sectionbreak .sec7{
     display: flex;
-    justify-content: end;
+    justify-content: center;
+    align-items: baseline;
+    margin-bottom: 1rem;
 }
 
 .ready{
@@ -1251,5 +1121,8 @@ display: none;
 	display:none;
 }
 .sectionbreak .sec7 .loginlink{
-
+	display: flex;
+    font-size: var(--font-size-sm);
+    align-items: center;
+    color:blue;
 }

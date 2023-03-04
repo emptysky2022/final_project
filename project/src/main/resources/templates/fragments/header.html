@@ -84,11 +84,9 @@
 						<a class="signup box4"  sec:authorize ="isAnonymous()"  href="/signup">회원가입</a>
 						<!--내정보 페이지 링크 아이콘-->
 						<a class="readmemeberlinkbox"  sec:authorize ="isAuthenticated()" href="/readmember">
-							<span class="readmemeber material-symbols-outlined">
-								person
-							</span>
+							<i class="fa-solid fa-user fa-2x"></i>
 						</a>
-						<a class="cart-popup">
+						<a class="cart-popup" sec:authorize ="isAuthenticated()">
 							<img src="../img/shoppingcart.png">
 						</a>
 					</li>

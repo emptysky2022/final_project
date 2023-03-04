@@ -6,10 +6,7 @@
 <body>
 	<!-- 카테고리, 키워드, 정렬 설정 -->
 	<section th:fragment="list1Fragment">
-		<script type="text/javascript" src="../js/itemList.js" defer></script>
-		<link rel="stylesheet" type="text/css" href="../css/cart.css">
-    <link rel="stylesheet" type="text/css" href="../css/camperproduct.css">
-    <link rel="stylesheet" type="text/css" href="../css/reviewwrite.css">
+		
 		<div class="sec1 box3">
            <div class="titlebox box4">
                <div class="title item">Camper Product</div>
@@ -65,10 +62,7 @@
 	
 	<!-- 아이템 리스트 -->
 	<section th:fragment="list2Fragment">
-		<script type="text/javascript" src="../js/itemList.js" defer></script>
-			<link rel="stylesheet" type="text/css" href="../css/cart.css">
-    <link rel="stylesheet" type="text/css" href="../css/camperproduct.css">
-    <link rel="stylesheet" type="text/css" href="../css/reviewwrite.css">
+		
 	
 		<div class="sec3 box3" id="list"></div>
         <div class="pagingEl"></div>
@@ -76,12 +70,9 @@
 	
 	<!-- 아이템 추가 모달 -->
 	<section th:fragment="list3Fragment">
-		<script type="text/javascript" src="../js/itemList.js" defer></script>
-		<link rel="stylesheet" type="text/css" href="../css/cart.css">
-    <link rel="stylesheet" type="text/css" href="../css/camperproduct.css">
-    <link rel="stylesheet" type="text/css" href="../css/reviewwrite.css">
+		
 		<div class="modal-btn-box" sec:authorize="isAuthenticated()">
-	     	<button type="button" id="item-modal-open">아이템 추가</button>
+	     	<button type="button" class="itemadd" id="item-modal-open">아이템 추가</button>
 		</div>
 		<!--모달을 감쌀 박스-->
 		<div class="popup-wrap" id="item-popup">
@@ -180,9 +171,7 @@
 	
 	<!-- 아이템 상세 내용 -->
 	<section th:fragment="detail1Fragment">
-	    <link rel="stylesheet" type="text/css" href="../css/campgroundsdetail.css">
-	    <script type="text/javascript" src="../js/itemDetail.js" defer></script>
-        <script type="text/javascript" th:inline="javascript" src="../js/itemDetail.js"></script>
+	    
 		<div class="sec1 box3">
 	        <div class="titlebox box4">
 	            <div class="title item">Camper Product Details</div>
@@ -228,8 +217,7 @@
 	
 	<!-- 리뷰 내용 -->
 	<section th:fragment="detail2Fragment">
-	    <link rel="stylesheet" type="text/css" href="../css/campgroundsdetail.css">
-	    <script type="text/javascript" th:inline="javascript" src="../js/itemDetail.js" defer></script>
+	    
 		<div class="sec4 box3">
             <div class="rv box4" id="reviewGroup"></div>
         </div>
@@ -238,8 +226,7 @@
 	
 	<!-- 리뷰 모달 -->
 	<section th:fragment="detail3Fragment">
-		<link rel="stylesheet" type="text/css" href="../css/reviewwrite.css">
-		<script type="text/javascript" th:inline="javascript" src="../js/itemDetail.js" ></script>
+		
 		<div class="modal-btn-box" sec:authorize="isAuthenticated()">
 			<button type="button" id="modal-open">리뷰 작성</button>
 		</div>
