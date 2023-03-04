@@ -209,7 +209,6 @@ footer{
 
 
 .header .header_mypage .logout{
-    display:none;
     color: var(--color-a);
     border-radius: 10px;
     font-size:var(--font-size-vm);
@@ -229,6 +228,12 @@ footer{
   font-size: var(--font-size-vm);
   font-weight: normal;
   color: var(--color-a);
+}
+
+.header .cart-popup {
+	margin: 0.5rem;
+	width: 2rem;
+	height: 2rem;
 }
 
 

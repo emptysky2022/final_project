@@ -700,7 +700,6 @@ $(document).ready(function() {
 	}
 
 	function replyModify(crno) {
-		
 		$.ajax({
 			url: "/camp/reply/modify",
 			contentType: "application/json",
@@ -802,6 +801,7 @@ $(document).ready(function() {
 				// 시작 위치를 바꿔야해서 올림
 
 				str += '<button class="next">next</button>';
+
 				$WeatherContainer.html(str);
 			}
 		})

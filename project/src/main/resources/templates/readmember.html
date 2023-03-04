@@ -31,11 +31,7 @@
 		<div th:replace="~{fragments/header :: headerFragment}"></div>
 		<main>
 			<div class="body box1">
-				<!--메인 바디의 사이드 빈 공간왼쪽-->
-				<div class="aside_l box2">aside_l</div>
-
-
-
+				
 				<!--메인 바디 가운데 공간-->
 				<div class="body_center box2">
 
@@ -47,66 +43,67 @@
 						<div class="titlecommentbox box4">
 							<p class="titlecommenttext item">회원님의 개인정보를 확인하실 수 있습니다. </p>
 						</div>
+					</div>
 
 
-							<div class="sec2 box3">
-								<div class="profileimgbox box4">
-									<!-- <p class="profiletext item"></p> -->
-									<input class="profileimg item_2" type="text" name="image"
-										th:value="${member.getProfileImg}" readonly>
-								</div>
+					<div class="sec2 box3">
+						<div class="profileimgbox box4">
+							<!-- <p class="profiletext item"></p> -->
+							<input class="profileimg item_2" type="text" name="image"
+								th:value="${member.getProfileImg}" readonly>
+						</div>
 
 
-								<div class="idbox box4">
-									<p type="text" class="idtext item">아이디</p>
-									<input class="id item_2" type="text" name="id" th:value="${member.getId}" readonly>
-								</div>
+						<div class="idbox box4">
+							<p class="idtext item">아이디</p>
+							<input class="id item_2" type="text" name="id" th:value="${member.getId}" readonly>
+						</div>
 
-								<div class="namebox box4">
-									<p class="nametext item">이름</p>
-									<input class="name item_2" type="text" name="name" th:value="${member.getName}"
-										readonly>
-								</div>
-								<div class="nicknamebox box4">
-									<p class="nicknametext item">별명</p>
-									<input class="nickname item_2" type="text" name="nickname"
-										th:value="${member.getNickname}" readonly>
-								</div>
-								<div class="agebox box4">
-									<p class="agetext item">나이</p>
-									<input class="age item_2" type="text" name="age" th:value="${member.getAge}"
-										readonly>
-								</div>
-								<div class="genderbox box4">
-									<p class="gendertext item">성별</p>
-									<input class="gender item_2" type="text" name="gender" th:value="${member.getGender}"
-										readonly>
-								</div>
-								<div class="addressbox box4">
-									<p class="addresstext item">주소</p>
-									<input class="address item_2" type="text" name="address"
-										th:value="${member.getAddress}" readonly>
-								</div>
-								<div class="phonebox box4">
-									<p class="phonetext item">전화번호</p>
-									<input class="phone item_2" type="text" name="phone" th:value="${member.getPhone}"
-										readonly>
-								</div>
-								<div class="introducebox box4">
-									<p class="introducetext item">소개</p>
-									<textarea class="introduce item_2" name="introduce" readonly>[[${member.getIntroduce}]]</textarea>
-								</div>
-								<div class="buttonbox">
-									<div class="modifybox box4">
-										<button class="modify item" onclick="location.href='/modifymember'">나의 정보 수정</button>
-									</div>
-
-									<!--삭제버튼 나중에 (회원탈퇴) 등으로 변경 될 수 있음-->
-									<div class="deletebox box4">
-										<button class="delete item" type="button">삭제</button>
-									</div>
-								</div>
+						<div class="namebox box4">
+							<p class="nametext item">이름</p>
+							<input class="name item_2" type="text" name="name" th:value="${member.getName}"
+								readonly>
+						</div>
+						<div class="nicknamebox box4">
+							<p class="nicknametext item">별명</p>
+							<input class="nickname item_2" type="text" name="nickname"
+								th:value="${member.getNickname}" readonly>
+						</div>
+						<div class="agebox box4">
+							<p class="agetext item">나이</p>
+							<input class="age item_2" type="text" name="age" th:value="${member.getAge}"
+								readonly>
+						</div>
+						<div class="genderbox box4">
+							<p class="gendertext item">성별</p>
+							<input class="gender item_2" type="text" name="gender" th:value="${member.getGender}"
+								readonly>
+						</div>
+						<div class="addressbox box4">
+							<p class="addresstext item">주소</p>
+							<input class="address item_2" type="text" name="address"
+								th:value="${member.getAddress}" readonly>
+						</div>
+						<div class="phonebox box4">
+							<p class="phonetext item">전화번호</p>
+							<input class="phone item_2" type="text" name="phone" th:value="${member.getPhone}"
+								readonly>
+						</div>
+						<div class="introducebox box4">
+							<p class="introducetext item">소개</p>
+							<textarea class="introduce item_2" name="introduce" readonly>[[${member.getIntroduce}]]</textarea>
+						</div>
+						<div class="buttonbox">
+							<div class="modifybox box4">
+								<button class="modify item" onclick="location.href='/modifymember'">나의 정보 수정</button>
 							</div>
+
+							<!--삭제버튼 나중에 (회원탈퇴) 등으로 변경 될 수 있음-->
+							<div class="deletebox box4">
+								<button class="delete item" type="button">삭제</button>
+							</div>
+						</div>
+					</div>
 
 					</div>
 
@@ -133,10 +130,6 @@
 						  <!-- 결제 내역이 더 있을 경우, 추가로 항목을 생성하여 표시 -->
 						</ul>
 					  </div>
-					  
-					  
-
-					<!-- </div> -->
 
 					<!---------------메인바디 3번칸-------------------->
 					<div class="sec4 box3">
@@ -423,7 +416,7 @@
 											<div class="rv_date">
 												작성일
 											</div>
-											<div classs="rv_postgroup">
+											<div class="rv_postgroup">
 												어느 게시글에서 댓글 썼는지 보여주는 곳
 											</div>
 										</div>
@@ -442,7 +435,7 @@
 											<div class="rv_date">
 												2023-02-24
 											</div>
-											<div classs="rv_postgroup">
+											<div class="rv_postgroup">
 												대충게시판제목써있는글
 											</div>
 										</div>
@@ -461,7 +454,7 @@
 											<div class="rv_date">
 												2023-02-24
 											</div>
-											<div classs="rv_postgroup">
+											<div class="rv_postgroup">
 												대충게시판제목써있는글
 											</div>
 										</div>
@@ -480,7 +473,7 @@
 											<div class="rv_date">
 												2023-02-24
 											</div>
-											<div classs="rv_postgroup">
+											<div class="rv_postgroup">
 												대충게시판제목써있는글
 											</div>
 										</div>
@@ -499,7 +492,7 @@
 											<div class="rv_date">
 												2023-02-24
 											</div>
-											<div classs="rv_postgroup">
+											<div class="rv_postgroup">
 												대충게시판제목써있는글
 											</div>
 										</div>
@@ -518,7 +511,7 @@
 											<div class="rv_date">
 												2023-02-24
 											</div>
-											<div classs="rv_postgroup">
+											<div class="rv_postgroup">
 												대충게시판제목써있는글
 											</div>
 										</div>
@@ -549,24 +542,10 @@
 					</div>
 
 				</div>
+			</main>
 
-
-
-
-
-
-				<!--메인 바디의 사이드 빈 공간 오른쪽-->
-				<div class="aside_r box2">aside_r</div>
-			</div>
-
-		</main>
-
-
-
-
-
-	<!-- footer fragment -->
-	<div th:replace="~{/fragments/footer :: footerFragment}"></div>
+		<!-- footer fragment -->
+		<div th:replace="~{/fragments/footer :: footerFragment}"></div>
 
 	</div>
 </body>
