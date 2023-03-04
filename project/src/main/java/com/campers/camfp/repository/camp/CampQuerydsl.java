@@ -61,6 +61,8 @@ public interface CampQuerydsl {
 	
 	
 	public int findData(TableType table, Long no, String findData);
+	
+	public List<Object> findReservationDataofMember(String NickName);
 
 	
 }

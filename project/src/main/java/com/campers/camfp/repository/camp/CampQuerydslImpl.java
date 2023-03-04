@@ -329,26 +329,13 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 		BooleanBuilder conditionLocaitonBuilder = new BooleanBuilder();
 		OrderSpecifier<?> direction = null;
 
-		JPQLQuery<Tuple> tuple = from(Q_CAMP).select(Q_CAMP.cno 
-												    ,Q_CAMP.member.mno
-													 , Q_CAMP.name
-													 , Q_CAMP.thumbnail
-													 , Q_CAMP.location
-													 , Q_CAMP.camptype
-													 , Q_CAMP.campintroduce
-													 , Q_CAMP.address
-													 , Q_CAMP.unit
-													 , Q_CAMP.count
-													 , Q_CAMP.star
-													 , Q_CAMP.heart);
-		
-		
+		JPQLQuery<Tuple> tuple = from(Q_CAMP).select(Q_CAMP.cno, Q_CAMP.member.mno, Q_CAMP.name, Q_CAMP.thumbnail,
+				Q_CAMP.location, Q_CAMP.camptype, Q_CAMP.campintroduce, Q_CAMP.address, Q_CAMP.unit, Q_CAMP.count,
+				Q_CAMP.star, Q_CAMP.heart);
+
 		JPQLQuery<Camp> camp = from(Q_CAMP);
 		camp.select(Q_CAMP);
 		camp.from(Q_CAMP);
-		
-		
-
 
 		// 정렬 방식을 정하지 못했을 경우 넣어줌 default 값
 		log.info(findLocations[0]);
@@ -401,10 +388,10 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 			direction = new OrderSpecifier(Order.DESC, Q_CAMP.heart);
 
 		}
-		
+
 		log.info(conditionBuilder);
 		log.info(conditionBuilder.not());
-		
+
 		if (conditionBuilder.not() == null) {
 			log.info("null 임");
 			conditionBuilder.or(QCamp.camp.camptype.contains("일반"));
@@ -413,15 +400,34 @@ public class CampQuerydslImpl extends QuerydslRepositorySupport implements CampQ
 			conditionBuilder.or(QCamp.camp.camptype.contains("자동차"));
 		}
 
-		tuple.where(conditionBuilder.and(conditionLocaitonBuilder))
-				.orderBy(direction).offset(pageable.getOffset()).limit(pageable.getPageSize()).fetch();
-		
-		 List<Tuple> result = tuple.fetch(); // 검색 결과 리스트
-	      log.info("result : " + result);   
-	      
-	      long count = tuple.fetchCount();
-	      log.info("count : " + count);
-	      
+		tuple.where(conditionBuilder.and(conditionLocaitonBuilder)).orderBy(direction).offset(pageable.getOffset())
+				.limit(pageable.getPageSize()).fetch();
+
+		List<Tuple> result = tuple.fetch(); // 검색 결과 리스트
+		log.info("result : " + result);
+
+		long count = tuple.fetchCount();
+		log.info("count : " + count);
+
 		return new PageImpl<Object[]>(tuple.stream().map(Tuple::toArray).collect(Collectors.toList()), pageable, count);
+	}
+
+	@Override
+	public List<Object> findReservationDataofMember(String NickName) {
+		List<Object> value = new ArrayList<>();
+		List<CampCalender> buffers = new ArrayList<>();
+
+		// 사용자 캠프 예약 정보 담아두기
+		buffers = from (Q_CAMP_CALENDER).where(Q_CAMP_CALENDER.reservationer.eq(NickName)).fetch();
+		log.info(buffers.size());
+		
+		for (var buffer : buffers) {
+			Long cno = buffer.getCamp().getCno();
+			Object data = from(Q_CAMP).select(Q_CAMP).where(Q_CAMP.cno.eq(cno)).fetchFirst();
+			
+			value.add(new Object[] {buffer,data});
+		}
+
+		return value;
 	}
 }

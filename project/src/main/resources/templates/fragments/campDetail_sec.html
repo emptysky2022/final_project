@@ -78,6 +78,28 @@
 
 	<!--  지도 & 날씨 -->
 	<section th:fragment="campGroundsSection3">
+		<div class="sec2 box3" style="max-width: none; z-index: 1;">
+
+			<div id="map" style="width: 40%; height: 350px; max-width: none"></div>
+
+
+			<div class="weather-container">
+				<button class="prev">prev</button>
+				<div class="date">3월 4일</div>	
+				<div class="weather-re">
+					<div class="weatherbox">
+						<div class="weather-info">
+							<div class="date">15:00</div>
+							<img class="weather-img" src="sunny.png">
+							<div class="weather">맑음</div>
+							<div class="wind">풍속: 5m/s</div>
+						</div>
+					</div>
+				</div>
+				<button class="next">next</button>
+			</div>
+		</div>
+		
 		<div class="sec2 box3" style="max-width : none; z-index: 1;">
                          
                          <div id="map" style="width:40%;height:350px;max-width : none"></div>
