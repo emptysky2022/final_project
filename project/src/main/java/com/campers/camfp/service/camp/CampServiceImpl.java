@@ -337,4 +337,12 @@ public class CampServiceImpl implements CampService {
 	public Double countStar(Long cno) {
 		return campRepository.countStar(cno);
 	}
+
+	@Override
+	public List<Object> findReservationDataofMember(String nickName) {
+		
+		List<Object> data = campRepository.findReservationDataofMember(nickName);
+		log.info("여기까지 정상 ");
+		return data;
+	}
 }
