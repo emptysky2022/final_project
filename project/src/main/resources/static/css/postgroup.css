@@ -5,7 +5,6 @@ main .body {
     /* display: grid;
     grid-template-columns: 1fr 8fr 1fr;
     grid-template-rows: auto; */
-    border: 1px solid orange;
     flex-direction: row;
     justify-content: center;
 }
