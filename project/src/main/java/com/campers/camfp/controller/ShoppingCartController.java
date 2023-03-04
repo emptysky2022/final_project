@@ -13,11 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.campers.camfp.config.auth.PrincipalDetails;
-import com.campers.camfp.dto.item.ItemDTO;
 import com.campers.camfp.dto.shopingcart.ShoppingCartDTO;
 import com.campers.camfp.service.item.ItemService;
 import com.campers.camfp.service.shoppingcart.ShoppingCartService;
