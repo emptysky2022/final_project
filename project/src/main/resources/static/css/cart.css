@@ -1,11 +1,11 @@
   p{
     margin-top:10px;
   }
-  .modal-btn-box{
+  .cart-modal-btn-box{
     width:100%;
     text-align:center;
   }
-  .modal-btn-box button{
+  .cart-modal-btn-box button{
     display:inline-block;
     width:150px;
     height:50px;
@@ -17,7 +17,7 @@
   }
 
 /*모달을 감쌀 박스의 css*/
-.popup-wrap{
+.cart-popup-wrap{
     background-color:rgba(0,0,0,.3);  /*배경색과 투명도로 살짝 어둡지만 투명한 배경*/
     justify-content:center; /*수평 중앙정렬*/
     align-items:center;     /*수직 중앙정렬*/
@@ -28,10 +28,11 @@
     bottom:0;               /*모든 방향에 0을 주면 화면에 꽉차게 됩니다.*/
     display:none;  /*이벤트가 발생할 때 띄우기 위해 숨김*/
     padding:15px; 
+    z-index: 100;
   }
 
   /*모달의 몸체*/
-  .popup{
+  .cart-popup{
     width:100%;
     max-width:600px;          /*팝업의 최대 크기지정*/
     border-radius:10px;     
@@ -40,9 +41,9 @@
     box-shadow: 5px 10px 10px 1px rgba(0,0,0,.3); /*팝업이 허공에 떠있는 듯한 느낌을 주기 위한 그림자 효과.*/
     height: 90vh;
   }
-
+  
   /*모달의 헤더(로고) 부분*/
-  .popup-head{
+  .cart-popup-head{
     width:100%;
     /*부모요소를 따라가기 때문에 굳이 가로값을 주지 않아도 되지만 일부 ie에서 인식 못하는 문제가 있음*/
     height:10%;  /*헤드 영역 높이*/
@@ -57,17 +58,17 @@
 
 
   /*모달의 몸통 부분*/
-  .popup-body{                /*몸통*/
+  .cart-popup-body{                /*몸통*/
     width:100%;
     background-color:#ffffff; /*컨텐츠 영역의 배경색*/
     overflow-y: auto;
     height: 80%;
 }
-  .body-content{              /*몸통 내부 컨텐츠 영역*/
+  .cart-body-content{              /*몸통 내부 컨텐츠 영역*/
     width:100%;
     padding:30px;             /*좌우에 내용이 붙으면 보기 안좋기 때문에 간격 띄움*/
   }
-  .body-titlebox{             /*컨텐츠 타이틀 영역*/
+  .cart-body-titlebox{             /*컨텐츠 타이틀 영역*/
     font-size: var(--font-size-sm);
     font-weight: bold;
     width:100%;
@@ -76,21 +77,27 @@
     margin-bottom:10px;       /*내용과 간격 조정*/
 
   }
-  .body-contentbox{           /*컨텐츠 내용 영역*/
+  .cart-body-contentbox{           /*컨텐츠 내용 영역*/
     word-break:break-word;    /*단어가 짤리지 않음*/
     overflow-y:auto;          /*내부요소가 지정한 세로 값보다 클 경우 스크롤 생성*/
     min-height:10vh;         /*최소 높이*/
     max-height:60vh;         /*최대 높이*/
   }
     /*푸터*/
-  .popup-foot{                      
+  .cart-popup-foot{                      
     width:100%;
-    height: 10%;
-    
+    height: 6vh;
+    min-height: 50px;
+    max-height: 100px;
+  } 
+  
+  .cart-popup-foot .confirm{                      
+    background-color: skyblue;
+    border: 1px solid black;
   } 
   
   /*각각의 버튼*/
-  .pop-btn{
+  .cart-pop-btn{
     display:inline-flex;            /*한줄로 나열하기 위한 inline속성과 flex속성 혼합*/
     width:50%;                      /*2개 버튼 각각 50% 영역*/
     height:100%;                    /*50px*/
@@ -102,7 +109,7 @@
   }
   
   /*확인버튼*/
-  .pop-btn.close{                 
+  .cart-pop-btn.close{                 
     background-color: #ffffff;
     border: 1px solid #000000;
     color: #000000;
@@ -111,30 +118,30 @@
 
   /*******컨텐츠 부분********/
   /*div class말고 다른 선택자로 속성 지정하기*/
-  .body-contentbox table{
+  .cart-body-contentbox table{
     width: 100%;
     border-collapse: collapse;
    
   }
 
-  .body-contentbox table:nth-last-child(1){
+  .cart-body-contentbox table:nth-last-child(1){
     border-bottom: 2px solid black;
     
   }
-  .body-contentbox table td{
+  .cart-body-contentbox table td{
     border-top: 1px solid #000000;
   }
 
-  .body-contentbox table tr{
+  .cart-body-contentbox table tr{
     display: flex;
     
   }
 
-  .body-contentbox table tr .select{
+  .cart-body-contentbox table tr .cart-select{
     text-align: center;
   }
 
-  .body-contentbox table th{
+  .cart-body-contentbox table th{
      background-color: #8d8d8d;
      border-collapse: collapse;
      border-top: 2px solid black;
@@ -144,35 +151,35 @@
   /******div 클래스로 속성 지정하기*****/
  
   /*테이블 헤더 부분*/
-  .body-contentbox table .selectall{
+  .cart-body-contentbox table .cart-selectall{
     flex-basis: 5%;
   }
 
-  .body-contentbox table .productinfoheader{
+  .cart-body-contentbox table .cart-productinfoheader{
     flex-basis: 60%;
   }
 
-  .body-contentbox table .amountheader{
+  .cart-body-contentbox table .cart-amountheader{
     flex-basis: 10%;
   }
 
-  .body-contentbox table .amountallheader{
+  .cart-body-contentbox table .cart-amountallheader{
     flex-basis: 25%;
   }
 
 
   /*테이블 td 부분*/
-  .body-contentbox table .select{
+  .cart-body-contentbox table .cart-select{
     flex-basis: 5%;
   }
-  .body-contentbox table .productinfobox{
+  .cart-body-contentbox table .cart-productinfobox{
     display:flex;
     flex-basis: 60%;
     justify-content: center;
     align-items: center;
   }
 
-  .body-contentbox table .amountbox{
+  .cart-body-contentbox table .cart-amountbox{
     flex-basis: 10%;
     display: flex;
     flex-direction: column;
@@ -180,30 +187,30 @@
     justify-content: center;
   }
 
-  .body-contentbox table .amount{
+  .cart-body-contentbox table .cart-amount{
     width: 3rem;
   }
 
-  .body-contentbox table .amountallbox{
+  .cart-body-contentbox table .cart-amountallbox{
     flex-basis: 25%;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  .body-contentbox table .productinfobox .productimgbox{
+  .cart-body-contentbox table .cart-productinfobox .cart-productimgbox{
     width: 3rem;
     height: auto;
     flex-basis: 20%;
   }
 
-  .body-contentbox table .productinfobox .productimgbox .productimg{
+  .cart-body-contentbox table .cart-productinfobox .cart-productimgbox .cart-productimg{
     width: 100%;
     height: 100%;
     
   }
 
-  .body-contentbox table .productinfobox .producttextbox{
+  .cart-body-contentbox table .cart-productinfobox .cart-producttextbox{
     display: flex;
     flex-direction: column;
     flex-basis: 60%;
@@ -215,7 +222,7 @@
   
 
 
- .sumbox {
+ .cart-sumbox {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -224,7 +231,7 @@
     align-items: center;
  }
 
-.btnbox{
+.cart-btnbox{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -232,7 +239,7 @@
     
 }
 
-.btnbox .delete{
+.cart-btnbox .cart-delete{
   width: 40%;
   text-align: center;
   border: 1px solid #000000;
@@ -242,7 +249,7 @@
   align-items: center;
 }
 
-.btnbox .selectorder{
+.cart-btnbox .cart-selectorder{
     background-color: #8d8d8d;
     border-radius: 2rem;
     width: 40%;
@@ -255,41 +262,41 @@
 
 
 @media screen and (max-width:480px){
-  .body-contentbox table .amountheader{
+  .cart-body-contentbox table .cart-amountheader{
     flex-basis: 20%;
   }
 
-  .body-contentbox table .productinfoheader{
+  .cart-body-contentbox table .cart-productinfoheader{
     flex-basis: 50%;
   }
 
-  .body-contentbox table .amountallheader{
+  .cart-body-contentbox table .cart-amountallheader{
     flex-basis: 25%;
   }
   
-  .body-contentbox table .productinfobox{
+  .cart-body-contentbox table .cart-productinfobox{
     flex-direction: column;
     flex-basis: 50%;
   }
-  .body-contentbox table .amountbox{
+  .cart-body-contentbox table .cart-amountbox{
     flex-basis: 20%;     
 
   }
 
-  .body-contentbox table .amountallbox{
+  .cart-body-contentbox table .cart-amountallbox{
     flex-basis: 25%;
   }
 
-  .sumbox{
+  .cart-sumbox{
     flex-direction: column;
   }
 
-  .btnbox .delete{
+  .cart-btnbox .cart-delete{
     font-size: var(--font-size-vm);
     height: 2rem;
   }
 
-  .btnbox .selectorder{
+  .cart-btnbox .cart-selectorder{
     font-size: var(--font-size-vm);
   }
 

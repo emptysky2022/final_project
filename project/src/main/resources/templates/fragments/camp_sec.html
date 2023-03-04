@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 </head>
 <body>
-     <!--  지도 -->
+	<!--  지도 -->
 	<section th:fragment="campGroundsSection1">
 		<!----------------제목------------->
 		<div class="sec1 box3">
@@ -90,10 +90,10 @@
 			</div>
 		</div>
 		<!--  지도 끝 -->
-		</section>
-		
-		<!--  캠핑 종류 -->
-		<section th:fragment="campGroundsSection2">
+	</section>
+
+	<!--  캠핑 종류 -->
+	<section th:fragment="campGroundsSection2">
 		<!-------------------캠핑장 드롭다운메뉴--------------------->
 		<div class="sec2 box3">
 			<!--드롭다운메뉴-->
@@ -145,10 +145,38 @@
 	<!-- 캠핑 평점 -->
 	<section th:fragment="campGroundsSection3">
 		<!--캠핑장 사진 및 평점-->
-		<a class="list-group replyList"> <!-- rest 로 들어옴 -->
-		</a>
+		<div class="sec5 box3 test" id="8">
+				<div class="campgroundsbox box4" th:each="camp : ${result}"
+					th:attr="onclick=|location.href='@{/camp/campgroundsdetail(cno=${camp.cno})}'|">
+					<input type="hidden" name="cno" th:value="${camp.cno}">
+					<div class="cg_imgbox box5">
+						<img class="cg_img item" th:src="${camp.thumbnail}">
+					</div>
+					<div class="cg_rightbox box4">
+						<div class="title item">[[${camp.name}]]</div>
 
-		<div class="sec5 box3 test">
+						<div class="cg_starbox item">
+							<div class="star item">[[${camp.heart}]]</div>
+						</div>
+
+						<div class="cg_explainbox box5">
+							<div class="explain item">[[${camp.address}]]</div>
+						</div>
+					</div>
+				</div>
+		</div>
+
+		<!-- 페이징 처리 시작 -->
+		<div class="pagingEl"></div>
+		<!-- 페이징 처리 끝 -->
+	</section>
+	<!-- 캠핑 평점 끝 -->
+
+
+	<!-- 캠핑 평점 -->
+	<section th:fragment="campGroundsMainSection3">
+		<!--캠핑장 사진 및 평점-->
+		<div class="sec5 box3 test" id="2">
 			<div class="sec5 box3">
 				<div class="campgroundsbox box4" th:each="camp : ${result}"
 					th:attr="onclick=|location.href='@{/camp/campgroundsdetail(cno=${camp.cno})}'|">
@@ -170,6 +198,10 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- 페이징 처리 시작 -->
+		<div class="pagingEl"></div>
+		<!-- 페이징 처리 끝 -->
 	</section>
 	<!-- 캠핑 평점 끝 -->
 
@@ -199,6 +231,6 @@
 		</div>
 	</section>
 	<!-- 캠핑 등록 끝 -->
-	
+
 </body>
 </html>

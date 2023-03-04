@@ -24,7 +24,7 @@ public class MemberRepositoryTest {
 	@Test
 	public void insertMember() {	// test 확인 완.
 
-		IntStream.rangeClosed(1, 50).forEach(i -> {
+		IntStream.rangeClosed(2, 50).forEach(i -> {
 			
 			GenderType xy = GenderType.MALE;	// i = 2의 배수일 때 남자.
 			
@@ -73,7 +73,7 @@ public class MemberRepositoryTest {
 	public void testDelete() { // test 확인 완.
 
 //		String mid = "userID5";
-		Long mno = 4L;
+		Long mno = 1L;
 		
 //		boardRepository.deleteAll(mno);
 		memberRepository.deleteById(mno);
