@@ -2,11 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>무슨페이지인가요?</title>
-
+    <div th:replace="~{fragments/head_sec :: head-sec}"></div>
     
     <!--css 연결-->
     <link rel="stylesheet" type="text/css" href="../css/campgroundsdetail.css">
@@ -17,15 +13,6 @@
      <!--api 연결-->
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=aa8506f7754a9c4a3ff7ed61e6db518a&libraries=services"></script>
 									
-    <!--구글 폰트 링크-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Varela+Round&display=swap"rel="stylesheet">
-    <!--폰트 그림 링크-->
-    <script src="https://kit.fontawesome.com/bb87a5faf0.js" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    
 </head>
 
 <body>

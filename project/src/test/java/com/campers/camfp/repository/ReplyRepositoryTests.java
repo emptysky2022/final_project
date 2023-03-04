@@ -23,7 +23,7 @@ public class ReplyRepositoryTests {
 		IntStream.rangeClosed(1, 300).forEach(i -> {
 			
 			// 임시 게시판 번호
-			Long bno = (long)((Math.random() * 50) + 1); 
+			Long bno = (long)((Math.random() * 250) + 1); 
 
 			
 			int heart = (int)((Math.random() * 100) + 1);
