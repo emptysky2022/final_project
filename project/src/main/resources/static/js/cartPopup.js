@@ -6,7 +6,7 @@ $(function(){
 	    //팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
 	});
 	
-	$("#cart-close").click(function(){
+	$("#cart-modal .close").click(function(){
 		console.log('클릭은 되나')
     	$("#cart-modal").fadeOut(); //페이드아웃 효과
     });
@@ -18,7 +18,7 @@ $(function(){
         const cartItems = await $.get("/cart/list");
         const data = cartItems.map((item) => {
 			return {
-				amount : parseInt($(this).parent().parent().find(`tr#${item.sno}`).find(".amount").val()),
+				amount : parseInt($(this).parent().parent().find(`tr#${item.sno}`).find(".cart-amount").val()),
 				ino : item.ino,
 				sno : item.sno,
 				mno : item.mno
@@ -54,7 +54,7 @@ function cartModal(){
 			console.log(result);
 			if(result.length == 0){
 				$("#cart-popup .popup .popup-body").html(`
-					<div class="noneCart">
+					<div class="cart-noneCart">
 						<h1>장바구니가 텅 비었습니다.</h1>
 					</div>
 				`)
@@ -62,52 +62,52 @@ function cartModal(){
 				
 				$cart.html( `
 					<tr>
-						<th class="selectall">
+						<th class="cart-selectall">
 	                        <input type="checkbox" name="cartitem" id="cbx_chkAll" value="selectall">
 	                    </th>
-	                    <th class="productinfoheader">상품 정보</th>
-	                    <th class="amountheader">수량</th>
-	                    <th class="amountallheader">주문금액</th>
+	                    <th class="cart-productinfoheader">상품 정보</th>
+	                    <th class="cart-amountheader">수량</th>
+	                    <th class="cart-amountallheader">주문금액</th>
                     </tr>
 				` );
 				const cartHtml = result.map(([{thumbnail, name, brand, price}, cartDTO]) => {
 					let images = '';
 					if(thumbnail.split(',').length != 1){
 						images = thumbnail.split(',').map((URL) => 
-							`<img class="productimg" src="/display?fileName=${URL}&folderType=item">`
+							`<img class="cart-productimg" src="/display?fileName=${URL}&folderType=item">`
 						).join('');
 					} else {
 						if(thumbnail.split(':').length != 1){
-							images = `<img class="productimg" src="${thumbnail}">`;
+							images = `<img class="cart-productimg" src="${thumbnail}">`;
 						}else{
-							images = `<img class="productimg" src="/display?fileName=${thumbnail}&folderType=item">`;
+							images = `<img class="cart-productimg" src="/display?fileName=${thumbnail}&folderType=item">`;
 						}
 					}
 					return `
 						<tr id="${cartDTO.sno}">
-                            <td class="select">
+                            <td class="cart-select">
                                 <input type="checkbox" name="chk" value="select">
                             </td>
 
-                            <td class="productinfobox">
-                                <div class="productimgbox">
+                            <td class="cart-productinfobox">
+                                <div class="cart-productimgbox">
                            `
                             + images + 
                            `
                                 </div>
-                                <div class="producttextbox">
-                                    <div class="productname">${name}</div>
-                                    <div class="brandname">${brand}</div>
-                                    <div class="price">${price}원</div>
+                                <div class="cart-producttextbox">
+                                    <div class="cart-productname">${name}</div>
+                                    <div class="cart-brandname">${brand}</div>
+                                    <div class="cart-price">${price}원</div>
                                 </div>
                             </td>
 
-                            <td class="amountbox">
-                                <input type="number" class="amount" value="${cartDTO.amount}"></div>
+                            <td class="cart-amountbox">
+                                <input type="number" class="cart-amount" value="${cartDTO.amount}"></div>
                             </td>
 
-                            <td class="amountallbox">
-                                <div class="amountall">${cartDTO.amount * price}원</div>
+                            <td class="cart-amountallbox">
+                                <div class="cart-amountall">${cartDTO.amount * price}원</div>
                             </td>
                         </tr>
 					`
@@ -134,10 +134,10 @@ function cartModal(){
 				checkPrice($checkPrice);
 			});
 			$("#cart-popup input[type=number]").bind("keyup mouseup", function(){
-				const price = parseInt($(this).parent().prev().find(".price").html());
+				const price = parseInt($(this).parent().prev().find(".cart-price").html());
 				const amount = $(this).val();
 				
-				$(this).parent().next().find(".amountall").html(`${price * amount}원`);
+				$(this).parent().next().find(".cart-amountall").html(`${price * amount}원`);
 				checkPrice($checkPrice);
 			})
 		},
@@ -190,7 +190,7 @@ function checkPrice($el){
 	let price = 0;
 	const items = $("#cart-popup").find("table tr").map(async function(){
 		if($(this).find("input[name=chk]").is(":checked") == true){
-			const itemPrice = parseInt($(this).find(".amountall").html());
+			const itemPrice = parseInt($(this).find(".cart-amountall").html());
 			price = price + itemPrice;
 		}
 	});
