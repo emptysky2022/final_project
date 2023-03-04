@@ -48,17 +48,14 @@ main{
     margin: 20px;
 }
 
-/*소셜로그인 글자 가운데 정렬*/
-.sec2 .loginapitext{
-    text-align: center;
-   
-}
-
 /*sns로그인*/
 .sec2 .loginapi{
-    text-align: center;
+    /* text-align: center;
     margin-bottom: 1rem;
-    color: #333;
+    color: #333; */
+    display:flex;
+	flex-direction:column;
+	align-items:center;
 }
 
 
@@ -66,30 +63,37 @@ main{
 .sec2 .loginapi .buttonbox_g,
 .sec2 .loginapi .buttonbox_n,
 .sec2 .loginapi .buttonbox_k{
-    display: flex;
+    /* display: flex;
     width: 100%;
     justify-content: center;
     align-items: center;
-    flex-direction:column;
+    flex-direction:column; */
+    
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 0.3rem;
+    max-width: 12rem;
 }
 /*----------*/
+
+.sec2 .loginapi .button_box:hover {
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
 
 
 /*logimg 모음*/
 
 .sec2 .loginapi .buttonbox_g .button_g .logoimg_gw{
-    height: 2.5rem;
-    display: flex;
-    
+    border-radius: 5px;
 }
 
 .sec2 .loginapi .buttonbox_n .button_n .logoimg_nw{
-    display: flex;
-    height: 2.5rem;
+	border-radius: 5px;
 }
 .sec2 .loginapi .buttonbox_k .button_k .logoimg_kw{
-    display: flex;
-    height: 2.5rem;
+	border-radius: 5px;
 }
 /*----------*/
 
@@ -1104,8 +1108,9 @@ display: none;
 /*로그인 박스*/
 .sectionbreak .sec7{
     display: flex;
-    justify-content: end;
+    justify-content: center;
     align-items: baseline;
+    margin-bottom: 1rem;
 }
 
 .ready{
