@@ -2,27 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="UTF-8">
-	<title>Read Membership</title>
+	<div th:replace="~{fragments/head_sec :: head-sec}"></div>
 
 	<!--css 연결-->
 	<link rel="stylesheet" type="text/css" href="../css/readmemember.css">
 	<!--js연결-->
 	<script type="text/javascript" th:src="@{../js/readmemember.js}" defer></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<!--제이쿼리 연결-->
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
-
-	<!--구글 폰트 링크-->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Varela+Round&display=swap"
-		rel="stylesheet">
-	<link rel="stylesheet"
-		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-	<!--폰트 그림 링크-->
-	<script src="https://kit.fontawesome.com/bb87a5faf0.js" crossorigin="anonymous"></script>
-
+	
 </head>
 
 <body>
@@ -138,9 +124,40 @@
 							<div class="campgrounds_title item">캠핑장</div>
 							<div class="campgrounds_name item_2">봄날의 햇살</div>
 							<div class="campgrounds_date item_3">2023-02-27(월)~2023-02-28(화)</div>
-							<div class="campgrounds_expense item_4">
-								<button class="reserve item"> 예약취소 </button>
+							<div class="campgrounds_expense item_4">비용:8000원</div>
+						</div>
+						<div class="customerbox box4">
+							<div class="customer_title item">예약자 정보</div>
+							<div class="customer_namebox box5">
+								<div class="customer_nametext item">예약자 성명</div>
+								<div class="customer_name item_2">대충 예약자가 누구인지 알려주는 상자</div>
 							</div>
+							<div class="customer_phonebox box5">
+								<div class="customer_phonetext item">휴대폰 번호</div>
+								<div class="customer_phone item_2">대충 예약자 휴대폰번호 써있는 상자</div>
+							</div>
+						</div>
+
+						<div class="userbox box4">
+							<div class="user_title item">사용자 정보</div>
+							<div class="checksamebox box5">
+								<input class="checksame item_2" type="checkbox">
+								<div class="checksametext item">예약자와 사용자가 동일합니다
+								</div>
+							</div>
+							<div class="user_namebox box4">
+								<div class="user_nametext item">사용자 성명</div>
+								<div class="user_name item_2">대충 사용자가 누구인지 알려주는 상자</div>
+							</div>
+							<div class="user_phonebox box4">
+								<div class="user_phonetitle item">휴대폰 번호</div>
+								<div class="user_phone item_2">대충 사용자 휴대폰번호 써있는 상자</div>
+							</div>
+						</div>
+
+
+						<div class="reservebox box4">
+							<button class="reserve item">예약하기</button>
 						</div>
 					</div>
 

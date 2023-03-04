@@ -2,35 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>게시판</title>
+	<div th:replace="~{fragments/head_sec :: head-sec}"></div>
 	
 	<!--css 연결-->
 	<link rel="stylesheet" type="text/css" href="/css/postgroup.css">
-	<link rel="stylesheet" type="text/css" href="../css/header.css">
 	
-	<!--제이쿼리 연결-->
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
-	<!--구글 폰트 링크-->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link
-		href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Varela+Round&display=swap"
-		rel="stylesheet">
-	<!--폰트 그림 링크-->
-	<script src="https://kit.fontawesome.com/bb87a5faf0.js"
-		crossorigin="anonymous"></script>
 	<!-- moment - Date js 라이브러리 -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 
-	<!--scrollOut(스크롤 내릴때 효과주는것)-->
-    <script src="https://unpkg.com/scroll-out/dist/scroll-out.min.js"></script>
-    
-    <!--스크롤 내릴때 요소마다 다르게 주는 스크립트-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/rellax/1.12.1/rellax.min.js"></script>
-    
     <!--js연결-->
 	<script type="text/javascript" src="../js/postgroup.js" defer></script>
     
