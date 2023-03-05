@@ -333,14 +333,14 @@ hr {
 }
 
 .sec3 .productbox {
-	border: gray 1px solid;
+   border: gray 1px solid;
     text-align: center;
     cursor: pointer;
 }
 
 .sec3 .productbox:hover {
-	background-color: #80808030;
-	border: gray 2px solid
+   background-color: #80808030;
+   border: gray 2px solid
 }
 
 .sec3 .productbox1{
@@ -421,8 +421,8 @@ hr {
 
 
 .pagingEl ul .active a{
-	background-color: #7d86c3;
-	display: flex;
+   background-color: #7d86c3;
+   display: flex;
     min-width: 20px;
     min-height: 20px;
     box-sizing: border-box;
@@ -447,15 +447,15 @@ hr {
     }
     
     .sec3 .productbox {
-		border: gray 1px solid;
-    	text-align: center;
-    	cursor: pointer;
-	}
+      border: gray 1px solid;
+       text-align: center;
+       cursor: pointer;
+   }
 
-	.sec3 .productbox:hover {
-		background-color: #80808030;
-		border: gray 2px solid
-	}
+   .sec3 .productbox:hover {
+      background-color: #80808030;
+      border: gray 2px solid
+   }
 
     .sec3 .productbox1{
         grid-column-start: 1;
@@ -496,15 +496,15 @@ hr {
         color:rgb(0, 0, 0);
     }
     .sec3 .productbox {
-		border: gray 1px solid;
-    	text-align: center;
-    	cursor: pointer;
-	}
+      border: gray 1px solid;
+       text-align: center;
+       cursor: pointer;
+   }
 
-	.sec3 .productbox:hover {
-		background-color: #80808030;
-		border: gray 2px solid
-	}
+   .sec3 .productbox:hover {
+      background-color: #80808030;
+      border: gray 2px solid
+   }
 
   
 
@@ -547,7 +547,7 @@ hr {
 }
 
 @media screen and (max-width:1024px){
-	
+   
     .sec4{
         flex-direction: column;
     }
@@ -580,7 +580,7 @@ hr {
 }
 
 button[class="itemadd"] {
-	color: black;
+   color: black;
 }
 
 /* 버튼 호버 스타일 */
@@ -591,7 +591,7 @@ button[class="itemadd"] {
 }
 
 /* 버튼 액티브 스타일 */
-.tentitem1:active {	
+.tentitem1:active {   
   transform: translateY(0);
   box-shadow: none;
 }

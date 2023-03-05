@@ -7,11 +7,11 @@
     <!--css 연결-->
     <link rel="stylesheet" type="text/css" href="../css/campgroundsdetail.css">
     <link rel="stylesheet" type="text/css" href="../css/reviewwrite.css">
-    <script type="text/javascript" th:inline="javascript" src="../js/itemDetail.js" defer></script>
 
+	<script th:src="@{../js/starrr.js}" defer></script>
+    <script type="text/javascript" th:inline="javascript" src="../js/itemDetail.js"></script>
 
 <!-- starrr(임시) -->
-	<script th:src="@{../js/starrr.js}"></script>
     <link th:href="@{../css/starrr.css}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css"/>
 </head>
@@ -21,6 +21,7 @@
        
        <!-- header fragment -->
 		<div th:replace="~{fragments/header :: headerFragment}"></div>
+		<div th:replace="~{fragments/header :: cartFragment}"></div>
        
         <main>
             <div class="body box1">
