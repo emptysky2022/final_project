@@ -20,8 +20,8 @@
 				<div class="allselect item">카테고리</div>
 				<div class="tent box5">
 					<button class="tentitem1 item" value="취사용품" onclick="search('취사용품','','',1)">취사용품</button>
-					<button class="tentitem2 item_2" value="랜턴" onclick="search('랜턴','','',1)">랜턴</button>
-					<button class="tentitem3 item_3" value="캠핑가구" onclick="search('캠핑가구','','',1)">캠핑가구</button>
+					<button class="tentitem1 item_2" value="랜턴" onclick="search('랜턴','','',1)">랜턴</button>
+					<button class="tentitem1 item_3" value="캠핑가구" onclick="search('캠핑가구','','',1)">캠핑가구</button>
 				</div>
 				<div class="tent box5">
 					<button class="tentitem1 item" value="기타캠핑용품" onclick="search('기타캠핑용품','','',1)">기타캠핑용품</button>
@@ -74,7 +74,7 @@
 	<!-- 아이템 추가 모달 -->
 	<section th:fragment="list3Fragment">
 
-		<div class="item_modal-btn-box" sec:authorize="isAuthenticated()">
+		<div class="item-modal-btn-box" sec:authorize="isAuthenticated()">
 			<button type="button" class="itemadd" id="item-modal-open">아이템 추가</button>
 		</div>
 		<!--모달을 감쌀 박스-->

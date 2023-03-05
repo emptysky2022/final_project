@@ -1,9 +1,10 @@
 /*********메인 바디***********/
 main .body {
 	display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: auto;
     justify-content: center;
+    align-items: center;
 }
 
 /*메인 바디 가운데 */

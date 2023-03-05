@@ -293,6 +293,7 @@ main .body .body_center {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin:3rem;
 }
 
 .sec4 .rv_l {
@@ -394,13 +395,13 @@ main .body .body_center {
 }
 
 
-  .item_modal-btn-box{
+  .item-modal-btn-box{
     width: 100%;
     display: flex;
     justify-content: end;
     margin: 3rem 0;
   }
-  .item_modal-btn-box button{
+  .item-modal-btn-box button{
     padding: 5px 10px;
     border: none;
     background-color: #4CAF50;
@@ -410,7 +411,7 @@ main .body .body_center {
     margin-top: 10px;
   }
 
-  .item_modal-btn-box button:hover{
+  .item-modal-btn-box button:hover{
     background-color: var(--color-1);
   }
 
