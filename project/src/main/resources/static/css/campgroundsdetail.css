@@ -5,25 +5,6 @@ main .body {
     justify-content: center;
 }
 
-/*메인 바디 왼쪽*/
-main .body .aside_l {
-    border: 1px solid rgb(0, 255, 76);
-    display: flex;
-    flex-basis: 10%;
-
-
-
-}
-
-/*메인 바디 오른쪽*/
-main .body .aside_r {
-    border: 1px solid rgb(0, 64, 255);
-    display: flex;
-    flex-basis: 10%;
-
-
-}
-
 /*메인 바디 가운데 */
 main .body .body_center {
     display: flex;
@@ -47,14 +28,46 @@ main .body .body_center {
     align-items: center;
 }
 
+.sec1 .titlebox {
+  display: flex;
+  justify-content: center;
+  font-size: var(--font-size-lg);
+  margin: 3rem;
+}
+
+/*제목 하트 한 줄에 채우기*/
+.cg_title_heartbox{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--font-size-md);
+}
+/*--*/
+
+.sec1 .imgtextbox{
+  display: flex;
+  gap: 5%;
+}
+
+.sec1 .imgtextbox .imgbox{
+  width: 50%;
+}
+
+/*상품의 왼쪽*/
+
 .sec1 .campgroundimgbox {
 	min-width: 10rem;
-    width: 80%;
+    width: 100%;
 }
 
 .sec1 .campgroundimg {
-	width: 100%;
+  width: 100%;
     display: flex;
+    min-width: 200px;
+}
+.sec1 .campgroundimgbox {
+  min-width: 10rem;
+  width: 100%;
 }
 
 
@@ -78,12 +91,103 @@ main .body .body_center {
 }
 
 
-.sec1 .cg_heart{
-	width: 50px;
-	display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+/*버튼 두개 정렬*/
+.cg_cart, .cg_explain_btn {
+  background-color: #444;
+  color: #fff;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 4px;
+  height: 40px;
+  width: 100%;
+  margin: 0 5px;
+  padding: 8px 16px;
+  min-width: 85px;
+  }
+  
+  /*장바구니 버튼*/
+  .cg_cart {
+  margin-right: 0;
+  background-color: #ffa500; 
+  border: none;
+  }
+
+  .cg_cart:hover {
+    background-color: #ff8c00;
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+  }
+
+  .cg_starbox{
+    flex-basis: 8%;
+  }
+
+  /*구매하기 버튼*/
+  .cg_explain_btn{
+    background-color: #007bff;
+    border: none;
+  }
+  
+  .cg_explain_btn:hover {
+    background-color:  #0069d9;
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+  }
+
+
+  .sec1 .imgtextbox .textbox .cg_btn_box{
+  display: flex;
+  flex-direction: row; 
+  justify-content: space-between; /* 버튼 사이 간격을 벌리기 위해 추가 */
+  align-items: center;
+  width: 100%;
+  }
+
+  
+  .cg_cartbox{
+    flex: 1;
+    margin-right: 10px; /* 버튼 사이 간격을 벌리기 위해 추가 */
+  }
+
+    /*가격*/
+    .cg_price{
+      text-align: end;
+      flex-basis: 20%;
+      font-size: var(--font-size-lg);
+    }
+  
+  /*하트*/
+  .sec1 .cg_heart{
+    width: 50px;
+    display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+  
+
+
+  
+  @media screen and (max-width:768px) {
+  .sec1 .imgtextbox .textbox .cg_btn_box {
+  flex-direction: row; /* 768px 이상의 화면에서는 버튼을 가로로 정렬 */
+  }
+  
+  .cg_cartbox {
+  margin-bottom: 0;
+  margin-right: 10px; /* 장바구니 버튼 오른쪽 여백 설정 */
+  }
+  
+  .cg_cartbox, .cg_explainbox {
+  max-width: none; /* 버튼 최대 너비 설정 해제 */
+  }
+  }
+
+  @media screen and (max-width:480px){
+    .sec1 .imgtextbox {
+      flex-direction: column;
+      display: flex;
+      align-items: center;
+    }
+  }
+
 
 .section2 {
 	display: flex;
@@ -250,19 +354,22 @@ main .body .body_center {
     text-align: center;
 }
 
-.footer {
-    border: 3px solid red;
-    background-color: black;
-    color: aliceblue;
-}
 
-/* 모달 부분 */
-:root {
-    --font-size-lg: clamp(2rem, 4vw, 3.5rem);
-    --font-size-md: clamp(1.5rem, 3vw, 2.5rem);
-    --font-size-sm: clamp(1rem, 2vw, 1.5rem);
-    --font-size-vm: clamp(1rem, 1vw, 1.2rem)
-}
+  .item-modal-btn-box{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    margin: 3rem 0;
+  }
+  .item-modal-btn-box button{
+    padding: 5px 10px;
+    border: none;
+    background-color: #4CAF50;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+  }
 
 
 *{
@@ -431,11 +538,11 @@ main .body .body_center {
 
 
 .body-contentbox .campgroundsbox .campexplainbox{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 60%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-width: 100px;
+  width: 50%;
 }
 
 /*캠핑 별점*/
@@ -562,15 +669,7 @@ main .body .body_center {
   margin-bottom: 10px;
 }
 
-button {
-  background-color: #4CAF50;
-  color: #fff;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
+
 
 #reservation{
   background-color: #0000ff;
@@ -674,22 +773,7 @@ label {
   display: block;
 }
 
-/* 버튼 스타일 */
-button {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  padding: 6px 12px;
-  font-size: 12px;
-  font-weight: 500;
-  color: #fff;
-  background-color: #A2C4E1;
-  border: none;
-  border-radius: 30px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease-in-out;
-  cursor: pointer;
-}
+
 
 /* 버튼 호버 스타일 */
 button:hover {

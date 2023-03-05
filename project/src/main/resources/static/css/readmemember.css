@@ -1,9 +1,10 @@
 /*********메인 바디***********/
 main .body {
 	display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: auto;
     justify-content: center;
+    align-items: center;
 }
 
 /*메인 바디 가운데 */
@@ -1063,7 +1064,10 @@ main .body .body_center {
     min-height: 50vh;
 }
 
-
+.sec5 .titlebox .title{
+    font-size: var(--font-size-md);
+    font-weight: bold;
+}
 
 /*캠핑장*/
 /* 데스크탑 화면 */
