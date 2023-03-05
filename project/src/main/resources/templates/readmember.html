@@ -178,24 +178,22 @@
 									<li><a href="#tab01">캠핑장</a></li>
 									<li><a href="#tab02">아이템</a></li>
 									<li><a href="#tab03">게시글</a></li>
-									<li><a href="#tab04">댓글</a></li>
-
+									
 								</ul>
 							</div>
 							<div class="tab-select-outer">
 								표시 선택：
 								<select id="tab-select">
-									<option value="#tab01">캠프</option>
-									<option value="#tab02">아이템</option>
-									<option value="#tab03">게시글</option>
-									<option value="#tab04">댓글</option>
+									<option value="#tab01">CAMP</option>
+									<option value="#tab02">ITEM</option>
+									<option value="#tab03">BOARD</option>
 
 								</select>
 							</div>
 
 							<div id="tab01" class="tab-contents">
 								<h2>캠핑장</h2>
-								<div class="campgroundsbox">
+								<div class="campgroundsbox" id="tab_camp">
 									<div class="cg_imgbox">
 										<img src="../img/family20.jpg" alt="">
 									</div>
@@ -247,7 +245,7 @@
 										<div class="cg_wish list">찜 수 : 12</div>
 									</div>
 								</div>
-								<!--페이지 번호-->
+								<!-- <!--페이지 번호-->
 								<div class="boardpage box5">
 									<a href="#" class="bt_first item">&lt;&lt;</a>
 									<a href="#" class="bt_prev item_2">&lt;</a>
@@ -258,12 +256,12 @@
 									<a href="#" class="num">5</a>
 									<a href="#" class="bt_next item_4">&gt;</a>
 									<a href="#" class="bt_last item_5">&gt;&gt;</a>
-								  </div>
+								  </div> -->
 							</div>
 
 							<div id="tab02" class="tab-contents">
 								<h2>아이템</h2>
-								<div class="campporductbox">
+								<div class="campporductbox" id="tab_item">
 									<div class="cp_imgbox">
 										<img src="../img/family31.jpg" alt="">
 									</div>
@@ -314,18 +312,6 @@
 										<div class="cp_view">조회수 : 35</div>
 										<div class="cp_wish list">찜 수 : 12</div>
 									</div>
-								</div>
-								<!--페이지 번호-->
-								<div class="boardpage box5">
-									<a href="#" class="bt_first ">&lt;&lt;</a>
-									<a href="#" class="bt_prev ">&lt;</a>
-									<a href="#" class="num ">1</a>
-									<a href="#" class="num">2</a>
-									<a href="#" class="num">3</a>
-									<a href="#" class="num">4</a>
-									<a href="#" class="num">5</a>
-									<a href="#" class="bt_prev">&gt;</a>
-									<a href="#" class="bt_last">&gt;&gt;</a>
 								</div>
 							</div>
 
@@ -353,81 +339,70 @@
 										</div>
 									</div>
 								</div>
-								<div class="postgroupbox">
-									<div class="pg_textbox">
-										<div class="pg_upline">
-											<div class="pg_write">
-												최석호
+								<div id="tab_board">
+									<div class="postgroupbox">
+										<div class="pg_textbox">
+											<div class="pg_upline">
+												<div class="pg_write">
+													최석호
+												</div>
+												<div class="pg_date">
+													2023-02-20
+												</div>
 											</div>
-											<div class="pg_date">
-												2023-02-20
+											<div class="pg_downline">
+	
+												<div class="pg_texttitle">
+													가나다라마바사아자카타파하
+												</div>
+												<div class="pg_reviewnum">[2]</div>
 											</div>
-										</div>
-										<div class="pg_downline">
-
-											<div class="pg_texttitle">
-												가나다라마바사아자카타파하
-											</div>
-											<div class="pg_reviewnum">[2]</div>
 										</div>
 									</div>
-								</div>
-								<div class="postgroupbox">
-									<div class="pg_textbox">
-										<div class="pg_upline">
-											<div class="pg_write">
-												최석호
+									<div class="postgroupbox">
+										<div class="pg_textbox">
+											<div class="pg_upline">
+												<div class="pg_write">
+													최석호
+												</div>
+												<div class="pg_date">
+													2023-02-20
+												</div>
 											</div>
-											<div class="pg_date">
-												2023-02-20
+											<div class="pg_downline">
+	
+												<div class="pg_texttitle">
+													아야어여오요우유으이
+												</div>
+												<div class="pg_reviewnum"></div>
 											</div>
-										</div>
-										<div class="pg_downline">
-
-											<div class="pg_texttitle">
-												아야어여오요우유으이
-											</div>
-											<div class="pg_reviewnum"></div>
 										</div>
 									</div>
-								</div>
-								<div class="postgroupbox">
-									<div class="pg_textbox">
-										<div class="pg_upline">
-											<div class="pg_write">
-												최석호
+									<div class="postgroupbox">
+										<div class="pg_textbox">
+											<div class="pg_upline">
+												<div class="pg_write">
+													최석호
+												</div>
+												<div class="pg_date">
+													2023-02-20
+												</div>
 											</div>
-											<div class="pg_date">
-												2023-02-20
+											<div class="pg_downline">
+	
+												<div class="pg_texttitle">
+													도레미파솔라시도
+												</div>
+												<div class="pg_reviewnum">[6]</div>
 											</div>
-										</div>
-										<div class="pg_downline">
-
-											<div class="pg_texttitle">
-												도레미파솔라시도
-											</div>
-											<div class="pg_reviewnum">[6]</div>
 										</div>
 									</div>
-								</div>
-
-								<!--페이지 번호-->
-								<div class="boardpage box5">
-									<a href="#" class="bt_first ">&lt;&lt;</a>
-									<a href="#" class="bt_prev ">&lt;</a>
-									<a href="#" class="num ">1</a>
-									<a href="#" class="num">2</a>
-									<a href="#" class="num">3</a>
-									<a href="#" class="num">4</a>
-									<a href="#" class="num">5</a>
-									<a href="#" class="bt_prev">&gt;</a>
-									<a href="#" class="bt_last">&gt;&gt;</a>
 								</div>
 							</div>
 
 
 
-							<div id="tab04" class="tab-contents">
+<!-- 							<div id="tab04" class="tab-contents">
 								<h2>댓글</h2>
 								<div class="reviewbox">
 									<div class="rv_textbox">
@@ -543,7 +518,7 @@
 										</div>
 									</div>
 								</div>
-								<!--페이지 번호-->
+								페이지 번호
 								<div class="boardpage box5">
 									<a href="#" class="bt_first ">&lt;&lt;</a>
 									<a href="#" class="bt_prev ">&lt;</a>
@@ -556,7 +531,7 @@
 									<a href="#" class="bt_last">&gt;&gt;</a>
 								</div>
 							</div>
-						</div>
+ -->						</div>
 
 					</div>
 

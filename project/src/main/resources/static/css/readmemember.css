@@ -1059,6 +1059,7 @@ main .body .body_center {
 
 
 .sec5{
+	width:80%;
     height: auto;
     margin: 1rem;
     min-height: 50vh;
@@ -1305,7 +1306,7 @@ main .body .body_center {
 }
 .tab-contents .postgroupbox .pg_textbox .pg_upline .pg_write{ 
     display: flex;
-    flex-basis: 25%;
+    flex-basis: 50%;
 }
 .tab-contents .postgroupbox .pg_textbox .pg_upline .pg_date{ 
     display: flex;
