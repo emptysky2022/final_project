@@ -168,11 +168,12 @@ function deleteCart(){
 
 function orderCart(){
 	let snos = new Array();
-	const items = $("#cart-popup").find("table tr").map(function(){
+	const items = $(".cart-popup").find("table tr").map(function(){
 		if($(this).find("input[name=chk]").is(":checked") == true){
 			snos.push(parseInt($(this).attr('id')));			
 		}
 	});
+	console.log($(".cart-popup").find("table tr"))
 	console.log(snos);
 	$.ajax({
 		url: "/history/items",

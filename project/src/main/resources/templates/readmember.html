@@ -9,12 +9,14 @@
 	<!--js연결-->
 	<script type="text/javascript" th:src="@{../js/readmemember.js}" defer></script>
 	
+	
 </head>
 
 <body>
 	<div class="container">
 		<!--====메인 header====-->
 		<div th:replace="~{fragments/header :: headerFragment}"></div>
+		<div th:replace="~{fragments/header :: cartFragment}"></div>
 		<main>
 			<div class="body box1">
 				

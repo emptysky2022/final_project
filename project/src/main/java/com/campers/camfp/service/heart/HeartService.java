@@ -1,5 +1,8 @@
 package com.campers.camfp.service.heart;
 
+import java.util.List;
+
+import com.campers.camfp.config.type.ProductType;
 import com.campers.camfp.dto.heart.HeartDTO;
 import com.campers.camfp.entity.heart.Heart;
 import com.campers.camfp.entity.member.Member;
@@ -11,6 +14,8 @@ public interface HeartService {
 	public HeartDTO saveHeart(HeartDTO dto);
 	
 	public HeartDTO removeHeart(HeartDTO dto);
+	
+	public List<HeartDTO> getListOfProductType(Long mno, ProductType productType);
 	
 	default Heart dtoToEntity(HeartDTO heartDto) {
 		Heart heart = Heart.builder().member(Member.builder().mno(heartDto.getMno()).build())

@@ -62,11 +62,19 @@
 	
 	<!-- 아이템 리스트 -->
 	<section th:fragment="list2Fragment">
-		
-	
 		<div class="sec3 box3" id="list"></div>
         <div class="pagingEl"></div>
+        <script>
+        	
+        </script>
 	</section>
+	
+	<!-- 아이템 리스트 메인용 -->
+	<section th:fragment="mainFragment">
+		<div class="sec3 box3" id="list"></div>
+	</section>
+	
+	
 	
 	<!-- 아이템 추가 모달 -->
 	<section th:fragment="list3Fragment">
@@ -75,7 +83,7 @@
 	     	<button type="button" class="itemadd" id="item-modal-open">아이템 추가</button>
 		</div>
 		<!--모달을 감쌀 박스-->
-		<div class="popup-wrap" id="item-popup">
+		<div class="popup-wrap" id="item-popup" style="display:none;">
 	        <!--실질적 모달팝업-->
 	        <div class="popup"> 
 	            <!--로고 영역-->
