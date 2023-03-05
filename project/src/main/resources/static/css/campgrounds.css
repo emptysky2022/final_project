@@ -36,6 +36,11 @@ main .body .body_center{
     flex-basis: 80%;
 }
 
+/*첫번째 자식요소 높이 100vh*/
+main section:first-child{
+  height: 100vh;
+}
+
 .sec1{
     display: flex;
     flex-basis: auto;
@@ -85,10 +90,16 @@ main .body .body_center{
 .sec3 .infotext {
 	flex-basis: 25%;
     margin-bottom: 40vh;
+   
+    
 }
 
 
 @media screen and (max-width:1024px){
+  main section:first-child{
+    height: 100vh;
+  }
+  
     .sec3{
         display: flex;
         flex-direction: column;
@@ -97,11 +108,18 @@ main .body .body_center{
         height: 100%;
     }
     
-    
+    .sec3 .infotext{
+      flex-basis: 25%;
+      margin-bottom: 40vh;
+      transform: translate(0, -300px);
+    }
+
+
     .sec3 .campmapbox{
-        height: 100%;
-        min-width: 10rem;
-        flex-basis: 40%;
+      height: 100%;
+      min-width: 10rem;
+      flex-basis: 0;
+      transform: translate(-40px, 130px);
     }
     
     .sec3 .campmapbox .campmap{
@@ -280,6 +298,7 @@ main .body .body_center{
     justify-content: center;
     color: #000;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .camppage a {
