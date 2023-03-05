@@ -1,5 +1,5 @@
 /*모달을 감쌀 박스의 css*/
-.popup-wrap{
+  .popup-wrap{
   background-color:rgba(0,0,0,.3);  /*배경색과 투명도로 살짝 어둡지만 투명한 배경*/
   justify-content:center; /*수평 중앙정렬*/
   align-items:center;     /*수직 중앙정렬*/
@@ -10,12 +10,13 @@
   bottom:0;               /*모든 방향에 0을 주면 화면에 꽉차게 됩니다.*/
   display:none;  /*이벤트가 발생할 때 띄우기 위해 숨김*/
   padding:15px; 
+  z-index: 100;
 }
 
 /*모달의 몸체*/
 .popup{
   width:100%;
-  max-width:800px;          /*팝업의 최대 크기지정*/
+  max-width:600px;          /*팝업의 최대 크기지정*/
   border-radius:10px;     
   overflow:hidden;          /*각을 없앴을 때 내부 영역이 튀어나오는걸 방지*/
   background-color:#264db5; /*배경색*/

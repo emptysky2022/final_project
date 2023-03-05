@@ -96,7 +96,6 @@ $(function(){
 })
 function modalClose(){
     $("#popup").fadeOut(); //페이드아웃 효과    
-    console.log($("#popup").html())
     
 }
 

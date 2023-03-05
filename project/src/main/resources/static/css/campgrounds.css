@@ -283,7 +283,7 @@ main .body .body_center{
 }
 
 .camppage a {
-	display: flex;
+	 display: flex;
     min-width: 20px;
     min-height: 20px;
     box-sizing: border-box;
@@ -292,8 +292,7 @@ main .body .body_center{
     justify-content: space-evenly;
     width: 3rem;
     height: 3rem;
-    background: #bcc2edcf;
-    border-radius: 10%;
+    background: #ddd;
 }
 
 .camppagingEl ul .active a {
