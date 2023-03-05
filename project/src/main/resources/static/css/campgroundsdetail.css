@@ -1,205 +1,8 @@
-:root {
-    --font-size-lg: clamp(1rem, 4vw, 3.5rem);
-    --font-size-md: clamp(1.5rem, 3vw, 2.5rem);
-    --font-size-sm: clamp(1rem, 2vw, 1.5rem);
-}
-
-h1 {
-    font-size: var(--font-size-lg);
-}
-
-h2 {
-    font-size: var(--font-size-md);
-}
-
-p {
-    font-size: var(--font-size-sm);
-
-}
-
-blockquote {
-    font-size: var(--font-size-md);
-}
-
-a {
-    font-size: var(--font-size-sm);
-}
-
-
-/* "{max-width: 100%;
-    height: auto;}"를 사용한 이유
-    -> 페이지 전체적으로 화면을 줄이거나 늘렸을 때 반응형처럼 보이게 하기 위해 사용, 화면을 줄이거나 늘렸을 때 밑에서 준 
-    .box{}의 길이인 최대 가로 길이:80vw로 고정, 세로는 늘어난 만큼 보여짐  */
-* {
-    margin: 0;
-    padding: 0;
-    left: 0;
-    top: 0;
-    max-width: 100%;
-    height: auto;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-family: 'Varela Round', sans-serif;
-
-    word-wrap: break-word;
-    box-sizing: border-box;
-}
-
-/*리스트들의 특수기호 제거*/
-li {
-    list-style: none;
-}
-
-
-/*하이퍼링크 전체 밑줄 제거*/
-a {
-    text-decoration: none;
-}
-
-
-
-/*사용할 페이지 전체 범위(가로폭은 보이는 화면의 80%고정, 세로폭은 내용물이 많아지면 자동 증가)*/
-body {
-    max-width: 80vw;
-    border: 1px solid red;
-    margin: auto;
-
-}
-
-/*페이지 내 헤더,메인,푸터의 틀 설정*/
-.container {
-    max-width: 100vw;
-    height: auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 6rem auto 3rem;
-    grid-template-areas:
-        'a a'
-        'b b'
-        'c c'
-}
-
-header {
-    grid-area: a;
-}
-
-main {
-    grid-area: b;
-}
-
-footer {
-    grid-area: c;
-}
-
-
-/**********메인 header(header 부분 전체)************/
-.header {
-    display: flex;
-    border: 5px solid orange;
-    padding: 0.5rem 2rem;
-    position: relative;
-    justify-content: space-between;
-    width: 100%;
-    height: 100%;
-
-}
-
-.header .header_logo {
-
-    border: 1px solid purple;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    object-fit: cover;
-}
-
-
-.header .header_menu {
-    display: flex;
-    border: 3px solid yellow;
-    justify-content: space-evenly;
-
-}
-
-.header .header_menu li {
-    border: 1px solid blue;
-    border-radius: 0.5rem;
-    padding: 0.7rem;
-    margin: 0.2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-
-
-.header .header_mypage {
-    border: 5px solid purple;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    object-fit: cover;
-    padding: 0 2.5rem 0 2.5rem;
-}
-
-
-.header .header_hamburger {
-    display: none;
-    position: absolute;
-    font-size: 1rem;
-    top: 8px;
-    left: auto;
-    right: 8px;
-    width: 30px;
-    height: 30px;
-    font-size: 1.5rem;
-}
-
-@media screen and (max-width:768px) {
-    .header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 1.5rem;
-    }
-
-    .header .header_menu {
-        display: none;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-
-    }
-
-    .header .header_menu li {
-        width: 100%;
-
-    }
-
-    .header .header_mypage {
-        display: none;
-        justify-content: center;
-        width: 100%;
-    }
-
-    .header .header_hamburger {
-        display: block;
-
-    }
-
-    .header_menu.active,
-    .header_mypage.active {
-        display: flex;
-    }
-}
-
 /*********메인 바디***********/
 main .body {
     display: flex;
-
-    /* display: grid;
-    grid-template-columns: 1fr 8fr 1fr;
-    grid-template-rows: auto; */
-    border: 1px solid orange;
     flex-direction: row;
+    justify-content: center;
 }
 
 /*메인 바디 왼쪽*/
@@ -223,11 +26,14 @@ main .body .aside_r {
 
 /*메인 바디 가운데 */
 main .body .body_center {
-    border: 1px solid rgb(158, 90, 2);
     display: flex;
     flex-direction: column;
     justify-content: center;
     flex-basis: 80%;
+}
+
+.body_center hr {
+	width: 60vw;
 }
 
 
@@ -236,9 +42,8 @@ main .body .body_center {
 .sec1 {
     display: flex;
     flex-basis: auto;
-    height: 140vh;
     flex-direction: column;
-    justify-content: space-evenly;
+    margin-top: 5rem;
     align-items: center;
 }
 
@@ -256,7 +61,8 @@ main .body .body_center {
 .sec1 .titlebox {
     display: flex;
     justify-content: center;
-    font-size: var(--font-size-lg);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
 }
 
 .sec1 .cg_explainbox{
@@ -264,7 +70,7 @@ main .body .body_center {
     display: flex;
     flex-direction: column;
     min-width: 100px;
-    width: 40vw;
+    width: 55vw;
 }
 
 .sec1 .cg_explain{
@@ -279,12 +85,36 @@ main .body .body_center {
     align-items: center;
 }
 
+.section2 {
+	display: flex;
+	align-items: center;
+	margin-bottom: 1rem;
+	width: 70%;
+}
+
+.section2 .cal-info {
+	margin: 2rem 2rem 10rem 2rem;
+}
+
+.section3 {
+	width: 70%;
+	display: flex;
+	align-items: center;
+	margin-bottom: 2rem;
+}
+
+.section3 .box3 {
+	margin-left: 4rem;
+}
+
 .sec2 {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    height: 70vh;
+    flex-direction: row;
 }
+
+
 
 .sec2 .mapbox {
     display: flex;
@@ -295,56 +125,9 @@ main .body .body_center {
     height: 30vh;
 }
 
-.sec2 .mapweatherbox {
-    display: flex;
-    flex-basis: 40%;
-    flex-direction: column;
-    height: 40vh;
-    justify-content: space-evenly;
-}
-
-.sec2 .mapweatherbox .startbox {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.sec2 .mapweatherbox .startbox .startplacetext {
-    flex-basis: 50%;
-}
-
-.sec2 .mapweatherbox .startbox .startplace {
-    flex-basis: 50%;
-    width: 100%;
-}
-
-/*출발시간*/
-.sec2 .mapweatherbox .starttimebox {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.sec2 .mapweatherbox .starttimebox .starttimetext {
-    flex-basis: 50%;
-}
-
-.sec2 .mapweatherbox .starttimebox .starttime {
-    flex-basis: 50%;
-}
-
-
-/*검색버튼*/
-.sec2 .mapweatherbox .weatherbox .searchbox {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.sec2 .mapweatherbox .weatherbox .searchbox .search {
-    height: 2.5rem;
-    width: 30%;
+.cal-title {
+	text-align: center;
+	margin-top: 2rem;
 }
 
 @media screen and (max-width:1024px) {
@@ -354,8 +137,6 @@ main .body .body_center {
 }
 
 /*후기*/
-.sec3 {
-}
 
 .sec3 .reviewwritebox {
     display: flex;
@@ -367,14 +148,18 @@ main .body .body_center {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin:3rem;
 }
 
 .sec4 .rv_l {
-    display: flex;
+  display: flex;
     flex-direction: row;
     height: 100%;
     width: 80%;
-    border: 1rem solid salmon;
+    justify-content: space-between;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+    padding: 20px;
 }
 
 .sec4 .rv_r {
@@ -382,7 +167,7 @@ main .body .body_center {
     flex-direction: row-reverse;
     height: 100%;
     width: 80%;
-    
+    margin: 1rem;
 }
 
 
@@ -448,16 +233,15 @@ main .body .body_center {
     flex-direction: column;
     height: 100%;
     width: 80%;
-    border: 1rem solid salmon;
 }
 .sec4 .rv_r {
     display: flex;
     flex-direction: column;
     height: 100%;
     width: 80%;
-    border: 1rem solid salmon;
 }
 }
+
 
 
 
@@ -504,6 +288,8 @@ main .body .body_center {
     border:1px solid #e1e1e1;
     cursor:pointer;
     padding-top:8px;
+    color: black;
+    margin-bottom: 2rem;
   }
 
 /* star 부분*/
@@ -910,6 +696,7 @@ button:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   background-color: #0062cc;
+  color: white;
 }
 
 /* 버튼 액티브 스타일 */
@@ -940,13 +727,13 @@ button:active {
 .weather-container {
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 3rem;
 }
 
 .weather-re {
   width: 120px;
-  margin-right: 10px;
-  margin-bottom: 10px;
   text-align: center;
+  margin: 0.5rem;
 }
 
 .weather-re:last-child {
@@ -980,7 +767,7 @@ button:active {
 .date {
   font-size: 1.5rem;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin: 1rem;
 }
 
 .weather {
