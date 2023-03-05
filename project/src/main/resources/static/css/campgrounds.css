@@ -282,6 +282,20 @@ main .body .body_center{
     align-items: center;
 }
 
+.camppage a {
+   display: flex;
+    min-width: 20px;
+    min-height: 20px;
+    box-sizing: border-box;
+    border-left: 0;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 3rem;
+    height: 3rem;
+    background: #ddd;
+    border-radius: 10%;
+}
+
 /*판매 상품 등록*/
 .sec6{
     display: flex;
