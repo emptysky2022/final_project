@@ -1,3 +1,4 @@
+/*모달을 감쌀 박스의 css*/
   .popup-wrap{
   background-color:rgba(0,0,0,.3);  /*배경색과 투명도로 살짝 어둡지만 투명한 배경*/
   justify-content:center; /*수평 중앙정렬*/
@@ -80,7 +81,7 @@
   }
   
   /*확인버튼*/
-  .pop-btn.close{                 
+  .pop-btn .close{                 
     background-color: #ffffff;
     border: 1px solid #000000;
     color: #000000;

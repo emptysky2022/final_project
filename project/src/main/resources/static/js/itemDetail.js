@@ -83,7 +83,7 @@ $(function(){
         
     });
 	
-    $("#modal-open").click(function(){
+    $("#item-modal-open").click(function(){
 		$("#modify").hide();
 		$("#confirm").show();       
         $("#popup").css('display','flex').hide().fadeIn();
