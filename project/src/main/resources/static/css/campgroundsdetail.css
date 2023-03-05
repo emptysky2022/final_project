@@ -248,6 +248,10 @@ main .body .body_center {
     margin-right: 3rem;
 }
 
+.sec4 {
+	width: 80%;
+}
+
 .sec4 .rv {
     display: flex;
     flex-direction: column;
@@ -259,11 +263,12 @@ main .body .body_center {
   display: flex;
     flex-direction: row;
     height: 100%;
-    width: 80%;
+    width: 90%;
     justify-content: space-between;
     border-radius: 5px;
     box-shadow: 0 0 10px rgb(0 0 0 / 10%);
     padding: 20px;
+    margin: 0.5rem
 }
 
 .sec4 .rv_r {
@@ -330,6 +335,20 @@ main .body .body_center {
     width: 50%;
 }
 
+.sec4 .rv .modify-box {
+	margin-left: 1rem;
+}
+
+.saveHeart {
+	width: 1.5rem;
+    height: 1.5rem;
+}
+
+.removeHeart {
+	width: 1.5rem;
+    height: 1.5rem;
+}
+
 
 @media screen and (max-width:1024px) {
     .sec4 .rv_l {
@@ -352,6 +371,11 @@ main .body .body_center {
 /*중간단계 건너띄고 지정*/
 .sec4 .rv .write{
     text-align: center;
+    font-size: 18px;
+}
+
+.sec4 .rv .content {
+	font-size: 15px;
 }
 
 
@@ -667,6 +691,22 @@ main .body .body_center {
 #buttons {
   text-align: center;
   margin-bottom: 10px;
+}
+
+button {
+	display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 8px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #fff;
+    background-color: #A2C4E1;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 20%);
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
 }
 
 

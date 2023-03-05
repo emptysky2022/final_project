@@ -4,11 +4,6 @@
 <head>
     <div th:replace="~{fragments/head_sec :: head-sec}"></div>
     
-    <!--js연결-->
-    <script type="text/javascript" src="../js/main.js" defer></script>
-    
-    
-    
     <!--api 연결-->
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=aa8506f7754a9c4a3ff7ed61e6db518a&libraries=services"></script>
     
@@ -20,7 +15,8 @@
     <link th:href="@{../css/starrr.css}" rel="stylesheet">
     <link th:href="@{../css/reviewwrite.css}" rel="stylesheet">
     
-    <script type="text/javascript" src="/js/campdetali.js" defer></script>
+    <script type="text/javascript" src="/js/starrr.js" defer></script>
+    <script type="text/javascript" src="/js/campDetail.js"></script>
 </head>
 
 <body>
@@ -349,7 +345,5 @@
       const result = /*[[${result}]]*/ null;
     </script>
     
-    <script th:src="@{../js/campDetail.js}"></script>
-    		
 </body>
 </html>

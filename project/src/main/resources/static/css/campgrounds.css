@@ -282,6 +282,34 @@ main .body .body_center{
     align-items: center;
 }
 
+.camppage a {
+	display: flex;
+    min-width: 20px;
+    min-height: 20px;
+    box-sizing: border-box;
+    border-left: 0;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 3rem;
+    height: 3rem;
+    background: #bcc2edcf;
+    border-radius: 10%;
+}
+
+.camppagingEl ul .active a {
+	background-color: #7d86c3;
+    display: flex;
+    min-width: 20px;
+    min-height: 20px;
+    box-sizing: border-box;
+    border-left: 0;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 10%;
+}
+
 /*판매 상품 등록*/
 .sec6{
     display: flex;

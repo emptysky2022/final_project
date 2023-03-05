@@ -1,6 +1,5 @@
 package com.campers.camfp.controller;
 
-import java.awt.PageAttributes.MediaType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.campers.camfp.config.auth.PrincipalDetails;
 import com.campers.camfp.config.type.TableType;
-import com.campers.camfp.dto.board.BoardDTO;
 import com.campers.camfp.dto.camp.CampCalenderDTO;
 import com.campers.camfp.dto.camp.CampDTO;
 import com.campers.camfp.dto.camp.CampReviewDTO;
