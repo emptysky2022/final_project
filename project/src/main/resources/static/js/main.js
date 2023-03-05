@@ -60,6 +60,7 @@ function search(value){
 	
 		})
 		list.html(str);
+		console.log("hello")
 		
 		const $paging = $(".pagingEl");
 		const {page: pageNum, prev: isPrev, next: isNext, end: endPage} = pageDTO;
@@ -95,6 +96,14 @@ function pageClick(page){
 	search(page);
 }
 
+function getStar(grade){
+	let star = '';
+	for(let i = 1; i <= 5; i++){
+		if(i <= Math.round(grade)) star += '★';
+		else star += '☆';
+	}
+	return star;
+}
 
 //스크롤 내릴 때 속도를 다르게 줄 수 있다.
 

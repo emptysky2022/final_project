@@ -9,18 +9,19 @@ let condition = {
 $(function(){
 	console.log("document ready")
 	$("#item-modal-open").click(function(){
-		$("#item-modal-open #modify").hide();
-		$("#item-modal-open #confirm").show();
-        $("#item-popup").css('display','flex').hide().fadeIn();
+		console.log("아이템 추가 버튼")
+		$(".popup #modify").hide();
+		$(".popup #confirm").show();
+        $(".popup-wrap").css('display','flex').hide().fadeIn();
         //팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
     });
     
-    $("#item-close").click(function(){
+    $(".close").click(function(){
 		console.log('클릭은 되나')
         modalClose(); //모달 닫기 함수 호출
     });
     
-    $("#item-popup #confirm").click(function(){
+    $(".popup #confirm").click(function(){
         modalClose(); //모달 닫기 함수 호출
         getData();
 		$.ajax({
@@ -88,7 +89,7 @@ $(function(){
 
 
 function modalClose(){
-    $("#item-popup").fadeOut(); //페이드아웃 효과
+    $(".popup-wrap").fadeOut(); //페이드아웃 효과
 }
 
 function checkPrice($el){
@@ -263,7 +264,7 @@ async function modify(ino, value){
 		alert(e);
 	}
 	
-	$("#item-popup").css('display','flex').hide().fadeIn();
+	$(".popup-wrap").css('display','flex').hide().fadeIn();
 	$("#modify").click(function(){
         modalClose(); //모달 닫기 함수 호출
         getData(ino);

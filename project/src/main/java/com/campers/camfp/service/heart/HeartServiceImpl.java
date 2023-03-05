@@ -1,12 +1,20 @@
 package com.campers.camfp.service.heart;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.campers.camfp.config.type.ProductType;
 import com.campers.camfp.dto.heart.HeartDTO;
 import com.campers.camfp.entity.heart.Heart;
+import com.campers.camfp.repository.board.BoardRepository;
+import com.campers.camfp.repository.camp.CampRepository;
 import com.campers.camfp.repository.heart.HeartListRepository;
+import com.campers.camfp.repository.item.ItemRepository;
 import com.nimbusds.jose.Header;
 
 import lombok.RequiredArgsConstructor;
@@ -47,6 +55,21 @@ public class HeartServiceImpl implements HeartService {
 		Heart heart = dtoToEntity(dto);
 		heartListRepository.deleteById(heart.getHlno());
 		return null;
+	}
+
+	@Override
+	public List<HeartDTO> getListOfProductType(Long mno, ProductType productType) {
+		log.info("여기 좋아요 목록 데리러 왔어요");
+		
+		List<Heart> heartEntities = heartListRepository.getHeartByProductType(mno, productType);
+		log.info("하트 목록은 뿌려주나요?");
+		log.info(heartEntities);
+		List<HeartDTO> result = heartEntities.stream().map(entity -> entityToDto(entity)).collect(Collectors.toList());
+		
+		log.info("결과 뿌려주러 왔어요");
+		log.info(result);
+		
+		return result;
 	}
 
 }
