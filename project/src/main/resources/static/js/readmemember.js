@@ -1,4 +1,3 @@
-
 // 화면 줄이면 탭메뉴 변형
 $(document).ready(function() {
 	var $tabButtonItem = $('#tab-button li'),
@@ -31,6 +30,9 @@ $(document).ready(function() {
 		$tabContents.hide();
 		$(target).show();
 	});
+	
+	loadAllHistory();
+	
 });
 
 // 결제 내역 수정 버튼 클릭 시 동작하는 이벤트 리스너
@@ -91,3 +93,49 @@ $reservationForm.on("click", ".reserveCancel", function() {
 
 // 프로그램 시작시 예약 내역 확인
 loadResrvationDetails();
+
+async function loadAllHistory(){
+	try{
+		const result = await $.get("/history/lists");
+		console.log(result);
+		const itemFilter = result.filter((history, index) => {
+			if(history.historyType == "ITEM" && history.name && history.state && history.price && history.regDate && history.amount){
+				console.log("통과!")
+				return true;
+			}
+			return false;
+		})
+		const itemHtml = itemFilter.map(({name, state, price, regDate, amount}) => {
+				return `
+				<li>
+					<div class="date">${formatTime(regDate)}</div>
+					<div class="product-name">${name}</div>
+					<div class="price">${price * amount}</div>
+					<div class="status">${state}</div>
+					<div class="edit"><button class="edit-btn">수정</button></div>
+				</li>
+				`
+		}).join("");
+		console.log(itemHtml);
+		$(".shoppingcart").html(itemHtml);
+	} catch(err) {
+		console.log("에러 발생!", err);
+	}
+	myHeart("ITEM");
+}
+
+function formatTime(str) {
+    var date = new Date(str);
+    return date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes();
+}
+
+
+function myHeart(productType){
+	$.ajax({
+		url: "/heart/get/" + productType,
+		method: "GET",
+		success: function(result){
+			console.log(result)
+		}
+	})
+}

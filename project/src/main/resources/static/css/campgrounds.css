@@ -52,66 +52,12 @@ main .body .body_center{
 }
 
 
-.sec2{
-    display: flex;
-    flex-basis: auto;
-    flex-direction: row;
-    width: 100%;
-   
-}
-
-/*드롭다운 메뉴 만들기*/
-.sec2 .dropdowncampbox {
-    min-width: 8rem;
-    overflow: hidden;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content:space-evenly;
-}
-
-.sec2 .dropdowncampbox .dropdown {
-    width: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid black;
-    margin: 1rem;
-}
-
-
-
-
-
-.sec2 .subdropdown {
-    overflow: hidden;
-    width: 80%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
-
-
-
-@media screen and (max-width:1024px){
-    .sec2 .subdropdown{
-        overflow: hidden;
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-    }
-
-    
-}
-
 .sec3{
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 80vh;
 }
 
 
@@ -134,6 +80,11 @@ main .body .body_center{
 
 .sec3 .calendarbox .calendar{
     height: 100%;
+}
+
+.sec3 .infotext {
+	flex-basis: 25%;
+    margin-bottom: 40vh;
 }
 
 
@@ -170,7 +121,7 @@ main .body .body_center{
 }    
 
 @media screen and (max-width:480px){
-    .sec2 .subdropdown{
+    .sec4 .subdropdown{
         overflow: hidden;
         width: 80%;
         display: flex;
@@ -196,9 +147,8 @@ main .body .body_center{
 /*드롭다운 메뉴 만들기2*/
 .sec4 .dropdowncampingbox {
     min-width: 8rem;
-    overflow: hidden;
     border: 2px solid gray;
-    width: 20%;
+    width: 15%;
     margin-right: 2rem;
 }
 
@@ -206,6 +156,7 @@ main .body .body_center{
     width: 100%;
     text-align: center;
     line-height: 2.5rem;
+    position: relative;
 
 }
 
@@ -215,14 +166,14 @@ main .body .body_center{
 }
 
 .sec4 .dropdowncampingbox> .dropdown:hover .subdropdown {
-    height: 9rem;
+    height: 3rem;
     /*서브메뉴 li한개의 높이 50*5*/
     transition-duration: 1s;
     display: block;
 }
 
 .sec4 .dropitem {
-    line-height: 50px;
+    line-height: 20px;
 
 }
 
@@ -231,6 +182,24 @@ main .body .body_center{
     display: none;
     /*ul의 높이를 안보이게 처리*/
     overflow: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 0.5rem 0;
+    z-index: 50;
+    box-shadow: 0 8px 16px 0 rgb(0 0 0 / 20%);
+    border-radius: 4px;
+}
+
+.camptype {
+	align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.camptype button {
+	margin: 0.2rem;
 }
 
 
@@ -248,6 +217,8 @@ main .body .body_center{
     flex-direction: column;
     align-items: center;
 }
+
+
 
 /*버튼*/
 .bt_groundspage {
@@ -301,6 +272,28 @@ main .body .body_center{
     margin: 1rem;
     
     }
+}
+
+.camppage {
+	margin: 30px 0 20px 0;
+    display: flex;
+    justify-content: center;
+    color: #000;
+    align-items: center;
+}
+
+.camppage a {
+   display: flex;
+    min-width: 20px;
+    min-height: 20px;
+    box-sizing: border-box;
+    border-left: 0;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 3rem;
+    height: 3rem;
+    background: #ddd;
+    border-radius: 10%;
 }
 
 /*판매 상품 등록*/
@@ -381,10 +374,6 @@ main .body .body_center{
     font-size: 16;
     font-weight: bold;
     text-anchor: middle;
-}
-
-.sec2 .map{
-	max-width: none;
 }
 
 *{
