@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<div th:replace="~{fragments/head_sec :: head-sec}"></div>
-	
+
 	<!--swiper-->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-	
+
 	<!-- Swiper JS -->
 	<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+
 	
 	<!--js연결-->
 	<script type="text/javascript" src="../js/starrr.js" defer></script>
@@ -15,11 +17,13 @@
 	<script type="text/javascript" src="../js/main.js" async></script>
 	<script type="text/javascript" src="../js/camp.js" async></script>
 
+
 	<!--css 연결-->
 	<link rel="stylesheet" type="text/css" href="../css/main.css">
 	<link rel="stylesheet" type="text/css" href="../css/starrr.css">
     <link rel="stylesheet" type="text/css" href="../css/camperproduct.css">
     <link rel="stylesheet" type="text/css" href="../css/reviewwrite.css">
+
 </head>
 
 <body>
@@ -36,14 +40,10 @@
 				<swiper-container class="nav-mySwiper" pagination="true" pagination-clickable="true" navigation="false"
 					space-between="30" centered-slides="true" autoplay-delay="3500" loop="true"
 					autoplay-disable-on-interaction="false">
-					<swiper-slide class="nav-swiper-slide"><img src="../img/nav_main_top1.jpg"
-							alt=""></swiper-slide>
-					<swiper-slide class="nav-swiper-slide"><img src="../img/nav_main_top2.jpg"
-							alt=""></swiper-slide>
-					<swiper-slide class="nav-swiper-slide"><img src="../img/nav_main_top3.jpg"
-							alt=""></swiper-slide>
-					<swiper-slide class="nav-swiper-slide"><img src="../img/nav_main_top4.jpg"
-							alt=""></swiper-slide>
+					<swiper-slide class="nav-swiper-slide"><img src="../img/nav_main_top1.jpg" alt=""></swiper-slide>
+					<swiper-slide class="nav-swiper-slide"><img src="../img/nav_main_top2.jpg" alt=""></swiper-slide>
+					<swiper-slide class="nav-swiper-slide"><img src="../img/nav_main_top3.jpg" alt=""></swiper-slide>
+					<swiper-slide class="nav-swiper-slide"><img src="../img/nav_main_top4.jpg" alt=""></swiper-slide>
 				</swiper-container>
 			</div>
 
@@ -52,71 +52,26 @@
 
 				<!--메인 바디 가운데 공간 안에 섹션 1, 2, 3이 나뉨-->
 				<div class="body_center box2">
+					<!--섹션나누기 캠핑용품 제목-->
+					<div th:replace="~{/fragments/main_sec :: sectionFragment_T1}"></div>
 
+					<!--섹션나누기 캠핑용품-->
 					<div th:replace="~{/fragments/item_sec :: mainFragment}"></div>
-					
-					<!--섹션나누기2-->
+
+					<!--섹션나누기 타이틀 캠핑장-->
+					<div th:replace="~{/fragments/main_sec :: sectionFragment_T2}"></div>
+
+					<!--섹션나누기 캠핑장-->
 					<div th:replace="~{/fragments/main_sec :: section2Fragment}"></div>
+
+					<!--섹션나누기 타이틀 게시판-->
+					<div th:replace="~{/fragments/main_sec :: sectionFragment_T3}"></div>
+
+					<!--섹션나누기 게시판-->
+					<div th:replace="~{/fragments/main_sec :: section3Fragment}"></div>
+
 					
-					
-					<!--섹션 나누기3-->
-					<div class="swiperlocation">
-						<div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
-	        				class="swiper mySwiper">
-	        			<div class="parallax-bg" style="background-image: url(../img/background2.jpg);" data-swiper-parallax="-23%"></div>
-	        			<div class="swiper-wrapper">
-	            			<div class="swiper-slide">
-				                <div class="title" data-swiper-parallax="-300"> 캠핑장 이름</div>
-				                <div class="subtitle" data-swiper-parallax="-200">별점</div>
-				                <div class="text" data-swiper-parallax="-100">
-				                    <p>
-				                        대충 리뷰 적힌 내용
-				                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-				                        dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla
-				                        laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
-				                        Integer laoreet magna nec elit suscipit, ac laoreet nibh euismod.
-				                        Aliquam hendrerit lorem at elit facilisis rutrum. Ut at
-				
-				                    </p>
-				                </div>
-				            </div>
-				            <div class="swiper-slide">
-				                <div class="title" data-swiper-parallax="-300">Slide 2</div>
-				                <div class="subtitle" data-swiper-parallax="-200">Subtitle</div>
-				                <div class="text" data-swiper-parallax="-100">
-				                    <p>
-				                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-				                        dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla
-				                        laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
-				                        Integer laoreet magna nec elit suscipit, ac laoreet nibh euismod.
-				                        Aliquam hendrerit lorem at elit facilisis rutrum. Ut at
-				                        ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec,
-				                        tincidunt ut libero. Aenean feugiat non eros quis feugiat.
-				                    </p>
-				                </div>
-				            </div>
-				            <div class="swiper-slide">
-				                <div class="title" data-swiper-parallax="-300">Slide 3</div>
-				                <div class="subtitle" data-swiper-parallax="-200">Subtitle</div>
-				                <div class="text" data-swiper-parallax="-100">
-				                    <p>
-				                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-				                        dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla
-				                        laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
-				                        Integer laoreet magna nec elit suscipit, ac laoreet nibh euismod.
-				                        Aliquam hendrerit lorem at elit facilisis rutrum. Ut at
-				                        ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec,
-				                        tincidunt ut libero. Aenean feugiat non eros quis feugiat.
-				                    </p>
-				                </div>
-				            </div>
-				        </div>
-			        <div class="swiper-button-next"></div>
-			        <div class="swiper-button-prev"></div>
-			        <div class="swiper-pagination"></div>
-			    </div>
-			</div>
-					
+
 				</div>
 			</div>
 		</main>
