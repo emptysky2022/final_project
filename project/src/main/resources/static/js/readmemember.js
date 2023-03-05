@@ -36,7 +36,6 @@ $(document).ready(function() {
 	loadResrvationDetails()
 	loadAllHistory();
 	myHeart("CAMP");
-
 });
 
 // 결제 내역 수정 버튼 클릭 시 동작하는 이벤트 리스너
