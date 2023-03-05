@@ -417,9 +417,13 @@ $(document).ready(function() {
 	});
 
 	// 리뷰 작성 모달 닫기
-	$("#close").click(function() {
-		modalClose(); //모달 닫기 함수 호출
-	});
+   function modalClose() {
+      $("#popup").fadeOut(); //페이드아웃 효과
+       $("#content").val("");
+      $("#picture").val("");
+      $("#select_star").starrr("setRating",0);
+      console.log($("#select_star"));
+   }
 
 	// 리뷰 작성 버튼 클릭
 	$("#confirm").click(function() {
@@ -527,7 +531,7 @@ $(document).ready(function() {
 			const [reply, member] = arr;
 
 			$.each(reply, function(index, reply) {
-				let direction = index % 2 == 0 ? 'l' : 'r';
+				let direction = index % 2 == 0 ? 'l' : 'l';
 				crno = reply.crno;
 				str += "<div class='rv_" + direction + "'box5>";
 				str += "<div class='box_l' box6>";
