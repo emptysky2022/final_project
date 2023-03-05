@@ -634,7 +634,7 @@ $(document).ready(function() {
 	}
 
 	function clickCampConfirm() {
-	
+
 		$.ajax({
 			url: "/camp/review/register",
 			method: "POST",

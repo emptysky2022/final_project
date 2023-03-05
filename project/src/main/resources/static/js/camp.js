@@ -536,20 +536,20 @@ $(document).ready(function() {
 
 			if (isPrev) {
 				pagination += `<li class="page-item">
-	    				       <a class="page-link" id ='' " tabindex="-1">이전</a>
+	    				       <a class="page-link bt_prev item_2" onclick="pageLoad()" tabindex="-1">이전</a>
 	    				   </li>`;
 			}
 
 			for (const value of camp.pageList) {
 				pagination += `<li class="page-item num ${value == page ? 'active' : ''}">
-	    				       <a class="rqwrqw" id=${value}>${value}</a>
+	    				       <button class="rqwrqw" id=${value}>${value}</button>
 	    				       <input type="hidden" name="pageValue" value="${value}">
 	    				   </li>`;
 			}
 
 			if (isNext) {
 				pagination += `<li class="page-item num">
-	    				<a class="page-link" id =${endPage + 1} ">다음</a><li></ul>`;
+	    				<a class="page-link" onclick="pageLoad(${endPage + 1})">다음</a><li></ul>`;
 			}
 
 
@@ -694,10 +694,6 @@ $(document).ready(function() {
 	$paging.on("click", ".rqwrqw", function() {
 		loadJSON($(this).attr("id"));
 	});
-	
-	 $paging.on("click", ".page-link", function() {
-      loadJSON($(this).attr("id"));
-   	 });
 
 	loadJSON();
 });

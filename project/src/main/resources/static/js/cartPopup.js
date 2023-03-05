@@ -53,7 +53,7 @@ function cartModal(){
 		success: function(result){
 			console.log(result);
 			if(result.length == 0){
-				$("#cart-popup .popup .popup-body").html(`
+				$("#cart-modal .cart-popup .cart-popup-body").html(`
 					<div class="cart-noneCart">
 						<h1>장바구니가 텅 비었습니다.</h1>
 					</div>
@@ -117,8 +117,8 @@ function cartModal(){
 				$count.html(`총 ${result.length}개의 상품`)
 			}
 			checkPrice($checkPrice);
-			$("#cart-modal-open #confirm").show();
-	        $("#cart-popup").css('display','flex').hide().fadeIn();
+			$("#cart-modal #confirm").show();
+	        $("#cart-modal").css('display','flex').hide().fadeIn();
 		    $("#cbx_chkAll").click(function() {
 				console.log("여기 들어감")
 				if($("#cbx_chkAll").is(":checked")) $("input[name=chk]").prop("checked", true);
@@ -126,6 +126,7 @@ function cartModal(){
 				checkPrice($checkPrice);
 			});
 			$("input[name=chk]").click(function() {
+				console.log("여긴 들어감")
 				var total = $("input[name=chk]").length;
 				var checked = $("input[name=chk]:checked").length;
 		
@@ -133,7 +134,7 @@ function cartModal(){
 				else $("#cbx_chkAll").prop("checked", true); 
 				checkPrice($checkPrice);
 			});
-			$("#cart-popup input[type=number]").bind("keyup mouseup", function(){
+			$("#cart-modal input[type=number]").bind("keyup mouseup", function(){
 				const price = parseInt($(this).parent().prev().find(".cart-price").html());
 				const amount = $(this).val();
 				
@@ -149,7 +150,7 @@ function cartModal(){
 
 function deleteCart(){
 	let snos = new Array();
-	const items = $("#cart-popup").find("table tr").map(function(){
+	const items = $("#cart-modal").find("table tr").map(function(){
 		if($(this).find("input[name=chk]").is(":checked") == true){
 			snos.push(parseInt($(this).attr('id')));			
 		}
@@ -168,12 +169,12 @@ function deleteCart(){
 
 function orderCart(){
 	let snos = new Array();
-	const items = $(".cart-popup").find("table tr").map(function(){
+	const items = $("#cart-modal").find("table tr").map(function(){
 		if($(this).find("input[name=chk]").is(":checked") == true){
 			snos.push(parseInt($(this).attr('id')));			
 		}
 	});
-	console.log($(".cart-popup").find("table tr"))
+	console.log($("#cart-modal").find("table tr"))
 	console.log(snos);
 	$.ajax({
 		url: "/history/items",
@@ -188,12 +189,14 @@ function orderCart(){
 }
 
 function checkPrice($el){
+	console.log("여긴 check")
 	let price = 0;
-	const items = $("#cart-popup").find("table tr").map(async function(){
+	const items = $("#cart-modal").find("table tr").map(async function(){
 		if($(this).find("input[name=chk]").is(":checked") == true){
 			const itemPrice = parseInt($(this).find(".cart-amountall").html());
 			price = price + itemPrice;
 		}
 	});
+	console.log(price)
 	$el.html(`${price}원`);
 }

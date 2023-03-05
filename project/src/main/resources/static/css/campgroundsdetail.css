@@ -13,19 +13,15 @@ main .body .body_center {
     flex-basis: 80%;
 }
 
-.body_center hr {
-	width: 60vw;
-}
-
 
 
 /*sec1*/
 .sec1 {
-    display: flex;
-    flex-basis: auto;
-    flex-direction: column;
-    margin-top: 5rem;
-    align-items: center;
+  display: flex;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .sec1 .titlebox {
@@ -56,7 +52,7 @@ main .body .body_center {
 /*상품의 왼쪽*/
 
 .sec1 .campgroundimgbox {
-	min-width: 10rem;
+   min-width: 10rem;
     width: 100%;
 }
 
@@ -70,20 +66,40 @@ main .body .body_center {
   width: 100%;
 }
 
-
-.sec1 .titlebox {
-    display: flex;
-    justify-content: center;
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
+/*상품의 오른쪽*/
+.sec1 .textbox{
+  display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50%;
 }
 
-.sec1 .cg_explainbox{
-    text-align: center;
-    display: flex;
+.cg_titlebox{
+  flex-basis:25%;
+  font-size: var(--font-size-md);
+}
+
+.cg_hashtagbox{
+  flex-basis:90%;
+
+}
+
+.textset{
+  display: flex;
     flex-direction: column;
-    min-width: 100px;
-    width: 55vw;
+    height: 100%;
+    justify-content: space-around;
+}
+
+
+
+/*상품 파는곳 연결 링크*/
+.sec1 .cg_explainbox{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: 1;
 }
 
 .sec1 .cg_explain{
@@ -189,36 +205,12 @@ main .body .body_center {
   }
 
 
-.section2 {
-	display: flex;
-	align-items: center;
-	margin-bottom: 1rem;
-	width: 70%;
-}
-
-.section2 .cal-info {
-	margin: 2rem 2rem 10rem 2rem;
-}
-
-.section3 {
-	width: 70%;
-	display: flex;
-	align-items: center;
-	margin-bottom: 2rem;
-}
-
-.section3 .box3 {
-	margin-left: 4rem;
-}
-
 .sec2 {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    flex-direction: row;
+    height: 70vh;
 }
-
-
 
 .sec2 .mapbox {
     display: flex;
@@ -229,9 +221,56 @@ main .body .body_center {
     height: 30vh;
 }
 
-.cal-title {
-	text-align: center;
-	margin-top: 2rem;
+.sec2 .mapweatherbox {
+    display: flex;
+    flex-basis: 40%;
+    flex-direction: column;
+    height: 40vh;
+    justify-content: space-evenly;
+}
+
+.sec2 .mapweatherbox .startbox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.sec2 .mapweatherbox .startbox .startplacetext {
+    flex-basis: 50%;
+}
+
+.sec2 .mapweatherbox .startbox .startplace {
+    flex-basis: 50%;
+    width: 100%;
+}
+
+/*출발시간*/
+.sec2 .mapweatherbox .starttimebox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.sec2 .mapweatherbox .starttimebox .starttimetext {
+    flex-basis: 50%;
+}
+
+.sec2 .mapweatherbox .starttimebox .starttime {
+    flex-basis: 50%;
+}
+
+
+/*검색버튼*/
+.sec2 .mapweatherbox .weatherbox .searchbox {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.sec2 .mapweatherbox .weatherbox .searchbox .search {
+    height: 2.5rem;
+    width: 30%;
 }
 
 @media screen and (max-width:1024px) {
@@ -241,15 +280,13 @@ main .body .body_center {
 }
 
 /*후기*/
+.sec3 {
+}
 
 .sec3 .reviewwritebox {
     display: flex;
     justify-content: end;
     margin-right: 3rem;
-}
-
-.sec4 {
-	width: 80%;
 }
 
 .sec4 .rv {
@@ -263,12 +300,11 @@ main .body .body_center {
   display: flex;
     flex-direction: row;
     height: 100%;
-    width: 90%;
+    width: 80%;
     justify-content: space-between;
     border-radius: 5px;
     box-shadow: 0 0 10px rgb(0 0 0 / 10%);
     padding: 20px;
-    margin: 0.5rem
 }
 
 .sec4 .rv_r {
@@ -276,7 +312,7 @@ main .body .body_center {
     flex-direction: row-reverse;
     height: 100%;
     width: 80%;
-    margin: 1rem;
+    
 }
 
 
@@ -335,20 +371,6 @@ main .body .body_center {
     width: 50%;
 }
 
-.sec4 .rv .modify-box {
-	margin-left: 1rem;
-}
-
-.saveHeart {
-	width: 1.5rem;
-    height: 1.5rem;
-}
-
-.removeHeart {
-	width: 1.5rem;
-    height: 1.5rem;
-}
-
 
 @media screen and (max-width:1024px) {
     .sec4 .rv_l {
@@ -367,17 +389,10 @@ main .body .body_center {
 
 
 
-
 /*중간단계 건너띄고 지정*/
 .sec4 .rv .write{
     text-align: center;
-    font-size: 18px;
 }
-
-.sec4 .rv .content {
-	font-size: 15px;
-}
-
 
   .item-modal-btn-box{
     width: 100%;
@@ -625,17 +640,17 @@ main .body .body_center {
 /* TEST */
 
 .start-day{
-	width: 50%;
-	text-align : center;
-	float: left;
-	line-height: 20px;
+   width: 50%;
+   text-align : center;
+   float: left;
+   line-height: 20px;
 }
 
 .end-day{
-	width: 50%;
-	text-align : center;
-	float: right;
-	line-height: 20px;
+   width: 50%;
+   text-align : center;
+   float: right;
+   line-height: 20px;
 }
 
 #calendar {
@@ -691,22 +706,6 @@ main .body .body_center {
 #buttons {
   text-align: center;
   margin-bottom: 10px;
-}
-
-button {
-	display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    padding: 6px 8px;
-    font-size: 12px;
-    font-weight: 500;
-    color: #fff;
-    background-color: #A2C4E1;
-    border: none;
-    border-radius: 30px;
-    box-shadow: 0 2px 4px rgb(0 0 0 / 20%);
-    transition: transform 0.2s ease-in-out;
-    cursor: pointer;
 }
 
 
@@ -903,4 +902,3 @@ button:active {
   font-size: 0.8rem;
   color: #666;
 }
-

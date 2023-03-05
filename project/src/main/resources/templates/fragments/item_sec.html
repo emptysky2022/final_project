@@ -178,152 +178,82 @@
 
 	<!-- ------------ 구분선 ------------------>
 
+	<!-- 아이템 상세 내용 -->
+	<section th:fragment="detail1Fragment">
 
-   <!-- 아이템 상세 내용 -->
-   <section th:fragment="detail1Fragment">
+		<div class="sec1 box3">
+			<div class="titlebox box4">
+				<div class="title item">상품 상세보기</div>
+			</div>
+			<div class="imgtextbox">
+				<div class="imgbox">
+					<div
+						th:if="${#strings.arraySplit(detail.thumbnail, ',').length == 1 and #strings.arraySplit(detail.thumbnail, ':').length == 1}">
+						<img class="campgroundimg item" th:src="@{'/display?fileName=&folderType=item'}">
+					</div>
+					<div class="campgroundimgbox" th:if="${#strings.arraySplit(detail.thumbnail, ':').length != 1}">
+						<img class="campgroundimg item" th:src="${detail.thumbnail}">
+					</div>
+					<div th:if="${#strings.arraySplit(detail.thumbnail, ',').length != 1 and #strings.arraySplit(detail.thumbnail, ':').length == 1}"
+						class="campgroundimgbox box4" th:each="image : ${#strings.arraySplit(detail.thumbnail, ',')}">
+						<img class="campgroundimg item"
+							th:src="@{'/display?fileName=' + ${image} + '&folderType=item'}">
+					</div>
+				</div>
 
-      <div class="sec1 box3">
-         <div class="titlebox box4">
-            <div class="title item">상품 상세보기</div>
-         </div>
-         <div class="imgtextbox">
-            <div class="imgbox">
-               <div
-                  th:if="${#strings.arraySplit(detail.thumbnail, ',').length == 1 and #strings.arraySplit(detail.thumbnail, ':').length == 1}">
-                  <img class="campgroundimg item" th:src="@{'/display?fileName=&folderType=item'}">
-               </div>
-               <div class="campgroundimgbox" th:if="${#strings.arraySplit(detail.thumbnail, ':').length != 1}">
-                  <img class="campgroundimg item" th:src="${detail.thumbnail}">
-               </div>
-               <div th:if="${#strings.arraySplit(detail.thumbnail, ',').length != 1 and #strings.arraySplit(detail.thumbnail, ':').length == 1}"
-                  class="campgroundimgbox box4" th:each="image : ${#strings.arraySplit(detail.thumbnail, ',')}">
-                  <img class="campgroundimg item"
-                     th:src="@{'/display?fileName=' + ${image} + '&folderType=item'}">
-               </div>
-            </div>
+				<div class="textbox">
+					<div class="textset">
+					<!--물건 이름-->
+					<div class="cg_title_heartbox box4">
+						<div class="cg_title item">[[${detail.name}]]</div>
+						<!--하트-->
+						<div class="cg_heartbox box4">
+							<div class="cg_heart item" id="item_heart" th:onclick="clickItemHeart('[[${detail.ino}]]')">[[${detail.heart}]]
+						</div>
+					</div>
+					</div>
 
-            <div class="textbox">
-               <div class="textset">
-               <!--물건 이름-->
-               <div class="cg_title_heartbox box4">
-                  <div class="cg_title item">[[${detail.name}]]</div>
-                  <!--하트-->
-                  <div class="cg_heartbox box4">
-                     <div class="cg_heart item" id="item_heart" th:onclick="clickItemHeart('[[${detail.ino}]]')">[[${detail.heart}]]
-                  </div>
-               </div>
-               </div>
+					<!--별점-->
+					<div class="cg_starbox box4">
+						<div class="cg_star item" id="item_star">
+							<div id="sync_star">[[${detail.star}]]</div>
+						</div>
+					</div>
 
-               <!--별점-->
-               <div class="cg_starbox box4">
-                  <div class="cg_star item" id="item_star">
-                     <div id="sync_star">[[${detail.star}]]</div>
-                  </div>
-               </div>
+					<!--해시태그-->
+					<div class="cg_hashtagbox box4">
+						<div class="cg_hashtag item">[[${detail.category1}]] | [[${detail.category2}]]</div>
+					</div>
 
-               <!--해시태그-->
-               <div class="cg_hashtagbox box4">
-                  <div class="cg_hashtag item">[[${detail.category1}]] | [[${detail.category2}]]</div>
-               </div>
 
-               
+
+					
+					
+
 					<!--가격-->
 					<div class="cg_price">
 						[[${detail.price}]]원
 					</div>
 
-               </div>
-               <div class="cg_btn_box">
-                  <!--장바구니-->
-                  <div class="cg_cartbox box4" th:onclick="clickItemCart('[[${detail.ino}]]')">
-                     <button class="cg_cart">장바구니</button>
-                  </div>
-                  <!--주소-->
-                  <div class="cg_explainbox box4">
-                     <a class="cg_explain item" th:href="${detail.link}"> <button
-                           class="cg_explain_btn">구매하기</button></a>
-                  </div>
-               </div>
+					</div>
+					<div class="cg_btn_box">
+						<!--장바구니-->
+						<div class="cg_cartbox box4" th:onclick="clickItemCart('[[${detail.ino}]]')">
+							<button class="cg_cart">장바구니</button>
+						</div>
+						<!--주소-->
+						<div class="cg_explainbox box4">
+							<a class="cg_explain item" th:href="${detail.link}"> <button
+									class="cg_explain_btn">구매하기</button></a>
+						</div>
+					</div>
 
 
 
-            </div>
-         </div>
-      </div>
-   </section>
-
-
-   <!-- 리뷰 내용 -->
-   <section th:fragment="detail2Fragment">
-
-      <div class="sec4 box3">
-         <div class="rv box4" id="reviewGroup"></div>
-      </div>
-   </section>
-
-
-   <!-- 리뷰 모달 -->
-   <section th:fragment="detail3Fragment">
-
-      <div class="item-modal-btn-box"  id="item-modal-open" sec:authorize="isAuthenticated()">
-         <button type="button" id="item-modal-open">리뷰 작성</button>
-      </div>
-      <!--모달을 감쌀 박스-->
-      <div class="popup-wrap" id="popup">
-         <!--실질적 모달팝업-->
-         <div class="popup">
-            <!--로고 영역-->
-            <div class="popup-head">
-               <span class="head-title"> 로고</span>
-            </div>
-            <!--컨텐츠 영역-->
-            <div class="popup-body">
-               <div class="body-content">
-                  <div class="body-titlebox">리뷰 작성하기</div>
-                  <hr>
-                  <div class="body-contentbox">
-                     <div class="campgroundsbox">
-                        <div class="campimgbox" th:with="images=${#strings.arraySplit(detail.thumbnail, ',')}">
-                           <img class="campimg"
-                              th:src="@{'/display?fileName=' + (${images.length == 0 ? '' : images[images.length-1]}) + '&folderType=item'}">
-                        </div>
-                        <div class="campexplainbox">
-                           <div class="ce_title">[[${detail.name}]]</div>
-                           <div class="ce_preice">
-                              [[${detail.price}]]원
-                           </div>
-                        </div>
-                     </div>
-                     <hr>
-                     <div class="starbox">
-                        <div class="star_title">별점을 선택하세요</div>
-                        <div class="starsizeupbox">
-                           <div class="starrr star" id="select_star"></div>
-                        </div>
-                     </div>
-                     <hr>
-                     <div class="textreviewbox">
-                        <div class="tr_texttitle">리뷰 내용</div>
-                        <textarea class="tr_text" id="content" placeholder="솔직한 이용후기를 작성해주세요"></textarea>
-                     </div>
-                     <hr>
-                     <div class="addimgbox">
-                        <div class="addimgtitle">이미지 추가</div>
-                        <input type="file" id="capture" class="addimg" multiple>
-                     </div>
-                     <hr>
-                  </div>
-               </div>
-            </div>
-            <!--푸터 버튼 영역-->
-            <div class="popup-foot">
-               <span class="pop-btn close" id="close">창 닫기</span>
-               <span class="pop-btn confirm" id="confirm">확인</span>
-               <span class="pop-btn confirm" id="modify">수정</span>
-            </div>
-         </div>
-      </div>
-   </section>
+				</div>
+			</div>
+		</div>
+	</section>
 
 
 	<!-- 리뷰 내용 -->
@@ -333,6 +263,74 @@
 			<div class="rv box4" id="reviewGroup"></div>
 		</div>
 	</section>
+
+
+	<!-- 리뷰 모달 -->
+	<section th:fragment="detail3Fragment">
+
+		<div class="item-modal-btn-box"  id="item-modal-open" sec:authorize="isAuthenticated()">
+			<button type="button" id="item-modal-open">리뷰 작성</button>
+		</div>
+		<!--모달을 감쌀 박스-->
+		<div class="popup-wrap" id="popup">
+			<!--실질적 모달팝업-->
+			<div class="popup">
+				<!--로고 영역-->
+				<div class="popup-head">
+					<span class="head-title"> 로고</span>
+				</div>
+				<!--컨텐츠 영역-->
+				<div class="popup-body">
+					<div class="body-content">
+						<div class="body-titlebox">리뷰 작성하기</div>
+						<hr>
+						<div class="body-contentbox">
+							<div class="campgroundsbox">
+								<div class="campimgbox" th:with="images=${#strings.arraySplit(detail.thumbnail, ',')}">
+									<img class="campimg"
+										th:src="@{'/display?fileName=' + (${images.length == 0 ? '' : images[images.length-1]}) + '&folderType=item'}">
+								</div>
+								<div class="campexplainbox">
+									<div class="ce_title">[[${detail.name}]]</div>
+									<div class="ce_preice">
+										[[${detail.price}]]원
+									</div>
+								</div>
+							</div>
+							<hr>
+							<div class="starbox">
+								<div class="star_title">별점을 선택하세요</div>
+								<div class="starsizeupbox">
+									<div class="starrr star" id="select_star"></div>
+								</div>
+							</div>
+							<hr>
+							<div class="textreviewbox">
+								<div class="tr_texttitle">리뷰 내용</div>
+								<textarea class="tr_text" id="content" placeholder="솔직한 이용후기를 작성해주세요"></textarea>
+							</div>
+							<hr>
+							<div class="addimgbox">
+								<div class="addimgtitle">이미지 추가</div>
+								<input type="file" id="capture" class="addimg" multiple>
+							</div>
+							<hr>
+						</div>
+					</div>
+				</div>
+				<!--푸터 버튼 영역-->
+				<div class="popup-foot">
+					<span class="pop-btn close" id="close">창 닫기</span>
+					<span class="pop-btn confirm" id="confirm">확인</span>
+					<span class="pop-btn confirm" id="modify">수정</span>
+				</div>
+	</section>
+
+
+
+
+
+
 
 </body>
 
