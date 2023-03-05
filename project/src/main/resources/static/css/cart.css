@@ -37,8 +37,6 @@
     max-width:600px;          /*팝업의 최대 크기지정*/
     border-radius:10px;     
     overflow:hidden;          /*각을 없앴을 때 내부 영역이 튀어나오는걸 방지*/
-    background-color:rgb(54, 54, 54);/*배경색*/
-    box-shadow: 5px 10px 10px 1px rgba(0,0,0,.3); /*팝업이 허공에 떠있는 듯한 느낌을 주기 위한 그림자 효과.*/
     height: 90vh;
   }
   
