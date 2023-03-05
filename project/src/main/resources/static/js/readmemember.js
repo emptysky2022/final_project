@@ -18,6 +18,8 @@ $(document).ready(function() {
 		$tabContents.hide();
 		$(target).show();
 		e.preventDefault();
+		console.log($tabSelect.find("option[value='" + $tabSelect.val() + "']"))
+		myHeart($tabSelect.find("option[value='" + $tabSelect.val() + "']").html())
 	});
 
 	// select
@@ -31,8 +33,9 @@ $(document).ready(function() {
 		$(target).show();
 	});
 	
+	loadResrvationDetails()
 	loadAllHistory();
-	
+	myHeart("CAMP");
 });
 
 // 결제 내역 수정 버튼 클릭 시 동작하는 이벤트 리스너
@@ -46,7 +49,7 @@ editBtns.forEach((btn) => {
 
 
 // 예약 내역 확인
-let $reservationForm = $(".sec4 ,box3");
+let $reservationForm = $(".sec4");
 function loadResrvationDetails() {
 
 	$.getJSON("/camp/reservation/member", function(result) {
@@ -64,7 +67,7 @@ function loadResrvationDetails() {
 						<div class="campgrounds_title item"> <img src=${camp.thumbnail}> </div>
 						<div class="campgrounds_name item_2">${camp.name}</div>
 						<div class="campgrounds_name item_3">${camp.address}</div>
-						<div class="campgrounds_date item_4">${reservaion.startdate} ~ ${reservaion.enddate}</div>
+						<div class="campgrounds_date item_4">${formatTime(reservaion.startdate)} ~ ${formatTime(reservaion.enddate)}</div>
 						<div class="campgrounds_expense item_4">
 							<button class="reserveCancel" id = ${reservaion.ccno}> 예약취소 </button>
 						</div>
@@ -121,7 +124,6 @@ async function loadAllHistory(){
 	} catch(err) {
 		console.log("에러 발생!", err);
 	}
-	myHeart("ITEM");
 }
 
 function formatTime(str) {
@@ -136,6 +138,69 @@ function myHeart(productType){
 		method: "GET",
 		success: function(result){
 			console.log(result)
+			let html = '';						
+			switch(productType){
+				case "CAMP":
+					html = result.map(([heartDTO,campDTO]) => {
+						return `
+							<div class="cg_imgbox">
+								<img src="${campDTO.thumbnail}" alt="">
+							</div>
+							<div class="cg_textbox">
+								<div class="cg_texttitle">
+									${campDTO.name}
+								</div>
+								<div class="cg_view">조회수 : ${campDTO.count}</div>
+								<div class="cg_wish list">찜 수 : ${campDTO.heart}</div>
+							</div>
+						`
+					}) 
+					$("#tab_camp").html(html);
+					break;
+				case "ITEM":
+					html = result.map(([heartDTO,itemDTO]) => {
+						return `
+							<div class="cp_imgbox">
+								<img src="${itemDTO.thumbnail}" alt="">
+							</div>
+							<div class="cp_textbox">
+								<div class="cp_texttitle">
+									${itemDTO.name}
+								</div>
+								<div class="cp_view">조회수 : ${itemDTO.count}</div>
+								<div class="cp_wish list">찜 수 : ${itemDTO.heart}</div>
+							</div>
+						`
+					}) 
+					$("#tab_item").html(html);
+					break;
+				case "BOARD":
+					html = result.map(([heartDTO,boardDTO]) => {
+						return `
+							<div class="postgroupbox">
+								<div class="pg_textbox">
+									<div class="pg_upline">
+										<div class="pg_write">
+											${boardDTO.nickname}
+										</div>
+										<div class="pg_date">
+											${formatTime(boardDTO.regDate)}
+										</div>
+									</div>
+									<div class="pg_downline">
+	
+										<div class="pg_texttitle">
+											${boardDTO.title}
+										</div>
+	
+									</div>
+								</div>
+							</div>
+						`
+					}) 
+					$("#tab_board").html(html);
+					break;
+			}
 		}
 	})
 }
