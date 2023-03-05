@@ -244,6 +244,8 @@ hr {
 .dropdown {
   border: 1px solid #333;
   padding: 3px;
+  border-radius: 5px;
+  background-color: #6D8EAA;
 }
 
 .dropbtn {
@@ -252,6 +254,7 @@ hr {
   justify-content: center;
   padding: 0.5rem;
   border-radius: 0.25rem;
+  color: var(--color-a) !important;
 }
 
 .subdropdown {
@@ -264,12 +267,12 @@ hr {
   z-index: 1;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   border-radius: 0.5rem;
-  background-color: #fff;
-
+  background-color: #0000ff05;
+  
 }
 
 .subdropdown a {
-  color: #444444;
+  color: var(--color-a);
   font-size: 16px;
   text-decoration: none;
   display: block;
@@ -279,7 +282,7 @@ hr {
 
 .subdropdown a:hover {
   color: #fff;
-  background-color: #333;
+  background-color: #9299C5;
 }
 
 .dropdown:hover .subdropdown {
@@ -288,8 +291,9 @@ hr {
 }
 
 .dropitem {
-  background-color: white;
+  background-color: #6D8EAA;
   border: 1px solid #333;
+  border-radius: 5px;
 }
 
   @media screen and (max-width: 480px) {
@@ -313,6 +317,7 @@ hr {
      width: 30%;
     height: 100%;
     min-width: 6rem;
+    border-radius: 5px;
 }
 
 /*판매상품의 사진+조회수+찜+별점*/
@@ -394,7 +399,7 @@ hr {
   justify-content: space-evenly;
   width: 3rem;
   height: 3rem;
-  background: #ddd;
+  background: #7d86c3cf;
   border-radius: 10%;
 }
 
@@ -414,9 +419,6 @@ hr {
   color: #fff;
 }
 
-.boardpage a:first-child {
-  border-left: 1px solid #ddd;
-} 
 
 .pagingEl ul .active a{
 	background-color: #7d86c3;
