@@ -52,7 +52,7 @@ main .body .body_center {
 /*상품의 왼쪽*/
 
 .sec1 .campgroundimgbox {
-	min-width: 10rem;
+   min-width: 10rem;
     width: 100%;
 }
 
@@ -640,17 +640,17 @@ main .body .body_center {
 /* TEST */
 
 .start-day{
-	width: 50%;
-	text-align : center;
-	float: left;
-	line-height: 20px;
+   width: 50%;
+   text-align : center;
+   float: left;
+   line-height: 20px;
 }
 
 .end-day{
-	width: 50%;
-	text-align : center;
-	float: right;
-	line-height: 20px;
+   width: 50%;
+   text-align : center;
+   float: right;
+   line-height: 20px;
 }
 
 #calendar {
@@ -902,4 +902,3 @@ button:active {
   font-size: 0.8rem;
   color: #666;
 }
-
