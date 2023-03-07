@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
 
 	//// 별점 관리 /////
